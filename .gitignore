@@ -9,7 +9,11 @@ capybara-*.html
 /public/system
 /coverage/
 /spec/tmp
+
 /node_modules
+bundle.js
+npm-debug.log
+
 **.orig
 rerun.txt
 pickle-email-*.html
