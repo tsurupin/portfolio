@@ -1,0 +1,44 @@
+linters:
+
+  BorderZero:
+    enabled: true
+    convention: none
+
+  BemDepth:
+    enabled: true
+
+  NestingDepth:
+      enabled: true
+      max_depth: 2
+      ignore_parent_selectors: false
+
+  DeclarationOrder:
+    enabled: false
+
+  LeadingZero:
+    enabled: false
+
+  PropertySortOrder:
+    enabled: false
+
+  QualifyingElement:
+    enabled: false
+
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_BEM
+
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: false
+
+  StringQuotes:
+    enabled: true
+    style: double_quotes
+  Comment:
+      enabled: false
+
+  ImportPath:
+      enabled: true
+      leading_underscore: true
+      filename_extension: false

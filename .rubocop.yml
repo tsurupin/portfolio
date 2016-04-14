@@ -1,0 +1,34 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - '**/Rakefile'
+    - '**/config.ru'
+  TargetRubyVersion: 2.2
+Style/PerlBackrefs:
+  AutoCorrect: true
+Rails:
+  Enabled: true
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+Documentation:
+  Enabled: false
+LineLength:
+  Max: 120
+AsciiComments:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: true
+  Max: 20
+MethodLength:
+  CountComments: false
+  Max: 15
+
