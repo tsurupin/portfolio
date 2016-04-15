@@ -7,6 +7,7 @@
     = csrf_meta_tags
     = action_cable_meta_tag
     = stylesheet_link_tag    'cms/application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,300,500', media: 'all', 'data-turbolinks-track' => 'reload'
   %body
     - unless content_for?(:hide_react)
       = render 'cms/shared/react_container'
