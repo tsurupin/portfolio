@@ -6,7 +6,7 @@ module.exports = {
     //'client_bundle': './src/client/index.js'
   },
   output: {
-    path: './app/assets/javascripts/share',
+    path: './app/assets/javascripts/shared',
     filename: '[name].js'
   },
   module: {

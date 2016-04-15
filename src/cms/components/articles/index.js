@@ -10,7 +10,7 @@ class ArticlesIndex extends Component {
 
     render() {
         return (
-          <div>
+          <div>Hoge
           </div>
         );
     }
