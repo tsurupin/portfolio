@@ -7,6 +7,7 @@ gem 'sqlite3'
 
 gem 'puma'
 
+gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 
 gem 'uglifier', '>= 1.3.0'
@@ -52,7 +53,7 @@ group :development do
 
   gem 'rubocop', require: false
   gem 'scss_lint', require: false
-
+  gem 'erb2haml'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.0'
