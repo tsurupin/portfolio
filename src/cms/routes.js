@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
-import ArticlesIndex from './components/articles/index';
-import ArticlesForm from './components/articles/form';
+import ArticlesIndex from './containers/articles/index';
+import ArticlesForm from './containers/articles/form';
 
 export default (
     <Route path="/cms" component={App}>
