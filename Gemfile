@@ -20,17 +20,16 @@ gem 'redis', '~> 3.0'
 
 # For View
 
-
 # For Image upload
 gem 'carrierwave'                 # 画像アップローダ
 gem 'mini_magick'                 # CarrierWaveでリサイズなどができるようになる
 gem 'fog'
 
 # For Model and AR
-
 gem 'active_type'
 gem 'factory_girl_rails'
 gem 'enum_help'
+gem 'migration_comments'
 
 # For Config
 gem 'config'
@@ -51,11 +50,12 @@ group :development do
   gem 'annotate'
   gem 'rails-db-resetup'
 
+  # For Lint
   gem 'rubocop', require: false
   gem 'scss_lint', require: false
   gem 'erb2haml'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
+  # For Debug
   gem 'web-console', '~> 3.0'
   gem 'listen', '~> 3.0.5'
   gem 'better_errors'
