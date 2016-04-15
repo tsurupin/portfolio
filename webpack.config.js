@@ -1,11 +1,13 @@
+
 module.exports = {
-  entry: [
-    './src/index.js'
-  ],
+  context: __dirname,
+  entry: {
+    'cms_bundle': './src/cms/index.js'
+    //'client_bundle': './src/client/index.js'
+  },
   output: {
-    path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: './app/assets/javascripts/share',
+    filename: '[name].js'
   },
   module: {
     loaders: [{

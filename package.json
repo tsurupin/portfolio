@@ -6,7 +6,7 @@
   "repository": "git@github.com:tsurupin/portfolio.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test": "mocha --compilers js:babel-core/register --require ./spec/test_helper.js --recursive ./spec",
     "test:watch": "npm run test -- --watch",
     "lint": "node_modules/.bin/eslint assets/javascripts/*"
   },
@@ -26,6 +26,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "axios": "^0.9.1",
     "babel-preset-stage-1": "^6.1.18",
     "classnames": "*",
     "lodash": "^3.10.1",

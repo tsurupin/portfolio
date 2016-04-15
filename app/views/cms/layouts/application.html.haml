@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{ charset: 'UTF-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+    %title Portfolio
+    = csrf_meta_tags
+    = action_cable_meta_tag
+    = stylesheet_link_tag    'cms/application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'cms/application', 'data-turbolinks-track' => 'reload'
+  %body
+    - unless content_for?(:hide_react)
+      = render 'cms/shared/react_container'
+    = yield

@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/health_check' => 'application#health_check'
+
+  scope module: :cms do
+    namespace :api, default: { format: :json } do
+      resources :articles
+    end
+    get '/cms', to: 'application#home'
+  end
 
   # Serve websocket cable requests in-process
-  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/cable'
 end
