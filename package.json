@@ -6,9 +6,9 @@
   "repository": "git@github.com:tsurupin/portfolio.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./spec/test_helper.js --recursive ./spec",
+    "test": "mocha --compilers js:babel-core/register --require ./spec/src/cms/test_helper.js --recursive ./spec",
     "test:watch": "npm run test -- --watch",
-    "lint": "node_modules/.bin/eslint assets/javascripts/*"
+    "lint": "./node_modules/.bin/eslint assets/javascripts/*"
   },
   "author": "",
   "devDependencies": {

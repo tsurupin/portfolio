@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import ArticleReducer from './articles';
+import articleReducer from './articles';
 
 const rootReducer = combineReducers({
     form: formReducer,
-    articles: ArticleReducer
+    articles: articleReducer
 });
 
 export default rootReducer;
