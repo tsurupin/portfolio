@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class ArticlesForm extends Component {
+export default class AuthorsForm extends Component {
     render() {
         return (
             <div>Hoge

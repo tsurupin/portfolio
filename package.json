@@ -23,6 +23,7 @@
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
+    "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
@@ -31,7 +32,9 @@
     "babel-preset-stage-1": "^6.1.18",
     "classnames": "*",
     "lodash": "^3.10.1",
-    "material-ui": "^0.15.0-alpha.2",
+    "material-design-iconic-font": "^2.2.0",
+    "material-ui": "^0.14.4",
+    "mdi": "^1.5.54",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",

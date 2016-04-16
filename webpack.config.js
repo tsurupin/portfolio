@@ -10,12 +10,14 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    loaders: [{
-      exclude: /node_modules/,
-      loader: 'babel'
-    }]
+    loaders: [
+        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+
+    ]
   },
   resolve: {
+    modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx']
   },
   devServer: {

@@ -19,5 +19,5 @@ class Project < ApplicationRecord
 
   validates :title, presence: true
 
-  mount :image, ProjectImageUploader
+  mount_uploader :image, ProjectImageUploader
 end
