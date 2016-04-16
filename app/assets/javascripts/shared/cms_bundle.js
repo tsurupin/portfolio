@@ -26644,51 +26644,63 @@
 
 	var _iconButton2 = _interopRequireDefault(_iconButton);
 
-	var _colors = __webpack_require__(267);
-
-	var _fontIcon = __webpack_require__(320);
-
-	var _fontIcon2 = _interopRequireDefault(_fontIcon);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	//import FontIcon from 'material-ui'
-
 
 	var styles = {
+	    appBar: {
+	        backgroundColor: '#fff',
+	        height: 50,
+	        minHeight: 50
+	    },
 	    title: {
 	        color: '#69808c',
+	        fontSize: '1.6rem',
 	        fontFamily: 'Raleway,sans-serif',
-	        height: '50px',
-	        lineHeight: '50px',
-	        fontSize: '1.6px'
+	        lineHeight: '5.0rem'
+	    },
+	    elementRight: {
+	        height: 50,
+	        minHeight: 50,
+	        marginTop: 0
 	    }
-	};
-	var iconStyles = {
-	    marginRight: 24
 	};
 
 	var NavigationBar = function (_Component) {
 	    _inherits(NavigationBar, _Component);
 
-	    function NavigationBar() {
+	    function NavigationBar(props) {
+	        var _Object$getPrototypeO;
+
 	        _classCallCheck(this, NavigationBar);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(NavigationBar).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(NavigationBar)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+
+	        _this.handleMove = _this.handleMove.bind(_this);
+	        return _this;
 	    }
 
 	    _createClass(NavigationBar, [{
+	        key: 'handleMove',
+	        value: function handleMove(e) {
+	            location.href = e.target.href;
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(_appBar2.default, {
 	                showMenuIconButton: false,
 	                title: 'TOMOAKI TSURUTA',
-	                style: styles.title,
+	                style: styles.appBar,
+	                titleStyle: styles.title,
+	                iconStyleRight: styles.elementRight,
 	                iconElementRight: _react2.default.createElement(
 	                    'div',
 	                    null,
@@ -26720,8 +26732,8 @@
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/articles/new' },
+	                        'a',
+	                        { href: 'https://github.com/tsurupin', onClick: this.handleMove },
 	                        _react2.default.createElement(_iconButton2.default, { iconClassName: 'muidocs-icon-custom-github' })
 	                    )
 	                )

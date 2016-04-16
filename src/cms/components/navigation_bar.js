@@ -7,29 +7,44 @@ import AvWeb from 'material-ui/lib/svg-icons/av/web';
 import ActionDescription from 'material-ui/lib/svg-icons/action/description';
 import SocialPerson from 'material-ui/lib/svg-icons/social/person';
 import IconButton from 'material-ui/lib/icon-button';
-import {red500, yellow500, blue500} from 'material-ui/lib/styles/colors';
-//import FontIcon from 'material-ui'
-import FontIcon from 'material-ui/lib/font-icon';
 const styles = {
+    appBar: {
+        backgroundColor: '#fff',
+        height: 50,
+        minHeight: 50
+    },
     title: {
         color: '#69808c',
+        fontSize: '1.6rem',
         fontFamily: 'Raleway,sans-serif',
-        height: '50px',
-        lineHeight: '50px',
-        fontSize: '1.6px'
+        lineHeight: '5.0rem'
+    },
+    elementRight: {
+        height: 50,
+        minHeight: 50,
+        marginTop: 0
     }
 };
-const iconStyles = {
-    marginRight: 24
-};
+
 class NavigationBar extends Component {
+
+    constructor(props) {
+        super(...props);
+        this.handleMove = this.handleMove.bind(this);
+    }
+
+    handleMove(e) {
+        location.href = e.target.href;
+    }
 
     render() {
         return (
             <AppBar
                 showMenuIconButton={false}
                 title="TOMOAKI TSURUTA"
-                style={styles.title}
+                style={styles.appBar}
+                titleStyle={styles.title}
+                iconStyleRight={styles.elementRight}
                 iconElementRight={
                     <div>
                         <Link to="/cms/articles/new" >
@@ -47,9 +62,9 @@ class NavigationBar extends Component {
                                 <AvWeb />
                             </IconButton>
                         </Link>
-                        <Link to="/cms/articles/new" >
-                            <IconButton iconClassName="muidocs-icon-custom-github" />
-                        </Link>
+                        <a href="https://github.com/tsurupin" onClick={this.handleMove} >
+                            <IconButton iconClassName="muidocs-icon-custom-github"/>
+                        </a>
                     </div>
                     }
             />
