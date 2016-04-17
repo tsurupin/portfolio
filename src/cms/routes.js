@@ -12,6 +12,8 @@ export default (
     <Route path="/cms" component={App}>
         <IndexRoute component={ArticlesIndex} />
         <Route path="/cms/articles/new" component={ArticlesForm} />
+        <Route path="/cms/articles/:id/edit" component={ArticlesForm} />
+        <Route path="/cms/articles/:id" component={ArticlesForm} />
         <Route path="/cms/projects" component={ProjectsIndex} />
         <Route path="/cms/projects/new" component={ProjectsForm} />
         <Route path="/cms/projects/:id/edit" component={ProjectsForm} />

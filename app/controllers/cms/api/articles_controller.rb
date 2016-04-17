@@ -1,7 +1,7 @@
 class Cms::Api::ArticlesController < Cms::ApplicationController
 
   def index
-    @articles = Article.all
+    @articles = [{title: 'hoge', description: 'description', id: 1}]
     render json: @articles
   end
 end
