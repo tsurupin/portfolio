@@ -1,8 +1,8 @@
 export const ROOT_URL = '/cms/api';
-export const ARTICLE_PATH = '/articles';
+export const POST_PATH = '/posts';
 
-export const FETCH_ARTICLES = 'fetch articles';
-export const FETCH_ARTICLE  = 'fetch article';
-export const CREATE_ARTICLE = 'create article';
-export const TOGGLE_ARTICLE = 'toggle artile';
-export const DELETE_ARTICLE = 'delete article';
+export const FETCH_POSTS = 'fetch posts';
+export const FETCH_POST  = 'fetch post';
+export const CREATE_POST = 'create post';
+export const TOGGLE_POST = 'toggle artile';
+export const DELETE_POST = 'delete post';

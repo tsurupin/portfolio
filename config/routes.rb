@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   namespace :cms do
     namespace :api, default: { format: :json } do
-      resources :articles, shallow: true do
-        resource :acceptance, only: :update, module: :articles
+      resources :posts, shallow: true do
+        resource :acceptance, only: :update, module: :posts
       end
     end
 

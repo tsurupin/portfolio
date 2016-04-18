@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchArticles } from '../../actions/articles';
+import { fetchPosts } from '../../actions/posts';
 import { Link } from 'react-router';
-import ArticleItem from './item';
+import PostItem from './item';
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableHeader from 'material-ui/lib/table/table-header';
@@ -20,15 +20,15 @@ const styles = {
     }
 };
 
-class ArticlesIndex extends Component {
+class PostsIndex extends Component {
     componentWillMount() {
-        this.props.fetchArticles();
+        this.props.fetchPosts();
     }
 
     render() {
         return (
           <section>
-              <Link to="/cms/articles/new">
+              <Link to="/cms/posts/new">
                   <FloatingActionButton style={styles.floatButton}>
                       <ContentAdd />
                   </FloatingActionButton>
@@ -45,8 +45,8 @@ class ArticlesIndex extends Component {
                       </TableRow>
                   </TableHeader>
                   <TableBody displayRowCheckbox={false}>
-                    {this.props.articles.map( (article, index) => (
-                        <ArticleItem article={article} key={index} />
+                    {this.props.posts.map( (post, index) => (
+                        <PostItem post={post} key={index} />
                     ))}
                   </TableBody>
               </Table>
@@ -56,7 +56,7 @@ class ArticlesIndex extends Component {
 }
 
 function mapStateToProps(state) {
-    return { articles: state.articles.all }
+    return { posts: state.posts.all }
 }
 
-export default connect(mapStateToProps, { fetchArticles })(ArticlesIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { deleteArticle, toggleArticle } from '../../actions/articles';
+import { deletePost, togglePost } from '../../actions/posts';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import IconButton from 'material-ui/lib/icon-button';
@@ -11,7 +11,7 @@ import AvAirplay from 'material-ui/lib/svg-icons/av/airplay';
 import ActionVisibility from 'material-ui/lib/svg-icons/action/visibility';
 import ActionVisibilityOff from 'material-ui/lib/svg-icons/action/visibility-off';
 
-class ArticleItem  extends Component {
+class PostItem  extends Component {
 
     constructor(props) {
         super(...props);
@@ -26,19 +26,19 @@ class ArticleItem  extends Component {
 
 
     handleDelete() {
-        this.props.deleteArticle(this.props.id)
+        this.props.deletePost(this.props.id)
             .then( () => {
-                this.context.router.push('/cms/articles');
+                this.context.router.push('/cms/posts');
             });
     }
 
     handleToggle() {
-        this.props.toggleArticle(this.props.id)
-            .then( this.context.router.push('/cms/articles') );
+        this.props.togglePost(this.props.id)
+            .then( this.context.router.push('/cms/posts') );
     }
 
     publishIcon() {
-        if (this.props.article.published) {
+        if (this.props.post.published) {
             return <ActionVisibility />;
         } else {
             return <ActionVisibility />;
@@ -48,18 +48,18 @@ class ArticleItem  extends Component {
     render() {
         return (
             <TableRow>
-                <TableRowColumn>{this.props.article.id}</TableRowColumn>
-                <TableRowColumn>{this.props.article.title}</TableRowColumn>
-                <TableRowColumn>{this.props.article.description}</TableRowColumn>
+                <TableRowColumn>{this.props.post.id}</TableRowColumn>
+                <TableRowColumn>{this.props.post.title}</TableRowColumn>
+                <TableRowColumn>{this.props.post.description}</TableRowColumn>
                 <TableRowColumn>Published</TableRowColumn>
                 <TableRowColumn>Published Status</TableRowColumn>
                 <TableRowColumn>
-                    <Link to={`/cms/articles/${this.props.article.id}`}>
+                    <Link to={`/cms/posts/${this.props.post.id}`}>
                         <IconButton>
                             <AvAirplay />
                         </IconButton>
                     </Link>
-                    <Link to={`/cms/articles/${this.props.article.id}/edit`}>
+                    <Link to={`/cms/posts/${this.props.post.id}/edit`}>
                         <IconButton>
                             <EditorModeEdit />
                         </IconButton>
@@ -76,4 +76,4 @@ class ArticleItem  extends Component {
     }
 };
 
-export default connect(null, { deleteArticle, toggleArticle })(ArticleItem);
+export default connect(null, { deletePost, togglePost })(PostItem);

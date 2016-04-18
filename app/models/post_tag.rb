@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: article_tags
+# Table name: post_tags
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
@@ -8,6 +8,6 @@
 #  updated_at :datetime         not null
 #
 
-class ArticleTag < ApplicationRecord
-  has_many :article_taggings, dependent: :destroy
+class PostTag < ApplicationRecord
+  has_many :post_taggings, dependent: :destroy
 end
