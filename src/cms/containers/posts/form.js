@@ -1,36 +1,55 @@
 import React, { Component, PropTypes } from 'react';
-import { createPost } from '../../actions/posts';
-import { createItem } from '../../actions/items';
+import { fetchPost, createPost, deletePost, updatePost } from '../../actions/posts';
+import { fetchItems, createItem, updateItem, deleteItem } from '../../actions/items';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import ItemFormEditBox from '../../components/items/forms/edit_box';
 import TextField from 'material-ui/lib/text-field';
 import DatePicker from '../../components/date_picker_wrapper';
 import RaisedButton from 'material-ui/lib/raised-button';
+import PostItemBlock from '../../components/items/forms/post_item_block';
 
 export const fields = [
     'title', 'description', 'publishedAt'
 ];
 
+
 class PostsForm extends Component {
-
-    constructor(props) {
-        super(...props);
-
-        this.handleAddItem = this.handleAddItem.bind(this);
-    }
-
     static contextTypes = {
         router: PropTypes.object
     };
 
+    constructor(props) {
+        super(...props);
+
+        this.handleAddItem      = this.handleAddItem.bind(this);
+        this.handleUpdateItem   = this.handleUpdateItem.bind(this);
+        this.handleCancelItem   = this.handleCancelItem.bind(this);
+    }
+
     componentWillMount() {
-        console.log(this.props)
+        if (this.props.params.id) {
+            this.props.fetchPost(this.props.params.id)
+                .then( (post) => {
+                    this.props.fetchItems(post.items)
+                }
+            )
+        }
+
     }
 
     handleAddItem(type) {
         this.props.createItem(type);
     }
+
+    handleUpdateItem(sortRank, props) {
+        this.props.updateItem(sortRank, props);
+    }
+
+    handleCancelItem(sortRank) {
+        this.props.deletePost(sortRank);
+    }
+
 
     onSubmit(props) {
         console.log(props);
@@ -38,7 +57,29 @@ class PostsForm extends Component {
             .then(this.context.router.push('/cms/posts'));
     }
 
+    renderItems() {
+        return(
+            <section className="l-post-item-container">
+                <ul>
+                    {this.props.items.map((item, index) => {
+                        return (
+                            <PostItemBlock
+                                key={index}
+                                sortRank={index}
+                                item={item}
+                                totalCount={this.props.items.length-1}
+                                handleUpdateItem={this.handleUpdateItem}
+                                handleCancelItem={this.handleCancelItem}
+                            />
+                        );
+                    })}
+                </ul>
+            </section>
+        );
+    }
+
     render() {
+        console.log(this.props);
         const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form">
@@ -67,6 +108,7 @@ class PostsForm extends Component {
                     errorText={publishedAt.touched && publishedAt.error ? publishedAt.error : ''}
                     {...publishedAt}
                 />
+                {this.renderItems()}
                 <ItemFormEditBox handleAddItem={this.handleAddItem} />
                 <RaisedButton
                     type="submit"
@@ -89,8 +131,12 @@ function validate(values) {
     return errors;
 }
 
+function mapStateToProps(state) {
+    return { post: state.posts.post, items: state.items }
+}
+
 export default reduxForm({
     form: 'PostsNew',
     fields,
     validate
-}, null, { createPost, createItem })(PostsForm);
+}, mapStateToProps, { fetchPost, createPost, deletePost, updatePost, fetchItems, createItem, deleteItem, updateItem })(PostsForm);

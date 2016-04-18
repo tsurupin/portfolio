@@ -7,6 +7,7 @@ export const CREATE_POST = 'create post';
 export const TOGGLE_POST = 'toggle post';
 export const DELETE_POST = 'delete post';
 
+export const FETCH_ITEMS = 'fetch items';
 export const CREATE_ITEM = 'create item';
 export const UPDATE_ITEM = 'update item';
 export const DELETE_ITEM = 'delete item';
