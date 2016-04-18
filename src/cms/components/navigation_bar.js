@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 
@@ -17,7 +17,8 @@ const styles = {
         color: '#69808c',
         fontSize: '1.6rem',
         fontFamily: 'Raleway,sans-serif',
-        lineHeight: '5.0rem'
+        lineHeight: '5.0rem',
+        cursor: 'pointer'
     },
     elementRight: {
         height: 50,
@@ -31,19 +32,30 @@ class NavigationBar extends Component {
     constructor(props) {
         super(...props);
         this.handleMove = this.handleMove.bind(this);
+        this.handleHome = this.handleHome.bind(this);
     }
+
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
 
     handleMove(e) {
         location.href = e.target.href;
+    }
+
+    handleHome() {
+        this.context.router.push('/cms');
     }
 
     render() {
         return (
             <AppBar
                 showMenuIconButton={false}
-                title="TOMOAKI TSURUTA"
+                title="Tomoaki Tsuruta"
                 style={styles.appBar}
                 titleStyle={styles.title}
+                onTitleTouchTap={this.handleHome}
                 iconStyleRight={styles.elementRight}
                 iconElementRight={
                     <div>

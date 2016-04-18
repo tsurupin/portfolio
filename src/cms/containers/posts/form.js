@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { createPost } from '../../actions/posts';
+import { createItem } from '../../actions/items';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import ItemFormEditBox from '../../components/items/forms/edit_box';
 import TextField from 'material-ui/lib/text-field';
 import DatePicker from '../../components/date_picker_wrapper';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -14,6 +16,8 @@ class PostsForm extends Component {
 
     constructor(props) {
         super(...props);
+
+        this.handleAddItem = this.handleAddItem.bind(this);
     }
 
     static contextTypes = {
@@ -24,12 +28,14 @@ class PostsForm extends Component {
         console.log(this.props)
     }
 
+    handleAddItem(type) {
+        this.props.createItem(type);
+    }
+
     onSubmit(props) {
         console.log(props);
-        //this.props.createPost(props)
-        //    .then(() => {
-        //        this.context.router.push('/cms/posts');
-        //    });
+        this.props.createPost(props)
+            .then(this.context.router.push('/cms/posts'));
     }
 
     render() {
@@ -61,6 +67,7 @@ class PostsForm extends Component {
                     errorText={publishedAt.touched && publishedAt.error ? publishedAt.error : ''}
                     {...publishedAt}
                 />
+                <ItemFormEditBox handleAddItem={this.handleAddItem} />
                 <RaisedButton
                     type="submit"
                     label="Create"
@@ -86,4 +93,4 @@ export default reduxForm({
     form: 'PostsNew',
     fields,
     validate
-}, null, { createPost })(PostsForm);
+}, null, { createPost, createItem })(PostsForm);
