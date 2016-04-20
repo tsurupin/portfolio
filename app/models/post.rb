@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: articles
+# Table name: posts
 #
 #  id           :integer          not null, primary key
 #  title        :string           not null
@@ -11,9 +11,9 @@
 #  updated_at   :datetime         not null
 #
 
-class Article < ApplicationRecord
-  has_many :article_taggings, dependent: :destroy
-  has_many :article_tags, through: :article_taggins
+class Post < ApplicationRecord
+  has_many :post_taggings, dependent: :destroy
+  has_many :post_tags, through: :post_taggins
   has_many :items, dependent: :destroy
   has_many :comments, dependent: :destroy
 
