@@ -37,8 +37,8 @@ export default class ItemFormEditBox extends Component {
                 return (
                     <ItemEditBoxItem
                         key={index}
-                        name={targetType.name}
-                        image={targetType.image}
+                        name={targetType.NAME}
+                        image={targetType.IMAGE}
                         handleAddItem={this.props.handleAddItem}
                     />
                 );

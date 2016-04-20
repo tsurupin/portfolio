@@ -1,6 +1,7 @@
-import axios from 'axios';
-import { CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM } from '../constants';
-
+import { 
+    FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM, 
+    MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM 
+} from '../constants';
 
 export function fetchItems(items) {
     return {
@@ -12,7 +13,6 @@ export function fetchItems(items) {
 };
 
 export function createItem(type) {
-    console.log('create'+ type);
     return {
         type: CREATE_ITEM,
         payload: {
@@ -25,7 +25,7 @@ export function createItem(type) {
     }
 };
 
-export function updateItem(item, sortRank) {
+export function updateItem(sortRank, item) {
     return {
         type: UPDATE_ITEM,
         payload: {
@@ -38,6 +38,33 @@ export function updateItem(item, sortRank) {
 export function deleteItem(sortRank) {
     return {
         type: DELETE_ITEM,
+        payload: { sortRank }
+    }
+};
+
+export function moveItemTop(sortRank) {
+    return {
+        type: MOVE_ITEM_TOP,
+        payload: { sortRank }
+    }
+};
+
+export function moveItemUp(sortRank) {
+    return {
+        type: MOVE_ITEM_UP,
+        payload: { sortRank }
+    }
+};
+export function moveItemDown(sortRank) {
+    return {
+        type: MOVE_ITEM_DOWN,
+        payload: { sortRank }
+    }
+};
+
+export function moveItemBottom(sortRank) {
+    return {
+        type: MOVE_ITEM_BOTTOM,
         payload: { sortRank }
     }
 };

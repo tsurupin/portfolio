@@ -7,7 +7,7 @@ import ItemFormEditBox from '../../components/items/forms/edit_box';
 import TextField from 'material-ui/lib/text-field';
 import DatePicker from '../../components/date_picker_wrapper';
 import RaisedButton from 'material-ui/lib/raised-button';
-import PostItemBlock from '../../components/items/forms/post_item_block';
+import PostItemBlock from '../../components/items/post_item_block';
 
 export const fields = [
     'title', 'description', 'publishedAt'
@@ -42,12 +42,13 @@ class PostsForm extends Component {
         this.props.createItem(type);
     }
 
-    handleUpdateItem(sortRank, props) {
-        this.props.updateItem(sortRank, props);
+    handleUpdateItem(sortRank, item) {
+
+        this.props.updateItem(sortRank, item);
     }
 
     handleCancelItem(sortRank) {
-        this.props.deletePost(sortRank);
+        this.props.deleteItem(sortRank);
     }
 
 
@@ -79,7 +80,6 @@ class PostsForm extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form">

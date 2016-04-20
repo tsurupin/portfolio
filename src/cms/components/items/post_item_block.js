@@ -9,6 +9,7 @@ export default class PostItemBlock extends Component {
         if (this.props.item.editing) {
           return (
             <PostItemForm
+                sortRank={this.props.sortRank}
                 item={this.props.item}
                 handleCancelItem={this.props.handleCancelItem}
                 handleUpdateItem={this.props.handleUpdateItem}
@@ -18,12 +19,14 @@ export default class PostItemBlock extends Component {
 
         return (
             <PostItemCell
+                sortRank={this.props.sortRank}
                 item={this.props.item}
+                totalCount={this.props.totalCount}
+                handleUpdateItem={this.props.handleUpdateItem}
             />
         );
     }
     render() {
-        console.log(this.props)
         return(
             <li>
                 {this.renderComponent()}
