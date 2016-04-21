@@ -1,5 +1,4 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import NavigationBar from './navigation_bar';
 
 export default class App extends Component {

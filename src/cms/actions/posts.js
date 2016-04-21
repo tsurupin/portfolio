@@ -7,9 +7,25 @@ import {
 
 export function fetchPosts() {
     const request = axios.get(`${ROOT_URL}${POST_PATH}`);
+    return dispatch => {
+        return request.then(
+            response => dispatch(fetchPostsSuccess(response.data)),
+            error => dispatch(fetchPostsFailure(error.data))
+        )
+    };
+}
+
+function fetchPostsSuccess(response) {
     return {
-        type: FETCH_POSTS,
-        payload: request
+        type: FETCH_POSTS.SUCCESS,
+        payload: response
+    };
+}
+
+function fetchPostsFailure(error) {
+    return {
+        type: FETCH_POSTS.FAILURE,
+        payload: error
     };
 }
 

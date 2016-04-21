@@ -1,7 +1,17 @@
 export const ROOT_URL = '/cms/api';
 export const POST_PATH = '/posts';
 
-export const FETCH_POSTS = 'fetch posts';
+const REQUEST = 'REQUEST';
+const SUCCESS = 'SUCCESS';
+const FAILURE = 'FAILURE';
+
+function createRequestTypes(base) {
+    const requestType = {};
+    [REQUEST, SUCCESS, FAILURE].forEach(type => requestType[type] = `${base}_${type}`);
+    return requestType;
+}
+
+export const FETCH_POSTS = createRequestTypes('FETCH_POSTS');
 export const FETCH_POST  = 'fetch post';
 export const CREATE_POST = 'create post';
 export const TOGGLE_POST = 'toggle post';
