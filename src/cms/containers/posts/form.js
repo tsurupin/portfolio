@@ -31,7 +31,7 @@ class PostsForm extends Component {
         if (this.props.params.id) {
             this.props.fetchPost(this.props.params.id)
                 .then( (post) => {
-                    this.props.fetchItems(post.items)
+                    //this.props.fetchItems(post.items)
                 }
             )
         }

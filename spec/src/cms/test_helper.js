@@ -20,6 +20,7 @@ function renderComponent(ComponentClass, props, state) {
         <ComponentClass {...props}/>
       </Provider>
   );
+  
   return $(ReactDOM.findDOMNode(componentInstance));
 }
 
@@ -28,7 +29,7 @@ $.fn.simulate = function(eventName, value) {
     this.val(value);
   }
   TestUtils.Simulate[eventName](this[0]);
-}
+};
 
 chaiJquery(chai, chai.util, $);
 

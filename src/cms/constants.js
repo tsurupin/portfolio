@@ -24,7 +24,7 @@ export const CREATE_ITEM = 'CREATE_ITEM';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 
-export const MOVE_ITEM_TOP      = 'MOVE_ITEM_TO';
+export const MOVE_ITEM_TOP      = 'MOVE_ITEM_TOP';
 export const MOVE_ITEM_UP       = 'MOVE_ITEM_UP';
 export const MOVE_ITEM_DOWN     = 'MOVE_ITEM_DOWN';
 export const MOVE_ITEM_BOTTOM   = 'MOVE_ITEM_BOTTOM';

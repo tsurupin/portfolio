@@ -6,7 +6,7 @@ import Tooltip from './displays/tooltip';
 export default class PostItemCell extends Component {
     constructor(props) {
         super(...props);
-        this.state = {hovering: true}
+        this.state = { hovering: true };
         
         this.handleUpdateItem = this.handleUpdateItem.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);

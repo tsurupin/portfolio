@@ -36499,7 +36499,7 @@
 	}
 
 	function updatePost(props) {
-	    var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + props.id, props);
+	    var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + props.id, props);
 	    return function (dispatch) {
 	        return request.then(function () {
 	            return dispatch(updatePostSuccess());
@@ -37698,7 +37698,7 @@
 	var UPDATE_ITEM = exports.UPDATE_ITEM = 'UPDATE_ITEM';
 	var DELETE_ITEM = exports.DELETE_ITEM = 'DELETE_ITEM';
 
-	var MOVE_ITEM_TOP = exports.MOVE_ITEM_TOP = 'MOVE_ITEM_TO';
+	var MOVE_ITEM_TOP = exports.MOVE_ITEM_TOP = 'MOVE_ITEM_TOP';
 	var MOVE_ITEM_UP = exports.MOVE_ITEM_UP = 'MOVE_ITEM_UP';
 	var MOVE_ITEM_DOWN = exports.MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
 	var MOVE_ITEM_BOTTOM = exports.MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
@@ -41497,11 +41497,9 @@
 	    _createClass(PostsForm, [{
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
-	            var _this2 = this;
-
 	            if (this.props.params.id) {
 	                this.props.fetchPost(this.props.params.id).then(function (post) {
-	                    _this2.props.fetchItems(post.items);
+	                    //this.props.fetchItems(post.items)
 	                });
 	            }
 	        }
@@ -41530,7 +41528,7 @@
 	    }, {
 	        key: 'renderItems',
 	        value: function renderItems() {
-	            var _this3 = this;
+	            var _this2 = this;
 
 	            return _react2.default.createElement(
 	                'section',
@@ -41543,9 +41541,9 @@
 	                            key: index,
 	                            sortRank: index,
 	                            item: item,
-	                            totalCount: _this3.props.items.length - 1,
-	                            handleUpdateItem: _this3.handleUpdateItem,
-	                            handleCancelItem: _this3.handleCancelItem
+	                            totalCount: _this2.props.items.length - 1,
+	                            handleUpdateItem: _this2.handleUpdateItem,
+	                            handleCancelItem: _this2.handleCancelItem
 	                        });
 	                    })
 	                )
@@ -52226,6 +52224,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -52277,7 +52276,6 @@
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Tooltip).call(this, props));
 
-	        _this.handleMove = _this.handleMove.bind(_this);
 	        _this.handleDelete = _this.handleDelete.bind(_this);
 	        return _this;
 	    }
@@ -52285,6 +52283,7 @@
 	    _createClass(Tooltip, [{
 	        key: 'handleMove',
 	        value: function handleMove(type) {
+	            console.log(type);
 	            this.props.moveItem(this.props.sortRank, type);
 	        }
 	    }, {
@@ -52302,7 +52301,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--top',
-	                    onClick: this.handleMove(_constants.MOVE_ITEM_TOP) },
+	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_TOP) },
 	                'Top'
 	            );
 	        }
@@ -52316,7 +52315,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--up',
-	                    onClick: this.handleMove(_constants.MOVE_ITEM_UP) },
+	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_UP) },
 	                'Up'
 	            );
 	        }
@@ -52330,7 +52329,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--down',
-	                    onClick: this.handleMove(_constants.MOVE_ITEM_DOWN) },
+	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_DOWN) },
 	                'Down'
 	            );
 	        }
@@ -52344,7 +52343,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--bottom',
-	                    onClick: this.handleMove(_constants.MOVE_ITEM_BOTTOM) },
+	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_BOTTOM) },
 	                'Bottom'
 	            );
 	        }
@@ -52377,7 +52376,7 @@
 	    return Tooltip;
 	}(_react.Component);
 
-	exports.default = (0, _reactRedux.connect)(null, { moveItemTop: moveItemTop, moveItemUp: moveItemUp, moveItemDown: moveItemDown, moveItemBottom: moveItemBottom, deleteItem: _items.deleteItem })(Tooltip);
+	exports.default = (0, _reactRedux.connect)(null, { moveItem: _items.moveItem, deleteItem: _items.deleteItem })(Tooltip);
 
 /***/ },
 /* 464 */
@@ -52439,7 +52438,6 @@
 	    _createClass(PostItemForm, [{
 	        key: 'renderComponent',
 	        value: function renderComponent() {
-	            console.log(this.props.item.title);
 	            switch (this.props.item.type) {
 	                case _constants.TARGET_TYPES.HEADING.NAME:
 	                case _constants.TARGET_TYPES.SUB_HEADING.NAME:
@@ -52956,15 +52954,18 @@
 	        case _constants.FETCH_POST.SUCCESS:
 	            return _extends({}, state, { post: action.payload });
 	        case _constants.CREATE_POST.SUCCESS:
-	        case UPDATE_POST.SUCCESS:
+	        case _constants.UPDATE_POST.SUCCESS:
 	            return _extends({}, state, { message: 'Successfully Saved' });
+	        case _constants.DELETE_POST.SUCCESS:
+	            return _extends({}, state, { message: 'Successfully Deleted' });
 	        case _constants.TOGGLE_POST.SUCCESS:
 	            return _extends({}, state, { message: 'Successfully Change Published Status' });
 	        case _constants.FETCH_POSTS.FAILURE:
 	        case _constants.FETCH_POST.FAILURE:
-	        case CREATE_POST_FAILURE:
-	        case UPDATE_POST_FAILURE:
-	        case TOGGLE_POST_FAILURE:
+	        case _constants.CREATE_POST.FAILURE:
+	        case _constants.UPDATE_POST.FAILURE:
+	        case _constants.DELETE_POST.FAILURE:
+	        case _constants.TOGGLE_POST.FAILURE:
 	            return _extends({}, state, { error: action.payload });
 	        default:
 	            return state;
@@ -52991,7 +52992,7 @@
 
 	    switch (action.type) {
 	        case _constants.FETCH_ITEMS:
-	            return [].concat(_toConsumableArray(state), [action.payload.items]);
+	            return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload.items));
 
 	        case _constants.CREATE_ITEM:
 	            return [].concat(_toConsumableArray(state), [action.payload.item]);
@@ -53008,26 +53009,30 @@
 	                return [].concat(_toConsumableArray(topItem), _toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
 	            }
 	            return state;
+
 	        case _constants.MOVE_ITEM_UP:
-	            if (state.length > 1) {
+	            if (state.length > 0) {
 	                var subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
 	                var frontItem = state.slice(action.payload.sortRank - 1, action.payload.sortRank);
 	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank - 1)), _toConsumableArray(subject), _toConsumableArray(frontItem), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
 	            }
 	            return state;
+
 	        case _constants.MOVE_ITEM_DOWN:
-	            if (state.length - 1 >= action.payload.sortRank) {
+	            if (state.length > action.payload.sortRank) {
 	                var _subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
 	                var backItem = state.slice(action.payload.sortRank + 1, action.payload.sortRank + 2);
 	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(backItem), _toConsumableArray(_subject), _toConsumableArray(state.slice(action.payload.sortRank + 2)));
 	            }
 	            return state;
+
 	        case _constants.MOVE_ITEM_BOTTOM:
-	            if (action.payload.sortRank !== state.length - 1) {
+	            if (state.length > 0 && state.length - 1 !== action.payload.sortRank) {
 	                var bottomItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
 	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)), _toConsumableArray(bottomItem));
 	            }
 	            return state;
+
 	        default:
 	            return state;
 	    }

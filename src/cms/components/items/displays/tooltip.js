@@ -6,12 +6,11 @@ import { MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM } from '.
 class Tooltip extends Component {
     constructor(props) {
         super(props);
-        
-        this.handleMove = this.handleMove.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleMove(type) {
+        console.log(type);
         this.props.moveItem(this.props.sortRank, type);
     }
     
@@ -26,7 +25,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--top"
-                onClick={this.handleMove(MOVE_ITEM_TOP)}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_TOP)}>
                 Top
             </li>
         );
@@ -37,7 +36,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--up"
-                onClick={this.handleMove(MOVE_ITEM_UP)}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_UP)}>
                 Up
             </li>
         );
@@ -48,7 +47,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--down"
-                onClick={this.handleMove(MOVE_ITEM_DOWN)}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_DOWN)}>
                 Down
             </li>
         );
@@ -59,7 +58,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--bottom"
-                onClick={this.handleMove(MOVE_ITEM_BOTTOM)}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_BOTTOM)}>
                 Bottom
             </li>
         );
@@ -85,4 +84,4 @@ class Tooltip extends Component {
     }
 }
 
-export default connect(null, { moveItemTop, moveItemUp, moveItemDown, moveItemBottom, deleteItem})(Tooltip);
+export default connect(null, { moveItem, deleteItem})(Tooltip);

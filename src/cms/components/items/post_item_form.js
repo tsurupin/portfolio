@@ -13,7 +13,6 @@ class PostItemForm extends Component {
     }
 
     renderComponent() {
-        console.log(this.props.item.title)
         switch(this.props.item.type) {
             case TARGET_TYPES.HEADING.NAME:
             case TARGET_TYPES.SUB_HEADING.NAME:
