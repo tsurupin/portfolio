@@ -4,4 +4,6 @@ class Cms::Api::PostsController < Cms::ApplicationController
     @posts = [{title: 'hoge', description: 'description', id: 1}]
     render json: @posts
   end
+
+
 end

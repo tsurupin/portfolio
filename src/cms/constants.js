@@ -1,21 +1,16 @@
 export const ROOT_URL = '/cms/api';
 export const POST_PATH = '/posts';
+export const TEST_DOMAIN = 'http://localhost:80';
 
 const REQUEST = 'REQUEST';
 const SUCCESS = 'SUCCESS';
 const FAILURE = 'FAILURE';
 
-function createRequestTypes(base) {
-    const requestType = {};
-    [REQUEST, SUCCESS, FAILURE].forEach(type => requestType[type] = `${base}_${type}`);
-    return requestType;
-}
-
 export const FETCH_POSTS = createRequestTypes('FETCH_POSTS');
-export const FETCH_POST  = 'fetch post';
-export const CREATE_POST = 'create post';
-export const TOGGLE_POST = 'toggle post';
-export const DELETE_POST = 'delete post';
+export const FETCH_POST  = createRequestTypes('FETCH_POST');
+export const CREATE_POST = createRequestTypes('CREATE_POST');
+export const TOGGLE_POST = createRequestTypes('TOGGLE_POST');
+export const DELETE_POST = createRequestTypes('DELETE_POST');
 
 export const FETCH_ITEMS = 'fetch items';
 export const CREATE_ITEM = 'create item';
@@ -57,3 +52,9 @@ export const TARGET_TYPES =  {
     },
     EDIT_BOX: "EditBox"
 };
+
+function createRequestTypes(base) {
+    const requestType = {};
+    [REQUEST, SUCCESS, FAILURE].forEach(type => requestType[type] = `${base}_${type}`);
+    return requestType;
+}
