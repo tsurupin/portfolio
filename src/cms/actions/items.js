@@ -11,7 +11,7 @@ export function fetchItems(items) {
             items
         }
     }
-};
+}
 
 export function createItem(type) {
     return {
@@ -24,7 +24,7 @@ export function createItem(type) {
             }
         }
     }
-};
+}
 
 export function updateItem(sortRank, item) {
     return {
@@ -34,38 +34,18 @@ export function updateItem(sortRank, item) {
             item
         }
     }
-};
+}
 
 export function deleteItem(sortRank) {
     return {
         type: DELETE_ITEM,
         payload: { sortRank }
     }
-};
+}
 
-export function moveItemTop(sortRank) {
+export function moveItem(sortRank, type) {
     return {
-        type: MOVE_ITEM_TOP,
+        type,
         payload: { sortRank }
     }
-};
-
-export function moveItemUp(sortRank) {
-    return {
-        type: MOVE_ITEM_UP,
-        payload: { sortRank }
-    }
-};
-export function moveItemDown(sortRank) {
-    return {
-        type: MOVE_ITEM_DOWN,
-        payload: { sortRank }
-    }
-};
-
-export function moveItemBottom(sortRank) {
-    return {
-        type: MOVE_ITEM_BOTTOM,
-        payload: { sortRank }
-    }
-};
+}
