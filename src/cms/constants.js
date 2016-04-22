@@ -15,6 +15,7 @@ const FAILURE = 'FAILURE';
 export const FETCH_POSTS = createRequestTypes('FETCH_POSTS');
 export const FETCH_POST  = createRequestTypes('FETCH_POST');
 export const CREATE_POST = createRequestTypes('CREATE_POST');
+export const UPDATE_POST = createRequestTypes('UPDATE_POST');
 export const TOGGLE_POST = createRequestTypes('TOGGLE_POST');
 export const DELETE_POST = createRequestTypes('DELETE_POST');
 

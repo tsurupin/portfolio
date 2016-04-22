@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
-    ROOT_URL, POST_PATH,
-    FETCH_POSTS, FETCH_POST, CREATE_POST, DELETE_POST, TOGGLE_POST
+    ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST, 
+    CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST
     } from '../constants';
 
 
@@ -72,6 +72,29 @@ function createPostSuccess() {
 function createPostFailure(error) {
     return {
         type: CREATE_POST.FAILURE,
+        payload: error
+    }
+}
+
+export function updatePost(props) {
+    const request = axios.patch(`${ROOT_URL}${POST_PATH}/${props.id}`, props);
+    return dispatch => {
+        return request.then(
+            () => dispatch(updatePostSuccess()),
+            error => dispatch(updatePostFailure(error.data))
+        )
+    };
+}
+
+function updatePostSuccess() {
+    return {
+        type: UPDATE_POST.SUCCESS
+    }
+}
+
+function updatePostFailure(error) {
+    return {
+        type: UPDATE_POST.FAILURE,
         payload: error
     }
 }

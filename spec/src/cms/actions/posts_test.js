@@ -1,8 +1,8 @@
 import { expect } from '../test_helper';
-import { fetchPosts, fetchPost, createPost, deletePost, togglePost } from '../../../../src/cms/actions/posts';
+import { fetchPosts, fetchPost, createPost, updatePost, deletePost, togglePost } from '../../../../src/cms/actions/posts';
 import {
-    ROOT_URL, POST_PATH, TEST_DOMAIN,
-    FETCH_POSTS, FETCH_POST, CREATE_POST, DELETE_POST, TOGGLE_POST
+    ROOT_URL, POST_PATH, TEST_DOMAIN, FETCH_POSTS, FETCH_POST, 
+    CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST
 } from '../../../../src/cms/constants';
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
@@ -125,6 +125,43 @@ describe('post actions', () => {
             }];
 
             return store.dispatch(createPost({title: 'hoge'}))
+                .then(() => {
+                    expect(store.getActions()).to.eql(expectedResponse)
+                })
+        });
+
+    });
+
+    describe('updatePost', () => {
+
+        it('create UPDATE_POST_SUCCESS when updating post has been done', () => {
+            nock(TEST_DOMAIN)
+                .patch(`${ROOT_URL}${POST_PATH}/1`, {id:1, title: 'hoge'})
+                .reply(200);
+
+            const store = mockStore({});
+            const expectedResponse = [{
+                type: UPDATE_POST.SUCCESS
+            }];
+
+            return store.dispatch(updatePost({id: 1, title: 'hoge'}))
+                .then(() => {
+                    expect(store.getActions()).to.eql(expectedResponse)
+                })
+        });
+
+        it('create UPDATE_POST_FAILURE when creating post has been done', () => {
+            nock(TEST_DOMAIN)
+                .patch(`${ROOT_URL}${POST_PATH}/1`, {id: 1, title: 'hoge'})
+                .reply(400);
+
+            const store = mockStore({});
+            const expectedResponse = [{
+                type: UPDATE_POST.FAILURE,
+                payload: ''
+            }];
+
+            return store.dispatch(updatePost({id: 1, title: 'hoge'}))
                 .then(() => {
                     expect(store.getActions()).to.eql(expectedResponse)
                 })

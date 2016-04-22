@@ -36412,6 +36412,7 @@
 	exports.fetchPosts = fetchPosts;
 	exports.fetchPost = fetchPost;
 	exports.createPost = createPost;
+	exports.updatePost = updatePost;
 	exports.deletePost = deletePost;
 	exports.togglePost = togglePost;
 
@@ -36429,7 +36430,7 @@
 	        return request.then(function (response) {
 	            return dispatch(fetchPostsSuccess(response.data));
 	        }, function (error) {
-	            return dispatch(fetchPostsFailure(error));
+	            return dispatch(fetchPostsFailure(error.data));
 	        });
 	    };
 	}
@@ -36450,33 +36451,122 @@
 
 	function fetchPost(id) {
 	    var request = _axios2.default.get('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
+	    return function (dispatch) {
+	        return request.then(function (response) {
+	            return dispatch(fetchPostSuccess(response.data));
+	        }, function (error) {
+	            return dispatch(fetchPostFailure(error.data));
+	        });
+	    };
+	}
+
+	function fetchPostSuccess(response) {
 	    return {
-	        type: _constants.FETCH_POST,
-	        payload: request
+	        type: _constants.FETCH_POST.SUCCESS,
+	        payload: response
+	    };
+	}
+
+	function fetchPostFailure(error) {
+	    return {
+	        type: _constants.FETCH_POST.FAILURE,
+	        payload: error
 	    };
 	}
 
 	function createPost(props) {
 	    var request = _axios2.default.post('' + _constants.ROOT_URL + _constants.POST_PATH, props);
+	    return function (dispatch) {
+	        return request.then(function () {
+	            return dispatch(createPostSuccess());
+	        }, function (error) {
+	            return dispatch(createPostFailure(error.data));
+	        });
+	    };
+	}
+
+	function createPostSuccess() {
 	    return {
-	        type: _constants.CREATE_POST,
-	        payload: request
+	        type: _constants.CREATE_POST.SUCCESS
+	    };
+	}
+
+	function createPostFailure(error) {
+	    return {
+	        type: _constants.CREATE_POST.FAILURE,
+	        payload: error
+	    };
+	}
+
+	function updatePost(props) {
+	    var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + props.id, props);
+	    return function (dispatch) {
+	        return request.then(function () {
+	            return dispatch(updatePostSuccess());
+	        }, function (error) {
+	            return dispatch(updatePostFailure(error.data));
+	        });
+	    };
+	}
+
+	function updatePostSuccess() {
+	    return {
+	        type: _constants.UPDATE_POST.SUCCESS
+	    };
+	}
+
+	function updatePostFailure(error) {
+	    return {
+	        type: _constants.UPDATE_POST.FAILURE,
+	        payload: error
 	    };
 	}
 
 	function deletePost(id) {
 	    var request = _axios2.default.delete('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
+	    return function (dispatch) {
+	        return request.then(function () {
+	            return dispatch(deletePostSuccess());
+	        }, function (error) {
+	            return dispatch(deletePostFailure(error.data));
+	        });
+	    };
+	}
+
+	function deletePostSuccess() {
 	    return {
-	        type: _constants.DELETE_POST,
-	        payload: request
+	        type: _constants.DELETE_POST.SUCCESS
+	    };
+	}
+
+	function deletePostFailure(error) {
+	    return {
+	        type: _constants.DELETE_POST.FAILURE,
+	        payload: error
 	    };
 	}
 
 	function togglePost(id) {
 	    var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id + '/acceptance');
+	    return function (dispatch) {
+	        return request.then(function () {
+	            return dispatch(togglePostSuccess());
+	        }, function (error) {
+	            return dispatch(togglePostFailure(error.data));
+	        });
+	    };
+	}
+
+	function togglePostSuccess() {
 	    return {
-	        type: _constants.TOGGLE_POST,
-	        payload: request
+	        type: _constants.TOGGLE_POST.SUCCESS
+	    };
+	}
+
+	function togglePostFailure(error) {
+	    return {
+	        type: _constants.TOGGLE_POST.FAILURE,
+	        payload: error
 	    };
 	}
 
@@ -37580,13 +37670,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var ROOT_URL = exports.ROOT_URL = '/cms/api';
-	var POST_PATH = exports.POST_PATH = '/posts';
-
-	var REQUEST = 'REQUEST';
-	var SUCCESS = 'SUCCESS';
-	var FAILURE = 'FAILURE';
-
 	function createRequestTypes(base) {
 	    var requestType = {};
 	    [REQUEST, SUCCESS, FAILURE].forEach(function (type) {
@@ -37595,20 +37678,30 @@
 	    return requestType;
 	}
 
-	var FETCH_POSTS = exports.FETCH_POSTS = createRequestTypes('FETCH_POSTS');
-	var FETCH_POST = exports.FETCH_POST = 'fetch post';
-	var CREATE_POST = exports.CREATE_POST = 'create post';
-	var TOGGLE_POST = exports.TOGGLE_POST = 'toggle post';
-	var DELETE_POST = exports.DELETE_POST = 'delete post';
+	var ROOT_URL = exports.ROOT_URL = '/cms/api';
+	var POST_PATH = exports.POST_PATH = '/posts';
+	var TEST_DOMAIN = exports.TEST_DOMAIN = 'http://localhost:80';
 
-	var FETCH_ITEMS = exports.FETCH_ITEMS = 'fetch items';
-	var CREATE_ITEM = exports.CREATE_ITEM = 'create item';
-	var UPDATE_ITEM = exports.UPDATE_ITEM = 'update item';
-	var DELETE_ITEM = exports.DELETE_ITEM = 'delete item';
-	var MOVE_ITEM_TOP = exports.MOVE_ITEM_TOP = 'move item top';
-	var MOVE_ITEM_UP = exports.MOVE_ITEM_UP = 'move item up';
-	var MOVE_ITEM_DOWN = exports.MOVE_ITEM_DOWN = 'move item down';
-	var MOVE_ITEM_BOTTOM = exports.MOVE_ITEM_BOTTOM = 'move item bottom';
+	var REQUEST = 'REQUEST';
+	var SUCCESS = 'SUCCESS';
+	var FAILURE = 'FAILURE';
+
+	var FETCH_POSTS = exports.FETCH_POSTS = createRequestTypes('FETCH_POSTS');
+	var FETCH_POST = exports.FETCH_POST = createRequestTypes('FETCH_POST');
+	var CREATE_POST = exports.CREATE_POST = createRequestTypes('CREATE_POST');
+	var UPDATE_POST = exports.UPDATE_POST = createRequestTypes('UPDATE_POST');
+	var TOGGLE_POST = exports.TOGGLE_POST = createRequestTypes('TOGGLE_POST');
+	var DELETE_POST = exports.DELETE_POST = createRequestTypes('DELETE_POST');
+
+	var FETCH_ITEMS = exports.FETCH_ITEMS = 'FETCH_ITEMS';
+	var CREATE_ITEM = exports.CREATE_ITEM = 'CREATE_ITEM';
+	var UPDATE_ITEM = exports.UPDATE_ITEM = 'UPDATE_ITEM';
+	var DELETE_ITEM = exports.DELETE_ITEM = 'DELETE_ITEM';
+
+	var MOVE_ITEM_TOP = exports.MOVE_ITEM_TOP = 'MOVE_ITEM_TO';
+	var MOVE_ITEM_UP = exports.MOVE_ITEM_UP = 'MOVE_ITEM_UP';
+	var MOVE_ITEM_DOWN = exports.MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
+	var MOVE_ITEM_BOTTOM = exports.MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
 
 	var TARGET_TYPES = exports.TARGET_TYPES = {
 	    TWITTER: {
@@ -41549,10 +41642,7 @@
 	exports.createItem = createItem;
 	exports.updateItem = updateItem;
 	exports.deleteItem = deleteItem;
-	exports.moveItemTop = moveItemTop;
-	exports.moveItemUp = moveItemUp;
-	exports.moveItemDown = moveItemDown;
-	exports.moveItemBottom = moveItemBottom;
+	exports.moveItem = moveItem;
 
 	var _constants = __webpack_require__(351);
 
@@ -41563,7 +41653,7 @@
 	            items: items
 	        }
 	    };
-	};
+	}
 
 	function createItem(type) {
 	    return {
@@ -41576,7 +41666,7 @@
 	            }
 	        }
 	    };
-	};
+	}
 
 	function updateItem(sortRank, item) {
 	    return {
@@ -41586,41 +41676,21 @@
 	            item: item
 	        }
 	    };
-	};
+	}
 
 	function deleteItem(sortRank) {
 	    return {
 	        type: _constants.DELETE_ITEM,
 	        payload: { sortRank: sortRank }
 	    };
-	};
+	}
 
-	function moveItemTop(sortRank) {
+	function moveItem(sortRank, type) {
 	    return {
-	        type: _constants.MOVE_ITEM_TOP,
+	        type: type,
 	        payload: { sortRank: sortRank }
 	    };
-	};
-
-	function moveItemUp(sortRank) {
-	    return {
-	        type: _constants.MOVE_ITEM_UP,
-	        payload: { sortRank: sortRank }
-	    };
-	};
-	function moveItemDown(sortRank) {
-	    return {
-	        type: _constants.MOVE_ITEM_DOWN,
-	        payload: { sortRank: sortRank }
-	    };
-	};
-
-	function moveItemBottom(sortRank) {
-	    return {
-	        type: _constants.MOVE_ITEM_BOTTOM,
-	        payload: { sortRank: sortRank }
-	    };
-	};
+	}
 
 /***/ },
 /* 377 */
@@ -52189,6 +52259,8 @@
 
 	var _items = __webpack_require__(376);
 
+	var _constants = __webpack_require__(351);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -52205,33 +52277,15 @@
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Tooltip).call(this, props));
 
-	        _this.handleMoveTop = _this.handleMoveTop.bind(_this);
-	        _this.handleMoveUp = _this.handleMoveUp.bind(_this);
-	        _this.handleMoveDown = _this.handleMoveDown.bind(_this);
-	        _this.handleMoveBottom = _this.handleMoveBottom.bind(_this);
+	        _this.handleMove = _this.handleMove.bind(_this);
 	        _this.handleDelete = _this.handleDelete.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(Tooltip, [{
-	        key: 'handleMoveTop',
-	        value: function handleMoveTop() {
-	            this.props.moveItemTop(this.props.sortRank);
-	        }
-	    }, {
-	        key: 'handleMoveUp',
-	        value: function handleMoveUp() {
-	            this.props.moveItemUp(this.props.sortRank);
-	        }
-	    }, {
-	        key: 'handleMoveDown',
-	        value: function handleMoveDown() {
-	            this.props.moveItemDown(this.props.sortRank);
-	        }
-	    }, {
-	        key: 'handleMoveBottom',
-	        value: function handleMoveBottom() {
-	            this.props.moveItemBottom(this.props.sortRank);
+	        key: 'handleMove',
+	        value: function handleMove(type) {
+	            this.props.moveItem(this.props.sortRank, type);
 	        }
 	    }, {
 	        key: 'handleDelete',
@@ -52248,7 +52302,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--top',
-	                    onClick: this.handleMoveTop },
+	                    onClick: this.handleMove(_constants.MOVE_ITEM_TOP) },
 	                'Top'
 	            );
 	        }
@@ -52262,7 +52316,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--up',
-	                    onClick: this.handleMoveUp },
+	                    onClick: this.handleMove(_constants.MOVE_ITEM_UP) },
 	                'Up'
 	            );
 	        }
@@ -52276,7 +52330,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--down',
-	                    onClick: this.handleMoveDown },
+	                    onClick: this.handleMove(_constants.MOVE_ITEM_DOWN) },
 	                'Down'
 	            );
 	        }
@@ -52290,7 +52344,7 @@
 	                'li',
 	                {
 	                    className: 'item-tooltip__move-button item-tooltip__move-button--bottom',
-	                    onClick: this.handleMoveBottom },
+	                    onClick: this.handleMove(_constants.MOVE_ITEM_BOTTOM) },
 	                'Bottom'
 	            );
 	        }
@@ -52323,7 +52377,7 @@
 	    return Tooltip;
 	}(_react.Component);
 
-	exports.default = (0, _reactRedux.connect)(null, { moveItemTop: _items.moveItemTop, moveItemUp: _items.moveItemUp, moveItemDown: _items.moveItemDown, moveItemBottom: _items.moveItemBottom, deleteItem: _items.deleteItem })(Tooltip);
+	exports.default = (0, _reactRedux.connect)(null, { moveItemTop: moveItemTop, moveItemUp: moveItemUp, moveItemDown: moveItemDown, moveItemBottom: moveItemBottom, deleteItem: _items.deleteItem })(Tooltip);
 
 /***/ },
 /* 464 */
@@ -52898,12 +52952,20 @@
 
 	    switch (action.type) {
 	        case _constants.FETCH_POSTS.SUCCESS:
-	            console.log(action.payload);
 	            return _extends({}, state, { all: action.payload });
+	        case _constants.FETCH_POST.SUCCESS:
+	            return _extends({}, state, { post: action.payload });
+	        case _constants.CREATE_POST.SUCCESS:
+	        case UPDATE_POST.SUCCESS:
+	            return _extends({}, state, { message: 'Successfully Saved' });
+	        case _constants.TOGGLE_POST.SUCCESS:
+	            return _extends({}, state, { message: 'Successfully Change Published Status' });
 	        case _constants.FETCH_POSTS.FAILURE:
-	            return _extends({}, state, { all: action.payload.data });
-	        case _constants.FETCH_POST:
-	            return _extends({}, state, { post: action.payload.data });
+	        case _constants.FETCH_POST.FAILURE:
+	        case CREATE_POST_FAILURE:
+	        case UPDATE_POST_FAILURE:
+	        case TOGGLE_POST_FAILURE:
+	            return _extends({}, state, { error: action.payload });
 	        default:
 	            return state;
 	    }
@@ -52911,7 +52973,7 @@
 
 	var _constants = __webpack_require__(351);
 
-	var INITIAL_STATE = { all: [], post: null };
+	var INITIAL_STATE = { all: [], post: null, error: null, message: null };
 
 /***/ },
 /* 475 */
