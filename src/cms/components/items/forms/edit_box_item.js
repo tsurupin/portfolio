@@ -14,15 +14,17 @@ export default class ItemEditBoxItem extends Component {
 
     render() {
         return (
-            <ListItem
-                leftAvatar={
-                    <img
-                        style={{width: '100%', height: '100%', top: 0, left: 0}}
-                        src={this.props.image}
-                    />
-                    }
-                onTouchTap={this.handleAddItem}
-            />
+            <li>
+                <ListItem
+                    leftAvatar={
+                        <img
+                            style={{width: '100%', height: '100%', top: 0, left: 0}}
+                            src={this.props.image}
+                        />
+                        }
+                    onClick={this.handleAddItem}
+                />
+            </li>
         );
     }
 }

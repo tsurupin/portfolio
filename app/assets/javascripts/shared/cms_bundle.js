@@ -41490,16 +41490,19 @@
 
 	        _this.handleAddItem = _this.handleAddItem.bind(_this);
 	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
-	        _this.handleCancelItem = _this.handleCancelItem.bind(_this);
+	        _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
+	        _this.handleMoveItem = _this.handleMoveItem.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(PostsForm, [{
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
+	            var _this2 = this;
+
 	            if (this.props.params.id) {
 	                this.props.fetchPost(this.props.params.id).then(function (post) {
-	                    //this.props.fetchItems(post.items)
+	                    _this2.props.fetchItems(post.items);
 	                });
 	            }
 	        }
@@ -41511,13 +41514,17 @@
 	    }, {
 	        key: 'handleUpdateItem',
 	        value: function handleUpdateItem(sortRank, item) {
-
 	            this.props.updateItem(sortRank, item);
 	        }
 	    }, {
-	        key: 'handleCancelItem',
-	        value: function handleCancelItem(sortRank) {
+	        key: 'handleDeleteItem',
+	        value: function handleDeleteItem(sortRank) {
 	            this.props.deleteItem(sortRank);
+	        }
+	    }, {
+	        key: 'handleMoveItem',
+	        value: function handleMoveItem(sortRank, type) {
+	            this.props.moveItem(sortRank, type);
 	        }
 	    }, {
 	        key: 'onSubmit',
@@ -41528,7 +41535,7 @@
 	    }, {
 	        key: 'renderItems',
 	        value: function renderItems() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            return _react2.default.createElement(
 	                'section',
@@ -41541,9 +41548,10 @@
 	                            key: index,
 	                            sortRank: index,
 	                            item: item,
-	                            totalCount: _this2.props.items.length - 1,
-	                            handleUpdateItem: _this2.handleUpdateItem,
-	                            handleCancelItem: _this2.handleCancelItem
+	                            totalCount: _this3.props.items.length - 1,
+	                            handleUpdateItem: _this3.handleUpdateItem,
+	                            handleDeleteItem: _this3.handleDeleteItem,
+	                            handleMoveItem: _this3.handleMoveItem
 	                        });
 	                    })
 	                )
@@ -41571,7 +41579,6 @@
 	                    hintText: 'Title',
 	                    fullWidth: true,
 	                    errorText: title.touched && title.error ? title.error : ''
-
 	                })),
 	                _react2.default.createElement('br', null),
 	                _react2.default.createElement(_textField2.default, _extends({}, description, {
@@ -41625,7 +41632,7 @@
 	    form: 'PostsNew',
 	    fields: fields,
 	    validate: validate
-	}, mapStateToProps, { fetchPost: _posts.fetchPost, createPost: _posts.createPost, deletePost: _posts.deletePost, updatePost: _posts.updatePost, fetchItems: _items.fetchItems, createItem: _items.createItem, deleteItem: _items.deleteItem, updateItem: _items.updateItem })(PostsForm);
+	}, mapStateToProps, { fetchPost: _posts.fetchPost, createPost: _posts.createPost, deletePost: _posts.deletePost, updatePost: _posts.updatePost, fetchItems: _items.fetchItems, createItem: _items.createItem, deleteItem: _items.deleteItem, updateItem: _items.updateItem, moveItem: _items.moveItem })(PostsForm);
 
 /***/ },
 /* 376 */
@@ -44703,14 +44710,18 @@
 	            return _react2.default.createElement(
 	                _list2.default,
 	                { style: styles.list },
-	                TARGET_TYPE_LIST.map(function (targetType, index) {
-	                    return _react2.default.createElement(_edit_box_item2.default, {
-	                        key: index,
-	                        name: targetType.NAME,
-	                        image: targetType.IMAGE,
-	                        handleAddItem: _this2.props.handleAddItem
-	                    });
-	                })
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    TARGET_TYPE_LIST.map(function (targetType, index) {
+	                        return _react2.default.createElement(_edit_box_item2.default, {
+	                            key: index,
+	                            name: targetType.NAME,
+	                            image: targetType.IMAGE,
+	                            handleAddItem: _this2.props.handleAddItem
+	                        });
+	                    })
+	                )
 	            );
 	        }
 	    }]);
@@ -44722,10 +44733,6 @@
 
 
 	ItemFormEditBox.propTypes = {
-	    sortRank: _react.PropTypes.number,
-	    targetType: _react.PropTypes.string,
-	    addButtonLabel: _react.PropTypes.string,
-	    cancelButton: _react.PropTypes.object,
 	    handleAddItem: _react.PropTypes.func.isRequired
 	};
 
@@ -44947,13 +44954,17 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(_listItem2.default, {
-	                leftAvatar: _react2.default.createElement('img', {
-	                    style: { width: '100%', height: '100%', top: 0, left: 0 },
-	                    src: this.props.image
-	                }),
-	                onTouchTap: this.handleAddItem
-	            });
+	            return _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(_listItem2.default, {
+	                    leftAvatar: _react2.default.createElement('img', {
+	                        style: { width: '100%', height: '100%', top: 0, left: 0 },
+	                        src: this.props.image
+	                    }),
+	                    onClick: this.handleAddItem
+	                })
+	            );
 	        }
 	    }]);
 
@@ -52007,15 +52018,18 @@
 	                return _react2.default.createElement(_post_item_form2.default, {
 	                    sortRank: this.props.sortRank,
 	                    item: this.props.item,
-	                    handleCancelItem: this.props.handleCancelItem,
+	                    handleDeleteItem: this.props.handleDeleteItem,
 	                    handleUpdateItem: this.props.handleUpdateItem
 	                });
 	            }
+	            console.log(this.props);
 
 	            return _react2.default.createElement(_post_item_cell2.default, {
 	                sortRank: this.props.sortRank,
 	                item: this.props.item,
 	                totalCount: this.props.totalCount,
+	                handleMoveItem: this.props.handleMoveItem,
+	                handleDeleteItem: this.props.handleDeleteItem,
 	                handleUpdateItem: this.props.handleUpdateItem
 	            });
 	        }
@@ -52034,6 +52048,16 @@
 	}(_react.Component);
 
 	exports.default = PostItemBlock;
+
+
+	PostItemBlock.propTypes = {
+	    sortRank: _react.PropTypes.number.isRequired,
+	    item: _react.PropTypes.object.isRequired,
+	    totalCount: _react.PropTypes.number.isRequired,
+	    handleDeleteItem: _react.PropTypes.func.isRequired,
+	    handleMoveItem: _react.PropTypes.func.isRequired,
+	    handleUpdateItem: _react.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 461 */
@@ -52135,7 +52159,9 @@
 	            return _react2.default.createElement(_tooltip2.default, {
 	                sortRank: this.props.sortRank,
 	                totalCount: this.props.totalCount,
-	                editButton: this.renderEditButton()
+	                editButton: this.renderEditButton(),
+	                handleDeleteItem: this.props.handleDeleteItem,
+	                handleMoveItem: this.props.handleMoveItem
 	            });
 	        }
 	    }, {
@@ -52165,6 +52191,15 @@
 	}(_react.Component);
 
 	exports.default = PostItemCell;
+
+
+	PostItemCell.propTypes = {
+	    sortRank: _react.PropTypes.number.isRequired,
+	    totalCount: _react.PropTypes.number.isRequired,
+	    handleDeleteItem: _react.PropTypes.func.isRequired,
+	    handleMoveItem: _react.PropTypes.func.isRequired,
+	    handleUpdateItem: _react.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 462 */
@@ -52254,10 +52289,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(159);
-
-	var _items = __webpack_require__(376);
-
 	var _constants = __webpack_require__(351);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -52283,13 +52314,12 @@
 	    _createClass(Tooltip, [{
 	        key: 'handleMove',
 	        value: function handleMove(type) {
-	            console.log(type);
-	            this.props.moveItem(this.props.sortRank, type);
+	            this.props.handleMoveItem(this.props.sortRank, type);
 	        }
 	    }, {
 	        key: 'handleDelete',
 	        value: function handleDelete() {
-	            this.props.deleteItem(this.props.sortRank);
+	            this.props.handleDeleteItem(this.props.sortRank);
 	        }
 	    }, {
 	        key: 'renderMoveTopButton',
@@ -52363,7 +52393,7 @@
 	                    _react2.default.createElement(
 	                        'li',
 	                        {
-	                            className: 'item-tooltip__move-button',
+	                            className: 'item-tooltip__delete-button',
 	                            onClick: this.handleDelete },
 	                        'Delete'
 	                    ),
@@ -52376,7 +52406,16 @@
 	    return Tooltip;
 	}(_react.Component);
 
-	exports.default = (0, _reactRedux.connect)(null, { moveItem: _items.moveItem, deleteItem: _items.deleteItem })(Tooltip);
+	exports.default = Tooltip;
+
+
+	Tooltip.propTypes = {
+	    sortRank: _react.PropTypes.number.isRequired,
+	    totalCount: _react.PropTypes.number.isRequired,
+	    editButton: _react.PropTypes.element.isRequired,
+	    handleMoveItem: _react.PropTypes.func.isRequired,
+	    handleDeleteItem: _react.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 464 */
@@ -52431,7 +52470,7 @@
 	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemForm)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
 	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
-	        _this.handleCancelItem = _this.handleCancelItem.bind(_this);
+	        _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
 	        return _this;
 	    }
 
@@ -52458,9 +52497,9 @@
 	            this.props.handleUpdateItem(this.props.sortRank, _extends({}, this.props.item, callbackProps, { isNew: false, editing: false }));
 	        }
 	    }, {
-	        key: 'handleCancelItem',
-	        value: function handleCancelItem() {
-	            this.props.handleCancelItem(this.props.sortRank);
+	        key: 'handleDeleteItem',
+	        value: function handleDeleteItem() {
+	            this.props.handleDeleteItem(this.props.sortRank);
 	        }
 	    }, {
 	        key: 'renderCancelButton',
@@ -52469,7 +52508,7 @@
 	                label: 'Cancel',
 	                labelPosition: 'after',
 	                icon: _react2.default.createElement(_removeCircle2.default, null),
-	                onClick: this.handleCancelItem
+	                onClick: this.handleDeleteItem
 	            });
 	        }
 	    }, {
@@ -52481,6 +52520,18 @@
 
 	    return PostItemForm;
 	}(_react.Component);
+
+	PostItemForm.propTypes = {
+	    item: _react.PropTypes.shape({
+	        type: _react.PropTypes.string.isRequired,
+	        isNew: _react.PropTypes.bool.isRequired,
+	        editing: _react.PropTypes.bool.isRequired,
+	        title: _react.PropTypes.string
+	    }).isRequired,
+	    sortRank: _react.PropTypes.number.isRequired,
+	    handleUpdateItem: _react.PropTypes.func.isRequired,
+	    handleDeleteItem: _react.PropTypes.func.isRequired
+	};
 
 	exports.default = PostItemForm;
 
@@ -52569,12 +52620,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var propTypes = {
-	    type: _react.PropTypes.string.isRequired,
-	    cancelButton: _react.PropTypes.object.isRequired,
-	    handleUpdateItem: _react.PropTypes.func.isRequired
-	};
-
 	var ItemFormHeading = function (_Component) {
 	    _inherits(ItemFormHeading, _Component);
 
@@ -52611,7 +52656,9 @@
 	                    { className: 'item-form__input-label' },
 	                    (0, _utilities.capitalize)(this.props.type)
 	                ),
-	                _react2.default.createElement(_textField2.default, _extends({}, title, {
+	                _react2.default.createElement(_textField2.default, _extends({
+	                    className: 'item-form__input-text'
+	                }, title, {
 	                    hintText: 'Enter the title',
 	                    fullWidth: true,
 	                    errorText: title.touched && title.error ? title.error : ''
@@ -52634,6 +52681,13 @@
 
 	    return ItemFormHeading;
 	}(_react.Component);
+
+	ItemFormHeading.propTypes = {
+	    type: _react.PropTypes.string.isRequired,
+	    isNew: _react.PropTypes.bool.isRequired,
+	    cancelButton: _react.PropTypes.object.isRequired,
+	    handleUpdateItem: _react.PropTypes.func.isRequired
+	};
 
 	function validate(values) {
 	    var errors = {};

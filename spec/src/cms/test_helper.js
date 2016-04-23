@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers  from '../../../src/cms/reducers';
 import chaiJquery from 'chai-jquery';
+import sinon from 'sinon';
 
 global.document = jsdom.jsdom('<!doctype html><html<body></body</html>');
 global.window = global.document.defaultView;
@@ -20,6 +21,7 @@ function renderComponent(ComponentClass, props, state) {
         <ComponentClass {...props}/>
       </Provider>
   );
+    
   
   return $(ReactDOM.findDOMNode(componentInstance));
 }
@@ -34,4 +36,4 @@ $.fn.simulate = function(eventName, value) {
 chaiJquery(chai, chai.util, $);
 
 
-export { renderComponent, expect };
+export { renderComponent, expect, sinon };

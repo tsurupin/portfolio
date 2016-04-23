@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchPost, createPost, deletePost, updatePost } from '../../actions/posts';
-import { fetchItems, createItem, updateItem, deleteItem } from '../../actions/items';
+import { fetchItems, createItem, updateItem, deleteItem, moveItem } from '../../actions/items';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import ItemFormEditBox from '../../components/items/forms/edit_box';
@@ -24,14 +24,15 @@ class PostsForm extends Component {
 
         this.handleAddItem      = this.handleAddItem.bind(this);
         this.handleUpdateItem   = this.handleUpdateItem.bind(this);
-        this.handleCancelItem   = this.handleCancelItem.bind(this);
+        this.handleDeleteItem   = this.handleDeleteItem.bind(this);
+        this.handleMoveItem     = this.handleMoveItem.bind(this);
     }
 
     componentWillMount() {
         if (this.props.params.id) {
             this.props.fetchPost(this.props.params.id)
                 .then( (post) => {
-                    //this.props.fetchItems(post.items)
+                    this.props.fetchItems(post.items)
                 }
             )
         }
@@ -43,12 +44,15 @@ class PostsForm extends Component {
     }
 
     handleUpdateItem(sortRank, item) {
-
         this.props.updateItem(sortRank, item);
     }
 
-    handleCancelItem(sortRank) {
+    handleDeleteItem(sortRank) {
         this.props.deleteItem(sortRank);
+    }
+    
+    handleMoveItem(sortRank, type) {
+        this.props.moveItem(sortRank, type)
     }
 
 
@@ -70,7 +74,8 @@ class PostsForm extends Component {
                                 item={item}
                                 totalCount={this.props.items.length-1}
                                 handleUpdateItem={this.handleUpdateItem}
-                                handleCancelItem={this.handleCancelItem}
+                                handleDeleteItem={this.handleDeleteItem}
+                                handleMoveItem={this.handleMoveItem}
                             />
                         );
                     })}
@@ -84,13 +89,11 @@ class PostsForm extends Component {
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form">
                 <h2 className="form-heading">Create New Post</h2>
-
                 <TextField
                     {...title}
                     hintText="Title"
                     fullWidth={true}
                     errorText={title.touched && title.error ? title.error : ''}
-
                 />
                 <br/>
                 <TextField
@@ -139,4 +142,4 @@ export default reduxForm({
     form: 'PostsNew',
     fields,
     validate
-}, mapStateToProps, { fetchPost, createPost, deletePost, updatePost, fetchItems, createItem, deleteItem, updateItem })(PostsForm);
+}, mapStateToProps, { fetchPost, createPost, deletePost, updatePost, fetchItems, createItem, deleteItem, updateItem, moveItem })(PostsForm);

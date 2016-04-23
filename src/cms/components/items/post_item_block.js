@@ -11,17 +11,20 @@ export default class PostItemBlock extends Component {
             <PostItemForm
                 sortRank={this.props.sortRank}
                 item={this.props.item}
-                handleCancelItem={this.props.handleCancelItem}
+                handleDeleteItem={this.props.handleDeleteItem}
                 handleUpdateItem={this.props.handleUpdateItem}
             />
           );
         }
+        console.log(this.props)
 
         return (
             <PostItemCell
                 sortRank={this.props.sortRank}
                 item={this.props.item}
                 totalCount={this.props.totalCount}
+                handleMoveItem={this.props.handleMoveItem}
+                handleDeleteItem={this.props.handleDeleteItem}
                 handleUpdateItem={this.props.handleUpdateItem}
             />
         );
@@ -34,3 +37,13 @@ export default class PostItemBlock extends Component {
         );
     }
 }
+
+
+PostItemBlock.propTypes = {
+    sortRank: PropTypes.number.isRequired,
+    item: PropTypes.object.isRequired,
+    totalCount: PropTypes.number.isRequired,
+    handleDeleteItem: PropTypes.func.isRequired,
+    handleMoveItem: PropTypes.func.isRequired,
+    handleUpdateItem: PropTypes.func.isRequired
+};

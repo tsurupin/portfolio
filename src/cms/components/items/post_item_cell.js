@@ -49,6 +49,8 @@ export default class PostItemCell extends Component {
                 sortRank={this.props.sortRank}
                 totalCount={this.props.totalCount}
                 editButton={this.renderEditButton()}
+                handleDeleteItem={this.props.handleDeleteItem}
+                handleMoveItem={this.props.handleMoveItem}
             />
         )
     }
@@ -72,3 +74,11 @@ export default class PostItemCell extends Component {
         );
     }
 }
+
+PostItemCell.propTypes = {
+    sortRank: PropTypes.number.isRequired,
+    totalCount: PropTypes.number.isRequired,
+    handleDeleteItem: PropTypes.func.isRequired,
+    handleMoveItem: PropTypes.func.isRequired,
+    handleUpdateItem: PropTypes.func.isRequired
+};

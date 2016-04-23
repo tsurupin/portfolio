@@ -9,7 +9,7 @@ class PostItemForm extends Component {
         super(...props);
 
         this.handleUpdateItem = this.handleUpdateItem.bind(this);
-        this.handleCancelItem = this.handleCancelItem.bind(this);
+        this.handleDeleteItem = this.handleDeleteItem.bind(this);
     }
 
     renderComponent() {
@@ -38,8 +38,8 @@ class PostItemForm extends Component {
         )
     }
 
-    handleCancelItem() {
-        this.props.handleCancelItem(this.props.sortRank)
+    handleDeleteItem() {
+        this.props.handleDeleteItem(this.props.sortRank)
     }
 
 
@@ -49,7 +49,7 @@ class PostItemForm extends Component {
                 label="Cancel"
                 labelPosition="after"
                 icon={<ContentRemoveCircle />}
-                onClick={this.handleCancelItem}
+                onClick={this.handleDeleteItem}
             />
         );
     }
@@ -59,5 +59,17 @@ class PostItemForm extends Component {
     }
 
 }
+
+PostItemForm.propTypes = {
+    item: PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        isNew: PropTypes.bool.isRequired,
+        editing: PropTypes.bool.isRequired,
+        title: PropTypes.string
+    }).isRequired,
+    sortRank: PropTypes.number.isRequired,
+    handleUpdateItem: PropTypes.func.isRequired,
+    handleDeleteItem: PropTypes.func.isRequired
+};
 
 export default PostItemForm;

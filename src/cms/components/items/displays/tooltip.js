@@ -1,22 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { moveItem, deleteItem } from '../../../actions/items';
 import { MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM } from '../../../constants';
 
-class Tooltip extends Component {
+export default class Tooltip extends Component {
     constructor(props) {
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleMove(type) {
-        console.log(type);
-        this.props.moveItem(this.props.sortRank, type);
+        this.props.handleMoveItem(this.props.sortRank, type);
     }
     
 
     handleDelete() {
-        this.props.deleteItem(this.props.sortRank);
+        this.props.handleDeleteItem(this.props.sortRank);
     }
 
 
@@ -73,7 +70,7 @@ class Tooltip extends Component {
                     {this.renderMoveDownButton()}
                     {this.renderMoveBottomButton()}
                     <li
-                        className="item-tooltip__move-button"
+                        className="item-tooltip__delete-button"
                         onClick={this.handleDelete}>
                         Delete
                     </li>
@@ -84,4 +81,10 @@ class Tooltip extends Component {
     }
 }
 
-export default connect(null, { moveItem, deleteItem})(Tooltip);
+Tooltip.propTypes = {
+    sortRank: PropTypes.number.isRequired,
+    totalCount: PropTypes.number.isRequired,
+    editButton: PropTypes.element.isRequired,
+    handleMoveItem: PropTypes.func.isRequired,
+    handleDeleteItem: PropTypes.func.isRequired
+};

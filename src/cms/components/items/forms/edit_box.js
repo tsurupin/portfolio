@@ -33,25 +33,23 @@ export default class ItemFormEditBox extends Component {
     render() {
         return (
             <List style={styles.list}>
-            {TARGET_TYPE_LIST.map((targetType, index) => {
-                return (
-                    <ItemEditBoxItem
-                        key={index}
-                        name={targetType.NAME}
-                        image={targetType.IMAGE}
-                        handleAddItem={this.props.handleAddItem}
-                    />
-                );
-            })}
+                <ul>
+                    {TARGET_TYPE_LIST.map((targetType, index) => {
+                        return (
+                            <ItemEditBoxItem
+                                key={index}
+                                name={targetType.NAME}
+                                image={targetType.IMAGE}
+                                handleAddItem={this.props.handleAddItem}
+                            />
+                        );
+                    })}
+                </ul>
             </List>
         );
     }
 }
 
 ItemFormEditBox.propTypes = {
-    sortRank: PropTypes.number,
-    targetType: PropTypes.string,
-    addButtonLabel: PropTypes.string,
-    cancelButton: PropTypes.object,
     handleAddItem: PropTypes.func.isRequired
 };
