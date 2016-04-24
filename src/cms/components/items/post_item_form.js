@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../constants';
-import RaisedButton from '../../../../node_modules/material-ui/lib/raised-button';
-import ContentRemoveCircle from '../../../../node_modules/material-ui/lib/svg-icons/content/remove-circle';
+import RaisedButton from 'material-ui/lib/raised-button';
+import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 import Heading from './forms/heading';
 
 class PostItemForm extends Component {

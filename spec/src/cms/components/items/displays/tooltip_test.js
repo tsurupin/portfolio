@@ -6,6 +6,7 @@ describe('Tooltip', () => {
     const handleUpdateItem = sinon.spy();
     const handleMoveItem   = sinon.spy();
     const handleDeleteItem = sinon.spy(); 
+    
     let props = {
         totalCount: 1,
         editButton: <li className="item-tooltip__move-button" onClick={handleUpdateItem}>Edit</li>,
@@ -26,7 +27,6 @@ describe('Tooltip', () => {
 
 
     it('clicks delete button', () => {
-
         props = {...props, sortRank: 1 };
         const component = renderComponent(Tooltip, props, {});
         component.find('.item-tooltip__delete-button').simulate('click');
@@ -34,7 +34,6 @@ describe('Tooltip', () => {
     });
 
     it('clicks move buttons', () => {
-
         props = {...props, sortRank: 1 };
         const component = renderComponent(Tooltip, props, {});
         component.find('.item-tooltip__move-button').simulate('click');

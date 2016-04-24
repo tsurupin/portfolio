@@ -36260,7 +36260,7 @@
 
 	var _reactRouter = __webpack_require__(185);
 
-	var _item = __webpack_require__(352);
+	var _item = __webpack_require__(482);
 
 	var _item2 = _interopRequireDefault(_item);
 
@@ -36294,6 +36294,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -36312,10 +36314,16 @@
 	var PostsIndex = function (_Component) {
 	    _inherits(PostsIndex, _Component);
 
-	    function PostsIndex() {
+	    function PostsIndex(props) {
+	        var _Object$getPrototypeO;
+
 	        _classCallCheck(this, PostsIndex);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(PostsIndex).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostsIndex)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+
+	        _this.handleDeletePost = _this.handleDeletePost.bind(_this);
+	        _this.handleTogglePost = _this.handleTogglePost.bind(_this);
+	        return _this;
 	    }
 
 	    _createClass(PostsIndex, [{
@@ -36324,8 +36332,24 @@
 	            this.props.fetchPosts();
 	        }
 	    }, {
+	        key: 'handleDeletePost',
+	        value: function handleDeletePost(post_id) {
+	            var _this2 = this;
+
+	            this.props.deletePost(post_id).then(function () {
+	                _this2.context.router.push('/cms/posts');
+	            });
+	        }
+	    }, {
+	        key: 'handleTogglePost',
+	        value: function handleTogglePost(post_id) {
+	            this.props.togglePost(post_id).then(this.context.router.push('/cms/posts'));
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this3 = this;
+
 	            return _react2.default.createElement(
 	                'section',
 	                null,
@@ -36383,7 +36407,12 @@
 	                        _tableBody2.default,
 	                        { displayRowCheckbox: false },
 	                        this.props.posts.map(function (post, index) {
-	                            return _react2.default.createElement(_item2.default, { post: post, key: index });
+	                            return _react2.default.createElement(_item2.default, {
+	                                post: post,
+	                                key: index,
+	                                handleDeletePost: _this3.handleDeletePost,
+	                                handleTogglePost: _this3.handleTogglePost
+	                            });
 	                        })
 	                    )
 	                )
@@ -36398,7 +36427,7 @@
 	    return { posts: state.posts.all };
 	}
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPosts: _posts.fetchPosts })(PostsIndex);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPosts: _posts.fetchPosts, deletePost: _posts.deletePost, togglePost: _posts.togglePost })(PostsIndex);
 
 /***/ },
 /* 333 */
@@ -37736,185 +37765,7 @@
 	};
 
 /***/ },
-/* 352 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(185);
-
-	var _reactRedux = __webpack_require__(159);
-
-	var _posts = __webpack_require__(333);
-
-	var _tableRow = __webpack_require__(353);
-
-	var _tableRow2 = _interopRequireDefault(_tableRow);
-
-	var _tableRowColumn = __webpack_require__(354);
-
-	var _tableRowColumn2 = _interopRequireDefault(_tableRowColumn);
-
-	var _iconButton = __webpack_require__(272);
-
-	var _iconButton2 = _interopRequireDefault(_iconButton);
-
-	var _modeEdit = __webpack_require__(355);
-
-	var _modeEdit2 = _interopRequireDefault(_modeEdit);
-
-	var _clear = __webpack_require__(356);
-
-	var _clear2 = _interopRequireDefault(_clear);
-
-	var _airplay = __webpack_require__(357);
-
-	var _airplay2 = _interopRequireDefault(_airplay);
-
-	var _visibility = __webpack_require__(358);
-
-	var _visibility2 = _interopRequireDefault(_visibility);
-
-	var _visibilityOff = __webpack_require__(359);
-
-	var _visibilityOff2 = _interopRequireDefault(_visibilityOff);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var PostItem = function (_Component) {
-	    _inherits(PostItem, _Component);
-
-	    function PostItem(props) {
-	        var _Object$getPrototypeO;
-
-	        _classCallCheck(this, PostItem);
-
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItem)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
-
-	        _this.handleDelete = _this.handleDelete.bind(_this);
-	        _this.handleToggle = _this.handleToggle.bind(_this);
-	        return _this;
-	    }
-
-	    _createClass(PostItem, [{
-	        key: 'handleDelete',
-	        value: function handleDelete() {
-	            var _this2 = this;
-
-	            this.props.deletePost(this.props.id).then(function () {
-	                _this2.context.router.push('/cms/posts');
-	            });
-	        }
-	    }, {
-	        key: 'handleToggle',
-	        value: function handleToggle() {
-	            this.props.togglePost(this.props.id).then(this.context.router.push('/cms/posts'));
-	        }
-	    }, {
-	        key: 'publishIcon',
-	        value: function publishIcon() {
-	            if (this.props.post.published) {
-	                return _react2.default.createElement(_visibility2.default, null);
-	            } else {
-	                return _react2.default.createElement(_visibility2.default, null);
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                _tableRow2.default,
-	                null,
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    this.props.post.id
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    this.props.post.title
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    this.props.post.description
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    'Published'
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    'Published Status'
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/posts/' + this.props.post.id },
-	                        _react2.default.createElement(
-	                            _iconButton2.default,
-	                            null,
-	                            _react2.default.createElement(_airplay2.default, null)
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/posts/' + this.props.post.id + '/edit' },
-	                        _react2.default.createElement(
-	                            _iconButton2.default,
-	                            null,
-	                            _react2.default.createElement(_modeEdit2.default, null)
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _iconButton2.default,
-	                        { onClick: this.handleToggle },
-	                        this.publishIcon()
-	                    ),
-	                    _react2.default.createElement(
-	                        _iconButton2.default,
-	                        { onClick: this.handleDelete },
-	                        _react2.default.createElement(_clear2.default, null)
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return PostItem;
-	}(_react.Component);
-
-	PostItem.contextTypes = {
-	    router: _react.PropTypes.object
-	};
-	;
-
-	exports.default = (0, _reactRedux.connect)(null, { deletePost: _posts.deletePost, togglePost: _posts.togglePost })(PostItem);
-
-/***/ },
+/* 352 */,
 /* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -52022,7 +51873,6 @@
 	                    handleUpdateItem: this.props.handleUpdateItem
 	                });
 	            }
-	            console.log(this.props);
 
 	            return _react2.default.createElement(_post_item_cell2.default, {
 	                sortRank: this.props.sortRank,
@@ -53410,6 +53260,184 @@
 	    };
 	  };
 	}
+
+/***/ },
+/* 482 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(185);
+
+	var _tableRow = __webpack_require__(353);
+
+	var _tableRow2 = _interopRequireDefault(_tableRow);
+
+	var _tableRowColumn = __webpack_require__(354);
+
+	var _tableRowColumn2 = _interopRequireDefault(_tableRowColumn);
+
+	var _iconButton = __webpack_require__(272);
+
+	var _iconButton2 = _interopRequireDefault(_iconButton);
+
+	var _modeEdit = __webpack_require__(355);
+
+	var _modeEdit2 = _interopRequireDefault(_modeEdit);
+
+	var _clear = __webpack_require__(356);
+
+	var _clear2 = _interopRequireDefault(_clear);
+
+	var _airplay = __webpack_require__(357);
+
+	var _airplay2 = _interopRequireDefault(_airplay);
+
+	var _visibility = __webpack_require__(358);
+
+	var _visibility2 = _interopRequireDefault(_visibility);
+
+	var _visibilityOff = __webpack_require__(359);
+
+	var _visibilityOff2 = _interopRequireDefault(_visibilityOff);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PostItem = function (_Component) {
+	    _inherits(PostItem, _Component);
+
+	    function PostItem(props) {
+	        var _Object$getPrototypeO;
+
+	        _classCallCheck(this, PostItem);
+
+	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItem)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+
+	        _this.handleDeletePost = _this.handleDeletePost.bind(_this);
+	        _this.handleTogglePost = _this.handleTogglePost.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(PostItem, [{
+	        key: 'handleDeletePost',
+	        value: function handleDeletePost() {
+	            this.props.handleDeletePost(this.props.post.id);
+	        }
+	    }, {
+	        key: 'handleTogglePost',
+	        value: function handleTogglePost() {
+	            this.props.handleTogglePost(this.props.post.id);
+	        }
+	    }, {
+	        key: 'publishIcon',
+	        value: function publishIcon() {
+	            if (this.props.post.published) {
+	                return _react2.default.createElement(_visibility2.default, { className: 'post-item__visible-icon' });
+	            } else {
+	                return _react2.default.createElement(_visibilityOff2.default, { className: 'post-item__invisible-icon' });
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _tableRow2.default,
+	                null,
+	                _react2.default.createElement(
+	                    _tableRowColumn2.default,
+	                    null,
+	                    this.props.post.id
+	                ),
+	                _react2.default.createElement(
+	                    _tableRowColumn2.default,
+	                    null,
+	                    this.props.post.title
+	                ),
+	                _react2.default.createElement(
+	                    _tableRowColumn2.default,
+	                    null,
+	                    this.props.post.description
+	                ),
+	                _react2.default.createElement(
+	                    _tableRowColumn2.default,
+	                    null,
+	                    'Published'
+	                ),
+	                _react2.default.createElement(
+	                    _tableRowColumn2.default,
+	                    null,
+	                    'Published Status'
+	                ),
+	                _react2.default.createElement(
+	                    _tableRowColumn2.default,
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/cms/posts/' + this.props.post.id },
+	                        _react2.default.createElement(
+	                            _iconButton2.default,
+	                            null,
+	                            _react2.default.createElement(_airplay2.default, null)
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/cms/posts/' + this.props.post.id + '/edit' },
+	                        _react2.default.createElement(
+	                            _iconButton2.default,
+	                            null,
+	                            _react2.default.createElement(_modeEdit2.default, null)
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _iconButton2.default,
+	                        { className: 'post-item__toggle-button', onClick: this.handleTogglePost },
+	                        this.publishIcon()
+	                    ),
+	                    _react2.default.createElement(
+	                        _iconButton2.default,
+	                        { className: 'post-item__delete-button', onClick: this.handleDeletePost },
+	                        _react2.default.createElement(_clear2.default, null)
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return PostItem;
+	}(_react.Component);
+
+	exports.default = PostItem;
+	;
+
+	PostItem.propTypes = {
+	    post: _react.PropTypes.shape({
+	        id: _react.PropTypes.number.isRequired,
+	        title: _react.PropTypes.string.isRequired,
+	        description: _react.PropTypes.string.isRequired,
+	        published: _react.PropTypes.bool.isRequired
+	    }).isRequired,
+	    handleDeletePost: _react.PropTypes.func.isRequired,
+	    handleTogglePost: _react.PropTypes.func.isRequired
+	};
 
 /***/ }
 /******/ ]);

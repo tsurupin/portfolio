@@ -26,6 +26,16 @@ function renderComponent(ComponentClass, props, state) {
   return $(ReactDOM.findDOMNode(componentInstance));
 }
 
+function renderComponentIncludingProps(ComponentClass, state) {
+    const componentInstance = TestUtils.renderIntoDocument(
+        <Provider store={createStore(reducers, state)}>
+            <ComponentClass/>
+        </Provider>
+    );
+
+    return $(ReactDOM.findDOMNode(componentInstance));
+}
+
 $.fn.simulate = function(eventName, value) {
   if (value){
     this.val(value);
@@ -36,4 +46,4 @@ $.fn.simulate = function(eventName, value) {
 chaiJquery(chai, chai.util, $);
 
 
-export { renderComponent, expect, sinon };
+export { renderComponent, $, expect, sinon };

@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { deletePost, togglePost } from '../../actions/posts';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import IconButton from 'material-ui/lib/icon-button';
@@ -11,37 +9,28 @@ import AvAirplay from 'material-ui/lib/svg-icons/av/airplay';
 import ActionVisibility from 'material-ui/lib/svg-icons/action/visibility';
 import ActionVisibilityOff from 'material-ui/lib/svg-icons/action/visibility-off';
 
-class PostItem  extends Component {
+export default class PostItem  extends Component {
 
     constructor(props) {
         super(...props);
-
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
+       
+        this.handleDeletePost = this.handleDeletePost.bind(this);
+        this.handleTogglePost = this.handleTogglePost.bind(this);
+    }
+    
+    handleDeletePost() {
+        this.props.handleDeletePost(this.props.post.id);
     }
 
-    static contextTypes = {
-        router: PropTypes.object
-    };
-
-
-    handleDelete() {
-        this.props.deletePost(this.props.id)
-            .then( () => {
-                this.context.router.push('/cms/posts');
-            });
-    }
-
-    handleToggle() {
-        this.props.togglePost(this.props.id)
-            .then( this.context.router.push('/cms/posts') );
+    handleTogglePost() {
+        this.props.handleTogglePost(this.props.post.id);
     }
 
     publishIcon() {
         if (this.props.post.published) {
-            return <ActionVisibility />;
+            return <ActionVisibility className='post-item__visible-icon' />;
         } else {
-            return <ActionVisibility />;
+            return <ActionVisibilityOff className='post-item__invisible-icon'/>;
         }
     }
 
@@ -64,10 +53,10 @@ class PostItem  extends Component {
                             <EditorModeEdit />
                         </IconButton>
                     </Link>
-                    <IconButton onClick={this.handleToggle}>
+                    <IconButton className='post-item__toggle-button' onClick={this.handleTogglePost}>
                         {this.publishIcon()}
                     </IconButton>
-                    <IconButton onClick={this.handleDelete}>
+                    <IconButton className='post-item__delete-button' onClick={this.handleDeletePost}>
                         <ContentClear />
                     </IconButton>
                 </TableRowColumn>
@@ -76,4 +65,13 @@ class PostItem  extends Component {
     }
 };
 
-export default connect(null, { deletePost, togglePost })(PostItem);
+PostItem.propTypes = {
+    post: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        published: PropTypes.bool.isRequired
+    }).isRequired,
+    handleDeletePost: PropTypes.func.isRequired,
+    handleTogglePost: PropTypes.func.isRequired
+};

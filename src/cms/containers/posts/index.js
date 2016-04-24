@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions/posts';
+import { fetchPosts, deletePost, togglePost } from '../../actions/posts';
 import { Link } from 'react-router';
-import PostItem from './item';
+import PostItem from './../../components/posts/item';
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableHeader from 'material-ui/lib/table/table-header';
@@ -21,8 +21,26 @@ const styles = {
 };
 
 class PostsIndex extends Component {
+
+    constructor(props) {
+        super(...props);
+        this.handleDeletePost = this.handleDeletePost.bind(this);
+        this.handleTogglePost = this.handleTogglePost.bind(this);
+    }
     componentWillMount() {
         this.props.fetchPosts();
+    }
+
+    handleDeletePost(post_id) {
+        this.props.deletePost(post_id)
+            .then( () => {
+                this.context.router.push('/cms/posts');
+            });
+    }
+
+    handleTogglePost(post_id) {
+        this.props.togglePost(post_id)
+            .then( this.context.router.push('/cms/posts') );
     }
 
     render() {
@@ -46,7 +64,12 @@ class PostsIndex extends Component {
                   </TableHeader>
                   <TableBody displayRowCheckbox={false}>
                     {this.props.posts.map( (post, index) => (
-                        <PostItem post={post} key={index} />
+                        <PostItem
+                            post={post}
+                            key={index}
+                            handleDeletePost={this.handleDeletePost}
+                            handleTogglePost={this.handleTogglePost}
+                        />
                     ))}
                   </TableBody>
               </Table>
@@ -59,4 +82,4 @@ function mapStateToProps(state) {
     return { posts: state.posts.all }
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts, deletePost, togglePost })(PostsIndex);

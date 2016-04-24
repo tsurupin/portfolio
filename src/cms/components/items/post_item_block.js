@@ -16,7 +16,6 @@ export default class PostItemBlock extends Component {
             />
           );
         }
-        console.log(this.props)
 
         return (
             <PostItemCell
