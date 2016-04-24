@@ -1,36 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { moveItemTop, moveItemUp,  moveItemDown, moveItemBottom, deleteItem } from '../../../actions/items';
+import { MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM } from '../../../constants';
 
-class Tooltip extends Component {
+export default class Tooltip extends Component {
     constructor(props) {
         super(props);
-        
-        this.handleMoveTop = this.handleMoveTop.bind(this);
-        this.handleMoveUp = this.handleMoveUp.bind(this);
-        this.handleMoveDown = this.handleMoveDown.bind(this);
-        this.handleMoveBottom = this.handleMoveBottom.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    handleMoveTop() {
-        this.props.moveItemTop(this.props.sortRank);
+    handleMove(type) {
+        this.props.handleMoveItem(this.props.sortRank, type);
     }
-
-    handleMoveUp() {
-        this.props.moveItemUp(this.props.sortRank);
-    }
-
-    handleMoveDown() {
-        this.props.moveItemDown(this.props.sortRank);
-    }
-
-    handleMoveBottom() {
-        this.props.moveItemBottom(this.props.sortRank);
-    }
+    
 
     handleDelete() {
-        this.props.deleteItem(this.props.sortRank);
+        this.props.handleDeleteItem(this.props.sortRank);
     }
 
 
@@ -39,7 +22,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--top"
-                onClick={this.handleMoveTop}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_TOP)}>
                 Top
             </li>
         );
@@ -50,7 +33,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--up"
-                onClick={this.handleMoveUp}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_UP)}>
                 Up
             </li>
         );
@@ -61,7 +44,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--down"
-                onClick={this.handleMoveDown}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_DOWN)}>
                 Down
             </li>
         );
@@ -72,7 +55,7 @@ class Tooltip extends Component {
         return(
             <li
                 className="item-tooltip__move-button item-tooltip__move-button--bottom"
-                onClick={this.handleMoveBottom}>
+                onClick={this.handleMove.bind(this, MOVE_ITEM_BOTTOM)}>
                 Bottom
             </li>
         );
@@ -87,7 +70,7 @@ class Tooltip extends Component {
                     {this.renderMoveDownButton()}
                     {this.renderMoveBottomButton()}
                     <li
-                        className="item-tooltip__move-button"
+                        className="item-tooltip__delete-button"
                         onClick={this.handleDelete}>
                         Delete
                     </li>
@@ -98,4 +81,10 @@ class Tooltip extends Component {
     }
 }
 
-export default connect(null, { moveItemTop, moveItemUp, moveItemDown, moveItemBottom, deleteItem})(Tooltip);
+Tooltip.propTypes = {
+    sortRank: PropTypes.number.isRequired,
+    totalCount: PropTypes.number.isRequired,
+    editButton: PropTypes.element.isRequired,
+    handleMoveItem: PropTypes.func.isRequired,
+    handleDeleteItem: PropTypes.func.isRequired
+};

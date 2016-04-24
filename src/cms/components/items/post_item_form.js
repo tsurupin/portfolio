@@ -1,19 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../constants';
-import RaisedButton from '../../../../node_modules/material-ui/lib/raised-button';
-import ContentRemoveCircle from '../../../../node_modules/material-ui/lib/svg-icons/content/remove-circle';
+import RaisedButton from 'material-ui/lib/raised-button';
+import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 import Heading from './forms/heading';
 
-class PostItemForm extends Component {
+export default class PostItemForm extends Component {
     constructor(props) {
         super(...props);
 
         this.handleUpdateItem = this.handleUpdateItem.bind(this);
-        this.handleCancelItem = this.handleCancelItem.bind(this);
+        this.handleDeleteItem = this.handleDeleteItem.bind(this);
     }
 
     renderComponent() {
-        console.log(this.props.item.title)
         switch(this.props.item.type) {
             case TARGET_TYPES.HEADING.NAME:
             case TARGET_TYPES.SUB_HEADING.NAME:
@@ -39,18 +38,19 @@ class PostItemForm extends Component {
         )
     }
 
-    handleCancelItem() {
-        this.props.handleCancelItem(this.props.sortRank)
+    handleDeleteItem() {
+        this.props.handleDeleteItem(this.props.sortRank)
     }
 
 
     renderCancelButton() {
         return (
             <RaisedButton
+                className="item-form__cancel-button"
                 label="Cancel"
                 labelPosition="after"
                 icon={<ContentRemoveCircle />}
-                onClick={this.handleCancelItem}
+                onClick={this.handleDeleteItem}
             />
         );
     }
@@ -61,4 +61,15 @@ class PostItemForm extends Component {
 
 }
 
-export default PostItemForm;
+PostItemForm.propTypes = {
+    item: PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        isNew: PropTypes.bool.isRequired,
+        editing: PropTypes.bool.isRequired,
+        title: PropTypes.string
+    }).isRequired,
+    sortRank: PropTypes.number.isRequired,
+    handleUpdateItem: PropTypes.func.isRequired,
+    handleDeleteItem: PropTypes.func.isRequired
+};
+

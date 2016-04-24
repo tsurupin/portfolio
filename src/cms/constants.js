@@ -1,20 +1,33 @@
-export const ROOT_URL = '/cms/api';
-export const POST_PATH = '/posts';
+function createRequestTypes(base) {
+    const requestType = {};
+    [REQUEST, SUCCESS, FAILURE].forEach(type => requestType[type] = `${base}_${type}`);
+    return requestType;
+}
 
-export const FETCH_POSTS = 'fetch posts';
-export const FETCH_POST  = 'fetch post';
-export const CREATE_POST = 'create post';
-export const TOGGLE_POST = 'toggle post';
-export const DELETE_POST = 'delete post';
+export const ROOT_URL       = '/cms/api';
+export const POST_PATH      = '/posts';
+export const TEST_DOMAIN    = 'http://localhost:80';
 
-export const FETCH_ITEMS = 'fetch items';
-export const CREATE_ITEM = 'create item';
-export const UPDATE_ITEM = 'update item';
-export const DELETE_ITEM = 'delete item';
-export const MOVE_ITEM_TOP = 'move item top';
-export const MOVE_ITEM_UP = 'move item up';
-export const MOVE_ITEM_DOWN = 'move item down';
-export const MOVE_ITEM_BOTTOM = 'move item bottom';
+const REQUEST = 'REQUEST';
+const SUCCESS = 'SUCCESS';
+const FAILURE = 'FAILURE';
+
+export const FETCH_POSTS = createRequestTypes('FETCH_POSTS');
+export const FETCH_POST  = createRequestTypes('FETCH_POST');
+export const CREATE_POST = createRequestTypes('CREATE_POST');
+export const UPDATE_POST = createRequestTypes('UPDATE_POST');
+export const TOGGLE_POST = createRequestTypes('TOGGLE_POST');
+export const DELETE_POST = createRequestTypes('DELETE_POST');
+
+export const FETCH_ITEMS = 'FETCH_ITEMS';
+export const CREATE_ITEM = 'CREATE_ITEM';
+export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
+
+export const MOVE_ITEM_TOP      = 'MOVE_ITEM_TOP';
+export const MOVE_ITEM_UP       = 'MOVE_ITEM_UP';
+export const MOVE_ITEM_DOWN     = 'MOVE_ITEM_DOWN';
+export const MOVE_ITEM_BOTTOM   = 'MOVE_ITEM_BOTTOM';
 
 export const TARGET_TYPES =  {
     TWITTER: {

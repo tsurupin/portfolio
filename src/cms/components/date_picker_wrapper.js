@@ -7,7 +7,7 @@ export default class DatePickerWrapper extends Component {
         super(...props);
     }
 
-    onChange(event, date) {
+    onChange(e, date) {
         if (this.props.onChange) {
             this.props.onChange(date);
         }

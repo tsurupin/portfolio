@@ -6,7 +6,7 @@ import Tooltip from './displays/tooltip';
 export default class PostItemCell extends Component {
     constructor(props) {
         super(...props);
-        this.state = {hovering: true}
+        this.state = { hovering: false };
         
         this.handleUpdateItem = this.handleUpdateItem.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -14,17 +14,17 @@ export default class PostItemCell extends Component {
     }
     
     handleUpdateItem() {
-        this.props.handleUpdateItem(this.props.sortRank, {...this.props.item, editing: true})    
+        this.props.handleUpdateItem(this.props.sortRank, {...this.props.item, editing: true })    
     }
     
     handleMouseEnter() {
         if (this.state.hovering) { return; }
-        this.setState({hovering: true})
+        this.setState({hovering: true })
     }
 
     handleMouseLeave() {
         if (!this.state.hovering) { return; }
-        this.setState({hovering: false})
+        this.setState({hovering: false })
     }
     
     renderComponent() {
@@ -49,6 +49,8 @@ export default class PostItemCell extends Component {
                 sortRank={this.props.sortRank}
                 totalCount={this.props.totalCount}
                 editButton={this.renderEditButton()}
+                handleDeleteItem={this.props.handleDeleteItem}
+                handleMoveItem={this.props.handleMoveItem}
             />
         )
     }
@@ -65,10 +67,18 @@ export default class PostItemCell extends Component {
     
     render() {
         return (
-            <div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+            <div className='post-item-cell' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                 {this.renderTooltip()}
                 {this.renderComponent()}
             </div>
         );
     }
 }
+
+PostItemCell.propTypes = {
+    sortRank: PropTypes.number.isRequired,
+    totalCount: PropTypes.number.isRequired,
+    handleDeleteItem: PropTypes.func.isRequired,
+    handleMoveItem: PropTypes.func.isRequired,
+    handleUpdateItem: PropTypes.func.isRequired
+};

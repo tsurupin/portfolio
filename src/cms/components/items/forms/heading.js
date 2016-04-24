@@ -5,13 +5,6 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
 
-const propTypes = {
-    type: PropTypes.string.isRequired,
-    cancelButton: PropTypes.object.isRequired,
-    handleUpdateItem: PropTypes.func.isRequired
-};
-
-
 class ItemFormHeading extends Component {
 
     constructor(props) {
@@ -31,6 +24,7 @@ class ItemFormHeading extends Component {
             <div className="item-form-component">
                 <div className="item-form__input-label">{capitalize(this.props.type)}</div>
                 <TextField
+                    className="item-form__input-text"
                     {...title}
                     hintText='Enter the title'
                     fullWidth={true}
@@ -51,6 +45,13 @@ class ItemFormHeading extends Component {
     }
 }
 
+ItemFormHeading.propTypes = {
+    type: PropTypes.string.isRequired,
+    isNew: PropTypes.bool.isRequired,
+    cancelButton: PropTypes.object.isRequired,
+    handleUpdateItem: PropTypes.func.isRequired
+};
+
 function validate(values) {
     const errors = {};
     if(!values.title) {
@@ -58,8 +59,6 @@ function validate(values) {
     }
     return errors;
 }
-
-
 
 export default reduxForm({
     form: 'ItemFormHeading',

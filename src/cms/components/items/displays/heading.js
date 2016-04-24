@@ -15,6 +15,7 @@ export default class ItemHeading extends Component {
     }
     
     render() {
+       
         return <div>{this.renderTitle()}</div>;
     }
 }
