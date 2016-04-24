@@ -33,7 +33,7 @@ export default class ItemFormEditBox extends Component {
     render() {
         return (
             <List style={styles.list}>
-                <ul>
+                <ul className='item-edit-box'>
                     {TARGET_TYPE_LIST.map((targetType, index) => {
                         return (
                             <ItemEditBoxItem

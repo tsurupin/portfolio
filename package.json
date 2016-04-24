@@ -28,7 +28,6 @@
     "react-addons-test-utils": "^0.14.7",
     "redux-mock-store": "^1.0.2",
     "sinon": "^1.17.3",
-    "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
@@ -37,17 +36,15 @@
     "babel-preset-stage-1": "^6.1.18",
     "classnames": "*",
     "lodash": "^3.10.1",
-    "material-design-iconic-font": "^2.2.0",
     "material-ui": "^0.14.4",
-    "mdi": "^1.5.54",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-dropzone": "^3.4.0",
     "react-redux": "^4.0.0",
     "react-router": "^2.3.0",
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.5.1",
     "redux-form": "^5.0.1",
-    "redux-promise": "^0.5.3",
     "redux-thunk": "^2.0.1"
   }
 }

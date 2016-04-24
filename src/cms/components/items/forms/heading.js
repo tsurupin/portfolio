@@ -19,10 +19,9 @@ class ItemFormHeading extends Component {
 
     render() {
         const { handleSubmit, submitting, fields: { title } } = this.props;
-        const buttonLabel = this.props.isNew ? 'Create' : 'Update';
         return (
-            <div className="item-form-component">
-                <div className="item-form__input-label">{capitalize(this.props.type)}</div>
+            <div className="item-form">
+                <div className="item-form__name">{capitalize(this.props.type)}</div>
                 <TextField
                     className="item-form__input-text"
                     {...title}
@@ -32,7 +31,7 @@ class ItemFormHeading extends Component {
                 />
                 <div className="item-form__submit-box">
                     <RaisedButton
-                        label={buttonLabel}
+                        label={this.props.submitButtonLabel}
                         labelPosition="after"
                         icon={<ContentAddCircle />}
                         disabled={submitting}
@@ -47,7 +46,7 @@ class ItemFormHeading extends Component {
 
 ItemFormHeading.propTypes = {
     type: PropTypes.string.isRequired,
-    isNew: PropTypes.bool.isRequired,
+    submitButtonLabel: PropTypes.string.isRequired,
     cancelButton: PropTypes.object.isRequired,
     handleUpdateItem: PropTypes.func.isRequired
 };

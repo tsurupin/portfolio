@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import ItemFormEditBox from '../../components/items/forms/edit_box';
 import TextField from 'material-ui/lib/text-field';
-import DatePicker from '../../components/date_picker_wrapper';
+import DatePicker from '../../components/utilities/date_picker_wrapper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import PostItemBlock from '../../components/items/post_item_block';
 
@@ -65,7 +65,7 @@ class PostsForm extends Component {
     renderItems() {
         return(
             <section className="l-post-item-container">
-                <ul>
+                <ul className="post-item-block">
                     {this.props.items.map((item, index) => {
                         return (
                             <PostItemBlock

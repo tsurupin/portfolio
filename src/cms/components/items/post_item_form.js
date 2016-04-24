@@ -3,6 +3,7 @@ import { TARGET_TYPES } from '../../constants';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 import Heading from './forms/heading';
+import Image from './forms/image';
 
 export default class PostItemForm extends Component {
     constructor(props) {
@@ -10,25 +11,6 @@ export default class PostItemForm extends Component {
 
         this.handleUpdateItem = this.handleUpdateItem.bind(this);
         this.handleDeleteItem = this.handleDeleteItem.bind(this);
-    }
-
-    renderComponent() {
-        switch(this.props.item.type) {
-            case TARGET_TYPES.HEADING.NAME:
-            case TARGET_TYPES.SUB_HEADING.NAME:
-                return (
-                    <Heading
-                        type={this.props.item.type}
-                        isNew={this.props.item.isNew}
-                        initialValues={{title: this.props.item.title}}
-                        handleUpdateItem={this.handleUpdateItem}
-                        cancelButton={this.renderCancelButton()}
-                    />
-                    );
-            default:
-                return;
-        }
-
     }
 
     handleUpdateItem(callbackProps) {
@@ -42,7 +24,38 @@ export default class PostItemForm extends Component {
         this.props.handleDeleteItem(this.props.sortRank)
     }
 
-
+    renderComponent() {
+        switch(this.props.item.type) {
+            case TARGET_TYPES.HEADING.NAME:
+            case TARGET_TYPES.SUB_HEADING.NAME:
+                return (
+                    <Heading
+                        type={this.props.item.type}
+                        initialValues={{title: this.props.item.title}}
+                        submitButtonLabel={this.renderSubmitButtonLabel()}
+                        handleUpdateItem={this.handleUpdateItem}
+                        cancelButton={this.renderCancelButton()}
+                    />
+                );
+            case TARGET_TYPES.IMAGE.NAME:
+                return (
+                    <Image
+                        type={this.props.item.type}
+                        image={this.props.item.image}
+                        submitButtonLabel={this.renderSubmitButtonLabel()}
+                        handleUpdateItem={this.handleUpdateItem}
+                        cancelButton={this.renderCancelButton()}
+                    />
+                );
+            default:
+                return;
+        }
+    }
+    
+    renderSubmitButtonLabel() {
+        return (this.props.item.isNew ? 'Create' : 'Update');
+    }
+    
     renderCancelButton() {
         return (
             <RaisedButton

@@ -13,7 +13,7 @@ describe('PostItemBlock', () => {
         let item = { editing: true, type: 'ItemHeading' };
         props = { ...props, item };
         const component = renderComponent(PostItemBlock, props, {});
-        expect(component.find('.item-form-component')).to.exist
+        expect(component.find('.item-form')).to.exist
         expect(component.find('.post-item-cell')).not.to.exist
     });
     
@@ -21,7 +21,7 @@ describe('PostItemBlock', () => {
         let item = { editing: false };
         props = { ...props, item };
         const component = renderComponent(PostItemBlock, props, {});
-        expect(component.find('.item-form-component')).not.to.exist
+        expect(component.find('.item-form')).not.to.exist
         expect(component.find('.post-item-cell')).to.exist
     });
     
