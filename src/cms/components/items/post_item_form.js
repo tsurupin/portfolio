@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 import Heading from './forms/heading';
 
-class PostItemForm extends Component {
+export default class PostItemForm extends Component {
     constructor(props) {
         super(...props);
 
@@ -46,6 +46,7 @@ class PostItemForm extends Component {
     renderCancelButton() {
         return (
             <RaisedButton
+                className="item-form__cancel-button"
                 label="Cancel"
                 labelPosition="after"
                 icon={<ContentRemoveCircle />}
@@ -72,4 +73,3 @@ PostItemForm.propTypes = {
     handleDeleteItem: PropTypes.func.isRequired
 };
 
-export default PostItemForm;

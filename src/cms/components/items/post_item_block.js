@@ -28,12 +28,9 @@ export default class PostItemBlock extends Component {
             />
         );
     }
+    
     render() {
-        return(
-            <li>
-                {this.renderComponent()}
-            </li>
-        );
+        return <li>{this.renderComponent()}</li>;
     }
 }
 

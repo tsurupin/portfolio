@@ -46844,7 +46844,7 @@
 
 	    _createClass(DatePickerWrapper, [{
 	        key: 'onChange',
-	        value: function onChange(event, date) {
+	        value: function onChange(e, date) {
 	            if (this.props.onChange) {
 	                this.props.onChange(date);
 	            }
@@ -51957,7 +51957,7 @@
 
 	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemCell)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.state = { hovering: true };
+	        _this.state = { hovering: false };
 
 	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	        _this.handleMouseEnter = _this.handleMouseEnter.bind(_this);
@@ -52030,7 +52030,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { onMouseEnter: this.handleMouseEnter, onMouseLeave: this.handleMouseLeave },
+	                { className: 'post-item-cell', onMouseEnter: this.handleMouseEnter, onMouseLeave: this.handleMouseLeave },
 	                this.renderTooltip(),
 	                this.renderComponent()
 	            );
@@ -52355,6 +52355,7 @@
 	        key: 'renderCancelButton',
 	        value: function renderCancelButton() {
 	            return _react2.default.createElement(_raisedButton2.default, {
+	                className: 'item-form__cancel-button',
 	                label: 'Cancel',
 	                labelPosition: 'after',
 	                icon: _react2.default.createElement(_removeCircle2.default, null),
@@ -52371,6 +52372,9 @@
 	    return PostItemForm;
 	}(_react.Component);
 
+	exports.default = PostItemForm;
+
+
 	PostItemForm.propTypes = {
 	    item: _react.PropTypes.shape({
 	        type: _react.PropTypes.string.isRequired,
@@ -52382,8 +52386,6 @@
 	    handleUpdateItem: _react.PropTypes.func.isRequired,
 	    handleDeleteItem: _react.PropTypes.func.isRequired
 	};
-
-	exports.default = PostItemForm;
 
 /***/ },
 /* 465 */

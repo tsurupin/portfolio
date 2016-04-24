@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderComponent, expect, sinon } from '../../../test_helper';
 import Tooltip from '../../../../../../src/cms/components/items/displays/tooltip';
+
 describe('Tooltip', () => {
     
     const handleUpdateItem = sinon.spy();
