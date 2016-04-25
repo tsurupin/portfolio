@@ -5,7 +5,7 @@ class TwitterService
     @url = url
   end
 
-  def receive
+  def receive!
     @response_params ||= {
       author_image_url: author_image_url,
       author_name: client.user.name,

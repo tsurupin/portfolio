@@ -18,8 +18,6 @@ RSpec.describe Cms::Api::PostsController, type: :request do
               'authorName' => 'steve blank',
               'authorScreenName' => 'sgblank',
               'description' => 'Great professors are people who wish to remain students for the rest of their lives.',
-              'isAccessible' =>true,
-              'errorMessage' => nil
             }
           }
         end
@@ -38,12 +36,6 @@ RSpec.describe Cms::Api::PostsController, type: :request do
           {
             'sortRank' => sort_rank,
             'responseParams' => {
-              'sourceURL' => url,
-              'authorImageURL' => nil,
-              'authorName' => nil,
-              'authorScreenName' => nil,
-              'description' => nil,
-              'isAccessible' => false,
               'errorMessage' => 'Cannot retrieve info from this url'
             }
           }
@@ -52,7 +44,7 @@ RSpec.describe Cms::Api::PostsController, type: :request do
         it 'return error message' do
           VCR.use_cassette 'twitter_cms_api_service_error' do
             expect(subject).to eq result
-            expect(response.status).to eq 200
+            expect(response.status).to eq 400
           end
         end
       end
