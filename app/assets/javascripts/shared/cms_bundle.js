@@ -64,15 +64,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(473);
+	var _reducers = __webpack_require__(475);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(476);
+	var _reactTapEventPlugin = __webpack_require__(478);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(481);
+	var _reduxThunk = __webpack_require__(483);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -20793,8 +20793,8 @@
 			if (Symbol.observable) {
 				result = Symbol.observable;
 			} else {
-				if (typeof Symbol.for === 'function') {
-					result = Symbol.for('observable');
+				if (typeof Symbol['for'] === 'function') {
+					result = Symbol['for']('observable');
 				} else {
 					result = Symbol('observable');
 				}
@@ -26777,19 +26777,19 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index3 = __webpack_require__(469);
+	var _index3 = __webpack_require__(471);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _form3 = __webpack_require__(470);
+	var _form3 = __webpack_require__(472);
 
 	var _form4 = _interopRequireDefault(_form3);
 
-	var _form5 = __webpack_require__(471);
+	var _form5 = __webpack_require__(473);
 
 	var _form6 = _interopRequireDefault(_form5);
 
-	var _form7 = __webpack_require__(472);
+	var _form7 = __webpack_require__(474);
 
 	var _form8 = _interopRequireDefault(_form7);
 
@@ -41482,7 +41482,7 @@
 
 	var _textField2 = _interopRequireDefault(_textField);
 
-	var _date_picker_wrapper = __webpack_require__(482);
+	var _date_picker_wrapper = __webpack_require__(435);
 
 	var _date_picker_wrapper2 = _interopRequireDefault(_date_picker_wrapper);
 
@@ -42074,8 +42074,9 @@
 
 	  var data = _ref5.data;
 	  var fields = _ref5.fields;
+	  var overwriteValues = _ref5.overwriteValues;
 
-	  return _extends({}, (0, _initializeState2.default)(data, fields, state), (_extends2 = {
+	  return _extends({}, (0, _initializeState2.default)(data, fields, state, overwriteValues), (_extends2 = {
 	    _asyncValidating: false,
 	    _active: undefined
 	  }, _extends2[globalErrorKey] = undefined, _extends2._initialized = true, _extends2._submitting = false, _extends2._submitFailed = false, _extends2));
@@ -42546,8 +42547,11 @@
 
 	var _fieldValue = __webpack_require__(385);
 
-	var makeEntry = function makeEntry(value) {
-	  return (0, _fieldValue.makeFieldValue)(value === undefined ? {} : { initial: value, value: value });
+	var makeEntry = function makeEntry(value, previousValue, overwriteValues) {
+	  return (0, _fieldValue.makeFieldValue)(value === undefined ? {} : {
+	    initial: value,
+	    value: overwriteValues ? value : previousValue
+	  });
 	};
 
 	/**
@@ -42555,6 +42559,7 @@
 	 */
 	var initializeState = function initializeState(values, fields) {
 	  var state = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	  var overwriteValues = arguments.length <= 3 || arguments[3] === undefined ? true : arguments[3];
 
 	  if (!fields) {
 	    throw new Error('fields must be passed when initializing state');
@@ -42591,8 +42596,8 @@
 	              return initializeField(rest, srcValue, destArray && destArray[srcIndex]);
 	            });
 	          } else {
-	            result[key] = srcArray.map(function (srcValue) {
-	              return makeEntry(srcValue);
+	            result[key] = srcArray.map(function (srcValue, srcIndex) {
+	              return makeEntry(srcValue, destArray && destArray[srcIndex] && destArray[srcIndex].value, overwriteValues);
 	            });
 	          }
 	        } else {
@@ -42600,7 +42605,7 @@
 	        }
 	      })();
 	    } else {
-	      result[path] = makeEntry(src && src[path]);
+	      result[path] = makeEntry(src && src[path], dest && dest[path] && dest[path].value, overwriteValues);
 	    }
 	    return result;
 	  };
@@ -43252,7 +43257,7 @@
 	          this.fields = (0, _readFields2.default)(nextProps, this.props, this.fields, this.asyncValidate, isReactNative);
 	        }
 	        if (!(0, _deepEqual2.default)(this.props.initialValues, nextProps.initialValues)) {
-	          this.props.initialize(nextProps.initialValues, nextProps.fields);
+	          this.props.initialize(nextProps.initialValues, nextProps.fields, !this.props.form._initialized);
 	        }
 	      };
 
@@ -43527,10 +43532,12 @@
 	};
 
 	var initialize = exports.initialize = function initialize(data, fields) {
+	  var overwriteValues = arguments.length <= 2 || arguments[2] === undefined ? true : arguments[2];
+
 	  if (!Array.isArray(fields)) {
 	    throw new Error('must provide fields array to initialize() action creator');
 	  }
-	  return { type: _actionTypes.INITIALIZE, data: data, fields: fields };
+	  return { type: _actionTypes.INITIALIZE, data: data, fields: fields, overwriteValues: overwriteValues };
 	};
 
 	var removeArrayValue = exports.removeArrayValue = function removeArrayValue(path, index) {
@@ -43737,7 +43744,7 @@
 
 	  var previousFields = previousProps.fields;
 	  var values = (0, _getValues2.default)(fields, form);
-	  var syncErrors = validate(values, props);
+	  var syncErrors = validate(values, props) || {};
 	  var errors = {};
 	  var formError = syncErrors._error || form._error;
 	  var allValid = !formError;
@@ -46977,7 +46984,68 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 435 */,
+/* 435 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _datePicker = __webpack_require__(436);
+
+	var _datePicker2 = _interopRequireDefault(_datePicker);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var DatePickerWrapper = function (_Component) {
+	    _inherits(DatePickerWrapper, _Component);
+
+	    function DatePickerWrapper(props) {
+	        var _Object$getPrototypeO;
+
+	        _classCallCheck(this, DatePickerWrapper);
+
+	        return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(DatePickerWrapper)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    }
+
+	    _createClass(DatePickerWrapper, [{
+	        key: 'onChange',
+	        value: function onChange(e, date) {
+	            if (this.props.onChange) {
+	                this.props.onChange(date);
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_datePicker2.default, _extends({}, this.props, { onChange: this.onChange.bind(this) }));
+	        }
+	    }]);
+
+	    return DatePickerWrapper;
+	}(_react.Component);
+
+	exports.default = DatePickerWrapper;
+
+/***/ },
 /* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -52415,7 +52483,7 @@
 
 	var _heading2 = _interopRequireDefault(_heading);
 
-	var _image = __webpack_require__(483);
+	var _image = __webpack_require__(469);
 
 	var _image2 = _interopRequireDefault(_image);
 
@@ -52758,722 +52826,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ProjectsIndex = function (_Component) {
-	    _inherits(ProjectsIndex, _Component);
-
-	    function ProjectsIndex() {
-	        _classCallCheck(this, ProjectsIndex);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsIndex).apply(this, arguments));
-	    }
-
-	    _createClass(ProjectsIndex, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return ProjectsIndex;
-	}(_react.Component);
-
-	exports.default = ProjectsIndex;
-
-/***/ },
-/* 470 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ProjectsForm = function (_Component) {
-	    _inherits(ProjectsForm, _Component);
-
-	    function ProjectsForm() {
-	        _classCallCheck(this, ProjectsForm);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).apply(this, arguments));
-	    }
-
-	    _createClass(ProjectsForm, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return ProjectsForm;
-	}(_react.Component);
-
-	exports.default = ProjectsForm;
-
-/***/ },
-/* 471 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SitesForm = function (_Component) {
-	    _inherits(SitesForm, _Component);
-
-	    function SitesForm() {
-	        _classCallCheck(this, SitesForm);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SitesForm).apply(this, arguments));
-	    }
-
-	    _createClass(SitesForm, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return SitesForm;
-	}(_react.Component);
-
-	exports.default = SitesForm;
-
-/***/ },
-/* 472 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AuthorsForm = function (_Component) {
-	    _inherits(AuthorsForm, _Component);
-
-	    function AuthorsForm() {
-	        _classCallCheck(this, AuthorsForm);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).apply(this, arguments));
-	    }
-
-	    _createClass(AuthorsForm, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return AuthorsForm;
-	}(_react.Component);
-
-	exports.default = AuthorsForm;
-
-/***/ },
-/* 473 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _redux = __webpack_require__(166);
-
-	var _reduxForm = __webpack_require__(377);
-
-	var _posts = __webpack_require__(474);
-
-	var _posts2 = _interopRequireDefault(_posts);
-
-	var _items = __webpack_require__(475);
-
-	var _items2 = _interopRequireDefault(_items);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var rootReducer = (0, _redux.combineReducers)({
-	    posts: _posts2.default,
-	    items: _items2.default,
-	    form: _reduxForm.reducer
-	});
-
-	exports.default = rootReducer;
-
-/***/ },
-/* 474 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = function () {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
-	    var action = arguments[1];
-
-	    switch (action.type) {
-	        case _constants.FETCH_POSTS.SUCCESS:
-	            return _extends({}, state, { all: action.payload });
-	        case _constants.FETCH_POST.SUCCESS:
-	            return _extends({}, state, { post: action.payload });
-	        case _constants.CREATE_POST.SUCCESS:
-	        case _constants.UPDATE_POST.SUCCESS:
-	            return _extends({}, state, { message: 'Successfully Saved' });
-	        case _constants.DELETE_POST.SUCCESS:
-	            return _extends({}, state, { message: 'Successfully Deleted' });
-	        case _constants.TOGGLE_POST.SUCCESS:
-	            return _extends({}, state, { message: 'Successfully Change Published Status' });
-	        case _constants.FETCH_POSTS.FAILURE:
-	        case _constants.FETCH_POST.FAILURE:
-	        case _constants.CREATE_POST.FAILURE:
-	        case _constants.UPDATE_POST.FAILURE:
-	        case _constants.DELETE_POST.FAILURE:
-	        case _constants.TOGGLE_POST.FAILURE:
-	            return _extends({}, state, { error: action.payload });
-	        default:
-	            return state;
-	    }
-	};
-
-	var _constants = __webpack_require__(351);
-
-	var INITIAL_STATE = { all: [], post: null, error: null, message: null };
-
-/***/ },
-/* 475 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	exports.default = function () {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-	    var action = arguments[1];
-
-	    switch (action.type) {
-	        case _constants.FETCH_ITEMS:
-	            return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload.items));
-
-	        case _constants.CREATE_ITEM:
-	            return [].concat(_toConsumableArray(state), [action.payload.item]);
-
-	        case _constants.UPDATE_ITEM:
-	            return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), [action.payload.item], _toConsumableArray(state.slice(action.payload.sortRank + 1)));
-
-	        case _constants.DELETE_ITEM:
-	            return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
-
-	        case _constants.MOVE_ITEM_TOP:
-	            if (state.length > 0 && action.payload.sortRank !== 0) {
-	                var topItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-	                return [].concat(_toConsumableArray(topItem), _toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
-	            }
-	            return state;
-
-	        case _constants.MOVE_ITEM_UP:
-	            if (state.length > 0) {
-	                var subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-	                var frontItem = state.slice(action.payload.sortRank - 1, action.payload.sortRank);
-	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank - 1)), _toConsumableArray(subject), _toConsumableArray(frontItem), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
-	            }
-	            return state;
-
-	        case _constants.MOVE_ITEM_DOWN:
-	            if (state.length > action.payload.sortRank) {
-	                var _subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-	                var backItem = state.slice(action.payload.sortRank + 1, action.payload.sortRank + 2);
-	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(backItem), _toConsumableArray(_subject), _toConsumableArray(state.slice(action.payload.sortRank + 2)));
-	            }
-	            return state;
-
-	        case _constants.MOVE_ITEM_BOTTOM:
-	            if (state.length > 0 && state.length - 1 !== action.payload.sortRank) {
-	                var bottomItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)), _toConsumableArray(bottomItem));
-	            }
-	            return state;
-
-	        default:
-	            return state;
-	    }
-	};
-
-	var _constants = __webpack_require__(351);
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/***/ },
-/* 476 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var defaultClickRejectionStrategy = __webpack_require__(477);
-
-	module.exports = function injectTapEventPlugin (strategyOverrides) {
-	  strategyOverrides = strategyOverrides || {}
-	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
-
-	  __webpack_require__(31).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(478)(shouldRejectClick)
-	  });
-	};
-
-
-/***/ },
-/* 477 */
-/***/ function(module, exports) {
-
-	module.exports = function(lastTouchEvent, clickTimestamp) {
-	  if (lastTouchEvent && (clickTimestamp - lastTouchEvent) < 750) {
-	    return true;
-	  }
-	};
-
-
-/***/ },
-/* 478 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014 Facebook, Inc.
-	 *
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 * http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
-	 *
-	 * @providesModule TapEventPlugin
-	 * @typechecks static-only
-	 */
-
-	"use strict";
-
-	var EventConstants = __webpack_require__(30);
-	var EventPluginUtils = __webpack_require__(33);
-	var EventPropagators = __webpack_require__(73);
-	var SyntheticUIEvent = __webpack_require__(87);
-	var TouchEventUtils = __webpack_require__(479);
-	var ViewportMetrics = __webpack_require__(38);
-
-	var keyOf = __webpack_require__(480);
-	var topLevelTypes = EventConstants.topLevelTypes;
-
-	var isStartish = EventPluginUtils.isStartish;
-	var isEndish = EventPluginUtils.isEndish;
-
-	var isTouch = function(topLevelType) {
-	  var touchTypes = [
-	    topLevelTypes.topTouchCancel,
-	    topLevelTypes.topTouchEnd,
-	    topLevelTypes.topTouchStart,
-	    topLevelTypes.topTouchMove
-	  ];
-	  return touchTypes.indexOf(topLevelType) >= 0;
-	}
-
-	/**
-	 * Number of pixels that are tolerated in between a `touchStart` and `touchEnd`
-	 * in order to still be considered a 'tap' event.
-	 */
-	var tapMoveThreshold = 10;
-	var ignoreMouseThreshold = 750;
-	var startCoords = {x: null, y: null};
-	var lastTouchEvent = null;
-
-	var Axis = {
-	  x: {page: 'pageX', client: 'clientX', envScroll: 'currentPageScrollLeft'},
-	  y: {page: 'pageY', client: 'clientY', envScroll: 'currentPageScrollTop'}
-	};
-
-	function getAxisCoordOfEvent(axis, nativeEvent) {
-	  var singleTouch = TouchEventUtils.extractSingleTouch(nativeEvent);
-	  if (singleTouch) {
-	    return singleTouch[axis.page];
-	  }
-	  return axis.page in nativeEvent ?
-	    nativeEvent[axis.page] :
-	    nativeEvent[axis.client] + ViewportMetrics[axis.envScroll];
-	}
-
-	function getDistance(coords, nativeEvent) {
-	  var pageX = getAxisCoordOfEvent(Axis.x, nativeEvent);
-	  var pageY = getAxisCoordOfEvent(Axis.y, nativeEvent);
-	  return Math.pow(
-	    Math.pow(pageX - coords.x, 2) + Math.pow(pageY - coords.y, 2),
-	    0.5
-	  );
-	}
-
-	var touchEvents = [
-	  topLevelTypes.topTouchStart,
-	  topLevelTypes.topTouchCancel,
-	  topLevelTypes.topTouchEnd,
-	  topLevelTypes.topTouchMove,
-	];
-
-	var dependencies = [
-	  topLevelTypes.topMouseDown,
-	  topLevelTypes.topMouseMove,
-	  topLevelTypes.topMouseUp,
-	].concat(touchEvents);
-
-	var eventTypes = {
-	  touchTap: {
-	    phasedRegistrationNames: {
-	      bubbled: keyOf({onTouchTap: null}),
-	      captured: keyOf({onTouchTapCapture: null})
-	    },
-	    dependencies: dependencies
-	  }
-	};
-
-	var now = (function() {
-	  if (Date.now) {
-	    return Date.now;
-	  } else {
-	    // IE8 support: http://stackoverflow.com/questions/9430357/please-explain-why-and-how-new-date-works-as-workaround-for-date-now-in
-	    return function () {
-	      return +new Date;
-	    }
-	  }
-	})();
-
-	function createTapEventPlugin(shouldRejectClick) {
-	  return {
-
-	    tapMoveThreshold: tapMoveThreshold,
-
-	    ignoreMouseThreshold: ignoreMouseThreshold,
-
-	    eventTypes: eventTypes,
-
-	    /**
-	     * @param {string} topLevelType Record from `EventConstants`.
-	     * @param {DOMEventTarget} topLevelTarget The listening component root node.
-	     * @param {string} topLevelTargetID ID of `topLevelTarget`.
-	     * @param {object} nativeEvent Native browser event.
-	     * @return {*} An accumulation of synthetic events.
-	     * @see {EventPluginHub.extractEvents}
-	     */
-	    extractEvents: function(
-	        topLevelType,
-	        topLevelTarget,
-	        topLevelTargetID,
-	        nativeEvent,
-	        nativeEventTarget) {
-
-	      if (isTouch(topLevelType)) {
-	        lastTouchEvent = now();
-	      } else {
-	        if (shouldRejectClick(lastTouchEvent, now())) {
-	          return null;
-	        }
-	      }
-
-	      if (!isStartish(topLevelType) && !isEndish(topLevelType)) {
-	        return null;
-	      }
-	      var event = null;
-	      var distance = getDistance(startCoords, nativeEvent);
-	      if (isEndish(topLevelType) && distance < tapMoveThreshold) {
-	        event = SyntheticUIEvent.getPooled(
-	          eventTypes.touchTap,
-	          topLevelTargetID,
-	          nativeEvent,
-	          nativeEventTarget
-	        );
-	      }
-	      if (isStartish(topLevelType)) {
-	        startCoords.x = getAxisCoordOfEvent(Axis.x, nativeEvent);
-	        startCoords.y = getAxisCoordOfEvent(Axis.y, nativeEvent);
-	      } else if (isEndish(topLevelType)) {
-	        startCoords.x = 0;
-	        startCoords.y = 0;
-	      }
-	      EventPropagators.accumulateTwoPhaseDispatches(event);
-	      return event;
-	    }
-
-	  };
-	}
-
-	module.exports = createTapEventPlugin;
-
-
-/***/ },
-/* 479 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2013-2014 Facebook, Inc.
-	 *
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 * http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
-	 *
-	 * @providesModule TouchEventUtils
-	 */
-
-	var TouchEventUtils = {
-	  /**
-	   * Utility function for common case of extracting out the primary touch from a
-	   * touch event.
-	   * - `touchEnd` events usually do not have the `touches` property.
-	   *   http://stackoverflow.com/questions/3666929/
-	   *   mobile-sarai-touchend-event-not-firing-when-last-touch-is-removed
-	   *
-	   * @param {Event} nativeEvent Native event that may or may not be a touch.
-	   * @return {TouchesObject?} an object with pageX and pageY or null.
-	   */
-	  extractSingleTouch: function(nativeEvent) {
-	    var touches = nativeEvent.touches;
-	    var changedTouches = nativeEvent.changedTouches;
-	    var hasTouches = touches && touches.length > 0;
-	    var hasChangedTouches = changedTouches && changedTouches.length > 0;
-
-	    return !hasTouches && hasChangedTouches ? changedTouches[0] :
-	           hasTouches ? touches[0] :
-	           nativeEvent;
-	  }
-	};
-
-	module.exports = TouchEventUtils;
-
-
-/***/ },
-/* 480 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule keyOf
-	 */
-
-	/**
-	 * Allows extraction of a minified key. Let's the build system minify keys
-	 * without losing the ability to dynamically use key strings as values
-	 * themselves. Pass in an object with a single key/val pair and it will return
-	 * you the string key of that single record. Suppose you want to grab the
-	 * value for a key 'className' inside of an object. Key/val minification may
-	 * have aliased that key to be 'xa12'. keyOf({className: null}) will return
-	 * 'xa12' in that case. Resolve keys you want to use once at startup time, then
-	 * reuse those resolutions.
-	 */
-	"use strict";
-
-	var keyOf = function (oneKeyObj) {
-	  var key;
-	  for (key in oneKeyObj) {
-	    if (!oneKeyObj.hasOwnProperty(key)) {
-	      continue;
-	    }
-	    return key;
-	  }
-	  return null;
-	};
-
-	module.exports = keyOf;
-
-/***/ },
-/* 481 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports['default'] = thunkMiddleware;
-	function thunkMiddleware(_ref) {
-	  var dispatch = _ref.dispatch;
-	  var getState = _ref.getState;
-
-	  return function (next) {
-	    return function (action) {
-	      if (typeof action === 'function') {
-	        return action(dispatch, getState);
-	      }
-
-	      return next(action);
-	    };
-	  };
-	}
-
-/***/ },
-/* 482 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _datePicker = __webpack_require__(436);
-
-	var _datePicker2 = _interopRequireDefault(_datePicker);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var DatePickerWrapper = function (_Component) {
-	    _inherits(DatePickerWrapper, _Component);
-
-	    function DatePickerWrapper(props) {
-	        var _Object$getPrototypeO;
-
-	        _classCallCheck(this, DatePickerWrapper);
-
-	        return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(DatePickerWrapper)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
-	    }
-
-	    _createClass(DatePickerWrapper, [{
-	        key: 'onChange',
-	        value: function onChange(e, date) {
-	            if (this.props.onChange) {
-	                this.props.onChange(date);
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(_datePicker2.default, _extends({}, this.props, { onChange: this.onChange.bind(this) }));
-	        }
-	    }]);
-
-	    return DatePickerWrapper;
-	}(_react.Component);
-
-	exports.default = DatePickerWrapper;
-
-/***/ },
-/* 483 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDropzone = __webpack_require__(484);
+	var _reactDropzone = __webpack_require__(470);
 
 	var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
 
@@ -53623,7 +52976,7 @@
 	};
 
 /***/ },
-/* 484 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -54000,6 +53353,659 @@
 	});
 	;
 	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 471 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectsIndex = function (_Component) {
+	    _inherits(ProjectsIndex, _Component);
+
+	    function ProjectsIndex() {
+	        _classCallCheck(this, ProjectsIndex);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsIndex).apply(this, arguments));
+	    }
+
+	    _createClass(ProjectsIndex, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Hoge'
+	            );
+	        }
+	    }]);
+
+	    return ProjectsIndex;
+	}(_react.Component);
+
+	exports.default = ProjectsIndex;
+
+/***/ },
+/* 472 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectsForm = function (_Component) {
+	    _inherits(ProjectsForm, _Component);
+
+	    function ProjectsForm() {
+	        _classCallCheck(this, ProjectsForm);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).apply(this, arguments));
+	    }
+
+	    _createClass(ProjectsForm, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Hoge'
+	            );
+	        }
+	    }]);
+
+	    return ProjectsForm;
+	}(_react.Component);
+
+	exports.default = ProjectsForm;
+
+/***/ },
+/* 473 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SitesForm = function (_Component) {
+	    _inherits(SitesForm, _Component);
+
+	    function SitesForm() {
+	        _classCallCheck(this, SitesForm);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SitesForm).apply(this, arguments));
+	    }
+
+	    _createClass(SitesForm, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Hoge'
+	            );
+	        }
+	    }]);
+
+	    return SitesForm;
+	}(_react.Component);
+
+	exports.default = SitesForm;
+
+/***/ },
+/* 474 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AuthorsForm = function (_Component) {
+	    _inherits(AuthorsForm, _Component);
+
+	    function AuthorsForm() {
+	        _classCallCheck(this, AuthorsForm);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).apply(this, arguments));
+	    }
+
+	    _createClass(AuthorsForm, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Hoge'
+	            );
+	        }
+	    }]);
+
+	    return AuthorsForm;
+	}(_react.Component);
+
+	exports.default = AuthorsForm;
+
+/***/ },
+/* 475 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _redux = __webpack_require__(166);
+
+	var _reduxForm = __webpack_require__(377);
+
+	var _posts = __webpack_require__(476);
+
+	var _posts2 = _interopRequireDefault(_posts);
+
+	var _items = __webpack_require__(477);
+
+	var _items2 = _interopRequireDefault(_items);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var rootReducer = (0, _redux.combineReducers)({
+	    posts: _posts2.default,
+	    items: _items2.default,
+	    form: _reduxForm.reducer
+	});
+
+	exports.default = rootReducer;
+
+/***/ },
+/* 476 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
+	    var action = arguments[1];
+
+	    switch (action.type) {
+	        case _constants.FETCH_POSTS.SUCCESS:
+	            return _extends({}, state, { all: action.payload });
+	        case _constants.FETCH_POST.SUCCESS:
+	            return _extends({}, state, { post: action.payload });
+	        case _constants.CREATE_POST.SUCCESS:
+	        case _constants.UPDATE_POST.SUCCESS:
+	            return _extends({}, state, { message: 'Successfully Saved' });
+	        case _constants.DELETE_POST.SUCCESS:
+	            return _extends({}, state, { message: 'Successfully Deleted' });
+	        case _constants.TOGGLE_POST.SUCCESS:
+	            return _extends({}, state, { message: 'Successfully Change Published Status' });
+	        case _constants.FETCH_POSTS.FAILURE:
+	        case _constants.FETCH_POST.FAILURE:
+	        case _constants.CREATE_POST.FAILURE:
+	        case _constants.UPDATE_POST.FAILURE:
+	        case _constants.DELETE_POST.FAILURE:
+	        case _constants.TOGGLE_POST.FAILURE:
+	            return _extends({}, state, { error: action.payload });
+	        default:
+	            return state;
+	    }
+	};
+
+	var _constants = __webpack_require__(351);
+
+	var INITIAL_STATE = { all: [], post: null, error: null, message: null };
+
+/***/ },
+/* 477 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	exports.default = function () {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	    var action = arguments[1];
+
+	    switch (action.type) {
+	        case _constants.FETCH_ITEMS:
+	            return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload.items));
+
+	        case _constants.CREATE_ITEM:
+	            return [].concat(_toConsumableArray(state), [action.payload.item]);
+
+	        case _constants.UPDATE_ITEM:
+	            return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), [action.payload.item], _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+
+	        case _constants.DELETE_ITEM:
+	            return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+
+	        case _constants.MOVE_ITEM_TOP:
+	            if (state.length > 0 && action.payload.sortRank !== 0) {
+	                var topItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
+	                return [].concat(_toConsumableArray(topItem), _toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+	            }
+	            return state;
+
+	        case _constants.MOVE_ITEM_UP:
+	            if (state.length > 0) {
+	                var subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
+	                var frontItem = state.slice(action.payload.sortRank - 1, action.payload.sortRank);
+	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank - 1)), _toConsumableArray(subject), _toConsumableArray(frontItem), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+	            }
+	            return state;
+
+	        case _constants.MOVE_ITEM_DOWN:
+	            if (state.length > action.payload.sortRank) {
+	                var _subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
+	                var backItem = state.slice(action.payload.sortRank + 1, action.payload.sortRank + 2);
+	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(backItem), _toConsumableArray(_subject), _toConsumableArray(state.slice(action.payload.sortRank + 2)));
+	            }
+	            return state;
+
+	        case _constants.MOVE_ITEM_BOTTOM:
+	            if (state.length > 0 && state.length - 1 !== action.payload.sortRank) {
+	                var bottomItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
+	                return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)), _toConsumableArray(bottomItem));
+	            }
+	            return state;
+
+	        default:
+	            return state;
+	    }
+	};
+
+	var _constants = __webpack_require__(351);
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/***/ },
+/* 478 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var defaultClickRejectionStrategy = __webpack_require__(479);
+
+	module.exports = function injectTapEventPlugin (strategyOverrides) {
+	  strategyOverrides = strategyOverrides || {}
+	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
+
+	  __webpack_require__(31).injection.injectEventPluginsByName({
+	    "TapEventPlugin":       __webpack_require__(480)(shouldRejectClick)
+	  });
+	};
+
+
+/***/ },
+/* 479 */
+/***/ function(module, exports) {
+
+	module.exports = function(lastTouchEvent, clickTimestamp) {
+	  if (lastTouchEvent && (clickTimestamp - lastTouchEvent) < 750) {
+	    return true;
+	  }
+	};
+
+
+/***/ },
+/* 480 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule TapEventPlugin
+	 * @typechecks static-only
+	 */
+
+	"use strict";
+
+	var EventConstants = __webpack_require__(30);
+	var EventPluginUtils = __webpack_require__(33);
+	var EventPropagators = __webpack_require__(73);
+	var SyntheticUIEvent = __webpack_require__(87);
+	var TouchEventUtils = __webpack_require__(481);
+	var ViewportMetrics = __webpack_require__(38);
+
+	var keyOf = __webpack_require__(482);
+	var topLevelTypes = EventConstants.topLevelTypes;
+
+	var isStartish = EventPluginUtils.isStartish;
+	var isEndish = EventPluginUtils.isEndish;
+
+	var isTouch = function(topLevelType) {
+	  var touchTypes = [
+	    topLevelTypes.topTouchCancel,
+	    topLevelTypes.topTouchEnd,
+	    topLevelTypes.topTouchStart,
+	    topLevelTypes.topTouchMove
+	  ];
+	  return touchTypes.indexOf(topLevelType) >= 0;
+	}
+
+	/**
+	 * Number of pixels that are tolerated in between a `touchStart` and `touchEnd`
+	 * in order to still be considered a 'tap' event.
+	 */
+	var tapMoveThreshold = 10;
+	var ignoreMouseThreshold = 750;
+	var startCoords = {x: null, y: null};
+	var lastTouchEvent = null;
+
+	var Axis = {
+	  x: {page: 'pageX', client: 'clientX', envScroll: 'currentPageScrollLeft'},
+	  y: {page: 'pageY', client: 'clientY', envScroll: 'currentPageScrollTop'}
+	};
+
+	function getAxisCoordOfEvent(axis, nativeEvent) {
+	  var singleTouch = TouchEventUtils.extractSingleTouch(nativeEvent);
+	  if (singleTouch) {
+	    return singleTouch[axis.page];
+	  }
+	  return axis.page in nativeEvent ?
+	    nativeEvent[axis.page] :
+	    nativeEvent[axis.client] + ViewportMetrics[axis.envScroll];
+	}
+
+	function getDistance(coords, nativeEvent) {
+	  var pageX = getAxisCoordOfEvent(Axis.x, nativeEvent);
+	  var pageY = getAxisCoordOfEvent(Axis.y, nativeEvent);
+	  return Math.pow(
+	    Math.pow(pageX - coords.x, 2) + Math.pow(pageY - coords.y, 2),
+	    0.5
+	  );
+	}
+
+	var touchEvents = [
+	  topLevelTypes.topTouchStart,
+	  topLevelTypes.topTouchCancel,
+	  topLevelTypes.topTouchEnd,
+	  topLevelTypes.topTouchMove,
+	];
+
+	var dependencies = [
+	  topLevelTypes.topMouseDown,
+	  topLevelTypes.topMouseMove,
+	  topLevelTypes.topMouseUp,
+	].concat(touchEvents);
+
+	var eventTypes = {
+	  touchTap: {
+	    phasedRegistrationNames: {
+	      bubbled: keyOf({onTouchTap: null}),
+	      captured: keyOf({onTouchTapCapture: null})
+	    },
+	    dependencies: dependencies
+	  }
+	};
+
+	var now = (function() {
+	  if (Date.now) {
+	    return Date.now;
+	  } else {
+	    // IE8 support: http://stackoverflow.com/questions/9430357/please-explain-why-and-how-new-date-works-as-workaround-for-date-now-in
+	    return function () {
+	      return +new Date;
+	    }
+	  }
+	})();
+
+	function createTapEventPlugin(shouldRejectClick) {
+	  return {
+
+	    tapMoveThreshold: tapMoveThreshold,
+
+	    ignoreMouseThreshold: ignoreMouseThreshold,
+
+	    eventTypes: eventTypes,
+
+	    /**
+	     * @param {string} topLevelType Record from `EventConstants`.
+	     * @param {DOMEventTarget} topLevelTarget The listening component root node.
+	     * @param {string} topLevelTargetID ID of `topLevelTarget`.
+	     * @param {object} nativeEvent Native browser event.
+	     * @return {*} An accumulation of synthetic events.
+	     * @see {EventPluginHub.extractEvents}
+	     */
+	    extractEvents: function(
+	        topLevelType,
+	        topLevelTarget,
+	        topLevelTargetID,
+	        nativeEvent,
+	        nativeEventTarget) {
+
+	      if (isTouch(topLevelType)) {
+	        lastTouchEvent = now();
+	      } else {
+	        if (shouldRejectClick(lastTouchEvent, now())) {
+	          return null;
+	        }
+	      }
+
+	      if (!isStartish(topLevelType) && !isEndish(topLevelType)) {
+	        return null;
+	      }
+	      var event = null;
+	      var distance = getDistance(startCoords, nativeEvent);
+	      if (isEndish(topLevelType) && distance < tapMoveThreshold) {
+	        event = SyntheticUIEvent.getPooled(
+	          eventTypes.touchTap,
+	          topLevelTargetID,
+	          nativeEvent,
+	          nativeEventTarget
+	        );
+	      }
+	      if (isStartish(topLevelType)) {
+	        startCoords.x = getAxisCoordOfEvent(Axis.x, nativeEvent);
+	        startCoords.y = getAxisCoordOfEvent(Axis.y, nativeEvent);
+	      } else if (isEndish(topLevelType)) {
+	        startCoords.x = 0;
+	        startCoords.y = 0;
+	      }
+	      EventPropagators.accumulateTwoPhaseDispatches(event);
+	      return event;
+	    }
+
+	  };
+	}
+
+	module.exports = createTapEventPlugin;
+
+
+/***/ },
+/* 481 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule TouchEventUtils
+	 */
+
+	var TouchEventUtils = {
+	  /**
+	   * Utility function for common case of extracting out the primary touch from a
+	   * touch event.
+	   * - `touchEnd` events usually do not have the `touches` property.
+	   *   http://stackoverflow.com/questions/3666929/
+	   *   mobile-sarai-touchend-event-not-firing-when-last-touch-is-removed
+	   *
+	   * @param {Event} nativeEvent Native event that may or may not be a touch.
+	   * @return {TouchesObject?} an object with pageX and pageY or null.
+	   */
+	  extractSingleTouch: function(nativeEvent) {
+	    var touches = nativeEvent.touches;
+	    var changedTouches = nativeEvent.changedTouches;
+	    var hasTouches = touches && touches.length > 0;
+	    var hasChangedTouches = changedTouches && changedTouches.length > 0;
+
+	    return !hasTouches && hasChangedTouches ? changedTouches[0] :
+	           hasTouches ? touches[0] :
+	           nativeEvent;
+	  }
+	};
+
+	module.exports = TouchEventUtils;
+
+
+/***/ },
+/* 482 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule keyOf
+	 */
+
+	/**
+	 * Allows extraction of a minified key. Let's the build system minify keys
+	 * without losing the ability to dynamically use key strings as values
+	 * themselves. Pass in an object with a single key/val pair and it will return
+	 * you the string key of that single record. Suppose you want to grab the
+	 * value for a key 'className' inside of an object. Key/val minification may
+	 * have aliased that key to be 'xa12'. keyOf({className: null}) will return
+	 * 'xa12' in that case. Resolve keys you want to use once at startup time, then
+	 * reuse those resolutions.
+	 */
+	"use strict";
+
+	var keyOf = function (oneKeyObj) {
+	  var key;
+	  for (key in oneKeyObj) {
+	    if (!oneKeyObj.hasOwnProperty(key)) {
+	      continue;
+	    }
+	    return key;
+	  }
+	  return null;
+	};
+
+	module.exports = keyOf;
+
+/***/ },
+/* 483 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = thunkMiddleware;
+	function thunkMiddleware(_ref) {
+	  var dispatch = _ref.dispatch;
+	  var getState = _ref.getState;
+
+	  return function (next) {
+	    return function (action) {
+	      if (typeof action === 'function') {
+	        return action(dispatch, getState);
+	      }
+
+	      return next(action);
+	    };
+	  };
+	}
 
 /***/ }
 /******/ ]);

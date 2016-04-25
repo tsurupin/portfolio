@@ -1,4 +1,3 @@
-import React from 'react';
 import { renderComponent, expect, sinon } from '../../../test_helper';
 import EditBox from '../../../../../../src/cms/components/items/forms/edit_box';
 

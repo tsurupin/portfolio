@@ -1,4 +1,4 @@
-import React from 'react';
+const React = require('react');
 import { renderComponent, expect, sinon } from '../../../test_helper';
 import Tooltip from '../../../../../../src/cms/components/items/displays/tooltip';
 

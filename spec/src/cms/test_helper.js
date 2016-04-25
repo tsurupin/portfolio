@@ -1,14 +1,16 @@
-import { jsdom }  from 'jsdom';
+import jsdom from 'jsdom';
 import _$ from 'jquery';
-global.document = jsdom('<html<body></body></html>');
+global.document = jsdom.jsdom('<html><body></body></html>');
 global.window = global.document.defaultView;
 const Chrome49 = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2454.85 Safari/537.36';
 const $ = _$(global.window);
 global.navigator = { userAgent: Chrome49 };
 
-import ReactDOM from 'react-dom';
-import React from 'react'
-import TestUtils from 'react-addons-test-utils';
+require('fbjs/lib/ExecutionEnvironment').canUseDOM = true;
+
+const ReactDOM = require('react-dom');
+const React = require('react');
+const TestUtils = require('react-addons-test-utils');
 
 import chai, { expect } from 'chai';
 import { Provider } from 'react-redux';

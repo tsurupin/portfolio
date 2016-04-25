@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const React = require('react');
+const ReactDOM = require('react-dom');
 import { $, expect, sinon } from '../../test_helper';
 import PostItem from '../../../../../src/cms/components/posts/item';
-import TestUtils from 'react-addons-test-utils';
+const TestUtils = require('react-addons-test-utils');
 describe("PostItem", () => {
     let post = { id:1, title: 'title', description: 'description' };
     const handleDeletePost = sinon.spy();

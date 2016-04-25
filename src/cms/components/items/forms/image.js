@@ -48,7 +48,7 @@ export default class ItemFormImage extends Component {
 
     renderImageBox() {
         if (this.state.image) {
-            return <img src={this.state.image} width='100' />;
+            return <img className='item-form__preview-image' src={this.state.image} width='100' />;
         }
     }
 
@@ -88,6 +88,7 @@ export default class ItemFormImage extends Component {
 
 ItemFormImage.propTypes = {
     type: PropTypes.string.isRequired,
+    image: Proptypes.string,
     submitButtonLabel: PropTypes.string.isRequired,
     cancelButton: PropTypes.element.isRequired,
     handleUpdateItem: PropTypes.func.isRequired
