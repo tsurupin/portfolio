@@ -1,14 +1,15 @@
 import { renderComponent, expect } from '../../../test_helper';
-import ItemImage from '../../../../../../src/cms/components/items/displays/image';
+import ItemTwitter from '../../../../../../src/cms/components/items/displays/twitter';
 
-describe('ItemImage', () => {
+describe('ItemTwitter', () => {
+
   let component;
   beforeEach(() => {
     const props = { image: 'http://www.digital-clarity.com/wp-content/uploads/2009/03/google-.png' };
-    component = renderComponent(ItemImage, props, {});
+    component = renderComponent(ItemTwitter, props, {});
   });
 
-  it('show ItemImage component', () => {
+  it('show ItemTwitter component', () => {
     expect(component).to.exist;
   });
 

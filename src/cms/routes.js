@@ -9,17 +9,17 @@ import ProjectsForm from './containers/projects/form';
 import SitesForm from './containers/sites/form';
 import AuthorsForm from './containers/authors/form';
 export default (
-    <Route path="/cms" component={App}>
-        <IndexRoute component={PostsIndex} />
-        <Route path="/cms/posts/new" component={PostsForm} />
-        <Route path="/cms/posts/:id/edit" component={PostsForm} />
-        <Route path="/cms/posts/:id" component={PostsForm} />
-        <Route path="/cms/projects" component={ProjectsIndex} />
-        <Route path="/cms/projects/new" component={ProjectsForm} />
-        <Route path="/cms/projects/:id/edit" component={ProjectsForm} />
-        <Route path="/cms/authors/new" component={AuthorsForm} />
-        <Route path="/cms/authors/:id/edit" component={AuthorsForm} />
-        <Route path="/cms/sites/new" component={SitesForm} />
-        <Route path="/cms/sites/:id/edit" component={SitesForm} />
-    </ Route>
+  <Route path="/cms" component={App}>
+    <IndexRoute component={PostsIndex}/>
+    <Route path="/cms/posts/new" component={PostsForm}/>
+    <Route path="/cms/posts/:id/edit" component={PostsForm}/>
+    <Route path="/cms/posts/:id" component={PostsForm}/>
+    <Route path="/cms/projects" component={ProjectsIndex}/>
+    <Route path="/cms/projects/new" component={ProjectsForm}/>
+    <Route path="/cms/projects/:id/edit" component={ProjectsForm}/>
+    <Route path="/cms/authors/new" component={AuthorsForm}/>
+    <Route path="/cms/authors/:id/edit" component={AuthorsForm}/>
+    <Route path="/cms/sites/new" component={SitesForm}/>
+    <Route path="/cms/sites/:id/edit" component={SitesForm}/>
+  </ Route>
 );

@@ -21,7 +21,6 @@ Capybara.register_driver :poltergeist do |app|
 end
 Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join('spec/supports/**/*.rb')].each { |f| require f }
-include SignInMacros
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -34,7 +33,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.infer_spec_type_from_file_location!
-  config.filter_rails_from_backtrace!
+
 
   config.before(:suite) do |example|
     DatabaseCleaner.strategy = :truncation
@@ -63,9 +62,13 @@ Shoulda::Matchers.configure do |config|
 end
 
 VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr'
+  c.cassette_library_dir = 'spec/fixtures/vcrs'
   c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = true
+  c.filter_sensitive_data('<TWITTER_CONSUMER_KEY>') { Settings.twitter_consumer_key }
+  c.filter_sensitive_data('<TWITTER_CONSUMER_SECRET>') { Settings.twitter_consumer_secret }
+  c.filter_sensitive_data('<TWITTER_ACCESS_TOKEN>') { Settings.twitter_access_token }
+  c.filter_sensitive_data('<TWITTER_ACCESS_TOKEN_SECRET>') { Settings.twitter_access_token_secret }
   uri_without_timestamp = VCR.request_matchers.uri_without_param(:timestamp)
   c.default_cassette_options = { record: :new_episodes, match_requests_on: [:method, uri_without_timestamp], allow_playback_repeats: true }
 end

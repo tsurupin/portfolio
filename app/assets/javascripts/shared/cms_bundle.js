@@ -83,9 +83,9 @@
 	(0, _reactTapEventPlugin2.default)();
 
 	_reactDom2.default.render(_react2.default.createElement(
-	    _reactRedux.Provider,
-	    { store: createStoreWithMiddleware(_reducers2.default) },
-	    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _routes2.default })
+	  _reactRedux.Provider,
+	  { store: createStoreWithMiddleware(_reducers2.default) },
+	  _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _routes2.default })
 	), document.querySelector('.react-container'));
 
 /***/ },
@@ -26756,7 +26756,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -26796,19 +26796,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
-	    _reactRouter.Route,
-	    { path: '/cms', component: _app2.default },
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: _form2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: _form2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: _form2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: _index4.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: _form4.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: _form4.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/authors/new', component: _form8.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/authors/:id/edit', component: _form8.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/new', component: _form6.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/:id/edit', component: _form6.default })
+	  _reactRouter.Route,
+	  { path: '/cms', component: _app2.default },
+	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: _form2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: _form2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: _form2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: _index4.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: _form4.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: _form4.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/authors/new', component: _form8.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/authors/:id/edit', component: _form8.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/new', component: _form6.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/:id/edit', component: _form6.default })
 	);
 
 /***/ },
@@ -26818,7 +26818,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26840,27 +26840,27 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var App = function (_Component) {
-	    _inherits(App, _Component);
+	  _inherits(App, _Component);
 
-	    function App() {
-	        _classCallCheck(this, App);
+	  function App() {
+	    _classCallCheck(this, App);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_navigation_bar2.default, null),
+	        this.props.children
+	      );
 	    }
+	  }]);
 
-	    _createClass(App, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_navigation_bar2.default, null),
-	                this.props.children
-	            );
-	        }
-	    }]);
-
-	    return App;
+	  return App;
 	}(_react.Component);
 
 	exports.default = App;
@@ -26872,7 +26872,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26914,106 +26914,107 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var styles = {
-	    appBar: {
-	        backgroundColor: '#fff',
-	        height: 50,
-	        minHeight: 50
-	    },
-	    title: {
-	        color: '#69808c',
-	        fontSize: '1.6rem',
-	        fontFamily: 'Raleway,sans-serif',
-	        lineHeight: '5.0rem',
-	        cursor: 'pointer'
-	    },
-	    elementRight: {
-	        height: 50,
-	        minHeight: 50,
-	        marginTop: 0
-	    }
+	  appBar: {
+	    backgroundColor: '#fff',
+	    height: 50,
+	    minHeight: 50
+	  },
+	  title: {
+	    color: '#69808c',
+	    fontSize: '1.6rem',
+	    fontFamily: 'Raleway,sans-serif',
+	    lineHeight: '5.0rem',
+	    cursor: 'pointer'
+	  },
+	  elementRight: {
+	    height: 50,
+	    minHeight: 50,
+	    marginTop: 0
+	  }
 	};
 
 	var NavigationBar = function (_Component) {
-	    _inherits(NavigationBar, _Component);
+	  _inherits(NavigationBar, _Component);
 
-	    function NavigationBar(props) {
-	        var _Object$getPrototypeO;
+	  function NavigationBar(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, NavigationBar);
+	    _classCallCheck(this, NavigationBar);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(NavigationBar)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(NavigationBar)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.handleMove = _this.handleMove.bind(_this);
-	        _this.handleHome = _this.handleHome.bind(_this);
-	        return _this;
+	    _this.handleMove = _this.handleMove.bind(_this);
+	    _this.handleHome = _this.handleHome.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(NavigationBar, [{
+	    key: 'handleMove',
+	    value: function handleMove(e) {
+	      location.href = e.target.href;
 	    }
+	  }, {
+	    key: 'handleHome',
+	    value: function handleHome() {
+	      this.context.router.push('/cms');
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(_appBar2.default, {
+	        showMenuIconButton: false,
+	        title: 'Tomoaki Tsuruta',
+	        style: styles.appBar,
+	        titleStyle: styles.title,
+	        onTitleTouchTap: this.handleHome,
+	        iconStyleRight: styles.elementRight,
+	        iconElementRight: _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/cms/posts/new' },
+	            _react2.default.createElement(
+	              _iconButton2.default,
+	              null,
+	              _react2.default.createElement(_person2.default, null)
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/cms/posts/new' },
+	            _react2.default.createElement(
+	              _iconButton2.default,
+	              null,
+	              _react2.default.createElement(_description2.default, null)
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/cms/posts/new' },
+	            _react2.default.createElement(
+	              _iconButton2.default,
+	              null,
+	              _react2.default.createElement(_web2.default, null)
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://github.com/tsurupin', onClick: this.handleMove },
+	            _react2.default.createElement(_iconButton2.default, { iconClassName: 'muidocs-icon-custom-github' })
+	          )
+	        )
+	      });
+	    }
+	  }]);
 
-	    _createClass(NavigationBar, [{
-	        key: 'handleMove',
-	        value: function handleMove(e) {
-	            location.href = e.target.href;
-	        }
-	    }, {
-	        key: 'handleHome',
-	        value: function handleHome() {
-	            this.context.router.push('/cms');
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(_appBar2.default, {
-	                showMenuIconButton: false,
-	                title: 'Tomoaki Tsuruta',
-	                style: styles.appBar,
-	                titleStyle: styles.title,
-	                onTitleTouchTap: this.handleHome,
-	                iconStyleRight: styles.elementRight,
-	                iconElementRight: _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/posts/new' },
-	                        _react2.default.createElement(
-	                            _iconButton2.default,
-	                            null,
-	                            _react2.default.createElement(_person2.default, null)
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/posts/new' },
-	                        _react2.default.createElement(
-	                            _iconButton2.default,
-	                            null,
-	                            _react2.default.createElement(_description2.default, null)
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/posts/new' },
-	                        _react2.default.createElement(
-	                            _iconButton2.default,
-	                            null,
-	                            _react2.default.createElement(_web2.default, null)
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: 'https://github.com/tsurupin', onClick: this.handleMove },
-	                        _react2.default.createElement(_iconButton2.default, { iconClassName: 'muidocs-icon-custom-github' })
-	                    )
-	                )
-	            });
-	        }
-	    }]);
-
-	    return NavigationBar;
+	  return NavigationBar;
 	}(_react.Component);
 
 	NavigationBar.contextTypes = {
-	    router: _react.PropTypes.object
+	  router: _react.PropTypes.object
 	};
+
 	;
 
 	exports.default = NavigationBar;
@@ -36245,7 +36246,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -36303,128 +36304,128 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var styles = {
-	    floatButton: {
-	        position: 'fixed',
-	        zIndex: 100,
-	        bottom: '5%',
-	        right: '5%'
-	    }
+	  floatButton: {
+	    position: 'fixed',
+	    zIndex: 100,
+	    bottom: '5%',
+	    right: '5%'
+	  }
 	};
 
 	var PostsIndex = function (_Component) {
-	    _inherits(PostsIndex, _Component);
+	  _inherits(PostsIndex, _Component);
 
-	    function PostsIndex(props) {
-	        var _Object$getPrototypeO;
+	  function PostsIndex(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, PostsIndex);
+	    _classCallCheck(this, PostsIndex);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostsIndex)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostsIndex)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.handleDeletePost = _this.handleDeletePost.bind(_this);
-	        _this.handleTogglePost = _this.handleTogglePost.bind(_this);
-	        return _this;
+	    _this.handleDeletePost = _this.handleDeletePost.bind(_this);
+	    _this.handleTogglePost = _this.handleTogglePost.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(PostsIndex, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.fetchPosts();
 	    }
+	  }, {
+	    key: 'handleDeletePost',
+	    value: function handleDeletePost(post_id) {
+	      var _this2 = this;
 
-	    _createClass(PostsIndex, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            this.props.fetchPosts();
-	        }
-	    }, {
-	        key: 'handleDeletePost',
-	        value: function handleDeletePost(post_id) {
-	            var _this2 = this;
+	      this.props.deletePost(post_id).then(function () {
+	        _this2.context.router.push('/cms/posts');
+	      });
+	    }
+	  }, {
+	    key: 'handleTogglePost',
+	    value: function handleTogglePost(post_id) {
+	      this.props.togglePost(post_id).then(this.context.router.push('/cms/posts'));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
 
-	            this.props.deletePost(post_id).then(function () {
-	                _this2.context.router.push('/cms/posts');
-	            });
-	        }
-	    }, {
-	        key: 'handleTogglePost',
-	        value: function handleTogglePost(post_id) {
-	            this.props.togglePost(post_id).then(this.context.router.push('/cms/posts'));
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this3 = this;
-
-	            return _react2.default.createElement(
-	                'section',
+	      return _react2.default.createElement(
+	        'section',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/cms/posts/new' },
+	          _react2.default.createElement(
+	            _floatingActionButton2.default,
+	            { style: styles.floatButton },
+	            _react2.default.createElement(_add2.default, null)
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _table2.default,
+	          { fixedHeader: true },
+	          _react2.default.createElement(
+	            _tableHeader2.default,
+	            { adjustForCheckbox: false, displaySelectAll: false },
+	            _react2.default.createElement(
+	              _tableRow2.default,
+	              { selectable: false },
+	              _react2.default.createElement(
+	                _tableHeaderColumn2.default,
 	                null,
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/cms/posts/new' },
-	                    _react2.default.createElement(
-	                        _floatingActionButton2.default,
-	                        { style: styles.floatButton },
-	                        _react2.default.createElement(_add2.default, null)
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _table2.default,
-	                    { fixedHeader: true },
-	                    _react2.default.createElement(
-	                        _tableHeader2.default,
-	                        { adjustForCheckbox: false, displaySelectAll: false },
-	                        _react2.default.createElement(
-	                            _tableRow2.default,
-	                            { selectable: false },
-	                            _react2.default.createElement(
-	                                _tableHeaderColumn2.default,
-	                                null,
-	                                'ID'
-	                            ),
-	                            _react2.default.createElement(
-	                                _tableHeaderColumn2.default,
-	                                null,
-	                                'Title'
-	                            ),
-	                            _react2.default.createElement(
-	                                _tableHeaderColumn2.default,
-	                                null,
-	                                'Description'
-	                            ),
-	                            _react2.default.createElement(
-	                                _tableHeaderColumn2.default,
-	                                null,
-	                                'Published Date'
-	                            ),
-	                            _react2.default.createElement(
-	                                _tableHeaderColumn2.default,
-	                                null,
-	                                'Published Status'
-	                            ),
-	                            _react2.default.createElement(
-	                                _tableHeaderColumn2.default,
-	                                null,
-	                                'Action'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _tableBody2.default,
-	                        { displayRowCheckbox: false },
-	                        this.props.posts.map(function (post, index) {
-	                            return _react2.default.createElement(_item2.default, {
-	                                post: post,
-	                                key: index,
-	                                handleDeletePost: _this3.handleDeletePost,
-	                                handleTogglePost: _this3.handleTogglePost
-	                            });
-	                        })
-	                    )
-	                )
-	            );
-	        }
-	    }]);
+	                'ID'
+	              ),
+	              _react2.default.createElement(
+	                _tableHeaderColumn2.default,
+	                null,
+	                'Title'
+	              ),
+	              _react2.default.createElement(
+	                _tableHeaderColumn2.default,
+	                null,
+	                'Description'
+	              ),
+	              _react2.default.createElement(
+	                _tableHeaderColumn2.default,
+	                null,
+	                'Published Date'
+	              ),
+	              _react2.default.createElement(
+	                _tableHeaderColumn2.default,
+	                null,
+	                'Published Status'
+	              ),
+	              _react2.default.createElement(
+	                _tableHeaderColumn2.default,
+	                null,
+	                'Action'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _tableBody2.default,
+	            { displayRowCheckbox: false },
+	            this.props.posts.map(function (post, index) {
+	              return _react2.default.createElement(_item2.default, {
+	                post: post,
+	                key: index,
+	                handleDeletePost: _this3.handleDeletePost,
+	                handleTogglePost: _this3.handleTogglePost
+	              });
+	            })
+	          )
+	        )
+	      );
+	    }
+	  }]);
 
-	    return PostsIndex;
+	  return PostsIndex;
 	}(_react.Component);
 
 	function mapStateToProps(state) {
-	    return { posts: state.posts.all };
+	  return { posts: state.posts.all };
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPosts: _posts.fetchPosts, deletePost: _posts.deletePost, togglePost: _posts.togglePost })(PostsIndex);
@@ -36436,7 +36437,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.fetchPosts = fetchPosts;
 	exports.fetchPost = fetchPost;
@@ -36454,149 +36455,149 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function fetchPosts() {
-	    var request = _axios2.default.get('' + _constants.ROOT_URL + _constants.POST_PATH);
-	    return function (dispatch) {
-	        return request.then(function (response) {
-	            return dispatch(fetchPostsSuccess(response.data));
-	        }, function (error) {
-	            return dispatch(fetchPostsFailure(error.data));
-	        });
-	    };
+	  var request = _axios2.default.get('' + _constants.ROOT_URL + _constants.POST_PATH);
+	  return function (dispatch) {
+	    return request.then(function (response) {
+	      return dispatch(fetchPostsSuccess(response.data));
+	    }, function (error) {
+	      return dispatch(fetchPostsFailure(error.data));
+	    });
+	  };
 	}
 
 	function fetchPostsSuccess(response) {
-	    return {
-	        type: _constants.FETCH_POSTS.SUCCESS,
-	        payload: response
-	    };
+	  return {
+	    type: _constants.FETCH_POSTS.SUCCESS,
+	    payload: response
+	  };
 	}
 
 	function fetchPostsFailure(error) {
-	    return {
-	        type: _constants.FETCH_POSTS.FAILURE,
-	        payload: error
-	    };
+	  return {
+	    type: _constants.FETCH_POSTS.FAILURE,
+	    payload: error
+	  };
 	}
 
 	function fetchPost(id) {
-	    var request = _axios2.default.get('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
-	    return function (dispatch) {
-	        return request.then(function (response) {
-	            return dispatch(fetchPostSuccess(response.data));
-	        }, function (error) {
-	            return dispatch(fetchPostFailure(error.data));
-	        });
-	    };
+	  var request = _axios2.default.get('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
+	  return function (dispatch) {
+	    return request.then(function (response) {
+	      return dispatch(fetchPostSuccess(response.data));
+	    }, function (error) {
+	      return dispatch(fetchPostFailure(error.data));
+	    });
+	  };
 	}
 
 	function fetchPostSuccess(response) {
-	    return {
-	        type: _constants.FETCH_POST.SUCCESS,
-	        payload: response
-	    };
+	  return {
+	    type: _constants.FETCH_POST.SUCCESS,
+	    payload: response
+	  };
 	}
 
 	function fetchPostFailure(error) {
-	    return {
-	        type: _constants.FETCH_POST.FAILURE,
-	        payload: error
-	    };
+	  return {
+	    type: _constants.FETCH_POST.FAILURE,
+	    payload: error
+	  };
 	}
 
 	function createPost(props) {
-	    var request = _axios2.default.post('' + _constants.ROOT_URL + _constants.POST_PATH, props);
-	    return function (dispatch) {
-	        return request.then(function () {
-	            return dispatch(createPostSuccess());
-	        }, function (error) {
-	            return dispatch(createPostFailure(error.data));
-	        });
-	    };
+	  var request = _axios2.default.post('' + _constants.ROOT_URL + _constants.POST_PATH, props);
+	  return function (dispatch) {
+	    return request.then(function () {
+	      return dispatch(createPostSuccess());
+	    }, function (error) {
+	      return dispatch(createPostFailure(error.data));
+	    });
+	  };
 	}
 
 	function createPostSuccess() {
-	    return {
-	        type: _constants.CREATE_POST.SUCCESS
-	    };
+	  return {
+	    type: _constants.CREATE_POST.SUCCESS
+	  };
 	}
 
 	function createPostFailure(error) {
-	    return {
-	        type: _constants.CREATE_POST.FAILURE,
-	        payload: error
-	    };
+	  return {
+	    type: _constants.CREATE_POST.FAILURE,
+	    payload: error
+	  };
 	}
 
 	function updatePost(props) {
-	    var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + props.id, props);
-	    return function (dispatch) {
-	        return request.then(function () {
-	            return dispatch(updatePostSuccess());
-	        }, function (error) {
-	            return dispatch(updatePostFailure(error.data));
-	        });
-	    };
+	  var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + props.id, props);
+	  return function (dispatch) {
+	    return request.then(function () {
+	      return dispatch(updatePostSuccess());
+	    }, function (error) {
+	      return dispatch(updatePostFailure(error.data));
+	    });
+	  };
 	}
 
 	function updatePostSuccess() {
-	    return {
-	        type: _constants.UPDATE_POST.SUCCESS
-	    };
+	  return {
+	    type: _constants.UPDATE_POST.SUCCESS
+	  };
 	}
 
 	function updatePostFailure(error) {
-	    return {
-	        type: _constants.UPDATE_POST.FAILURE,
-	        payload: error
-	    };
+	  return {
+	    type: _constants.UPDATE_POST.FAILURE,
+	    payload: error
+	  };
 	}
 
 	function deletePost(id) {
-	    var request = _axios2.default.delete('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
-	    return function (dispatch) {
-	        return request.then(function () {
-	            return dispatch(deletePostSuccess());
-	        }, function (error) {
-	            return dispatch(deletePostFailure(error.data));
-	        });
-	    };
+	  var request = _axios2.default.delete('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
+	  return function (dispatch) {
+	    return request.then(function () {
+	      return dispatch(deletePostSuccess());
+	    }, function (error) {
+	      return dispatch(deletePostFailure(error.data));
+	    });
+	  };
 	}
 
 	function deletePostSuccess() {
-	    return {
-	        type: _constants.DELETE_POST.SUCCESS
-	    };
+	  return {
+	    type: _constants.DELETE_POST.SUCCESS
+	  };
 	}
 
 	function deletePostFailure(error) {
-	    return {
-	        type: _constants.DELETE_POST.FAILURE,
-	        payload: error
-	    };
+	  return {
+	    type: _constants.DELETE_POST.FAILURE,
+	    payload: error
+	  };
 	}
 
 	function togglePost(id) {
-	    var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id + '/acceptance');
-	    return function (dispatch) {
-	        return request.then(function () {
-	            return dispatch(togglePostSuccess());
-	        }, function (error) {
-	            return dispatch(togglePostFailure(error.data));
-	        });
-	    };
+	  var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id + '/acceptance');
+	  return function (dispatch) {
+	    return request.then(function () {
+	      return dispatch(togglePostSuccess());
+	    }, function (error) {
+	      return dispatch(togglePostFailure(error.data));
+	    });
+	  };
 	}
 
 	function togglePostSuccess() {
-	    return {
-	        type: _constants.TOGGLE_POST.SUCCESS
-	    };
+	  return {
+	    type: _constants.TOGGLE_POST.SUCCESS
+	  };
 	}
 
 	function togglePostFailure(error) {
-	    return {
-	        type: _constants.TOGGLE_POST.FAILURE,
-	        payload: error
-	    };
+	  return {
+	    type: _constants.TOGGLE_POST.FAILURE,
+	    payload: error
+	  };
 	}
 
 /***/ },
@@ -37771,7 +37772,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -37825,121 +37826,121 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var PostItem = function (_Component) {
-	    _inherits(PostItem, _Component);
+	  _inherits(PostItem, _Component);
 
-	    function PostItem(props) {
-	        var _Object$getPrototypeO;
+	  function PostItem(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, PostItem);
+	    _classCallCheck(this, PostItem);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItem)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItem)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.handleDeletePost = _this.handleDeletePost.bind(_this);
-	        _this.handleTogglePost = _this.handleTogglePost.bind(_this);
-	        return _this;
+	    _this.handleDeletePost = _this.handleDeletePost.bind(_this);
+	    _this.handleTogglePost = _this.handleTogglePost.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(PostItem, [{
+	    key: 'handleDeletePost',
+	    value: function handleDeletePost() {
+	      this.props.handleDeletePost(this.props.post.id);
 	    }
+	  }, {
+	    key: 'handleTogglePost',
+	    value: function handleTogglePost() {
+	      this.props.handleTogglePost(this.props.post.id);
+	    }
+	  }, {
+	    key: 'publishIcon',
+	    value: function publishIcon() {
+	      if (this.props.post.published) {
+	        return _react2.default.createElement(_visibility2.default, { className: 'post-item__visible-icon' });
+	      } else {
+	        return _react2.default.createElement(_visibilityOff2.default, { className: 'post-item__invisible-icon' });
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _tableRow2.default,
+	        null,
+	        _react2.default.createElement(
+	          _tableRowColumn2.default,
+	          null,
+	          this.props.post.id
+	        ),
+	        _react2.default.createElement(
+	          _tableRowColumn2.default,
+	          null,
+	          this.props.post.title
+	        ),
+	        _react2.default.createElement(
+	          _tableRowColumn2.default,
+	          null,
+	          this.props.post.description
+	        ),
+	        _react2.default.createElement(
+	          _tableRowColumn2.default,
+	          null,
+	          'Published'
+	        ),
+	        _react2.default.createElement(
+	          _tableRowColumn2.default,
+	          null,
+	          'Published Status'
+	        ),
+	        _react2.default.createElement(
+	          _tableRowColumn2.default,
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/cms/posts/' + this.props.post.id },
+	            _react2.default.createElement(
+	              _iconButton2.default,
+	              null,
+	              _react2.default.createElement(_airplay2.default, null)
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/cms/posts/' + this.props.post.id + '/edit' },
+	            _react2.default.createElement(
+	              _iconButton2.default,
+	              null,
+	              _react2.default.createElement(_modeEdit2.default, null)
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _iconButton2.default,
+	            { className: 'post-item__toggle-button', onClick: this.handleTogglePost },
+	            this.publishIcon()
+	          ),
+	          _react2.default.createElement(
+	            _iconButton2.default,
+	            { className: 'post-item__delete-button', onClick: this.handleDeletePost },
+	            _react2.default.createElement(_clear2.default, null)
+	          )
+	        )
+	      );
+	    }
+	  }]);
 
-	    _createClass(PostItem, [{
-	        key: 'handleDeletePost',
-	        value: function handleDeletePost() {
-	            this.props.handleDeletePost(this.props.post.id);
-	        }
-	    }, {
-	        key: 'handleTogglePost',
-	        value: function handleTogglePost() {
-	            this.props.handleTogglePost(this.props.post.id);
-	        }
-	    }, {
-	        key: 'publishIcon',
-	        value: function publishIcon() {
-	            if (this.props.post.published) {
-	                return _react2.default.createElement(_visibility2.default, { className: 'post-item__visible-icon' });
-	            } else {
-	                return _react2.default.createElement(_visibilityOff2.default, { className: 'post-item__invisible-icon' });
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                _tableRow2.default,
-	                null,
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    this.props.post.id
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    this.props.post.title
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    this.props.post.description
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    'Published'
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    'Published Status'
-	                ),
-	                _react2.default.createElement(
-	                    _tableRowColumn2.default,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/posts/' + this.props.post.id },
-	                        _react2.default.createElement(
-	                            _iconButton2.default,
-	                            null,
-	                            _react2.default.createElement(_airplay2.default, null)
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/cms/posts/' + this.props.post.id + '/edit' },
-	                        _react2.default.createElement(
-	                            _iconButton2.default,
-	                            null,
-	                            _react2.default.createElement(_modeEdit2.default, null)
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _iconButton2.default,
-	                        { className: 'post-item__toggle-button', onClick: this.handleTogglePost },
-	                        this.publishIcon()
-	                    ),
-	                    _react2.default.createElement(
-	                        _iconButton2.default,
-	                        { className: 'post-item__delete-button', onClick: this.handleDeletePost },
-	                        _react2.default.createElement(_clear2.default, null)
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return PostItem;
+	  return PostItem;
 	}(_react.Component);
 
 	exports.default = PostItem;
 	;
 
 	PostItem.propTypes = {
-	    post: _react.PropTypes.shape({
-	        id: _react.PropTypes.number.isRequired,
-	        title: _react.PropTypes.string.isRequired,
-	        description: _react.PropTypes.string.isRequired,
-	        published: _react.PropTypes.bool.isRequired
-	    }).isRequired,
-	    handleDeletePost: _react.PropTypes.func.isRequired,
-	    handleTogglePost: _react.PropTypes.func.isRequired
+	  post: _react.PropTypes.shape({
+	    id: _react.PropTypes.number.isRequired,
+	    title: _react.PropTypes.string.isRequired,
+	    description: _react.PropTypes.string.isRequired,
+	    published: _react.PropTypes.bool.isRequired
+	  }).isRequired,
+	  handleDeletePost: _react.PropTypes.func.isRequired,
+	  handleTogglePost: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -41454,7 +41455,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.fields = undefined;
 
@@ -41507,160 +41508,170 @@
 	var fields = exports.fields = ['title', 'description', 'publishedAt'];
 
 	var PostsForm = function (_Component) {
-	    _inherits(PostsForm, _Component);
+	  _inherits(PostsForm, _Component);
 
-	    function PostsForm(props) {
-	        var _Object$getPrototypeO;
+	  function PostsForm(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, PostsForm);
+	    _classCallCheck(this, PostsForm);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostsForm)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostsForm)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.handleAddItem = _this.handleAddItem.bind(_this);
-	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
-	        _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
-	        _this.handleMoveItem = _this.handleMoveItem.bind(_this);
-	        return _this;
+	    _this.handleAddItem = _this.handleAddItem.bind(_this);
+	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
+	    _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
+	    _this.handleMoveItem = _this.handleMoveItem.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(PostsForm, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      if (this.props.params.id) {
+	        this.props.fetchPost(this.props.params.id).then(function (post) {
+	          _this2.props.fetchItems(post.items);
+	        });
+	      }
 	    }
+	  }, {
+	    key: 'handleAddItem',
+	    value: function handleAddItem(type) {
+	      this.props.createItem(type);
+	    }
+	  }, {
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem(sortRank, item) {
+	      this.props.updateItem(sortRank, item);
+	    }
+	  }, {
+	    key: 'handleDeleteItem',
+	    value: function handleDeleteItem(sortRank) {
+	      this.props.deleteItem(sortRank);
+	    }
+	  }, {
+	    key: 'handleMoveItem',
+	    value: function handleMoveItem(sortRank, type) {
+	      this.props.moveItem(sortRank, type);
+	    }
+	  }, {
+	    key: 'onSubmit',
+	    value: function onSubmit(props) {
+	      console.log(props);
+	      this.props.createPost(props).then(this.context.router.push('/cms/posts'));
+	    }
+	  }, {
+	    key: 'renderItems',
+	    value: function renderItems() {
+	      var _this3 = this;
 
-	    _createClass(PostsForm, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            var _this2 = this;
+	      return _react2.default.createElement(
+	        'section',
+	        { className: 'l-post-item-container' },
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'post-item-block' },
+	          this.props.items.map(function (item, index) {
+	            return _react2.default.createElement(_post_item_block2.default, {
+	              key: index,
+	              sortRank: index,
+	              item: item,
+	              totalCount: _this3.props.items.length - 1,
+	              handleUpdateItem: _this3.handleUpdateItem,
+	              handleDeleteItem: _this3.handleDeleteItem,
+	              handleMoveItem: _this3.handleMoveItem
+	            });
+	          })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var _props$fields = _props.fields;
+	      var title = _props$fields.title;
+	      var description = _props$fields.description;
+	      var publishedAt = _props$fields.publishedAt;
 
-	            if (this.props.params.id) {
-	                this.props.fetchPost(this.props.params.id).then(function (post) {
-	                    _this2.props.fetchItems(post.items);
-	                });
-	            }
-	        }
-	    }, {
-	        key: 'handleAddItem',
-	        value: function handleAddItem(type) {
-	            this.props.createItem(type);
-	        }
-	    }, {
-	        key: 'handleUpdateItem',
-	        value: function handleUpdateItem(sortRank, item) {
-	            this.props.updateItem(sortRank, item);
-	        }
-	    }, {
-	        key: 'handleDeleteItem',
-	        value: function handleDeleteItem(sortRank) {
-	            this.props.deleteItem(sortRank);
-	        }
-	    }, {
-	        key: 'handleMoveItem',
-	        value: function handleMoveItem(sortRank, type) {
-	            this.props.moveItem(sortRank, type);
-	        }
-	    }, {
-	        key: 'onSubmit',
-	        value: function onSubmit(props) {
-	            console.log(props);
-	            this.props.createPost(props).then(this.context.router.push('/cms/posts'));
-	        }
-	    }, {
-	        key: 'renderItems',
-	        value: function renderItems() {
-	            var _this3 = this;
+	      return _react2.default.createElement(
+	        'form',
+	        { onSubmit: handleSubmit(this.onSubmit.bind(this)), className: 'form' },
+	        _react2.default.createElement(
+	          'h2',
+	          { className: 'form-heading' },
+	          'Create New Post'
+	        ),
+	        _react2.default.createElement(_textField2.default, _extends({}, title, {
+	          hintText: 'Title',
+	          fullWidth: true,
+	          errorText: title.touched && title.error ? title.error : ''
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_textField2.default, _extends({}, description, {
+	          hintText: 'Description',
+	          multiLine: true,
+	          fullWidth: true,
+	          rows: 4
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_date_picker_wrapper2.default, _extends({
+	          container: 'inline',
+	          autoOk: true,
+	          defaultDate: new Date(),
+	          errorText: publishedAt.touched && publishedAt.error ? publishedAt.error : ''
+	        }, publishedAt)),
+	        this.renderItems(),
+	        _react2.default.createElement(_edit_box2.default, { handleAddItem: this.handleAddItem }),
+	        _react2.default.createElement(_raisedButton2.default, {
+	          type: 'submit',
+	          label: 'Create',
+	          secondary: true
+	        })
+	      );
+	    }
+	  }]);
 
-	            return _react2.default.createElement(
-	                'section',
-	                { className: 'l-post-item-container' },
-	                _react2.default.createElement(
-	                    'ul',
-	                    { className: 'post-item-block' },
-	                    this.props.items.map(function (item, index) {
-	                        return _react2.default.createElement(_post_item_block2.default, {
-	                            key: index,
-	                            sortRank: index,
-	                            item: item,
-	                            totalCount: _this3.props.items.length - 1,
-	                            handleUpdateItem: _this3.handleUpdateItem,
-	                            handleDeleteItem: _this3.handleDeleteItem,
-	                            handleMoveItem: _this3.handleMoveItem
-	                        });
-	                    })
-	                )
-	            );
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _props = this.props;
-	            var handleSubmit = _props.handleSubmit;
-	            var _props$fields = _props.fields;
-	            var title = _props$fields.title;
-	            var description = _props$fields.description;
-	            var publishedAt = _props$fields.publishedAt;
-
-	            return _react2.default.createElement(
-	                'form',
-	                { onSubmit: handleSubmit(this.onSubmit.bind(this)), className: 'form' },
-	                _react2.default.createElement(
-	                    'h2',
-	                    { className: 'form-heading' },
-	                    'Create New Post'
-	                ),
-	                _react2.default.createElement(_textField2.default, _extends({}, title, {
-	                    hintText: 'Title',
-	                    fullWidth: true,
-	                    errorText: title.touched && title.error ? title.error : ''
-	                })),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(_textField2.default, _extends({}, description, {
-	                    hintText: 'Description',
-	                    multiLine: true,
-	                    fullWidth: true,
-	                    rows: 4
-	                })),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(_date_picker_wrapper2.default, _extends({
-	                    container: 'inline',
-	                    autoOk: true,
-	                    defaultDate: new Date(),
-	                    errorText: publishedAt.touched && publishedAt.error ? publishedAt.error : ''
-	                }, publishedAt)),
-	                this.renderItems(),
-	                _react2.default.createElement(_edit_box2.default, { handleAddItem: this.handleAddItem }),
-	                _react2.default.createElement(_raisedButton2.default, {
-	                    type: 'submit',
-	                    label: 'Create',
-	                    secondary: true
-	                })
-	            );
-	        }
-	    }]);
-
-	    return PostsForm;
+	  return PostsForm;
 	}(_react.Component);
 
 	PostsForm.contextTypes = {
-	    router: _react.PropTypes.object
+	  router: _react.PropTypes.object
 	};
 
 
 	function validate(values) {
-	    var errors = {};
-	    if (!values.title) {
-	        errors.title = 'Enter title';
-	    }
-	    if (!values.publishedAt) {
-	        errors.publishedAt = 'Enter published at';
-	    }
-	    return errors;
+	  var errors = {};
+	  if (!values.title) {
+	    errors.title = 'Enter title';
+	  }
+	  if (!values.publishedAt) {
+	    errors.publishedAt = 'Enter published at';
+	  }
+	  return errors;
 	}
 
 	function mapStateToProps(state) {
-	    return { post: state.posts.post, items: state.items };
+	  return { post: state.posts.post, items: state.items };
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	    form: 'PostsNew',
-	    fields: fields,
-	    validate: validate
-	}, mapStateToProps, { fetchPost: _posts.fetchPost, createPost: _posts.createPost, deletePost: _posts.deletePost, updatePost: _posts.updatePost, fetchItems: _items.fetchItems, createItem: _items.createItem, deleteItem: _items.deleteItem, updateItem: _items.updateItem, moveItem: _items.moveItem })(PostsForm);
+	  form: 'PostsNew',
+	  fields: fields,
+	  validate: validate
+	}, mapStateToProps, {
+	  fetchPost: _posts.fetchPost,
+	  createPost: _posts.createPost,
+	  deletePost: _posts.deletePost,
+	  updatePost: _posts.updatePost,
+	  fetchItems: _items.fetchItems,
+	  createItem: _items.createItem,
+	  deleteItem: _items.deleteItem,
+	  updateItem: _items.updateItem,
+	  moveItem: _items.moveItem
+	})(PostsForm);
 
 /***/ },
 /* 376 */
@@ -41669,7 +41680,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.fetchItems = fetchItems;
 	exports.createItem = createItem;
@@ -41680,49 +41691,49 @@
 	var _constants = __webpack_require__(351);
 
 	function fetchItems(items) {
-	    return {
-	        type: _constants.FETCH_ITEMS,
-	        payload: {
-	            items: items
-	        }
-	    };
+	  return {
+	    type: _constants.FETCH_ITEMS,
+	    payload: {
+	      items: items
+	    }
+	  };
 	}
 
 	function createItem(type) {
-	    return {
-	        type: _constants.CREATE_ITEM,
-	        payload: {
-	            item: {
-	                type: type,
-	                editing: true,
-	                isNew: true
-	            }
-	        }
-	    };
+	  return {
+	    type: _constants.CREATE_ITEM,
+	    payload: {
+	      item: {
+	        type: type,
+	        editing: true,
+	        isNew: true
+	      }
+	    }
+	  };
 	}
 
 	function updateItem(sortRank, item) {
-	    return {
-	        type: _constants.UPDATE_ITEM,
-	        payload: {
-	            sortRank: sortRank,
-	            item: item
-	        }
-	    };
+	  return {
+	    type: _constants.UPDATE_ITEM,
+	    payload: {
+	      sortRank: sortRank,
+	      item: item
+	    }
+	  };
 	}
 
 	function deleteItem(sortRank) {
-	    return {
-	        type: _constants.DELETE_ITEM,
-	        payload: { sortRank: sortRank }
-	    };
+	  return {
+	    type: _constants.DELETE_ITEM,
+	    payload: { sortRank: sortRank }
+	  };
 	}
 
 	function moveItem(sortRank, type) {
-	    return {
-	        type: type,
-	        payload: { sortRank: sortRank }
-	    };
+	  return {
+	    type: type,
+	    payload: { sortRank: sortRank }
+	  };
 	}
 
 /***/ },
@@ -44685,7 +44696,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -44717,58 +44728,58 @@
 	var TARGET_TYPE_LIST = [_constants.TARGET_TYPES.HEADING, _constants.TARGET_TYPES.SUB_HEADING, _constants.TARGET_TYPES.TEXT, _constants.TARGET_TYPES.IMAGE, _constants.TARGET_TYPES.TWITTER, _constants.TARGET_TYPES.LINK, _constants.TARGET_TYPES.QUOTE];
 
 	var styles = {
-	    list: {
-	        display: 'flex',
-	        flexDirection: 'row',
-	        padding: 0,
-	        width: '80%',
-	        margin: '0 10%'
-	    }
+	  list: {
+	    display: 'flex',
+	    flexDirection: 'row',
+	    padding: 0,
+	    width: '80%',
+	    margin: '0 10%'
+	  }
 	};
 
 	var ItemFormEditBox = function (_Component) {
-	    _inherits(ItemFormEditBox, _Component);
+	  _inherits(ItemFormEditBox, _Component);
 
-	    function ItemFormEditBox(props) {
-	        var _Object$getPrototypeO;
+	  function ItemFormEditBox(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, ItemFormEditBox);
+	    _classCallCheck(this, ItemFormEditBox);
 
-	        return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormEditBox)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormEditBox)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	  }
+
+	  _createClass(ItemFormEditBox, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        _list2.default,
+	        { style: styles.list },
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'item-edit-box' },
+	          TARGET_TYPE_LIST.map(function (targetType, index) {
+	            return _react2.default.createElement(_edit_box_item2.default, {
+	              key: index,
+	              name: targetType.NAME,
+	              image: targetType.IMAGE,
+	              handleAddItem: _this2.props.handleAddItem
+	            });
+	          })
+	        )
+	      );
 	    }
+	  }]);
 
-	    _createClass(ItemFormEditBox, [{
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(
-	                _list2.default,
-	                { style: styles.list },
-	                _react2.default.createElement(
-	                    'ul',
-	                    { className: 'item-edit-box' },
-	                    TARGET_TYPE_LIST.map(function (targetType, index) {
-	                        return _react2.default.createElement(_edit_box_item2.default, {
-	                            key: index,
-	                            name: targetType.NAME,
-	                            image: targetType.IMAGE,
-	                            handleAddItem: _this2.props.handleAddItem
-	                        });
-	                    })
-	                )
-	            );
-	        }
-	    }]);
-
-	    return ItemFormEditBox;
+	  return ItemFormEditBox;
 	}(_react.Component);
 
 	exports.default = ItemFormEditBox;
 
 
 	ItemFormEditBox.propTypes = {
-	    handleAddItem: _react.PropTypes.func.isRequired
+	  handleAddItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -44944,7 +44955,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -44968,51 +44979,51 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ItemEditBoxItem = function (_Component) {
-	    _inherits(ItemEditBoxItem, _Component);
+	  _inherits(ItemEditBoxItem, _Component);
 
-	    function ItemEditBoxItem(props) {
-	        var _Object$getPrototypeO;
+	  function ItemEditBoxItem(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, ItemEditBoxItem);
+	    _classCallCheck(this, ItemEditBoxItem);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemEditBoxItem)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemEditBoxItem)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.handleAddItem = _this.handleAddItem.bind(_this);
-	        return _this;
+	    _this.handleAddItem = _this.handleAddItem.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(ItemEditBoxItem, [{
+	    key: 'handleAddItem',
+	    value: function handleAddItem() {
+	      this.props.handleAddItem(this.props.name);
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(_listItem2.default, {
+	          leftAvatar: _react2.default.createElement('img', {
+	            style: { width: '100%', height: '100%', top: 0, left: 0 },
+	            src: this.props.image
+	          }),
+	          onClick: this.handleAddItem
+	        })
+	      );
+	    }
+	  }]);
 
-	    _createClass(ItemEditBoxItem, [{
-	        key: 'handleAddItem',
-	        value: function handleAddItem() {
-	            this.props.handleAddItem(this.props.name);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(_listItem2.default, {
-	                    leftAvatar: _react2.default.createElement('img', {
-	                        style: { width: '100%', height: '100%', top: 0, left: 0 },
-	                        src: this.props.image
-	                    }),
-	                    onClick: this.handleAddItem
-	                })
-	            );
-	        }
-	    }]);
-
-	    return ItemEditBoxItem;
+	  return ItemEditBoxItem;
 	}(_react.Component);
 
 	exports.default = ItemEditBoxItem;
 
 
 	ItemEditBoxItem.propTypes = {
-	    image: _react.PropTypes.string.isRequired,
-	    name: _react.PropTypes.string.isRequired,
-	    handleAddItem: _react.PropTypes.func.isRequired
+	  image: _react.PropTypes.string.isRequired,
+	  name: _react.PropTypes.string.isRequired,
+	  handleAddItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -46990,7 +47001,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47016,31 +47027,31 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var DatePickerWrapper = function (_Component) {
-	    _inherits(DatePickerWrapper, _Component);
+	  _inherits(DatePickerWrapper, _Component);
 
-	    function DatePickerWrapper(props) {
-	        var _Object$getPrototypeO;
+	  function DatePickerWrapper(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, DatePickerWrapper);
+	    _classCallCheck(this, DatePickerWrapper);
 
-	        return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(DatePickerWrapper)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(DatePickerWrapper)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	  }
+
+	  _createClass(DatePickerWrapper, [{
+	    key: 'onChange',
+	    value: function onChange(e, date) {
+	      if (this.props.onChange) {
+	        this.props.onChange(date);
+	      }
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(_datePicker2.default, _extends({}, this.props, { onChange: this.onChange.bind(this) }));
+	    }
+	  }]);
 
-	    _createClass(DatePickerWrapper, [{
-	        key: 'onChange',
-	        value: function onChange(e, date) {
-	            if (this.props.onChange) {
-	                this.props.onChange(date);
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(_datePicker2.default, _extends({}, this.props, { onChange: this.onChange.bind(this) }));
-	        }
-	    }]);
-
-	    return DatePickerWrapper;
+	  return DatePickerWrapper;
 	}(_react.Component);
 
 	exports.default = DatePickerWrapper;
@@ -52012,7 +52023,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -52038,59 +52049,59 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var PostItemBlock = function (_Component) {
-	    _inherits(PostItemBlock, _Component);
+	  _inherits(PostItemBlock, _Component);
 
-	    function PostItemBlock() {
-	        _classCallCheck(this, PostItemBlock);
+	  function PostItemBlock() {
+	    _classCallCheck(this, PostItemBlock);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(PostItemBlock).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(PostItemBlock).apply(this, arguments));
+	  }
+
+	  _createClass(PostItemBlock, [{
+	    key: 'renderComponent',
+	    value: function renderComponent() {
+	      if (this.props.item.editing) {
+	        return _react2.default.createElement(_post_item_form2.default, {
+	          sortRank: this.props.sortRank,
+	          item: this.props.item,
+	          handleDeleteItem: this.props.handleDeleteItem,
+	          handleUpdateItem: this.props.handleUpdateItem
+	        });
+	      }
+
+	      return _react2.default.createElement(_post_item_cell2.default, {
+	        sortRank: this.props.sortRank,
+	        item: this.props.item,
+	        totalCount: this.props.totalCount,
+	        handleMoveItem: this.props.handleMoveItem,
+	        handleDeleteItem: this.props.handleDeleteItem,
+	        handleUpdateItem: this.props.handleUpdateItem
+	      });
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'li',
+	        null,
+	        this.renderComponent()
+	      );
+	    }
+	  }]);
 
-	    _createClass(PostItemBlock, [{
-	        key: 'renderComponent',
-	        value: function renderComponent() {
-	            if (this.props.item.editing) {
-	                return _react2.default.createElement(_post_item_form2.default, {
-	                    sortRank: this.props.sortRank,
-	                    item: this.props.item,
-	                    handleDeleteItem: this.props.handleDeleteItem,
-	                    handleUpdateItem: this.props.handleUpdateItem
-	                });
-	            }
-
-	            return _react2.default.createElement(_post_item_cell2.default, {
-	                sortRank: this.props.sortRank,
-	                item: this.props.item,
-	                totalCount: this.props.totalCount,
-	                handleMoveItem: this.props.handleMoveItem,
-	                handleDeleteItem: this.props.handleDeleteItem,
-	                handleUpdateItem: this.props.handleUpdateItem
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'li',
-	                null,
-	                this.renderComponent()
-	            );
-	        }
-	    }]);
-
-	    return PostItemBlock;
+	  return PostItemBlock;
 	}(_react.Component);
 
 	exports.default = PostItemBlock;
 
 
 	PostItemBlock.propTypes = {
-	    sortRank: _react.PropTypes.number.isRequired,
-	    item: _react.PropTypes.object.isRequired,
-	    totalCount: _react.PropTypes.number.isRequired,
-	    handleDeleteItem: _react.PropTypes.func.isRequired,
-	    handleMoveItem: _react.PropTypes.func.isRequired,
-	    handleUpdateItem: _react.PropTypes.func.isRequired
+	  sortRank: _react.PropTypes.number.isRequired,
+	  item: _react.PropTypes.object.isRequired,
+	  totalCount: _react.PropTypes.number.isRequired,
+	  handleDeleteItem: _react.PropTypes.func.isRequired,
+	  handleMoveItem: _react.PropTypes.func.isRequired,
+	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -52100,7 +52111,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52136,111 +52147,111 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var PostItemCell = function (_Component) {
-	    _inherits(PostItemCell, _Component);
+	  _inherits(PostItemCell, _Component);
 
-	    function PostItemCell(props) {
-	        var _Object$getPrototypeO;
+	  function PostItemCell(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, PostItemCell);
+	    _classCallCheck(this, PostItemCell);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemCell)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemCell)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.state = { hovering: false };
+	    _this.state = { hovering: false };
 
-	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
-	        _this.handleMouseEnter = _this.handleMouseEnter.bind(_this);
-	        _this.handleMouseLeave = _this.handleMouseLeave.bind(_this);
-	        return _this;
+	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
+	    _this.handleMouseEnter = _this.handleMouseEnter.bind(_this);
+	    _this.handleMouseLeave = _this.handleMouseLeave.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(PostItemCell, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem() {
+	      this.props.handleUpdateItem(this.props.sortRank, _extends({}, this.props.item, { editing: true }));
 	    }
+	  }, {
+	    key: 'handleMouseEnter',
+	    value: function handleMouseEnter() {
+	      if (this.state.hovering) {
+	        return;
+	      }
+	      this.setState({ hovering: true });
+	    }
+	  }, {
+	    key: 'handleMouseLeave',
+	    value: function handleMouseLeave() {
+	      if (!this.state.hovering) {
+	        return;
+	      }
+	      this.setState({ hovering: false });
+	    }
+	  }, {
+	    key: 'renderComponent',
+	    value: function renderComponent() {
+	      switch (this.props.item.type) {
+	        case _constants.TARGET_TYPES.HEADING.NAME:
+	        case _constants.TARGET_TYPES.SUB_HEADING.NAME:
+	          return _react2.default.createElement(_heading2.default, {
+	            title: this.props.item.title,
+	            type: this.props.item.type
+	          });
 
-	    _createClass(PostItemCell, [{
-	        key: 'handleUpdateItem',
-	        value: function handleUpdateItem() {
-	            this.props.handleUpdateItem(this.props.sortRank, _extends({}, this.props.item, { editing: true }));
-	        }
-	    }, {
-	        key: 'handleMouseEnter',
-	        value: function handleMouseEnter() {
-	            if (this.state.hovering) {
-	                return;
-	            }
-	            this.setState({ hovering: true });
-	        }
-	    }, {
-	        key: 'handleMouseLeave',
-	        value: function handleMouseLeave() {
-	            if (!this.state.hovering) {
-	                return;
-	            }
-	            this.setState({ hovering: false });
-	        }
-	    }, {
-	        key: 'renderComponent',
-	        value: function renderComponent() {
-	            switch (this.props.item.type) {
-	                case _constants.TARGET_TYPES.HEADING.NAME:
-	                case _constants.TARGET_TYPES.SUB_HEADING.NAME:
-	                    return _react2.default.createElement(_heading2.default, {
-	                        title: this.props.item.title,
-	                        type: this.props.item.type
-	                    });
+	        case _constants.TARGET_TYPES.IMAGE.NAME:
+	          return _react2.default.createElement(_image2.default, { image: this.props.item.image });
 
-	                case _constants.TARGET_TYPES.IMAGE.NAME:
-	                    return _react2.default.createElement(_image2.default, { image: this.props.item.image });
+	        default:
+	          return;
+	      }
+	    }
+	  }, {
+	    key: 'renderTooltip',
+	    value: function renderTooltip() {
+	      if (!this.state.hovering) {
+	        return;
+	      }
+	      return _react2.default.createElement(_tooltip2.default, {
+	        sortRank: this.props.sortRank,
+	        totalCount: this.props.totalCount,
+	        editButton: this.renderEditButton(),
+	        handleDeleteItem: this.props.handleDeleteItem,
+	        handleMoveItem: this.props.handleMoveItem
+	      });
+	    }
+	  }, {
+	    key: 'renderEditButton',
+	    value: function renderEditButton() {
+	      return _react2.default.createElement(
+	        'li',
+	        {
+	          className: 'item-tooltip__move-button',
+	          onClick: this.handleUpdateItem },
+	        'Edit'
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'post-item-cell', onMouseEnter: this.handleMouseEnter, onMouseLeave: this.handleMouseLeave },
+	        this.renderTooltip(),
+	        this.renderComponent()
+	      );
+	    }
+	  }]);
 
-	                default:
-	                    return;
-	            }
-	        }
-	    }, {
-	        key: 'renderTooltip',
-	        value: function renderTooltip() {
-	            if (!this.state.hovering) {
-	                return;
-	            }
-	            return _react2.default.createElement(_tooltip2.default, {
-	                sortRank: this.props.sortRank,
-	                totalCount: this.props.totalCount,
-	                editButton: this.renderEditButton(),
-	                handleDeleteItem: this.props.handleDeleteItem,
-	                handleMoveItem: this.props.handleMoveItem
-	            });
-	        }
-	    }, {
-	        key: 'renderEditButton',
-	        value: function renderEditButton() {
-	            return _react2.default.createElement(
-	                'li',
-	                {
-	                    className: 'item-tooltip__move-button',
-	                    onClick: this.handleUpdateItem },
-	                'Edit'
-	            );
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'post-item-cell', onMouseEnter: this.handleMouseEnter, onMouseLeave: this.handleMouseLeave },
-	                this.renderTooltip(),
-	                this.renderComponent()
-	            );
-	        }
-	    }]);
-
-	    return PostItemCell;
+	  return PostItemCell;
 	}(_react.Component);
 
 	exports.default = PostItemCell;
 
 
 	PostItemCell.propTypes = {
-	    sortRank: _react.PropTypes.number.isRequired,
-	    totalCount: _react.PropTypes.number.isRequired,
-	    handleDeleteItem: _react.PropTypes.func.isRequired,
-	    handleMoveItem: _react.PropTypes.func.isRequired,
-	    handleUpdateItem: _react.PropTypes.func.isRequired
+	  sortRank: _react.PropTypes.number.isRequired,
+	  totalCount: _react.PropTypes.number.isRequired,
+	  handleDeleteItem: _react.PropTypes.func.isRequired,
+	  handleMoveItem: _react.PropTypes.func.isRequired,
+	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -52250,7 +52261,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -52272,45 +52283,45 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ItemHeading = function (_Component) {
-	    _inherits(ItemHeading, _Component);
+	  _inherits(ItemHeading, _Component);
 
-	    function ItemHeading(props) {
-	        var _Object$getPrototypeO;
+	  function ItemHeading(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, ItemHeading);
+	    _classCallCheck(this, ItemHeading);
 
-	        return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemHeading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemHeading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	  }
+
+	  _createClass(ItemHeading, [{
+	    key: 'renderTitle',
+	    value: function renderTitle() {
+	      if (this.props.type === _constants.TARGET_TYPES.HEADING.NAME) {
+	        return _react2.default.createElement(
+	          'h2',
+	          { className: 'item-heading__title' },
+	          this.props.title
+	        );
+	      }
+	      return _react2.default.createElement(
+	        'h3',
+	        { className: 'item-heading__sub-title' },
+	        this.props.title
+	      );
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
 
-	    _createClass(ItemHeading, [{
-	        key: 'renderTitle',
-	        value: function renderTitle() {
-	            if (this.props.type === _constants.TARGET_TYPES.HEADING.NAME) {
-	                return _react2.default.createElement(
-	                    'h2',
-	                    { className: 'item-heading__title' },
-	                    this.props.title
-	                );
-	            }
-	            return _react2.default.createElement(
-	                'h3',
-	                { className: 'item-heading__sub-title' },
-	                this.props.title
-	            );
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        this.renderTitle()
+	      );
+	    }
+	  }]);
 
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.renderTitle()
-	            );
-	        }
-	    }]);
-
-	    return ItemHeading;
+	  return ItemHeading;
 	}(_react.Component);
 
 	exports.default = ItemHeading;
@@ -52322,7 +52333,7 @@
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -52342,35 +52353,35 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ItemImage = function (_Component) {
-	    _inherits(ItemImage, _Component);
+	  _inherits(ItemImage, _Component);
 
-	    function ItemImage(props) {
-	        var _Object$getPrototypeO;
+	  function ItemImage(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, ItemImage);
+	    _classCallCheck(this, ItemImage);
 
-	        return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemImage)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemImage)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	  }
+
+	  _createClass(ItemImage, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement("img", {
+	        className: "item-image__frame",
+	        src: this.props.image,
+	        alt: this.props.image
+	      });
 	    }
+	  }]);
 
-	    _createClass(ItemImage, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement("img", {
-	                className: "item-image__frame",
-	                src: this.props.image,
-	                alt: this.props.image
-	            });
-	        }
-	    }]);
-
-	    return ItemImage;
+	  return ItemImage;
 	}(_react.Component);
 
 	exports.default = ItemImage;
 
 
 	ItemImage.propTypes = {
-	    image: _react.PropTypes.string.isRequired
+	  image: _react.PropTypes.string.isRequired
 	};
 
 /***/ },
@@ -52380,7 +52391,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -52400,121 +52411,121 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Tooltip = function (_Component) {
-	    _inherits(Tooltip, _Component);
+	  _inherits(Tooltip, _Component);
 
-	    function Tooltip(props) {
-	        _classCallCheck(this, Tooltip);
+	  function Tooltip(props) {
+	    _classCallCheck(this, Tooltip);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Tooltip).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Tooltip).call(this, props));
 
-	        _this.handleDelete = _this.handleDelete.bind(_this);
-	        return _this;
+	    _this.handleDelete = _this.handleDelete.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Tooltip, [{
+	    key: 'handleMove',
+	    value: function handleMove(type) {
+	      this.props.handleMoveItem(this.props.sortRank, type);
 	    }
+	  }, {
+	    key: 'handleDelete',
+	    value: function handleDelete() {
+	      this.props.handleDeleteItem(this.props.sortRank);
+	    }
+	  }, {
+	    key: 'renderMoveTopButton',
+	    value: function renderMoveTopButton() {
+	      if (this.props.sortRank === 0) {
+	        return;
+	      }
+	      return _react2.default.createElement(
+	        'li',
+	        {
+	          className: 'item-tooltip__move-button item-tooltip__move-button--top',
+	          onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_TOP) },
+	        'Top'
+	      );
+	    }
+	  }, {
+	    key: 'renderMoveUpButton',
+	    value: function renderMoveUpButton() {
+	      if (this.props.sortRank === 0) {
+	        return;
+	      }
+	      return _react2.default.createElement(
+	        'li',
+	        {
+	          className: 'item-tooltip__move-button item-tooltip__move-button--up',
+	          onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_UP) },
+	        'Up'
+	      );
+	    }
+	  }, {
+	    key: 'renderMoveDownButton',
+	    value: function renderMoveDownButton() {
+	      if (this.props.sortRank === this.props.totalCount) {
+	        return;
+	      }
+	      return _react2.default.createElement(
+	        'li',
+	        {
+	          className: 'item-tooltip__move-button item-tooltip__move-button--down',
+	          onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_DOWN) },
+	        'Down'
+	      );
+	    }
+	  }, {
+	    key: 'renderMoveBottomButton',
+	    value: function renderMoveBottomButton() {
+	      if (this.props.sortRank === this.props.totalCount) {
+	        return;
+	      }
+	      return _react2.default.createElement(
+	        'li',
+	        {
+	          className: 'item-tooltip__move-button item-tooltip__move-button--bottom',
+	          onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_BOTTOM) },
+	        'Bottom'
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'item-tooltip' },
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'item-tooltip__move-button-list' },
+	          this.renderMoveTopButton(),
+	          this.renderMoveUpButton(),
+	          this.renderMoveDownButton(),
+	          this.renderMoveBottomButton(),
+	          _react2.default.createElement(
+	            'li',
+	            {
+	              className: 'item-tooltip__delete-button',
+	              onClick: this.handleDelete },
+	            'Delete'
+	          ),
+	          this.props.editButton
+	        )
+	      );
+	    }
+	  }]);
 
-	    _createClass(Tooltip, [{
-	        key: 'handleMove',
-	        value: function handleMove(type) {
-	            this.props.handleMoveItem(this.props.sortRank, type);
-	        }
-	    }, {
-	        key: 'handleDelete',
-	        value: function handleDelete() {
-	            this.props.handleDeleteItem(this.props.sortRank);
-	        }
-	    }, {
-	        key: 'renderMoveTopButton',
-	        value: function renderMoveTopButton() {
-	            if (this.props.sortRank === 0) {
-	                return;
-	            }
-	            return _react2.default.createElement(
-	                'li',
-	                {
-	                    className: 'item-tooltip__move-button item-tooltip__move-button--top',
-	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_TOP) },
-	                'Top'
-	            );
-	        }
-	    }, {
-	        key: 'renderMoveUpButton',
-	        value: function renderMoveUpButton() {
-	            if (this.props.sortRank === 0) {
-	                return;
-	            }
-	            return _react2.default.createElement(
-	                'li',
-	                {
-	                    className: 'item-tooltip__move-button item-tooltip__move-button--up',
-	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_UP) },
-	                'Up'
-	            );
-	        }
-	    }, {
-	        key: 'renderMoveDownButton',
-	        value: function renderMoveDownButton() {
-	            if (this.props.sortRank === this.props.totalCount) {
-	                return;
-	            }
-	            return _react2.default.createElement(
-	                'li',
-	                {
-	                    className: 'item-tooltip__move-button item-tooltip__move-button--down',
-	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_DOWN) },
-	                'Down'
-	            );
-	        }
-	    }, {
-	        key: 'renderMoveBottomButton',
-	        value: function renderMoveBottomButton() {
-	            if (this.props.sortRank === this.props.totalCount) {
-	                return;
-	            }
-	            return _react2.default.createElement(
-	                'li',
-	                {
-	                    className: 'item-tooltip__move-button item-tooltip__move-button--bottom',
-	                    onClick: this.handleMove.bind(this, _constants.MOVE_ITEM_BOTTOM) },
-	                'Bottom'
-	            );
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'item-tooltip' },
-	                _react2.default.createElement(
-	                    'ul',
-	                    { className: 'item-tooltip__move-button-list' },
-	                    this.renderMoveTopButton(),
-	                    this.renderMoveUpButton(),
-	                    this.renderMoveDownButton(),
-	                    this.renderMoveBottomButton(),
-	                    _react2.default.createElement(
-	                        'li',
-	                        {
-	                            className: 'item-tooltip__delete-button',
-	                            onClick: this.handleDelete },
-	                        'Delete'
-	                    ),
-	                    this.props.editButton
-	                )
-	            );
-	        }
-	    }]);
-
-	    return Tooltip;
+	  return Tooltip;
 	}(_react.Component);
 
 	exports.default = Tooltip;
 
 
 	Tooltip.propTypes = {
-	    sortRank: _react.PropTypes.number.isRequired,
-	    totalCount: _react.PropTypes.number.isRequired,
-	    editButton: _react.PropTypes.element.isRequired,
-	    handleMoveItem: _react.PropTypes.func.isRequired,
-	    handleDeleteItem: _react.PropTypes.func.isRequired
+	  sortRank: _react.PropTypes.number.isRequired,
+	  totalCount: _react.PropTypes.number.isRequired,
+	  editButton: _react.PropTypes.element.isRequired,
+	  handleMoveItem: _react.PropTypes.func.isRequired,
+	  handleDeleteItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -52524,7 +52535,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52564,94 +52575,94 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var PostItemForm = function (_Component) {
-	    _inherits(PostItemForm, _Component);
+	  _inherits(PostItemForm, _Component);
 
-	    function PostItemForm(props) {
-	        var _Object$getPrototypeO;
+	  function PostItemForm(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, PostItemForm);
+	    _classCallCheck(this, PostItemForm);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemForm)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemForm)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
-	        _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
-	        return _this;
+	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
+	    _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(PostItemForm, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem(callbackProps) {
+	      this.props.handleUpdateItem(this.props.sortRank, _extends({}, this.props.item, callbackProps, { isNew: false, editing: false }));
 	    }
+	  }, {
+	    key: 'handleDeleteItem',
+	    value: function handleDeleteItem() {
+	      this.props.handleDeleteItem(this.props.sortRank);
+	    }
+	  }, {
+	    key: 'renderComponent',
+	    value: function renderComponent() {
+	      switch (this.props.item.type) {
+	        case _constants.TARGET_TYPES.HEADING.NAME:
+	        case _constants.TARGET_TYPES.SUB_HEADING.NAME:
+	          return _react2.default.createElement(_heading2.default, {
+	            type: this.props.item.type,
+	            initialValues: { title: this.props.item.title },
+	            submitButtonLabel: this.renderSubmitButtonLabel(),
+	            handleUpdateItem: this.handleUpdateItem,
+	            cancelButton: this.renderCancelButton()
+	          });
+	        case _constants.TARGET_TYPES.IMAGE.NAME:
+	          return _react2.default.createElement(_image2.default, {
+	            type: this.props.item.type,
+	            image: this.props.item.image,
+	            submitButtonLabel: this.renderSubmitButtonLabel(),
+	            handleUpdateItem: this.handleUpdateItem,
+	            cancelButton: this.renderCancelButton()
+	          });
+	        default:
+	          return;
+	      }
+	    }
+	  }, {
+	    key: 'renderSubmitButtonLabel',
+	    value: function renderSubmitButtonLabel() {
+	      return this.props.item.isNew ? 'Create' : 'Update';
+	    }
+	  }, {
+	    key: 'renderCancelButton',
+	    value: function renderCancelButton() {
+	      return _react2.default.createElement(_raisedButton2.default, {
+	        className: 'item-form__cancel-button',
+	        label: 'Cancel',
+	        labelPosition: 'after',
+	        icon: _react2.default.createElement(_removeCircle2.default, null),
+	        onClick: this.handleDeleteItem
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return this.renderComponent();
+	    }
+	  }]);
 
-	    _createClass(PostItemForm, [{
-	        key: 'handleUpdateItem',
-	        value: function handleUpdateItem(callbackProps) {
-	            this.props.handleUpdateItem(this.props.sortRank, _extends({}, this.props.item, callbackProps, { isNew: false, editing: false }));
-	        }
-	    }, {
-	        key: 'handleDeleteItem',
-	        value: function handleDeleteItem() {
-	            this.props.handleDeleteItem(this.props.sortRank);
-	        }
-	    }, {
-	        key: 'renderComponent',
-	        value: function renderComponent() {
-	            switch (this.props.item.type) {
-	                case _constants.TARGET_TYPES.HEADING.NAME:
-	                case _constants.TARGET_TYPES.SUB_HEADING.NAME:
-	                    return _react2.default.createElement(_heading2.default, {
-	                        type: this.props.item.type,
-	                        initialValues: { title: this.props.item.title },
-	                        submitButtonLabel: this.renderSubmitButtonLabel(),
-	                        handleUpdateItem: this.handleUpdateItem,
-	                        cancelButton: this.renderCancelButton()
-	                    });
-	                case _constants.TARGET_TYPES.IMAGE.NAME:
-	                    return _react2.default.createElement(_image2.default, {
-	                        type: this.props.item.type,
-	                        image: this.props.item.image,
-	                        submitButtonLabel: this.renderSubmitButtonLabel(),
-	                        handleUpdateItem: this.handleUpdateItem,
-	                        cancelButton: this.renderCancelButton()
-	                    });
-	                default:
-	                    return;
-	            }
-	        }
-	    }, {
-	        key: 'renderSubmitButtonLabel',
-	        value: function renderSubmitButtonLabel() {
-	            return this.props.item.isNew ? 'Create' : 'Update';
-	        }
-	    }, {
-	        key: 'renderCancelButton',
-	        value: function renderCancelButton() {
-	            return _react2.default.createElement(_raisedButton2.default, {
-	                className: 'item-form__cancel-button',
-	                label: 'Cancel',
-	                labelPosition: 'after',
-	                icon: _react2.default.createElement(_removeCircle2.default, null),
-	                onClick: this.handleDeleteItem
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return this.renderComponent();
-	        }
-	    }]);
-
-	    return PostItemForm;
+	  return PostItemForm;
 	}(_react.Component);
 
 	exports.default = PostItemForm;
 
 
 	PostItemForm.propTypes = {
-	    item: _react.PropTypes.shape({
-	        type: _react.PropTypes.string.isRequired,
-	        isNew: _react.PropTypes.bool.isRequired,
-	        editing: _react.PropTypes.bool.isRequired,
-	        title: _react.PropTypes.string
-	    }).isRequired,
-	    sortRank: _react.PropTypes.number.isRequired,
-	    handleUpdateItem: _react.PropTypes.func.isRequired,
-	    handleDeleteItem: _react.PropTypes.func.isRequired
+	  item: _react.PropTypes.shape({
+	    type: _react.PropTypes.string.isRequired,
+	    isNew: _react.PropTypes.bool.isRequired,
+	    editing: _react.PropTypes.bool.isRequired,
+	    title: _react.PropTypes.string
+	  }).isRequired,
+	  sortRank: _react.PropTypes.number.isRequired,
+	  handleUpdateItem: _react.PropTypes.func.isRequired,
+	  handleDeleteItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -52702,7 +52713,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52740,85 +52751,85 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ItemFormHeading = function (_Component) {
-	    _inherits(ItemFormHeading, _Component);
+	  _inherits(ItemFormHeading, _Component);
 
-	    function ItemFormHeading(props) {
-	        var _Object$getPrototypeO;
+	  function ItemFormHeading(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, ItemFormHeading);
+	    _classCallCheck(this, ItemFormHeading);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormHeading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormHeading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
-	        return _this;
+	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(ItemFormHeading, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem(props) {
+	      this.props.handleUpdateItem({ title: props.title });
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var title = _props.fields.title;
 
-	    _createClass(ItemFormHeading, [{
-	        key: 'handleUpdateItem',
-	        value: function handleUpdateItem(props) {
-	            this.props.handleUpdateItem({ title: props.title });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _props = this.props;
-	            var handleSubmit = _props.handleSubmit;
-	            var submitting = _props.submitting;
-	            var title = _props.fields.title;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'item-form' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__name' },
+	          (0, _utilities.capitalize)(this.props.type)
+	        ),
+	        _react2.default.createElement(_textField2.default, _extends({
+	          className: 'item-form__input-text'
+	        }, title, {
+	          hintText: 'Enter the title',
+	          fullWidth: true,
+	          errorText: title.touched && title.error ? title.error : ''
+	        })),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__submit-box' },
+	          _react2.default.createElement(_raisedButton2.default, {
+	            label: this.props.submitButtonLabel,
+	            labelPosition: 'after',
+	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            disabled: submitting,
+	            onClick: handleSubmit(this.handleUpdateItem)
+	          }),
+	          this.props.cancelButton
+	        )
+	      );
+	    }
+	  }]);
 
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'item-form' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-form__name' },
-	                    (0, _utilities.capitalize)(this.props.type)
-	                ),
-	                _react2.default.createElement(_textField2.default, _extends({
-	                    className: 'item-form__input-text'
-	                }, title, {
-	                    hintText: 'Enter the title',
-	                    fullWidth: true,
-	                    errorText: title.touched && title.error ? title.error : ''
-	                })),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-form__submit-box' },
-	                    _react2.default.createElement(_raisedButton2.default, {
-	                        label: this.props.submitButtonLabel,
-	                        labelPosition: 'after',
-	                        icon: _react2.default.createElement(_addCircle2.default, null),
-	                        disabled: submitting,
-	                        onClick: handleSubmit(this.handleUpdateItem)
-	                    }),
-	                    this.props.cancelButton
-	                )
-	            );
-	        }
-	    }]);
-
-	    return ItemFormHeading;
+	  return ItemFormHeading;
 	}(_react.Component);
 
 	ItemFormHeading.propTypes = {
-	    type: _react.PropTypes.string.isRequired,
-	    submitButtonLabel: _react.PropTypes.string.isRequired,
-	    cancelButton: _react.PropTypes.object.isRequired,
-	    handleUpdateItem: _react.PropTypes.func.isRequired
+	  type: _react.PropTypes.string.isRequired,
+	  submitButtonLabel: _react.PropTypes.string.isRequired,
+	  cancelButton: _react.PropTypes.object.isRequired,
+	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
 
 	function validate(values) {
-	    var errors = {};
-	    if (!values.title) {
-	        errors.title = 'Enter heading';
-	    }
-	    return errors;
+	  var errors = {};
+	  if (!values.title) {
+	    errors.title = 'Enter heading';
+	  }
+	  return errors;
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	    form: 'ItemFormHeading',
-	    fields: ['title'],
-	    validate: validate
+	  form: 'ItemFormHeading',
+	  fields: ['title'],
+	  validate: validate
 	})(ItemFormHeading);
 
 /***/ },
@@ -52883,7 +52894,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -52917,129 +52928,129 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ItemFormImage = function (_Component) {
-	    _inherits(ItemFormImage, _Component);
+	  _inherits(ItemFormImage, _Component);
 
-	    function ItemFormImage(props) {
-	        var _Object$getPrototypeO;
+	  function ItemFormImage(props) {
+	    var _Object$getPrototypeO;
 
-	        _classCallCheck(this, ItemFormImage);
+	    _classCallCheck(this, ItemFormImage);
 
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormImage)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormImage)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	        _this.state = {
-	            image: props.image,
-	            errorMessage: ''
-	        };
+	    _this.state = {
+	      image: props.image,
+	      errorMessage: ''
+	    };
 
-	        _this.handleDrop = _this.handleDrop.bind(_this);
-	        _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
-	        return _this;
+	    _this.handleDrop = _this.handleDrop.bind(_this);
+	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(ItemFormImage, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem() {
+	      if (!this.state.image) {
+	        return this.showErrorMessage('Please upload image');
+	      }
+	      this.props.handleUpdateItem({ image: this.state.image });
 	    }
+	  }, {
+	    key: 'handleDrop',
+	    value: function handleDrop(files) {
+	      var self = this;
+	      var reader = new FileReader();
+	      var file = files[0];
 
-	    _createClass(ItemFormImage, [{
-	        key: 'handleUpdateItem',
-	        value: function handleUpdateItem() {
-	            if (!this.state.image) {
-	                return this.showErrorMessage('Please upload image');
-	            }
-	            this.props.handleUpdateItem({ image: this.state.image });
-	        }
-	    }, {
-	        key: 'handleDrop',
-	        value: function handleDrop(files) {
-	            var self = this;
-	            var reader = new FileReader();
-	            var file = files[0];
+	      reader.onload = function (upload) {
+	        self.setState({
+	          image: upload.target.result,
+	          errorMessage: ''
+	        });
+	      };
 
-	            reader.onload = function (upload) {
-	                self.setState({
-	                    image: upload.target.result,
-	                    errorMessage: ''
-	                });
-	            };
+	      reader.onerror = function () {
+	        self.showErrorMessage('Cannot upload image file');
+	      };
 
-	            reader.onerror = function () {
-	                self.showErrorMessage('Cannot upload image file');
-	            };
+	      reader.readAsDataURL(file);
+	    }
+	  }, {
+	    key: 'showErrorMessage',
+	    value: function showErrorMessage(errorMessage) {
+	      this.setState({ errorMessage: errorMessage });
+	    }
+	  }, {
+	    key: 'renderImageBox',
+	    value: function renderImageBox() {
+	      if (this.state.image) {
+	        return _react2.default.createElement('img', { className: 'item-form__preview-image', src: this.state.image, width: '100' });
+	      }
+	    }
+	  }, {
+	    key: 'renderErrorMessage',
+	    value: function renderErrorMessage() {
+	      if (this.state.errorMessage) {
+	        return _react2.default.createElement(
+	          'span',
+	          { className: 'item-form__error-message' },
+	          this.state.errorMessage
+	        );
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'item-form' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__name' },
+	          (0, _utilities.capitalize)(this.props.type)
+	        ),
+	        _react2.default.createElement(
+	          _reactDropzone2.default,
+	          {
+	            accepte: 'image/*',
+	            multipe: false,
+	            onDrop: this.handleDrop },
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Try dropping some files here, or click to select files to upload.'
+	          )
+	        ),
+	        this.renderImageBox(),
+	        this.renderErrorMessage(),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__submit-box' },
+	          _react2.default.createElement(_raisedButton2.default, {
+	            className: 'item-form__submit-button',
+	            label: this.props.submitButtonLabel,
+	            labelPosition: 'after',
+	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            onClick: this.handleUpdateItem
+	          }),
+	          this.props.cancelButton
+	        )
+	      );
+	    }
+	  }]);
 
-	            reader.readAsDataURL(file);
-	        }
-	    }, {
-	        key: 'showErrorMessage',
-	        value: function showErrorMessage(errorMessage) {
-	            this.setState({ errorMessage: errorMessage });
-	        }
-	    }, {
-	        key: 'renderImageBox',
-	        value: function renderImageBox() {
-	            if (this.state.image) {
-	                return _react2.default.createElement('img', { className: 'item-form__preview-image', src: this.state.image, width: '100' });
-	            }
-	        }
-	    }, {
-	        key: 'renderErrorMessage',
-	        value: function renderErrorMessage() {
-	            if (this.state.errorMessage) {
-	                return _react2.default.createElement(
-	                    'span',
-	                    { className: 'item-form__error-message' },
-	                    this.state.errorMessage
-	                );
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'item-form' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-form__name' },
-	                    (0, _utilities.capitalize)(this.props.type)
-	                ),
-	                _react2.default.createElement(
-	                    _reactDropzone2.default,
-	                    {
-	                        accepte: 'image/*',
-	                        multipe: false,
-	                        onDrop: this.handleDrop },
-	                    _react2.default.createElement(
-	                        'div',
-	                        null,
-	                        'Try dropping some files here, or click to select files to upload.'
-	                    )
-	                ),
-	                this.renderImageBox(),
-	                this.renderErrorMessage(),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-form__submit-box' },
-	                    _react2.default.createElement(_raisedButton2.default, {
-	                        className: 'item-form__submit-button',
-	                        label: this.props.submitButtonLabel,
-	                        labelPosition: 'after',
-	                        icon: _react2.default.createElement(_addCircle2.default, null),
-	                        onClick: this.handleUpdateItem
-	                    }),
-	                    this.props.cancelButton
-	                )
-	            );
-	        }
-	    }]);
-
-	    return ItemFormImage;
+	  return ItemFormImage;
 	}(_react.Component);
 
 	exports.default = ItemFormImage;
 
 
 	ItemFormImage.propTypes = {
-	    type: _react.PropTypes.string.isRequired,
-	    image: _react.PropTypes.string,
-	    submitButtonLabel: _react.PropTypes.string.isRequired,
-	    cancelButton: _react.PropTypes.element.isRequired,
-	    handleUpdateItem: _react.PropTypes.func.isRequired
+	  type: _react.PropTypes.string.isRequired,
+	  image: _react.PropTypes.string,
+	  submitButtonLabel: _react.PropTypes.string.isRequired,
+	  cancelButton: _react.PropTypes.element.isRequired,
+	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -53428,7 +53439,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -53446,26 +53457,26 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ProjectsIndex = function (_Component) {
-	    _inherits(ProjectsIndex, _Component);
+	  _inherits(ProjectsIndex, _Component);
 
-	    function ProjectsIndex() {
-	        _classCallCheck(this, ProjectsIndex);
+	  function ProjectsIndex() {
+	    _classCallCheck(this, ProjectsIndex);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsIndex).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsIndex).apply(this, arguments));
+	  }
+
+	  _createClass(ProjectsIndex, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Hoge'
+	      );
 	    }
+	  }]);
 
-	    _createClass(ProjectsIndex, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return ProjectsIndex;
+	  return ProjectsIndex;
 	}(_react.Component);
 
 	exports.default = ProjectsIndex;
@@ -53477,7 +53488,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -53495,26 +53506,26 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ProjectsForm = function (_Component) {
-	    _inherits(ProjectsForm, _Component);
+	  _inherits(ProjectsForm, _Component);
 
-	    function ProjectsForm() {
-	        _classCallCheck(this, ProjectsForm);
+	  function ProjectsForm() {
+	    _classCallCheck(this, ProjectsForm);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).apply(this, arguments));
+	  }
+
+	  _createClass(ProjectsForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Hoge'
+	      );
 	    }
+	  }]);
 
-	    _createClass(ProjectsForm, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return ProjectsForm;
+	  return ProjectsForm;
 	}(_react.Component);
 
 	exports.default = ProjectsForm;
@@ -53526,7 +53537,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -53544,26 +53555,26 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var SitesForm = function (_Component) {
-	    _inherits(SitesForm, _Component);
+	  _inherits(SitesForm, _Component);
 
-	    function SitesForm() {
-	        _classCallCheck(this, SitesForm);
+	  function SitesForm() {
+	    _classCallCheck(this, SitesForm);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SitesForm).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SitesForm).apply(this, arguments));
+	  }
+
+	  _createClass(SitesForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Hoge'
+	      );
 	    }
+	  }]);
 
-	    _createClass(SitesForm, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return SitesForm;
+	  return SitesForm;
 	}(_react.Component);
 
 	exports.default = SitesForm;
@@ -53575,7 +53586,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -53593,26 +53604,26 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var AuthorsForm = function (_Component) {
-	    _inherits(AuthorsForm, _Component);
+	  _inherits(AuthorsForm, _Component);
 
-	    function AuthorsForm() {
-	        _classCallCheck(this, AuthorsForm);
+	  function AuthorsForm() {
+	    _classCallCheck(this, AuthorsForm);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).apply(this, arguments));
+	  }
+
+	  _createClass(AuthorsForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Hoge'
+	      );
 	    }
+	  }]);
 
-	    _createClass(AuthorsForm, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Hoge'
-	            );
-	        }
-	    }]);
-
-	    return AuthorsForm;
+	  return AuthorsForm;
 	}(_react.Component);
 
 	exports.default = AuthorsForm;
@@ -53624,7 +53635,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _redux = __webpack_require__(166);
@@ -53642,9 +53653,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootReducer = (0, _redux.combineReducers)({
-	    posts: _posts2.default,
-	    items: _items2.default,
-	    form: _reduxForm.reducer
+	  posts: _posts2.default,
+	  items: _items2.default,
+	  form: _reduxForm.reducer
 	});
 
 	exports.default = rootReducer;
@@ -53656,37 +53667,37 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	exports.default = function () {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
-	    var action = arguments[1];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
+	  var action = arguments[1];
 
-	    switch (action.type) {
-	        case _constants.FETCH_POSTS.SUCCESS:
-	            return _extends({}, state, { all: action.payload });
-	        case _constants.FETCH_POST.SUCCESS:
-	            return _extends({}, state, { post: action.payload });
-	        case _constants.CREATE_POST.SUCCESS:
-	        case _constants.UPDATE_POST.SUCCESS:
-	            return _extends({}, state, { message: 'Successfully Saved' });
-	        case _constants.DELETE_POST.SUCCESS:
-	            return _extends({}, state, { message: 'Successfully Deleted' });
-	        case _constants.TOGGLE_POST.SUCCESS:
-	            return _extends({}, state, { message: 'Successfully Change Published Status' });
-	        case _constants.FETCH_POSTS.FAILURE:
-	        case _constants.FETCH_POST.FAILURE:
-	        case _constants.CREATE_POST.FAILURE:
-	        case _constants.UPDATE_POST.FAILURE:
-	        case _constants.DELETE_POST.FAILURE:
-	        case _constants.TOGGLE_POST.FAILURE:
-	            return _extends({}, state, { error: action.payload });
-	        default:
-	            return state;
-	    }
+	  switch (action.type) {
+	    case _constants.FETCH_POSTS.SUCCESS:
+	      return _extends({}, state, { all: action.payload });
+	    case _constants.FETCH_POST.SUCCESS:
+	      return _extends({}, state, { post: action.payload });
+	    case _constants.CREATE_POST.SUCCESS:
+	    case _constants.UPDATE_POST.SUCCESS:
+	      return _extends({}, state, { message: 'Successfully Saved' });
+	    case _constants.DELETE_POST.SUCCESS:
+	      return _extends({}, state, { message: 'Successfully Deleted' });
+	    case _constants.TOGGLE_POST.SUCCESS:
+	      return _extends({}, state, { message: 'Successfully Change Published Status' });
+	    case _constants.FETCH_POSTS.FAILURE:
+	    case _constants.FETCH_POST.FAILURE:
+	    case _constants.CREATE_POST.FAILURE:
+	    case _constants.UPDATE_POST.FAILURE:
+	    case _constants.DELETE_POST.FAILURE:
+	    case _constants.TOGGLE_POST.FAILURE:
+	      return _extends({}, state, { error: action.payload });
+	    default:
+	      return state;
+	  }
 	};
 
 	var _constants = __webpack_require__(351);

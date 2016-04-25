@@ -1,11 +1,11 @@
 import { expect, sinon } from '../../../test_helper';
-import ItemFormImage from '../../../../../../src/cms/components/items/forms/image';
+import ItemFormTwitter from '../../../../../../src/cms/components/items/forms/twitter';
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 import { shallow } from 'enzyme';
 
-describe('ItemFormImage', () => {
+describe('ItemFormTwitter', () => {
 
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();

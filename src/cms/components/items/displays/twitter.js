@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class ItemImage extends Component {
+export default class ItemTwitter extends Component {
 
   constructor(props) {
     super(...props);
@@ -15,6 +15,6 @@ export default class ItemImage extends Component {
   }
 }
 
-ItemImage.propTypes = {
+ItemTwitter.propTypes = {
   image: PropTypes.string.isRequired
 };

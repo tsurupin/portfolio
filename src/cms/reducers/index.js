@@ -4,9 +4,9 @@ import postReducer from './posts';
 import itemReducer from './items';
 
 const rootReducer = combineReducers({
-    posts: postReducer,
-    items: itemReducer,
-    form:  formReducer
+  posts: postReducer,
+  items: itemReducer,
+  form: formReducer
 });
 
 export default rootReducer;

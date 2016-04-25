@@ -15,22 +15,22 @@ const TestUtils = require('react-addons-test-utils');
 import chai, { expect } from 'chai';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducers  from '../../../src/cms/reducers';
+import reducers from '../../../src/cms/reducers';
 import chaiJquery from 'chai-jquery';
 import sinon from 'sinon';
 
 function renderComponent(ComponentClass, props, state) {
   const componentInstance = TestUtils.renderIntoDocument(
-      <Provider store={createStore(reducers, state)}>
-        <ComponentClass {...props}/>
-      </Provider>
+    <Provider store={createStore(reducers, state)}>
+      <ComponentClass { ...props } />
+    </Provider>
   );
-  
+
   return $(ReactDOM.findDOMNode(componentInstance));
 }
 
-$.fn.simulate = function(eventName, value) {
-  if (value){
+$.fn.simulate = function (eventName, value) {
+  if (value) {
     this.val(value);
   }
   TestUtils.Simulate[eventName](this[0]);

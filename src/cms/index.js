@@ -14,7 +14,7 @@ const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 injectTapEventPlugin();
 
 ReactDOM.render(
-<Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={browserHistory} routes={routes} />
-</Provider>
-    , document.querySelector('.react-container'));
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <Router history={browserHistory} routes={routes}/>
+  </Provider>
+  , document.querySelector('.react-container'));

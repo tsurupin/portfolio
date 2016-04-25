@@ -3,17 +3,17 @@ import DatePicker from '../../../../node_modules/material-ui/lib/date-picker/dat
 
 export default class DatePickerWrapper extends Component {
 
-    constructor(props) {
-        super(...props);
-    }
+  constructor(props) {
+    super(...props);
+  }
 
-    onChange(e, date) {
-        if (this.props.onChange) {
-            this.props.onChange(date);
-        }
+  onChange(e, date) {
+    if (this.props.onChange) {
+      this.props.onChange(date);
     }
+  }
 
-    render() {
-        return <DatePicker {...this.props} onChange={this.onChange.bind(this)}/>
-    }
+  render() {
+    return <DatePicker {...this.props} onChange={this.onChange.bind(this)}/>
+  }
 }
