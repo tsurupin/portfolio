@@ -4,13 +4,20 @@ import {
   createItem,
   updateItem,
   deleteItem,
-  moveItem
+  moveItem,
+  fetchTweet
 } from '../../../../src/cms/actions/items';
 
 import {
   FETCH_ITEMS, CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM,
-  MOVE_ITEM_TOP,
+  MOVE_ITEM_TOP, FETCH_TWEET, TEST_DOMAIN, TWITTER_PATH, ROOT_URL,
 } from '../../../../src/cms/constants';
+
+import nock from 'nock'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+const middleWares = [thunk];
+const mockStore = configureMockStore(middleWares);
 
 describe('item actions', () => {
   describe('fetchItems', () => {
@@ -84,5 +91,66 @@ describe('item actions', () => {
       expect(action).to.eql(expectedResponse);
     });
   });
+  
+  describe('fetchTweet', () => {
+    it('creates FETCH_TWEET_SUCCESS when fetching tweet has been done', () => {
+      nock(TEST_DOMAIN)
+        .get(`${ROOT_URL}${TWITTER_PATH}?url=http://twitter&sort_rank=0`)
+        .reply(200, { 
+          data: { 
+            sortRank: 0,
+            responseParams: {
+              sourceURL: 'http://twitter',
+              authorImageURL: 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
+              authorName: 'steve blank',
+              authorScreenName: 'sgblank',
+              description: 'Great professors are people who wish to remain students for the rest of their lives.', 
+            }
+          } 
+        });
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        type: FETCH_TWEET.SUCCESS,
+        payload: {
+          data: {
+            sortRank: 0,
+            responseParams: {
+              sourceURL: 'http://twitter',
+              authorImageURL: 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
+              authorName: 'steve blank',
+              authorScreenName: 'sgblank',
+              description: 'Great professors are people who wish to remain students for the rest of their lives.',
+            }
+          }
+        }
+
+      }];
+
+      return store.dispatch(fetchTweet('http://twitter', 0))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+  });
+
+  // TODO: figure out how to make throw matcher work as expected.
+  describe('fetchTweet', () => {
+    it('raises error when fetching tweet has been failed', () => {
+      nock(TEST_DOMAIN)
+        .get(`${ROOT_URL}${TWITTER_PATH}?url=http://twitter&sort_rank=0`)
+        .reply(400, {});
+
+      const store = mockStore({});
+
+      return store.dispatch(fetchTweet('http://twitter', 0))
+        .then(
+            () => { 
+            expect(store.getActions()).to.throw('URL is not valid')
+          }
+        )
+    });
+  });
+
 
 });

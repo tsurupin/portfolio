@@ -4,6 +4,10 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 import Heading from './forms/heading';
 import Image from './forms/image';
+import Twitter from './forms/twitter';
+import Quote from './forms/quote';
+import Link from './forms/link';
+import Text from './forms/text';
 
 export default class PostItemForm extends Component {
   constructor(props) {
@@ -25,6 +29,7 @@ export default class PostItemForm extends Component {
   }
 
   renderComponent() {
+   
     switch (this.props.item.type) {
       case TARGET_TYPES.HEADING.NAME:
       case TARGET_TYPES.SUB_HEADING.NAME:
@@ -42,6 +47,49 @@ export default class PostItemForm extends Component {
           <Image
             type={this.props.item.type}
             image={this.props.item.image}
+            submitButtonLabel={this.renderSubmitButtonLabel()}
+            handleUpdateItem={this.handleUpdateItem}
+            cancelButton={this.renderCancelButton()}
+          />
+        );
+      case TARGET_TYPES.TWITTER.NAME:
+        return (
+          <Twitter
+            type={this.props.item.type}
+            initialValues={{sourceURL: this.props.item.sourceURL}}
+            sortRank={this.props.sortRank}
+            submitButtonLabel={this.renderSubmitButtonLabel()}
+            handleUpdateItem={this.handleUpdateItem}
+            cancelButton={this.renderCancelButton()}
+          />
+        );
+      // case TARGET_TYPES.QUOTE.NAME:
+      //   console.log('quote')
+      //   return (
+      //     <Quote
+      //       type={this.props.item.type}
+      //       initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
+      //       submitButtonLabel={this.renderSubmitButtonLabel()}
+      //       handleUpdateItem={this.handleUpdateItem}
+      //       cancelButton={this.renderCancelButton()}
+      //     />
+      //   );
+      case TARGET_TYPES.LINK.NAME:
+        return (
+          <Link
+            type={this.props.item.type}
+            initialValues={{ sourceURL: this.props.item.sourceURL, sourceTitle: this.props.item.sourceTitle }}
+            submitButtonLabel={this.renderSubmitButtonLabel()}
+            handleUpdateItem={this.handleUpdateItem}
+            cancelButton={this.renderCancelButton()}
+          />
+        );
+      case TARGET_TYPES.TEXT.NAME:
+        return (
+          <Text
+            type={this.props.item.type}
+            initialValues={{ description: this.props.item.description }}
+            style={this.props.item.style}
             submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}

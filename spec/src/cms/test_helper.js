@@ -6,12 +6,9 @@ const Chrome49 = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML,
 const $ = _$(global.window);
 global.navigator = { userAgent: Chrome49 };
 
-require('fbjs/lib/ExecutionEnvironment').canUseDOM = true;
-
 const ReactDOM = require('react-dom');
 const React = require('react');
 const TestUtils = require('react-addons-test-utils');
-
 import chai, { expect } from 'chai';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';

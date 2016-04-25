@@ -21,12 +21,7 @@ class Cms::Api::ServicesController < Cms::ApplicationController
         }
       }
     else
-      render json: {
-        sortRank: sort_rank,
-        responseParams: {
-          errorMessage: service.response_params[:error_message]
-        }
-      }, status: 400
+      render nothing: true, status: 400
     end
   end
 end

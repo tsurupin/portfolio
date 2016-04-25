@@ -1,7 +1,8 @@
 import {
-  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM,
+  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM, FETCH_TWEET,
   MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM
 } from '../constants';
+import _ from 'lodash';
 
 export default function (state = [], action) {
   switch (action.type) {
@@ -23,7 +24,11 @@ export default function (state = [], action) {
         return [...topItem, ...state.slice(0, action.payload.sortRank), ...state.slice(action.payload.sortRank + 1)];
       }
       return state;
-
+   
+    case FETCH_TWEET.SUCCESS:
+      const item = _.merge(state[action.payload.sortRank], action.payload.responseParams);
+      return [...state.slice(0, action.payload.sortRank), item, ...state.slice(action.payload.sortRank + 1)];
+      
     case MOVE_ITEM_UP:
       if (state.length > 0) {
         const subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);

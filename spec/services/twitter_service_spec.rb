@@ -23,7 +23,6 @@ RSpec.describe TwitterService, type: :service do
       it 'return error message' do
         VCR.use_cassette 'twitter_service_with_error' do
           expect(twitter.receive!).to be_falsey
-          expect(response_params[:error_message]).to eq 'Cannot retrieve info from this url'
         end
       end
     end

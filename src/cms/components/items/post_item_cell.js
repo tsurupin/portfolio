@@ -1,8 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../constants';
+import Tooltip from './displays/tooltip';
 import Heading from './displays/heading';
 import Image from './displays/image';
-import Tooltip from './displays/tooltip';
+import Twitter from './displays/twitter';
+import Quote from './displays/quote';
+import Link from './displays/link';
+import Text from './displays/text';
+
+
 
 export default class PostItemCell extends Component {
   constructor(props) {
@@ -44,7 +50,34 @@ export default class PostItemCell extends Component {
         );
 
       case TARGET_TYPES.IMAGE.NAME:
-        return <Image image={this.props.item.image}/>;
+        return <Image image={this.props.item.image} />;
+      case TARGET_TYPES.TWITTER.NAME:
+        return (
+          <Twitter
+            authorName={this.props.item.authorName}
+            authorScreenName={this.props.item.authorScreenName}
+            authorImageURL={this.props.item.authorImageURL}
+            sourceURL={this.props.item.sourceURL}
+            description={this.props.item.description}/>
+        );
+      case TARGET_TYPES.QUOTE.NAME:
+        return (
+          <Quote
+            sourceURL={this.props.item.sourceURL}
+            description={this.props.item.description}/>
+        );
+      case TARGET_TYPES.LINK.NAME:
+        return (
+          <Link
+            sourceURL={this.props.item.sourceURL}
+            sourceTitle={this.props.item.sourceTitle}/>
+        );
+      case TARGET_TYPES.TEXT.NAME:
+        return (
+          <Text
+            style={this.props.item.style}
+            description={this.props.item.description}/>
+        );
 
       default:
         return;

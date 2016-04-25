@@ -32,18 +32,9 @@ RSpec.describe Cms::Api::PostsController, type: :request do
 
       context 'when the url does not exist' do
         let(:url) { 'https://twitter.com/disney_mickey55/status/' }
-        let(:result) do
-          {
-            'sortRank' => sort_rank,
-            'responseParams' => {
-              'errorMessage' => 'Cannot retrieve info from this url'
-            }
-          }
-        end
         before { get twitter_cms_api_services_path, sort_rank: sort_rank, url: url }
         it 'return error message' do
           VCR.use_cassette 'twitter_cms_api_service_error' do
-            expect(subject).to eq result
             expect(response.status).to eq 400
           end
         end

@@ -2,7 +2,8 @@ import { expect } from '../test_helper';
 import itemReducer from '../../../../src/cms/reducers/items';
 import {
   FETCH_ITEMS, FETCH_ITEM, CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM,
-  TOGGLE_ITEM, MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM
+  TOGGLE_ITEM, MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM,
+  FETCH_TWEET
 } from '../../../../src/cms/constants';
 
 describe('Item Reducer', () => {
@@ -248,6 +249,31 @@ describe('Item Reducer', () => {
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
   });
+
+  it('handles action of type FETCH_TWEET_SUCCESS', () => {
+    const action = {
+      type: FETCH_TWEET.SUCCESS,
+      payload: {
+        sortRank: 2,
+        responseParams: { description: 'hoge' }
+      }
+    };
+
+    const state = [
+      { type: 'ItemSubHeading' },
+      { type: 'ItemHeading' },
+      { type: 'ItemTwitter' }
+    ];
+
+    const expectedResponse = [
+      { type: 'ItemSubHeading' },
+      { type: 'ItemHeading' },
+      { type: 'ItemTwitter', description: 'hoge' }
+    ];
+
+    expect(itemReducer(state, action)).to.eql(expectedResponse);
+  });
+
 
 
   // it('handles action of type FETCH_ITEM_SUCCESS', () => {

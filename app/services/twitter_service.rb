@@ -15,7 +15,6 @@ class TwitterService
     true
 
   rescue
-    @response_params ||= { error_message: 'Cannot retrieve info from this url' }
     false
   end
 

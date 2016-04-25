@@ -1,6 +1,7 @@
+import axios from 'axios';
 import {
-  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM,
-  MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM
+  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, 
+  UPDATE_ITEM, FETCH_TWEET, ROOT_URL, TWITTER_PATH
 } from '../constants';
 
 
@@ -49,3 +50,21 @@ export function moveItem(sortRank, type) {
     payload: { sortRank }
   }
 }
+
+export function fetchTweet(url, sortRank) {
+  const request = axios.get(`${ROOT_URL}${TWITTER_PATH}?url=${url}&sort_rank=${sortRank}`);
+  return dispatch => {
+    return request.then(
+      response => dispatch(fetchTweetSuccess(response.data)),
+      error => { throw 'URL is not valid' }
+    );
+  }
+}
+
+function fetchTweetSuccess(response) {
+  return {
+    type: FETCH_TWEET.SUCCESS,
+    payload: response
+  }
+}
+

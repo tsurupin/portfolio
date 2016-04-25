@@ -6,6 +6,7 @@ function createRequestTypes(base) {
 
 export const ROOT_URL = '/cms/api';
 export const POST_PATH = '/posts';
+export const TWITTER_PATH = '/services/twitter';
 export const TEST_DOMAIN = 'http://localhost:80';
 
 const REQUEST = 'REQUEST';
@@ -18,6 +19,7 @@ export const CREATE_POST = createRequestTypes('CREATE_POST');
 export const UPDATE_POST = createRequestTypes('UPDATE_POST');
 export const TOGGLE_POST = createRequestTypes('TOGGLE_POST');
 export const DELETE_POST = createRequestTypes('DELETE_POST');
+export const FETCH_TWEET = createRequestTypes('FETCH_TWEET');
 
 export const FETCH_ITEMS = 'FETCH_ITEMS';
 export const CREATE_ITEM = 'CREATE_ITEM';
