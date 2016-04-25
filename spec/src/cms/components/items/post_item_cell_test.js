@@ -18,7 +18,7 @@ describe('PostItemCell', () => {
         expect(component.find('.item-tooltip')).not.to.exist;
     });
 
-    it('shows hHading component', () => {
+    it('shows Hading component', () => {
         let item = { editing: false, type: 'ItemHeading' };
         props = { ...props, item };
         const component = renderComponent(PostItemCell, props, {});
@@ -30,6 +30,13 @@ describe('PostItemCell', () => {
         props = { ...props, item };
         const component = renderComponent(PostItemCell, props, {});
         expect(component.find('.item-heading__sub-title')).to.exist;
+    });
+
+    it('shows Image component', () => {
+        let item = { editing: false, type: 'ItemImage' };
+        props = { ...props, item };
+        const component = renderComponent(PostItemCell, props, {});
+        expect(component.find('.item-image__frame')).to.exist;
     });
     
     // TODO: test mouseEnter/Leave event

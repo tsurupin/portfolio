@@ -88,7 +88,7 @@ export default class ItemFormImage extends Component {
 
 ItemFormImage.propTypes = {
     type: PropTypes.string.isRequired,
-    image: Proptypes.string,
+    image: PropTypes.string,
     submitButtonLabel: PropTypes.string.isRequired,
     cancelButton: PropTypes.element.isRequired,
     handleUpdateItem: PropTypes.func.isRequired

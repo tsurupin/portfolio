@@ -64,15 +64,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(475);
+	var _reducers = __webpack_require__(476);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(478);
+	var _reactTapEventPlugin = __webpack_require__(479);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(483);
+	var _reduxThunk = __webpack_require__(484);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26777,19 +26777,19 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index3 = __webpack_require__(471);
+	var _index3 = __webpack_require__(472);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _form3 = __webpack_require__(472);
+	var _form3 = __webpack_require__(473);
 
 	var _form4 = _interopRequireDefault(_form3);
 
-	var _form5 = __webpack_require__(473);
+	var _form5 = __webpack_require__(474);
 
 	var _form6 = _interopRequireDefault(_form5);
 
-	var _form7 = __webpack_require__(474);
+	var _form7 = __webpack_require__(475);
 
 	var _form8 = _interopRequireDefault(_form7);
 
@@ -52025,7 +52025,7 @@
 
 	var _post_item_cell2 = _interopRequireDefault(_post_item_cell);
 
-	var _post_item_form = __webpack_require__(464);
+	var _post_item_form = __webpack_require__(465);
 
 	var _post_item_form2 = _interopRequireDefault(_post_item_form);
 
@@ -52117,7 +52117,11 @@
 
 	var _heading2 = _interopRequireDefault(_heading);
 
-	var _tooltip = __webpack_require__(463);
+	var _image = __webpack_require__(463);
+
+	var _image2 = _interopRequireDefault(_image);
+
+	var _tooltip = __webpack_require__(464);
 
 	var _tooltip2 = _interopRequireDefault(_tooltip);
 
@@ -52180,6 +52184,10 @@
 	                        title: this.props.item.title,
 	                        type: this.props.item.type
 	                    });
+
+	                case _constants.TARGET_TYPES.IMAGE.NAME:
+	                    return _react2.default.createElement(_image2.default, { image: this.props.item.image });
+
 	                default:
 	                    return;
 	            }
@@ -52309,6 +52317,64 @@
 
 /***/ },
 /* 463 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ItemImage = function (_Component) {
+	    _inherits(ItemImage, _Component);
+
+	    function ItemImage(props) {
+	        var _Object$getPrototypeO;
+
+	        _classCallCheck(this, ItemImage);
+
+	        return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemImage)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    }
+
+	    _createClass(ItemImage, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement("img", {
+	                className: "item-image__frame",
+	                src: this.props.image,
+	                alt: this.props.image
+	            });
+	        }
+	    }]);
+
+	    return ItemImage;
+	}(_react.Component);
+
+	exports.default = ItemImage;
+
+
+	ItemImage.propTypes = {
+	    image: _react.PropTypes.string.isRequired
+	};
+
+/***/ },
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52452,7 +52518,7 @@
 	};
 
 /***/ },
-/* 464 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52475,15 +52541,15 @@
 
 	var _raisedButton2 = _interopRequireDefault(_raisedButton);
 
-	var _removeCircle = __webpack_require__(465);
+	var _removeCircle = __webpack_require__(466);
 
 	var _removeCircle2 = _interopRequireDefault(_removeCircle);
 
-	var _heading = __webpack_require__(466);
+	var _heading = __webpack_require__(467);
 
 	var _heading2 = _interopRequireDefault(_heading);
 
-	var _image = __webpack_require__(469);
+	var _image = __webpack_require__(470);
 
 	var _image2 = _interopRequireDefault(_image);
 
@@ -52589,7 +52655,7 @@
 	};
 
 /***/ },
-/* 465 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52630,7 +52696,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 466 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52647,7 +52713,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _utilities = __webpack_require__(467);
+	var _utilities = __webpack_require__(468);
 
 	var _textField = __webpack_require__(428);
 
@@ -52657,7 +52723,7 @@
 
 	var _raisedButton2 = _interopRequireDefault(_raisedButton);
 
-	var _addCircle = __webpack_require__(468);
+	var _addCircle = __webpack_require__(469);
 
 	var _addCircle2 = _interopRequireDefault(_addCircle);
 
@@ -52756,7 +52822,7 @@
 	})(ItemFormHeading);
 
 /***/ },
-/* 467 */
+/* 468 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -52770,7 +52836,7 @@
 	}
 
 /***/ },
-/* 468 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52811,7 +52877,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 469 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52826,17 +52892,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDropzone = __webpack_require__(470);
+	var _reactDropzone = __webpack_require__(471);
 
 	var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
 
-	var _utilities = __webpack_require__(467);
+	var _utilities = __webpack_require__(468);
 
 	var _raisedButton = __webpack_require__(459);
 
 	var _raisedButton2 = _interopRequireDefault(_raisedButton);
 
-	var _addCircle = __webpack_require__(468);
+	var _addCircle = __webpack_require__(469);
 
 	var _addCircle2 = _interopRequireDefault(_addCircle);
 
@@ -52907,7 +52973,7 @@
 	        key: 'renderImageBox',
 	        value: function renderImageBox() {
 	            if (this.state.image) {
-	                return _react2.default.createElement('img', { src: this.state.image, width: '100' });
+	                return _react2.default.createElement('img', { className: 'item-form__preview-image', src: this.state.image, width: '100' });
 	            }
 	        }
 	    }, {
@@ -52970,13 +53036,14 @@
 
 	ItemFormImage.propTypes = {
 	    type: _react.PropTypes.string.isRequired,
+	    image: _react.PropTypes.string,
 	    submitButtonLabel: _react.PropTypes.string.isRequired,
 	    cancelButton: _react.PropTypes.element.isRequired,
 	    handleUpdateItem: _react.PropTypes.func.isRequired
 	};
 
 /***/ },
-/* 470 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -53355,7 +53422,7 @@
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 471 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53404,7 +53471,7 @@
 	exports.default = ProjectsIndex;
 
 /***/ },
-/* 472 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53453,7 +53520,7 @@
 	exports.default = ProjectsForm;
 
 /***/ },
-/* 473 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53502,7 +53569,7 @@
 	exports.default = SitesForm;
 
 /***/ },
-/* 474 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53551,7 +53618,7 @@
 	exports.default = AuthorsForm;
 
 /***/ },
-/* 475 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53564,11 +53631,11 @@
 
 	var _reduxForm = __webpack_require__(377);
 
-	var _posts = __webpack_require__(476);
+	var _posts = __webpack_require__(477);
 
 	var _posts2 = _interopRequireDefault(_posts);
 
-	var _items = __webpack_require__(477);
+	var _items = __webpack_require__(478);
 
 	var _items2 = _interopRequireDefault(_items);
 
@@ -53583,7 +53650,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 476 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53627,7 +53694,7 @@
 	var INITIAL_STATE = { all: [], post: null, error: null, message: null };
 
 /***/ },
-/* 477 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53693,23 +53760,23 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ },
-/* 478 */
+/* 479 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(479);
+	var defaultClickRejectionStrategy = __webpack_require__(480);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(31).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(480)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(481)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 479 */
+/* 480 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -53720,7 +53787,7 @@
 
 
 /***/ },
-/* 480 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -53748,10 +53815,10 @@
 	var EventPluginUtils = __webpack_require__(33);
 	var EventPropagators = __webpack_require__(73);
 	var SyntheticUIEvent = __webpack_require__(87);
-	var TouchEventUtils = __webpack_require__(481);
+	var TouchEventUtils = __webpack_require__(482);
 	var ViewportMetrics = __webpack_require__(38);
 
-	var keyOf = __webpack_require__(482);
+	var keyOf = __webpack_require__(483);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -53897,7 +53964,7 @@
 
 
 /***/ },
-/* 481 */
+/* 482 */
 /***/ function(module, exports) {
 
 	/**
@@ -53945,7 +54012,7 @@
 
 
 /***/ },
-/* 482 */
+/* 483 */
 /***/ function(module, exports) {
 
 	/**
@@ -53985,7 +54052,7 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 483 */
+/* 484 */
 /***/ function(module, exports) {
 
 	'use strict';

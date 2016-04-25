@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../constants';
 import Heading from './displays/heading';
+import Image from './displays/image';
 import Tooltip from './displays/tooltip';
 
 export default class PostItemCell extends Component {
@@ -37,6 +38,10 @@ export default class PostItemCell extends Component {
                         type={this.props.item.type}
                     />
                 );
+            
+            case TARGET_TYPES.IMAGE.NAME:
+                return <Image image={this.props.item.image} />;
+            
             default:
                 return;
         }
