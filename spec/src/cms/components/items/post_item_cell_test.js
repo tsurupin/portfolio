@@ -33,11 +33,41 @@ describe('PostItemCell', () => {
   });
 
   it('shows Image component', () => {
-    let item = { editing: false, type: 'ItemImage' };
+    let item = { editing: false, type: 'ItemImage', image: 'http://www.digital-clarity.com/wp-content/uploads/2009/03/google-.png' };
     props = { ...props, item };
     const component = renderComponent(PostItemCell, props, {});
     expect(component.find('.item-image__frame')).to.exist;
   });
+
+  it('shows Twitter component', () => {
+    let item = { editing: false, type: 'ItemTwitter' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemCell, props, {});
+    expect(component.find('.item-twitter__link')).to.exist;
+  });
+
+  it('shows Quote component', () => {
+    let item = { editing: false, type: 'ItemQuote', sourceURL: 'https://google.com', description: 'hoge' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemCell, props, {});
+    expect(component.find('.item-quote')).to.exist;
+  });
+
+  it('shows Link component', () => {
+    let item = { editing: false, type: 'ItemLink', sourceURL: 'https://google.com', sourceTitle: 'google' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemCell, props, {});
+    expect(component.find('.item-link')).to.exist;
+  });
+
+
+  it('shows Text component', () => {
+    let item = { editing: false, type: 'ItemText', style: 1, description: 'hoge' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemCell, props, {});
+    expect(component.find('.item-text__description')).to.exist;
+  });
+
 
   // TODO: test mouseEnter/Leave event
 

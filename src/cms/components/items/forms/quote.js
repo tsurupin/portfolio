@@ -19,7 +19,7 @@ class ItemFormQuote extends Component {
         if (!props.description) {
           reject({ description: 'description is empty' })
         }
-        else if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/is.test(props.sourceURL)) {
+        else if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(props.sourceURL)) {
           reject({ sourceURL: 'URL is not valid' })
         } else {
           this.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
@@ -66,8 +66,7 @@ class ItemFormQuote extends Component {
 
 ItemFormQuote.propTypes = {
   type: PropTypes.string.isRequired,
-  sourceURL: PropTypes.string,
-  description: PropTypes.string,
+  fields: PropTypes.object.isRequired,
   submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,

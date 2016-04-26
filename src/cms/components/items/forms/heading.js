@@ -46,6 +46,7 @@ class ItemFormHeading extends Component {
 
 ItemFormHeading.propTypes = {
   type: PropTypes.string.isRequired,
+  fields: PropTypes.object.isRequired,
   submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired

@@ -64,15 +64,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(499);
+	var _reducers = __webpack_require__(500);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(504);
+	var _reactTapEventPlugin = __webpack_require__(505);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(509);
+	var _reduxThunk = __webpack_require__(510);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26777,19 +26777,19 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index3 = __webpack_require__(495);
+	var _index3 = __webpack_require__(496);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _form3 = __webpack_require__(496);
+	var _form3 = __webpack_require__(497);
 
 	var _form4 = _interopRequireDefault(_form3);
 
-	var _form5 = __webpack_require__(497);
+	var _form5 = __webpack_require__(498);
 
 	var _form6 = _interopRequireDefault(_form5);
 
-	var _form7 = __webpack_require__(498);
+	var _form7 = __webpack_require__(499);
 
 	var _form8 = _interopRequireDefault(_form7);
 
@@ -53165,15 +53165,15 @@
 
 	var _twitter2 = _interopRequireDefault(_twitter);
 
-	var _quote = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./forms/quote\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _quote = __webpack_require__(480);
 
 	var _quote2 = _interopRequireDefault(_quote);
 
-	var _link = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./forms/link\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _link = __webpack_require__(481);
 
 	var _link2 = _interopRequireDefault(_link);
 
-	var _text = __webpack_require__(481);
+	var _text = __webpack_require__(482);
 
 	var _text2 = _interopRequireDefault(_text);
 
@@ -53215,7 +53215,6 @@
 	  }, {
 	    key: 'renderComponent',
 	    value: function renderComponent() {
-
 	      switch (this.props.item.type) {
 	        case _constants.TARGET_TYPES.HEADING.NAME:
 	        case _constants.TARGET_TYPES.SUB_HEADING.NAME:
@@ -53243,17 +53242,15 @@
 	            handleUpdateItem: this.handleUpdateItem,
 	            cancelButton: this.renderCancelButton()
 	          });
-	        // case TARGET_TYPES.QUOTE.NAME:
-	        //   console.log('quote')
-	        //   return (
-	        //     <Quote
-	        //       type={this.props.item.type}
-	        //       initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
-	        //       submitButtonLabel={this.renderSubmitButtonLabel()}
-	        //       handleUpdateItem={this.handleUpdateItem}
-	        //       cancelButton={this.renderCancelButton()}
-	        //     />
-	        //   );
+	        case _constants.TARGET_TYPES.QUOTE.NAME:
+	          console.log('quote');
+	          return _react2.default.createElement(_quote2.default, {
+	            type: this.props.item.type,
+	            initialValues: { sourceURL: this.props.item.sourceURL, description: this.props.item.description },
+	            submitButtonLabel: this.renderSubmitButtonLabel(),
+	            handleUpdateItem: this.handleUpdateItem,
+	            cancelButton: this.renderCancelButton()
+	          });
 	        case _constants.TARGET_TYPES.LINK.NAME:
 	          return _react2.default.createElement(_link2.default, {
 	            type: this.props.item.type,
@@ -53464,6 +53461,7 @@
 
 	ItemFormHeading.propTypes = {
 	  type: _react.PropTypes.string.isRequired,
+	  fields: _react.PropTypes.object.isRequired,
 	  submitButtonLabel: _react.PropTypes.string.isRequired,
 	  cancelButton: _react.PropTypes.object.isRequired,
 	  handleUpdateItem: _react.PropTypes.func.isRequired
@@ -54627,7 +54625,148 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 480 */,
+/* 480 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utilities = __webpack_require__(474);
+
+	var _textField = __webpack_require__(428);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _raisedButton = __webpack_require__(459);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _addCircle = __webpack_require__(475);
+
+	var _addCircle2 = _interopRequireDefault(_addCircle);
+
+	var _reduxForm = __webpack_require__(377);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ItemFormQuote = function (_Component) {
+	  _inherits(ItemFormQuote, _Component);
+
+	  function ItemFormQuote(props) {
+	    var _Object$getPrototypeO;
+
+	    _classCallCheck(this, ItemFormQuote);
+
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormQuote)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+
+	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(ItemFormQuote, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem(props) {
+	      var _this2 = this;
+
+	      return new Promise(function (resolve, reject) {
+	        setTimeout(function () {
+	          if (!props.description) {
+	            reject({ description: 'description is empty' });
+	          } else if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(props.sourceURL)) {
+	            reject({ sourceURL: 'URL is not valid' });
+	          } else {
+	            _this2.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
+	            resolve();
+	          }
+	        }, 1000);
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var _props$fields = _props.fields;
+	      var sourceURL = _props$fields.sourceURL;
+	      var description = _props$fields.description;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'item-form' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__name' },
+	          (0, _utilities.capitalize)(this.props.type)
+	        ),
+	        _react2.default.createElement(_textField2.default, _extends({
+	          className: 'item-form__input-text'
+	        }, description, {
+	          hintText: 'Enter the description',
+	          fullWidth: true,
+	          rows: 4,
+	          errorText: description.touched && description.error ? description.error : ''
+	        })),
+	        _react2.default.createElement(_textField2.default, _extends({
+	          className: 'item-form__input-text'
+	        }, sourceURL, {
+	          hintText: 'Enter the sourceURL',
+	          fullWidth: true,
+	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	        })),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__submit-box' },
+	          _react2.default.createElement(_raisedButton2.default, {
+	            label: this.props.submitButtonLabel,
+	            labelPosition: 'after',
+	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            disabled: submitting,
+	            onClick: handleSubmit(this.handleUpdateItem)
+	          }),
+	          this.props.cancelButton
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ItemFormQuote;
+	}(_react.Component);
+
+	ItemFormQuote.propTypes = {
+	  type: _react.PropTypes.string.isRequired,
+	  fields: _react.PropTypes.object.isRequired,
+	  submitButtonLabel: _react.PropTypes.string.isRequired,
+	  cancelButton: _react.PropTypes.object.isRequired,
+	  handleUpdateItem: _react.PropTypes.func.isRequired,
+	  submitting: _react.PropTypes.bool.isRequired
+	};
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'ItemFormQuote',
+	  fields: ['sourceURL', 'description']
+	})(ItemFormQuote);
+
+/***/ },
 /* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -54659,11 +54798,152 @@
 
 	var _addCircle2 = _interopRequireDefault(_addCircle);
 
-	var _selectField = __webpack_require__(482);
+	var _reduxForm = __webpack_require__(377);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ItemFormLink = function (_Component) {
+	  _inherits(ItemFormLink, _Component);
+
+	  function ItemFormLink(props) {
+	    var _Object$getPrototypeO;
+
+	    _classCallCheck(this, ItemFormLink);
+
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormLink)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+
+	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(ItemFormLink, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem(props) {
+	      var _this2 = this;
+
+	      return new Promise(function (resolve, reject) {
+	        setTimeout(function () {
+	          if (!props.sourceTitle) {
+	            reject({ sourceTitle: 'sourceTitle is empty' });
+	          } else if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(props.sourceURL)) {
+	            reject({ sourceURL: 'URL is not valid' });
+	          } else {
+	            _this2.props.handleUpdateItem({ sourceURL: props.sourceURL, sourceTitle: props.sourceTitle });
+	            resolve();
+	          }
+	        }, 1000);
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var _props$fields = _props.fields;
+	      var sourceURL = _props$fields.sourceURL;
+	      var sourceTitle = _props$fields.sourceTitle;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'item-form' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__name' },
+	          (0, _utilities.capitalize)(this.props.type)
+	        ),
+	        _react2.default.createElement(_textField2.default, _extends({
+	          className: 'item-form__input-text'
+	        }, sourceURL, {
+	          hintText: 'Enter the sourceURL',
+	          fullWidth: true,
+	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	        })),
+	        _react2.default.createElement(_textField2.default, _extends({
+	          className: 'item-form__input-text'
+	        }, sourceTitle, {
+	          hintText: 'Enter the sourceTitle',
+	          fullWidth: true,
+	          errorText: sourceTitle.touched && sourceTitle.error ? sourceTitle.error : ''
+	        })),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'item-form__submit-box' },
+	          _react2.default.createElement(_raisedButton2.default, {
+	            label: this.props.submitButtonLabel,
+	            labelPosition: 'after',
+	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            disabled: submitting,
+	            onClick: handleSubmit(this.handleUpdateItem)
+	          }),
+	          this.props.cancelButton
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ItemFormLink;
+	}(_react.Component);
+
+	ItemFormLink.propTypes = {
+	  type: _react.PropTypes.string.isRequired,
+	  fields: _react.PropTypes.object.isRequired,
+	  submitButtonLabel: _react.PropTypes.string.isRequired,
+	  cancelButton: _react.PropTypes.object.isRequired,
+	  handleUpdateItem: _react.PropTypes.func.isRequired,
+	  submitting: _react.PropTypes.bool.isRequired
+	};
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'ItemFormLink',
+	  fields: ['sourceURL', 'sourceTitle']
+	})(ItemFormLink);
+
+/***/ },
+/* 482 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utilities = __webpack_require__(474);
+
+	var _textField = __webpack_require__(428);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _raisedButton = __webpack_require__(459);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _addCircle = __webpack_require__(475);
+
+	var _addCircle2 = _interopRequireDefault(_addCircle);
+
+	var _selectField = __webpack_require__(483);
 
 	var _selectField2 = _interopRequireDefault(_selectField);
 
-	var _menuItem = __webpack_require__(488);
+	var _menuItem = __webpack_require__(489);
 
 	var _menuItem2 = _interopRequireDefault(_menuItem);
 
@@ -54689,8 +54969,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormText)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	    _this.state = { style: props.style == '' ? 1 : props.style };
-
+	    _this.state = { style: props.style };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
@@ -54706,7 +54985,10 @@
 	          if (!props.description) {
 	            reject({ description: 'description is empty' });
 	          } else {
-	            _this2.props.handleUpdateItem({ style: _this2.state.style, description: props.description });
+	            _this2.props.handleUpdateItem({
+	              style: _this2.state.style,
+	              description: props.description
+	            });
 	            resolve();
 	          }
 	        }, 1000);
@@ -54714,8 +54996,8 @@
 	    }
 	  }, {
 	    key: 'handleChange',
-	    value: function handleChange(e) {
-	      this.setState({ style: event.value });
+	    value: function handleChange(event, index, value) {
+	      this.setState({ style: value });
 	    }
 	  }, {
 	    key: 'render',
@@ -54769,6 +55051,10 @@
 	  return ItemFormText;
 	}(_react.Component);
 
+	ItemFormText.defaultProps = {
+	  style: 1
+	};
+
 	ItemFormText.propTypes = {
 	  type: _react.PropTypes.string.isRequired,
 	  style: _react.PropTypes.number,
@@ -54785,25 +55071,6 @@
 	  form: 'ItemFormText',
 	  fields: ['description']
 	})(ItemFormText);
-
-/***/ },
-/* 482 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _SelectField = __webpack_require__(483);
-
-	var _SelectField2 = _interopRequireDefault(_SelectField);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _SelectField2.default;
-	module.exports = exports['default'];
 
 /***/ },
 /* 483 */
@@ -54830,6 +55097,25 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _SelectField = __webpack_require__(485);
+
+	var _SelectField2 = _interopRequireDefault(_SelectField);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _SelectField2.default;
+	module.exports = exports['default'];
+
+/***/ },
+/* 485 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	Object.defineProperty(exports, "__esModule", {
@@ -54848,7 +55134,7 @@
 
 	var _textField2 = _interopRequireDefault(_textField);
 
-	var _DropDownMenu = __webpack_require__(485);
+	var _DropDownMenu = __webpack_require__(486);
 
 	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
 
@@ -55123,7 +55409,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 485 */
+/* 486 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55132,7 +55418,7 @@
 	  value: true
 	});
 
-	var _DropDownMenu = __webpack_require__(486);
+	var _DropDownMenu = __webpack_require__(487);
 
 	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
 
@@ -55142,7 +55428,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 486 */
+/* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -55165,11 +55451,11 @@
 
 	var _arrowDropDown2 = _interopRequireDefault(_arrowDropDown);
 
-	var _menu = __webpack_require__(487);
+	var _menu = __webpack_require__(488);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
-	var _menuItem = __webpack_require__(488);
+	var _menuItem = __webpack_require__(489);
 
 	var _menuItem2 = _interopRequireDefault(_menuItem);
 
@@ -55181,11 +55467,11 @@
 
 	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-	var _popover = __webpack_require__(489);
+	var _popover = __webpack_require__(490);
 
 	var _popover2 = _interopRequireDefault(_popover);
 
-	var _popoverAnimationFromTop = __webpack_require__(494);
+	var _popoverAnimationFromTop = __webpack_require__(495);
 
 	var _popoverAnimationFromTop2 = _interopRequireDefault(_popoverAnimationFromTop);
 
@@ -55620,7 +55906,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 487 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56235,7 +56521,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 488 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56266,11 +56552,11 @@
 
 	var _colors2 = _interopRequireDefault(_colors);
 
-	var _popover = __webpack_require__(489);
+	var _popover = __webpack_require__(490);
 
 	var _popover2 = _interopRequireDefault(_popover);
 
-	var _check = __webpack_require__(493);
+	var _check = __webpack_require__(494);
 
 	var _check2 = _interopRequireDefault(_check);
 
@@ -56282,7 +56568,7 @@
 
 	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-	var _menu = __webpack_require__(487);
+	var _menu = __webpack_require__(488);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
@@ -56590,7 +56876,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 489 */
+/* 490 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56629,7 +56915,7 @@
 
 	var _paper2 = _interopRequireDefault(_paper);
 
-	var _lodash = __webpack_require__(490);
+	var _lodash = __webpack_require__(491);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -56637,7 +56923,7 @@
 
 	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-	var _popoverDefaultAnimation = __webpack_require__(492);
+	var _popoverDefaultAnimation = __webpack_require__(493);
 
 	var _popoverDefaultAnimation2 = _interopRequireDefault(_popoverDefaultAnimation);
 
@@ -57023,7 +57309,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 490 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -57034,7 +57320,7 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var debounce = __webpack_require__(491);
+	var debounce = __webpack_require__(492);
 
 	/** Used as the `TypeError` message for "Functions" methods. */
 	var FUNC_ERROR_TEXT = 'Expected a function';
@@ -57125,7 +57411,7 @@
 
 
 /***/ },
-/* 491 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -57365,7 +57651,7 @@
 
 
 /***/ },
-/* 492 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57541,7 +57827,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 493 */
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57582,7 +57868,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 494 */
+/* 495 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57724,7 +58010,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 495 */
+/* 496 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57773,7 +58059,7 @@
 	exports.default = ProjectsIndex;
 
 /***/ },
-/* 496 */
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57822,7 +58108,7 @@
 	exports.default = ProjectsForm;
 
 /***/ },
-/* 497 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57871,7 +58157,7 @@
 	exports.default = SitesForm;
 
 /***/ },
-/* 498 */
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57920,7 +58206,7 @@
 	exports.default = AuthorsForm;
 
 /***/ },
-/* 499 */
+/* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57933,11 +58219,11 @@
 
 	var _reduxForm = __webpack_require__(377);
 
-	var _posts = __webpack_require__(500);
+	var _posts = __webpack_require__(501);
 
 	var _posts2 = _interopRequireDefault(_posts);
 
-	var _items = __webpack_require__(501);
+	var _items = __webpack_require__(502);
 
 	var _items2 = _interopRequireDefault(_items);
 
@@ -57952,7 +58238,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 500 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57996,7 +58282,7 @@
 	var INITIAL_STATE = { all: [], post: null, error: null, message: null };
 
 /***/ },
-/* 501 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58063,7 +58349,7 @@
 
 	var _constants = __webpack_require__(351);
 
-	var _lodash = __webpack_require__(502);
+	var _lodash = __webpack_require__(503);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -58072,7 +58358,7 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ },
-/* 502 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -70427,10 +70713,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(503)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(504)(module), (function() { return this; }())))
 
 /***/ },
-/* 503 */
+/* 504 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -70446,23 +70732,23 @@
 
 
 /***/ },
-/* 504 */
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(505);
+	var defaultClickRejectionStrategy = __webpack_require__(506);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(31).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(506)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(507)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 505 */
+/* 506 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -70473,7 +70759,7 @@
 
 
 /***/ },
-/* 506 */
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -70501,10 +70787,10 @@
 	var EventPluginUtils = __webpack_require__(33);
 	var EventPropagators = __webpack_require__(73);
 	var SyntheticUIEvent = __webpack_require__(87);
-	var TouchEventUtils = __webpack_require__(507);
+	var TouchEventUtils = __webpack_require__(508);
 	var ViewportMetrics = __webpack_require__(38);
 
-	var keyOf = __webpack_require__(508);
+	var keyOf = __webpack_require__(509);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -70650,7 +70936,7 @@
 
 
 /***/ },
-/* 507 */
+/* 508 */
 /***/ function(module, exports) {
 
 	/**
@@ -70698,7 +70984,7 @@
 
 
 /***/ },
-/* 508 */
+/* 509 */
 /***/ function(module, exports) {
 
 	/**
@@ -70738,7 +71024,7 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 509 */
+/* 510 */
 /***/ function(module, exports) {
 
 	'use strict';

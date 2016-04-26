@@ -27,5 +27,42 @@ describe('PostItemForm', () => {
     expect(component).to.contain('ItemHeading')
   });
 
+  it('shows image form', () => {
+    let item = { editing: true, type: 'ItemImage' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemForm, props, {});
+    expect(component).to.contain('ItemImage')
+  });
+
+  it('shows twitter form', () => {
+    let item = { editing: true, type: 'ItemTwitter' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemForm, props, {});
+    expect(component).to.contain('ItemTwitter')
+  });
+
+  it('shows quote form', () => {
+    let item = { editing: true, type: 'ItemQuote' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemForm, props, {});
+    expect(component).to.contain('ItemQuote')
+  });
+
+  it('shows link form', () => {
+    let item = { editing: true, type: 'ItemLink' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemForm, props, {});
+    expect(component).to.contain('ItemLink')
+  });
+
+  it('shows text form', () => {
+    let item = { editing: true, type: 'ItemText' };
+    props = { ...props, item };
+    const component = renderComponent(PostItemForm, props, {});
+    expect(component).to.contain('ItemText')
+  });
+
+
+
 });
     

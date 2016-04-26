@@ -11,9 +11,7 @@ class ItemFormText extends Component {
 
   constructor(props) {
     super(...props);
-
-    this.state = { style: props.style == '' ? 1 : props.style };
-    
+    this.state = { style: props.style };
     this.handleChange     = this.handleChange.bind(this);
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
@@ -24,15 +22,18 @@ class ItemFormText extends Component {
         if (!props.description) {
           reject({ description: 'description is empty' })
         } else {
-          this.props.handleUpdateItem({ style: this.state.style, description: props.description });
+          this.props.handleUpdateItem({ 
+            style: this.state.style, 
+            description: props.description 
+          });
           resolve();
         }
       }, 1000)
     })
   }
   
-  handleChange(e) {
-    this.setState({ style: event.value })
+  handleChange(event, index, value) {
+    this.setState({ style: value })
   }
 
   render() {
@@ -69,6 +70,10 @@ class ItemFormText extends Component {
     );
   }
 }
+
+ItemFormText.defaultProps = {
+  style: 1
+};
 
 ItemFormText.propTypes = {
   type: PropTypes.string.isRequired,

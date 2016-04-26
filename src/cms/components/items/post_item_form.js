@@ -29,7 +29,6 @@ export default class PostItemForm extends Component {
   }
 
   renderComponent() {
-   
     switch (this.props.item.type) {
       case TARGET_TYPES.HEADING.NAME:
       case TARGET_TYPES.SUB_HEADING.NAME:
@@ -63,17 +62,17 @@ export default class PostItemForm extends Component {
             cancelButton={this.renderCancelButton()}
           />
         );
-      // case TARGET_TYPES.QUOTE.NAME:
-      //   console.log('quote')
-      //   return (
-      //     <Quote
-      //       type={this.props.item.type}
-      //       initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
-      //       submitButtonLabel={this.renderSubmitButtonLabel()}
-      //       handleUpdateItem={this.handleUpdateItem}
-      //       cancelButton={this.renderCancelButton()}
-      //     />
-      //   );
+      case TARGET_TYPES.QUOTE.NAME:
+        console.log('quote')
+        return (
+          <Quote
+            type={this.props.item.type}
+            initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
+            submitButtonLabel={this.renderSubmitButtonLabel()}
+            handleUpdateItem={this.handleUpdateItem}
+            cancelButton={this.renderCancelButton()}
+          />
+        );
       case TARGET_TYPES.LINK.NAME:
         return (
           <Link
