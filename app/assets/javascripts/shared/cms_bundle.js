@@ -36442,6 +36442,7 @@
 	exports.fetchPosts = fetchPosts;
 	exports.fetchPost = fetchPost;
 	exports.createPost = createPost;
+	exports.createPostRequest = createPostRequest;
 	exports.updatePost = updatePost;
 	exports.deletePost = deletePost;
 	exports.togglePost = togglePost;
@@ -36451,6 +36452,8 @@
 	var _axios2 = _interopRequireDefault(_axios);
 
 	var _constants = __webpack_require__(351);
+
+	var _utilities = __webpack_require__(474);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36505,13 +36508,26 @@
 	}
 
 	function createPost(props) {
-	  var request = _axios2.default.post('' + _constants.ROOT_URL + _constants.POST_PATH, props);
+	  var post = (0, _utilities.trimPost)(props.post);
+	  var request = void 0;
+	  if (props.post.id) {
+	    request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + post.id, post);
+	  } else {
+	    request = _axios2.default.post('' + _constants.ROOT_URL + _constants.POST_PATH, post);
+	  }
 	  return function (dispatch) {
+	    dispatch(createPostRequest());
 	    return request.then(function () {
 	      return dispatch(createPostSuccess());
 	    }, function (error) {
 	      return dispatch(createPostFailure(error.data));
 	    });
+	  };
+	}
+
+	function createPostRequest() {
+	  return {
+	    type: _constants.CREATE_POST.REQUEST
 	  };
 	}
 
@@ -41497,6 +41513,10 @@
 
 	var _post_item_block2 = _interopRequireDefault(_post_item_block);
 
+	var _refreshIndicator = __webpack_require__(479);
+
+	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -41506,8 +41526,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var fields = exports.fields = ['title', 'description', 'publishedAt'];
 
 	var PostsForm = function (_Component) {
 	  _inherits(PostsForm, _Component);
@@ -41519,6 +41537,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostsForm)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.handleAddItem = _this.handleAddItem.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
@@ -41536,6 +41555,13 @@
 	          _this2.props.fetchItems(post.items);
 	        });
 	      }
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(props) {
+	      console.log(props);
+	      console.log(this.props.items);
+	      this.props.createPost({ post: _extends({}, props, { itemsAttributes: this.props.items }) }).then(this.context.router.push('/cms'));
 	    }
 	  }, {
 	    key: 'handleAddItem',
@@ -41556,12 +41582,6 @@
 	    key: 'handleMoveItem',
 	    value: function handleMoveItem(sortRank, type) {
 	      this.props.moveItem(sortRank, type);
-	    }
-	  }, {
-	    key: 'onSubmit',
-	    value: function onSubmit(props) {
-	      console.log(props);
-	      this.props.createPost(props).then(this.context.router.push('/cms/posts'));
 	    }
 	  }, {
 	    key: 'renderItems',
@@ -41589,6 +41609,20 @@
 	      );
 	    }
 	  }, {
+	    key: 'renderLoadingIndicator',
+	    value: function renderLoadingIndicator() {
+	      if (this.props.loading) {
+	        return _react2.default.createElement(_refreshIndicator2.default, {
+	          size: 40,
+	          left: 100,
+	          top: 100,
+	          loadingColor: "#FF9800",
+	          status: 'loading',
+	          style: { display: 'inline-block', position: 'relative' }
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
@@ -41600,7 +41634,8 @@
 
 	      return _react2.default.createElement(
 	        'form',
-	        { onSubmit: handleSubmit(this.onSubmit.bind(this)), className: 'form' },
+	        { onSubmit: handleSubmit(this.handleSubmit), className: 'form' },
+	        this.renderLoadingIndicator(),
 	        _react2.default.createElement(
 	          'h2',
 	          { className: 'form-heading' },
@@ -41655,9 +41690,25 @@
 	  return errors;
 	}
 
+	var fields = exports.fields = ['title', 'description', 'publishedAt'];
+
 	function mapStateToProps(state) {
 	  return { post: state.posts.post, items: state.items };
 	}
+
+	PostsForm.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
+	  items: _react.PropTypes.array.isRequired,
+	  params: _react.PropTypes.object,
+	  fetchPost: _react.PropTypes.func.isRequired,
+	  createPost: _react.PropTypes.func.isRequired,
+	  deletePost: _react.PropTypes.func.isRequired,
+	  fetchItems: _react.PropTypes.func.isRequired,
+	  createItem: _react.PropTypes.func.isRequired,
+	  deleteItem: _react.PropTypes.func.isRequired,
+	  updateItem: _react.PropTypes.func.isRequired,
+	  moveItem: _react.PropTypes.func.isRequired
+	};
 
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'PostsNew',
@@ -41667,7 +41718,6 @@
 	  fetchPost: _posts.fetchPost,
 	  createPost: _posts.createPost,
 	  deletePost: _posts.deletePost,
-	  updatePost: _posts.updatePost,
 	  fetchItems: _items.fetchItems,
 	  createItem: _items.createItem,
 	  deleteItem: _items.deleteItem,
@@ -45033,8 +45083,7 @@
 	        _react2.default.createElement(_listItem2.default, {
 	          leftAvatar: _react2.default.createElement('img', {
 	            style: { width: '100%', height: '100%', top: 0, left: 0 },
-	            src: this.props.image
-	          }),
+	            src: this.props.image }),
 	          onClick: this.handleAddItem
 	        })
 	      );
@@ -52108,7 +52157,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.item);
 	      return _react2.default.createElement(
 	        'li',
 	        null,
@@ -53243,7 +53291,6 @@
 	            cancelButton: this.renderCancelButton()
 	          });
 	        case _constants.TARGET_TYPES.QUOTE.NAME:
-	          console.log('quote');
 	          return _react2.default.createElement(_quote2.default, {
 	            type: this.props.item.type,
 	            initialValues: { sourceURL: this.props.item.sourceURL, description: this.props.item.description },
@@ -53486,14 +53533,41 @@
 /* 474 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	exports.capitalize = capitalize;
+	exports.trimPost = trimPost;
 	function capitalize(string) {
 	  return string.substring(0, 1).toUpperCase() + string.substring(1);
+	}
+
+	function trimPost(params) {
+	  return _extends({}, convertKeyNameInSnakeCase(params), {
+	    items_attributes: params.itemsAttributes.filter(function (item) {
+	      return !item.editing;
+	    }).map(function (item) {
+	      return convertKeyNameInSnakeCase(item);
+	    })
+	  });
+	}
+
+	function convertKeyNameInSnakeCase(object) {
+	  return Object.keys(object).reduce(function (newObject, oldKey) {
+	    newObject[convertCamelCaseToSnakeCase(oldKey)] = object[oldKey];
+	    return newObject;
+	  }, {});
+	}
+
+	function convertCamelCaseToSnakeCase(string) {
+	  return string.replace(/([A-Z])/g, function (string) {
+	    return '_' + string.charAt(0).toLowerCase();
+	  });
 	}
 
 /***/ },
@@ -58267,21 +58341,22 @@
 	  var action = arguments[1];
 
 	  switch (action.type) {
+	    case _constants.CREATE_POST.REQUEST:
+	      return _extends({}, state, { loading: true });
 	    case _constants.FETCH_POSTS.SUCCESS:
 	      return _extends({}, state, { all: action.payload });
 	    case _constants.FETCH_POST.SUCCESS:
 	      return _extends({}, state, { post: action.payload });
 	    case _constants.CREATE_POST.SUCCESS:
-	    case _constants.UPDATE_POST.SUCCESS:
-	      return _extends({}, state, { message: 'Successfully Saved' });
+	      return _extends({}, state, { message: 'Successfully Saved', loading: false });
 	    case _constants.DELETE_POST.SUCCESS:
 	      return _extends({}, state, { message: 'Successfully Deleted' });
 	    case _constants.TOGGLE_POST.SUCCESS:
 	      return _extends({}, state, { message: 'Successfully Change Published Status' });
+	    case _constants.CREATE_POST.FAILURE:
+	      return _extends({}, state, { error: action.payload, loading: false });
 	    case _constants.FETCH_POSTS.FAILURE:
 	    case _constants.FETCH_POST.FAILURE:
-	    case _constants.CREATE_POST.FAILURE:
-	    case _constants.UPDATE_POST.FAILURE:
 	    case _constants.DELETE_POST.FAILURE:
 	    case _constants.TOGGLE_POST.FAILURE:
 	      return _extends({}, state, { error: action.payload });

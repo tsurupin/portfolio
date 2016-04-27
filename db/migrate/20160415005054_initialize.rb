@@ -16,7 +16,7 @@ class Initialize < ActiveRecord::Migration[5.0]
       t.string :image, null: false
     end
 
-    create_table :posts do |t|
+    create_table :post do |t|
       t.string :title, null: false
       t.text :description, null: false
       t.boolean :accepted, null: false, default: false

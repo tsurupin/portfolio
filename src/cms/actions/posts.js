@@ -3,7 +3,7 @@ import {
   ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST,
   CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST
 } from '../constants';
-
+import { trimPost } from '../utilities';
 
 export function fetchPosts() {
   const request = axios.get(`${ROOT_URL}${POST_PATH}`);
@@ -54,13 +54,26 @@ function fetchPostFailure(error) {
 }
 
 export function createPost(props) {
-  const request = axios.post(`${ROOT_URL}${POST_PATH}`, props);
+  const post = trimPost(props.post);
+  let request;
+  if (props.post.id) {
+    request = axios.patch(`${ROOT_URL}${POST_PATH}/${post.id}`, post);
+  } else {
+    request = axios.post(`${ROOT_URL}${POST_PATH}`, post);
+  }
   return dispatch => {
+    dispatch(createPostRequest());
     return request.then(
       () => dispatch(createPostSuccess()),
       error => dispatch(createPostFailure(error.data))
     )
   };
+}
+
+export function  createPostRequest() {
+  return {
+    type: CREATE_POST.REQUEST
+  }
 }
 
 function createPostSuccess() {

@@ -4,21 +4,22 @@ const INITIAL_STATE = { all: [], post: null, error: null, message: null };
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
+    case CREATE_POST.REQUEST:
+      return { ...state, loading: true };
     case FETCH_POSTS.SUCCESS:
       return { ...state, all: action.payload };
     case FETCH_POST.SUCCESS:
       return { ...state, post: action.payload };
     case CREATE_POST.SUCCESS:
-    case UPDATE_POST.SUCCESS:
-      return { ...state, message: 'Successfully Saved' };
+      return { ...state, message: 'Successfully Saved', loading: false };
     case DELETE_POST.SUCCESS:
       return { ...state, message: 'Successfully Deleted' };
     case TOGGLE_POST.SUCCESS:
       return { ...state, message: 'Successfully Change Published Status' };
+    case CREATE_POST.FAILURE:
+      return { ...state, error: action.payload, loading: false };
     case FETCH_POSTS.FAILURE:
     case FETCH_POST.FAILURE:
-    case CREATE_POST.FAILURE:
-    case UPDATE_POST.FAILURE:
     case DELETE_POST.FAILURE:
     case TOGGLE_POST.FAILURE:
       return { ...state, error: action.payload };

@@ -63,7 +63,6 @@ export default class PostItemForm extends Component {
           />
         );
       case TARGET_TYPES.QUOTE.NAME:
-        console.log('quote')
         return (
           <Quote
             type={this.props.item.type}

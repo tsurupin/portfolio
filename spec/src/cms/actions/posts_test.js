@@ -3,7 +3,7 @@ import {
   fetchPosts,
   fetchPost,
   createPost,
-  updatePost,
+  createPostRequest,
   deletePost,
   togglePost
 } from '../../../../src/cms/actions/posts';
@@ -11,6 +11,7 @@ import {
   ROOT_URL, POST_PATH, TEST_DOMAIN, FETCH_POSTS, FETCH_POST,
   CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST
 } from '../../../../src/cms/constants';
+import { trimPost } from '../../../../src/cms/utilities';
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -103,18 +104,46 @@ describe('post actions', () => {
   });
 
   describe('createPost', () => {
+    let props;
+    beforeEach(() => {
+      props = {
+        post: {
+          title: 'hoge', description: 'description',
+          itemsAttributes: [{ type: 'ItemHeading', editing: false }]
+        }
+      };
+    });
 
     it('create CREATE_POST_SUCCESS when creating post has been done', () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${POST_PATH}`, { title: 'hoge' })
+        .post(`${ROOT_URL}${POST_PATH}`, trimPost(props.post))
         .reply(201);
 
       const store = mockStore({});
-      const expectedResponse = [{
-        type: CREATE_POST.SUCCESS
-      }];
+      const expectedResponse = [
+        { type: CREATE_POST.REQUEST },
+        { type: CREATE_POST.SUCCESS }
+      ];
 
-      return store.dispatch(createPost({ title: 'hoge' }))
+      return store.dispatch(createPost(props))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create CREATE_POST_SUCCESS when updating post has been done', () => {
+      props.post.id = 1;
+      nock(TEST_DOMAIN)
+        .patch(`${ROOT_URL}${POST_PATH}/1`, trimPost(props.post))
+        .reply(200);
+
+      const store = mockStore({});
+      const expectedResponse = [
+        { type: CREATE_POST.REQUEST },
+        { type: CREATE_POST.SUCCESS }
+      ];
+      
+      return store.dispatch(createPost(props))
         .then(() => {
           expect(store.getActions()).to.eql(expectedResponse)
         })
@@ -122,16 +151,19 @@ describe('post actions', () => {
 
     it('create CREATE_POST_FAILURE when creating post has been done', () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${POST_PATH}`, { title: 'hoge' })
-        .reply(400);
+        .post(`${ROOT_URL}${POST_PATH}`, trimPost(props.post))
+        .reply(400, 'error');
 
       const store = mockStore({});
-      const expectedResponse = [{
-        type: CREATE_POST.FAILURE,
-        payload: ''
-      }];
+      const expectedResponse = [
+        { type: CREATE_POST.REQUEST },
+        { 
+          type: CREATE_POST.FAILURE, 
+          payload: 'error' 
+        }
+      ];
 
-      return store.dispatch(createPost({ title: 'hoge' }))
+      return store.dispatch(createPost(props))
         .then(() => {
           expect(store.getActions()).to.eql(expectedResponse)
         })
@@ -139,42 +171,42 @@ describe('post actions', () => {
 
   });
 
-  describe('updatePost', () => {
-
-    it('create UPDATE_POST_SUCCESS when updating post has been done', () => {
-      nock(TEST_DOMAIN)
-        .patch(`${ROOT_URL}${POST_PATH}/1`, { id: 1, title: 'hoge' })
-        .reply(200);
-
-      const store = mockStore({});
-      const expectedResponse = [{
-        type: UPDATE_POST.SUCCESS
-      }];
-
-      return store.dispatch(updatePost({ id: 1, title: 'hoge' }))
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
-    });
-
-    it('create UPDATE_POST_FAILURE when creating post has been done', () => {
-      nock(TEST_DOMAIN)
-        .patch(`${ROOT_URL}${POST_PATH}/1`, { id: 1, title: 'hoge' })
-        .reply(400);
-
-      const store = mockStore({});
-      const expectedResponse = [{
-        type: UPDATE_POST.FAILURE,
-        payload: ''
-      }];
-
-      return store.dispatch(updatePost({ id: 1, title: 'hoge' }))
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
-    });
-
-  });
+  // describe('updatePost', () => {
+  //
+  //   it('create UPDATE_POST_SUCCESS when updating post has been done', () => {
+  //     nock(TEST_DOMAIN)
+  //       .patch(`${ROOT_URL}${POST_PATH}/1`, { id: 1, title: 'hoge' })
+  //       .reply(200);
+  //
+  //     const store = mockStore({});
+  //     const expectedResponse = [{
+  //       type: UPDATE_POST.SUCCESS
+  //     }];
+  //
+  //     return store.dispatch(updatePost({ id: 1, title: 'hoge' }))
+  //       .then(() => {
+  //         expect(store.getActions()).to.eql(expectedResponse)
+  //       })
+  //   });
+  //
+  //   it('create UPDATE_POST_FAILURE when creating post has been done', () => {
+  //     nock(TEST_DOMAIN)
+  //       .patch(`${ROOT_URL}${POST_PATH}/1`, { id: 1, title: 'hoge' })
+  //       .reply(400);
+  //
+  //     const store = mockStore({});
+  //     const expectedResponse = [{
+  //       type: UPDATE_POST.FAILURE,
+  //       payload: ''
+  //     }];
+  //
+  //     return store.dispatch(updatePost({ id: 1, title: 'hoge' }))
+  //       .then(() => {
+  //         expect(store.getActions()).to.eql(expectedResponse)
+  //       })
+  //   });
+  //
+  // });
 
   describe('deletePost', () => {
     it('create DELETE_POST_SUCCESS when deleting post has been done', () => {

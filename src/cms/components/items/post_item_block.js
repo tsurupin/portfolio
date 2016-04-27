@@ -30,7 +30,6 @@ export default class PostItemBlock extends Component {
   }
 
   render() {
-    console.log(this.props.item);
     return <li>{this.renderComponent()}</li>;
   }
 }

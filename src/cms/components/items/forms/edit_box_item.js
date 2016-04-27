@@ -17,11 +17,10 @@ export default class ItemEditBoxItem extends Component {
       <li>
         <ListItem
           leftAvatar={
-                        <img
-                            style={{width: '100%', height: '100%', top: 0, left: 0}}
-                            src={this.props.image}
-                        />
-                        }
+            <img 
+              style={{width: '100%', height: '100%', top: 0, left: 0}}
+              src={this.props.image}/>
+          }
           onClick={this.handleAddItem}
         />
       </li>

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPost, createPost, deletePost, updatePost } from '../../actions/posts';
+import { fetchPost, createPost, deletePost } from '../../actions/posts';
 import { fetchItems, createItem, updateItem, deleteItem, moveItem } from '../../actions/items';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
@@ -8,11 +8,7 @@ import TextField from 'material-ui/lib/text-field';
 import DatePicker from '../../components/utilities/date_picker_wrapper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import PostItemBlock from '../../components/items/post_item_block';
-
-export const fields = [
-  'title', 'description', 'publishedAt'
-];
-
+import RefreshIndicator from 'material-ui/lib/refresh-indicator';
 
 class PostsForm extends Component {
   static contextTypes = {
@@ -22,6 +18,7 @@ class PostsForm extends Component {
   constructor(props) {
     super(...props);
 
+    this.handleSubmit  = this.handleSubmit.bind(this);
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
@@ -36,7 +33,13 @@ class PostsForm extends Component {
           }
         )
     }
+  }
 
+  handleSubmit(props) {
+    console.log(props);
+    console.log(this.props.items);
+    this.props.createPost({ post: { ...props, itemsAttributes: this.props.items }})
+      .then(this.context.router.push('/cms'));
   }
 
   handleAddItem(type) {
@@ -55,12 +58,6 @@ class PostsForm extends Component {
     this.props.moveItem(sortRank, type)
   }
 
-
-  onSubmit(props) {
-    console.log(props);
-    this.props.createPost(props)
-      .then(this.context.router.push('/cms/posts'));
-  }
 
   renderItems() {
     return (
@@ -84,10 +81,26 @@ class PostsForm extends Component {
     );
   }
 
+  renderLoadingIndicator() {
+    if (this.props.loading) {
+      return (
+        <RefreshIndicator
+          size={40}
+          left={100}
+          top={100}
+          loadingColor={"#FF9800"}
+          status="loading"
+          style={{display: 'inline-block', position: 'relative'}}
+        />
+      );
+    }
+  }
+
   render() {
     const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form">
+      <form onSubmit={handleSubmit(this.handleSubmit)} className="form">
+        {this.renderLoadingIndicator()}
         <h2 className="form-heading">Create New Post</h2>
         <TextField
           {...title}
@@ -134,9 +147,28 @@ function validate(values) {
   return errors;
 }
 
+export const fields = [
+  'title', 'description', 'publishedAt'
+];
+
 function mapStateToProps(state) {
   return { post: state.posts.post, items: state.items }
 }
+
+PostsForm.propTypes = {
+  fields: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
+  params: PropTypes.object,
+  fetchPost: PropTypes.func.isRequired,
+  createPost: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  fetchItems: PropTypes.func.isRequired,
+  createItem: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  updateItem: PropTypes.func.isRequired,
+  moveItem: PropTypes.func.isRequired
+};
+
 
 export default reduxForm({
   form: 'PostsNew',
@@ -146,7 +178,6 @@ export default reduxForm({
   fetchPost,
   createPost,
   deletePost,
-  updatePost,
   fetchItems,
   createItem,
   deleteItem,
