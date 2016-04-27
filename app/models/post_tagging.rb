@@ -7,7 +7,7 @@
 #  post_tag_id :integer          not null
 #
 
-class PostTagging < ApplicationRecord
+class PostTagging < ActiveRecord::Base
   belongs_to :post, touch: true
   belongs_to :post_tag
 end

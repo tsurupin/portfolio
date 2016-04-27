@@ -225,4 +225,76 @@ http_interactions:
         Time (US & Canada)","geo_enabled":false,"verified":true,"statuses_count":1422,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/658353847597838336\/gudlMh3p_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/658353847597838336\/gudlMh3p_normal.jpg","profile_link_color":"0084B4","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":true,"default_profile":true,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":183,"favorite_count":263,"favorited":false,"retweeted":false,"lang":"en"}'
     http_version: 
   recorded_at: Mon, 25 Apr 2016 02:39:48 GMT
+- request:
+    method: post
+    uri: https://api.twitter.com/oauth2/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - TwitterRubyGem/5.16.0
+      Authorization:
+      - Basic c2FYVFA2bnJPbTRrdERraEgweVhxREFYZzp3dGZTWDZzeWRFWnBYSE1FbnprTE80TkJ5c2lYMUJicUdLWncyWkJiYXlUeW00cnlJSA==
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '154'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Wed, 27 Apr 2016 07:01:13 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Wed, 27 Apr 2016 07:01:13 GMT
+      Ml:
+      - A
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_a
+      Set-Cookie:
+      - guest_id=v1%3A146174047381675708; Domain=.twitter.com; Path=/; Expires=Fri,
+        27-Apr-2018 07:01:13 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Connection-Hash:
+      - bb540023a08e33687cfdebbb124df18f
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Response-Time:
+      - '79'
+      X-Transaction:
+      - 6a05a68682c4bd53
+      X-Tsa-Request-Body-Time:
+      - '0'
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Ua-Compatible:
+      - IE=edge,chrome=1
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: '{"token_type":"bearer","access_token":"AAAAAAAAAAAAAAAAAAAAAHNSuwAAAAAAGFbNzjUO75%2FvTUwXdqUMrBwvdTg%3DRR76PZPdkRVHVCFZtJgiEd319EzYJBQzlcVZnfvRvuptzql7pd"}'
+    http_version: 
+  recorded_at: Wed, 27 Apr 2016 07:01:13 GMT
 recorded_with: VCR 3.0.1

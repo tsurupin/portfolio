@@ -11,7 +11,7 @@
 #  updated_at  :datetime         not null
 #
 
-class Item < ApplicationRecord
+class Item < ActiveRecord::Base
   belongs_to :post, touch: true
   belongs_to :target, polymorphic: true
 

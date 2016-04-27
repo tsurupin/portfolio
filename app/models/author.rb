@@ -10,7 +10,7 @@
 #  updated_at  :datetime         not null
 #
 
-class Author < ApplicationRecord
+class Author < ActiveRecord::Base
   has_many :social_accounts, dependent: :destroy
 
   mount_uploader :image, AuthorImageUploader

@@ -8,6 +8,6 @@
 #  updated_at :datetime         not null
 #
 
-class PostTag < ApplicationRecord
+class PostTag < ActiveRecord::Base
   has_many :post_taggings, dependent: :destroy
 end

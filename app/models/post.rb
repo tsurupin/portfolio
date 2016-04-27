@@ -11,7 +11,7 @@
 #  updated_at   :datetime         not null
 #
 
-class Post < ApplicationRecord
+class Post < ActiveRecord::Base
   has_many :post_taggings, dependent: :destroy
   has_many :post_tags, through: :post_taggins
   has_many :items, dependent: :destroy

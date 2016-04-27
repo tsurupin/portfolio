@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 
-class ProjectTag < ApplicationRecord
+class ProjectTag < ActiveRecord::Base
   has_many :project_taggings, dependent: :destroy
 
   validates :name, presence: true

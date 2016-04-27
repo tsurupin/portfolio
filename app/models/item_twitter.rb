@@ -10,7 +10,7 @@
 #  author_screen_name :string           not null
 #
 
-class ItemTwitter < ApplicationRecord
+class ItemTwitter < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
 
   validates :source_url, presence: true

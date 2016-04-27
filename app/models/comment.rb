@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class Comment < ApplicationRecord
+class Comment < ActiveRecord::Base
   belongs_to :post, touch: true
   belongs_to :reply, class_name: 'Comment'
 end

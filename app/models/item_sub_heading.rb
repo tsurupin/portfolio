@@ -6,7 +6,7 @@
 #  title :string           not null
 #
 
-class ItemSubHeading < ApplicationRecord
+class ItemSubHeading < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
 
   validates :title, presence: true

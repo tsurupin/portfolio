@@ -1,4 +1,4 @@
-class Initialize < ActiveRecord::Migration[5.0]
+class Initialize < ActiveRecord::Migration
   def change
 
     create_table :authors do |t|
