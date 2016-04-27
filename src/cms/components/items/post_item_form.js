@@ -17,10 +17,10 @@ export default class PostItemForm extends Component {
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
   }
 
-  handleUpdateItem(callbackProps) {
+  handleUpdateItem(updatedProps) {
     this.props.handleUpdateItem(
       this.props.sortRank,
-      { ...this.props.item, ...callbackProps, isNew: false, editing: false }
+      { ...this.props.item, ...updatedProps, isNew: false, editing: false }
     )
   }
 
@@ -29,12 +29,12 @@ export default class PostItemForm extends Component {
   }
 
   renderComponent() {
-    switch (this.props.item.type) {
+    switch (this.props.item.targetType) {
       case TARGET_TYPES.HEADING.NAME:
       case TARGET_TYPES.SUB_HEADING.NAME:
         return (
           <Heading
-            type={this.props.item.type}
+            targetType={this.props.item.targetType}
             initialValues={{title: this.props.item.title}}
             submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
@@ -44,7 +44,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.IMAGE.NAME:
         return (
           <Image
-            type={this.props.item.type}
+            targetType={this.props.item.targetType}
             image={this.props.item.image}
             submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
@@ -54,7 +54,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.TWITTER.NAME:
         return (
           <Twitter
-            type={this.props.item.type}
+            targetType={this.props.item.targetType}
             initialValues={{sourceURL: this.props.item.sourceURL}}
             sortRank={this.props.sortRank}
             submitButtonLabel={this.renderSubmitButtonLabel()}
@@ -65,7 +65,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.QUOTE.NAME:
         return (
           <Quote
-            type={this.props.item.type}
+            targetType={this.props.item.targetType}
             initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
             submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
@@ -75,7 +75,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.LINK.NAME:
         return (
           <Link
-            type={this.props.item.type}
+            targetType={this.props.item.targetType}
             initialValues={{ sourceURL: this.props.item.sourceURL, sourceTitle: this.props.item.sourceTitle }}
             submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
@@ -85,7 +85,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.TEXT.NAME:
         return (
           <Text
-            type={this.props.item.type}
+            targetType={this.props.item.targetType}
             initialValues={{ description: this.props.item.description }}
             style={this.props.item.style}
             submitButtonLabel={this.renderSubmitButtonLabel()}
@@ -122,7 +122,7 @@ export default class PostItemForm extends Component {
 
 PostItemForm.propTypes = {
   item: PropTypes.shape({
-    type: PropTypes.string.isRequired,
+    targetType: PropTypes.string.isRequired,
     isNew: PropTypes.bool.isRequired,
     editing: PropTypes.bool.isRequired,
     title: PropTypes.string

@@ -64,7 +64,7 @@ export default class ItemFormImage extends Component {
   render() {
     return (
       <div className='item-form'>
-        <div className='item-form__name'>{capitalize(this.props.type)}</div>
+        <div className='item-form__name'>{capitalize(this.props.targetType)}</div>
         <Dropzone
           accepte='image/*'
           multipe={false}
@@ -89,7 +89,7 @@ export default class ItemFormImage extends Component {
 }
 
 ItemFormImage.propTypes = {
-  type: PropTypes.string.isRequired,
+  targetType: PropTypes.string.isRequired,
   image: PropTypes.string,
   submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.element.isRequired,

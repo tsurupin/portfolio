@@ -9,7 +9,7 @@ describe('ItemHeadingForm', () => {
   const handleUpdateItem = sinon.spy();
   let component;
   let props = {
-    type: 'ItemHeading',
+    targetType: 'ItemHeading',
     cancelButton: <RaisedButton
       className="item-form__cancel-button"
       label="Cancel"

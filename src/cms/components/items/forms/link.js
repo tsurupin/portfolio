@@ -21,7 +21,7 @@ class ItemFormLink extends Component {
     const { handleSubmit, submitting, fields: { sourceURL, sourceTitle } } = this.props;
     return (
       <div className="item-form">
-        <div className="item-form__name">{capitalize(this.props.type)}</div>
+        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
         <TextField
           className="item-form__input-text"
           {...sourceURL}
@@ -53,7 +53,7 @@ class ItemFormLink extends Component {
 }
 
 ItemFormLink.propTypes = {
-  type: PropTypes.string.isRequired,
+  targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
   submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,

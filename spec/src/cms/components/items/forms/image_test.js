@@ -8,7 +8,7 @@ describe('ItemFormImage', () => {
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();
   let props = {
-    type: 'ItemImage',
+    targetType: 'ItemImage',
     submitButtonLabel: 'Update',
     sortRank: 1,
     cancelButton: <RaisedButton

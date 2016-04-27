@@ -3,10 +3,10 @@
 # Table name: sites
 #
 #  id          :integer          not null, primary key
-#  title       :string           not null
-#  description :text             not null
-#  image       :string
-#  source_url  :string
+#  title       :string(255)      not null
+#  description :text(65535)      not null
+#  image       :string(255)
+#  source_url  :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

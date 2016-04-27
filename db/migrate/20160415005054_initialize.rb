@@ -16,9 +16,9 @@ class Initialize < ActiveRecord::Migration
       t.string :image, null: false
     end
 
-    create_table :post do |t|
+    create_table :posts do |t|
       t.string :title, null: false
-      t.text :description, null: false
+      t.text :description
       t.boolean :accepted, null: false, default: false
       t.datetime :published_at
 
@@ -53,7 +53,6 @@ class Initialize < ActiveRecord::Migration
     add_index :items, [:post_id, :sort_rank]
 
     create_table :item_images do |t|
-      t.text    :source_url
       t.string    :image, null: false
     end
 
@@ -77,7 +76,6 @@ class Initialize < ActiveRecord::Migration
 
     create_table :item_quotes do |t|
       t.text       :description, null: false
-      t.string     :source_title, null: false
       t.text       :source_url, null: false
     end
 

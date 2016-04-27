@@ -109,14 +109,14 @@ describe('post actions', () => {
       props = {
         post: {
           title: 'hoge', description: 'description',
-          itemsAttributes: [{ type: 'ItemHeading', editing: false }]
+          itemsAttributes: [{ targetType: 'ItemHeading', editing: false }]
         }
       };
     });
 
     it('create CREATE_POST_SUCCESS when creating post has been done', () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${POST_PATH}`, trimPost(props.post))
+        .post(`${ROOT_URL}${POST_PATH}`, { post: trimPost(props.post) })
         .reply(201);
 
       const store = mockStore({});
@@ -134,7 +134,7 @@ describe('post actions', () => {
     it('create CREATE_POST_SUCCESS when updating post has been done', () => {
       props.post.id = 1;
       nock(TEST_DOMAIN)
-        .patch(`${ROOT_URL}${POST_PATH}/1`, trimPost(props.post))
+        .patch(`${ROOT_URL}${POST_PATH}/1`, { post: trimPost(props.post) })
         .reply(200);
 
       const store = mockStore({});
@@ -151,7 +151,7 @@ describe('post actions', () => {
 
     it('create CREATE_POST_FAILURE when creating post has been done', () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${POST_PATH}`, trimPost(props.post))
+        .post(`${ROOT_URL}${POST_PATH}`, { post: trimPost(props.post) })
         .reply(400, 'error');
 
       const store = mockStore({});
@@ -163,7 +163,7 @@ describe('post actions', () => {
         }
       ];
 
-      return store.dispatch(createPost(props))
+      return store.dispatch(createPost(props)) 
         .then(() => {
           expect(store.getActions()).to.eql(expectedResponse)
         })

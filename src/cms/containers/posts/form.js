@@ -42,8 +42,8 @@ class PostsForm extends Component {
       .then(this.context.router.push('/cms'));
   }
 
-  handleAddItem(type) {
-    this.props.createItem(type);
+  handleAddItem(targetType) {
+    this.props.createItem(targetType);
   }
 
   handleUpdateItem(sortRank, item) {

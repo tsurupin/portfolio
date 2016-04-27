@@ -10,7 +10,7 @@ describe('PostItemBlock', () => {
     handleUpdateItem: sinon.spy()
   };
   it('shows postItemForm', () => {
-    let item = { editing: true, type: 'ItemHeading' };
+    let item = { editing: true, targetType: 'ItemHeading' };
     props = { ...props, item };
     const component = renderComponent(PostItemBlock, props, {});
     expect(component.find('.item-form')).to.exist

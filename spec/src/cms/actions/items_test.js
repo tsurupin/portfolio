@@ -22,11 +22,11 @@ const mockStore = configureMockStore(middleWares);
 describe('item actions', () => {
   describe('fetchItems', () => {
     it('creates FETCH_ITEMS and items', () => {
-      const action = fetchItems([{ type: 'ItemHeading' }]);
+      const action = fetchItems([{ targetType: 'ItemHeading' }]);
       const expectedResponse = {
         type: FETCH_ITEMS,
         payload: {
-          items: [{ type: 'ItemHeading' }]
+          items: [{ targetType: 'ItemHeading' }]
         }
       };
       expect(action).to.eql(expectedResponse);
@@ -40,7 +40,7 @@ describe('item actions', () => {
         type: CREATE_ITEM,
         payload: {
           item: {
-            type: 'ItemHeading',
+            targetType: 'ItemHeading',
             editing: true,
             isNew: true
           }
@@ -52,13 +52,13 @@ describe('item actions', () => {
 
   describe('updateItem', () => {
     it('creates UPDATE_ITEM, item and sortRank', () => {
-      const action = updateItem(1, { type: 'ItemHeading' });
+      const action = updateItem(1, { targetType: 'ItemHeading' });
       const expectedResponse = {
         type: UPDATE_ITEM,
         payload: {
           sortRank: 1,
           item: {
-            type: 'ItemHeading'
+            targetType: 'ItemHeading'
           }
         }
       };

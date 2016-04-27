@@ -56,7 +56,7 @@ class ItemFormTwitter extends Component {
     return (
       <div className="item-form" style={{position: 'relative'}}>
         {this.renderLoadingIndicator()}
-        <div className="item-form__name">{capitalize(this.props.type)}</div>
+        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
         <TextField
           className="item-form__input-text"
           {...sourceURL}
@@ -81,7 +81,7 @@ class ItemFormTwitter extends Component {
 }
 
 ItemFormTwitter.propTypes = {
-  type: PropTypes.string.isRequired,
+  targetType: PropTypes.string.isRequired,
   sortRank: PropTypes.number.isRequired,
   authorImageURL: PropTypes.string,
   authorName: PropTypes.string,

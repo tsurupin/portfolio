@@ -9,7 +9,7 @@ describe('ItemQuoteForm', () => {
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();
   let props = {
-    type: 'ItemQuote',
+    targetType: 'ItemQuote',
     submitButtonLabel: 'Update',
     cancelButton: <RaisedButton
       className="item-form__cancel-button"
@@ -28,7 +28,7 @@ describe('ItemQuoteForm', () => {
     expect(component.find('input[name=description]')).to.have.value('hoge');
     component.find('.item-form__submit-button').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.false;
-  })
+  });
   
   it('updates item', () => {
     const component = renderComponent(ItemQuoteForm, props, {});

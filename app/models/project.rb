@@ -3,12 +3,12 @@
 # Table name: projects
 #
 #  id          :integer          not null, primary key
-#  title       :string           not null
-#  description :text             not null
-#  image       :string           not null
-#  sample_url  :string
-#  source_url  :string
-#  accepted    :boolean          default("f"), not null
+#  title       :string(255)      not null
+#  description :text(65535)      not null
+#  image       :string(255)      not null
+#  sample_url  :string(255)
+#  source_url  :string(255)
+#  accepted    :boolean          default("0"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

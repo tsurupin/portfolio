@@ -4,9 +4,9 @@
 #
 #  id        :integer          not null, primary key
 #  author_id :integer          not null
-#  name      :string           not null
-#  url       :string           not null
-#  image     :string           not null
+#  name      :string(255)      not null
+#  url       :string(255)      not null
+#  image     :string(255)      not null
 #
 
 class SocialAccount < ActiveRecord::Base

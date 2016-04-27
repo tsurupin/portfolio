@@ -14,12 +14,12 @@ export function fetchItems(items) {
   }
 }
 
-export function createItem(type) {
+export function createItem(targetType) {
   return {
     type: CREATE_ITEM,
     payload: {
       item: {
-        type,
+        targetType,
         editing: true,
         isNew: true
       }

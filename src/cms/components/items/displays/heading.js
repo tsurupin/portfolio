@@ -8,7 +8,7 @@ export default class ItemHeading extends Component {
   }
 
   renderTitle() {
-    if (this.props.type === TARGET_TYPES.HEADING.NAME) {
+    if (this.props.targetType === TARGET_TYPES.HEADING.NAME) {
       return <h2 className="item-heading__title">{this.props.title}</h2>;
     }
     return <h3 className="item-heading__sub-title">{this.props.title}</h3>;
@@ -19,3 +19,8 @@ export default class ItemHeading extends Component {
     return <div>{this.renderTitle()}</div>;
   }
 }
+
+ItemHeading.propTypes = {
+  targetType: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+};

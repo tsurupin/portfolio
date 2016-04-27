@@ -57,9 +57,9 @@ export function createPost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
-    request = axios.patch(`${ROOT_URL}${POST_PATH}/${post.id}`, post);
+    request = axios.patch(`${ROOT_URL}${POST_PATH}/${post.id}`, { post });
   } else {
-    request = axios.post(`${ROOT_URL}${POST_PATH}`, post);
+    request = axios.post(`${ROOT_URL}${POST_PATH}`, { post });
   }
   return dispatch => {
     dispatch(createPostRequest());

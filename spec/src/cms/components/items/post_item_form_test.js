@@ -12,7 +12,7 @@ describe('PostItemForm', () => {
   };
 
   it('shows postItemForm', () => {
-    let item = { editing: true, type: 'ItemHeading' };
+    let item = { editing: true, targetType: 'ItemHeading' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
     component.find('.item-form__cancel-button').simulate('click');
@@ -21,42 +21,42 @@ describe('PostItemForm', () => {
   });
 
   it('shows heading form', () => {
-    let item = { editing: true, type: 'ItemHeading' };
+    let item = { editing: true, targetType: 'ItemHeading' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
     expect(component).to.contain('ItemHeading')
   });
 
   it('shows image form', () => {
-    let item = { editing: true, type: 'ItemImage' };
+    let item = { editing: true, targetType: 'ItemImage' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
     expect(component).to.contain('ItemImage')
   });
 
   it('shows twitter form', () => {
-    let item = { editing: true, type: 'ItemTwitter' };
+    let item = { editing: true, targetType: 'ItemTwitter' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
     expect(component).to.contain('ItemTwitter')
   });
 
   it('shows quote form', () => {
-    let item = { editing: true, type: 'ItemQuote' };
+    let item = { editing: true, targetType: 'ItemQuote' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
     expect(component).to.contain('ItemQuote')
   });
 
   it('shows link form', () => {
-    let item = { editing: true, type: 'ItemLink' };
+    let item = { editing: true, targetType: 'ItemLink' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
     expect(component).to.contain('ItemLink')
   });
 
   it('shows text form', () => {
-    let item = { editing: true, type: 'ItemText' };
+    let item = { editing: true, targetType: 'ItemText' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
     expect(component).to.contain('ItemText')

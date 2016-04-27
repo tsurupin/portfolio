@@ -39,13 +39,13 @@ export default class PostItemCell extends Component {
   }
 
   renderComponent() {
-    switch (this.props.item.type) {
+    switch (this.props.item.targetType) {
       case TARGET_TYPES.HEADING.NAME:
       case TARGET_TYPES.SUB_HEADING.NAME:
         return (
           <Heading
             title={this.props.item.title}
-            type={this.props.item.type}
+            targetType={this.props.item.targetType}
           />
         );
 

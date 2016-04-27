@@ -31,7 +31,7 @@ class ItemFormText extends Component {
     const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className="item-form">
-        <div className="item-form__name">{capitalize(this.props.type)}</div>
+        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
         <SelectField value={this.state.style} onChange={this.handleChange}>
           <MenuItem value={1} primaryText="Never"/>
           <MenuItem value={2} primaryText="Every Night"/>
@@ -68,7 +68,7 @@ ItemFormText.defaultProps = {
 };
 
 ItemFormText.propTypes = {
-  type: PropTypes.string.isRequired,
+  targetType: PropTypes.string.isRequired,
   style: PropTypes.number,
   description: PropTypes.string,
   submitButtonLabel: PropTypes.string.isRequired,

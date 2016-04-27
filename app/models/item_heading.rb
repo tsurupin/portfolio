@@ -3,7 +3,7 @@
 # Table name: item_headings
 #
 #  id    :integer          not null, primary key
-#  title :string           not null
+#  title :string(255)      not null
 #
 
 class ItemHeading < ActiveRecord::Base
