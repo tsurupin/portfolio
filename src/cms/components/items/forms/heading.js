@@ -31,6 +31,7 @@ class ItemFormHeading extends Component {
         />
         <div className="item-form__submit-box">
           <RaisedButton
+            className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}

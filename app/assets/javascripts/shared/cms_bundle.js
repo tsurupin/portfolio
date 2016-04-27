@@ -53444,6 +53444,7 @@
 	          'div',
 	          { className: 'item-form__submit-box' },
 	          _react2.default.createElement(_raisedButton2.default, {
+	            className: 'item-form__submit-button',
 	            label: this.props.submitButtonLabel,
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
@@ -54154,19 +54155,16 @@
 
 	      return new Promise(function (resolve, reject) {
 	        setTimeout(function () {
-	          if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(props.sourceURL)) {
-	            reject({ sourceURL: 'URL is not valid' });
-	          } else {
-	            _this2.setState({ loading: true });
-	            _this2.props.fetchTweet(props.sourceURL, _this2.props.sortRank).then(function () {
-	              _this2.setState({ loading: false });
-	              _this2.props.handleUpdateItem({});
-	              resolve();
-	            }).catch(function (error) {
-	              _this2.setState({ loading: false });
-	              reject({ sourceURL: error });
-	            });
-	          }
+
+	          _this2.setState({ loading: true });
+	          _this2.props.fetchTweet(props.sourceURL, _this2.props.sortRank).then(function () {
+	            _this2.setState({ loading: false });
+	            _this2.props.handleUpdateItem({});
+	            resolve();
+	          }).catch(function (error) {
+	            _this2.setState({ loading: false });
+	            reject({ sourceURL: error });
+	          });
 	        }, 1000);
 	      });
 	    }
@@ -54212,6 +54210,7 @@
 	          'div',
 	          { className: 'item-form__submit-box' },
 	          _react2.default.createElement(_raisedButton2.default, {
+	            className: 'item-form__submit-button',
 	            label: this.props.submitButtonLabel,
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
@@ -54240,9 +54239,19 @@
 	  submitting: _react.PropTypes.bool.isRequired
 	};
 
+	function validate(values) {
+	  var errors = {};
+	  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceURL)) {
+	    errors.sourceURL = 'URL is not valid';
+	  }
+
+	  return errors;
+	}
+
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'ItemFormTwitter',
-	  fields: ['sourceURL']
+	  fields: ['sourceURL'],
+	  validate: validate
 	}, null, { fetchTweet: _items.fetchTweet })(ItemFormTwitter);
 
 /***/ },
@@ -54685,20 +54694,7 @@
 	  _createClass(ItemFormQuote, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
-	      var _this2 = this;
-
-	      return new Promise(function (resolve, reject) {
-	        setTimeout(function () {
-	          if (!props.description) {
-	            reject({ description: 'description is empty' });
-	          } else if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(props.sourceURL)) {
-	            reject({ sourceURL: 'URL is not valid' });
-	          } else {
-	            _this2.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
-	            resolve();
-	          }
-	        }, 1000);
-	      });
+	      this.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
 	    }
 	  }, {
 	    key: 'render',
@@ -54737,6 +54733,7 @@
 	          'div',
 	          { className: 'item-form__submit-box' },
 	          _react2.default.createElement(_raisedButton2.default, {
+	            className: 'item-form__submit-button',
 	            label: this.props.submitButtonLabel,
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
@@ -54761,9 +54758,23 @@
 	  submitting: _react.PropTypes.bool.isRequired
 	};
 
+	function validate(values) {
+	  var errors = {};
+	  if (!values.description) {
+	    errors.description = 'Enter description';
+	  }
+
+	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
+	    errors.sourceURL = 'URL is not valid';
+	  }
+
+	  return errors;
+	}
+
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'ItemFormQuote',
-	  fields: ['sourceURL', 'description']
+	  fields: ['sourceURL', 'description'],
+	  validate: validate
 	})(ItemFormQuote);
 
 /***/ },
@@ -54827,20 +54838,7 @@
 	  _createClass(ItemFormLink, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
-	      var _this2 = this;
-
-	      return new Promise(function (resolve, reject) {
-	        setTimeout(function () {
-	          if (!props.sourceTitle) {
-	            reject({ sourceTitle: 'sourceTitle is empty' });
-	          } else if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(props.sourceURL)) {
-	            reject({ sourceURL: 'URL is not valid' });
-	          } else {
-	            _this2.props.handleUpdateItem({ sourceURL: props.sourceURL, sourceTitle: props.sourceTitle });
-	            resolve();
-	          }
-	        }, 1000);
-	      });
+	      this.props.handleUpdateItem({ sourceURL: props.sourceURL, sourceTitle: props.sourceTitle });
 	    }
 	  }, {
 	    key: 'render',
@@ -54878,6 +54876,7 @@
 	          'div',
 	          { className: 'item-form__submit-box' },
 	          _react2.default.createElement(_raisedButton2.default, {
+	            className: 'item-form__submit-button',
 	            label: this.props.submitButtonLabel,
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
@@ -54902,9 +54901,23 @@
 	  submitting: _react.PropTypes.bool.isRequired
 	};
 
+	function validate(values) {
+	  var errors = {};
+	  if (!values.sourceTitle) {
+	    errors.sourceTitle = 'Enter sourceTitle';
+	  }
+
+	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
+	    errors.sourceURL = 'URL is not valid';
+	  }
+
+	  return errors;
+	}
+
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'ItemFormLink',
-	  fields: ['sourceURL', 'sourceTitle']
+	  fields: ['sourceURL', 'sourceTitle'],
+	  validate: validate
 	})(ItemFormLink);
 
 /***/ },
@@ -54978,20 +54991,9 @@
 	  _createClass(ItemFormText, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
-	      var _this2 = this;
-
-	      return new Promise(function (resolve, reject) {
-	        setTimeout(function () {
-	          if (!props.description) {
-	            reject({ description: 'description is empty' });
-	          } else {
-	            _this2.props.handleUpdateItem({
-	              style: _this2.state.style,
-	              description: props.description
-	            });
-	            resolve();
-	          }
-	        }, 1000);
+	      this.props.handleUpdateItem({
+	        style: this.state.style,
+	        description: props.description
 	      });
 	    }
 	  }, {
@@ -55036,6 +55038,7 @@
 	          'div',
 	          { className: 'item-form__submit-box' },
 	          _react2.default.createElement(_raisedButton2.default, {
+	            className: 'item-form__submit-button',
 	            label: this.props.submitButtonLabel,
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
@@ -55067,9 +55070,19 @@
 	  submitting: _react.PropTypes.bool.isRequired
 	};
 
+	function validate(values) {
+	  var errors = {};
+	  if (!values.description) {
+	    errors.description = 'Enter description';
+	  }
+
+	  return errors;
+	}
+
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'ItemFormText',
-	  fields: ['description']
+	  fields: ['description'],
+	  validate: validate
 	})(ItemFormText);
 
 /***/ },

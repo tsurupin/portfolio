@@ -1,4 +1,4 @@
-import { renderComponent, expect, sinon } from '../../../test_helper';
+import { renderComponent, expect, sinon } from '../../../utility';
 import EditBox from '../../../../../../src/cms/components/items/forms/edit_box';
 
 describe('EditBox', () => {

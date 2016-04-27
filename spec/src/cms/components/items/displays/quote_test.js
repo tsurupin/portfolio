@@ -1,4 +1,4 @@
-import { renderComponent, expect } from '../../../test_helper';
+import { renderComponent, expect } from '../../../utility';
 import ItemQuote from '../../../../../../src/cms/components/items/displays/quote';
 
 describe('ItemQuote', () => {

@@ -1,4 +1,4 @@
-import { renderComponent, expect } from '../../../test_helper';
+import { renderComponent, expect } from '../../../utility';
 import ItemLink from '../../../../../../src/cms/components/items/displays/link';
 
 describe('ItemLink', () => {

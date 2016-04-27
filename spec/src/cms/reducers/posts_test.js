@@ -1,4 +1,4 @@
-import { expect } from '../test_helper';
+import { expect } from '../utility';
 import postReducer from '../../../../src/cms/reducers/posts';
 import {
   FETCH_POSTS,

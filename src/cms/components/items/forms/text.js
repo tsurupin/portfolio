@@ -17,19 +17,10 @@ class ItemFormText extends Component {
   }
 
   handleUpdateItem(props) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (!props.description) {
-          reject({ description: 'description is empty' })
-        } else {
-          this.props.handleUpdateItem({ 
-            style: this.state.style, 
-            description: props.description 
-          });
-          resolve();
-        }
-      }, 1000)
-    })
+    this.props.handleUpdateItem({
+      style: this.state.style,
+      description: props.description
+    });
   }
   
   handleChange(event, index, value) {
@@ -58,6 +49,7 @@ class ItemFormText extends Component {
         />
         <div className="item-form__submit-box">
           <RaisedButton
+            className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}
@@ -87,7 +79,17 @@ ItemFormText.propTypes = {
   submitting: PropTypes.bool.isRequired
 };
 
+function validate(values) {
+  const errors = {};
+  if (!values.description) {
+    errors.description = 'Enter description'
+  }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'ItemFormText',
-  fields: ['description']
+  fields: ['description'],
+  validate
 })(ItemFormText);

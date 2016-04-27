@@ -19,21 +19,19 @@ class ItemFormTwitter extends Component {
   handleUpdateItem(props) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(props.sourceURL)) {
-          reject({ sourceURL: 'URL is not valid' })
-        } else {
-          this.setState({ loading: true });
-          this.props.fetchTweet(props.sourceURL, this.props.sortRank).then(
-            () => {
-              this.setState({ loading: false });
-              this.props.handleUpdateItem({});
-              resolve();
-            }
-          ).catch(error => {
+        
+        this.setState({ loading: true });
+        this.props.fetchTweet(props.sourceURL, this.props.sortRank).then(
+          () => {
             this.setState({ loading: false });
-            reject({ sourceURL: error })
-          })
-        }
+            this.props.handleUpdateItem({});
+            resolve();
+          }
+        ).catch(error => {
+          this.setState({ loading: false });
+          reject({ sourceURL: error })
+        })
+        
       }, 1000)
     })
   }
@@ -68,6 +66,7 @@ class ItemFormTwitter extends Component {
         />
         <div className="item-form__submit-box">
           <RaisedButton
+            className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}
@@ -94,8 +93,18 @@ ItemFormTwitter.propTypes = {
   submitting: PropTypes.bool.isRequired
 };
 
+function validate(values) {
+  const errors = {};
+  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceURL)) {
+    errors.sourceURL = 'URL is not valid'
+  }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'ItemFormTwitter',
-  fields: ['sourceURL']
+  fields: ['sourceURL'],
+  validate
 }, null, { fetchTweet })(ItemFormTwitter);
 

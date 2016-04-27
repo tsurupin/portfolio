@@ -1,4 +1,4 @@
-import { renderComponent, expect } from '../../../test_helper';
+import { renderComponent, expect } from '../../../utility';
 import ItemTwitter from '../../../../../../src/cms/components/items/displays/twitter';
 
 describe('ItemTwitter', () => {

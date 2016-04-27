@@ -14,19 +14,7 @@ class ItemFormQuote extends Component {
   }
 
   handleUpdateItem(props) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (!props.description) {
-          reject({ description: 'description is empty' })
-        }
-        else if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(props.sourceURL)) {
-          reject({ sourceURL: 'URL is not valid' })
-        } else {
-          this.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
-          resolve();
-        }
-      }, 1000)
-    })
+    this.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
   }
 
   render() {
@@ -51,6 +39,7 @@ class ItemFormQuote extends Component {
         />
         <div className="item-form__submit-box">
           <RaisedButton
+            className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}
@@ -73,8 +62,22 @@ ItemFormQuote.propTypes = {
   submitting: PropTypes.bool.isRequired
 };
 
+function validate(values) {
+  const errors = {};
+  if (!values.description) {
+    errors.description = 'Enter description'
+  }
+
+  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
+    errors.sourceURL = 'URL is not valid'
+  }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'ItemFormQuote',
-  fields: ['sourceURL', 'description']
+  fields: ['sourceURL', 'description'],
+  validate
 })(ItemFormQuote);
 

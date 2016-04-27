@@ -1,5 +1,5 @@
 const React = require('react');
-import { renderComponent, expect, sinon } from '../../../test_helper';
+import { renderComponent, expect, sinon } from '../../../utility';
 import Tooltip from '../../../../../../src/cms/components/items/displays/tooltip';
 
 describe('Tooltip', () => {

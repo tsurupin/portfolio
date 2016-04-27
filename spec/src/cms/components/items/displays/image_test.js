@@ -1,4 +1,4 @@
-import { renderComponent, expect } from '../../../test_helper';
+import { expect, renderComponent } from '../../../utility';
 import ItemImage from '../../../../../../src/cms/components/items/displays/image';
 
 describe('ItemImage', () => {

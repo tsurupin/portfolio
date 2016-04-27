@@ -1,4 +1,4 @@
-import { renderComponent, expect, sinon } from '../../test_helper';
+import { renderComponent, expect, sinon } from '../../utility';
 import PostItemCell from '../../../../../src/cms/components/items/post_item_cell';
 
 describe('PostItemCell', () => {

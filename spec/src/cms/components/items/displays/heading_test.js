@@ -1,4 +1,4 @@
-import { renderComponent, expect } from '../../../test_helper';
+import { renderComponent, expect } from '../../../utility';
 import ItemHeading from '../../../../../../src/cms/components/items/displays/heading';
 
 describe('ItemHeading', () => {

@@ -1,15 +1,15 @@
 import { renderComponent, expect, sinon } from '../../../utility';
-import ItemTwitterForm from '../../../../../../src/cms/components/items/forms/twitter';
+import ItemLinkForm from '../../../../../../src/cms/components/items/forms/link';
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 
-describe('ItemTwitterForm', () => {
-
+describe('ItemLinkForm', () => {
+  
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();
   let props = {
-    type: 'ItemTwitter',
+    type: 'ItemLink',
     submitButtonLabel: 'Update',
     cancelButton: <RaisedButton
       className="item-form__cancel-button"
@@ -23,19 +23,21 @@ describe('ItemTwitterForm', () => {
 
 
   it('fails to update item', () => {
-    const component = renderComponent(ItemTwitterForm, props, {});
+    const component = renderComponent(ItemLinkForm, props, {});
     component.find('input[name=sourceURL]').simulate('change', 'hoge');
+    component.find('input[name=sourceTitle]').simulate('change', 'hoge');
     component.find('.item-form__submit-button').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.false;
   });
-
-  // TODO: figure out how to test aynchronous validation
-  // it('updates item', () => {
-  //   const component = renderComponent(ItemTwitterForm, props, {});
-  //   component.find('input[name=sourceURL]').simulate('change', 'https://twitter.com/appmarkelabo/status/717272847383564288');
-  //   expect(component.find('input[name=sourceURL]')).to.have.value('https://twitter.com/appmarkelabo/status/717272847383564288');
-  //   component.find('.item-form__submit-button').simulate('click');
-  //   expect(handleUpdateItem.calledOnce).to.be.true;
-  // });
-
+  
+  it('updates item', () => {
+    const component = renderComponent(ItemLinkForm, props, {});
+    component.find('input[name=sourceTitle]').simulate('change', 'hoge');
+    component.find('input[name=sourceURL]').simulate('change', 'http://google.com');
+    expect(component.find('input[name=sourceTitle]')).to.have.value('hoge');
+    expect(component.find('input[name=sourceURL]')).to.have.value('http://google.com');
+    component.find('.item-form__submit-button').simulate('click');
+    expect(handleUpdateItem.calledOnce).to.be.true;
+  });
+  
 });
