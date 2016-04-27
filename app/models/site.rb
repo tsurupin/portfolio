@@ -11,7 +11,7 @@
 #  updated_at  :datetime         not null
 #
 
-class Site < ApplicationRecord
+class Site < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
 end

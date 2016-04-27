@@ -1,23 +1,17 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
-gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.2.6'
+# Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-
-gem 'puma'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
-
 gem 'uglifier', '>= 1.3.0'
-
-gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
-gem 'turbolinks', '~> 5.x'
-gem 'jbuilder', '~> 2.0'
-gem 'redis', '~> 3.0'
 gem 'twitter'                     # Twitter APIのラッパーgem
+gem 'turbolinks'
 
 # For View
 
@@ -31,17 +25,15 @@ gem 'active_type'
 gem 'factory_girl_rails'
 gem 'enum_help'
 gem 'migration_comments'
+gem 'squeel'
+gem 'draper'
+
 
 # For Config
 gem 'config'
 
-# Not Supported in Rails 5 yet
-# gem 'squeel'
-# gem 'draper'
-
 group :development do
   # For Deploy
-  gem 'capistrano-rails'
   gem 'capistrano'
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
@@ -54,10 +46,9 @@ group :development do
   # For Lint
   gem 'rubocop', require: false
   gem 'scss_lint', require: false
-  gem 'erb2haml'
 
   # For Debug
-  gem 'web-console', '~> 3.0'
+  gem 'web-console', '~> 2.0'
   gem 'listen', '~> 3.0.5'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -72,8 +63,8 @@ group :development do
 
   gem 'byebug'
 
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
@@ -91,5 +82,4 @@ group :test do
   gem 'vcr'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

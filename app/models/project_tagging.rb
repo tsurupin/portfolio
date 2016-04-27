@@ -7,7 +7,7 @@
 #  project_tag_id :integer          not null
 #
 
-class ProjectTagging < ApplicationRecord
+class ProjectTagging < ActiveRecord::Base
   belongs_to :project, touch: true
   belongs_to :project_tagging
 end

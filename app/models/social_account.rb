@@ -9,7 +9,7 @@
 #  image     :string           not null
 #
 
-class SocialAccount < ApplicationRecord
+class SocialAccount < ActiveRecord::Base
   belongs_to :social_account, touch: true
   validates :name, presence: true
   validates :url, presence: true

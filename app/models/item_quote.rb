@@ -8,7 +8,7 @@
 #  source_url   :text             not null
 #
 
-class ItemQuote < ApplicationRecord
+class ItemQuote < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
 
   validates :description, presence: true

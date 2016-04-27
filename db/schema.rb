@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   create_table "items", force: :cascade do |t|
     t.integer  "post_id",     null: false
     t.integer  "sort_rank",   null: false
-    t.string   "target_type", null: false
     t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -81,22 +81,7 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   add_index "items", ["post_id"], name: "index_items_on_post_id"
   add_index "items", ["target_type", "target_id"], name: "index_items_on_target_type_and_target_id"
 
-  create_table "post_taggings", force: :cascade do |t|
-    t.integer "post_id",     null: false
-    t.integer "post_tag_id", null: false
-  end
-
-  add_index "post_taggings", ["post_id", "post_tag_id"], name: "index_post_taggings_on_post_id_and_post_tag_id", unique: true
-  add_index "post_taggings", ["post_id"], name: "index_post_taggings_on_post_id"
-  add_index "post_taggings", ["post_tag_id"], name: "index_post_taggings_on_post_tag_id"
-
-  create_table "post_tags", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
+  create_table "post", force: :cascade do |t|
     t.string   "title",                        null: false
     t.text     "description",                  null: false
     t.boolean  "accepted",     default: false, null: false
@@ -105,14 +90,25 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "post_taggings", force: :cascade do |t|
+    t.integer "post_id",     null: false
+    t.integer "post_tag_id", null: false
+  end
+
+  add_index "post_taggings", ["post_id", "post_tag_id"], name: "index_post_taggings_on_post_id_and_post_tag_id", unique: true
+
+  create_table "post_tags", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "project_taggings", force: :cascade do |t|
     t.integer "project_id",     null: false
     t.integer "project_tag_id", null: false
   end
 
   add_index "project_taggings", ["project_id", "project_tag_id"], name: "index_project_taggings_on_project_id_and_project_tag_id", unique: true
-  add_index "project_taggings", ["project_id"], name: "index_project_taggings_on_project_id"
-  add_index "project_taggings", ["project_tag_id"], name: "index_project_taggings_on_project_tag_id"
 
   create_table "project_tags", force: :cascade do |t|
     t.string   "name",       null: false
@@ -146,7 +142,5 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.string  "url",       null: false
     t.string  "image",     null: false
   end
-
-  add_index "social_accounts", ["author_id"], name: "index_social_accounts_on_author_id"
 
 end

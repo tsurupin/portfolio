@@ -13,7 +13,7 @@
 #  updated_at  :datetime         not null
 #
 
-class Project < ApplicationRecord
+class Project < ActiveRecord::Base
   has_many :project_taggings, dependent: :destroy
   has_many :project_tags, through: :project_taggings
 

@@ -7,7 +7,7 @@
 #  description :text             not null
 #
 
-class ItemText < ApplicationRecord
+class ItemText < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
   validates :type, presence: true
   validates :description, presence: true
