@@ -12,6 +12,7 @@
 #
 
 class Post::Form < ActiveType::Record[Post]
+  include DataURIToImageConverter
   ITEMS_ATTRIBUTES = 'items_attributes'.freeze
 
   validates :description, presence: true, if: proc { |post| post.accepted }
@@ -33,12 +34,7 @@ class Post::Form < ActiveType::Record[Post]
           when 'ItemText'
             target.description = item['description']
           when 'ItemImage'
-            if target.image.try(:url) == item['image']
-            elsif item['image'].start_with?('http')
-              target.remote_image_url = item['image']
-            else
-              target.image = convert_data_uri_to_upload(item['image'])
-            end
+            target.image = convert_data_uri_to_upload(item['image']) unless target.image.try(:url) == item['image']
           when 'ItemLink'
             target.source_title = item['source_title']
             target.source_url = item['source_url']
