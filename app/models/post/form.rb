@@ -69,7 +69,6 @@ class Post::Form < ActiveType::Record[Post]
         )
       end
 
-      p params
       update!(params)
       true
     end
