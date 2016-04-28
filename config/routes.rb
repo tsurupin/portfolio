@@ -6,6 +6,13 @@ Rails.application.routes.draw do
       resources :posts, shallow: true do
         resource :acceptance, only: :update, module: :posts
       end
+
+      resources :services, only: %w() do
+        collection do
+          get :html
+          get :twitter
+        end
+      end
     end
 
     get '/', to: 'application#layout'
@@ -13,6 +20,4 @@ Rails.application.routes.draw do
 
   end
 
-  # Serve websocket cable requests in-process
-  mount ActionCable.server => '/cable'
 end

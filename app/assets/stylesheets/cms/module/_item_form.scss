@@ -1,0 +1,9 @@
+.item-form {
+  @include solid-border(gray)
+}
+
+//.item-form__name {
+//  background: gray;
+//  color: white;
+//  @include same-line-height(20px)
+//}

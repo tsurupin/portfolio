@@ -1,0 +1,25 @@
+@mixin solid-border($color) {
+  border: 1px solid $color;
+}
+
+@mixin after-clear-float {
+  &::after {
+    @include clear-float;
+  }
+}
+
+@mixin same-line-height($line-height) {
+  height: $line-height;
+  line-height: $line-height;
+}
+
+@mixin font-size($size-value: 1.6) {
+  font-size: ($size-value * 10) + px;
+  font-size: $size-value + rem;
+}
+
+@mixin reset-ul-default-style {
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}

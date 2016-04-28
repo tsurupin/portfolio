@@ -3,10 +3,10 @@
 # Table name: item_sub_headings
 #
 #  id    :integer          not null, primary key
-#  title :string           not null
+#  title :string(255)      not null
 #
 
-class ItemSubHeading < ApplicationRecord
+class ItemSubHeading < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
 
   validates :title, presence: true

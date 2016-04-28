@@ -3,15 +3,15 @@
 # Table name: items
 #
 #  id          :integer          not null, primary key
-#  article_id  :integer          not null
+#  post_id     :integer          not null
 #  sort_rank   :integer          not null
-#  target_type :string           not null
 #  target_id   :integer          not null
+#  target_type :string(255)      not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class Item < ApplicationRecord
+class Item < ActiveRecord::Base
   belongs_to :post, touch: true
   belongs_to :target, polymorphic: true
 

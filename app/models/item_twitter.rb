@@ -3,17 +3,17 @@
 # Table name: item_twitters
 #
 #  id                 :integer          not null, primary key
-#  source_url         :text             not null
-#  description        :text             not null
-#  author_image_url   :string           not null
-#  author_name        :string           not null
-#  author_screen_name :string           not null
+#  source_url         :text(65535)      not null
+#  description        :text(65535)      not null
+#  author_image_url   :string(255)      not null
+#  author_name        :string(255)      not null
+#  author_screen_name :string(255)      not null
 #
 
-class ItemTwitter < ApplicationRecord
+class ItemTwitter < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
 
-  validates :source_url, presence: true
+  validates :source_url, presence: true, format: { with: URI.regexp }
   validates :description, presence: true
   validates :author_name, presence: true
   validates :author_screen_name, presence: true
