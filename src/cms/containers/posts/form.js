@@ -38,8 +38,15 @@ class PostsForm extends Component {
   }
 
   handleSubmit(props) {
-    this.props.createPost({ post: { ...props, itemsAttributes: this.props.items }})
-      .then(this.context.router.push('/cms'));
+    this.props.createPost(
+      { 
+        post: { 
+          ...props, 
+          itemsAttributes: this.props.items, 
+          postTaggingsAttributes: this.props.tags
+        }
+      }
+    ).then(this.context.router.push('/cms'));
   }
 
   handleAddItem(targetType) {

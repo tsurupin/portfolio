@@ -34,7 +34,8 @@ class Cms::Api::PostsController < Cms::ApplicationController
   def post_params
     params.require(:post).permit(
       :id, :title, :description, :published_at,
-      items_attributes: [:id, :target_id, :target_type, :title]
+      items_attributes: [:id, :target_id, :target_type, :title],
+      post_taggings_attributes: [:id, :text],
     )
   end
 

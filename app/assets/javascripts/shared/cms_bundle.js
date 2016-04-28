@@ -41666,7 +41666,12 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
-	      this.props.createPost({ post: _extends({}, props, { itemsAttributes: this.props.items }) }).then(this.context.router.push('/cms'));
+	      this.props.createPost({
+	        post: _extends({}, props, {
+	          itemsAttributes: this.props.items,
+	          postTaggingsAttributes: this.props.tags
+	        })
+	      }).then(this.context.router.push('/cms'));
 	    }
 	  }, {
 	    key: 'handleAddItem',
@@ -58161,10 +58166,7 @@
 	  }, {
 	    key: 'handleAddTag',
 	    value: function handleAddTag(text) {
-	      var tag = {
-	        id: this.state.tags.length + 1,
-	        text: text
-	      };
+	      var tag = { text: text };
 	      this.props.handleAddTag(tag);
 	    }
 	  }, {

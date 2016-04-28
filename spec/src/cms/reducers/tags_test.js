@@ -11,8 +11,8 @@ describe('Tag Reducer', () => {
   });
 
   it('handles action of type FETCH_TAGS', () => {
-    const action = { type: FETCH_TAGS, payload: { tags: [{ id: 1, text: 'hoge'}], tagSuggestions: ["hoge"]  } };
-    const expectedResponse = { tags: [{ id: 1, text: 'hoge'}], tagSuggestions: ["hoge"]  } ;
+    const action = { type: FETCH_TAGS, payload: { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } };
+    const expectedResponse = { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } ;
     expect(tagReducer([], action)).to.eql(expectedResponse);
   });
 
@@ -20,17 +20,17 @@ describe('Tag Reducer', () => {
     const action = {
       type: CREATE_TAG,
       payload: {
-        tag: { id: 2, text: 'hoge' }
+        tag: { text: 'hoge' }
       }
     };
 
     const state = {
-      tags: [{ id: 1, text: 'hoge' }],
+      tags: [{ text: 'hoge' }],
       tagSuggestions: ["hoge"]
     };
 
     const expectedResponse = {
-      tags: [{ id: 1, text: 'hoge' }, { id: 2, text: 'hoge' }],
+      tags: [{ text: 'hoge' }, { text: 'hoge' }],
       tagSuggestions: ["hoge"]
     };
 
@@ -46,12 +46,12 @@ describe('Tag Reducer', () => {
     };
 
     const state = {
-      tags: [{ id: 1, text: 'hoge' }, { id: 2, text: 'hoge' }],
+      tags: [{ text: 'hoga' }, { text: 'hogo' }],
       tagSuggestions: ["hoge"]
     };
     
     const expectedResponse = {
-      tags: [{ id: 1, text: 'hoge' }],
+      tags: [{ text: 'hoga' }],
       tagSuggestions: ["hoge"]
     };
 

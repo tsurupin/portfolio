@@ -119,12 +119,20 @@ RSpec.describe Post::Form, type: :model do
         end
       end
       context 'succeeds in saving' do
+        let!(:post_tag) { create(:post_tag, name: 'hoge') }
+        let(:post_tag_params) do
+          [
+            { 'text' => 'new_tag' },
+            { 'text' => post_tag.name }
+          ]
+        end
         let(:params) do
           {
             'title' => 'title',
             'description' => 'description',
             'published_at' => Time.current,
-            'items_attributes' => item_attributes
+            'items_attributes' => item_attributes,
+            'post_taggings_attributes' => post_tag_params
           }
         end
         it 'succeeds in saving and gets true' do
@@ -137,6 +145,8 @@ RSpec.describe Post::Form, type: :model do
           expect(ItemHeading.count).to eq 1
           expect(ItemSubHeading.count).to eq 1
           expect(ItemImage.count).to eq 1
+          expect(Post.last.post_taggings.size).to eq 2
+          expect(PostTag.count).to eq 2
         end
       end
     end
@@ -190,12 +200,23 @@ RSpec.describe Post::Form, type: :model do
       end
 
       context 'when succeeding in saving' do
+        let!(:post_tag1) { create(:post_tag, name: 'hoge1') }
+        let!(:post_tag2) { create(:post_tag, name: 'hoge2') }
+        let!(:post_tagging1) { create(:post_tagging, post_tag: post_tag1, post: post) }
+        let!(:post_tagging2) { create(:post_tagging, post_tag: post_tag2, post: post) }
+        let(:post_tag_params) do
+          [
+            { 'id' => post_tagging1.id, 'text' => post_tag1.name },
+            { 'text' => 'new_tag' }
+          ]
+        end
         let(:params) do
           {
             'title' => 'title_updated',
             'description' => 'description',
             'published_at' => Time.current,
-            'items_attributes' => item_attributes
+            'items_attributes' => item_attributes,
+            'post_taggings_attributes' => post_tag_params
           }
         end
         it 'succeeds in saving and gets true' do
@@ -204,6 +225,8 @@ RSpec.describe Post::Form, type: :model do
           expect(Post.last.items.size).to eq 2
           expect(Item.where(post_id: post.id, target_type: 'ItemLink').count).to eq 1
           expect(Item.find(item_twitter.id).sort_rank).to eq 2
+          expect(Post.last.post_taggings.map(&:id)).to eq [post_tagging1.id, PostTagging.where.not(id: post_tagging2.id).last.id]
+          expect(PostTag.count).to eq 3
         end
       end
     end
@@ -231,29 +254,30 @@ RSpec.describe Post::Form, type: :model do
       it_behaves_like 'deleting items'
     end
   end
-  # describe '#delete_unnecessary_keywords!' do
-  #   let!(:original_post) { create(:post) }
-  #   let(:post) { Post::Form.find(original_post.id) }
-  #   let!(:keyword1) { create(:keyword, name: 'keyword1') }
-  #   let!(:keyword2) { create(:keyword, name: 'keyword2') }
-  #   let!(:post_keyword1) { create(:post_keyword, post: post, keyword: keyword1) }
-  #   let!(:post_keyword2) { create(:post_keyword, post: post, keyword: keyword2) }
-  #
-  #   shared_examples 'PostKeywordの削除' do
-  #     subject { post.delete_unnecessary_keywords!(params) }
-  #     it { expect { subject }.to change { PostKeyword.count }.by(deleted_number) }
-  #   end
-  #   context '削除するPostKeywordがある場合' do
-  #     let(:params) { [{ 'text' => keyword1.name }] }
-  #     let(:deleted_number) { -1 }
-  #     it_behaves_like 'PostKeywordの削除'
-  #   end
-  #
-  #   context '削除するPostKeywordがない場合' do
-  #     let(:params) { [{ 'text' => keyword1.name }, { 'text' => keyword2.name }] }
-  #     let(:deleted_number) { 0 }
-  #     it_behaves_like 'PostKeywordの削除'
-  #   end
-  # end
+
+  describe '#delete_unnecessary_post_tags!' do
+    let!(:original_post) { create(:post) }
+    let(:post) { Post::Form.find(original_post.id) }
+    let!(:post_tag1) { create(:post_tag, name: 'post_tag1') }
+    let!(:post_tag2) { create(:post_tag, name: 'post_tag2') }
+    let!(:post_tagging1) { create(:post_tagging, post: post, post_tag: post_tag1) }
+    let!(:post_tagging2) { create(:post_tagging, post: post, post_tag: post_tag2) }
+
+    shared_examples 'deleting post_taggings' do
+      subject { post.delete_unnecessary_post_tags!(params) }
+      it { expect { subject }.to change { PostTagging.count }.by(deleted_number) }
+    end
+    context 'when deleting post_taggings exist' do
+      let(:params) { [{ 'text' => post_tag1.name }] }
+      let(:deleted_number) { -1 }
+      it_behaves_like 'deleting post_taggings'
+    end
+
+    context 'when deleting post_taggings do not exist' do
+      let(:params) { [{ 'text' => post_tag1.name }, { 'text' => post_tag2.name }] }
+      let(:deleted_number) { 0 }
+      it_behaves_like 'deleting post_taggings'
+    end
+  end
 
 end

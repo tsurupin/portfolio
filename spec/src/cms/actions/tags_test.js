@@ -13,13 +13,13 @@ describe('tag actions', () => {
   describe('fetchTags', () => {
     it('creates FETCH_TAGS and get tags', () => {
       const action = fetchTags({
-        tags: [{ id: 1, text: 'hoge' }],
+        tags: [{ text: 'hoge' }],
         tagSuggestions: ['hoge']
       });
       const expectedResponse = {
         type: FETCH_TAGS,
         payload: {
-          tags: [{ id: 1, text: 'hoge' }],
+          tags: [{ text: 'hoge' }],
           tagSuggestions: ['hoge']
         }
       };
@@ -29,10 +29,10 @@ describe('tag actions', () => {
 
   describe('createTag', () => {
     it('creates CREATE_TAG and get tag', () => {
-      const action = createTag({ id:1, text:'hoge' });
+      const action = createTag({ text:'hoge' });
       const expectedResponse = {
         type: CREATE_TAG,
-        payload: { tag: { id:1, text:'hoge' } }
+        payload: { tag: { text:'hoge' } }
       };
       expect(action).to.eql(expectedResponse);
     });

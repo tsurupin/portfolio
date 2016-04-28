@@ -8,8 +8,8 @@
 #  updated_at :datetime
 #
 
-class PostTag < ActiveRecord::Base
-  has_many :post_taggings, dependent: :destroy
-  has_many :posts, through: :post_taggings
-  validates :name, presence: true, uniqueness: true
+FactoryGirl.define do
+  factory :post_tag do
+    sequence(:name) { SecureRandom.hex }
+  end
 end

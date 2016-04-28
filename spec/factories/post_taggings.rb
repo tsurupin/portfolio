@@ -7,9 +7,9 @@
 #  post_tag_id :integer          not null
 #
 
-class PostTagging < ActiveRecord::Base
-  belongs_to :post, touch: true
-  belongs_to :post_tag
-
-  validates :post_tag, presence: true
+FactoryGirl.define do
+  factory :post_tagging do
+    association :post, factory: :post
+    association :post_tag, factory: :post_tag
+  end
 end

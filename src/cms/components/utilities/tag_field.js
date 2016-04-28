@@ -27,10 +27,7 @@ class TagField extends Component {
   }
 
   handleAddTag(text) {
-    const tag = {
-      id: this.state.tags.length + 1,
-      text: text
-    };
+    const tag = { text };
     this.props.handleAddTag(tag);
   }
 

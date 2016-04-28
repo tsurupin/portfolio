@@ -13,7 +13,7 @@
 
 class Post < ActiveRecord::Base
   has_many :post_taggings, dependent: :destroy
-  has_many :post_tags, through: :post_taggins
+  has_many :post_tags, through: :post_taggings
   has_many :items, -> { order('sort_rank asc') }, dependent: :destroy
   has_many :comments, dependent: :destroy
 
