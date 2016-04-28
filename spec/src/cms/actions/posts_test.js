@@ -54,7 +54,7 @@ describe('post actions', () => {
 
       const store = mockStore({});
       const expectedResponse = [{
-        payload: "", type: FETCH_POSTS.FAILURE
+        payload: '', type: FETCH_POSTS.FAILURE
       }];
 
       return store.dispatch(fetchPosts())
@@ -68,7 +68,7 @@ describe('post actions', () => {
 
     it('create FETCH_POST_SUCCESS when fetching post has been done', () => {
       nock(TEST_DOMAIN)
-        .get(`${ROOT_URL}${POST_PATH}/1`)
+        .get(`${ROOT_URL}${POST_PATH}/1/edit`)
         .reply(200, { 
           post: { title: 'hoge', description: 'description', id: 1 },
           items: [{ }],
@@ -113,7 +113,7 @@ describe('post actions', () => {
 
     it('create FETCH_POST_FAILURE when fetching post has been failed', () => {
       nock(TEST_DOMAIN)
-        .get(`${ROOT_URL}${POST_PATH}/1`)
+        .get(`${ROOT_URL}${POST_PATH}/1/edit`)
         .reply(400);
 
       const store = mockStore({});

@@ -22,7 +22,7 @@ describe('Post Reducer', () => {
   });
 
   it('handles action of type FETCH_POST_SUCCESS', () => {
-    const action = { type: FETCH_POST.SUCCESS, payload: { id: 1 } };
+    const action = { type: FETCH_POST.SUCCESS, payload: { post: { id: 1 } } };
     const expectedResponse = { post: { id: 1 } };
     expect(postReducer([], action)).to.eql(expectedResponse);
   });

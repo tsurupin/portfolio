@@ -12,4 +12,5 @@ class PostTagging < ActiveRecord::Base
   belongs_to :post_tag
 
   validates :post_tag, presence: true
+  delegate :name, to: :post_tag
 end

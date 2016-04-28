@@ -34,7 +34,7 @@ function fetchPostsFailure(error) {
 
 
 export function fetchPost(id) {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}/${id}`);
+  const request = axios.get(`${ROOT_URL}${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request.then(
       response => dispatch(fetchPostSuccess(response.data)),
@@ -129,29 +129,29 @@ function createPostFailure(error) {
     payload: error
   }
 }
-
-export function updatePost(props) {
-  const request = axios.patch(`${ROOT_URL}${POST_PATH}/${props.id}`, props);
-  return dispatch => {
-    return request.then(
-      () => dispatch(updatePostSuccess()),
-      error => dispatch(updatePostFailure(error.data))
-    )
-  };
-}
-
-function updatePostSuccess() {
-  return {
-    type: UPDATE_POST.SUCCESS
-  }
-}
-
-function updatePostFailure(error) {
-  return {
-    type: UPDATE_POST.FAILURE,
-    payload: error
-  }
-}
+//
+// export function updatePost(props) {
+//   const request = axios.patch(`${ROOT_URL}${POST_PATH}/${props.id}`, props);
+//   return dispatch => {
+//     return request.then(
+//       () => dispatch(updatePostSuccess()),
+//       error => dispatch(updatePostFailure(error.data))
+//     )
+//   };
+// }
+//
+// function updatePostSuccess() {
+//   return {
+//     type: UPDATE_POST.SUCCESS
+//   }
+// }
+//
+// function updatePostFailure(error) {
+//   return {
+//     type: UPDATE_POST.FAILURE,
+//     payload: error
+//   }
+// }
 
 export function deletePost(id) {
   const request = axios.delete(`${ROOT_URL}${POST_PATH}/${id}`);

@@ -112,6 +112,7 @@ class PostsForm extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className="form">
@@ -169,12 +170,14 @@ function validate(values) {
 }
 
 export const fields = [
-  'title', 'description', 'publishedAt'
+  'title', 'description', 'publishedAt', 'id'
 ];
 
 function mapStateToProps(state) {
+  console.log(state.posts.post);
+  console.log(state.items);
   return {
-    post: state.posts.post,
+    initialValues: state.posts.post,
     items: state.items,
     tags: state.tags.tags,
     tagSuggestions: state.tags.tagSuggestions

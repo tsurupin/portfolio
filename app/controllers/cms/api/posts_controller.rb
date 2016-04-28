@@ -8,7 +8,12 @@ class Cms::Api::PostsController < Cms::ApplicationController
   end
 
   def new
-    render json: { tags: { tags: [],tagSuggestions: @post_tags } }
+    render json: {
+      tags: {
+        tags: [],
+        tagSuggestions: @post_tags
+      }
+    }
   end
 
   def create
@@ -17,6 +22,18 @@ class Cms::Api::PostsController < Cms::ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+    render json: {
+      post: @post.attributes.transform_keys { |post| post.camelize(:lower) },
+      items: @post.items.map{ |item| {}.merge!(item.target.attributes)
+                                       .merge!(item.attributes)
+                                       .transform_keys { |key| key.camelize(:lower) }
+      },
+      tags: {
+        tags: @post.post_taggings.map{ |tag| { id: tag.id, text: tag.name }},
+        tagSuggestions: @post_tags
+      }
+    }
 
   end
 
@@ -40,7 +57,7 @@ class Cms::Api::PostsController < Cms::ApplicationController
   end
 
   def set_post_tags
-    @post_tags = ['apple', 'orange', 'Grape']
+    @post_tags = PostTag.pluck(:name)
   end
 
   def save_and_render

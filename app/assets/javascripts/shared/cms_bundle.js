@@ -36235,7 +36235,6 @@
 	exports.fetchNewPost = fetchNewPost;
 	exports.createPost = createPost;
 	exports.createPostRequest = createPostRequest;
-	exports.updatePost = updatePost;
 	exports.deletePost = deletePost;
 	exports.togglePost = togglePost;
 
@@ -36279,7 +36278,7 @@
 	}
 
 	function fetchPost(id) {
-	  var request = _axios2.default.get('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
+	  var request = _axios2.default.get('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id + '/edit');
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchPostSuccess(response.data));
@@ -36379,30 +36378,29 @@
 	    payload: error
 	  };
 	}
-
-	function updatePost(props) {
-	  var request = _axios2.default.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + props.id, props);
-	  return function (dispatch) {
-	    return request.then(function () {
-	      return dispatch(updatePostSuccess());
-	    }, function (error) {
-	      return dispatch(updatePostFailure(error.data));
-	    });
-	  };
-	}
-
-	function updatePostSuccess() {
-	  return {
-	    type: _constants.UPDATE_POST.SUCCESS
-	  };
-	}
-
-	function updatePostFailure(error) {
-	  return {
-	    type: _constants.UPDATE_POST.FAILURE,
-	    payload: error
-	  };
-	}
+	//
+	// export function updatePost(props) {
+	//   const request = axios.patch(`${ROOT_URL}${POST_PATH}/${props.id}`, props);
+	//   return dispatch => {
+	//     return request.then(
+	//       () => dispatch(updatePostSuccess()),
+	//       error => dispatch(updatePostFailure(error.data))
+	//     )
+	//   };
+	// }
+	//
+	// function updatePostSuccess() {
+	//   return {
+	//     type: UPDATE_POST.SUCCESS
+	//   }
+	// }
+	//
+	// function updatePostFailure(error) {
+	//   return {
+	//     type: UPDATE_POST.FAILURE,
+	//     payload: error
+	//   }
+	// }
 
 	function deletePost(id) {
 	  var request = _axios2.default.delete('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
@@ -41745,6 +41743,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.props);
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
 	      var _props$fields = _props.fields;
@@ -41816,11 +41815,13 @@
 	  return errors;
 	}
 
-	var fields = exports.fields = ['title', 'description', 'publishedAt'];
+	var fields = exports.fields = ['title', 'description', 'publishedAt', 'id'];
 
 	function mapStateToProps(state) {
+	  console.log(state.posts.post);
+	  console.log(state.items);
 	  return {
-	    post: state.posts.post,
+	    initialValues: state.posts.post,
 	    items: state.items,
 	    tags: state.tags.tags,
 	    tagSuggestions: state.tags.tagSuggestions
@@ -70241,27 +70242,35 @@
 	  switch (action.type) {
 	    case _constants.CREATE_POST.REQUEST:
 	      return _extends({}, state, { loading: true });
+
 	    case _constants.FETCH_POSTS.SUCCESS:
 	      return _extends({}, state, { all: action.payload });
+
 	    case _constants.FETCH_POST.SUCCESS:
-	      return _extends({}, state, { post: action.payload });
+	      return _extends({}, state, { post: action.payload.post });
+
 	    case _constants.FETCH_NEW_POST.SUCCESS:
-	      console.log('success');
 	      return _extends({}, state);
+
 	    case _constants.CREATE_POST.SUCCESS:
 	      return _extends({}, state, { message: 'Successfully Saved', loading: false });
+
 	    case _constants.DELETE_POST.SUCCESS:
 	      return _extends({}, state, { message: 'Successfully Deleted' });
+
 	    case _constants.TOGGLE_POST.SUCCESS:
 	      return _extends({}, state, { message: 'Successfully Change Published Status' });
+
 	    case _constants.CREATE_POST.FAILURE:
 	      return _extends({}, state, { error: action.payload, loading: false });
+
 	    case _constants.FETCH_NEW_POST.FAILURE:
 	    case _constants.FETCH_POSTS.FAILURE:
 	    case _constants.FETCH_POST.FAILURE:
 	    case _constants.DELETE_POST.FAILURE:
 	    case _constants.TOGGLE_POST.FAILURE:
 	      return _extends({}, state, { error: action.payload });
+
 	    default:
 	      return state;
 	  }
