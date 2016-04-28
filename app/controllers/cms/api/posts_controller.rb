@@ -1,9 +1,14 @@
 class Cms::Api::PostsController < Cms::ApplicationController
   protect_from_forgery except: %w(create update destroy)
+  before_action :set_post_tags, only: %w(new edit)
 
   def index
     @posts = [{title: 'hoge', description: 'description', id: 1, published: true}]
     render json: @posts
+  end
+
+  def new
+    render json: { tags: { tags: [],tagSuggestions: @post_tags } }
   end
 
   def create
@@ -31,6 +36,10 @@ class Cms::Api::PostsController < Cms::ApplicationController
       :id, :title, :description, :published_at,
       items_attributes: [:id, :target_id, :target_type, :title]
     )
+  end
+
+  def set_post_tags
+    @post_tags = ['apple', 'orange', 'Grape']
   end
 
   def save_and_render

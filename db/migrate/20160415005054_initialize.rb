@@ -2,9 +2,10 @@ class Initialize < ActiveRecord::Migration
   def change
 
     create_table :authors do |t|
-      t.string :name, null: false
+      t.string :name, null: false, unique: true
       t.string :image
       t.text :description
+      t.string :email, null: false, unique: true
 
       t.timestamps null: false
     end
@@ -17,7 +18,7 @@ class Initialize < ActiveRecord::Migration
     end
 
     create_table :posts do |t|
-      t.string :title, null: false
+      t.string :title, null: false, unique: true
       t.text :description
       t.boolean :accepted, null: false, default: false
       t.datetime :published_at
@@ -88,7 +89,7 @@ class Initialize < ActiveRecord::Migration
     end
 
     create_table :post_tags do |t|
-      t.string :name, null: false
+      t.string :name, null: false, unique: true
       t.timestamps
     end
 
@@ -101,7 +102,7 @@ class Initialize < ActiveRecord::Migration
 
 
     create_table :projects do |t|
-      t.string :title, null: false
+      t.string :title, null: false, unique: true
       t.text :description, null: false
       t.string :image, null: false
       t.string :sample_url
@@ -112,7 +113,7 @@ class Initialize < ActiveRecord::Migration
     end
 
     create_table :project_tags do |t|
-      t.string :name, null: false
+      t.string :name, null: false, unique: true
 
       t.timestamps null: false
     end

@@ -274,43 +274,4 @@ describe('Item Reducer', () => {
     expect(itemReducer(state, action)).to.eql(expectedResponse);
   });
 
-
-
-  // it('handles action of type FETCH_ITEM_SUCCESS', () => {
-  //     const action = { type: FETCH_ITEM.SUCCESS, payload: { id: 1 } };
-  //     const expectedResponse = { ITEM: { id: 1 } };
-  //     expect(itemReducer([], action)).to.eql(expectedResponse);
-  // });
-  //
-  // it('handles action of type CREATE_ITEM_SUCCESS', () => {
-  //     const action = { type: CREATE_ITEM.SUCCESS };
-  //     const expectedResponse = { message: 'Successfully Saved' };
-  //     expect(itemReducer([], action)).to.eql(expectedResponse);
-  // });
-  //
-  // it('handles action of type UPDATE_ITEM_SUCCESS', () => {
-  //     const action = { type: UPDATE_ITEM.SUCCESS };
-  //     const expectedResponse = { message: 'Successfully Saved' };
-  //     expect(itemReducer([], action)).to.eql(expectedResponse);
-  // });
-  //
-  // it('handles action of type DELETE_ITEM_SUCCESS', () => {
-  //     const action = { type: DELETE_ITEM.SUCCESS };
-  //     const expectedResponse = { message: 'Successfully Deleted' };
-  //     expect(itemReducer([], action)).to.eql(expectedResponse);
-  // });
-  //
-  // it('handles action of type TOGGLE_ITEM_SUCCESS', () => {
-  //     const action = { type: TOGGLE_ITEM.SUCCESS };
-  //     const expectedResponse = { message: 'Successfully Change Published Status' };
-  //     expect(itemReducer([], action)).to.eql(expectedResponse);
-  // });
-  //
-  //
-  // it('handles action of type FETCH_ITEMS_FAILURE', () => {
-  //     const action = { type: FETCH_ITEMS.FAILURE, payload: 'error' };
-  //     const expectedResponse = { error: 'error' };
-  //     expect(itemReducer([], action)).to.eql(expectedResponse);
-  // });
-
 });

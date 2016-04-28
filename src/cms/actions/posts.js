@@ -1,8 +1,10 @@
 import axios from 'axios';
 import {
-  ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST,
+  ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
   CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST
 } from '../constants';
+import { fetchTags } from'./tags';
+import { fetchItems } from'./items';
 import { trimPost } from '../utilities';
 
 export function fetchPosts() {
@@ -29,20 +31,30 @@ function fetchPostsFailure(error) {
   };
 }
 
+
+
 export function fetchPost(id) {
   const request = axios.get(`${ROOT_URL}${POST_PATH}/${id}`);
   return dispatch => {
     return request.then(
       response => dispatch(fetchPostSuccess(response.data)),
       error => dispatch(fetchPostFailure(error.data))
-    )
+    ).then(response => {
+      if (response.type === FETCH_POST.FAILURE) { return; }
+      dispatch(fetchItems(response.payload.items));
+      dispatch(fetchTags(response.payload.tags))
+    })
   };
 }
 
 function fetchPostSuccess(response) {
   return {
     type: FETCH_POST.SUCCESS,
-    payload: response
+    payload: {
+      post: response.post,
+      items: response.items,
+      tags: response.tags
+    }
   };
 }
 
@@ -52,6 +64,35 @@ function fetchPostFailure(error) {
     payload: error
   };
 }
+
+export function fetchNewPost() {
+  const request = axios.get(`${ROOT_URL}${POST_PATH}/new`);
+  return dispatch => {
+    return request.then(
+      response => dispatch(fetchNewPostSuccess(response.data)),
+      error => dispatch(fetchNewPostFailure(error.data))
+    ).then(response => {
+      if (response.type === FETCH_NEW_POST.FAILURE) { return; }
+      dispatch(fetchTags(response.payload.tags))
+    })
+  };
+}
+
+function fetchNewPostSuccess(response) {
+  return {
+    type: FETCH_NEW_POST.SUCCESS,
+    payload: { tags: response.tags }
+  };
+}
+
+
+function fetchNewPostFailure(error) {
+  return {
+    type: FETCH_NEW_POST.FAILURE,
+    payload: error
+  };
+}
+
 
 export function createPost(props) {
   const post = trimPost(props.post);
@@ -70,7 +111,7 @@ export function createPost(props) {
   };
 }
 
-export function  createPostRequest() {
+export function createPostRequest() {
   return {
     type: CREATE_POST.REQUEST
   }

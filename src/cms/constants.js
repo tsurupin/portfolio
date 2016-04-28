@@ -15,6 +15,7 @@ const FAILURE = 'FAILURE';
 
 export const FETCH_POSTS = createRequestTypes('FETCH_POSTS');
 export const FETCH_POST = createRequestTypes('FETCH_POST');
+export const FETCH_NEW_POST = createRequestTypes('FETCH_NEW_POST');
 export const CREATE_POST = createRequestTypes('CREATE_POST');
 export const UPDATE_POST = createRequestTypes('UPDATE_POST');
 export const TOGGLE_POST = createRequestTypes('TOGGLE_POST');
@@ -25,11 +26,14 @@ export const FETCH_ITEMS = 'FETCH_ITEMS';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
-
 export const MOVE_ITEM_TOP = 'MOVE_ITEM_TOP';
 export const MOVE_ITEM_UP = 'MOVE_ITEM_UP';
 export const MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
 export const MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
+
+export const FETCH_TAGS = 'FETCH_TAGS';
+export const CREATE_TAG = 'CREATE_TAG';
+export const DELETE_TAG = 'DELETE_TAG';
 
 export const TARGET_TYPES = {
   TWITTER: {

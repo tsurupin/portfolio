@@ -11,5 +11,5 @@
 class ProjectTag < ActiveRecord::Base
   has_many :project_taggings, dependent: :destroy
 
-  validates :name, presence: true
+  valiadtes :name, presence: true, uniqueness: true
 end

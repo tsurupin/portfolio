@@ -1,15 +1,15 @@
 import { expect } from '../utility';
 import {
   fetchPosts,
-  fetchPost,
+  fetchPost, 
+  fetchNewPost,
   createPost,
-  createPostRequest,
   deletePost,
   togglePost
 } from '../../../../src/cms/actions/posts';
 import {
-  ROOT_URL, POST_PATH, TEST_DOMAIN, FETCH_POSTS, FETCH_POST,
-  CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST
+  ROOT_URL, POST_PATH, TEST_DOMAIN, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
+  CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST, FETCH_ITEMS, FETCH_TAGS
 } from '../../../../src/cms/constants';
 import { trimPost } from '../../../../src/cms/utilities';
 import nock from 'nock'
@@ -69,15 +69,41 @@ describe('post actions', () => {
     it('create FETCH_POST_SUCCESS when fetching post has been done', () => {
       nock(TEST_DOMAIN)
         .get(`${ROOT_URL}${POST_PATH}/1`)
-        .reply(200, { data: { title: 'hoge', description: 'description', id: 1 } });
+        .reply(200, { 
+          post: { title: 'hoge', description: 'description', id: 1 },
+          items: [{ }],
+          tags: { tags: [], tagSuggestions:[] } 
+        });
 
       const store = mockStore({});
-      const expectedResponse = [{
-        type: FETCH_POST.SUCCESS,
-        payload: {
-          data: { title: 'hoge', description: 'description', id: 1 }
+      const expectedResponse = [
+        {
+          payload: {
+            items: [{}],
+            post: { 
+              description: "description",
+              id: 1,
+              title: "hoge" 
+            },
+            tags: {   
+              tagSuggestions: [],
+              tags: []
+            } 
+          },
+          type: FETCH_POST.SUCCESS
+        }, 
+        {
+          payload: { items: [{}] },
+          type: FETCH_ITEMS
+        },
+        {
+          payload: { 
+            tagSuggestions: [],
+            tags: [] 
+          },
+          type: FETCH_TAGS 
         }
-      }];
+      ];
 
       return store.dispatch(fetchPost(1))
         .then(() => {
@@ -97,6 +123,57 @@ describe('post actions', () => {
       }];
 
       return store.dispatch(fetchPost(1))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+  });
+
+  describe('fetchNewPost', () => {
+
+    it('create FETCH_NEW_POST_SUCCESS when fetching new post has been done', () => {
+      nock(TEST_DOMAIN)
+        .get(`${ROOT_URL}${POST_PATH}/new`)
+        .reply(200, { tags: { tags: [], tagSuggestions:[] } });
+
+      const store = mockStore({});
+      const expectedResponse = [
+        {
+          payload: {
+            tags: {
+              tagSuggestions: [],
+              tags: []
+            }
+          },
+          type: FETCH_NEW_POST.SUCCESS
+        },
+        {
+          payload: {
+            tagSuggestions: [],
+            tags: []
+          },
+          type: FETCH_TAGS
+        }
+      ];
+
+      return store.dispatch(fetchNewPost())
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create FETCH_NEW_POST_FAILURE when fetching new post has been failed', () => {
+      nock(TEST_DOMAIN)
+        .get(`${ROOT_URL}${POST_PATH}/new`)
+        .reply(400);
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        type: FETCH_NEW_POST.FAILURE,
+        payload: ''
+      }];
+
+      return store.dispatch(fetchNewPost())
         .then(() => {
           expect(store.getActions()).to.eql(expectedResponse)
         })

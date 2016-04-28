@@ -10,4 +10,5 @@
 
 class PostTag < ActiveRecord::Base
   has_many :post_taggings, dependent: :destroy
+  valiadtes :name, presence: true, uniqueness: true
 end

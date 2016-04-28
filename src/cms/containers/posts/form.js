@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPost, createPost, deletePost } from '../../actions/posts';
-import { fetchItems, createItem, updateItem, deleteItem, moveItem } from '../../actions/items';
+import { fetchPost, fetchNewPost, createPost, deletePost } from '../../actions/posts';
+import { createItem, updateItem, deleteItem, moveItem } from '../../actions/items';
+import { createTag, deleteTag } from '../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import ItemFormEditBox from '../../components/items/forms/edit_box';
@@ -9,6 +10,7 @@ import DatePicker from '../../components/utilities/date_picker_wrapper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import PostItemBlock from '../../components/items/post_item_block';
 import RefreshIndicator from 'material-ui/lib/refresh-indicator';
+import TagField from '../../components/utilities/tag_field';
 
 class PostsForm extends Component {
   static contextTypes = {
@@ -23,21 +25,19 @@ class PostsForm extends Component {
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
     this.handleMoveItem = this.handleMoveItem.bind(this);
+    this.handleAddTag = this.handleAddTag.bind(this);
+    this.handleDeleteTag = this.handleDeleteTag.bind(this);
   }
 
   componentWillMount() {
     if (this.props.params.id) {
       this.props.fetchPost(this.props.params.id)
-        .then((post) => {
-            this.props.fetchItems(post.items)
-          }
-        )
+    } else {
+      this.props.fetchNewPost()
     }
   }
 
   handleSubmit(props) {
-    console.log(props);
-    console.log(this.props.items);
     this.props.createPost({ post: { ...props, itemsAttributes: this.props.items }})
       .then(this.context.router.push('/cms'));
   }
@@ -56,6 +56,14 @@ class PostsForm extends Component {
 
   handleMoveItem(sortRank, type) {
     this.props.moveItem(sortRank, type)
+  }
+
+  handleAddTag(tag) {
+    this.props.createTag(tag);
+  }
+
+  handleDeleteTag(sortRank) {
+    this.props.deleteTag(sortRank);
   }
 
 
@@ -124,6 +132,12 @@ class PostsForm extends Component {
           errorText={publishedAt.touched && publishedAt.error ? publishedAt.error : ''}
           {...publishedAt}
         />
+        <TagField
+          tags={this.props.tags}
+          suggestions={this.props.tagSuggestions}
+          handleAddTag={this.handleAddTag}
+          handleDeleteTag={this.handleDeleteTag}
+        />
         {this.renderItems()}
         <ItemFormEditBox handleAddItem={this.handleAddItem}/>
         <RaisedButton
@@ -152,7 +166,12 @@ export const fields = [
 ];
 
 function mapStateToProps(state) {
-  return { post: state.posts.post, items: state.items }
+  return {
+    post: state.posts.post,
+    items: state.items,
+    tags: state.tags.tags,
+    tagSuggestions: state.tags.tagSuggestions
+  }
 }
 
 PostsForm.propTypes = {
@@ -160,13 +179,15 @@ PostsForm.propTypes = {
   items: PropTypes.array.isRequired,
   params: PropTypes.object,
   fetchPost: PropTypes.func.isRequired,
+  fetchNewPost: PropTypes.func.isRequired,
   createPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
-  fetchItems: PropTypes.func.isRequired,
   createItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
   updateItem: PropTypes.func.isRequired,
-  moveItem: PropTypes.func.isRequired
+  moveItem: PropTypes.func.isRequired,
+  createTag: PropTypes.func.isRequired,
+  deleteTag: PropTypes.func.isRequired
 };
 
 
@@ -176,11 +197,13 @@ export default reduxForm({
   validate
 }, mapStateToProps, {
   fetchPost,
+  fetchNewPost,
   createPost,
   deletePost,
-  fetchItems,
   createItem,
   deleteItem,
   updateItem,
-  moveItem
+  moveItem,
+  createTag,
+  deleteTag
 })(PostsForm);

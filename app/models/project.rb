@@ -17,7 +17,9 @@ class Project < ActiveRecord::Base
   has_many :project_taggings, dependent: :destroy
   has_many :project_tags, through: :project_taggings
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
+  validates :image, presence: true
+  validates :description, presence: true
 
   mount_uploader :image, ProjectImageUploader
 end

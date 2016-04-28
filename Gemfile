@@ -27,6 +27,7 @@ gem 'enum_help'
 gem 'migration_comments'
 gem 'squeel'
 gem 'draper'
+gem 'validates_email_format_of'
 
 
 # For Config
