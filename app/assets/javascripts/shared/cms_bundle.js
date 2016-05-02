@@ -26630,6 +26630,14 @@
 
 	var _navigation_bar2 = _interopRequireDefault(_navigation_bar);
 
+	var _themeManager = __webpack_require__(765);
+
+	var _themeManager2 = _interopRequireDefault(_themeManager);
+
+	var _theme = __webpack_require__(766);
+
+	var _theme2 = _interopRequireDefault(_theme);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26648,6 +26656,13 @@
 	  }
 
 	  _createClass(App, [{
+	    key: 'getChildContext',
+	    value: function getChildContext() {
+	      return {
+	        muiTheme: _themeManager2.default.getMuiTheme(_theme2.default)
+	      };
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -26663,6 +26678,11 @@
 	}(_react.Component);
 
 	exports.default = App;
+
+
+	App.childContextTypes = {
+	  muiTheme: _react.PropTypes.object
+	};
 
 /***/ },
 /* 244 */
@@ -26719,7 +26739,7 @@
 	    minHeight: 50
 	  },
 	  title: {
-	    color: '#69808c',
+	    color: '#00796B',
 	    fontSize: '1.6rem',
 	    fontFamily: 'Raleway,sans-serif',
 	    lineHeight: '5.0rem',
@@ -41743,7 +41763,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props);
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
 	      var _props$fields = _props.fields;
@@ -41818,8 +41837,6 @@
 	var fields = exports.fields = ['title', 'description', 'publishedAt', 'id'];
 
 	function mapStateToProps(state) {
-	  console.log(state.posts.post);
-	  console.log(state.items);
 	  return {
 	    initialValues: state.posts.post,
 	    items: state.items,
@@ -83065,6 +83082,100 @@
 	    };
 	  };
 	}
+
+/***/ },
+/* 765 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactAddonsUpdate = __webpack_require__(267);
+
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
+	var _lodash = __webpack_require__(292);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _getMuiTheme = __webpack_require__(291);
+
+	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// import deprecatedExport from '../utils/deprecatedExport';
+
+	exports.default = // deprecatedExport(
+	{
+	  getMuiTheme: _getMuiTheme2.default,
+	  modifyRawThemeSpacing: function modifyRawThemeSpacing(muiTheme, spacing) {
+	    return (0, _getMuiTheme2.default)((0, _reactAddonsUpdate2.default)(muiTheme.baseTheme, { spacing: { $set: spacing } }));
+	  },
+	  modifyRawThemePalette: function modifyRawThemePalette(muiTheme, palette) {
+	    var newPalette = (0, _lodash2.default)(muiTheme.baseTheme.palette, palette);
+	    return (0, _getMuiTheme2.default)((0, _reactAddonsUpdate2.default)(muiTheme.baseTheme, { palette: { $set: newPalette } }));
+	  },
+	  modifyRawThemeFontFamily: function modifyRawThemeFontFamily(muiTheme, fontFamily) {
+	    return (0, _getMuiTheme2.default)((0, _reactAddonsUpdate2.default)(muiTheme.baseTheme, { fontFamily: { $set: fontFamily } }));
+	  }
+	}; // ,
+	//  'material-ui/lib/styles/theme-manager',
+	//  'material-ui/lib/styles/themeManager'
+	//);
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 766 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _colors = __webpack_require__(270);
+
+	var _colors2 = _interopRequireDefault(_colors);
+
+	var _colorManipulator = __webpack_require__(309);
+
+	var _colorManipulator2 = _interopRequireDefault(_colorManipulator);
+
+	var _spacing = __webpack_require__(311);
+
+	var _spacing2 = _interopRequireDefault(_spacing);
+
+	var _zIndex = __webpack_require__(312);
+
+	var _zIndex2 = _interopRequireDefault(_zIndex);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  spacing: _spacing2.default,
+	  zIndex: _zIndex2.default,
+	  fontFamily: 'Roboto, sans-serif',
+	  palette: {
+	    primary1Color: _colors2.default.teal500,
+	    primary2Color: _colors2.default.teal700,
+	    primary3Color: _colors2.default.teal100,
+	    accent1Color: _colors2.default.redA200,
+	    accent2Color: _colors2.default.red100,
+	    accent3Color: _colors2.default.red500,
+	    textColor: _colors2.default.gray900,
+	    alternateTextColor: _colors2.default.white,
+	    canvasColor: _colors2.default.white,
+	    borderColor: _colors2.default.grey400,
+	    disabledColor: _colorManipulator2.default.fade(_colors2.default.darkBlack, 0.3),
+	    pickerHeaderColor: _colors2.default.teal500
+	  }
+	};
 
 /***/ }
 /******/ ]);
