@@ -36,7 +36,6 @@ export default class PostItemForm extends Component {
           <Heading
             targetType={this.props.item.targetType}
             initialValues={{title: this.props.item.title}}
-            submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -46,7 +45,6 @@ export default class PostItemForm extends Component {
           <Image
             targetType={this.props.item.targetType}
             image={this.props.item.image}
-            submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -57,7 +55,6 @@ export default class PostItemForm extends Component {
             targetType={this.props.item.targetType}
             initialValues={{sourceURL: this.props.item.sourceURL}}
             sortRank={this.props.sortRank}
-            submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -67,7 +64,6 @@ export default class PostItemForm extends Component {
           <Quote
             targetType={this.props.item.targetType}
             initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
-            submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -77,7 +73,6 @@ export default class PostItemForm extends Component {
           <Link
             targetType={this.props.item.targetType}
             initialValues={{ sourceURL: this.props.item.sourceURL, sourceTitle: this.props.item.sourceTitle }}
-            submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -88,7 +83,6 @@ export default class PostItemForm extends Component {
             targetType={this.props.item.targetType}
             initialValues={{ description: this.props.item.description }}
             style={this.props.item.style}
-            submitButtonLabel={this.renderSubmitButtonLabel()}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -97,10 +91,7 @@ export default class PostItemForm extends Component {
         return;
     }
   }
-
-  renderSubmitButtonLabel() {
-    return (this.props.item.isNew ? 'Create' : 'Update');
-  }
+  
 
   renderCancelButton() {
     return (

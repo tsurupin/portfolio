@@ -24,45 +24,43 @@ describe('PostItemForm', () => {
     let item = { editing: true, targetType: 'ItemHeading' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
-    expect(component).to.contain('ItemHeading')
+    expect(component).to.contain('Heading')
   });
 
   it('shows image form', () => {
     let item = { editing: true, targetType: 'ItemImage' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
-    expect(component).to.contain('ItemImage')
+    expect(component).to.contain('Image')
   });
 
   it('shows twitter form', () => {
     let item = { editing: true, targetType: 'ItemTwitter' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
-    expect(component).to.contain('ItemTwitter')
+    expect(component).to.contain('Twitter')
   });
 
   it('shows quote form', () => {
     let item = { editing: true, targetType: 'ItemQuote' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
-    expect(component).to.contain('ItemQuote')
+    expect(component).to.contain('Quote')
   });
 
   it('shows link form', () => {
     let item = { editing: true, targetType: 'ItemLink' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
-    expect(component).to.contain('ItemLink')
+    expect(component).to.contain('SourceURL')
   });
 
   it('shows text form', () => {
     let item = { editing: true, targetType: 'ItemText' };
     props = { ...props, item };
     const component = renderComponent(PostItemForm, props, {});
-    expect(component).to.contain('ItemText')
+    expect(component).to.contain('Text')
   });
-
-
 
 });
     

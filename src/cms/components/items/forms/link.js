@@ -5,6 +5,11 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
 
+const style = {
+  marginLeft: 12
+};
+
+
 class ItemFormLink extends Component {
 
   constructor(props) {
@@ -21,10 +26,10 @@ class ItemFormLink extends Component {
     const { handleSubmit, submitting, fields: { sourceURL, sourceTitle } } = this.props;
     return (
       <div className="item-form">
-        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
         <TextField
           className="item-form__input-text"
           {...sourceURL}
+          floatingLabelText="SourceURL"
           hintText='Enter the sourceURL'
           fullWidth={true}
           errorText={sourceURL.touched && sourceURL.error ? sourceURL.error : ''}
@@ -32,20 +37,22 @@ class ItemFormLink extends Component {
         <TextField
           className="item-form__input-text"
           {...sourceTitle}
+          floatingLabelText="SourceTitle"
           hintText='Enter the sourceTitle'
           fullWidth={true}
           errorText={sourceTitle.touched && sourceTitle.error ? sourceTitle.error : ''}
         />
         <div className="item-form__submit-box">
+          {this.props.cancelButton}
           <RaisedButton
             className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}
             disabled={submitting}
+            style={style}
             onClick={handleSubmit(this.handleUpdateItem)}
           />
-          {this.props.cancelButton}
         </div>
       </div>
     );
@@ -55,7 +62,6 @@ class ItemFormLink extends Component {
 ItemFormLink.propTypes = {
   targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
-  submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired

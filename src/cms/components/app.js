@@ -16,7 +16,9 @@ export default class App extends Component {
     return (
       <div>
         <NavigationBar />
-        {this.props.children}
+        <div style={{marginLeft: '24px', marginRight:'24px', position: 'relative'}}>
+          {this.props.children}
+        </div>
       </div>
     );
   }

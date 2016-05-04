@@ -13,17 +13,6 @@ const TARGET_TYPE_LIST = [
   TARGET_TYPES.QUOTE
 ];
 
-const styles = {
-  list: {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: 0,
-    width: '80%',
-    margin: '0 10%'
-  }
-};
-
-
 export default class ItemFormEditBox extends Component {
 
   constructor(props) {
@@ -32,13 +21,17 @@ export default class ItemFormEditBox extends Component {
 
   render() {
     return (
-      <List style={styles.list}>
-        <ul className='item-edit-box'>
+      <List className='item-edit-box'
+            insetSubheader={true}
+            subheader='Add Item'
+            subheaderStyle={{paddingLeft: 0, lineHeight: '24px'}}>
+        <ul className='item-edit-box__list'>
           {TARGET_TYPE_LIST.map((targetType, index) => {
             return (
               <ItemEditBoxItem
                 key={index}
                 name={targetType.NAME}
+                label={targetType.LABEL}
                 image={targetType.IMAGE}
                 handleAddItem={this.props.handleAddItem}
               />

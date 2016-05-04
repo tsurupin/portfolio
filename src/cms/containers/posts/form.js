@@ -110,31 +110,40 @@ class PostsForm extends Component {
       );
     }
   }
+  
+  renderSubmitButtonLabel() {
+    return this.props.params.id ? 'Update' : 'Create'
+  }
 
   render() {
     const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className="form">
         {this.renderLoadingIndicator()}
-        <h2 className="form-heading">Create New Post</h2>
+        <h2 className="form__heading">Create New Post</h2>
         <TextField
           {...title}
-          hintText="Title"
+          floatingLabelText="Title"
+          hintText="Enter Title"
           fullWidth={true}
           errorText={title.touched && title.error ? title.error : ''}
         />
         <br/>
         <TextField
           {...description}
-          hintText="Description"
+          floatingLabelText="Description"
+          hintText="Enter Description"
           multiLine={true}
           fullWidth={true}
-          rows={4}
+          rows={2}
         />
         <br/>
+        <label className="form__label">Published At</label>
         <DatePicker
+          className="form__datepicker"
           container="inline"
           autoOk={true}
+          placeholder="PublishedAt"
           defaultDate={new Date()}
           errorText={publishedAt.touched && publishedAt.error ? publishedAt.error : ''}
           {...publishedAt}
@@ -147,10 +156,13 @@ class PostsForm extends Component {
         />
         {this.renderItems()}
         <ItemFormEditBox handleAddItem={this.handleAddItem}/>
+        <br />
+        <br />
         <RaisedButton
           type="submit"
-          label="Create"
+          label={this.renderSubmitButtonLabel()}
           secondary={true}
+          style={{position: 'absolute', bottom: '10', right: '15'}}
         />
       </form>
     );

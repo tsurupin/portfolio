@@ -5,6 +5,10 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
 
+const style = {
+  marginLeft: 12
+};
+
 class ItemFormHeading extends Component {
 
   constructor(props) {
@@ -21,24 +25,25 @@ class ItemFormHeading extends Component {
     const { handleSubmit, submitting, fields: { title } } = this.props;
     return (
       <div className="item-form">
-        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
         <TextField
           className="item-form__input-text"
           {...title}
+          floatingLabelText={ this.props.targetType == 'ItemHeading' ? 'Heading' : 'SubHeading' }
           hintText='Enter the title'
           fullWidth={true}
           errorText={title.touched && title.error ? title.error : ''}
         />
         <div className="item-form__submit-box">
+          {this.props.cancelButton}
           <RaisedButton
             className='item-form__submit-button'
-            label={this.props.submitButtonLabel}
+            label='Save'
             labelPosition="after"
             icon={<ContentAddCircle />}
             disabled={submitting}
+            style={style}
             onClick={handleSubmit(this.handleUpdateItem)}
           />
-          {this.props.cancelButton}
         </div>
       </div>
     );
@@ -48,7 +53,6 @@ class ItemFormHeading extends Component {
 ItemFormHeading.propTypes = {
   targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
-  submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };

@@ -7,6 +7,12 @@ import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import { fetchTweet } from '../../../actions/items';
 import { reduxForm } from 'redux-form';
 
+
+const style = {
+  marginLeft: 12
+};
+
+
 class ItemFormTwitter extends Component {
 
   constructor(props) {
@@ -56,24 +62,24 @@ class ItemFormTwitter extends Component {
     return (
       <div className="item-form" style={{position: 'relative'}}>
         {this.renderLoadingIndicator()}
-        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
         <TextField
           className="item-form__input-text"
           {...sourceURL}
+          floatingLabelText="Twitter"
           hintText='Enter the sourceURL'
           fullWidth={true}
           errorText={sourceURL.touched && sourceURL.error ? sourceURL.error : ''}
         />
         <div className="item-form__submit-box">
+          {this.props.cancelButton}
           <RaisedButton
             className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}
             disabled={submitting}
-            onClick={handleSubmit(this.handleUpdateItem)}
-          />
-          {this.props.cancelButton}
+            style={style}
+            onClick={handleSubmit(this.handleUpdateItem)}/>
         </div>
       </div>
     );
@@ -87,7 +93,6 @@ ItemFormTwitter.propTypes = {
   authorName: PropTypes.string,
   authorScreenName: PropTypes.string,
   description: PropTypes.string,
-  submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired

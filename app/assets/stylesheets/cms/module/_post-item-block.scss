@@ -1,3 +1,5 @@
 .post-item-block {
+  position: relative;
   list-style: none;
+  @include reset-ul-default-style
 }
