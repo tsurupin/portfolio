@@ -8,8 +8,6 @@ import Quote from './displays/quote';
 import Link from './displays/link';
 import Text from './displays/text';
 
-
-
 export default class PostItemCell extends Component {
   constructor(props) {
     super(...props);
@@ -85,28 +83,18 @@ export default class PostItemCell extends Component {
   }
 
   renderTooltip() {
-    if (!this.state.hovering) {
-      return;
-    }
+    // if (!this.state.hovering) {
+    //   return;
+    // }
     return (
       <Tooltip
         sortRank={this.props.sortRank}
         totalCount={this.props.totalCount}
-        editButton={this.renderEditButton()}
+        handleUpdateItem={this.handleUpdateItem}
         handleDeleteItem={this.props.handleDeleteItem}
         handleMoveItem={this.props.handleMoveItem}
       />
     )
-  }
-
-  renderEditButton() {
-    return (
-      <li
-        className="item-tooltip__move-button"
-        onClick={this.handleUpdateItem}>
-        Edit
-      </li>
-    );
   }
 
   render() {

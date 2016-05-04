@@ -33,9 +33,9 @@ class TagField extends Component {
 
   render() {
     return (
-      <section className="article-side-form">
-        <div className="article-side-form__header">タグの追加</div>
-        <div className="article-side-form__content">
+      <div className="tag-field">
+        <label className="tag-field__header">Tag</label>
+        <div className="tag-field__content">
           <ReactTags
             tags={this.state.tags}
             suggestions={this.state.suggestions}
@@ -46,9 +46,17 @@ class TagField extends Component {
             autocomplete={1}
             minQueryLength={1}
             placeholder='Enter Tag Name'
+            classNames={{
+              tags: 'tag-field__tags',
+              tagInput: 'tag-field__tag-input',
+              selected: 'tag-field__selected',
+              tag: 'tag-field__tag',
+              remove: 'tag-field__remove',
+              suggestions: 'tag-field__suggestions'
+            }}
           />
         </div>
-      </section>
+      </div>
     )
   }
 }

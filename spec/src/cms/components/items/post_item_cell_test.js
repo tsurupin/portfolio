@@ -11,11 +11,11 @@ describe('PostItemCell', () => {
     handleUpdateItem: sinon.spy()
   };
 
-  it('does not show tooltip', () => {
+  it('shows tooltip', () => {
     let item = { editing: false, targetType: 'ItemHeading' };
     props = { ...props, item };
     const component = renderComponent(PostItemCell, props, {});
-    expect(component.find('.item-tooltip')).not.to.exist;
+    expect(component.find('.item-tooltip')).to.exist;
   });
 
   it('shows Hading component', () => {

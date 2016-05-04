@@ -1,0 +1,13 @@
+.item-edit-box-item {
+  margin: 0 2.5%;
+}
+
+.item-edit-box-item__button {
+  border-radius: 48px;
+  @include hover-animation;
+}
+
+.item-edit-box-item__icon {
+  width: 100%;
+  height: 100%;
+}

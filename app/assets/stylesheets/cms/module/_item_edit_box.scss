@@ -1,4 +1,13 @@
 .item-edit-box {
-  display: flex;
-  list-style: none;
+  margin-top: 50px;
 }
+
+.item-edit-box__list {
+  list-style: none;
+  display: inline-flex;
+  flex-direction: row;
+  padding: 0;
+  width: 70%;
+  margin: 0 15%;
+}
+

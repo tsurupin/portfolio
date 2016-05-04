@@ -3,6 +3,18 @@ import Dropzone from 'react-dropzone';
 import { capitalize } from '../../../utilities';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
+import Paper from 'material-ui/lib/paper';
+
+const style = {
+  submitButton: {
+    marginLeft: 12
+  },
+  paper: {
+    margin: '10px 0'
+  }
+};
+
+
 
 export default class ItemFormImage extends Component {
 
@@ -64,24 +76,28 @@ export default class ItemFormImage extends Component {
   render() {
     return (
       <div className='item-form'>
-        <div className='item-form__name'>{capitalize(this.props.targetType)}</div>
-        <Dropzone
-          accepte='image/*'
-          multipe={false}
-          onDrop={this.handleDrop}>
-          <div>Try dropping some files here, or click to select files to upload.</div>
-        </Dropzone>
+        <label className="item-form__header">Image</label>
+        <Paper zDepth={1} rounded={false} style={style.paper}>
+          <Dropzone
+            className="item-form__dropzone"
+            accepte='image/*'
+            multipe={false}
+            onDrop={this.handleDrop}>
+            <div className="item-form__dropzone-help">Drop file here or click to upload.</div>
+          </Dropzone>
+        </Paper>
         {this.renderImageBox()}
         {this.renderErrorMessage()}
         <div className='item-form__submit-box'>
+          {this.props.cancelButton}
           <RaisedButton
             className='item-form__submit-button'
-            label={this.props.submitButtonLabel}
+            label='Save'
             labelPosition='after'
             icon={<ContentAddCircle />}
+            style={style.submitButton}
             onClick={this.handleUpdateItem}
           />
-          {this.props.cancelButton}
         </div>
       </div>
     );
@@ -91,7 +107,6 @@ export default class ItemFormImage extends Component {
 ItemFormImage.propTypes = {
   targetType: PropTypes.string.isRequired,
   image: PropTypes.string,
-  submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.element.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };

@@ -10,7 +10,6 @@ describe('ItemQuoteForm', () => {
   const handleUpdateItem = sinon.spy();
   let props = {
     targetType: 'ItemQuote',
-    submitButtonLabel: 'Update',
     cancelButton: <RaisedButton
       className="item-form__cancel-button"
       label="Cancel"

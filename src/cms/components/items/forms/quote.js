@@ -5,6 +5,12 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
 
+
+const style = {
+  marginLeft: 12
+};
+
+
 class ItemFormQuote extends Component {
 
   constructor(props) {
@@ -21,10 +27,10 @@ class ItemFormQuote extends Component {
     const { handleSubmit, submitting, fields: { sourceURL, description } } = this.props;
     return (
       <div className="item-form">
-        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
         <TextField
           className="item-form__input-text"
           {...description}
+          floatingLabelText="Quote"
           hintText='Enter the description'
           fullWidth={true}
           rows={4}
@@ -33,20 +39,22 @@ class ItemFormQuote extends Component {
         <TextField
           className="item-form__input-text"
           {...sourceURL}
+          floatingLabelText="SourceURL"
           hintText='Enter the sourceURL'
           fullWidth={true}
           errorText={sourceURL.touched && sourceURL.error ? sourceURL.error : ''}
         />
         <div className="item-form__submit-box">
+          {this.props.cancelButton}
           <RaisedButton
             className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}
             disabled={submitting}
+            style={style}
             onClick={handleSubmit(this.handleUpdateItem)}
           />
-          {this.props.cancelButton}
         </div>
       </div>
     );
@@ -56,7 +64,6 @@ class ItemFormQuote extends Component {
 ItemFormQuote.propTypes = {
   targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
-  submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired

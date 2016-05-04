@@ -14,7 +14,7 @@ const styles = {
     minHeight: 50
   },
   title: {
-    color: '#69808c',
+    color: '#00796B',
     fontSize: '1.6rem',
     fontFamily: 'Raleway,sans-serif',
     lineHeight: '5.0rem',

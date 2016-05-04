@@ -10,7 +10,6 @@ describe('ItemTwitterForm', () => {
   const handleUpdateItem = sinon.spy();
   let props = {
     targetType: 'ItemTwitter',
-    submitButtonLabel: 'Update',
     cancelButton: <RaisedButton
       className="item-form__cancel-button"
       label="Cancel"

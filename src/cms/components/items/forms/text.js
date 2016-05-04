@@ -7,6 +7,11 @@ import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import { reduxForm } from 'redux-form';
 
+const style = {
+  marginLeft: 12
+};
+
+
 class ItemFormText extends Component {
 
   constructor(props) {
@@ -31,8 +36,11 @@ class ItemFormText extends Component {
     const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className="item-form">
-        <div className="item-form__name">{capitalize(this.props.targetType)}</div>
-        <SelectField value={this.state.style} onChange={this.handleChange}>
+        <SelectField
+          value={this.state.style}
+          floatingLabelText="Text Type"
+          onChange={this.handleChange}
+        >
           <MenuItem value={1} primaryText="Never"/>
           <MenuItem value={2} primaryText="Every Night"/>
           <MenuItem value={3} primaryText="Weeknights"/>
@@ -42,21 +50,23 @@ class ItemFormText extends Component {
         <TextField
           className="item-form__input-text"
           {...description}
-          hintText='Enter the description'
+          floatingLabelText='Text'
+          hintText='Enter the text'
           fullWidth={true}
-          rows={4}
+          rows={2}
           errorText={description.touched && description.error ? description.error : ''}
         />
         <div className="item-form__submit-box">
+          {this.props.cancelButton}
           <RaisedButton
             className='item-form__submit-button'
             label={this.props.submitButtonLabel}
             labelPosition="after"
             icon={<ContentAddCircle />}
             disabled={submitting}
+            style={style}
             onClick={handleSubmit(this.handleUpdateItem)}
           />
-          {this.props.cancelButton}
         </div>
       </div>
     );
@@ -71,7 +81,6 @@ ItemFormText.propTypes = {
   targetType: PropTypes.string.isRequired,
   style: PropTypes.number,
   description: PropTypes.string,
-  submitButtonLabel: PropTypes.string.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired,

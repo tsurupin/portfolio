@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ListItem from 'material-ui/lib/lists/list-item';
-
+import IconButton from 'material-ui/lib/icon-button';
 export default class ItemEditBoxItem extends Component {
 
   constructor(props) {
@@ -14,15 +13,17 @@ export default class ItemEditBoxItem extends Component {
 
   render() {
     return (
-      <li>
-        <ListItem
-          leftAvatar={
-            <img 
-              style={{width: '100%', height: '100%', top: 0, left: 0}}
-              src={this.props.image}/>
-          }
-          onClick={this.handleAddItem}
-        />
+      <li className="item-edit-box-item">
+        <IconButton
+          className="item-edit-box-item__button"
+          tooltip={this.props.label}
+          tooltipPosition="bottom-center"
+          onClick={this.handleAddItem}>
+          <img 
+            src={this.props.image}
+            className="item-edit-box-item__icon"
+          />
+        </IconButton>
       </li>
     );
   }
@@ -31,5 +32,6 @@ export default class ItemEditBoxItem extends Component {
 ItemEditBoxItem.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   handleAddItem: PropTypes.func.isRequired
 };

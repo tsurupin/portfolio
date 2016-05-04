@@ -16,7 +16,7 @@ describe('EditBoxItem', () => {
   });
 
   it('clicks', () => {
-    component.find('span[type=button]').simulate('click');
+    component.find('.item-edit-box-item__button').simulate('click');
     expect(handleAddItem.calledOnce).to.be.true
   });
 
