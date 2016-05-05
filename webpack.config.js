@@ -1,4 +1,7 @@
 const webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
+
 module.exports = {
   context: __dirname,
   entry: {
@@ -11,6 +14,7 @@ module.exports = {
   },
   module: {
     loaders: [
+        { test: /plugin\.css$/, loaders: ['style', 'css'] },
         { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
 

@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import ItemFormEditBox from '../../components/items/forms/edit_box';
 import TextField from 'material-ui/lib/text-field';
-import DatePicker from '../../components/utilities/date_picker_wrapper';
+import DatePicker from '../../components/shares/date_picker_wrapper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import PostItemBlock from '../../components/items/post_item_block';
 import RefreshIndicator from 'material-ui/lib/refresh-indicator';
-import TagField from '../../components/utilities/tag_field';
+import TagField from '../../components/shares/tag_field';
+import TextEditor from '../../components/shares/text_editor';
 
 class PostsForm extends Component {
   static contextTypes = {

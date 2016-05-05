@@ -8,6 +8,8 @@ import ProjectsIndex from './containers/projects/index';
 import ProjectsForm from './containers/projects/form';
 import SitesForm from './containers/sites/form';
 import AuthorsForm from './containers/authors/form';
+import NotFound from './components/not_found';
+
 export default (
   <Route path="/cms" component={App}>
     <IndexRoute component={PostsIndex}/>
@@ -21,5 +23,6 @@ export default (
     <Route path="/cms/authors/:id/edit" component={AuthorsForm}/>
     <Route path="/cms/sites/new" component={SitesForm}/>
     <Route path="/cms/sites/:id/edit" component={SitesForm}/>
+    <Route path="*" component={NotFound} />
   </ Route>
 );
