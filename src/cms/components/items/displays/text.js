@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
-import TextDisplay from '../../utilities/text_display';
+import TextDisplay from '../../shares/text_display';
 
 export default class ItemText extends Component {
 

@@ -6,7 +6,7 @@ import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import { reduxForm } from 'redux-form';
-import TextEditor from '../../utilities/text_editor';
+import TextEditor from '../../shares/text_editor';
 
 const style = {
   marginLeft: 12
