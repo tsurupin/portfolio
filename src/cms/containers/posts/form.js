@@ -11,6 +11,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import PostItemBlock from '../../components/items/post_item_block';
 import RefreshIndicator from 'material-ui/lib/refresh-indicator';
 import TagField from '../../components/utilities/tag_field';
+import TextEditor from '../../components/utilities/text_editor';
 
 class PostsForm extends Component {
   static contextTypes = {

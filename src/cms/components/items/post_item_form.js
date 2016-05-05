@@ -81,8 +81,7 @@ export default class PostItemForm extends Component {
         return (
           <Text
             targetType={this.props.item.targetType}
-            initialValues={{ description: this.props.item.description }}
-            style={this.props.item.style}
+            description={this.props.item.description}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />

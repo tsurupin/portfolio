@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
+import TextDisplay from '../../utilities/text_display';
 
 export default class ItemText extends Component {
 
@@ -8,19 +9,16 @@ export default class ItemText extends Component {
   }
 
   render() {
-    const textClassName = classnames({
-      'item-text__description': true
-    });
+
     return (
       <div className="item-text">
-        <p className={textClassName}>{this.props.description}</p>
+        <TextDisplay description={this.props.description} />
       </div>
     );
   }
 }
 
 ItemText.propTypes = {
-  style: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired
 };
 
