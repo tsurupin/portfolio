@@ -19,6 +19,11 @@ import {
   styles
 } from './text_editor_utilities';
 
+import RaisedButton from 'material-ui/lib/raised-button';
+import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
+import FlatButton from 'material-ui/lib/flat-button';
+import TextField from 'material-ui/lib/text-field';
+import IconButton from 'material-ui/lib/icon-button';
 export default class TextEditor extends Component {
   constructor(props) {
     super(...props);
@@ -35,13 +40,13 @@ export default class TextEditor extends Component {
       const blocks = convertFromRaw(JSON.parse(props.description));
       this.state = {
         editorState: EditorState.createWithContent(blocks, decorator),
-        showURLInput: false,
+        inputtable: false,
         urlValue: '',
       };
     } else {
       this.state = {
         editorState: EditorState.createEmpty(decorator),
-        showURLInput: false,
+        inputtable: false,
         urlValue: '',
       };
     }
@@ -53,10 +58,10 @@ export default class TextEditor extends Component {
     this.handleChange = (editorState) => this.setState({ editorState });
     this.handleChangeURL = (e) => this.setState({ urlValue: e.target.value });
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
-    this.handleUpdateText = this.handleUpdateText.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handlePromptForLink = this.handlePromptForLink.bind(this);
     this.handleConfirmLink = this.handleConfirmLink.bind(this);
-    this.handleInputKeyDown = this.hanldeInputKeyDown.bind(this);
+    this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
     this.handleRemoveLink = this.handleRemoveLink.bind(this);
   }
 
@@ -66,7 +71,7 @@ export default class TextEditor extends Component {
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
       this.setState({
-        showURLInput: true,
+        inputtable: true,
         urlValue: '',
       }, () => {
         setTimeout(() => this.refs.url.focus(), 0);
@@ -84,16 +89,16 @@ export default class TextEditor extends Component {
         editorState.getSelection(),
         entityKey
       ),
-      showURLInput: false,
+      inputtable: false,
       urlValue: '',
     }, () => {
       setTimeout(() => this.refs.editor.focus(), 0);
     });
   }
 
-  hanldeInputKeyDown(e) {
+  handleInputKeyDown(e) {
     if (e.which === 13) {
-      this._handleConfirmLink(e);
+      this.handleConfirmLink(e);
     }
   }
 
@@ -108,10 +113,10 @@ export default class TextEditor extends Component {
     }
   }
 
-  handleUpdateText() {
+  handleUpdate() {
     const raw = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
     console.log(raw);
-    this.props.handleUpdateText(raw)
+    this.props.handleUpdate(raw)
   }
   
   handleToggleBlockType(blockType) {
@@ -141,6 +146,25 @@ export default class TextEditor extends Component {
     }
     return false;
   }
+  renderURLField() {
+      if (this.state.inputtable) {
+        return(
+          <div style={styles.urlInputContainer}>
+            <TextField
+              onChange={this.handleChangeURL}
+              ref="url"
+              hintText='Enter Link URL'
+              style={styles.urlInput}
+              value={this.state.urlValue}
+              onKeyDown={this.handleInputKeyDown}
+            />
+              <IconButton onMouseDown={this.handleConfirmLink}>
+                <ContentAddCircle />
+              </IconButton>
+          </div>
+        )
+      }
+  }
 
   render() {
     const {editorState} = this.state;
@@ -152,36 +176,8 @@ export default class TextEditor extends Component {
       }
     }
 
-    let urlInput;
-    if (this.state.showURLInput) {
-      urlInput =
-        <div style={styles.urlInputContainer}>
-          <input
-            onChange={this.handleChangeURL}
-            ref="url"
-            style={styles.urlInput}
-            type="text"
-            value={this.state.urlValue}
-            onKeyDown={this.handleInputKeyDown}
-          />
-          <button onMouseDown={this.handleConfirmLink}>
-            Confirm
-          </button>
-        </div>;
-    }
     return (
       <div className="RichEditor-root">
-        <div style={styles.buttons}>
-          <button
-            onClick={this.handlePromptForLink}
-            style={{marginRight: 10}}>
-            Add Link
-          </button>
-          <button onClick={this.handleRemoveLink}>
-            Remove Link
-          </button>
-        </div>
-        {urlInput}
         <BlockStyleControls
           editorState={editorState}
           onToggle={this.handleToggleBlockType}
@@ -190,6 +186,9 @@ export default class TextEditor extends Component {
           editorState={editorState}
           onToggle={this.handleToggleInlineStyle}
         />
+        <FlatButton label="Add Link" onClick={this.handlePromptForLink} />
+        <FlatButton label="Remove Link" onClick={this.handleRemoveLink} />
+        {this.renderURLField()}
         <div className={className} onClick={this.handleFocus}>
           <Editor
             onChange={this.handleChange}
@@ -202,8 +201,16 @@ export default class TextEditor extends Component {
             handleKeyCommand={this.handleKeyCommand}
           />
         </div>
-        <div>
-          <button onClick={this.handleUpdateText}>Update</button>
+        <div className="text-editor__action-box" style={{textAlign: 'right'}}>
+          {this.props.cancelButton}
+          <RaisedButton
+            className='text-editor__button'
+            label='Save'
+            labelPosition="after"
+            icon={<ContentAddCircle />}
+            style={{marginLeft: 12}}
+            onClick={this.handleUpdate}
+          />
         </div>
       </div>
     )

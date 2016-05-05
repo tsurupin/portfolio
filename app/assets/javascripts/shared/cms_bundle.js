@@ -75627,30 +75627,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _utilities = __webpack_require__(356);
-
-	var _textField = __webpack_require__(428);
-
-	var _textField2 = _interopRequireDefault(_textField);
-
-	var _raisedButton = __webpack_require__(459);
-
-	var _raisedButton2 = _interopRequireDefault(_raisedButton);
-
-	var _addCircle = __webpack_require__(650);
-
-	var _addCircle2 = _interopRequireDefault(_addCircle);
-
-	var _selectField = __webpack_require__(658);
-
-	var _selectField2 = _interopRequireDefault(_selectField);
-
-	var _menuItem = __webpack_require__(463);
-
-	var _menuItem2 = _interopRequireDefault(_menuItem);
-
-	var _reduxForm = __webpack_require__(381);
-
 	var _text_editor = __webpack_require__(936);
 
 	var _text_editor2 = _interopRequireDefault(_text_editor);
@@ -75665,10 +75641,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var style = {
-	  marginLeft: 12
-	};
-
 	var ItemFormText = function (_Component) {
 	  _inherits(ItemFormText, _Component);
 
@@ -75679,22 +75651,14 @@
 
 	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormText)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	    _this.handleUpdateText = _this.handleUpdateText.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(ItemFormText, [{
 	    key: 'handleUpdateItem',
-	    value: function handleUpdateItem(props) {
-	      this.props.handleUpdateItem({
-	        description: props.description
-	      });
-	    }
-	  }, {
-	    key: 'handleUpdateText',
-	    value: function handleUpdateText(callback) {
-	      this.props.handleUpdateItem({ description: callback });
+	    value: function handleUpdateItem(description) {
+	      this.props.handleUpdateItem({ description: description });
 	    }
 	  }, {
 	    key: 'render',
@@ -75702,23 +75666,16 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'item-form' },
+	        _react2.default.createElement(
+	          'label',
+	          { className: 'item-form__header' },
+	          'Text'
+	        ),
 	        _react2.default.createElement(_text_editor2.default, {
 	          description: this.props.description,
-	          handleUpdateText: this.handleUpdateText
-	        }),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'item-form__submit-box' },
-	          this.props.cancelButton,
-	          _react2.default.createElement(_raisedButton2.default, {
-	            className: 'item-form__submit-button',
-	            label: 'Save',
-	            labelPosition: 'after',
-	            icon: _react2.default.createElement(_addCircle2.default, null),
-	            style: style,
-	            onClick: this.handleUpdateItem
-	          })
-	        )
+	          handleUpdate: this.handleUpdateItem,
+	          cancelButton: this.props.cancelButton
+	        })
 	      );
 	    }
 	  }]);
@@ -75737,980 +75694,12 @@
 	};
 
 /***/ },
-/* 658 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _SelectField = __webpack_require__(659);
-
-	var _SelectField2 = _interopRequireDefault(_SelectField);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _SelectField2.default;
-	module.exports = exports['default'];
-
-/***/ },
-/* 659 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _SelectField = __webpack_require__(660);
-
-	var _SelectField2 = _interopRequireDefault(_SelectField);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _SelectField2.default;
-	module.exports = exports['default'];
-
-/***/ },
-/* 660 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _stylePropable = __webpack_require__(246);
-
-	var _stylePropable2 = _interopRequireDefault(_stylePropable);
-
-	var _textField = __webpack_require__(428);
-
-	var _textField2 = _interopRequireDefault(_textField);
-
-	var _DropDownMenu = __webpack_require__(661);
-
-	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
-
-	var _getMuiTheme = __webpack_require__(291);
-
-	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
-
-	var _contextPure = __webpack_require__(272);
-
-	var _contextPure2 = _interopRequireDefault(_contextPure);
-
-	var _deprecatedPropType = __webpack_require__(457);
-
-	var _deprecatedPropType2 = _interopRequireDefault(_deprecatedPropType);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	var SelectField = _react2.default.createClass({
-	  displayName: 'SelectField',
-
-	  propTypes: {
-	    /**
-	     * The width will automatically be set according to the
-	     * items inside the menu. To control this width in css
-	     * instead, set this prop to `false`.
-	     */
-	    autoWidth: _react2.default.PropTypes.bool,
-
-	    /**
-	     * The `MenuItem` elements to populate the `Menu` with.
-	     * If the MenuItems have the prop `label` that value will
-	     * be used to render the representation of that
-	     * item within the field.
-	     */
-	    children: _react2.default.PropTypes.node,
-
-	    /**
-	     * Disables the select field if set to true.
-	     */
-	    disabled: _react2.default.PropTypes.bool,
-
-	    /**
-	     * The style object to use to override error styles.
-	     */
-	    errorStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * The error content to display.
-	     */
-	    errorText: _react2.default.PropTypes.node,
-
-	    /**
-	     * The style object to use to override floating label styles.
-	     */
-	    floatingLabelStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * The content to use for the floating label element.
-	     */
-	    floatingLabelText: _react2.default.PropTypes.node,
-
-	    /**
-	     * If true, the field receives the property width 100%.
-	     */
-	    fullWidth: _react2.default.PropTypes.bool,
-
-	    /**
-	     * The style object to use to override hint styles.
-	     */
-	    hintStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * The hint content to display.
-	     */
-	    hintText: _react2.default.PropTypes.node,
-
-	    /**
-	     * Overrides the styles of the icon element.
-	     */
-	    iconStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * `SelectField` will use text as default value,
-	     * with this property you can choose another name.
-	     */
-	    labelMember: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.string, 'to promote composability.'),
-
-	    /**
-	     * Overrides the styles of label when the `SelectField` is inactive.
-	     */
-	    labelStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * JSON data representing all menu items in the dropdown.
-	     */
-	    menuItems: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.array, 'to promote composability.'),
-
-	    /**
-	     * Callback function that is fired when the `SelectField` loses focus.
-	     */
-	    onBlur: _react2.default.PropTypes.func,
-
-	    /**
-	     * Callback function that is fired when the value changes.
-	     */
-	    onChange: _react2.default.PropTypes.func,
-
-	    /**
-	     * Callback function that is fired when the `SelectField` gains focus.
-	     */
-	    onFocus: _react2.default.PropTypes.func,
-
-	    /**
-	     * The style object to use to override the `DropDownMenu`.
-	     */
-	    selectFieldRoot: _react2.default.PropTypes.object, // Must be changed!
-
-	    /**
-	     * Index of the item selected.
-	     */
-	    selectedIndex: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.number, 'with menuItems.'),
-
-	    /**
-	     * Override the inline-styles of the root element.
-	     */
-	    style: _react2.default.PropTypes.object,
-
-	    /**
-	     * Override the inline-styles of the underline element when disabled.
-	     */
-	    underlineDisabledStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * Override the inline-styles of the underline element when focused.
-	     */
-	    underlineFocusStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * Overrides the styles of the underline element.
-	     */
-	    underlineStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * The value that is currently selected.
-	     */
-	    value: _react2.default.PropTypes.any
-	  },
-
-	  contextTypes: {
-	    muiTheme: _react2.default.PropTypes.object
-	  },
-
-	  //for passing default theme context to children
-	  childContextTypes: {
-	    muiTheme: _react2.default.PropTypes.object
-	  },
-
-	  mixins: [_stylePropable2.default, _contextPure2.default],
-
-	  statics: {
-	    getChildrenClasses: function getChildrenClasses() {
-	      return [_textField2.default, _DropDownMenu2.default];
-	    }
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      autoWidth: false,
-	      disabled: false,
-	      fullWidth: false
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      muiTheme: this.context.muiTheme || (0, _getMuiTheme2.default)()
-	    };
-	  },
-	  getChildContext: function getChildContext() {
-	    return {
-	      muiTheme: this.state.muiTheme
-	    };
-	  },
-
-	  //to update theme inside state whenever a new theme is passed down
-	  //from the parent / owner using context
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps, nextContext) {
-	    var newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-	    this.setState({ muiTheme: newMuiTheme });
-	  },
-	  getStyles: function getStyles() {
-	    var floatingLabelText = this.props.floatingLabelText;
-
-	    return {
-	      label: {
-	        paddingLeft: 0,
-	        top: floatingLabelText ? 6 : -4
-	      },
-	      icon: {
-	        right: 0,
-	        top: floatingLabelText ? 22 : 14
-	      },
-	      hideDropDownUnderline: {
-	        borderTop: 'none'
-	      }
-	    };
-	  },
-	  render: function render() {
-	    var styles = this.getStyles();
-	    var _props = this.props;
-	    var autoWidth = _props.autoWidth;
-	    var children = _props.children;
-	    var style = _props.style;
-	    var labelStyle = _props.labelStyle;
-	    var iconStyle = _props.iconStyle;
-	    var underlineDisabledStyle = _props.underlineDisabledStyle;
-	    var underlineFocusStyle = _props.underlineFocusStyle;
-	    var underlineStyle = _props.underlineStyle;
-	    var errorStyle = _props.errorStyle;
-	    var selectFieldRoot = _props.selectFieldRoot;
-	    var disabled = _props.disabled;
-	    var floatingLabelText = _props.floatingLabelText;
-	    var floatingLabelStyle = _props.floatingLabelStyle;
-	    var hintStyle = _props.hintStyle;
-	    var hintText = _props.hintText;
-	    var fullWidth = _props.fullWidth;
-	    var errorText = _props.errorText;
-	    var onFocus = _props.onFocus;
-	    var onBlur = _props.onBlur;
-	    var onChange = _props.onChange;
-	    var value = _props.value;
-
-	    var other = _objectWithoutProperties(_props, ['autoWidth', 'children', 'style', 'labelStyle', 'iconStyle', 'underlineDisabledStyle', 'underlineFocusStyle', 'underlineStyle', 'errorStyle', 'selectFieldRoot', 'disabled', 'floatingLabelText', 'floatingLabelStyle', 'hintStyle', 'hintText', 'fullWidth', 'errorText', 'onFocus', 'onBlur', 'onChange', 'value']);
-
-	    return _react2.default.createElement(
-	      _textField2.default,
-	      {
-	        style: style,
-	        floatingLabelText: floatingLabelText,
-	        floatingLabelStyle: floatingLabelStyle,
-	        hintStyle: hintStyle,
-	        hintText: !hintText && !floatingLabelText ? ' ' : hintText,
-	        fullWidth: fullWidth,
-	        errorText: errorText,
-	        underlineStyle: underlineStyle,
-	        errorStyle: errorStyle,
-	        onFocus: onFocus,
-	        onBlur: onBlur,
-	        underlineDisabledStyle: underlineDisabledStyle,
-	        underlineFocusStyle: underlineFocusStyle
-	      },
-	      _react2.default.createElement(
-	        _DropDownMenu2.default,
-	        _extends({
-	          disabled: disabled,
-	          style: selectFieldRoot,
-	          labelStyle: this.mergeStyles(styles.label, labelStyle),
-	          iconStyle: this.mergeStyles(styles.icon, iconStyle),
-	          underlineStyle: styles.hideDropDownUnderline,
-	          autoWidth: autoWidth,
-	          value: value,
-	          onChange: onChange
-	        }, other),
-	        children
-	      )
-	    );
-	  }
-	});
-
-	exports.default = SelectField;
-	module.exports = exports['default'];
-
-/***/ },
-/* 661 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _DropDownMenu = __webpack_require__(662);
-
-	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _DropDownMenu2.default;
-	module.exports = exports['default'];
-
-/***/ },
-/* 662 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _transitions = __webpack_require__(274);
-
-	var _transitions2 = _interopRequireDefault(_transitions);
-
-	var _arrowDropDown = __webpack_require__(471);
-
-	var _arrowDropDown2 = _interopRequireDefault(_arrowDropDown);
-
-	var _menu = __webpack_require__(473);
-
-	var _menu2 = _interopRequireDefault(_menu);
-
-	var _menuItem = __webpack_require__(463);
-
-	var _menuItem2 = _interopRequireDefault(_menuItem);
-
-	var _clearfix = __webpack_require__(372);
-
-	var _clearfix2 = _interopRequireDefault(_clearfix);
-
-	var _getMuiTheme = __webpack_require__(291);
-
-	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
-
-	var _popover = __webpack_require__(464);
-
-	var _popover2 = _interopRequireDefault(_popover);
-
-	var _popoverAnimationFromTop = __webpack_require__(663);
-
-	var _popoverAnimationFromTop2 = _interopRequireDefault(_popoverAnimationFromTop);
-
-	var _styles = __webpack_require__(247);
-
-	var _warning = __webpack_require__(187);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	var _deprecatedPropType = __webpack_require__(457);
-
-	var _deprecatedPropType2 = _interopRequireDefault(_deprecatedPropType);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	var DropDownMenu = _react2.default.createClass({
-	  displayName: 'DropDownMenu',
-
-	  // The nested styles for drop-down-menu are modified by toolbar and possibly
-	  // other user components, so it will give full access to its js styles rather
-	  // than just the parent.
-	  propTypes: {
-	    /**
-	     * The width will automatically be set according to the items inside the menu.
-	     * To control this width in css instead, set this prop to false.
-	     */
-	    autoWidth: _react2.default.PropTypes.bool,
-
-	    /**
-	     * The `MenuItem`s to populate the `Menu` with. If the `MenuItems` have the
-	     * prop `label` that value will be used to render the representation of that
-	     * item within the field.
-	     */
-	    children: _react2.default.PropTypes.node,
-
-	    /**
-	     * The css class name of the root element.
-	     */
-	    className: _react2.default.PropTypes.string,
-
-	    /**
-	     * Disables the menu.
-	     */
-	    disabled: _react2.default.PropTypes.bool,
-
-	    /**
-	     * `DropDownMenu` will use this member to display
-	     * the name of the item.
-	     */
-	    displayMember: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.string, 'Instead, use composability.'),
-
-	    /**
-	     * Overrides the styles of icon element.
-	     */
-	    iconStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * `DropDownMenu` will use this member to display
-	     * the name of the item on the label.
-	     */
-	    labelMember: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.string, 'Instead, use composability.'),
-
-	    /**
-	     * Overrides the styles of label when the `DropDownMenu` is inactive.
-	     */
-	    labelStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * The maximum height of the `Menu` when it is displayed.
-	     */
-	    maxHeight: _react2.default.PropTypes.number,
-
-	    /**
-	     * JSON data representing all menu items in the dropdown.
-	     */
-	    menuItems: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.array, 'Instead, use composability.'),
-
-	    /**
-	     * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
-	     */
-	    menuStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * Fired when a menu item is clicked that is not the one currently selected.
-	     */
-	    onChange: _react2.default.PropTypes.func,
-
-	    /**
-	     * Set to true to have the `DropDownMenu` automatically open on mount.
-	     */
-	    openImmediately: _react2.default.PropTypes.bool,
-
-	    /**
-	     * Index of the item selected.
-	     */
-	    selectedIndex: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.number, 'Use value instead to control the component.'),
-
-	    /**
-	     * Override the inline-styles of the root element.
-	     */
-	    style: _react2.default.PropTypes.object,
-
-	    /**
-	     * Overrides the inline-styles of the underline.
-	     */
-	    underlineStyle: _react2.default.PropTypes.object,
-
-	    /**
-	     * The value that is currently selected.
-	     */
-	    value: _react2.default.PropTypes.any,
-
-	    /**
-	     * Two-way binding link.
-	     */
-	    valueLink: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.object, 'It\'s deprecated by React too.'),
-
-	    /**
-	     * `DropDownMenu` will use this member as the value representing an item.
-	     */
-	    valueMember: (0, _deprecatedPropType2.default)(_react2.default.PropTypes.string, 'Instead, use composability.')
-	  },
-
-	  contextTypes: {
-	    muiTheme: _react2.default.PropTypes.object
-	  },
-
-	  //for passing default theme context to children
-	  childContextTypes: {
-	    muiTheme: _react2.default.PropTypes.object
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      autoWidth: true,
-	      disabled: false,
-	      openImmediately: false,
-	      maxHeight: 500
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      open: this.props.openImmediately,
-	      selectedIndex: this._isControlled() ? null : this.props.selectedIndex || 0,
-	      muiTheme: this.context.muiTheme || (0, _getMuiTheme2.default)()
-	    };
-	  },
-	  getChildContext: function getChildContext() {
-	    return {
-	      muiTheme: this.state.muiTheme
-	    };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    if (this.props.autoWidth) this._setWidth();
-	    if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props.selectedIndex);
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps, nextContext) {
-	    var newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-	    this.setState({ muiTheme: newMuiTheme });
-
-	    if (this.props.autoWidth) this._setWidth();
-	    if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
-	      return;
-	    } else if (nextProps.hasOwnProperty('selectedIndex')) {
-	      this._setSelectedIndex(nextProps.selectedIndex);
-	    }
-	  },
-	  getStyles: function getStyles() {
-	    var disabled = this.props.disabled;
-
-	    var spacing = this.state.muiTheme.rawTheme.spacing;
-	    var palette = this.state.muiTheme.rawTheme.palette;
-	    var accentColor = this.state.muiTheme.dropDownMenu.accentColor;
-	    return {
-	      control: {
-	        cursor: disabled ? 'not-allowed' : 'pointer',
-	        height: '100%',
-	        position: 'relative',
-	        width: '100%'
-	      },
-	      icon: {
-	        fill: accentColor,
-	        position: 'absolute',
-	        right: spacing.desktopGutterLess,
-	        top: (spacing.desktopToolbarHeight - 24) / 2
-	      },
-	      label: {
-	        color: disabled ? palette.disabledColor : palette.textColor,
-	        lineHeight: spacing.desktopToolbarHeight + 'px',
-	        opacity: 1,
-	        position: 'relative',
-	        paddingLeft: spacing.desktopGutter,
-	        paddingRight: spacing.iconSize + spacing.desktopGutterLess + spacing.desktopGutterMini,
-	        top: 0
-	      },
-	      labelWhenOpen: {
-	        opacity: 0,
-	        top: spacing.desktopToolbarHeight / 8
-	      },
-	      rootWhenOpen: {
-	        opacity: 1
-	      },
-	      root: {
-	        display: 'inline-block',
-	        fontSize: spacing.desktopDropDownMenuFontSize,
-	        height: spacing.desktopSubheaderHeight,
-	        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-	        outline: 'none',
-	        position: 'relative',
-	        transition: _transitions2.default.easeOut()
-	      },
-	      underline: {
-	        borderTop: 'solid 1px ' + accentColor,
-	        bottom: 1,
-	        left: 0,
-	        margin: '-1px ' + spacing.desktopGutter + 'px',
-	        right: 0,
-	        position: 'absolute'
-	      }
-	    };
-	  },
-
-	  /**
-	   * This method is deprecated but still here because the TextField
-	   * need it in order to work. That will be addressed later.
-	   */
-	  getInputNode: function getInputNode() {
-	    var _this = this;
-
-	    var root = this.refs.root;
-	    var item = this.props.menuItems && this.props.menuItems[this.state.selectedIndex];
-	    if (item) {
-	      root.value = item[this.props.displayMember || 'text'];
-	    }
-
-	    root.focus = function () {
-	      if (!_this.props.disabled) {
-	        _this.setState({
-	          open: !_this.state.open,
-	          anchorEl: _this.refs.root
-	        });
-	      }
-	    };
-
-	    return root;
-	  },
-	  _setWidth: function _setWidth() {
-	    var el = this.refs.root;
-	    if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
-	      el.style.width = 'auto';
-	    }
-	  },
-	  _setSelectedIndex: function _setSelectedIndex(index) {
-	    (undefined) !== "production" ? (0, _warning2.default)(index >= 0, 'Cannot set selectedIndex to a negative index.') : undefined;
-	    this.setState({ selectedIndex: index >= 0 ? index : 0 });
-	  },
-	  _onControlTouchTap: function _onControlTouchTap(event) {
-	    event.preventDefault();
-	    if (!this.props.disabled) {
-	      this.setState({
-	        open: !this.state.open,
-	        anchorEl: this.refs.root
-	      });
-	    }
-	  },
-	  _onMenuItemTouchTap: function _onMenuItemTouchTap(key, payload, e) {
-	    var _props = this.props;
-	    var onChange = _props.onChange;
-	    var menuItems = _props.menuItems;
-	    var value = _props.value;
-	    var valueLink = _props.valueLink;
-	    var valueMember = _props.valueMember;
-
-	    if (menuItems && (this.state.selectedIndex !== key || e.target.value !== value)) {
-	      var selectedItem = menuItems[key];
-	      if (selectedItem) {
-	        e.target.value = selectedItem[valueMember || 'payload'];
-	      }
-	      this._onMenuRequestClose();
-	    }
-
-	    if (valueLink) {
-	      valueLink.requestChange(e.target.value);
-	    } else if (onChange) {
-	      onChange(e, key, payload);
-	    }
-
-	    this.setState({
-	      selectedIndex: key,
-	      open: false
-	    });
-	  },
-	  _onMenuRequestClose: function _onMenuRequestClose() {
-	    this.setState({
-	      open: false,
-	      anchorEl: null
-	    });
-	  },
-	  _isControlled: function _isControlled() {
-	    return this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink');
-	  },
-	  render: function render() {
-	    var _this2 = this;
-
-	    var _props2 = this.props;
-	    var autoWidth = _props2.autoWidth;
-	    var children = _props2.children;
-	    var className = _props2.className;
-	    var displayMember = _props2.displayMember;
-	    var iconStyle = _props2.iconStyle;
-	    var labelMember = _props2.labelMember;
-	    var labelStyle = _props2.labelStyle;
-	    var maxHeight = _props2.maxHeight;
-	    var menuItems = _props2.menuItems;
-	    var menuStyle = _props2.menuStyle;
-	    var style = _props2.style;
-	    var underlineStyle = _props2.underlineStyle;
-	    var valueLink = _props2.valueLink;
-	    var _props2$valueMember = _props2.valueMember;
-	    var valueMember = _props2$valueMember === undefined ? 'payload' : _props2$valueMember;
-
-	    var other = _objectWithoutProperties(_props2, ['autoWidth', 'children', 'className', 'displayMember', 'iconStyle', 'labelMember', 'labelStyle', 'maxHeight', 'menuItems', 'menuStyle', 'style', 'underlineStyle', 'valueLink', 'valueMember']);
-
-	    var _state = this.state;
-	    var anchorEl = _state.anchorEl;
-	    var open = _state.open;
-	    var muiTheme = _state.muiTheme;
-
-	    var styles = this.getStyles();
-
-	    var value = undefined;
-	    var selectedIndex = this._isControlled() ? null : this.state.selectedIndex;
-
-	    if (menuItems && typeof selectedIndex === 'number') {
-	      (undefined) !== "production" ? (0, _warning2.default)(menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.') : undefined;
-	    }
-
-	    if (valueMember && this._isControlled()) {
-	      value = this.props.hasOwnProperty('value') ? this.props.value : valueLink.value;
-	      if (menuItems && value !== null && value !== undefined) {
-	        for (var i = 0; i < menuItems.length; i++) {
-	          if (menuItems[i][valueMember] === value) {
-	            selectedIndex = i;
-	          }
-	        }
-	      }
-	    }
-
-	    var displayValue = '';
-	    if (menuItems) {
-	      var selectedItem = menuItems[selectedIndex];
-	      if (selectedItem) {
-	        displayValue = selectedItem[labelMember || 'text'] || selectedItem[displayMember || 'text'];
-	      }
-	    } else {
-	      _react2.default.Children.forEach(children, function (child) {
-	        if (value === child.props.value) {
-	          // This will need to be improved (in case primaryText is a node)
-	          displayValue = child.props.label || child.props.primaryText;
-	        }
-	      });
-	    }
-
-	    var index = 0;
-	    var menuItemElements = menuItems ? menuItems.map(function (item, idx) {
-	      return _react2.default.createElement(_menuItem2.default, {
-	        key: idx,
-	        primaryText: item[displayMember || 'text'],
-	        value: item[valueMember],
-	        onTouchTap: _this2._onMenuItemTouchTap.bind(_this2, idx, item)
-	      });
-	    }) : _react2.default.Children.map(children, function (child) {
-	      var clone = _react2.default.cloneElement(child, {
-	        onTouchTap: _this2._onMenuItemTouchTap.bind(_this2, index, child.props.value)
-	      }, child.props.children);
-	      index += 1;
-	      return clone;
-	    });
-
-	    var popoverStyle = undefined;
-	    if (anchorEl && !autoWidth) {
-	      popoverStyle = { width: anchorEl.clientWidth };
-	    }
-
-	    return _react2.default.createElement(
-	      'div',
-	      _extends({}, other, {
-	        ref: 'root',
-	        className: className,
-	        style: (0, _styles.prepareStyles)(muiTheme, (0, _styles.mergeStyles)(styles.root, open && styles.rootWhenOpen, style))
-	      }),
-	      _react2.default.createElement(
-	        _clearfix2.default,
-	        { style: (0, _styles.mergeStyles)(styles.control), onTouchTap: this._onControlTouchTap },
-	        _react2.default.createElement(
-	          'div',
-	          { style: (0, _styles.prepareStyles)(muiTheme, (0, _styles.mergeStyles)(styles.label, open && styles.labelWhenOpen, labelStyle)) },
-	          displayValue
-	        ),
-	        _react2.default.createElement(_arrowDropDown2.default, { style: (0, _styles.mergeStyles)(styles.icon, iconStyle) }),
-	        _react2.default.createElement('div', { style: (0, _styles.prepareStyles)(muiTheme, (0, _styles.mergeStyles)(styles.underline, underlineStyle)) })
-	      ),
-	      _react2.default.createElement(
-	        _popover2.default,
-	        {
-	          anchorOrigin: { horizontal: 'left', vertical: 'top' },
-	          anchorEl: anchorEl,
-	          style: popoverStyle,
-	          animation: _popoverAnimationFromTop2.default,
-	          open: open,
-	          onRequestClose: this._onMenuRequestClose
-	        },
-	        _react2.default.createElement(
-	          _menu2.default,
-	          {
-	            maxHeight: maxHeight,
-	            desktop: true,
-	            value: value,
-	            style: menuStyle
-	          },
-	          menuItemElements
-	        )
-	      )
-	    );
-	  }
-	});
-
-	exports.default = DropDownMenu;
-	module.exports = exports['default'];
-
-/***/ },
-/* 663 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _transitions = __webpack_require__(274);
-
-	var _transitions2 = _interopRequireDefault(_transitions);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _propTypes = __webpack_require__(275);
-
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-
-	var _stylePropable = __webpack_require__(246);
-
-	var _stylePropable2 = _interopRequireDefault(_stylePropable);
-
-	var _getMuiTheme = __webpack_require__(291);
-
-	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
-
-	var _paper = __webpack_require__(327);
-
-	var _paper2 = _interopRequireDefault(_paper);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var PopoverAnimationFromTop = _react2.default.createClass({
-	  displayName: 'PopoverAnimationFromTop',
-
-	  propTypes: {
-	    children: _react2.default.PropTypes.node,
-	    className: _react2.default.PropTypes.string,
-	    open: _react2.default.PropTypes.bool.isRequired,
-
-	    /**
-	     * Override the inline-styles of the root element.
-	     */
-	    style: _react2.default.PropTypes.object,
-	    targetOrigin: _propTypes2.default.origin,
-	    zDepth: _propTypes2.default.zDepth
-	  },
-
-	  contextTypes: {
-	    muiTheme: _react2.default.PropTypes.object
-	  },
-
-	  //for passing default theme context to children
-	  childContextTypes: {
-	    muiTheme: _react2.default.PropTypes.object
-	  },
-
-	  mixins: [_stylePropable2.default],
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      style: {},
-	      zDepth: 1
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      muiTheme: this.context.muiTheme || (0, _getMuiTheme2.default)(),
-	      open: false
-	    };
-	  },
-	  getChildContext: function getChildContext() {
-	    return {
-	      muiTheme: this.state.muiTheme
-	    };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.setState({ open: true }); //eslint-disable-line react/no-did-mount-set-state
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps, nextContext) {
-	    var newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-
-	    this.setState({
-	      open: nextProps.open,
-	      muiTheme: newMuiTheme
-	    });
-	  },
-	  getStyles: function getStyles() {
-	    var targetOrigin = this.props.targetOrigin;
-
-	    var horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
-
-	    return {
-	      base: {
-	        opacity: 0,
-	        transform: 'scaleY(0)',
-	        transformOrigin: horizontal + ' ' + targetOrigin.vertical,
-	        position: 'fixed',
-	        zIndex: this.state.muiTheme.zIndex.popover,
-	        transition: _transitions2.default.easeOut('450ms', ['transform', 'opacity']),
-	        maxHeight: '100%'
-	      }
-
-	    };
-	  },
-	  getOpenStyles: function getOpenStyles() {
-	    return {
-	      base: {
-	        opacity: 1,
-	        transform: 'scaleY(1)'
-	      }
-	    };
-	  },
-	  render: function render() {
-	    var _props = this.props;
-	    var className = _props.className;
-	    var style = _props.style;
-	    var zDepth = _props.zDepth;
-
-	    var styles = this.getStyles();
-	    var openStyles = {};
-	    if (this.state.open) openStyles = this.getOpenStyles();
-
-	    return _react2.default.createElement(
-	      _paper2.default,
-	      {
-	        style: this.mergeStyles(styles.base, style, openStyles.base),
-	        zDepth: zDepth,
-	        className: className
-	      },
-	      this.props.children
-	    );
-	  }
-	});
-
-	exports.default = PopoverAnimationFromTop;
-	module.exports = exports['default'];
-
-/***/ },
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
 /* 664 */,
 /* 665 */,
 /* 666 */
@@ -101741,6 +100730,26 @@
 
 	var _text_editor_utilities = __webpack_require__(938);
 
+	var _raisedButton = __webpack_require__(459);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _addCircle = __webpack_require__(650);
+
+	var _addCircle2 = _interopRequireDefault(_addCircle);
+
+	var _flatButton = __webpack_require__(453);
+
+	var _flatButton2 = _interopRequireDefault(_flatButton);
+
+	var _textField = __webpack_require__(428);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _iconButton = __webpack_require__(271);
+
+	var _iconButton2 = _interopRequireDefault(_iconButton);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -101770,13 +100779,13 @@
 	      var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(props.description));
 	      _this.state = {
 	        editorState: _draftJs.EditorState.createWithContent(blocks, decorator),
-	        showURLInput: false,
+	        inputtable: false,
 	        urlValue: ''
 	      };
 	    } else {
 	      _this.state = {
 	        editorState: _draftJs.EditorState.createEmpty(decorator),
-	        showURLInput: false,
+	        inputtable: false,
 	        urlValue: ''
 	      };
 	    }
@@ -101793,10 +100802,10 @@
 	      return _this.setState({ urlValue: e.target.value });
 	    };
 	    _this.handleKeyCommand = _this.handleKeyCommand.bind(_this);
-	    _this.handleUpdateText = _this.handleUpdateText.bind(_this);
+	    _this.handleUpdate = _this.handleUpdate.bind(_this);
 	    _this.handlePromptForLink = _this.handlePromptForLink.bind(_this);
 	    _this.handleConfirmLink = _this.handleConfirmLink.bind(_this);
-	    _this.handleInputKeyDown = _this.hanldeInputKeyDown.bind(_this);
+	    _this.handleInputKeyDown = _this.handleInputKeyDown.bind(_this);
 	    _this.handleRemoveLink = _this.handleRemoveLink.bind(_this);
 	    return _this;
 	  }
@@ -101812,7 +100821,7 @@
 	      var selection = editorState.getSelection();
 	      if (!selection.isCollapsed()) {
 	        this.setState({
-	          showURLInput: true,
+	          inputtable: true,
 	          urlValue: ''
 	        }, function () {
 	          setTimeout(function () {
@@ -101834,7 +100843,7 @@
 	      var entityKey = _draftJs.Entity.create('LINK', 'MUTABLE', { url: urlValue });
 	      this.setState({
 	        editorState: _draftJs.RichUtils.toggleLink(editorState, editorState.getSelection(), entityKey),
-	        showURLInput: false,
+	        inputtable: false,
 	        urlValue: ''
 	      }, function () {
 	        setTimeout(function () {
@@ -101843,10 +100852,10 @@
 	      });
 	    }
 	  }, {
-	    key: 'hanldeInputKeyDown',
-	    value: function hanldeInputKeyDown(e) {
+	    key: 'handleInputKeyDown',
+	    value: function handleInputKeyDown(e) {
 	      if (e.which === 13) {
-	        this._handleConfirmLink(e);
+	        this.handleConfirmLink(e);
 	      }
 	    }
 	  }, {
@@ -101863,11 +100872,11 @@
 	      }
 	    }
 	  }, {
-	    key: 'handleUpdateText',
-	    value: function handleUpdateText() {
+	    key: 'handleUpdate',
+	    value: function handleUpdate() {
 	      var raw = JSON.stringify((0, _draftJs.convertToRaw)(this.state.editorState.getCurrentContent()));
 	      console.log(raw);
-	      this.props.handleUpdateText(raw);
+	      this.props.handleUpdate(raw);
 	    }
 	  }, {
 	    key: 'handleToggleBlockType',
@@ -101890,6 +100899,29 @@
 	      return false;
 	    }
 	  }, {
+	    key: 'renderURLField',
+	    value: function renderURLField() {
+	      if (this.state.inputtable) {
+	        return _react2.default.createElement(
+	          'div',
+	          { style: _text_editor_utilities.styles.urlInputContainer },
+	          _react2.default.createElement(_textField2.default, {
+	            onChange: this.handleChangeURL,
+	            ref: 'url',
+	            hintText: 'Enter Link URL',
+	            style: _text_editor_utilities.styles.urlInput,
+	            value: this.state.urlValue,
+	            onKeyDown: this.handleInputKeyDown
+	          }),
+	          _react2.default.createElement(
+	            _iconButton2.default,
+	            { onMouseDown: this.handleConfirmLink },
+	            _react2.default.createElement(_addCircle2.default, null)
+	          )
+	        );
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var editorState = this.state.editorState;
@@ -101902,46 +100934,9 @@
 	        }
 	      }
 
-	      var urlInput = void 0;
-	      if (this.state.showURLInput) {
-	        urlInput = _react2.default.createElement(
-	          'div',
-	          { style: _text_editor_utilities.styles.urlInputContainer },
-	          _react2.default.createElement('input', {
-	            onChange: this.handleChangeURL,
-	            ref: 'url',
-	            style: _text_editor_utilities.styles.urlInput,
-	            type: 'text',
-	            value: this.state.urlValue,
-	            onKeyDown: this.handleInputKeyDown
-	          }),
-	          _react2.default.createElement(
-	            'button',
-	            { onMouseDown: this.handleConfirmLink },
-	            'Confirm'
-	          )
-	        );
-	      }
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'RichEditor-root' },
-	        _react2.default.createElement(
-	          'div',
-	          { style: _text_editor_utilities.styles.buttons },
-	          _react2.default.createElement(
-	            'button',
-	            {
-	              onClick: this.handlePromptForLink,
-	              style: { marginRight: 10 } },
-	            'Add Link'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.handleRemoveLink },
-	            'Remove Link'
-	          )
-	        ),
-	        urlInput,
 	        _react2.default.createElement(BlockStyleControls, {
 	          editorState: editorState,
 	          onToggle: this.handleToggleBlockType
@@ -101950,6 +100945,9 @@
 	          editorState: editorState,
 	          onToggle: this.handleToggleInlineStyle
 	        }),
+	        _react2.default.createElement(_flatButton2.default, { label: 'Add Link', onClick: this.handlePromptForLink }),
+	        _react2.default.createElement(_flatButton2.default, { label: 'Remove Link', onClick: this.handleRemoveLink }),
+	        this.renderURLField(),
 	        _react2.default.createElement(
 	          'div',
 	          { className: className, onClick: this.handleFocus },
@@ -101966,12 +100964,16 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.handleUpdateText },
-	            'Update'
-	          )
+	          { className: 'text-editor__action-box', style: { textAlign: 'right' } },
+	          this.props.cancelButton,
+	          _react2.default.createElement(_raisedButton2.default, {
+	            className: 'text-editor__button',
+	            label: 'Save',
+	            labelPosition: 'after',
+	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            style: { marginLeft: 12 },
+	            onClick: this.handleUpdate
+	          })
 	        )
 	      );
 	    }
