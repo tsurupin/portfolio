@@ -1,0 +1,23 @@
+@value fonts: "../../../../css/fonts.scss";
+@value font-xx-small, font-medium from fonts;
+
+.root {
+
+}
+
+.inputText {
+font-size: 20px;
+
+}
+
+.submitBox {
+  composes: clearFloat from "../../../../css/mixins.scss";
+}
+
+
+
+.submitButton {
+
+}
+
+

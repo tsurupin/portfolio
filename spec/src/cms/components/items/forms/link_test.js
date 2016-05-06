@@ -1,9 +1,8 @@
 import { renderComponent, expect, sinon } from '../../../utility';
-import ItemLinkForm from '../../../../../../src/cms/components/items/forms/link';
+import ItemLinkForm from '../../../../../../src/cms/components/items/forms/Link/link';
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
-
 describe('ItemLinkForm', () => {
   
   const handleDeleteItem = sinon.spy();
@@ -25,7 +24,7 @@ describe('ItemLinkForm', () => {
     const component = renderComponent(ItemLinkForm, props, {});
     component.find('input[name=sourceURL]').simulate('change', 'hoge');
     component.find('input[name=sourceTitle]').simulate('change', 'hoge');
-    component.find('.item-form__submit-button').simulate('click');
+    component.find('button').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.false;
   });
   
@@ -35,7 +34,7 @@ describe('ItemLinkForm', () => {
     component.find('input[name=sourceURL]').simulate('change', 'http://google.com');
     expect(component.find('input[name=sourceTitle]')).to.have.value('hoge');
     expect(component.find('input[name=sourceURL]')).to.have.value('http://google.com');
-    component.find('.item-form__submit-button').simulate('click');
+    component.find('button').last().simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.true;
   });
   

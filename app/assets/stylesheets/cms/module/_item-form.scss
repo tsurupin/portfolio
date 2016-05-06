@@ -29,11 +29,11 @@
   @include font-size($font-medium);
 }
 
-.item-form__submit-box {
-  float: right;
-
-  @include after-clear-float
-}
+//.item-form__submit-box {
+//  float: right;
+//
+//  @include after-clear-float
+//}
 
 //.item-form__submit-button {
 //  margin-left: 12px;

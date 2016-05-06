@@ -1,0 +1,21 @@
+.clearFloat::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.reset-ul-default-style {
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+.hover-animation {
+  transition: 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: lightgray !important;
+    opacity: 0.3;
+  }
+}

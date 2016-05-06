@@ -1,0 +1,32 @@
+@value colors: "../../../css/colors.css";
+@value fonts: "../../../css/fonts.css";
+
+@value border-color, label-color, border-color, text-color from colors;
+@value font-xx-small from fonts;
+
+.root {
+  margin: 20px auto;
+  padding: 10px 15px;
+  border: 1px solid border-color;
+  background: white;
+  z-index: 1;
+}
+
+.heading {
+  color: text-color;
+}
+
+.label {
+  color: label-color;
+  font-size: calc(font-xx-small * 10) + px;
+  font-size: font-xx-small + rem;
+}
+
+.help {
+  text-align: right;
+  color: border-color;
+}
+
+.datepicker {
+
+}

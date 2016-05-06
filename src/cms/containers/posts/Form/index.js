@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPost, fetchNewPost, createPost, deletePost } from '../../actions/posts';
-import { createItem, updateItem, deleteItem, moveItem } from '../../actions/items';
-import { createTag, deleteTag } from '../../actions/tags';
+import { fetchPost, fetchNewPost, createPost, deletePost } from '../../../actions/posts';
+import { createItem, updateItem, deleteItem, moveItem } from '../../../actions/items';
+import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import ItemFormEditBox from '../../components/items/forms/edit_box';
-import TextField from 'material-ui/lib/text-field';
-import DatePicker from '../../components/shares/date_picker_wrapper';
-import RaisedButton from 'material-ui/lib/raised-button';
-import PostItemBlock from '../../components/items/post_item_block';
-import RefreshIndicator from 'material-ui/lib/refresh-indicator';
-import TagField from '../../components/shares/tag_field';
-import TextEditor from '../../components/shares/text_editor';
+import ItemFormEditBox from '../../../components/items/forms/edit_box';
+import TextField from '../../../../../node_modules/material-ui/lib/text-field';
+import DatePicker from '../../../components/shares/date_picker_wrapper';
+import RaisedButton from '../../../../../node_modules/material-ui/lib/raised-button';
+import PostItemBlock from '../../../components/items/post_item_block';
+import RefreshIndicator from '../../../../../node_modules/material-ui/lib/refresh-indicator';
+import TagField from '../../../components/shares/tag_field';
+import styles from './styles.scss';
 
 class PostsForm extends Component {
   static contextTypes = {
@@ -112,16 +112,13 @@ class PostsForm extends Component {
     }
   }
   
-  renderSubmitButtonLabel() {
-    return this.props.params.id ? 'Update' : 'Create'
-  }
-
   render() {
+    const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
     const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleSubmit)} className="form">
+      <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
         {this.renderLoadingIndicator()}
-        <h2 className="form__heading">Create New Post</h2>
+        <h2 className={styles.heading}>Create New Post</h2>
         <TextField
           {...title}
           floatingLabelText="Title"
@@ -139,9 +136,9 @@ class PostsForm extends Component {
           rows={2}
         />
         <br/>
-        <label className="form__label">Published At</label>
+        <label className={styles.label}>Published At</label>
         <DatePicker
-          className="form__datepicker"
+          className={styles.datapicker}
           container="inline"
           autoOk={true}
           placeholder="PublishedAt"
@@ -161,7 +158,7 @@ class PostsForm extends Component {
         <br />
         <RaisedButton
           type="submit"
-          label={this.renderSubmitButtonLabel()}
+          label={submitButtonLabel}
           secondary={true}
           style={{position: 'absolute', bottom: '10', right: '15'}}
         />

@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
 import PostsIndex from './containers/posts/index';
-import PostsForm from './containers/posts/form';
+import PostsForm from './containers/posts/Form/index';
 import ProjectsIndex from './containers/projects/index';
 import ProjectsForm from './containers/projects/form';
 import SitesForm from './containers/sites/form';

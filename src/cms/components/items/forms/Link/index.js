@@ -1,20 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { capitalize } from '../../../utilities';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
+import TextField from '../../../../../../node_modules/material-ui/lib/text-field';
+import RaisedButton from '../../../../../../node_modules/material-ui/lib/raised-button';
+import ContentAddCircle from '../../../../../../node_modules/material-ui/lib/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
+import styles from './styles.scss';
 
-const style = {
+const inlineStyles = {
   marginLeft: 12
 };
 
 
-class ItemFormLink extends Component {
+class Link extends Component {
 
   constructor(props) {
     super(...props);
-
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
 
@@ -25,9 +24,9 @@ class ItemFormLink extends Component {
   render() {
     const { handleSubmit, submitting, fields: { sourceURL, sourceTitle } } = this.props;
     return (
-      <div className="item-form">
+      <div className={styles.root}>
         <TextField
-          className="item-form__input-text"
+          className={styles.inputText}
           {...sourceURL}
           floatingLabelText="SourceURL"
           hintText='Enter the sourceURL'
@@ -42,15 +41,15 @@ class ItemFormLink extends Component {
           fullWidth={true}
           errorText={sourceTitle.touched && sourceTitle.error ? sourceTitle.error : ''}
         />
-        <div className="item-form__submit-box">
+        <div className={styles.submitBox}>
           {this.props.cancelButton}
           <RaisedButton
-            className='item-form__submit-button'
-            label={this.props.submitButtonLabel}
+            className={styles.submitButton}
+            label="Save"
             labelPosition="after"
             icon={<ContentAddCircle />}
             disabled={submitting}
-            style={style}
+            style={inlineStyles}
             onClick={handleSubmit(this.handleUpdateItem)}
           />
         </div>

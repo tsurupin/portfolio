@@ -6,7 +6,7 @@ import Heading from './forms/heading';
 import Image from './forms/image';
 import Twitter from './forms/twitter';
 import Quote from './forms/quote';
-import Link from './forms/link';
+import Link from './forms/Link/index';
 import Text from './forms/text';
 
 export default class PostItemForm extends Component {
