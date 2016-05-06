@@ -1,5 +1,5 @@
 import { expect, renderComponent } from '../../../utility';
-import ItemImage from '../../../../../../src/cms/components/items/displays/image';
+import ItemImage from '../../../../../../src/cms/components/items/Display/image';
 
 describe('ItemImage', () => {
   let component;

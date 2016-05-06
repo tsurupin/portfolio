@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './components/app';
+import App from './components/App/index';
 import PostsIndex from './containers/posts/index';
 import PostsForm from './containers/posts/Form/index';
 import ProjectsIndex from './containers/projects/index';
 import ProjectsForm from './containers/projects/form';
 import SitesForm from './containers/sites/form';
 import AuthorsForm from './containers/authors/form';
-import NotFound from './components/not_found';
+import NotFound from './components/NotFound/index';
 
 export default (
   <Route path="/cms" component={App}>

@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../../../utility';
-import ItemHeading from '../../../../../../src/cms/components/items/displays/heading';
+import ItemHeading from '../../../../../../src/cms/components/items/Display/heading';
 
 describe('ItemHeading', () => {
 

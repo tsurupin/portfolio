@@ -1,5 +1,5 @@
 import { renderComponent, expect, sinon } from '../../../utility';
-import ItemTextForm from '../../../../../../src/cms/components/items/forms/text';
+import ItemTextForm from '../../../../../../src/cms/components/items/Form/text';
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';

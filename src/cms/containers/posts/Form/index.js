@@ -4,14 +4,26 @@ import { createItem, updateItem, deleteItem, moveItem } from '../../../actions/i
 import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import ItemFormEditBox from '../../../components/items/forms/edit_box';
+import EditBox from '../../../components/items/Form/EditBox/index';
 import TextField from '../../../../../node_modules/material-ui/lib/text-field';
 import DatePicker from '../../../components/shares/date_picker_wrapper';
 import RaisedButton from '../../../../../node_modules/material-ui/lib/raised-button';
-import PostItemBlock from '../../../components/items/post_item_block';
+import Item from '../../../components/items/index';
 import RefreshIndicator from '../../../../../node_modules/material-ui/lib/refresh-indicator';
 import TagField from '../../../components/shares/tag_field';
 import styles from './styles.scss';
+
+const inlineStyles = {
+  submitButton: {
+    position: 'absolute', 
+    bottom: 10, 
+    right: 15
+  },
+  indicator: {
+    display: 'inline-block', 
+    position: 'relative'
+  }
+};
 
 class PostsForm extends Component {
   static contextTypes = {
@@ -77,11 +89,11 @@ class PostsForm extends Component {
 
   renderItems() {
     return (
-      <section className="l-post-item-container">
-        <ul className="post-item-block">
+      <section className={styles.itemContainer}>
+        <ul className={styles.itemList}>
           {this.props.items.map((item, index) => {
             return (
-              <PostItemBlock
+              <Item
                 key={index}
                 sortRank={index}
                 item={item}
@@ -106,7 +118,7 @@ class PostsForm extends Component {
           top={100}
           loadingColor={"#FF9800"}
           status="loading"
-          style={{display: 'inline-block', position: 'relative'}}
+          style={inlineStyles.indicator}
         />
       );
     }
@@ -153,14 +165,14 @@ class PostsForm extends Component {
           handleDeleteTag={this.handleDeleteTag}
         />
         {this.renderItems()}
-        <ItemFormEditBox handleAddItem={this.handleAddItem}/>
+        <EditBox handleAddItem={this.handleAddItem}/>
         <br />
         <br />
         <RaisedButton
           type="submit"
           label={submitButtonLabel}
           secondary={true}
-          style={{position: 'absolute', bottom: '10', right: '15'}}
+          style={inlineStyles.submitButton}
         />
       </form>
     );

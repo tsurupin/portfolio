@@ -1,6 +1,6 @@
 const React = require('react');
 import { renderComponent, expect, sinon } from '../../../utility';
-import Tooltip from '../../../../../../src/cms/components/items/displays/tooltip';
+import Tooltip from '../../../../../../src/cms/components/items/Display/tooltip';
 let injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 

@@ -1,5 +1,5 @@
 import { renderComponent, expect, sinon } from '../../../utility';
-import ItemHeadingForm from '../../../../../../src/cms/components/items/forms/heading';
+import ItemHeadingForm from '../../../../../../src/cms/components/items/Form/heading';
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';

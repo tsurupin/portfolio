@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../../../utility';
-import ItemQuote from '../../../../../../src/cms/components/items/displays/quote';
+import ItemQuote from '../../../../../../src/cms/components/items/Display/quote';
 
 describe('ItemQuote', () => {
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts, deletePost, togglePost } from '../../actions/posts';
 import { Link } from 'react-router';
-import PostItem from './../../components/posts/item';
+import Item from './../../components/posts/Item/index';
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableHeader from 'material-ui/lib/table/table-header';
@@ -11,7 +11,7 @@ import TableRow from 'material-ui/lib/table/table-row';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 
-const styles = {
+const inlineStyles = {
   floatButton: {
     position: 'fixed',
     zIndex: 100,
@@ -48,7 +48,7 @@ class PostsIndex extends Component {
     return (
       <section>
         <Link to="/cms/posts/new">
-          <FloatingActionButton style={styles.floatButton}>
+          <FloatingActionButton style={inlineStyles.floatButton}>
             <ContentAdd />
           </FloatingActionButton>
         </Link>
@@ -65,7 +65,7 @@ class PostsIndex extends Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {this.props.posts.map((post, index) => (
-              <PostItem
+              <Item
                 post={post}
                 key={index}
                 handleDeletePost={this.handleDeletePost}
