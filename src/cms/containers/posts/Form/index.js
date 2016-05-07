@@ -4,13 +4,13 @@ import { createItem, updateItem, deleteItem, moveItem } from '../../../actions/i
 import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import EditBox from '../../../components/items/Form/EditBox/index';
-import TextField from '../../../../../node_modules/material-ui/lib/text-field';
-import DatePicker from '../../../components/shares/date_picker_wrapper';
-import RaisedButton from '../../../../../node_modules/material-ui/lib/raised-button';
-import Item from '../../../components/items/index';
-import RefreshIndicator from '../../../../../node_modules/material-ui/lib/refresh-indicator';
-import TagField from '../../../components/shares/tag_field';
+import EditBox from '../../../components/posts/forms/Item/Form/EditBox/index';
+import TextField from 'material-ui/lib/text-field';
+import DatePicker from '../../../components/shared/date_picker_wrapper';
+import RaisedButton from 'material-ui/lib/raised-button';
+import Item from '../../../components/posts/forms/Item/index';
+import RefreshIndicator from 'material-ui/lib/refresh-indicator';
+import TagField from '../../../components/shared/tag_field';
 import styles from './styles.scss';
 
 const inlineStyles = {

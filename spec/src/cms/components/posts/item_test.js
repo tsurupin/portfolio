@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 import { $, expect, sinon } from '../../utility';
-import PostItem from '../../../../../src/cms/components/posts/Item/index';
+import PostItem from '../../../../../src/cms/components/posts/indexes/Item/index';
 const TestUtils = require('react-addons-test-utils');
 describe("PostItem", () => {
   let post = { id: 1, title: 'title', description: 'description' };
