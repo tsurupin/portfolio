@@ -1,0 +1,13 @@
+.root {
+  margin: 0 2.5%;
+}
+
+.button {
+  composes: hoverAnimation from "../../../../../../../css/mixins.scss";
+  border-radius: 48px;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+}
