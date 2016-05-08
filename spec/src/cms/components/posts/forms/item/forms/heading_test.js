@@ -1,17 +1,17 @@
-import { renderComponent, expect, sinon } from '../../../utility';
-import ItemHeadingForm from '../../../../../../src/cms/components/items/Form/heading';
 import React from 'react';
+import { renderComponent, expect, sinon } from '../../../../../utility';
+import Heading from '../../../../../../../../src/cms/components/posts/forms/Item/Form/Heading/index';
+
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 
-describe('ItemHeadingForm', () => {
+describe('HeadingForm', () => {
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();
   let component;
   let props = {
     targetType: 'ItemHeading',
     cancelButton: <RaisedButton
-      className="item-form__cancel-button"
       label="Cancel"
       labelPosition="after"
       icon={<ContentRemoveCircle />}
@@ -21,8 +21,8 @@ describe('ItemHeadingForm', () => {
   };
 
   it('shows Save Button when item is new', () => {
-    component = renderComponent(ItemHeadingForm, props, {});
-    expect(component.find('.item-form__submit-button')).to.have.text('Save');
+    component = renderComponent(Heading, props, {});
+    expect(component.find('button:eq(1)')).to.have.text('Save');
     component.find('input[name=title]').simulate('change', 'hoge');
     expect(component.find('input[name=title]')).to.have.value('hoge')
   });
@@ -33,14 +33,14 @@ describe('ItemHeadingForm', () => {
       ...props,
       initialValues: { title: 'hoge' }
     };
-    component = renderComponent(ItemHeadingForm, props, {});
-    component.find('.item-form__submit-button').simulate('click');
+    component = renderComponent(Heading, props, {});
+    component.find('button:eq(1)').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.true;
   });
   
   it('fails to update item', () => {
-    component = renderComponent(ItemHeadingForm, props, {});
-    component.find('.item-form__submit-button').simulate('click');
+    component = renderComponent(Heading, props, {});
+    component.find('button:eq(1)').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.false;
    
   })

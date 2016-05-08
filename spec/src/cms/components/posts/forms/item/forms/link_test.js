@@ -1,17 +1,16 @@
-import { renderComponent, expect, sinon } from '../../../utility';
-import ItemQuoteForm from '../../../../../../src/cms/components/items/Form/quote';
 import React from 'react';
+import { renderComponent, expect, sinon } from '../../../../../utility';
+import Link from '../../../../../../../../src/cms/components/posts/forms/Item/Form/Link/index';
+
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
-
-describe('ItemQuoteForm', () => {
+describe('LinkForm', () => {
   
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();
   let props = {
-    targetType: 'ItemQuote',
+    targetType: 'ItemLink',
     cancelButton: <RaisedButton
-      className="item-form__cancel-button"
       label="Cancel"
       labelPosition="after"
       icon={<ContentRemoveCircle />}
@@ -22,20 +21,20 @@ describe('ItemQuoteForm', () => {
 
 
   it('fails to update item', () => {
-    const component = renderComponent(ItemQuoteForm, props, {});
-    component.find('input[name=description]').simulate('change', 'hoge');
-    expect(component.find('input[name=description]')).to.have.value('hoge');
-    component.find('.item-form__submit-button').simulate('click');
+    const component = renderComponent(Link, props, {});
+    component.find('input[name=sourceURL]').simulate('change', 'hoge');
+    component.find('input[name=sourceTitle]').simulate('change', 'hoge');
+    component.find('button').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.false;
   });
   
   it('updates item', () => {
-    const component = renderComponent(ItemQuoteForm, props, {});
-    component.find('input[name=description]').simulate('change', 'hoge');
+    const component = renderComponent(Link, props, {});
+    component.find('input[name=sourceTitle]').simulate('change', 'hoge');
     component.find('input[name=sourceURL]').simulate('change', 'http://google.com');
-    expect(component.find('input[name=description]')).to.have.value('hoge');
+    expect(component.find('input[name=sourceTitle]')).to.have.value('hoge');
     expect(component.find('input[name=sourceURL]')).to.have.value('http://google.com');
-    component.find('.item-form__submit-button').simulate('click');
+    component.find('button').last().simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.true;
   });
   

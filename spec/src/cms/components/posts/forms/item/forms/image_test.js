@@ -1,9 +1,10 @@
-import { expect, sinon, renderComponent } from '../../../utility';
-import ItemFormImage from '../../../../../../src/cms/components/items/Form/Image/image';
 import React from 'react';
+import { renderComponent, expect, sinon } from '../../../../../utility';
+import Image from '../../../../../../../../src/cms/components/posts/forms/Item/Form/Image/index';
+
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
-describe('ItemFormImage', () => {
+describe('ImageForm', () => {
 
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();
@@ -11,7 +12,6 @@ describe('ItemFormImage', () => {
     targetType: 'ItemImage',
     sortRank: 1,
     cancelButton: <RaisedButton
-      className="item-form__cancel-button"
       label="Cancel"
       labelPosition="after"
       icon={<ContentRemoveCircle />}
@@ -21,15 +21,15 @@ describe('ItemFormImage', () => {
   };
 
   it('shows error message when updating without image', () => {
-    const component = renderComponent(ItemFormImage, props, {});
-    component.find('.item-form__submit-button').simulate('click');
-    expect(component.find('.item-form__error-message')).to.have.text('Please upload image');
+    const component = renderComponent(Image, props, {});
+    component.find('button:eq(1)').simulate('click');
+    expect(component).to.contain('Please upload image');
   });
 
   it('uploads a image', () => {
     props = { ...props, image: 'http://www.digital-clarity.com/wp-content/uploads/2009/03/google-.png' }
-    const component = renderComponent(ItemFormImage, props, {});
-    component.find('.item-form__submit-button').simulate('click');
+    const component = renderComponent(Image, props, {});
+    component.find('button:eq(1)').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.true
   });
 
@@ -40,7 +40,7 @@ describe('ItemFormImage', () => {
   //         name: 'image.png',
   //         size: 1111
   //     }];
-  //     const component = shallow(<ItemFormImage {...props} />);
+  //     const component = shallow(<Image {...props} />);
   //     component.find('input[type="file"]').simulate('drop', { dataTransfer: { files } });
   //     expect(component.find('item-form__preview-image')).to.exist
   // });

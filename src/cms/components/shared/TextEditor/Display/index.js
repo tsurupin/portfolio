@@ -24,7 +24,7 @@ export default class TextDisplay extends Component {
         component: Link
       }
     ]);
-
+    
     const blocks = convertFromRaw(JSON.parse(props.description));
     this.state = { editorState: EditorState.createWithContent(blocks, decorator) };
   }

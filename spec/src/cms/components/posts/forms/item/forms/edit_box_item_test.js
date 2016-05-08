@@ -1,6 +1,6 @@
 const React = require('react');
-import { renderComponent, expect, sinon } from '../../../utility';
-import EditBoxItem from '../../../../../../src/cms/components/items/Form/edit_box_item';
+import { renderComponent, expect, sinon } from '../../../../../utility';
+import EditBoxItem from '../../../../../../../../src/cms/components/posts/forms/Item/Form/EditBox/EditBoxItem/index';
 
 describe('EditBoxItem', () => {
 
@@ -16,7 +16,7 @@ describe('EditBoxItem', () => {
   });
 
   it('clicks', () => {
-    component.find('.item-edit-box-item__button').simulate('click');
+    component.find('button').simulate('click');
     expect(handleAddItem.calledOnce).to.be.true
   });
 

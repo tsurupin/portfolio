@@ -1,17 +1,17 @@
-import { renderComponent, expect, sinon } from '../../../utility';
-import ItemTwitterForm from '../../../../../../src/cms/components/items/Form/twitter';
 import React from 'react';
+import { renderComponent, expect, sinon } from '../../../../../utility';
+import Twitter from '../../../../../../../../src/cms/components/posts/forms/Item/Form/Twitter/index';
+
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
 
-describe('ItemTwitterForm', () => {
+describe('TwitterForm', () => {
 
   const handleDeleteItem = sinon.spy();
   const handleUpdateItem = sinon.spy();
   let props = {
     targetType: 'ItemTwitter',
     cancelButton: <RaisedButton
-      className="item-form__cancel-button"
       label="Cancel"
       labelPosition="after"
       icon={<ContentRemoveCircle />}
@@ -22,15 +22,15 @@ describe('ItemTwitterForm', () => {
 
 
   it('fails to update item', () => {
-    const component = renderComponent(ItemTwitterForm, props, {});
+    const component = renderComponent(Twitter, props, {});
     component.find('input[name=sourceURL]').simulate('change', 'hoge');
-    component.find('.item-form__submit-button').simulate('click');
+    component.find('button:eq(1)').simulate('click');
     expect(handleUpdateItem.calledOnce).to.be.false;
   });
 
   // TODO: figure out how to test aynchronous validation
   // it('updates item', () => {
-  //   const component = renderComponent(ItemTwitterForm, props, {});
+  //   const component = renderComponent(Twitter, props, {});
   //   component.find('input[name=sourceURL]').simulate('change', 'https://twitter.com/appmarkelabo/status/717272847383564288');
   //   expect(component.find('input[name=sourceURL]')).to.have.value('https://twitter.com/appmarkelabo/status/717272847383564288');
   //   component.find('.item-form__submit-button').simulate('click');

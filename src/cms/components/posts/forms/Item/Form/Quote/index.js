@@ -49,7 +49,7 @@ class ItemFormQuote extends Component {
         <div className={styles.submitBox}>
           {this.props.cancelButton}
           <RaisedButton
-            className={styles.submitButton}
+            className='hoge2'
             label='Save'
             labelPosition="after"
             icon={<ContentAddCircle />}

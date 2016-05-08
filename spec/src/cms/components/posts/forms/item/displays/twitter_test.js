@@ -1,12 +1,12 @@
-import { renderComponent, expect } from '../../../utility';
-import ItemTwitter from '../../../../../../src/cms/components/items/Display/twitter';
+import { renderComponent, expect } from '../../../../../utility';
+import Twitter from '../../../../../../../../src/cms/components/posts/forms/Item/Display/Twitter/index';
 
 describe('ItemTwitter', () => {
 
   let component;
   beforeEach(() => {
     const props = { image: 'http://www.digital-clarity.com/wp-content/uploads/2009/03/google-.png' };
-    component = renderComponent(ItemTwitter, props, {});
+    component = renderComponent(Twitter, props, {});
   });
 
   it('show ItemTwitter component', () => {

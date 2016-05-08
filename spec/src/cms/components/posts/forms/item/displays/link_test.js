@@ -1,12 +1,12 @@
-import { renderComponent, expect } from '../../../utility';
-import ItemLink from '../../../../../../src/cms/components/items/Display/link';
+import { renderComponent, expect } from '../../../../../utility';
+import Link from '../../../../../../../../src/cms/components/posts/forms/Item/Display/Link/index';
 
 describe('ItemLink', () => {
 
   let component;
   beforeEach(() => {
     const props = { sourceURL: 'http://google.com', sourceTitle: 'hoge' };
-    component = renderComponent(ItemLink, props, {});
+    component = renderComponent(Link, props, {});
   });
 
   it('show ItemLink component', () => {

@@ -1,12 +1,12 @@
-import { renderComponent, expect } from '../../../utility';
-import ItemQuote from '../../../../../../src/cms/components/items/Display/quote';
+import { renderComponent, expect } from '../../../../../utility';
+import Quote from '../../../../../../../../src/cms/components/posts/forms/Item/Display/Quote/index';
 
 describe('ItemQuote', () => {
 
   let component;
   beforeEach(() => {
     const props = { sourceURL: 'http://google.com', description: 'hoge' };
-    component = renderComponent(ItemQuote, props, {});
+    component = renderComponent(Quote, props, {});
   });
 
   it('show ItemQuote component', () => {

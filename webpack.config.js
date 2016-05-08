@@ -23,8 +23,8 @@ module.exports = {
             'sass'
           )
         },
-        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
-        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
         { test: /\.(png|jpg|gif|ico)$/, loaders: ['file?name=[name].[ext]'] }
     ]
   },
