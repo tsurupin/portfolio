@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {  WithContext as ReactTags } from 'react-tag-input';
+import styles from './styles.scss';
 
 class TagField extends Component {
 
@@ -33,9 +34,9 @@ class TagField extends Component {
 
   render() {
     return (
-      <div className="tag-field">
-        <label className="tag-field__header">Tag</label>
-        <div className="tag-field__content">
+      <div className={styles.root}>
+        <label className={styles.header}>Tag</label>
+        <div className={styles.content}>
           <ReactTags
             tags={this.state.tags}
             suggestions={this.state.suggestions}
@@ -47,12 +48,12 @@ class TagField extends Component {
             minQueryLength={1}
             placeholder='Enter Tag Name'
             classNames={{
-              tags: 'tag-field__tags',
-              tagInput: 'tag-field__tag-input',
-              selected: 'tag-field__selected',
-              tag: 'tag-field__tag',
-              remove: 'tag-field__remove',
-              suggestions: 'tag-field__suggestions'
+              tags: styles.tags,
+              tagInput: styles.tagInput,
+              selected: styles.selected,
+              tag: styles.tag,
+              remove: styles.remove,
+              suggestions: styles.suggestions
             }}
           />
         </div>

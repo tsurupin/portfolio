@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import TextDisplay from '../../../../../shared/text_display';
+import TextDisplay from '../../../../../shared/TextEditor/Display/index';
 import styles from './styles.scss';
 
 

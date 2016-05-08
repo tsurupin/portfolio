@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import EditBox from '../../../components/posts/forms/Item/Form/EditBox/index';
 import TextField from 'material-ui/lib/text-field';
-import DatePicker from '../../../components/shared/date_picker_wrapper';
+import DatePicker from '../../../components/shared/DatePickerWrapper/index';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Item from '../../../components/posts/forms/Item/index';
 import RefreshIndicator from 'material-ui/lib/refresh-indicator';
-import TagField from '../../../components/shared/tag_field';
+import TagField from '../../../components/shared/TagField/index';
 import styles from './styles.scss';
 
 const inlineStyles = {

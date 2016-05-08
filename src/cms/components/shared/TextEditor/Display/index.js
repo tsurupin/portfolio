@@ -10,12 +10,10 @@ import {
 import {
   styleMap,
   getBlockStyle,
-  BLOCK_TYPES,
-  INLINE_STYLES,
   findLinkEntities,
   Link
-} from './text_editor_utilities';
-
+} from '../shared/utilities';
+import styles from '../shared/styles.scss';
 
 export default class TextDisplay extends Component {
   constructor(props) {
@@ -33,8 +31,8 @@ export default class TextDisplay extends Component {
 
   render() {
     return (
-      <div className="RichEditor-root">
-        <div className="RichEditor-editor">
+      <div className={styles.root}>
+        <div className={styles.editor}>
           <Editor
             blockStyleFn={getBlockStyle}
             customStyleMap={styleMap}

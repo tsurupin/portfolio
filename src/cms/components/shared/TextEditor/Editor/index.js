@@ -15,15 +15,28 @@ import {
   BLOCK_TYPES,
   INLINE_STYLES,
   findLinkEntities,
-  Link,
-  styles
-} from './text_editor_utilities';
+  Link
+} from './../shared/utilities';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 import IconButton from 'material-ui/lib/icon-button';
+import styles from '../shared/styles.scss';
+
+
+const inlineStyles = {
+  actionButton: {
+    marginLeft: 12
+  },
+  urlInput: {
+    fontFamily: "'Georgia', serif",
+    marginRight: 10,
+    padding: 3
+  }
+};
+
 export default class TextEditor extends Component {
   constructor(props) {
     super(...props);
@@ -31,8 +44,8 @@ export default class TextEditor extends Component {
     const decorator = new CompositeDecorator([
       {
         strategy: findLinkEntities,
-        component: Link,
-      },
+        component: Link
+      }
     ]);
 
 
@@ -41,13 +54,13 @@ export default class TextEditor extends Component {
       this.state = {
         editorState: EditorState.createWithContent(blocks, decorator),
         inputtable: false,
-        urlValue: '',
+        urlValue: ''
       };
     } else {
       this.state = {
         editorState: EditorState.createEmpty(decorator),
         inputtable: false,
-        urlValue: '',
+        urlValue: ''
       };
     }
 
@@ -67,12 +80,12 @@ export default class TextEditor extends Component {
 
   handlePromptForLink(e) {
     e.preventDefault();
-    const {editorState} = this.state;
+    const { editorState } = this.state;
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
       this.setState({
         inputtable: true,
-        urlValue: '',
+        urlValue: ''
       }, () => {
         setTimeout(() => this.refs.url.focus(), 0);
       });
@@ -90,7 +103,7 @@ export default class TextEditor extends Component {
         entityKey
       ),
       inputtable: false,
-      urlValue: '',
+      urlValue: ''
     }, () => {
       setTimeout(() => this.refs.editor.focus(), 0);
     });
@@ -149,12 +162,12 @@ export default class TextEditor extends Component {
   renderURLField() {
       if (this.state.inputtable) {
         return(
-          <div style={styles.urlInputContainer}>
+          <div className={styles.urlInputContainer}>
             <TextField
               onChange={this.handleChangeURL}
               ref="url"
               hintText='Enter Link URL'
-              style={styles.urlInput}
+              style={inlineStyles.urlInput}
               value={this.state.urlValue}
               onKeyDown={this.handleInputKeyDown}
             />
@@ -168,16 +181,16 @@ export default class TextEditor extends Component {
 
   render() {
     const {editorState} = this.state;
-    let className = 'RichEditor-editor';
+    let className = styles.edior;
     let contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
       if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        className += ' RichEditor-hidePlaceholder';
+        className = styles.hidePlaceholder;
       }
     }
 
     return (
-      <div className="RichEditor-root">
+      <div className={styles.root}>
         <BlockStyleControls
           editorState={editorState}
           onToggle={this.handleToggleBlockType}
@@ -201,14 +214,14 @@ export default class TextEditor extends Component {
             handleKeyCommand={this.handleKeyCommand}
           />
         </div>
-        <div className="text-editor__action-box" style={{textAlign: 'right'}}>
+        <div className={styles.actionBox} style={{textAlign: 'right'}}>
           {this.props.cancelButton}
           <RaisedButton
-            className='text-editor__button'
+            className={styles.actionButton}
             label='Save'
             labelPosition="after"
             icon={<ContentAddCircle />}
-            style={{marginLeft: 12}}
+            style={inlineStyles.actionButton}
             onClick={this.handleUpdate}
           />
         </div>
@@ -230,10 +243,12 @@ class StyleButton extends Component {
   }
 
   render() {
-    let className = 'RichEditor-styleButton';
+    let className;
     if (this.props.active) {
-      className += ' RichEditor-activeButton';
-    }
+      className = styles.activeButton
+    } else {
+      className = styles.styleButton
+    };
 
     return (
       <span className={className} onMouseDown={this.handleToggle}>
@@ -253,7 +268,7 @@ const BlockStyleControls = (props) => {
     .getType();
 
   return (
-    <div className="RichEditor-controls">
+    <div className={styles.control}>
       {BLOCK_TYPES.map((type) =>
         <StyleButton
           key={type.label}
@@ -270,7 +285,7 @@ const BlockStyleControls = (props) => {
 const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
   return (
-    <div className="RichEditor-controls">
+    <div className={styles.controls}>
       {INLINE_STYLES.map(type =>
         <StyleButton
           key={type.label}

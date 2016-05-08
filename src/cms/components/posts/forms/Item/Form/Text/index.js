@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import TextEditor from '../../../../../shared/text_editor';
+import TextEditor from '../../../../../shared/TextEditor/Editor/index';
 import styles from '../shared/styles.scss';
 
 
