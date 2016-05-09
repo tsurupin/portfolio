@@ -16,8 +16,8 @@ describe('Post Reducer', () => {
   });
 
   it('handles action of type FETCH_POSTS_SUCCESS', () => {
-    const action = { type: FETCH_POSTS.SUCCESS, payload: [] };
-    const expectedResponse = { all: [] };
+    const action = { type: FETCH_POSTS.SUCCESS, payload: { posts: {}, page: 1, limit: 1, total: 1} };
+    const expectedResponse = { posts: {}, page: 1, limit: 1, total: 1 };
     expect(postReducer([], action)).to.eql(expectedResponse);
   });
 

@@ -22,7 +22,6 @@ describe("PostItem", () => {
     const component = $(ReactDOM.findDOMNode(componentInstance));
 
     expect(component.find('tbody')).contain('title');
-    expect(component.find('tbody')).contain('description');
     expect(component.find('button:nth-child(3)')).to.exist;
     component.find('button:nth-child(3)').simulate('click');
     expect(handleTogglePost.calledOnce).to.be.true;
