@@ -1,14 +1,14 @@
 import axios from 'axios';
 import {
   ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
-  CREATE_POST, UPDATE_POST, DELETE_POST, TOGGLE_POST
+  CREATE_POST, DELETE_POST, TOGGLE_POST
 } from '../constants';
 import { fetchTags } from'./tags';
 import { fetchItems } from'./items';
 import { trimPost } from '../utilities';
 
-export function fetchPosts() {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}`);
+export function fetchPosts(page = 1) {
+  const request = axios.get(`${ROOT_URL}${POST_PATH}?page=${page}`);
   return dispatch => {
     return request.then(
       response => dispatch(fetchPostsSuccess(response.data)),
@@ -20,7 +20,12 @@ export function fetchPosts() {
 function fetchPostsSuccess(response) {
   return {
     type: FETCH_POSTS.SUCCESS,
-    payload: response
+    payload: {
+      posts: response.posts,
+      total: response.total,
+      page: response.page,
+      limit: response.limit
+    }
   };
 }
 
