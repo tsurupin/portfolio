@@ -29,16 +29,23 @@ describe('post actions', () => {
 
     it('creates FETCH_POSTS_SUCCESS when fetching posts has been done', () => {
       nock(TEST_DOMAIN)
-        .get(`${ROOT_URL}${POST_PATH}`)
-        .reply(200, { data: [{ title: 'hoge', description: 'description', id: 1 }] });
+        .get(`${ROOT_URL}${POST_PATH}?page=1`)
+        .reply(200, {
+          posts: [{ title: 'hoge', description: 'description', id: 1 }],
+          page: 1,
+          limit: 20,
+          total: 30
+        });
 
       const store = mockStore({});
       const expectedResponse = [{
         type: FETCH_POSTS.SUCCESS,
         payload: {
-          data: [{ title: 'hoge', description: 'description', id: 1 }]
+          posts: [{ title: 'hoge', description: 'description', id: 1 }],
+          page: 1,
+          limit: 20,
+          total: 30
         }
-
       }];
 
       return store.dispatch(fetchPosts())
@@ -49,7 +56,7 @@ describe('post actions', () => {
 
     it('creates FETCH_POSTS_FAILURE when fetching posts has been failed', () => {
       nock(TEST_DOMAIN)
-        .get(`${ROOT_URL}${POST_PATH}`)
+        .get(`${ROOT_URL}${POST_PATH}?page=1`)
         .reply(400);
 
       const store = mockStore({});

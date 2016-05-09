@@ -13,6 +13,7 @@ gem 'twitter'                     # Twitter APIのラッパーgem
 gem 'turbolinks'
 
 # For View
+gem 'kaminari'
 
 # For Image upload
 gem 'autoprefixer-rails'          # ベンダープレフィックスを自動でつけてくれる
@@ -32,6 +33,10 @@ gem 'validates_email_format_of'
 
 # For Config
 gem 'config'
+
+group :development, :test do
+  gem "faker"
+end
 
 group :development do
   # For Deploy

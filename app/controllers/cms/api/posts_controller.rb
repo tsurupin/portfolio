@@ -3,8 +3,13 @@ class Cms::Api::PostsController < Cms::ApplicationController
   before_action :set_post_tags, only: %w(new edit)
 
   def index
-    @posts = [{title: 'hoge', description: 'description', id: 1, published: true}]
-    render json: @posts
+    @posts = Post.page(params[:page] || 1)
+    render json: {
+      posts: @posts,
+      limit: Post::PAGINATES_PER,
+      total: Post.count,
+      page: (params[:page] || 1).to_i
+    }
   end
 
   def new
@@ -34,7 +39,6 @@ class Cms::Api::PostsController < Cms::ApplicationController
         tagSuggestions: @post_tags
       }
     }
-
   end
 
   def update

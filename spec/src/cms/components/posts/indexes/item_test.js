@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 import { $, expect, sinon } from '../../../utility';
-import PostItem from '../../../../../../src/cms/components/posts/indexes/Item/index';
+import PostItem from '../../../../../../src/cms/components/posts/indexes/ItemRow/index';
 const TestUtils = require('react-addons-test-utils');
 describe("PostItem", () => {
   let post = { id: 1, title: 'title', description: 'description' };
@@ -22,7 +22,6 @@ describe("PostItem", () => {
     const component = $(ReactDOM.findDOMNode(componentInstance));
 
     expect(component.find('tbody')).contain('title');
-    expect(component.find('tbody')).contain('description');
     expect(component.find('button:nth-child(3)')).to.exist;
     component.find('button:nth-child(3)').simulate('click');
     expect(handleTogglePost.calledOnce).to.be.true;

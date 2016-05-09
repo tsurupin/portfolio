@@ -13,6 +13,6 @@
 
 FactoryGirl.define do
   factory :post do
-    title 'hoge'
+    title { Faker::Name.name }
   end
 end
