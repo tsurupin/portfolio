@@ -11,6 +11,9 @@ module Portfolio
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :en
     config.active_record.raise_in_transactional_callbacks = true
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
 
     config.time_zone = 'Pacific Time (US & Canada)'
     # Settings in config/environments/* take precedence over those specified here.

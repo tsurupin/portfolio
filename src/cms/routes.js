@@ -7,7 +7,9 @@ import PostsForm from './containers/posts/Form/index';
 import ProjectsIndex from './containers/projects/index';
 import ProjectsForm from './containers/projects/form';
 import SitesForm from './containers/sites/form';
-import AuthorsForm from './containers/authors/form';
+import AuthorsForm from './containers/authors/Form/index';
+import AuthorsSinUp from './containers/authors/SignUp/index';
+import AuthorsSingIn from './containers/authors/SignIn/index';
 import NotFound from './components/NotFound/index';
 
 export default (
@@ -19,8 +21,9 @@ export default (
     <Route path="/cms/projects" component={ProjectsIndex}/>
     <Route path="/cms/projects/new" component={ProjectsForm}/>
     <Route path="/cms/projects/:id/edit" component={ProjectsForm}/>
-    <Route path="/cms/authors/new" component={AuthorsForm}/>
-    <Route path="/cms/authors/:id/edit" component={AuthorsForm}/>
+    <Route path="/cms/authors/sign_up" component={AuthorsSignUp}/>  
+    <Route path="/cms/authors/sign_in" component={AuthorsSignIn}/>
+    <Route path="/cms/authors/edit" component={AuthorsForm}/>
     <Route path="/cms/sites/new" component={SitesForm}/>
     <Route path="/cms/sites/:id/edit" component={SitesForm}/>
     <Route path="*" component={NotFound} />

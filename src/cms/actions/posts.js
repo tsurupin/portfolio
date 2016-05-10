@@ -53,7 +53,6 @@ export function fetchPost(id) {
 }
 
 function fetchPostSuccess(response) {
-  console.log(response)
   return {
     type: FETCH_POST.SUCCESS,
     payload: {

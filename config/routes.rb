@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get '/health_check' => 'application#health_check'
 
   namespace :cms do
@@ -6,6 +7,13 @@ Rails.application.routes.draw do
       resources :posts, shallow: true do
         resource :acceptance, only: :update, module: :posts
       end
+
+      devise_for :authors, controllers: {
+        registrations: 'cms/api/authors/registrations',
+        sessions: 'cms/api/authors/sessions'
+      }
+
+      resource :authors, except: %w(new create), constraints: { id: /[0-9]+/ }
 
       resources :services, only: %w() do
         collection do

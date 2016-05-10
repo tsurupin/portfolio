@@ -1,7 +1,8 @@
 class PostsSerializer < ActiveModel::Serializer
-  attributes :id, :title, :accepted, :publishedAt, :status
+  format_keys :lower_camel
+  attributes :id, :title, :accepted, :published_at, :status
 
-  def publishedAt
+  def published_at
     object.published_at.try(:strftime,'%d-%m, %H:%M') || 'not publishing yet'
   end
 
