@@ -9,8 +9,6 @@
 
 class ItemText < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
-  validates :type, presence: true
   validates :description, presence: true
 
-  enum type: { normal: 1, code: 2 }
 end

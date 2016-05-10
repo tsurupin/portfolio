@@ -22,9 +22,9 @@ function fetchPostsSuccess(response) {
     type: FETCH_POSTS.SUCCESS,
     payload: {
       posts: response.posts,
-      total: response.total,
-      page: response.page,
-      limit: response.limit
+      total: response.meta.pagination.total,
+      page:  response.meta.pagination.page,
+      limit: response.meta.pagination.limit
     }
   };
 }
@@ -53,12 +53,16 @@ export function fetchPost(id) {
 }
 
 function fetchPostSuccess(response) {
+  console.log(response)
   return {
     type: FETCH_POST.SUCCESS,
     payload: {
       post: response.post,
       items: response.items,
-      tags: response.tags
+      tags: {
+        tags: response.tags,
+        tagSuggestions: response.tagSuggestions
+      }
     }
   };
 }
@@ -86,7 +90,7 @@ export function fetchNewPost() {
 function fetchNewPostSuccess(response) {
   return {
     type: FETCH_NEW_POST.SUCCESS,
-    payload: { tags: response.tags }
+    payload: { tags: { tagSuggestions: response.tagSuggestions } }
   };
 }
 

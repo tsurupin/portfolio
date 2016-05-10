@@ -32,9 +32,13 @@ describe('post actions', () => {
         .get(`${ROOT_URL}${POST_PATH}?page=1`)
         .reply(200, {
           posts: [{ title: 'hoge', description: 'description', id: 1 }],
-          page: 1,
-          limit: 20,
-          total: 30
+          meta: {
+            pagination: {
+              page: 1,
+              limit: 20,
+              total: 30
+            }
+          }
         });
 
       const store = mockStore({});
@@ -79,7 +83,8 @@ describe('post actions', () => {
         .reply(200, { 
           post: { title: 'hoge', description: 'description', id: 1 },
           items: [{ }],
-          tags: { tags: [], tagSuggestions:[] } 
+          tags: [], 
+          tagSuggestions:[] 
         });
 
       const store = mockStore({});
@@ -92,10 +97,10 @@ describe('post actions', () => {
               id: 1,
               title: "hoge" 
             },
-            tags: {   
+            tags: {
               tagSuggestions: [],
               tags: []
-            } 
+            }
           },
           type: FETCH_POST.SUCCESS
         }, 
@@ -104,9 +109,9 @@ describe('post actions', () => {
           type: FETCH_ITEMS
         },
         {
-          payload: { 
+          payload: {
             tagSuggestions: [],
-            tags: [] 
+            tags: []
           },
           type: FETCH_TAGS 
         }
@@ -141,15 +146,14 @@ describe('post actions', () => {
     it('create FETCH_NEW_POST_SUCCESS when fetching new post has been done', () => {
       nock(TEST_DOMAIN)
         .get(`${ROOT_URL}${POST_PATH}/new`)
-        .reply(200, { tags: { tags: [], tagSuggestions:[] } });
+        .reply(200, { tags: [], tagSuggestions:[] } );
 
       const store = mockStore({});
       const expectedResponse = [
         {
           payload: {
             tags: {
-              tagSuggestions: [],
-              tags: []
+              tagSuggestions: []
             }
           },
           type: FETCH_NEW_POST.SUCCESS
@@ -157,7 +161,7 @@ describe('post actions', () => {
         {
           payload: {
             tagSuggestions: [],
-            tags: []
+            tags: undefined
           },
           type: FETCH_TAGS
         }
