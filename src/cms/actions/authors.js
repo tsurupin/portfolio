@@ -92,7 +92,7 @@ export function signInAuthor(params) {
   return dispatch => {
     return request.then(
       () => dispatch(signInAuthorSuccess()),
-      error => dispatch(signInAuthrFailure(error.data))
+      error => dispatch(signInAuthorFailure(error.data))
     )
   };
 }

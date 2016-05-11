@@ -15,17 +15,17 @@ import NotFound from './components/NotFound/index';
 export default (
   <Route path="/cms" component={App}>
     <IndexRoute component={PostsIndex}/>
-    <Route path="/cms/posts/new" component={PostsForm}/>
-    <Route path="/cms/posts/:id/edit" component={PostsForm}/>
-    <Route path="/cms/posts/:id" component={PostsForm}/>
-    <Route path="/cms/projects" component={ProjectsIndex}/>
-    <Route path="/cms/projects/new" component={ProjectsForm}/>
-    <Route path="/cms/projects/:id/edit" component={ProjectsForm}/>
-    <Route path="/cms/authors/sign_up" component={AuthorsSignUp}/>  
-    <Route path="/cms/authors/sign_in" component={AuthorsSignIn}/>
-    <Route path="/cms/authors/edit" component={AuthorsForm}/>
-    <Route path="/cms/sites/new" component={SitesForm}/>
-    <Route path="/cms/sites/:id/edit" component={SitesForm}/>
-    <Route path="*" component={NotFound} />
+      <Route path="/cms/posts/new" component={PostsForm}/>
+      <Route path="/cms/posts/:id/edit" component={PostsForm}/>
+      <Route path="/cms/posts/:id" component={PostsForm}/>
+      <Route path="/cms/projects" component={ProjectsIndex}/>
+      <Route path="/cms/projects/new" component={ProjectsForm}/>
+      <Route path="/cms/projects/:id/edit" component={ProjectsForm}/>
+      <Route path="/cms/authors/sign-up" component={AuthorsSinUp}/>
+      <Route path="/cms/authors/sign-in" component={AuthorsSingIn}/>
+      <Route path="/cms/authors/edit" component={AuthorsForm}/>
+      <Route path="/cms/sites/new" component={SitesForm}/>
+      <Route path="/cms/sites/:id/edit" component={SitesForm}/>
+      <Route path="*" component={NotFound} />
   </ Route>
 );

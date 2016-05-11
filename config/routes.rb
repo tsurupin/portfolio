@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       devise_for :authors, controllers: {
         registrations: 'cms/api/authors/registrations',
         sessions: 'cms/api/authors/sessions'
-      }
+      }, path_names: { sign_up: 'sign-up', sign_in: 'sign-in', sign_out: 'sign-out' }
 
       resource :authors, except: %w(new create), constraints: { id: /[0-9]+/ }
 
