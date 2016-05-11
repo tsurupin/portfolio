@@ -35,23 +35,32 @@ class AuthorsSignIn extends Component {
   handleSubmit(props) {
     this.props.signInAuthor({
       author: props
-    }).then(this.context.router.push('/cms'));
+    });
+  }
+
+  renderError() {
+    if (this.props.error) {
+      return<div>{this.props.error}</div>
+    }
   }
 
 
   render() {
     const { handleSubmit, fields: { email, password } }  = this.props;
     return(
-      <form onSUbmit={handleSubmit(this.handleSubmit)} className={styles.root}>
+      <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
+        {this.renderError()}
         <h2 className={styles.heading}>Sign In</h2>
         <TextField
           {...email}
+          type="email"
           hintText="Enter Your Email"
           fullWIdth={true}
           errorText={email.touched && email.error ? email.error : ''}
         />
         <TextField
           {...password}
+          type="password"
           hintText="Enter password"
           fullWIdth={true}
           errorText={password.touched && password.error ? password.error : ''}
@@ -75,26 +84,29 @@ AuthorsSignIn.propTypes = {
 function validate(values) {
   const errors = {};
 
-  if (!values.name) {
-    errors.name = 'Enter your name'
-  }
-
   if(!values.password || values.password.length < 6) {
     errors.password = 'Enter Password with more than 6 characters'
-  };
+  }
 
   if(!values.email) {
     errors.password = 'Enter Your Email'
-  };
+  }
+  return errors;
 }
 export const fields = [
-  'name', 'email', 'password'
+  'email', 'password'
 ];
+
+function mapStateToProps(state) {
+  return {
+    error: state.authors.error
+  }
+}
 
 export default reduxForm({
   form: 'AuthorsSignIn',
   fields,
   validate
-}, null, {
+}, mapStateToProps, {
   signInAuthor
 })(AuthorsSignIn);

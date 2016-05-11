@@ -1,30 +1,35 @@
 class Cms::Api::Authors::SessionsController < Devise::SessionsController
-  prepend_before_action :require_no_authentication, only: [:new, :create]
-  before_action :configure_sign_in_params, only: :create
-
-  def new
-    super
-  end
+  protect_from_forgery except: %w(create destroy)
+  skip_before_action :authenticate_author_from_token!
+  skip_before_action :verify_signed_out_user, only: :destroy
+  respond_to :json
 
   def create
-    super
+    author = Author.find_for_database_authentication(email: session_params[:email])
+    return invalid_login_attempt unless author
+
+    if author.valid_password?(session_params[:password])
+      sign_in :author, author
+      render json: author, serializer: SessionSerializer, root: nil
+    else
+      invalid_login_attempt
+    end
   end
 
   def destroy
-    super
+    sign_out :author
+    render nothing: true, status: 200
   end
 
-  #protected
+  private
 
-  def after_sign_in_path_for(_resource)
-    _resource.admin? ? admin_dashboard_path : admin_writer_path(_resource.id)
+  def session_params
+    params.require(:author).permit(:email, :password)
   end
 
-  def after_sign_out_path_for(_resource)
-    new_admin_writer_session_path
+  def invalid_login_attempt
+    warden.custom_failure!
+    render json: { error: ('invalid_login_attempt') }, status: :unprocessable_entity
   end
 
-  def configure_sign_in_params
-    devise_parameter_sanitizer.for(:sign_in) << [:name]
-  end
 end

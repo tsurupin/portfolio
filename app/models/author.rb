@@ -16,14 +16,19 @@
 #
 
 class Author < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :timeoutable
+  devise :database_authenticatable, :registerable, :rememberable, :validatable
   has_many :social_accounts, dependent: :destroy
 
+  after_create :update_devise_token!
+
   validates :name, presence: true, uniqueness: true
- # validates :email, presence: true, uniqueness: true, email_format: { message: 'is not valid address' }
+  validates :email, presence: true, uniqueness: true, email_format: { message: 'is not valid address' }
 
   mount_uploader :image, AuthorImageUploader
+
+  private
+  def update_devise_token!
+    self.access_token = "#{self.id}:#{Devise.friendly_token}"
+    save!
+  end
 end

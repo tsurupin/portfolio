@@ -8,14 +8,23 @@ Rails.application.routes.draw do
         resource :acceptance, only: :update, module: :posts
       end
 
-      devise_for :authors, controllers: {
-        registrations: 'cms/api/authors/registrations',
-        sessions: 'cms/api/authors/sessions'
-      }, path_names: { sign_up: 'sign-up', sign_in: 'sign-in', sign_out: 'sign-out' }
 
-      resource :authors, except: %w(new create), constraints: { id: /[0-9]+/ }
+      # resource :authors do
+      #   post :sign_up, path:'sign-up', to: 'authors#create'
+      #   resource :sign_in, only: :create, controller: :sessions, path: 'sign-in', module: :authors
+      #   resource :sign_out, only: :destroy, controller: :sessions, path: 'sign-out', module: :authors
+      # end
 
-      resources :services, only: %w() do
+
+      devise_for :authors, only: :sessions,
+                 controllers: { sessions: 'cms/api/authors/sessions' },
+                 path_names: { sign_in: 'sign-in', sign_out: 'sign-out' }
+
+      resource :authors, except: %w(new create), constraints: { id: /[0-9]+/ } do
+        post :sign_up, path: 'sign-up', to: 'authors#create'
+      end
+
+      resources :services, only: [] do
         collection do
           get :html
           get :twitter

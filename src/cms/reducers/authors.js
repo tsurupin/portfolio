@@ -1,8 +1,11 @@
 import {
-  FETCH_AUTHOR, SIGN_UP_AUTHOR, SIGN_IN_AUTHOR, SIGN_OUT_AUTHOR
+  FETCH_AUTHOR,
+  UPDATE_AUTHOR,
+  AUTH,
+  SIGN_OUT_AUTHOR
 } from '../constants';
 
-const INITIAL_STATE = { author: null, error: null, message: null, loading: false };
+const INITIAL_STATE = { author: null, error: null, authenticated: false, loading: false };
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -10,17 +13,14 @@ export default function (state = INITIAL_STATE, action) {
     case FETCH_AUTHOR.SUCCESS:
       return { ...state, author: action.payload.author };
 
-    case SIGN_UP_AUTHOR.SUCCESS:
-      return { ...state, message: 'Successfully Sign Up' };
-    
-    case SIGN_IN_AUTHOR.SUCCESS:
-      return { ...state, message: 'Successfully Sign In' };
+    case AUTH.SUCCESS:
+      return { ...state, error: '', authenticated: true };
 
     case SIGN_OUT_AUTHOR.SUCCESS:
-      return { ...state, message: 'Successfully Sign Out' };
+      return { ...state, authenticated: false };
     
     case UPDATE_AUTHOR.SUCCESS: 
-      return { ...state, message: 'Successfully Sign Up', loading: false }
+      return { ...state, message: 'Successfully Updated', loading: false }
     
     case UPDATE_AUTHOR.REQUEST:
       return { ...state, loading: true };
@@ -29,9 +29,8 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, error: action.payload, loading: false };
     
     case FETCH_AUTHOR.FAILURE:
-    case SIGN_UP_AUTHOR.FAILURE:
-    case SIGN_IN_AUTHOR.FAILURE:
-    case SING_OUT_AUTHOR.FAILURE:
+    case AUTH.FAILURE:
+    case SIGN_OUT_AUTHOR.FAILURE:
       return { ...state, error: action.payload };
 
     default:

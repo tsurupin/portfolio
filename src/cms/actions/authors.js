@@ -1,18 +1,27 @@
 import axios from 'axios';
 
 import {
-  ROOT_URL, AUTHOR_PATH, SIGN_UP_AUTHOR, SIGN_IN_AUTHOR,
+  ROOT_URL, AUTHOR_PATH, AUTH, SIGN_UP_AUTHOR, SIGN_IN_AUTHOR,
   SIGN_OUT_AUTHOR, UPDATE_AUTHOR, FETCH_AUTHOR
 } from "../constants";
+import { browserHistory } from 'react-router';
 
 const AUTHOR_URL = `${ROOT_URL}${AUTHOR_PATH}`;
+
 export function fetchAuthor(id) {
-  const request = axios.get(`${AUTHOR_URL}/${id}`);
+  const request = axios.get(`${AUTHOR_URL}/${id}`, { headers: { 'Authorization': localStorage.getItem('accessToken')}});
   return dispatch => {
-    return request.then(
-      response => dispatch(fetchAuthorSuccess(reponse.data)),
-      error => dispatch(fetchAuthorFailure(error.data))
-    )
+    return (
+      request
+        .then(response => {
+
+          //sessionStorate.setItem('accessToken', response.accessToken);
+        })
+        .catch(error => {
+
+
+        })
+    );
   };
 }
   
@@ -20,7 +29,7 @@ function fetchAuthorSuccess(response) {
   return {
     type: FETCH_AUTHOR.SUCCESS,
     payload: {
-      author: response.author,
+      author: response.author
     }
   };
 }
@@ -65,58 +74,58 @@ function updateAuthorFailure(error) {
 }
 
 export function signUpAuthor(params) {
-  const request = axios.post(`${AUTHOR_URL}/sign_up`, params);
+  const request = axios.post(`${AUTHOR_URL}/sign-up`, params);
   return dispatch => {
-    return request.then(
-      () => dispatch(signUpAuthorSuccess()),
-      error => dispatch(signUpAuthrFailure(error.data))
-    )
+    return (
+      request
+        .then( response => dispatch(authSuccess(response.data.accessToken)))
+        .catch( error => dispatch(authFailure(error.data)))
+    );
   };
 }
 
-function signUpAuthorSuccess() {
-  return {
-    type: SIGN_UP_AUTHOR.SUCCESS
-  };
+function authSuccess(accessToken) {
+  localStorage.setItem('accessToken', accessToken)
+  browserHistory.push('/cms');
+  return { type: AUTH.SUCCESS };
 }
 
-function signUpAuthorFailure(error) {
+function authFailure(error) {
   return {
-    type: SIGN_UP_AUTHOR.FAILURE,
+    type: AUTH.FAILURE,
     payload: error
   };
 }
 
 export function signInAuthor(params) {
-  const request = axios.post(`${AUTHOR_URL}/sign_in`, params);
+  const request = axios.post(`${AUTHOR_URL}/sign-in`, params);
+
   return dispatch => {
-    return request.then(
-      () => dispatch(signInAuthorSuccess()),
-      error => dispatch(signInAuthorFailure(error.data))
-    )
+    return (
+      request
+        .then(response => {
+          dispatch(authSuccess(response.data.accessToken))
+        })
+        .catch(error => {
+          dispatch(authFailure(error.data))
+        })
+    );
   };
 }
 
-function signInAuthorSuccess() {
-  return {
-    type: SIGN_IN_AUTHOR.SUCCESS
-  };
-}
-
-function signInAuthorFailure(error) {
-  return {
-    type: SIGN_IN_AUTHOR.FAILURE,
-    payload: error
-  };
-}
-
-export function signOutAuthor(params) {
-  const request = axios.delete(`${AUTHOR_URL}/sign_out`, params);
+export function signOutAuthor() {
+  const request = axios.delete(`${AUTHOR_URL}/sign-out`);
   return dispatch => {
-    return request.then(
-      () => dispatch(signOutAuthorSuccess()),
-      error => dispatch(signOutAuthrFailure(error.data))
-    )
+    return(
+    request
+      .then(
+      () => {
+        localStorage.removeItem('accessToken');
+        dispatch(signOutAuthorSuccess());
+        browserHistory.push('/cms/sign-in')
+      })
+      .catch(error => dispatch(signOutAuthorFailure(error.data)))
+    );
   };
 }
 

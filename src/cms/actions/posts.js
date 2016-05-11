@@ -6,6 +6,7 @@ import {
 import { fetchTags } from'./tags';
 import { fetchItems } from'./items';
 import { trimPost } from '../utilities';
+import { browserHistory } from 'react-router';
 
 export function fetchPosts(page = 1) {
   const request = axios.get(`${ROOT_URL}${POST_PATH}?page=${page}`);
@@ -74,7 +75,8 @@ function fetchPostFailure(error) {
 }
 
 export function fetchNewPost() {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}/new`);
+  const request = axios.get(`${ROOT_URL}${POST_PATH}/new`,
+    { headers: { 'Authorization': localStorage.getItem('accessToken')}});
   return dispatch => {
     return request.then(
       response => dispatch(fetchNewPostSuccess(response.data)),
@@ -87,6 +89,7 @@ export function fetchNewPost() {
 }
 
 function fetchNewPostSuccess(response) {
+  
   return {
     type: FETCH_NEW_POST.SUCCESS,
     payload: { tags: { tagSuggestions: response.tagSuggestions } }
@@ -106,20 +109,26 @@ export function createPost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
-    request = axios.patch(`${ROOT_URL}${POST_PATH}/${post.id}`, { post });
+    request = axios.patch(`${ROOT_URL}${POST_PATH}/${post.id}`, { post }, { headers: { 'Authorization': localStorage.getItem('accessToken')}});
   } else {
-    request = axios.post(`${ROOT_URL}${POST_PATH}`, { post });
+    request = axios.post(`${ROOT_URL}${POST_PATH}`,
+      { post },
+      { headers: { 'Authorization': localStorage.getItem('accessToken')}}
+    );
   }
   return dispatch => {
     dispatch(createPostRequest());
-    return request.then(
-      () => dispatch(createPostSuccess()),
-      error => dispatch(createPostFailure(error.data))
-    )
+    return (
+      request
+        .then(() => dispatch(createPostSuccess()))
+        .catch(error => dispatch(createPostFailure(error.data)))
+    );
   };
 }
 
 export function createPostRequest() {
+  browserHistory.push('/cms');
+
   return {
     type: CREATE_POST.REQUEST
   }
@@ -164,14 +173,17 @@ function createPostFailure(error) {
 export function deletePost(id) {
   const request = axios.delete(`${ROOT_URL}${POST_PATH}/${id}`);
   return dispatch => {
-    return request.then(
-      () => dispatch(deletePostSuccess()),
-      error => dispatch(deletePostFailure(error.data))
-    )
+    return (
+      request
+        .then(() => dispatch(deletePostSuccess()))
+        .catch(error => dispatch(deletePostFailure(error.data)))
+      );
   }
 }
 
 function deletePostSuccess() {
+  browserHistory.push('/cms/posts');
+
   return {
     type: DELETE_POST.SUCCESS
   }
@@ -187,14 +199,16 @@ function deletePostFailure(error) {
 export function togglePost(id) {
   const request = axios.patch(`${ROOT_URL}${POST_PATH}/${id}/acceptance`);
   return dispatch => {
-    return request.then(
-      () => dispatch(togglePostSuccess()),
-      error => dispatch(togglePostFailure(error.data))
+    return (
+      request
+        .then(() => dispatch(togglePostSuccess()))
+        .catch(error => dispatch(togglePostFailure(error.data)))
     )
   }
 }
 
 function togglePostSuccess() {
+  browserHistory.push('/cms/posts');
   return {
     type: TOGGLE_POST.SUCCESS
   }

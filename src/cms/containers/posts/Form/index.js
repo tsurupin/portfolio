@@ -26,9 +26,6 @@ const inlineStyles = {
 };
 
 class PostsForm extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
   constructor(props) {
     super(...props);
@@ -59,7 +56,7 @@ class PostsForm extends Component {
           postTaggingsAttributes: this.props.tags
         }
       }
-    ).then(this.context.router.push('/cms'));
+    );
   }
 
   handleAddItem(targetType) {

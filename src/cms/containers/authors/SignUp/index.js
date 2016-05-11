@@ -35,14 +35,20 @@ class AuthorsSignUp extends Component {
   handleSubmit(props) {
     this.props.signUpAuthor({
       author: props
-    }).then(this.context.router.push('/cms'));
+    })
   }
 
+  renderError() {
+    if (this.props.error) {
+      return<div>{this.props.error}</div>
+    }
+  }
 
   render() {
-    const { handleSubmit, fields: { name, password, email } }  = this.props;
+    const { handleSubmit, fields: { name, password, passwordConfirmation, email } }  = this.props;
     return(
-      <form onSUbmit={handleSubmit(this.handleSubmit)} className={styles.root}>
+      <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
+        {this.renderError()}
         <h2 className={styles.heading}>Sign Up</h2>
         <TextField
         {...name}
@@ -53,14 +59,23 @@ class AuthorsSignUp extends Component {
         <TextField
           {...email}
           hintText="Enter Your Email"
+          type="email"
           fullWIdth={true}
           errorText={email.touched && email.error ? email.error : ''}
         />
         <TextField
           {...password}
           hintText="Enter password"
+          type="password"
           fullWIdth={true}
           errorText={password.touched && password.error ? password.error : ''}
+        />
+        <TextField
+          {...passwordConfirmation}
+          hintText="Enter password confirmation"
+          type="password"
+          fullWIdth={true}
+          errorText={passwordConfirmation.touched && passwordConfirmation.error ? passwordConfirmation.error : ''}
         />
         <br />
         <RaisedButton
@@ -75,6 +90,7 @@ class AuthorsSignUp extends Component {
 
 AuthorsSignUp.propTypes = {
   fields: PropTypes.object.isRequired,
+  error: PropTypes.string,
   signUpAuthor: PropTypes.func.isRequired
 };
 
@@ -87,20 +103,34 @@ function validate(values) {
 
   if(!values.password || values.password.length < 6) {
     errors.password = 'Enter Password with more than 6 characters'
-  };
+  }
+
+  if(values.passwordConfirmation !== values.password) {
+    errors.passwordConfirmation = 'PasswordConfirmation is different from Password'
+  }
 
   if(!values.email) {
-    errors.password = 'Enter Your Email'
-  };
+    errors.email = 'Enter Your Email'
+  }
+
+  return errors;
 }
 export const fields = [
-  'name', 'email', 'password'
+  'name', 'email', 'password', 'passwordConfirmation'
 ];
+
+function mapStateToProps(state) {
+  return {
+    authenticated: state.authors.authenticated,
+    error: state.authors.error
+  }
+}
+
 
 export default reduxForm({
   form: 'AuthorsSignUp',
   fields,
   validate
-}, null, {
+}, mapStateToProps, {
   signUpAuthor
 })(AuthorsSignUp);

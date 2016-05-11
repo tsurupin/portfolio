@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-
+import { connect } from 'react-redux';
 import AppBar  from 'material-ui/lib/app-bar'
 import AvWeb from 'material-ui/lib/svg-icons/av/web';
 import ActionDescription from 'material-ui/lib/svg-icons/action/description';
 import SocialPerson from 'material-ui/lib/svg-icons/social/person';
+import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
 import IconButton from 'material-ui/lib/icon-button';
+import { signOutAuthor } from '../../actions/authors';
 
 const inlineStyles = {
   appBar: {
@@ -33,6 +35,7 @@ class NavigationBar extends Component {
     super(...props);
     this.handleMove = this.handleMove.bind(this);
     this.handleHome = this.handleHome.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   static contextTypes = {
@@ -46,6 +49,10 @@ class NavigationBar extends Component {
 
   handleHome() {
     this.context.router.push('/cms');
+  }
+  
+  handleSignOut(){
+    this.props.signOutAuthor();  
   }
 
   render() {
@@ -77,6 +84,9 @@ class NavigationBar extends Component {
                         <a href="https://github.com/tsurupin" onClick={this.handleMove} >
                             <IconButton iconClassName="muidocs-icon-custom-github"/>
                         </a>
+                        <IconButton onClick={this.handleSignOut}>
+                            <ExitToApp />
+                        </IconButton>
                     </div>
                     }
       />
@@ -86,4 +96,9 @@ class NavigationBar extends Component {
 }
 ;
 
-export default NavigationBar;
+function mapStateToProps(state) {
+  return {
+    authenticated: state.authors.authenticated
+  }
+}
+export default connect(mapStateToProps, { signOutAuthor })(NavigationBar);
