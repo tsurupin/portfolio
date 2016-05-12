@@ -25,11 +25,16 @@ class AuthorsSignIn extends Component {
     router: PropTypes.object
   };
 
-
   constructor(props) {
     super(...props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    if(this.props.authenticated) {
+      this.context.router.push('/cms')
+    }
   }
 
   handleSubmit(props) {
@@ -37,17 +42,15 @@ class AuthorsSignIn extends Component {
   }
 
   renderError() {
-    if (this.props.error) {
-      return<div>{this.props.error}</div>
+    if (this.props.errorMessage) {
+      return <span className={styles.error}>{this.props.errorMessage}</span>
     }
   }
-
 
   render() {
     const { handleSubmit, fields: { email, password } }  = this.props;
     return(
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
-        {this.renderError()}
         <h2 className={styles.heading}>Sign In</h2>
         <TextField
           {...email}
@@ -64,6 +67,7 @@ class AuthorsSignIn extends Component {
           errorText={password.touched && password.error ? password.error : ''}
         />
         <br />
+        {this.renderError()}
         <RaisedButton
           type="submit"
           label="SignIn"
@@ -74,10 +78,6 @@ class AuthorsSignIn extends Component {
   }
 };
 
-AuthorsSignIn.propTypes = {
-  fields: PropTypes.object.isRequired,
-  signIn: PropTypes.func.isRequired
-};
 
 function validate(values) {
   const errors = {};
@@ -97,9 +97,17 @@ export const fields = [
 
 function mapStateToProps(state) {
   return {
-    error: state.auths.error
+    authenticated: state.auths.authenticated,
+    errorMessage: state.auths.error
   }
 }
+
+AuthorsSignIn.propTypes = {
+  fields: PropTypes.object.isRequired,
+  signIn: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string
+};
 
 export default reduxForm({
   form: 'SignIn',

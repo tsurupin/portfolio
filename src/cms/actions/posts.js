@@ -1,5 +1,5 @@
 import {
-  ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
+  POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
   CREATE_POST, DELETE_POST, TOGGLE_POST
 } from '../constants';
 import { fetchTags } from'./tags';
@@ -39,7 +39,7 @@ function fetchPostsFailure(error) {
 
 
 export function fetchPost(id) {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}/${id}/edit`);
+  const request = axios.get(`${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request.then(
       response => dispatch(fetchPostSuccess(response.data)),
@@ -75,7 +75,6 @@ function fetchPostFailure(error) {
 
 export function fetchNewPost() {
   const request = axios.get(`${POST_PATH}/new`);
-  console.log(request)
   return dispatch => {
     return request.then(
       response => dispatch(fetchNewPostSuccess(response.data)),
@@ -108,12 +107,9 @@ export function createPost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
-    request = axios.patch(`${ROOT_URL}${POST_PATH}/${post.id}`, { post }, { headers: { 'Authorization': localStorage.getItem('accessToken')}});
+    request = axios.patch(`${POST_PATH}/${post.id}`, { post });
   } else {
-    request = axios.post(`${ROOT_URL}${POST_PATH}`,
-      { post },
-      { headers: { 'Authorization': localStorage.getItem('accessToken')}}
-    );
+    request = axios.post(`${POST_PATH}`, { post });
   }
   return dispatch => {
     dispatch(createPostRequest());
@@ -170,7 +166,7 @@ function createPostFailure(error) {
 // }
 
 export function deletePost(id) {
-  const request = axios.delete(`${ROOT_URL}${POST_PATH}/${id}`);
+  const request = axios.delete(`${POST_PATH}/${id}`);
   return dispatch => {
     return (
       request
@@ -196,7 +192,7 @@ function deletePostFailure(error) {
 }
 
 export function togglePost(id) {
-  const request = axios.patch(`${ROOT_URL}${POST_PATH}/${id}/acceptance`);
+  const request = axios.patch(`${POST_PATH}/${id}/acceptance`);
   return dispatch => {
     return (
       request

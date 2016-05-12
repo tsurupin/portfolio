@@ -192,6 +192,7 @@ export const fields = [
 ];
 
 function mapStateToProps(state) {
+  console.log(state.tags)
   return {
     initialValues: state.posts.post,
     items: state.items,

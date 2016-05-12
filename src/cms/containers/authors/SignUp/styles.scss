@@ -1,0 +1,17 @@
+@value colors: "../../../css/colors.scss";
+@value fonts: "../../../css/fonts.scss";
+
+@value error-color from colors;
+
+.root {
+
+}
+
+.heading {
+
+}
+
+.error {
+  font-weight: bold;
+  color: error-color;
+}

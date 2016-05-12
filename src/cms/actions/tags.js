@@ -4,6 +4,7 @@ import {
 
 
 export function fetchTags(response) {
+  
   return {
     type: FETCH_TAGS,
     payload: { 

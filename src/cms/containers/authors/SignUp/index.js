@@ -30,15 +30,20 @@ class AuthorsSignUp extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
+  componentWillMount() {
+    if(this.props.authenticated) {
+      this.context.router.push('/cms')
+    }
+  }
+
   handleSubmit(props) {
     this.props.signUp({ author: props })
   }
 
   renderError() {
-    console.log(this.props)
-    if (this.props.error) {
-      return <div>{this.props.error}</div>
+    if (this.props.errorMessage) {
+      return <span className={styles.error}>{this.props.errorMessage}</span>
     }
   }
 
@@ -47,7 +52,7 @@ class AuthorsSignUp extends Component {
     const { handleSubmit, fields: { name, password, passwordConfirmation, email } }  = this.props;
     return(
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
-        {this.renderError()}
+
         <h2 className={styles.heading}>Sign Up</h2>
         <TextField
         {...name}
@@ -77,6 +82,7 @@ class AuthorsSignUp extends Component {
           errorText={passwordConfirmation.touched && passwordConfirmation.error ? passwordConfirmation.error : ''}
         />
         <br />
+        {this.renderError()}
         <RaisedButton
           type="submit"
           label="SignUp"
@@ -85,12 +91,6 @@ class AuthorsSignUp extends Component {
         />
     </form>)
   }
-};
-
-AuthorsSignUp.propTypes = {
-  fields: PropTypes.object.isRequired,
-  error: PropTypes.string,
-  signUp: PropTypes.func.isRequired
 };
 
 function validate(values) {
@@ -119,15 +119,22 @@ export const fields = [
 ];
 
 function mapStateToProps(state) {
-  console.log('state' + state.auths.error)
-  return { error: state.auths.error }
+  return {
+    authenticated: state.auths.authenticated,
+    errorMessage: state.auths.error
+  }
 }
+
+AuthorsSignUp.propTypes = {
+  fields: PropTypes.object.isRequired,
+  signUp: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string
+};
 
 
 export default reduxForm({
-  form: 'AuthorsSignUp',
+  form: 'SignUp',
   fields,
   validate
-}, mapStateToProps, {
-  signUp
-})(AuthorsSignUp);
+}, mapStateToProps, { signUp })(AuthorsSignUp);

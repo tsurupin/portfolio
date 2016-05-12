@@ -70,11 +70,11 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(944);
+	var _reactTapEventPlugin = __webpack_require__(945);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(949);
+	var _reduxThunk = __webpack_require__(950);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26899,7 +26899,7 @@
 
 	var _iconButton2 = _interopRequireDefault(_iconButton);
 
-	var _auths = __webpack_require__(950);
+	var _auths = __webpack_require__(334);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36395,7 +36395,94 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 334 */,
+/* 334 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.signUp = signUp;
+	exports.signIn = signIn;
+	exports.signOut = signOut;
+
+	var _axios = __webpack_require__(335);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _constants = __webpack_require__(243);
+
+	var _reactRouter = __webpack_require__(184);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AUTH_URL = '' + _constants.ROOT_URL + _constants.AUTHOR_PATH;
+
+	function signUp(params) {
+	  var request = _axios2.default.post(AUTH_URL + '/sign-up', params);
+	  return function (dispatch) {
+	    return request.then(function (response) {
+	      return dispatch(authSuccess(response.data.accessToken));
+	    }).catch(function (error) {
+	      return dispatch(authFailure(error.data));
+	    });
+	  };
+	}
+
+	function signIn(params) {
+	  var request = _axios2.default.post(AUTH_URL + '/sign-in', params);
+
+	  return function (dispatch) {
+	    return request.then(function (response) {
+	      dispatch(authSuccess(response.data.accessToken));
+	    }).catch(function (error) {
+	      dispatch(authFailure(error.data));
+	    });
+	  };
+	}
+
+	function authSuccess(accessToken) {
+	  localStorage.setItem('accessToken', accessToken);
+	  _reactRouter.browserHistory.push('/cms');
+	  return { type: _constants.AUTH.SUCCESS };
+	}
+
+	function authFailure(error) {
+	  console.log(error);
+	  return {
+	    type: _constants.AUTH.FAILURE,
+	    payload: error
+	  };
+	}
+
+	function signOut() {
+	  var request = _axios2.default.delete(AUTH_URL + '/sign-out');
+	  return function (dispatch) {
+	    return request.then(function () {
+	      localStorage.removeItem('accessToken');
+	      dispatch(signOutSuccess());
+	      _reactRouter.browserHistory.push('/cms/sign-in');
+	    }).catch(function (error) {
+	      return dispatch(signOutFailure(error.data));
+	    });
+	  };
+	}
+
+	function signOutSuccess() {
+	  return {
+	    type: _constants.SIGN_OUT.SUCCESS
+	  };
+	}
+
+	function signOutFailure(error) {
+	  return {
+	    type: _constants.SIGN_OUT.FAILURE,
+	    payload: error
+	  };
+	}
+
+/***/ },
 /* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -37982,7 +38069,7 @@
 	}
 
 	function fetchPost(id) {
-	  var request = _utilities.axios.get('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id + '/edit');
+	  var request = _utilities.axios.get(_constants.POST_PATH + '/' + id + '/edit');
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchPostSuccess(response.data));
@@ -38021,7 +38108,6 @@
 
 	function fetchNewPost() {
 	  var request = _utilities.axios.get(_constants.POST_PATH + '/new');
-	  console.log(request);
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchNewPostSuccess(response.data));
@@ -38055,9 +38141,9 @@
 	  var post = (0, _utilities.trimPost)(props.post);
 	  var request = void 0;
 	  if (props.post.id) {
-	    request = _utilities.axios.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + post.id, { post: post }, { headers: { 'Authorization': localStorage.getItem('accessToken') } });
+	    request = _utilities.axios.patch(_constants.POST_PATH + '/' + post.id, { post: post });
 	  } else {
-	    request = _utilities.axios.post('' + _constants.ROOT_URL + _constants.POST_PATH, { post: post }, { headers: { 'Authorization': localStorage.getItem('accessToken') } });
+	    request = _utilities.axios.post('' + _constants.POST_PATH, { post: post });
 	  }
 	  return function (dispatch) {
 	    dispatch(createPostRequest());
@@ -38114,7 +38200,7 @@
 	// }
 
 	function deletePost(id) {
-	  var request = _utilities.axios.delete('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id);
+	  var request = _utilities.axios.delete(_constants.POST_PATH + '/' + id);
 	  return function (dispatch) {
 	    return request.then(function () {
 	      return dispatch(deletePostSuccess());
@@ -38140,7 +38226,7 @@
 	}
 
 	function togglePost(id) {
-	  var request = _utilities.axios.patch('' + _constants.ROOT_URL + _constants.POST_PATH + '/' + id + '/acceptance');
+	  var request = _utilities.axios.patch(_constants.POST_PATH + '/' + id + '/acceptance');
 	  return function (dispatch) {
 	    return request.then(function () {
 	      return dispatch(togglePostSuccess());
@@ -38180,6 +38266,7 @@
 	var _constants = __webpack_require__(243);
 
 	function fetchTags(response) {
+
 	  return {
 	    type: _constants.FETCH_TAGS,
 	    payload: {
@@ -42663,6 +42750,7 @@
 	var fields = exports.fields = ['title', 'description', 'publishedAt', 'id'];
 
 	function mapStateToProps(state) {
+	  console.log(state.tags);
 	  return {
 	    initialValues: state.posts.post,
 	    items: state.items,
@@ -89493,7 +89581,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _auths = __webpack_require__(950);
+	var _auths = __webpack_require__(334);
 
 	var _reactRedux = __webpack_require__(158);
 
@@ -89552,6 +89640,13 @@
 	  }
 
 	  _createClass(AuthorsSignUp, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      if (this.props.authenticated) {
+	        this.context.router.push('/cms');
+	      }
+	    }
+	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
 	      this.props.signUp({ author: props });
@@ -89559,12 +89654,11 @@
 	  }, {
 	    key: 'renderError',
 	    value: function renderError() {
-	      console.log(this.props);
-	      if (this.props.error) {
+	      if (this.props.errorMessage) {
 	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          this.props.error
+	          'span',
+	          { className: _styles2.default.error },
+	          this.props.errorMessage
 	        );
 	      }
 	    }
@@ -89582,7 +89676,6 @@
 	      return _react2.default.createElement(
 	        'form',
 	        { onSubmit: handleSubmit(this.handleSubmit), className: _styles2.default.root },
-	        this.renderError(),
 	        _react2.default.createElement(
 	          'h2',
 	          { className: _styles2.default.heading },
@@ -89612,6 +89705,7 @@
 	          errorText: passwordConfirmation.touched && passwordConfirmation.error ? passwordConfirmation.error : ''
 	        })),
 	        _react2.default.createElement('br', null),
+	        this.renderError(),
 	        _react2.default.createElement(_raisedButton2.default, {
 	          type: 'submit',
 	          label: 'SignUp',
@@ -89629,12 +89723,6 @@
 	  router: _react.PropTypes.object
 	};
 	;
-
-	AuthorsSignUp.propTypes = {
-	  fields: _react.PropTypes.object.isRequired,
-	  error: _react.PropTypes.string,
-	  signUp: _react.PropTypes.func.isRequired
-	};
 
 	function validate(values) {
 	  var errors = {};
@@ -89660,23 +89748,31 @@
 	var fields = exports.fields = ['name', 'email', 'password', 'passwordConfirmation'];
 
 	function mapStateToProps(state) {
-	  console.log('state' + state.auths.error);
-	  return { error: state.auths.error };
+	  return {
+	    authenticated: state.auths.authenticated,
+	    errorMessage: state.auths.error
+	  };
 	}
 
+	AuthorsSignUp.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
+	  signUp: _react.PropTypes.func.isRequired,
+	  authenticated: _react.PropTypes.bool.isRequired,
+	  errorMessage: _react.PropTypes.string
+	};
+
 	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'AuthorsSignUp',
+	  form: 'SignUp',
 	  fields: fields,
 	  validate: validate
-	}, mapStateToProps, {
-	  signUp: _auths.signUp
-	})(AuthorsSignUp);
+	}, mapStateToProps, { signUp: _auths.signUp })(AuthorsSignUp);
 
 /***/ },
 /* 933 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1GONa","heading":"heading___3z-Um","error":"error___29st_"};
 
 /***/ },
 /* 934 */
@@ -89697,7 +89793,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _auths = __webpack_require__(950);
+	var _auths = __webpack_require__(334);
 
 	var _reactRedux = __webpack_require__(158);
 
@@ -89756,6 +89852,13 @@
 	  }
 
 	  _createClass(AuthorsSignIn, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      if (this.props.authenticated) {
+	        this.context.router.push('/cms');
+	      }
+	    }
+	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
 	      this.props.signIn({ author: props });
@@ -89763,11 +89866,11 @@
 	  }, {
 	    key: 'renderError',
 	    value: function renderError() {
-	      if (this.props.error) {
+	      if (this.props.errorMessage) {
 	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          this.props.error
+	          'span',
+	          { className: _styles2.default.error },
+	          this.props.errorMessage
 	        );
 	      }
 	    }
@@ -89783,7 +89886,6 @@
 	      return _react2.default.createElement(
 	        'form',
 	        { onSubmit: handleSubmit(this.handleSubmit), className: _styles2.default.root },
-	        this.renderError(),
 	        _react2.default.createElement(
 	          'h2',
 	          { className: _styles2.default.heading },
@@ -89802,6 +89904,7 @@
 	          errorText: password.touched && password.error ? password.error : ''
 	        })),
 	        _react2.default.createElement('br', null),
+	        this.renderError(),
 	        _react2.default.createElement(_raisedButton2.default, {
 	          type: 'submit',
 	          label: 'SignIn',
@@ -89820,11 +89923,6 @@
 	};
 	;
 
-	AuthorsSignIn.propTypes = {
-	  fields: _react.PropTypes.object.isRequired,
-	  signIn: _react.PropTypes.func.isRequired
-	};
-
 	function validate(values) {
 	  var errors = {};
 
@@ -89841,9 +89939,17 @@
 
 	function mapStateToProps(state) {
 	  return {
-	    error: state.auths.error
+	    authenticated: state.auths.authenticated,
+	    errorMessage: state.auths.error
 	  };
 	}
+
+	AuthorsSignIn.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
+	  signIn: _react.PropTypes.func.isRequired,
+	  authenticated: _react.PropTypes.bool.isRequired,
+	  errorMessage: _react.PropTypes.string
+	};
 
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'SignIn',
@@ -89858,6 +89964,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1aOrv","heading":"heading___3F7ic","error":"error___xJ9qB"};
 
 /***/ },
 /* 936 */
@@ -89993,7 +90100,7 @@
 
 	var _authors2 = _interopRequireDefault(_authors);
 
-	var _auths = __webpack_require__(951);
+	var _auths = __webpack_require__(944);
 
 	var _auths2 = _interopRequireDefault(_auths);
 
@@ -102585,20 +102692,57 @@
 /* 944 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(945);
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+
+	    case _constants.AUTH.SUCCESS:
+	      return _extends({}, state, { error: '', authenticated: true });
+
+	    case _constants.SIGN_OUT.SUCCESS:
+	      return _extends({}, state, { error: '', authenticated: false });
+
+	    case _constants.AUTH.FAILURE:
+	    case _constants.SIGN_OUT.FAILURE:
+	      return _extends({}, state, { error: action.payload.error });
+
+	    default:
+	      return state;
+	  }
+	};
+
+	var _constants = __webpack_require__(243);
+
+	var INITIAL_STATE = { error: '', authenticated: false };
+
+/***/ },
+/* 945 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var defaultClickRejectionStrategy = __webpack_require__(946);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(30).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(946)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(947)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 945 */
+/* 946 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -102609,7 +102753,7 @@
 
 
 /***/ },
-/* 946 */
+/* 947 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -102637,10 +102781,10 @@
 	var EventPluginUtils = __webpack_require__(32);
 	var EventPropagators = __webpack_require__(72);
 	var SyntheticUIEvent = __webpack_require__(86);
-	var TouchEventUtils = __webpack_require__(947);
+	var TouchEventUtils = __webpack_require__(948);
 	var ViewportMetrics = __webpack_require__(37);
 
-	var keyOf = __webpack_require__(948);
+	var keyOf = __webpack_require__(949);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -102786,7 +102930,7 @@
 
 
 /***/ },
-/* 947 */
+/* 948 */
 /***/ function(module, exports) {
 
 	/**
@@ -102834,7 +102978,7 @@
 
 
 /***/ },
-/* 948 */
+/* 949 */
 /***/ function(module, exports) {
 
 	/**
@@ -102874,152 +103018,32 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 949 */
+/* 950 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	exports.__esModule = true;
-	exports['default'] = thunkMiddleware;
-	function thunkMiddleware(_ref) {
-	  var dispatch = _ref.dispatch;
-	  var getState = _ref.getState;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
 
-	  return function (next) {
-	    return function (action) {
-	      if (typeof action === 'function') {
-	        return action(dispatch, getState);
-	      }
-
-	      return next(action);
+	        return next(action);
+	      };
 	    };
 	  };
 	}
 
-/***/ },
-/* 950 */
-/***/ function(module, exports, __webpack_require__) {
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.signUp = signUp;
-	exports.signIn = signIn;
-	exports.signOut = signOut;
-
-	var _axios = __webpack_require__(335);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	var _constants = __webpack_require__(243);
-
-	var _reactRouter = __webpack_require__(184);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AUTH_URL = '' + _constants.ROOT_URL + _constants.AUTHOR_PATH;
-
-	function signUp(params) {
-	  var request = _axios2.default.post(AUTH_URL + '/sign-up', params);
-	  return function (dispatch) {
-	    return request.then(function (response) {
-	      return dispatch(authSuccess(response.data.accessToken));
-	    }).catch(function (error) {
-	      return dispatch(authFailure(error.data));
-	    });
-	  };
-	}
-
-	function signIn(params) {
-	  var request = _axios2.default.post(AUTH_URL + '/sign-in', params);
-
-	  return function (dispatch) {
-	    return request.then(function (response) {
-	      dispatch(authSuccess(response.data.accessToken));
-	    }).catch(function (error) {
-	      dispatch(authFailure(error.data));
-	    });
-	  };
-	}
-
-	function authSuccess(accessToken) {
-	  localStorage.setItem('accessToken', accessToken);
-	  _reactRouter.browserHistory.push('/cms');
-	  return { type: _constants.AUTH.SUCCESS };
-	}
-
-	function authFailure(error) {
-	  console.log(error);
-	  return {
-	    type: _constants.AUTH.FAILURE,
-	    payload: error
-	  };
-	}
-
-	function signOut() {
-	  var request = _axios2.default.delete(AUTH_URL + '/sign-out');
-	  return function (dispatch) {
-	    return request.then(function () {
-	      localStorage.removeItem('accessToken');
-	      dispatch(signOutSuccess());
-	      _reactRouter.browserHistory.push('/cms/sign-in');
-	    }).catch(function (error) {
-	      return dispatch(signOutFailure(error.data));
-	    });
-	  };
-	}
-
-	function signOutSuccess() {
-	  return {
-	    type: _constants.SIGN_OUT.SUCCESS
-	  };
-	}
-
-	function signOutFailure(error) {
-	  return {
-	    type: _constants.SIGN_OUT.FAILURE,
-	    payload: error
-	  };
-	}
-
-/***/ },
-/* 951 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
-	  var action = arguments[1];
-
-	  switch (action.type) {
-
-	    case _constants.AUTH.SUCCESS:
-	      return _extends({}, state, { error: '', authenticated: true });
-
-	    case _constants.SIGN_OUT.SUCCESS:
-	      return _extends({}, state, { error: '', authenticated: false });
-
-	    case _constants.AUTH.FAILURE:
-	    case _constants.SIGN_OUT.FAILURE:
-	      return _extends({}, state, { error: action.payload.error });
-
-	    default:
-	      return state;
-	  }
-	};
-
-	var _constants = __webpack_require__(243);
-
-	var INITIAL_STATE = { error: null, authenticated: false };
+	exports['default'] = thunk;
 
 /***/ }
 /******/ ]);

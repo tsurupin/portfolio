@@ -12,4 +12,4 @@
     - unless content_for?(:hide_react)
       = render 'cms/shared/react_container'
     = yield
-    = javascript_include_tag 'cms/application', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'shared/cms_bundle', 'data-turbolinks-track' => 'reload'

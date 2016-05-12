@@ -1,6 +1,6 @@
 import { AUTH, SIGN_OUT } from '../constants';
 
-const INITIAL_STATE = { error: null, authenticated: false };
+const INITIAL_STATE = { error: '', authenticated: false };
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

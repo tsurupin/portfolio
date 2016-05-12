@@ -65,7 +65,7 @@
     "react-tag-input": "^2.2.5",
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.5.1",
-    "redux-form": "^5.0.1",
+    "redux-form": "^5.2.3",
     "redux-thunk": "^2.0.1"
   }
 }
