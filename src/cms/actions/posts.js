@@ -1,15 +1,14 @@
-import axios from 'axios';
 import {
   ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
   CREATE_POST, DELETE_POST, TOGGLE_POST
 } from '../constants';
 import { fetchTags } from'./tags';
 import { fetchItems } from'./items';
-import { trimPost } from '../utilities';
+import { axios, trimPost } from '../utilities';
 import { browserHistory } from 'react-router';
 
 export function fetchPosts(page = 1) {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}?page=${page}`);
+  const request = axios.get(`${POST_PATH}?page=${page}`);
   return dispatch => {
     return request.then(
       response => dispatch(fetchPostsSuccess(response.data)),
@@ -75,8 +74,8 @@ function fetchPostFailure(error) {
 }
 
 export function fetchNewPost() {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}/new`,
-    { headers: { 'Authorization': localStorage.getItem('accessToken')}});
+  const request = axios.get(`${POST_PATH}/new`);
+  console.log(request)
   return dispatch => {
     return request.then(
       response => dispatch(fetchNewPostSuccess(response.data)),
@@ -89,7 +88,7 @@ export function fetchNewPost() {
 }
 
 function fetchNewPostSuccess(response) {
-  
+
   return {
     type: FETCH_NEW_POST.SUCCESS,
     payload: { tags: { tagSuggestions: response.tagSuggestions } }

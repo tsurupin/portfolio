@@ -6,7 +6,7 @@ class Cms::Api::AuthorsController < Cms::ApplicationController
   def create
     author = Author.new(author_params)
     if author.save
-      render json: author, serializer: SessionSerializer, root: nil
+      render json: { accessToken: author.access_token }
     else
       render json: { error: 'author create error' }, status: :unprocessable_entity
     end

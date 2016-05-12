@@ -24,7 +24,7 @@ export const DELETE_POST = createRequestTypes('DELETE_POST');
 
 export const FETCH_AUTHOR = createRequestTypes('FETCH_AUTHOR');
 export const UPDATE_AUTHOR = createRequestTypes('UPDATE_AUTHOR');
-export const SIGN_OUT_AUTHOR = createRequestTypes('SIGN_OUT_AUTHOR');
+export const SIGN_OUT= createRequestTypes('SIGN_OUT');
 export const AUTH = createRequestTypes('AUTH');
 export const FETCH_TWEET = createRequestTypes('FETCH_TWEET');
 
@@ -42,8 +42,8 @@ export const FETCH_TAGS = 'FETCH_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
-export const SIGN_UP_AUTHOR = 'SIGN_UP_AUTHOR';
-export const SIGN_IN_AUTHOR = 'SIGIN_IN_AUTHOR';
+export const SIGN_UP = 'SIGN_UP';
+export const SIGN_IN = 'SIGN_IN';
 
 
 export const TARGET_TYPES = {

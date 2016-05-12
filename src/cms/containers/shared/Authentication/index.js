@@ -19,7 +19,7 @@ export default function(ComposedComponent) {
     }
 
     componentWillUpdate(nextProps) {
-      if (!nextProps.tuhenticated) {
+      if (!nextProps.authenticated) {
         this.context.router.push('/cms/sign-in')
       }
     }
@@ -31,7 +31,7 @@ export default function(ComposedComponent) {
 
   function mapStateTopProps(state) {
     return {
-      authenticated: state.authors.authenticated
+      authenticated: state.auths.authenticated
     }
   }
 

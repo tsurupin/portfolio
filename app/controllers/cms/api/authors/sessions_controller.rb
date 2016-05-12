@@ -10,7 +10,7 @@ class Cms::Api::Authors::SessionsController < Devise::SessionsController
 
     if author.valid_password?(session_params[:password])
       sign_in :author, author
-      render json: author, serializer: SessionSerializer, root: nil
+      render json: { accessToken: author.access_token }
     else
       invalid_login_attempt
     end

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { signUpAuthor } from '../../../actions/authors';
+import { signUp } from '../../../actions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import TextField from 'material-ui/lib/text-field';
@@ -25,26 +25,25 @@ class AuthorsSignUp extends Component {
     router: PropTypes.object
   };
 
-
   constructor(props) {
     super(...props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   handleSubmit(props) {
-    this.props.signUpAuthor({
-      author: props
-    })
+    this.props.signUp({ author: props })
   }
 
   renderError() {
+    console.log(this.props)
     if (this.props.error) {
-      return<div>{this.props.error}</div>
+      return <div>{this.props.error}</div>
     }
   }
 
   render() {
+
     const { handleSubmit, fields: { name, password, passwordConfirmation, email } }  = this.props;
     return(
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
@@ -91,7 +90,7 @@ class AuthorsSignUp extends Component {
 AuthorsSignUp.propTypes = {
   fields: PropTypes.object.isRequired,
   error: PropTypes.string,
-  signUpAuthor: PropTypes.func.isRequired
+  signUp: PropTypes.func.isRequired
 };
 
 function validate(values) {
@@ -120,10 +119,8 @@ export const fields = [
 ];
 
 function mapStateToProps(state) {
-  return {
-    authenticated: state.authors.authenticated,
-    error: state.authors.error
-  }
+  console.log('state' + state.auths.error)
+  return { error: state.auths.error }
 }
 
 
@@ -132,5 +129,5 @@ export default reduxForm({
   fields,
   validate
 }, mapStateToProps, {
-  signUpAuthor
+  signUp
 })(AuthorsSignUp);

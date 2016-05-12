@@ -1,3 +1,6 @@
+import client from "axios";
+import { ROOT_URL } from './constants';
+
 export function capitalize(string) {
   return (string.substring(0, 1).toUpperCase() + string.substring(1));
 }
@@ -27,3 +30,8 @@ function convertCamelCaseToSnakeCase(string) {
   );
 }
 
+
+export const axios = client.create({
+  baseURL: ROOT_URL,
+  headers: { 'Authorization': localStorage.getItem('accessToken') }
+});

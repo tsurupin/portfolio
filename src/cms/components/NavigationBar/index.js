@@ -7,7 +7,7 @@ import ActionDescription from 'material-ui/lib/svg-icons/action/description';
 import SocialPerson from 'material-ui/lib/svg-icons/social/person';
 import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
 import IconButton from 'material-ui/lib/icon-button';
-import { signOutAuthor } from '../../actions/authors';
+import { signOut } from '../../actions/auths';
 
 const inlineStyles = {
   appBar: {
@@ -52,7 +52,7 @@ class NavigationBar extends Component {
   }
   
   handleSignOut(){
-    this.props.signOutAuthor();  
+    this.props.signOut();
   }
 
   render() {
@@ -96,9 +96,4 @@ class NavigationBar extends Component {
 }
 ;
 
-function mapStateToProps(state) {
-  return {
-    authenticated: state.authors.authenticated
-  }
-}
-export default connect(mapStateToProps, { signOutAuthor })(NavigationBar);
+export default connect(null, { signOut })(NavigationBar);

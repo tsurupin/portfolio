@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { signInAuthor } from '../../../actions/authors';
+import { signIn } from '../../../actions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import TextField from 'material-ui/lib/text-field';
@@ -33,9 +33,7 @@ class AuthorsSignIn extends Component {
   }
 
   handleSubmit(props) {
-    this.props.signInAuthor({
-      author: props
-    });
+    this.props.signIn({ author: props });
   }
 
   renderError() {
@@ -78,7 +76,7 @@ class AuthorsSignIn extends Component {
 
 AuthorsSignIn.propTypes = {
   fields: PropTypes.object.isRequired,
-  signInAuthor: PropTypes.func.isRequired
+  signIn: PropTypes.func.isRequired
 };
 
 function validate(values) {
@@ -99,14 +97,14 @@ export const fields = [
 
 function mapStateToProps(state) {
   return {
-    error: state.authors.error
+    error: state.auths.error
   }
 }
 
 export default reduxForm({
-  form: 'AuthorsSignIn',
+  form: 'SignIn',
   fields,
   validate
 }, mapStateToProps, {
-  signInAuthor
+  signIn
 })(AuthorsSignIn);
