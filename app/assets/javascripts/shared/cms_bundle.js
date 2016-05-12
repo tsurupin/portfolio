@@ -38042,9 +38042,9 @@
 	  var request = _utilities.axios.get(_constants.POST_PATH + '?page=' + page);
 	  return function (dispatch) {
 	    return request.then(function (response) {
-	      return dispatch(fetchPostsSuccess(response.data));
-	    }, function (error) {
-	      return dispatch(fetchPostsFailure(error.data));
+	      dispatch(fetchPostsSuccess(response.data));
+	    }).catch(function (error) {
+	      dispatch(fetchPostsFailure(error.data));
 	    });
 	  };
 	}
@@ -38156,14 +38156,13 @@
 	}
 
 	function createPostRequest() {
-	  _reactRouter.browserHistory.push('/cms');
-
 	  return {
 	    type: _constants.CREATE_POST.REQUEST
 	  };
 	}
 
 	function createPostSuccess() {
+	  _reactRouter.browserHistory.push('/cms');
 	  return {
 	    type: _constants.CREATE_POST.SUCCESS
 	  };

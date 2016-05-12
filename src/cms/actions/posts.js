@@ -10,10 +10,15 @@ import { browserHistory } from 'react-router';
 export function fetchPosts(page = 1) {
   const request = axios.get(`${POST_PATH}?page=${page}`);
   return dispatch => {
-    return request.then(
-      response => dispatch(fetchPostsSuccess(response.data)),
-      error => dispatch(fetchPostsFailure(error.data))
-    )
+    return (
+      request
+        .then(response => {
+          dispatch(fetchPostsSuccess(response.data))
+        })
+        .catch(error => {
+          dispatch(fetchPostsFailure(error.data))
+        })
+    );
   };
 }
 
@@ -122,14 +127,13 @@ export function createPost(props) {
 }
 
 export function createPostRequest() {
-  browserHistory.push('/cms');
-
   return {
     type: CREATE_POST.REQUEST
   }
 }
 
 function createPostSuccess() {
+  browserHistory.push('/cms');
   return {
     type: CREATE_POST.SUCCESS
   }

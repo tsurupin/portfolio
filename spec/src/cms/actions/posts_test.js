@@ -1,4 +1,4 @@
-import { expect } from '../utility';
+import { expect, sinon } from '../utility';
 import {
   fetchPosts,
   fetchPost, 
@@ -14,13 +14,18 @@ import {
 import { trimPost } from '../../../../src/cms/utilities';
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
+import browserHistory  from 'react-router/lib/browserHistory'
 import thunk from 'redux-thunk'
-
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 
+const headerConfig = { reqheaders: { 'authorization': localStorage.getItem('accessToken') }};
 
 describe('post actions', () => {
+
+  // TODO: figure out how to test browserHistory
+  sinon.stub(browserHistory,'push');
+  
   afterEach(() => {
     nock.cleanAll()
   });
@@ -28,7 +33,7 @@ describe('post actions', () => {
   describe('fetchPosts', () => {
 
     it('creates FETCH_POSTS_SUCCESS when fetching posts has been done', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig )
         .get(`${ROOT_URL}${POST_PATH}?page=1`)
         .reply(200, {
           posts: [{ title: 'hoge', description: 'description', id: 1 }],
@@ -40,6 +45,7 @@ describe('post actions', () => {
             }
           }
         });
+
 
       const store = mockStore({});
       const expectedResponse = [{
@@ -54,12 +60,13 @@ describe('post actions', () => {
 
       return store.dispatch(fetchPosts())
         .then(() => {
+          console.log(store.getActions());
           expect(store.getActions()).to.eql(expectedResponse)
         })
     });
 
     it('creates FETCH_POSTS_FAILURE when fetching posts has been failed', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .get(`${ROOT_URL}${POST_PATH}?page=1`)
         .reply(400);
 
@@ -78,7 +85,7 @@ describe('post actions', () => {
   describe('fetchPost', () => {
 
     it('create FETCH_POST_SUCCESS when fetching post has been done', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .get(`${ROOT_URL}${POST_PATH}/1/edit`)
         .reply(200, { 
           post: { title: 'hoge', description: 'description', id: 1 },
@@ -124,7 +131,7 @@ describe('post actions', () => {
     });
 
     it('create FETCH_POST_FAILURE when fetching post has been failed', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .get(`${ROOT_URL}${POST_PATH}/1/edit`)
         .reply(400);
 
@@ -144,7 +151,7 @@ describe('post actions', () => {
   describe('fetchNewPost', () => {
 
     it('create FETCH_NEW_POST_SUCCESS when fetching new post has been done', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .get(`${ROOT_URL}${POST_PATH}/new`)
         .reply(200, { tags: [], tagSuggestions:[] } );
 
@@ -174,7 +181,7 @@ describe('post actions', () => {
     });
 
     it('create FETCH_NEW_POST_FAILURE when fetching new post has been failed', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .get(`${ROOT_URL}${POST_PATH}/new`)
         .reply(400);
 
@@ -203,7 +210,7 @@ describe('post actions', () => {
     });
 
     it('create CREATE_POST_SUCCESS when creating post has been done', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .post(`${ROOT_URL}${POST_PATH}`, { post: trimPost(props.post) })
         .reply(201);
 
@@ -221,7 +228,7 @@ describe('post actions', () => {
 
     it('create CREATE_POST_SUCCESS when updating post has been done', () => {
       props.post.id = 1;
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .patch(`${ROOT_URL}${POST_PATH}/1`, { post: trimPost(props.post) })
         .reply(200);
 
@@ -238,7 +245,7 @@ describe('post actions', () => {
     });
 
     it('create CREATE_POST_FAILURE when creating post has been done', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .post(`${ROOT_URL}${POST_PATH}`, { post: trimPost(props.post) })
         .reply(400, 'error');
 
@@ -298,10 +305,11 @@ describe('post actions', () => {
 
   describe('deletePost', () => {
     it('create DELETE_POST_SUCCESS when deleting post has been done', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .delete(`${ROOT_URL}${POST_PATH}/1`)
         .reply(204);
 
+      
       const store = mockStore({});
       const expectedResponse = [{
         type: DELETE_POST.SUCCESS
@@ -314,7 +322,7 @@ describe('post actions', () => {
     });
 
     it('create DELETE_POST_FAILURE when deleting post has been failed', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .delete(`${ROOT_URL}${POST_PATH}/1`)
         .reply(400);
 
@@ -334,9 +342,10 @@ describe('post actions', () => {
   describe('togglePosts', () => {
 
     it('create TOGGLE_POST_SUCCESS when toggling post has been done', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .patch(`${ROOT_URL}${POST_PATH}/1/acceptance`)
         .reply(200);
+
 
       const store = mockStore({});
       const expectedResponse = [{
@@ -350,7 +359,7 @@ describe('post actions', () => {
     });
 
     it('create TOGGLE_POST_FAILURE when toggling post has been failed', () => {
-      nock(TEST_DOMAIN)
+      nock(TEST_DOMAIN, headerConfig)
         .patch(`${ROOT_URL}${POST_PATH}/1/acceptance`)
         .reply(400);
 
