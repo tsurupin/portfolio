@@ -48,11 +48,9 @@ class AuthorsSignUp extends Component {
   }
 
   render() {
-
     const { handleSubmit, fields: { name, password, passwordConfirmation, email } }  = this.props;
     return(
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
-
         <h2 className={styles.heading}>Sign Up</h2>
         <TextField
         {...name}
