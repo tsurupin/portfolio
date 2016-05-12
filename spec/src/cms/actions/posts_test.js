@@ -23,11 +23,14 @@ const headerConfig = { reqheaders: { 'authorization': localStorage.getItem('acce
 
 describe('post actions', () => {
 
-  // TODO: figure out how to test browserHistory
-  sinon.stub(browserHistory,'push');
-  
+  beforeEach(() => {
+    // TODO: figure out how to test browserHistory
+    sinon.stub(browserHistory,'push');
+  });
+
   afterEach(() => {
-    nock.cleanAll()
+    nock.cleanAll();
+    browserHistory.push.restore();
   });
 
   describe('fetchPosts', () => {

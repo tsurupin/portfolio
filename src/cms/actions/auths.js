@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 import {
-  ROOT_URL, AUTHOR_PATH, AUTH, SIGN_UP, SIGN_IN,
-  SIGN_OUT,
+  ROOT_URL, AUTHOR_PATH, AUTH, SIGN_OUT,
 } from "../constants";
 import { browserHistory } from 'react-router';
 
@@ -44,7 +43,6 @@ function authSuccess(accessToken) {
 }
 
 function authFailure(error) {
-  console.log(error)
   return {
     type: AUTH.FAILURE,
     payload: error

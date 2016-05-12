@@ -36449,7 +36449,6 @@
 	}
 
 	function authFailure(error) {
-	  console.log(error);
 	  return {
 	    type: _constants.AUTH.FAILURE,
 	    payload: error
