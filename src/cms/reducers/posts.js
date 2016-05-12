@@ -10,7 +10,6 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, loading: true };
     
     case FETCH_POSTS.SUCCESS:
-      console.log(action.payload)
       return { ...state, posts: action.payload.posts, limit: action.payload.limit, page: action.payload.page, total: action.payload.total };
     
     case FETCH_POST.SUCCESS:

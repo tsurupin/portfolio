@@ -89647,12 +89647,14 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
+	      console.log('hoge');
 	      this.props.signUp({ author: props });
 	    }
 	  }, {
 	    key: 'renderError',
 	    value: function renderError() {
 	      if (this.props.errorMessage) {
+	        console.log('error');
 	        return _react2.default.createElement(
 	          'span',
 	          { className: _styles2.default.error },
@@ -89663,6 +89665,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      console.log('render');
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
 	      var _props$fields = _props.fields;
@@ -90136,7 +90139,6 @@
 	      return _extends({}, state, { loading: true });
 
 	    case _constants.FETCH_POSTS.SUCCESS:
-	      console.log(action.payload);
 	      return _extends({}, state, { posts: action.payload.posts, limit: action.payload.limit, page: action.payload.page, total: action.payload.total });
 
 	    case _constants.FETCH_POST.SUCCESS:
