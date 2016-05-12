@@ -1,19 +1,24 @@
-import axios from 'axios';
 import {
-  ROOT_URL, POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
+  POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
   CREATE_POST, DELETE_POST, TOGGLE_POST
 } from '../constants';
 import { fetchTags } from'./tags';
 import { fetchItems } from'./items';
-import { trimPost } from '../utilities';
+import { axios, trimPost } from '../utilities';
+import { browserHistory } from 'react-router';
 
 export function fetchPosts(page = 1) {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}?page=${page}`);
+  const request = axios.get(`${POST_PATH}?page=${page}`);
   return dispatch => {
-    return request.then(
-      response => dispatch(fetchPostsSuccess(response.data)),
-      error => dispatch(fetchPostsFailure(error.data))
-    )
+    return (
+      request
+        .then(response => {
+          dispatch(fetchPostsSuccess(response.data))
+        })
+        .catch(error => {
+          dispatch(fetchPostsFailure(error.data))
+        })
+    );
   };
 }
 
@@ -22,9 +27,9 @@ function fetchPostsSuccess(response) {
     type: FETCH_POSTS.SUCCESS,
     payload: {
       posts: response.posts,
-      total: response.total,
-      page: response.page,
-      limit: response.limit
+      total: response.meta.pagination.total,
+      page:  response.meta.pagination.page,
+      limit: response.meta.pagination.limit
     }
   };
 }
@@ -39,7 +44,7 @@ function fetchPostsFailure(error) {
 
 
 export function fetchPost(id) {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}/${id}/edit`);
+  const request = axios.get(`${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request.then(
       response => dispatch(fetchPostSuccess(response.data)),
@@ -58,7 +63,10 @@ function fetchPostSuccess(response) {
     payload: {
       post: response.post,
       items: response.items,
-      tags: response.tags
+      tags: {
+        tags: response.tags,
+        tagSuggestions: response.tagSuggestions
+      }
     }
   };
 }
@@ -71,7 +79,7 @@ function fetchPostFailure(error) {
 }
 
 export function fetchNewPost() {
-  const request = axios.get(`${ROOT_URL}${POST_PATH}/new`);
+  const request = axios.get(`${POST_PATH}/new`);
   return dispatch => {
     return request.then(
       response => dispatch(fetchNewPostSuccess(response.data)),
@@ -84,9 +92,10 @@ export function fetchNewPost() {
 }
 
 function fetchNewPostSuccess(response) {
+
   return {
     type: FETCH_NEW_POST.SUCCESS,
-    payload: { tags: response.tags }
+    payload: { tags: { tagSuggestions: response.tagSuggestions } }
   };
 }
 
@@ -103,16 +112,17 @@ export function createPost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
-    request = axios.patch(`${ROOT_URL}${POST_PATH}/${post.id}`, { post });
+    request = axios.patch(`${POST_PATH}/${post.id}`, { post });
   } else {
-    request = axios.post(`${ROOT_URL}${POST_PATH}`, { post });
+    request = axios.post(`${POST_PATH}`, { post });
   }
   return dispatch => {
     dispatch(createPostRequest());
-    return request.then(
-      () => dispatch(createPostSuccess()),
-      error => dispatch(createPostFailure(error.data))
-    )
+    return (
+      request
+        .then(() => dispatch(createPostSuccess()))
+        .catch(error => dispatch(createPostFailure(error.data)))
+    );
   };
 }
 
@@ -123,6 +133,7 @@ export function createPostRequest() {
 }
 
 function createPostSuccess() {
+  browserHistory.push('/cms');
   return {
     type: CREATE_POST.SUCCESS
   }
@@ -159,16 +170,19 @@ function createPostFailure(error) {
 // }
 
 export function deletePost(id) {
-  const request = axios.delete(`${ROOT_URL}${POST_PATH}/${id}`);
+  const request = axios.delete(`${POST_PATH}/${id}`);
   return dispatch => {
-    return request.then(
-      () => dispatch(deletePostSuccess()),
-      error => dispatch(deletePostFailure(error.data))
-    )
+    return (
+      request
+        .then(() => dispatch(deletePostSuccess()))
+        .catch(error => dispatch(deletePostFailure(error.data)))
+      );
   }
 }
 
 function deletePostSuccess() {
+  browserHistory.push('/cms/posts');
+
   return {
     type: DELETE_POST.SUCCESS
   }
@@ -182,16 +196,18 @@ function deletePostFailure(error) {
 }
 
 export function togglePost(id) {
-  const request = axios.patch(`${ROOT_URL}${POST_PATH}/${id}/acceptance`);
+  const request = axios.patch(`${POST_PATH}/${id}/acceptance`);
   return dispatch => {
-    return request.then(
-      () => dispatch(togglePostSuccess()),
-      error => dispatch(togglePostFailure(error.data))
+    return (
+      request
+        .then(() => dispatch(togglePostSuccess()))
+        .catch(error => dispatch(togglePostFailure(error.data)))
     )
   }
 }
 
 function togglePostSuccess() {
+  browserHistory.push('/cms/posts');
   return {
     type: TOGGLE_POST.SUCCESS
   }

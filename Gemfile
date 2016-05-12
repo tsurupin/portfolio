@@ -28,7 +28,9 @@ gem 'enum_help'
 gem 'migration_comments'
 gem 'squeel'
 gem 'draper'
+gem 'devise'
 gem 'validates_email_format_of'
+gem 'active_model_serializers'#, git: 'git@github.com:rails-api/active_model_serializers.git'
 
 
 # For Config

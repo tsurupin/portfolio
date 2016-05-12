@@ -29,10 +29,8 @@ export default class ItemRow extends Component {
   }
   
   render() {
-    const publishingStatusLabel = this.props.post.accepted ? 'publishing' : 'not publishing'; 
-    const publishedTimeLabel = this.props.post.publishedAt ? this.props.publishedAt : '-';
     let publishIcon;
-    if (this.props.post.published) {
+    if (this.props.post.accepted) {
       publishIcon =  <ActionVisibility className={styles.visibleIcon} />;
     } else {
       publishIcon = <ActionVisibilityOff className={styles.inVisibleIcon} />;
@@ -42,8 +40,8 @@ export default class ItemRow extends Component {
       <TableRow>
         <TableRowColumn colSpan="1">{this.props.post.id}</TableRowColumn>
         <TableRowColumn colSpan="3">{this.props.post.title}</TableRowColumn>
-        <TableRowColumn colSpan="1">{publishingStatusLabel}</TableRowColumn>
-        <TableRowColumn colSpan="1">{publishedTimeLabel}</TableRowColumn>
+        <TableRowColumn colSpan="1">{this.props.post.status}</TableRowColumn>
+        <TableRowColumn colSpan="1">{this.props.post.publishedAt}</TableRowColumn>
         <TableRowColumn colSpan="3">
           <Link to={`/cms/posts/${this.props.post.id}`}>
             <IconButton className={styles.button}>

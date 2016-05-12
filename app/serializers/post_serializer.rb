@@ -1,0 +1,16 @@
+class PostSerializer < ActiveModel::Serializer
+  format_keys :lower_camel
+  attributes :id, :title, :accepted, :published_at, :tag_suggestions
+
+  has_many :items
+  has_many :post_taggings, root: :tags
+
+  def published_at
+    object.published_at.try(:strftime,'%d-%m, %H:%M') || 'not publishing yet'
+  end
+
+  def tag_suggestions
+    PostTag.pluck(:name)
+  end
+
+end

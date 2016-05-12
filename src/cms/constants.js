@@ -6,6 +6,7 @@ function createRequestTypes(base) {
 
 export const ROOT_URL = '/cms/api';
 export const POST_PATH = '/posts';
+export const AUTHOR_PATH = '/authors';
 export const TWITTER_PATH = '/services/twitter';
 export const TEST_DOMAIN = 'http://localhost:80';
 
@@ -20,7 +21,13 @@ export const CREATE_POST = createRequestTypes('CREATE_POST');
 export const UPDATE_POST = createRequestTypes('UPDATE_POST');
 export const TOGGLE_POST = createRequestTypes('TOGGLE_POST');
 export const DELETE_POST = createRequestTypes('DELETE_POST');
+
+export const FETCH_AUTHOR = createRequestTypes('FETCH_AUTHOR');
+export const UPDATE_AUTHOR = createRequestTypes('UPDATE_AUTHOR');
+export const SIGN_OUT= createRequestTypes('SIGN_OUT');
+export const AUTH = createRequestTypes('AUTH');
 export const FETCH_TWEET = createRequestTypes('FETCH_TWEET');
+
 
 export const FETCH_ITEMS = 'FETCH_ITEMS';
 export const CREATE_ITEM = 'CREATE_ITEM';
@@ -34,6 +41,10 @@ export const MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
 export const FETCH_TAGS = 'FETCH_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
+
+export const SIGN_UP = 'SIGN_UP';
+export const SIGN_IN = 'SIGN_IN';
+
 
 export const TARGET_TYPES = {
   TWITTER: {

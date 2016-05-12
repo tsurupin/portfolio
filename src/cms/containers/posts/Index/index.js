@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts, deletePost, togglePost } from '../../../actions/posts';
 import { Link } from 'react-router';
@@ -30,7 +30,7 @@ const inlineStyles = {
 };
 
 class PostsIndex extends Component {
-
+  
   constructor(props) {
     super(...props);
     this.handleDeletePost = this.handleDeletePost.bind(this);
@@ -43,15 +43,11 @@ class PostsIndex extends Component {
   }
 
   handleDeletePost(post_id) {
-    this.props.deletePost(post_id)
-      .then(() => {
-        this.context.router.push('/cms/posts');
-      });
+    this.props.deletePost(post_id);
   }
 
   handleTogglePost(post_id) {
-    this.props.togglePost(post_id)
-      .then(this.context.router.push('/cms/posts'));
+    this.props.togglePost(post_id);
   }
   
   handleMovePage(page) {

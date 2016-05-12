@@ -11,8 +11,13 @@ module Portfolio
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :en
     config.active_record.raise_in_transactional_callbacks = true
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
 
     config.time_zone = 'Pacific Time (US & Canada)'
+
+    config.assets.precompile << 'shared/cms_bundle.js'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
