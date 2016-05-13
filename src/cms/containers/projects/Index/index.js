@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchProjects } from '../../../actions/projects';
+import ItemRow from '../../../components/projects/indexes/ItemRow/index';
 
 class ProjectsIndex extends Component {
   constructor(props) {
@@ -13,26 +14,20 @@ class ProjectsIndex extends Component {
   componentWillMount() {
     this.props.fetchProjects();
   }
-
-  renderProject() {
-    console.log(this.props.projects.length)
-    return(
-      this.props.projects.map((project, index) => {
-        return (
-          <div
-            style={{height: 100, color: 'red', background: 'white'}}
-            key={index}>
-            {project.title}
-          </div>);
-      })
-    )
-  }
-
+  
   render() {
     return (
-      <div>
-        {this.renderProject()}
-      </div>
+      <section>
+        {this.props.projects.map((project, index) => {
+          return (
+            <ItemRow
+              key={index}
+              title={project.title}
+              description={project.description}
+              sourceURL={project.sourceURL}/>
+          );
+        })}
+      </section>
     );
   }
 }

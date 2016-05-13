@@ -89404,6 +89404,10 @@
 
 	var _projects = __webpack_require__(929);
 
+	var _index = __webpack_require__(965);
+
+	var _index2 = _interopRequireDefault(_index);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -89431,26 +89435,18 @@
 	      this.props.fetchProjects();
 	    }
 	  }, {
-	    key: 'renderProject',
-	    value: function renderProject() {
-	      console.log(this.props.projects.length);
-	      return this.props.projects.map(function (project, index) {
-	        return _react2.default.createElement(
-	          'div',
-	          {
-	            style: { height: 100, color: 'red', background: 'white' },
-	            key: index },
-	          project.title
-	        );
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
+	        'section',
 	        null,
-	        this.renderProject()
+	        this.props.projects.map(function (project, index) {
+	          return _react2.default.createElement(_index2.default, {
+	            key: index,
+	            title: project.title,
+	            description: project.description,
+	            sourceURL: project.sourceURL });
+	        })
 	      );
 	    }
 	  }]);
@@ -103217,6 +103213,98 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 
 	exports['default'] = thunk;
+
+/***/ },
+/* 965 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _raisedButton = __webpack_require__(470);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _styles = __webpack_require__(966);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var inlineStyles = {
+	  button: {}
+	};
+
+	var ItemRow = function (_Component) {
+	  _inherits(ItemRow, _Component);
+
+	  function ItemRow(props) {
+	    _classCallCheck(this, ItemRow);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ItemRow).call(this, props));
+	  }
+
+	  _createClass(ItemRow, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'li',
+	        { className: _styles2.default.root },
+	        _react2.default.createElement(
+	          'div',
+	          { className: _styles2.default.title },
+	          this.props.title
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: _styles2.default.description },
+	          this.props.description
+	        ),
+	        _react2.default.createElement(
+	          'a',
+	          { href: this.props.sourceURL, target: '_blank' },
+	          _react2.default.createElement(_raisedButton2.default, { label: 'FORK ON GITHUB', styles: inlineStyles.button })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ItemRow;
+	}(_react.Component);
+
+	ItemRow.propTypes = {
+	  title: _react.PropTypes.string.isRequired,
+	  description: _react.PropTypes.string.isRequired,
+	  imageURL: _react.PropTypes.string,
+	  sourceURL: _react.PropTypes.string.isRequired,
+	  sampleURL: _react.PropTypes.string,
+	  tags: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    name: _react.PropTypes.string.isRequired
+	  }))
+	};
+
+	exports.default = ItemRow;
+
+/***/ },
+/* 966 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

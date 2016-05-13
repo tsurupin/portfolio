@@ -4,8 +4,7 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
 
   def index
     projects = []
-    60.times { |i| projects << { title: "hoge", id: i }}
-    projects
+    60.times { |i| projects << { title: "hoge", id: i, description: 'hoge', sourceURL: 'http://google.com' }}
     #projects = Post.page(params[:page])
     #render json: projects, each_serializer: projectsSerializer
     render json: projects
