@@ -66,15 +66,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(938);
+	var _reducers = __webpack_require__(951);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(945);
+	var _reactTapEventPlugin = __webpack_require__(959);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(950);
+	var _reduxThunk = __webpack_require__(964);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26617,7 +26617,9 @@
 	var ROOT_URL = exports.ROOT_URL = '/cms/api';
 	var POST_PATH = exports.POST_PATH = '/posts';
 	var AUTHOR_PATH = exports.AUTHOR_PATH = '/authors';
+	var PROJECT_PATH = exports.PROJECT_PATH = '/projects';
 	var TWITTER_PATH = exports.TWITTER_PATH = '/services/twitter';
+
 	var TEST_DOMAIN = exports.TEST_DOMAIN = 'http://localhost:80';
 
 	var REQUEST = 'REQUEST';
@@ -26637,6 +26639,12 @@
 	var SIGN_OUT = exports.SIGN_OUT = createRequestTypes('SIGN_OUT');
 	var AUTH = exports.AUTH = createRequestTypes('AUTH');
 	var FETCH_TWEET = exports.FETCH_TWEET = createRequestTypes('FETCH_TWEET');
+
+	var FETCH_PROJECTS = exports.FETCH_PROJECTS = createRequestTypes('FETCH_PROJECTS');
+	var FETCH_PROJECT = exports.FETCH_PROJECT = createRequestTypes('FETCH_PROJECT');
+	var SAVE_PROJECT = exports.SAVE_PROJECT = createRequestTypes('SAVE_PROJECT');
+	var DELETE_PROJECT = exports.DELETE_PROJECT = createRequestTypes('DELETE_PROJECT');
+	var TOGGLE_PROJECT = exports.TOGGLE_PROJECT = createRequestTypes('TOGGLE_PROJECT');
 
 	var FETCH_ITEMS = exports.FETCH_ITEMS = 'FETCH_ITEMS';
 	var CREATE_ITEM = exports.CREATE_ITEM = 'CREATE_ITEM';
@@ -26725,31 +26733,31 @@
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _form = __webpack_require__(929);
+	var _form = __webpack_require__(942);
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _form3 = __webpack_require__(930);
+	var _form3 = __webpack_require__(943);
 
 	var _form4 = _interopRequireDefault(_form3);
 
-	var _index9 = __webpack_require__(931);
+	var _index9 = __webpack_require__(944);
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _index11 = __webpack_require__(932);
+	var _index11 = __webpack_require__(945);
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(934);
+	var _index13 = __webpack_require__(947);
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(936);
+	var _index15 = __webpack_require__(949);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(937);
+	var _index17 = __webpack_require__(950);
 
 	var _index18 = _interopRequireDefault(_index17);
 
@@ -26995,7 +27003,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/cms/posts/new' },
+	            { to: '/cms/projects' },
 	            _react2.default.createElement(
 	              _iconButton2.default,
 	              null,
@@ -37996,6 +38004,16 @@
 
 	  return PostsIndex;
 	}(_react.Component);
+
+	PostsIndex.propTypes = {
+	  posts: _react.PropTypes.array.isRequired,
+	  page: _react.PropTypes.number.isRequired,
+	  limit: _react.PropTypes.number.isRequired,
+	  total: _react.PropTypes.number.isRequired,
+	  fetchPosts: _react.PropTypes.func.isRequired,
+	  deletePost: _react.PropTypes.func.isRequired,
+	  togglePost: _react.PropTypes.func.isRequired
+	};
 
 	function mapStateToProps(state) {
 	  return {
@@ -89380,7 +89398,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRedux = __webpack_require__(158);
+
+	var _reactRouter = __webpack_require__(184);
+
+	var _projects = __webpack_require__(929);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -89391,19 +89417,40 @@
 	var ProjectsIndex = function (_Component) {
 	  _inherits(ProjectsIndex, _Component);
 
-	  function ProjectsIndex() {
+	  function ProjectsIndex(props) {
+	    var _Object$getPrototypeO;
+
 	    _classCallCheck(this, ProjectsIndex);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsIndex).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ProjectsIndex)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 	  }
 
 	  _createClass(ProjectsIndex, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.fetchProjects();
+	    }
+	  }, {
+	    key: 'renderProject',
+	    value: function renderProject() {
+	      console.log(this.props.projects.length);
+	      return this.props.projects.map(function (project, index) {
+	        return _react2.default.createElement(
+	          'div',
+	          {
+	            style: { height: 100, color: 'red', background: 'white' },
+	            key: index },
+	          project.title
+	        );
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Hoge'
+	        this.renderProject()
 	      );
 	    }
 	  }]);
@@ -89411,10 +89458,76 @@
 	  return ProjectsIndex;
 	}(_react.Component);
 
-	exports.default = ProjectsIndex;
+	ProjectsIndex.propTypes = {
+	  projects: _react.PropTypes.array.isRequired,
+	  fetchProjects: _react.PropTypes.func.isRequired
+	};
+
+	function mapStateToProps(state) {
+	  return {
+	    projects: state.projects.projects
+	  };
+	}
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchProjects: _projects.fetchProjects })(ProjectsIndex);
 
 /***/ },
 /* 929 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchProjects = fetchProjects;
+
+	var _constants = __webpack_require__(243);
+
+	var _utilities = __webpack_require__(360);
+
+	function fetchProjects() {
+	  var page = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
+
+	  var request = _utilities.axios.get(_constants.PROJECT_PATH + '?page=' + page);
+	  return function (dispatch) {
+	    return request.then(function (response) {
+	      return dispatch(fetchProjectsSuccess(response.data));
+	    }).catch(function (error) {
+	      return dispatch(fetchProjectsFailure(error.data));
+	    });
+	  };
+	}
+
+	function fetchProjectsSuccess(response) {
+	  return {
+	    type: _constants.FETCH_PROJECTS.SUCCESS,
+	    payload: {
+	      projects: response.projects
+	    }
+	  };
+	}
+
+	function fetchProjectsFailure(error) {
+	  return {
+	    type: _constants.FETCH_PROJECTS.FAILURE,
+	    payload: { error: error }
+	  };
+	}
+
+/***/ },
+/* 930 */,
+/* 931 */,
+/* 932 */,
+/* 933 */,
+/* 934 */,
+/* 935 */,
+/* 936 */,
+/* 937 */,
+/* 938 */,
+/* 939 */,
+/* 940 */,
+/* 941 */,
+/* 942 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89463,7 +89576,7 @@
 	exports.default = ProjectsForm;
 
 /***/ },
-/* 930 */
+/* 943 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89512,7 +89625,7 @@
 	exports.default = SitesForm;
 
 /***/ },
-/* 931 */
+/* 944 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89561,7 +89674,7 @@
 	exports.default = AuthorsForm;
 
 /***/ },
-/* 932 */
+/* 945 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89597,7 +89710,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(933);
+	var _styles = __webpack_require__(946);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -89647,14 +89760,12 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
-	      console.log('hoge');
 	      this.props.signUp({ author: props });
 	    }
 	  }, {
 	    key: 'renderError',
 	    value: function renderError() {
 	      if (this.props.errorMessage) {
-	        console.log('error');
 	        return _react2.default.createElement(
 	          'span',
 	          { className: _styles2.default.error },
@@ -89665,7 +89776,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log('render');
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
 	      var _props$fields = _props.fields;
@@ -89769,14 +89879,14 @@
 	}, mapStateToProps, { signUp: _auths.signUp })(AuthorsSignUp);
 
 /***/ },
-/* 933 */
+/* 946 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1GONa","heading":"heading___3z-Um","error":"error___29st_"};
 
 /***/ },
-/* 934 */
+/* 947 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89812,7 +89922,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(935);
+	var _styles = __webpack_require__(948);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -89961,14 +90071,14 @@
 	})(AuthorsSignIn);
 
 /***/ },
-/* 935 */
+/* 948 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1aOrv","heading":"heading___3F7ic","error":"error___xJ9qB"};
 
 /***/ },
-/* 936 */
+/* 949 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89994,7 +90104,7 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 937 */
+/* 950 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90072,7 +90182,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ },
-/* 938 */
+/* 951 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90085,25 +90195,29 @@
 
 	var _reduxForm = __webpack_require__(392);
 
-	var _posts = __webpack_require__(939);
+	var _posts = __webpack_require__(952);
 
 	var _posts2 = _interopRequireDefault(_posts);
 
-	var _items = __webpack_require__(940);
+	var _items = __webpack_require__(953);
 
 	var _items2 = _interopRequireDefault(_items);
 
-	var _tags = __webpack_require__(942);
+	var _tags = __webpack_require__(955);
 
 	var _tags2 = _interopRequireDefault(_tags);
 
-	var _authors = __webpack_require__(943);
+	var _authors = __webpack_require__(956);
 
 	var _authors2 = _interopRequireDefault(_authors);
 
-	var _auths = __webpack_require__(944);
+	var _auths = __webpack_require__(957);
 
 	var _auths2 = _interopRequireDefault(_auths);
+
+	var _projects = __webpack_require__(958);
+
+	var _projects2 = _interopRequireDefault(_projects);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -90113,13 +90227,14 @@
 	  items: _items2.default,
 	  tags: _tags2.default,
 	  authors: _authors2.default,
-	  auths: _auths2.default
+	  auths: _auths2.default,
+	  projects: _projects2.default
 	});
 
 	exports.default = rootReducer;
 
 /***/ },
-/* 939 */
+/* 952 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90139,7 +90254,12 @@
 	      return _extends({}, state, { loading: true });
 
 	    case _constants.FETCH_POSTS.SUCCESS:
-	      return _extends({}, state, { posts: action.payload.posts, limit: action.payload.limit, page: action.payload.page, total: action.payload.total });
+	      return _extends({}, state, {
+	        posts: action.payload.posts,
+	        limit: action.payload.limit,
+	        page: action.payload.page,
+	        total: action.payload.total
+	      });
 
 	    case _constants.FETCH_POST.SUCCESS:
 	      return _extends({}, state, { post: action.payload.post });
@@ -90173,10 +90293,18 @@
 
 	var _constants = __webpack_require__(243);
 
-	var INITIAL_STATE = { posts: [], limit: 20, page: 1, total: 0, post: null, error: null, message: null };
+	var INITIAL_STATE = {
+	  posts: [],
+	  limit: 20,
+	  page: 1,
+	  total: 0,
+	  post: null,
+	  error: null,
+	  message: null
+	};
 
 /***/ },
-/* 940 */
+/* 953 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90243,7 +90371,7 @@
 
 	var _constants = __webpack_require__(243);
 
-	var _lodash = __webpack_require__(941);
+	var _lodash = __webpack_require__(954);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -90252,7 +90380,7 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ },
-/* 941 */
+/* 954 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -102610,7 +102738,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(703)(module), (function() { return this; }())))
 
 /***/ },
-/* 942 */
+/* 955 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -102647,7 +102775,7 @@
 	var INITIAL_STATE = { tags: [], tagSuggestions: [] };
 
 /***/ },
-/* 943 */
+/* 956 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -102689,7 +102817,7 @@
 	var INITIAL_STATE = { author: null, error: null, loading: false };
 
 /***/ },
-/* 944 */
+/* 957 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -102726,23 +102854,68 @@
 	var INITIAL_STATE = { error: '', authenticated: false };
 
 /***/ },
-/* 945 */
+/* 958 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(946);
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _constants.FETCH_PROJECTS.SUCCESS:
+	      return _extends({}, state, { projects: action.payload.projects });
+	    case _constants.FETCH_PROJECT.SUCCESS:
+	      return _extends({}, state, { project: action.payload.project });
+	    case _constants.SAVE_PROJECT.SUCCESS:
+	    case _constants.DELETE_PROJECT.SUCCESS:
+	    case _constants.TOGGLE_PROJECT.SUCCESS:
+	      return state;
+	    case _constants.FETCH_PROJECTS.FAILURE:
+	    case _constants.FETCH_PROJECT.FAILURE:
+	    case _constants.SAVE_PROJECT.FAILURE:
+	    case _constants.DELETE_PROJECT.FAILURE:
+	    case _constants.TOGGLE_PROJECT.FAILURE:
+	      return _extends({}, state, { error: action.payload });
+	    default:
+	      return state;
+
+	  }
+	};
+
+	var _constants = __webpack_require__(243);
+
+	var INITIAL_STATE = {
+	  projects: [],
+	  project: null,
+	  error: null
+	};
+
+/***/ },
+/* 959 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var defaultClickRejectionStrategy = __webpack_require__(960);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(30).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(947)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(961)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 946 */
+/* 960 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -102753,7 +102926,7 @@
 
 
 /***/ },
-/* 947 */
+/* 961 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -102781,10 +102954,10 @@
 	var EventPluginUtils = __webpack_require__(32);
 	var EventPropagators = __webpack_require__(72);
 	var SyntheticUIEvent = __webpack_require__(86);
-	var TouchEventUtils = __webpack_require__(948);
+	var TouchEventUtils = __webpack_require__(962);
 	var ViewportMetrics = __webpack_require__(37);
 
-	var keyOf = __webpack_require__(949);
+	var keyOf = __webpack_require__(963);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -102930,7 +103103,7 @@
 
 
 /***/ },
-/* 948 */
+/* 962 */
 /***/ function(module, exports) {
 
 	/**
@@ -102978,7 +103151,7 @@
 
 
 /***/ },
-/* 949 */
+/* 963 */
 /***/ function(module, exports) {
 
 	/**
@@ -103018,7 +103191,7 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 950 */
+/* 964 */
 /***/ function(module, exports) {
 
 	'use strict';

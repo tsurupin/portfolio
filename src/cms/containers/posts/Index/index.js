@@ -101,6 +101,16 @@ class PostsIndex extends Component {
   }
 }
 
+PostsIndex.propTypes = {
+  posts: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  fetchPosts: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  togglePost: PropTypes.func.isRequired
+};
+
 function mapStateToProps(state) {
   return { 
     posts: state.posts.posts, 

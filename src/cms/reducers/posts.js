@@ -1,8 +1,21 @@
 import { 
-  FETCH_POSTS, FETCH_POST, FETCH_NEW_POST, CREATE_POST, DELETE_POST, TOGGLE_POST 
+  FETCH_POSTS, 
+  FETCH_POST, 
+  FETCH_NEW_POST, 
+  CREATE_POST, 
+  DELETE_POST, 
+  TOGGLE_POST 
 } from '../constants';
 
-const INITIAL_STATE = { posts: [], limit: 20, page: 1, total: 0, post: null, error: null, message: null };
+const INITIAL_STATE = { 
+  posts: [], 
+  limit: 20, 
+  page: 1, 
+  total: 0, 
+  post: null, 
+  error: null, 
+  message: null 
+};
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -10,7 +23,13 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, loading: true };
     
     case FETCH_POSTS.SUCCESS:
-      return { ...state, posts: action.payload.posts, limit: action.payload.limit, page: action.payload.page, total: action.payload.total };
+      return { 
+        ...state, 
+        posts: action.payload.posts, 
+        limit: action.payload.limit, 
+        page: action.payload.page, 
+        total: action.payload.total 
+      };
     
     case FETCH_POST.SUCCESS:
       return { ...state, post: action.payload.post };

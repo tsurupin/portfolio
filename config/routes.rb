@@ -8,6 +8,10 @@ Rails.application.routes.draw do
         resource :acceptance, only: :update, module: :posts
       end
 
+      resources :projects do
+        resource :acceptance, only: :update, module: :projects
+      end
+
 
       # resource :authors do
       #   post :sign_up, path:'sign-up', to: 'authors#create'

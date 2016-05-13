@@ -5,6 +5,7 @@ import itemReducer from './items';
 import tagReducer from './tags';
 import authorReducer from './authors';
 import authReducer from './auths';
+import projectReducer from  './projects';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   items: itemReducer,
   tags: tagReducer,
   authors: authorReducer,
-  auths: authReducer
+  auths: authReducer,
+  projects: projectReducer
 });
 
 export default rootReducer;
