@@ -9,5 +9,5 @@
 
 class ProjectTagging < ActiveRecord::Base
   belongs_to :project, touch: true
-  belongs_to :project_tagging
+  belongs_to :project_tag
 end

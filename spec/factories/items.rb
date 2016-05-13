@@ -16,7 +16,6 @@ FactoryGirl.define do
     association :post, factory: :post
     sequence(:sort_rank) { |n| n + 1 }
 
-
     trait :twitter do
       association :target, factory: :item_twitter
       target_type 'ItemTwitter'

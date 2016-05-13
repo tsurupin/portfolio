@@ -89482,9 +89482,7 @@
 	var _utilities = __webpack_require__(360);
 
 	function fetchProjects() {
-	  var page = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
-
-	  var request = _utilities.axios.get(_constants.PROJECT_PATH + '?page=' + page);
+	  var request = _utilities.axios.get('' + _constants.PROJECT_PATH);
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchProjectsSuccess(response.data));
@@ -103289,9 +103287,9 @@
 
 	ItemRow.propTypes = {
 	  title: _react.PropTypes.string.isRequired,
-	  description: _react.PropTypes.string.isRequired,
+	  description: _react.PropTypes.string,
 	  imageURL: _react.PropTypes.string,
-	  sourceURL: _react.PropTypes.string.isRequired,
+	  sourceURL: _react.PropTypes.string,
 	  sampleURL: _react.PropTypes.string,
 	  tags: _react.PropTypes.arrayOf(_react.PropTypes.shape({
 	    name: _react.PropTypes.string.isRequired

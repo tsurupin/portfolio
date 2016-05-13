@@ -2,8 +2,8 @@ import { PROJECT_PATH, FETCH_PROJECTS } from '../constants';
 import { axios } from '../utilities';
 
 
-export function fetchProjects(page = 1) {
-  const request = axios.get(`${PROJECT_PATH}?page=${page}`);
+export function fetchProjects() {
+  const request = axios.get(`${PROJECT_PATH}`);
   return dispatch => {
     return (
       request

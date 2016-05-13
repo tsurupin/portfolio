@@ -9,7 +9,7 @@
 
 FactoryGirl.define do
   factory :item_quote do
-    description 'description'
+    description  { Faker::Lorem.paragraphs }
     source_url 'http://google.com'
   end
 end

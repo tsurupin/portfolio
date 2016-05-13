@@ -28,9 +28,9 @@ class ItemRow extends Component {
 
 ItemRow.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   imageURL: PropTypes.string,
-  sourceURL: PropTypes.string.isRequired,
+  sourceURL: PropTypes.string,
   sampleURL: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired

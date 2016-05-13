@@ -12,13 +12,13 @@
 #
 
 FactoryGirl.define do
-  factory :post do
+  factory :project do
     title { Faker::Lorem.sentence }
 
     trait :accepted do
       description { Faker::Lorem.paragraphs }
-      published_at { Faker::Time.between(2.days.ago, Date.today, :all) }
-
+      image File.new("#{Rails.root}/spec/fixtures/images/sample.png")
+      source_url 'http://google.com'
       accepted true
     end
   end

@@ -9,7 +9,9 @@
 #
 
 FactoryGirl.define do
-  factory :post_tag do
-    name { Faker::Name.title }
+  factory :author do
+    sequence(:name) { Faker::Name.name }
+    sequence(:email) { Faker::Internet.email }
+    sequence(:password) { SecureRandom.hex }
   end
 end

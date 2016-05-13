@@ -16,8 +16,8 @@ require 'rails_helper'
 
 RSpec.describe Post::Form, type: :model do
   describe '#validations' do
-    it { is_expected.to accept_nested_attributes_for(:ItemRow) }
-    # it { is_expected.to accept_nested_attributes_for(:post_tags).allow_destroy(true) }
+    it { is_expected.to accept_nested_attributes_for(:items) }
+    it { is_expected.to accept_nested_attributes_for(:post_taggings) }
 
     context 'description' do
       let(:post) { Post::Form.find(original_post.id) }
@@ -33,8 +33,8 @@ RSpec.describe Post::Form, type: :model do
     end
   end
 
-  describe '#save_all' do
-    subject { post.save_all(params) }
+  describe '#save_from_associations' do
+    subject { post.save_from_associations(params) }
     let(:product) { create(:product) }
 
     context 'when new_record' do

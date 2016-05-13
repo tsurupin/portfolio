@@ -56,7 +56,7 @@ describe('project actions', () => {
       
       
       nock(TEST_DOMAIN, headerConfig )
-        .get(`${projectURL}?page=1`)
+        .get(`${projectURL}`)
         .reply(200, params);
       
       const store = mockStore({});
@@ -74,7 +74,7 @@ describe('project actions', () => {
 
     it('creates FETCH_PROJECTS_FAILURE when fetching projects has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${projectURL}?page=1`)
+        .get(`${projectURL}`)
         .reply(400, 'error');
 
       const store = mockStore({});

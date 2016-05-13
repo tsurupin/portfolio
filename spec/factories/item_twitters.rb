@@ -13,9 +13,9 @@
 FactoryGirl.define do
   factory :item_twitter do
     source_url 'http://google.com'
-    description 'description'
-    author_name 'james'
-    author_screen_name 'james_bond'
-    author_image_url 'http://google.com'
+    description { Faker::Lorem.paragraphs }
+    author_name { Faker::Name.name }
+    author_screen_name { Faker::Name.first_name}
+    author_image_url { Faker::Avatar.image }
   end
 end

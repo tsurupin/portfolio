@@ -16,7 +16,7 @@ class Cms::Api::PostsController < Cms::ApplicationController
 
   def create
     post = Post::Form.new
-    if post.save_all(post_params)
+    if post.save_from_associations(post_params)
       render nothing: true, status_code: 201
     else
       p post.errors.full_messages.join('')
@@ -31,7 +31,7 @@ class Cms::Api::PostsController < Cms::ApplicationController
 
   def update
     post = Post::Form.find(params[:id])
-    if post.save_all(post_params)
+    if post.save_from_associations(post_params)
       render nothing: true, status_code: 200
     else
       p post.errors.full_messages.join('')

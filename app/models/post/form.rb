@@ -21,7 +21,7 @@ class Post::Form < ActiveType::Record[Post]
   accepts_nested_attributes_for :items, reject_if: ->(attributes) { attributes['target_type'].blank? }
   accepts_nested_attributes_for :post_taggings, reject_if: ->(attributes) { attributes['post_tag_id'].blank? }
 
-  def save_all(params)
+  def save_from_associations(params)
     ActiveRecord::Base.transaction do
       delete_unnecessary_items!(params[ITEMS_ATTRIBUTES]) if self.id
       delete_unnecessary_post_tags!(params[POST_TAGS_ATTRIBUTES]) if self.id

@@ -1,4 +1,5 @@
 class Cms::Api::ServicesController < Cms::ApplicationController
+  skip_before_action :authenticate_author_from_token!
 
   def twitter
     service_render(params[:url], params[:sort_rank])

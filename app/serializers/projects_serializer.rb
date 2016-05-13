@@ -1,10 +1,6 @@
 class ProjectsSerializer < ActiveModel::Serializer
   format_keys :lower_camel
-  attributes :id, :title, :description, :name, :imageURL, :sourceURL, :sampleURL, :project_tags, :accepted
-
-  def published_at
-    object.published_at.try(:strftime,'%d-%m, %H:%M') || 'not publishing yet'
-  end
+  attributes :id, :title, :description, :imageURL, :sourceURL, :sampleURL, :accepted, :project_tags
 
   def imageURL
     object.try(:image_url)

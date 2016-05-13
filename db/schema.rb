@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 20160415005054) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "title",       limit: 255,                   null: false
-    t.text     "description", limit: 65535,                 null: false
-    t.string   "image",       limit: 255,                   null: false
+    t.text     "description", limit: 65535
+    t.string   "image",       limit: 255
     t.string   "sample_url",  limit: 255
     t.string   "source_url",  limit: 255
     t.boolean  "accepted",                  default: false, null: false

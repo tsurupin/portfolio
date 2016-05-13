@@ -9,7 +9,7 @@
 #
 
 FactoryGirl.define do
-  factory :post_tag do
-    name { Faker::Name.title }
+  factory :project_tag do
+    sequence(:name) { Faker::Name.title }
   end
 end

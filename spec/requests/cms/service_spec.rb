@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'webmock/rspec'
 
-RSpec.describe Cms::Api::PostsController, type: :request do
+RSpec.describe Cms::Api::ServicesController, type: :request do
   describe 'CMS Service API' do
 
     describe 'GET /cms/api/services/twitter' do

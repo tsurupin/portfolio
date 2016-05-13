@@ -24,7 +24,6 @@ class Cms::ApplicationController < ApplicationController
 
   def authenticate_author_from_token!
     auth_token = request.headers['Authorization']
-    p auth_token
     if auth_token
       authenticate_with_auth_token(auth_token)
     else
@@ -37,7 +36,9 @@ class Cms::ApplicationController < ApplicationController
   def authenticate_with_auth_token(auth_token)
     return authentication_error unless auth_token.include?(':')
 
+    p auth_token
     author_id = auth_token.split(':').first
+    p author_id
     author = Author.find(author_id)
 
     if author && Devise.secure_compare(author.access_token, auth_token)

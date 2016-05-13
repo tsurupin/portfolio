@@ -9,6 +9,6 @@
 
 FactoryGirl.define do
   factory :item_text do
-    description 'text'
+    description  { Faker::Lorem.paragraphs }
   end
 end

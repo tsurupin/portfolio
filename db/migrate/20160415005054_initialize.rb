@@ -94,8 +94,8 @@ class Initialize < ActiveRecord::Migration
 
     create_table :projects do |t|
       t.string :title, null: false, unique: true
-      t.text :description, null: false
-      t.string :image, null: false
+      t.text :description
+      t.string :image
       t.string :sample_url
       t.string :source_url
       t.boolean :accepted, null: false, default: false
