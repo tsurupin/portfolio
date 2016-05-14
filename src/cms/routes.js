@@ -5,7 +5,7 @@ import App from './components/App/index';
 import PostsIndex from './containers/posts/Index/index';
 import PostsForm from './containers/posts/Form/index';
 import ProjectsIndex from './containers/projects/Index/index';
-import ProjectsForm from './containers/projects/form';
+import ProjectsForm from './containers/projects/Form/index';
 import SitesForm from './containers/sites/form';
 import AuthorsForm from './containers/authors/Form/index';
 import AuthorsSinUp from './containers/authors/SignUp/index';

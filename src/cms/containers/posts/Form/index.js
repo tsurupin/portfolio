@@ -188,11 +188,10 @@ function validate(values) {
 }
 
 export const fields = [
-  'title', 'description', 'publishedAt', 'id'
+  'title', 'description', 'publishedAt'
 ];
 
 function mapStateToProps(state) {
-  console.log(state.tags)
   return {
     initialValues: state.posts.post,
     items: state.items,

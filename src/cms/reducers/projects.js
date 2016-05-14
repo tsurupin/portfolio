@@ -1,10 +1,7 @@
 import {
-  FETCH_POSTS, FETCH_POST, FETCH_NEW_POST, CREATE_POST, DELETE_POST, TOGGLE_POST
-} from '../constants';
-
-import { 
   FETCH_PROJECTS, 
-  FETCH_PROJECT, 
+  FETCH_PROJECT,
+  FETCH_NEW_PROJECT,
   SAVE_PROJECT, 
   DELETE_PROJECT, 
   TOGGLE_PROJECT 
@@ -22,10 +19,12 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, projects: action.payload.projects };
     case FETCH_PROJECT.SUCCESS:
       return { ...state, project: action.payload.project };
+    case FETCH_NEW_PROJECT.SUCCESS:
+      return { ...state };
     case SAVE_PROJECT.SUCCESS:
     case DELETE_PROJECT.SUCCESS:
     case TOGGLE_PROJECT.SUCCESS:
-      return state
+      return state;
     case FETCH_PROJECTS.FAILURE:
     case FETCH_PROJECT.FAILURE:
     case SAVE_PROJECT.FAILURE:
@@ -34,8 +33,6 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, error: action.payload };
     default:
       return state;
-
     
   }
-
 }

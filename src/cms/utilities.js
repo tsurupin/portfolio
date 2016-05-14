@@ -15,6 +15,12 @@ export function trimPost(params) {
   };
 }
 
+export function trimProject(params) {
+  return {
+    ...convertKeyNameInSnakeCase(params)
+  };
+}
+
 function convertKeyNameInSnakeCase(object) {
   return Object.keys(object).reduce((newObject, oldKey) => {
     newObject[convertCamelCaseToSnakeCase(oldKey)] = object[oldKey];

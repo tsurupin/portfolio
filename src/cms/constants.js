@@ -32,6 +32,7 @@ export const FETCH_TWEET = createRequestTypes('FETCH_TWEET');
 
 export const FETCH_PROJECTS = createRequestTypes('FETCH_PROJECTS');
 export const FETCH_PROJECT = createRequestTypes('FETCH_PROJECT');
+export const FETCH_NEW_PROJECT = createRequestTypes('FETCH_NEW_PROJECT');
 export const SAVE_PROJECT = createRequestTypes('SAVE_PROJECT');
 export const DELETE_PROJECT = createRequestTypes('DELETE_PROJECT');
 export const TOGGLE_PROJECT = createRequestTypes('TOGGLE_PROJECT');

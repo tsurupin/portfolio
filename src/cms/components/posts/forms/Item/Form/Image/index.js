@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
-import { capitalize } from '../../../../../../utilities';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import Paper from 'material-ui/lib/paper';
