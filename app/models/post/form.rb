@@ -14,22 +14,22 @@
 class Post::Form < ActiveType::Record[Post]
   include DataURIToImageConverter
   ITEMS_ATTRIBUTES = 'items_attributes'.freeze
-  POST_TAGS_ATTRIBUTES = 'post_taggings_attributes'.freeze
+  TAGS_ATTRIBUTES = 'taggings_attributes'.freeze
 
   validates :description, presence: true, if: proc { |post| post.accepted }
 
   accepts_nested_attributes_for :items, reject_if: ->(attributes) { attributes['target_type'].blank? }
-  accepts_nested_attributes_for :post_taggings, reject_if: ->(attributes) { attributes['post_tag_id'].blank? }
+  accepts_nested_attributes_for :taggings
 
   def save_from_associations(params)
     ActiveRecord::Base.transaction do
       delete_unnecessary_items!(params[ITEMS_ATTRIBUTES]) if self.id
-      delete_unnecessary_post_tags!(params[POST_TAGS_ATTRIBUTES]) if self.id
+      delete_unnecessary_tags!(params[TAGS_ATTRIBUTES]) if self.id
 
-      if params[POST_TAGS_ATTRIBUTES]
-        params[POST_TAGS_ATTRIBUTES].each do |item|
-          post_tag = PostTag.find_or_create_by!(name: item['text'])
-          item['post_tag_id'] = post_tag.id
+      if params[TAGS_ATTRIBUTES]
+        params[TAGS_ATTRIBUTES].each do |item|
+          tag = Tag.find_or_create_by!(name: item['text'])
+          item['tag_id'] = tag.id
           item.delete('text')
         end
       end
@@ -85,9 +85,9 @@ class Post::Form < ActiveType::Record[Post]
     Item.where(post_id: id, id: removed_ids).find_each(&:destroy!)
   end
 
-  def delete_unnecessary_post_tags!(params)
-    post_tags_ids = PostTag.where(name: params.map(&:values)).pluck(:id)
-    remove_ids = post_tags.map(&:id) - post_tags_ids
-    PostTagging.where(post_id: id, post_tag_id: remove_ids).find_each(&:destroy!)
+  def delete_unnecessary_tags!(params)
+    tags_ids = Tag.where(name: params.map(&:values)).pluck(:id)
+    remove_ids = tags.map(&:id) - tags_ids
+    Tagging.where(subject_id: id, tag_id: remove_ids).find_each(&:destroy!)
   end
 end

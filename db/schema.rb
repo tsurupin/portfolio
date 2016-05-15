@@ -82,19 +82,6 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   add_index "items", ["post_id"], name: "index_items_on_post_id", using: :btree
   add_index "items", ["target_type", "target_id"], name: "index_items_on_target_type_and_target_id", using: :btree
 
-  create_table "post_taggings", force: :cascade do |t|
-    t.integer "post_id",     limit: 4, null: false
-    t.integer "post_tag_id", limit: 4, null: false
-  end
-
-  add_index "post_taggings", ["post_id", "post_tag_id"], name: "index_post_taggings_on_post_id_and_post_tag_id", unique: true, using: :btree
-
-  create_table "post_tags", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string   "title",        limit: 255,                   null: false
     t.text     "description",  limit: 65535
@@ -102,19 +89,6 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.datetime "published_at"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
-  end
-
-  create_table "project_taggings", force: :cascade do |t|
-    t.integer "project_id",     limit: 4, null: false
-    t.integer "project_tag_id", limit: 4, null: false
-  end
-
-  add_index "project_taggings", ["project_id", "project_tag_id"], name: "index_project_taggings_on_project_id_and_project_tag_id", unique: true, using: :btree
-
-  create_table "project_tags", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -142,6 +116,22 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.string  "name",      limit: 255, null: false
     t.string  "url",       limit: 255, null: false
     t.string  "image",     limit: 255, null: false
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id",       limit: 4,   null: false
+    t.integer  "subject_id",   limit: 4,   null: false
+    t.string   "subject_type", limit: 255, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["subject_type", "subject_id"], name: "index_taggings_on_subject_type_and_subject_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

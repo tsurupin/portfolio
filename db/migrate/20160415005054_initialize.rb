@@ -79,18 +79,16 @@ class Initialize < ActiveRecord::Migration
       t.string    :author_screen_name, null: false
     end
 
-    create_table :post_tags do |t|
+    create_table :tags do |t|
       t.string :name, null: false, unique: true
       t.timestamps
     end
 
-    create_table :post_taggings do |t|
-      t.belongs_to :post, null: false
-      t.belongs_to :post_tag, null: false
+    create_table :taggings do |t|
+      t.belongs_to :tag, null: false
+      t.belongs_to :subject, polymorphic: true, null: false, index: true
+      t.timestamps
     end
-
-    add_index :post_taggings, [:post_id, :post_tag_id], unique: true
-
 
     create_table :projects do |t|
       t.string :title, null: false, unique: true
@@ -102,19 +100,6 @@ class Initialize < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
-    create_table :project_tags do |t|
-      t.string :name, null: false, unique: true
-
-      t.timestamps null: false
-    end
-
-    create_table :project_taggings do |t|
-      t.belongs_to :project, null: false
-      t.belongs_to :project_tag, null: false
-    end
-
-    add_index :project_taggings, [:project_id, :project_tag_id], unique: true
 
   end
 end

@@ -1,4 +1,4 @@
-class PostTaggingSerializer < ActiveModel::Serializer
+class TaggingSerializer < ActiveModel::Serializer
   attributes :tags
 
   def tags

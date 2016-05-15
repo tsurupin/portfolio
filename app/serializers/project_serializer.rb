@@ -2,7 +2,7 @@ class ProjectSerializer < ActiveModel::Serializer
   format_keys :lower_camel
   attributes :id, :title, :accepted, :description, :sourceURL, :sampleURL, :image, :tag_suggestions
 
-  has_many :project_taggings, root: :tags
+  has_many :taggings, root: :tags
 
   def image
     object.try(:image_url)
@@ -17,7 +17,7 @@ class ProjectSerializer < ActiveModel::Serializer
   end
 
   def tag_suggestions
-    ProjectTag.pluck(:name)
+    Tag.pluck(:name)
   end
 
 end

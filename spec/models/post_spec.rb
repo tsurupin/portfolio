@@ -16,8 +16,8 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe '#validation' do
     subject { create(:post) }
-    it { is_expected.to have_many(:post_taggings).dependent(:destroy) }
-    it { is_expected.to have_many(:post_tags).through(:post_taggings) }
+    it { is_expected.to have_many(:taggings).dependent(:destroy) }
+    it { is_expected.to have_many(:tags).through(:taggings) }
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_uniqueness_of(:title) }
   end

@@ -17,13 +17,13 @@ ActiveRecord::Base.transaction do
 
   item_types = %i(image twitter quote text heading sub_heading link)
   30.times do |i|
-    project_tag = FactoryGirl.create(:project_tag)
+    project_tag = FactoryGirl.create(:tag)
     project = i.odd? ? FactoryGirl.create(:project) :  FactoryGirl.create(:project, :accepted)
-    FactoryGirl.create(:project_tagging, project: project, project_tag: project_tag)
+    FactoryGirl.create(:tagging, subject_type: 'Project', subject_id: project.id, tag: project_tag)
 
-    post_tag = FactoryGirl.create(:post_tag)
+    post_tag = FactoryGirl.create(:tag)
     post = i.odd? ? FactoryGirl.create(:post) :  FactoryGirl.create(:post, :accepted)
-    FactoryGirl.create(:post_tagging, post: post, post_tag: post_tag)
+    FactoryGirl.create(:tagging, subject_type: 'Post', subject_id: post.id, tag: post_tag)
 
     4.times { FactoryGirl.create(:item, item_types[rand(7)], post: post) }
   end
