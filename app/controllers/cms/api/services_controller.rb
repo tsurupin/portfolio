@@ -22,7 +22,7 @@ class Cms::Api::ServicesController < Cms::ApplicationController
         }
       }
     else
-      render nothing: true, status: 400
+      render nothing: true, status: :bad_request
     end
   end
 end

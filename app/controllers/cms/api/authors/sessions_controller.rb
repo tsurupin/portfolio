@@ -18,7 +18,7 @@ class Cms::Api::Authors::SessionsController < Devise::SessionsController
 
   def destroy
     sign_out :author
-    render nothing: true, status: 200
+    render nothing: true, status: :ok
   end
 
   private

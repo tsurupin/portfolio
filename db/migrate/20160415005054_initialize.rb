@@ -49,7 +49,6 @@ class Initialize < ActiveRecord::Migration
     end
 
     create_table :item_texts do |t|
-      t.integer :type, null: false, default: 1, comment: '1: normal text, 2: source_code'
       t.text      :description, null: false
     end
 

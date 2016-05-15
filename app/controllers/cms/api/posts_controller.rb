@@ -17,10 +17,10 @@ class Cms::Api::PostsController < Cms::ApplicationController
   def create
     post = Post::Form.new
     if post.save_from_associations(post_params)
-      render nothing: true, status_code: 201
+      render nothing: true, status: :created
     else
       p post.errors.full_messages.join('')
-      render json: { errorMessage: post.errors.full_messages.join('') }, status: 400
+      render json: { errorMessage: post.errors.full_messages.join('') }, status: :bad_request
     end
   end
 
@@ -32,10 +32,10 @@ class Cms::Api::PostsController < Cms::ApplicationController
   def update
     post = Post::Form.find(params[:id])
     if post.save_from_associations(post_params)
-      render nothing: true, status_code: 200
+      render nothing: true, status: :ok
     else
       p post.errors.full_messages.join('')
-      render json: { errorMessage: post.errors.full_messages.join('') }, status: 400
+      render json: { errorMessage: post.errors.full_messages.join('') }, status: :bad_request
     end
   end
 

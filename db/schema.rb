@@ -57,8 +57,7 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   end
 
   create_table "item_texts", force: :cascade do |t|
-    t.integer "type",        limit: 4,     default: 1, null: false, comment: "1: normal text, 2: source_code"
-    t.text    "description", limit: 65535,             null: false
+    t.text "description", limit: 65535, null: false
   end
 
   create_table "item_twitters", force: :cascade do |t|

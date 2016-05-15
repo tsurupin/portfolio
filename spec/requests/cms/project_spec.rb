@@ -9,7 +9,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
       subject { JSON.parse(response.body) }
       let!(:project1) { create(:project, :accepted) }
       let!(:project2) { create(:project) }
-      let!(:project_tagging1) { create(:project_tagging, project: project1) }
+      let!(:tagging1) { create(:tagging, subject_id: project1.id, subject_type: "Project") }
       let(:projects) { Project.order(updated_at: :desc) }
       context 'when access_token is sent in header' do
         let(:result) do
@@ -23,7 +23,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
                 'sourceURL' => project.try(:source_url),
                 'sampleURL' => project.try(:sample_url),
                 'accepted' => project.accepted,
-                'projectTags' => project.try(:project_tags).map(&:name)
+                'tags' => project.try(:tags).map(&:name)
               }
             end
           }

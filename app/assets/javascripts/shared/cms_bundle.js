@@ -66,15 +66,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(941);
+	var _reducers = __webpack_require__(945);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(949);
+	var _reactTapEventPlugin = __webpack_require__(953);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(954);
+	var _reduxThunk = __webpack_require__(958);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26734,31 +26734,31 @@
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(957);
+	var _index9 = __webpack_require__(933);
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _form = __webpack_require__(933);
+	var _form = __webpack_require__(937);
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index11 = __webpack_require__(934);
+	var _index11 = __webpack_require__(938);
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(935);
+	var _index13 = __webpack_require__(939);
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(937);
+	var _index15 = __webpack_require__(941);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(939);
+	var _index17 = __webpack_require__(943);
 
 	var _index18 = _interopRequireDefault(_index17);
 
-	var _index19 = __webpack_require__(940);
+	var _index19 = __webpack_require__(944);
 
 	var _index20 = _interopRequireDefault(_index19);
 
@@ -89419,7 +89419,7 @@
 
 	var _add2 = _interopRequireDefault(_add);
 
-	var _styles = __webpack_require__(955);
+	var _styles = __webpack_require__(932);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -89745,8 +89745,404 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 932 */,
+/* 932 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
 /* 933 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _projects = __webpack_require__(929);
+
+	var _tags = __webpack_require__(358);
+
+	var _reactRedux = __webpack_require__(158);
+
+	var _reduxForm = __webpack_require__(392);
+
+	var _index = __webpack_require__(934);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _textField = __webpack_require__(441);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _refreshIndicator = __webpack_require__(656);
+
+	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
+
+	var _index3 = __webpack_require__(661);
+
+	var _index4 = _interopRequireDefault(_index3);
+
+	var _raisedButton = __webpack_require__(470);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _styles = __webpack_require__(936);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var inlineStyles = {
+	  submitButton: {
+	    position: 'absolute',
+	    bottom: 10,
+	    right: 15
+	  },
+	  indicator: {
+	    display: 'inline-block',
+	    position: 'relative'
+	  }
+	};
+
+	var ProjectsForm = function (_Component) {
+	  _inherits(ProjectsForm, _Component);
+
+	  function ProjectsForm(props) {
+	    _classCallCheck(this, ProjectsForm);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).call(this, props));
+
+	    _this.state = {
+	      image: props.image,
+	      errorImage: ''
+	    };
+
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.handleAddTag = _this.handleAddTag.bind(_this);
+	    _this.handleDeleteTag = _this.handleDeleteTag.bind(_this);
+	    _this.handleUpdate = _this.handleUpdate.bind(_this);
+
+	    return _this;
+	  }
+
+	  _createClass(ProjectsForm, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      if (this.props.params.id) {
+	        this.props.fetchProject(this.props.params.id);
+	      } else {
+	        this.props.fetchNewProject();
+	      }
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(props) {
+	      this.props.saveProject({
+	        project: _extends({}, props, {
+	          image: this.state.image,
+	          projectTaggingsAttributes: this.props.tags
+	        })
+	      });
+	    }
+	  }, {
+	    key: 'handleAddTag',
+	    value: function handleAddTag(tag) {
+	      this.props.createTag(tag);
+	    }
+	  }, {
+	    key: 'handleDeleteTag',
+	    value: function handleDeleteTag(sortRank) {
+	      this.props.deleteTag(sortRank);
+	    }
+	  }, {
+	    key: 'handleUpdate',
+	    value: function handleUpdate(props) {
+	      var params = { errorMessage: props.errorMessage };
+	      if (props.image) {
+	        params = _extends({}, params, { image: props.image });
+	      }
+
+	      this.setState(params);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var _props$fields = _props.fields;
+	      var title = _props$fields.title;
+	      var description = _props$fields.description;
+	      var image = _props$fields.image;
+	      var sampleURL = _props$fields.sampleURL;
+	      var sourceURL = _props$fields.sourceURL;
+
+	      return _react2.default.createElement(
+	        'form',
+	        { className: _styles2.default.root, onSubmit: handleSubmit(this.handleSubmit) },
+	        _react2.default.createElement(
+	          'h2',
+	          { className: _styles2.default.heading },
+	          'Create New Project'
+	        ),
+	        _react2.default.createElement(_textField2.default, _extends({}, title, {
+	          floatingLabelText: 'Title',
+	          hintText: 'Enter Title',
+	          fullWidth: true,
+	          errorText: title.touched && title.error ? title.error : ''
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_textField2.default, _extends({}, description, {
+	          floatingLabelText: 'Description',
+	          hintText: 'Enter Description',
+	          multiLine: true,
+	          fullWidth: true,
+	          rows: 2
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_textField2.default, _extends({}, sourceURL, {
+	          floatingLabelText: 'SourceURL',
+	          hintText: 'Enter SourceURL',
+	          multiLine: true,
+	          fullWidth: true
+	        })),
+	        _react2.default.createElement(_textField2.default, _extends({}, sampleURL, {
+	          floatingLabelText: 'SampleURL',
+	          hintText: 'Enter SampleURL',
+	          multiLine: true,
+	          fullWidth: true
+	        })),
+	        _react2.default.createElement(_index4.default, {
+	          tags: this.props.tags,
+	          suggestions: this.props.tagSuggestions,
+	          handleAddTag: this.handleAddTag,
+	          handleDeleteTag: this.handleDeleteTag
+	        }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_index2.default, {
+	          image: this.state.image,
+	          errorMessage: this.state.errorMessage,
+	          handleUpdate: this.handleUpdate
+	        }),
+	        _react2.default.createElement(_raisedButton2.default, {
+	          type: 'submit',
+	          label: submitButtonLabel,
+	          secondary: true,
+	          style: inlineStyles.submitButton
+	        })
+	      );
+	    }
+	  }]);
+
+	  return ProjectsForm;
+	}(_react.Component);
+
+	function validate(values) {
+	  var errors = {};
+	  if (!values.title) {
+	    errors.title = 'Entry title';
+	  }
+
+	  return errors;
+	}
+
+	var fields = ['title', 'description', 'image', 'sourceURL', 'sampleURL'];
+
+	function mapStateToProps(state) {
+	  return {
+	    initialValues: state.projects.project,
+	    tags: state.tags.tags,
+	    tagSuggestions: state.tags.tagSuggestions
+	  };
+	}
+
+	ProjectsForm.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
+	  params: _react.PropTypes.object,
+	  fetchProject: _react.PropTypes.func.isRequired,
+	  fetchNewProject: _react.PropTypes.func.isRequired,
+	  saveProject: _react.PropTypes.func.isRequired,
+	  createTag: _react.PropTypes.func.isRequired,
+	  deleteTag: _react.PropTypes.func.isRequired
+	};
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'ProjectsForm',
+	  fields: fields,
+	  validate: validate
+	}, mapStateToProps, {
+	  fetchProject: _projects.fetchProject,
+	  fetchNewProject: _projects.fetchNewProject,
+	  saveProject: _projects.saveProject,
+	  createTag: _tags.createTag,
+	  deleteTag: _tags.deleteTag
+	})(ProjectsForm);
+
+/***/ },
+/* 934 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDropzone = __webpack_require__(654);
+
+	var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+
+	var _paper = __webpack_require__(329);
+
+	var _paper2 = _interopRequireDefault(_paper);
+
+	var _styles = __webpack_require__(935);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var inlineStyles = {
+	  paper: {
+	    margin: '10px 0'
+	  }
+	};
+
+	var DropzoneImage = function (_Component) {
+	  _inherits(DropzoneImage, _Component);
+
+	  function DropzoneImage(props) {
+	    _classCallCheck(this, DropzoneImage);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DropzoneImage).call(this, props));
+
+	    _this.handleDrop = _this.handleDrop.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(DropzoneImage, [{
+	    key: 'handleDrop',
+	    value: function handleDrop(files) {
+	      var self = this;
+	      var reader = new FileReader();
+	      var file = files[0];
+
+	      reader.onload = function (upload) {
+	        self.props.handleUpdate({
+	          image: upload.target.result,
+	          errorMessage: ''
+	        });
+	      };
+
+	      reader.onerror = function () {
+	        self.props.handleUpdate({
+	          errorMessage: 'Cannot upload image file'
+	        });
+	      };
+
+	      reader.readAsDataURL(file);
+	    }
+	  }, {
+	    key: 'renderImageBox',
+	    value: function renderImageBox() {
+	      if (this.props.image) {
+	        return _react2.default.createElement('img', { className: _styles2.default.previewImage, src: this.props.image, width: '100' });
+	      }
+	    }
+	  }, {
+	    key: 'renderErrorMessage',
+	    value: function renderErrorMessage() {
+	      if (this.props.errorMessage) {
+	        return _react2.default.createElement(
+	          'span',
+	          { className: _styles2.default.errorMessage },
+	          this.props.errorMessage
+	        );
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: _styles2.default.root },
+	        _react2.default.createElement(
+	          _paper2.default,
+	          { zDepth: 1, rounded: false, style: inlineStyles.paper },
+	          _react2.default.createElement(
+	            _reactDropzone2.default,
+	            {
+	              className: _styles2.default.dropzone,
+	              accepte: 'image/*',
+	              multipe: false,
+	              onDrop: this.handleDrop },
+	            _react2.default.createElement(
+	              'div',
+	              { className: _styles2.default.dropzoneHelp },
+	              'Drop file here or click to upload.'
+	            )
+	          )
+	        ),
+	        this.renderImageBox(),
+	        this.renderErrorMessage()
+	      );
+	    }
+	  }]);
+
+	  return DropzoneImage;
+	}(_react.Component);
+
+	DropzoneImage.propTypes = {
+	  image: _react.PropTypes.string,
+	  errorMessage: _react.PropTypes.string,
+	  handleUpdate: _react.PropTypes.func.isRequired
+	};
+
+	exports.default = DropzoneImage;
+
+/***/ },
+/* 935 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 936 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 937 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89795,7 +90191,7 @@
 	exports.default = SitesForm;
 
 /***/ },
-/* 934 */
+/* 938 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89844,7 +90240,7 @@
 	exports.default = AuthorsForm;
 
 /***/ },
-/* 935 */
+/* 939 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89880,7 +90276,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(936);
+	var _styles = __webpack_require__(940);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90049,14 +90445,14 @@
 	}, mapStateToProps, { signUp: _auths.signUp })(AuthorsSignUp);
 
 /***/ },
-/* 936 */
+/* 940 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1GONa","heading":"heading___3z-Um","error":"error___29st_"};
 
 /***/ },
-/* 937 */
+/* 941 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90092,7 +90488,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(938);
+	var _styles = __webpack_require__(942);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90241,14 +90637,14 @@
 	})(AuthorsSignIn);
 
 /***/ },
-/* 938 */
+/* 942 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1aOrv","heading":"heading___3F7ic","error":"error___xJ9qB"};
 
 /***/ },
-/* 939 */
+/* 943 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90274,7 +90670,7 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 940 */
+/* 944 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90352,7 +90748,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ },
-/* 941 */
+/* 945 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90365,27 +90761,27 @@
 
 	var _reduxForm = __webpack_require__(392);
 
-	var _posts = __webpack_require__(942);
+	var _posts = __webpack_require__(946);
 
 	var _posts2 = _interopRequireDefault(_posts);
 
-	var _items = __webpack_require__(943);
+	var _items = __webpack_require__(947);
 
 	var _items2 = _interopRequireDefault(_items);
 
-	var _tags = __webpack_require__(945);
+	var _tags = __webpack_require__(949);
 
 	var _tags2 = _interopRequireDefault(_tags);
 
-	var _authors = __webpack_require__(946);
+	var _authors = __webpack_require__(950);
 
 	var _authors2 = _interopRequireDefault(_authors);
 
-	var _auths = __webpack_require__(947);
+	var _auths = __webpack_require__(951);
 
 	var _auths2 = _interopRequireDefault(_auths);
 
-	var _projects = __webpack_require__(948);
+	var _projects = __webpack_require__(952);
 
 	var _projects2 = _interopRequireDefault(_projects);
 
@@ -90404,7 +90800,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 942 */
+/* 946 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90474,7 +90870,7 @@
 	};
 
 /***/ },
-/* 943 */
+/* 947 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90541,7 +90937,7 @@
 
 	var _constants = __webpack_require__(243);
 
-	var _lodash = __webpack_require__(944);
+	var _lodash = __webpack_require__(948);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -90550,7 +90946,7 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ },
-/* 944 */
+/* 948 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -102908,7 +103304,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(703)(module), (function() { return this; }())))
 
 /***/ },
-/* 945 */
+/* 949 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -102945,7 +103341,7 @@
 	var INITIAL_STATE = { tags: [], tagSuggestions: [] };
 
 /***/ },
-/* 946 */
+/* 950 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -102987,7 +103383,7 @@
 	var INITIAL_STATE = { author: null, error: null, loading: false };
 
 /***/ },
-/* 947 */
+/* 951 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103024,7 +103420,7 @@
 	var INITIAL_STATE = { error: '', authenticated: false };
 
 /***/ },
-/* 948 */
+/* 952 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103071,23 +103467,23 @@
 	};
 
 /***/ },
-/* 949 */
+/* 953 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(950);
+	var defaultClickRejectionStrategy = __webpack_require__(954);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(30).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(951)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(955)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 950 */
+/* 954 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -103098,7 +103494,7 @@
 
 
 /***/ },
-/* 951 */
+/* 955 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -103126,10 +103522,10 @@
 	var EventPluginUtils = __webpack_require__(32);
 	var EventPropagators = __webpack_require__(72);
 	var SyntheticUIEvent = __webpack_require__(86);
-	var TouchEventUtils = __webpack_require__(952);
+	var TouchEventUtils = __webpack_require__(956);
 	var ViewportMetrics = __webpack_require__(37);
 
-	var keyOf = __webpack_require__(953);
+	var keyOf = __webpack_require__(957);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -103275,7 +103671,7 @@
 
 
 /***/ },
-/* 952 */
+/* 956 */
 /***/ function(module, exports) {
 
 	/**
@@ -103323,7 +103719,7 @@
 
 
 /***/ },
-/* 953 */
+/* 957 */
 /***/ function(module, exports) {
 
 	/**
@@ -103363,7 +103759,7 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 954 */
+/* 958 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -103389,404 +103785,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 
 	exports['default'] = thunk;
-
-/***/ },
-/* 955 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 956 */,
-/* 957 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _projects = __webpack_require__(929);
-
-	var _tags = __webpack_require__(358);
-
-	var _reactRedux = __webpack_require__(158);
-
-	var _reduxForm = __webpack_require__(392);
-
-	var _index = __webpack_require__(958);
-
-	var _index2 = _interopRequireDefault(_index);
-
-	var _textField = __webpack_require__(441);
-
-	var _textField2 = _interopRequireDefault(_textField);
-
-	var _refreshIndicator = __webpack_require__(656);
-
-	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
-
-	var _index3 = __webpack_require__(661);
-
-	var _index4 = _interopRequireDefault(_index3);
-
-	var _raisedButton = __webpack_require__(470);
-
-	var _raisedButton2 = _interopRequireDefault(_raisedButton);
-
-	var _styles = __webpack_require__(960);
-
-	var _styles2 = _interopRequireDefault(_styles);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var inlineStyles = {
-	  submitButton: {
-	    position: 'absolute',
-	    bottom: 10,
-	    right: 15
-	  },
-	  indicator: {
-	    display: 'inline-block',
-	    position: 'relative'
-	  }
-	};
-
-	var ProjectsForm = function (_Component) {
-	  _inherits(ProjectsForm, _Component);
-
-	  function ProjectsForm(props) {
-	    _classCallCheck(this, ProjectsForm);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).call(this, props));
-
-	    _this.state = {
-	      image: props.image,
-	      errorImage: ''
-	    };
-
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
-	    _this.handleAddTag = _this.handleAddTag.bind(_this);
-	    _this.handleDeleteTag = _this.handleDeleteTag.bind(_this);
-	    _this.handleUpdate = _this.handleUpdate.bind(_this);
-
-	    return _this;
-	  }
-
-	  _createClass(ProjectsForm, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      if (this.props.params.id) {
-	        this.props.fetchProject(this.props.params.id);
-	      } else {
-	        this.props.fetchNewProject();
-	      }
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(props) {
-	      this.props.saveProject({
-	        project: _extends({}, props, {
-	          image: this.state.image,
-	          projectTaggingsAttributes: this.props.tags
-	        })
-	      });
-	    }
-	  }, {
-	    key: 'handleAddTag',
-	    value: function handleAddTag(tag) {
-	      this.props.createTag(tag);
-	    }
-	  }, {
-	    key: 'handleDeleteTag',
-	    value: function handleDeleteTag(sortRank) {
-	      this.props.deleteTag(sortRank);
-	    }
-	  }, {
-	    key: 'handleUpdate',
-	    value: function handleUpdate(props) {
-	      var params = { errorMessage: props.errorMessage };
-	      if (props.image) {
-	        params = _extends({}, params, { image: props.image });
-	      }
-
-	      this.setState(params);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-	      var _props = this.props;
-	      var handleSubmit = _props.handleSubmit;
-	      var _props$fields = _props.fields;
-	      var title = _props$fields.title;
-	      var description = _props$fields.description;
-	      var image = _props$fields.image;
-	      var sampleURL = _props$fields.sampleURL;
-	      var sourceURL = _props$fields.sourceURL;
-
-	      return _react2.default.createElement(
-	        'form',
-	        { className: _styles2.default.root, onSubmit: handleSubmit(this.handleSubmit) },
-	        _react2.default.createElement(
-	          'h2',
-	          { className: _styles2.default.heading },
-	          'Create New Project'
-	        ),
-	        _react2.default.createElement(_textField2.default, _extends({}, title, {
-	          floatingLabelText: 'Title',
-	          hintText: 'Enter Title',
-	          fullWidth: true,
-	          errorText: title.touched && title.error ? title.error : ''
-	        })),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_textField2.default, _extends({}, description, {
-	          floatingLabelText: 'Description',
-	          hintText: 'Enter Description',
-	          multiLine: true,
-	          fullWidth: true,
-	          rows: 2
-	        })),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_textField2.default, _extends({}, sourceURL, {
-	          floatingLabelText: 'SourceURL',
-	          hintText: 'Enter SourceURL',
-	          multiLine: true,
-	          fullWidth: true
-	        })),
-	        _react2.default.createElement(_textField2.default, _extends({}, sampleURL, {
-	          floatingLabelText: 'SampleURL',
-	          hintText: 'Enter SampleURL',
-	          multiLine: true,
-	          fullWidth: true
-	        })),
-	        _react2.default.createElement(_index4.default, {
-	          tags: this.props.tags,
-	          suggestions: this.props.tagSuggestions,
-	          handleAddTag: this.handleAddTag,
-	          handleDeleteTag: this.handleDeleteTag
-	        }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_index2.default, {
-	          image: this.state.image,
-	          errorMessage: this.state.errorMessage,
-	          handleUpdate: this.handleUpdate
-	        }),
-	        _react2.default.createElement(_raisedButton2.default, {
-	          type: 'submit',
-	          label: submitButtonLabel,
-	          secondary: true,
-	          style: inlineStyles.submitButton
-	        })
-	      );
-	    }
-	  }]);
-
-	  return ProjectsForm;
-	}(_react.Component);
-
-	function validate(values) {
-	  var errors = {};
-	  if (!values.title) {
-	    errors.title = 'Entry title';
-	  }
-
-	  return errors;
-	}
-
-	var fields = ['title', 'description', 'image', 'sourceURL', 'sampleURL'];
-
-	function mapStateToProps(state) {
-	  return {
-	    initialValues: state.projects.project,
-	    tags: state.tags.tags,
-	    tagSuggestions: state.tags.tagSuggestions
-	  };
-	}
-
-	ProjectsForm.propTypes = {
-	  fields: _react.PropTypes.object.isRequired,
-	  params: _react.PropTypes.object,
-	  fetchProject: _react.PropTypes.func.isRequired,
-	  fetchNewProject: _react.PropTypes.func.isRequired,
-	  saveProject: _react.PropTypes.func.isRequired,
-	  createTag: _react.PropTypes.func.isRequired,
-	  deleteTag: _react.PropTypes.func.isRequired
-	};
-
-	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'ProjectsForm',
-	  fields: fields,
-	  validate: validate
-	}, mapStateToProps, {
-	  fetchProject: _projects.fetchProject,
-	  fetchNewProject: _projects.fetchNewProject,
-	  saveProject: _projects.saveProject,
-	  createTag: _tags.createTag,
-	  deleteTag: _tags.deleteTag
-	})(ProjectsForm);
-
-/***/ },
-/* 958 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDropzone = __webpack_require__(654);
-
-	var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
-
-	var _paper = __webpack_require__(329);
-
-	var _paper2 = _interopRequireDefault(_paper);
-
-	var _styles = __webpack_require__(959);
-
-	var _styles2 = _interopRequireDefault(_styles);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var inlineStyles = {
-	  paper: {
-	    margin: '10px 0'
-	  }
-	};
-
-	var DropzoneImage = function (_Component) {
-	  _inherits(DropzoneImage, _Component);
-
-	  function DropzoneImage(props) {
-	    _classCallCheck(this, DropzoneImage);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DropzoneImage).call(this, props));
-
-	    _this.handleDrop = _this.handleDrop.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(DropzoneImage, [{
-	    key: 'handleDrop',
-	    value: function handleDrop(files) {
-	      var self = this;
-	      var reader = new FileReader();
-	      var file = files[0];
-
-	      reader.onload = function (upload) {
-	        self.props.handleUpdate({
-	          image: upload.target.result,
-	          errorMessage: ''
-	        });
-	      };
-
-	      reader.onerror = function () {
-	        self.props.handleUpdate({
-	          errorMessage: 'Cannot upload image file'
-	        });
-	      };
-
-	      reader.readAsDataURL(file);
-	    }
-	  }, {
-	    key: 'renderImageBox',
-	    value: function renderImageBox() {
-	      if (this.props.image) {
-	        return _react2.default.createElement('img', { className: _styles2.default.previewImage, src: this.props.image, width: '100' });
-	      }
-	    }
-	  }, {
-	    key: 'renderErrorMessage',
-	    value: function renderErrorMessage() {
-	      if (this.props.errorMessage) {
-	        return _react2.default.createElement(
-	          'span',
-	          { className: _styles2.default.errorMessage },
-	          this.props.errorMessage
-	        );
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: _styles2.default.root },
-	        _react2.default.createElement(
-	          _paper2.default,
-	          { zDepth: 1, rounded: false, style: inlineStyles.paper },
-	          _react2.default.createElement(
-	            _reactDropzone2.default,
-	            {
-	              className: _styles2.default.dropzone,
-	              accepte: 'image/*',
-	              multipe: false,
-	              onDrop: this.handleDrop },
-	            _react2.default.createElement(
-	              'div',
-	              { className: _styles2.default.dropzoneHelp },
-	              'Drop file here or click to upload.'
-	            )
-	          )
-	        ),
-	        this.renderImageBox(),
-	        this.renderErrorMessage()
-	      );
-	    }
-	  }]);
-
-	  return DropzoneImage;
-	}(_react.Component);
-
-	DropzoneImage.propTypes = {
-	  image: _react.PropTypes.string,
-	  errorMessage: _react.PropTypes.string,
-	  handleUpdate: _react.PropTypes.func.isRequired
-	};
-
-	exports.default = DropzoneImage;
-
-/***/ },
-/* 959 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 960 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
