@@ -82,7 +82,7 @@ export function fetchNewProject() {
 function fetchNewProjectSuccess(response) {
   return {
     type: FETCH_NEW_PROJECT.SUCCESS,
-    payload: { tags: { tagSuggestions: response.tagSuggestions } }
+    payload: { tags: { tags: [], tagSuggestions: response.tagSuggestions } }
   };
 }
 

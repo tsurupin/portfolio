@@ -63,7 +63,7 @@
     "react-infinite": "^0.8.0",
     "react-redux": "^4.0.0",
     "react-router": "^2.3.0",
-    "react-tag-input": "^2.2.5",
+    "react-tag-input": "^2.2.6",
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.5.1",
     "redux-form": "^5.2.3",

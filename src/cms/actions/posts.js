@@ -95,7 +95,7 @@ function fetchNewPostSuccess(response) {
 
   return {
     type: FETCH_NEW_POST.SUCCESS,
-    payload: { tags: { tagSuggestions: response.tagSuggestions } }
+    payload: { tags: { tags: [], tagSuggestions: response.tagSuggestions } }
   };
 }
 

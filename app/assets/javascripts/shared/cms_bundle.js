@@ -38144,7 +38144,7 @@
 
 	  return {
 	    type: _constants.FETCH_NEW_POST.SUCCESS,
-	    payload: { tags: { tagSuggestions: response.tagSuggestions } }
+	    payload: { tags: { tags: [], tagSuggestions: response.tagSuggestions } }
 	  };
 	}
 
@@ -77235,8 +77235,8 @@
 	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(TagField)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
 	    _this.state = {
-	      tags: props.tags,
-	      suggestions: props.suggestions
+	      tags: [],
+	      suggestions: []
 	    };
 
 	    _this.handleDeleteTag = _this.handleDeleteTag.bind(_this);
@@ -77260,12 +77260,14 @@
 	  }, {
 	    key: 'handleAddTag',
 	    value: function handleAddTag(text) {
-	      var tag = { text: text };
-	      this.props.handleAddTag(tag);
+	      this.props.handleAddTag({ id: this.state.tags.length + 1, text: text });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+
+	      var tags = this.state.tags;
+	      var suggestions = this.state.suggestions;
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
@@ -77278,11 +77280,10 @@
 	          'div',
 	          { className: _styles2.default.content },
 	          _react2.default.createElement(_reactTagInput.WithContext, {
-	            tags: this.state.tags,
-	            suggestions: this.state.suggestions,
+	            tags: tags,
+	            suggestions: suggestions,
 	            handleDelete: this.handleDeleteTag,
 	            handleAddition: this.handleAddTag,
-	            draggable: false,
 	            autofocus: false,
 	            autocomplete: 1,
 	            minQueryLength: 1,
@@ -84369,7 +84370,7 @@
 	    shouldRenderSuggestions: function (query) {
 	        var props = this.props;
 	        var minQueryLength = props.minQueryLength || 2;
-	        return props.query.length < minQueryLength;
+	        return props.query.length >= minQueryLength;
 	    },
 	    render: function () {
 	        var props = this.props;
@@ -89606,7 +89607,7 @@
 	function fetchNewProjectSuccess(response) {
 	  return {
 	    type: _constants.FETCH_NEW_PROJECT.SUCCESS,
-	    payload: { tags: { tagSuggestions: response.tagSuggestions } }
+	    payload: { tags: { tags: [], tagSuggestions: response.tagSuggestions } }
 	  };
 	}
 
@@ -89863,6 +89864,7 @@
 	  }, {
 	    key: 'handleAddTag',
 	    value: function handleAddTag(tag) {
+	      console.log(tag);
 	      this.props.createTag(tag);
 	    }
 	  }, {
@@ -89933,13 +89935,6 @@
 	          suggestions: this.props.tagSuggestions,
 	          handleAddTag: this.handleAddTag,
 	          handleDeleteTag: this.handleDeleteTag
-	        }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_index2.default, {
-	          image: this.state.image,
-	          errorMessage: this.state.errorMessage,
-	          handleUpdate: this.handleUpdate
 	        }),
 	        _react2.default.createElement(_raisedButton2.default, {
 	          type: 'submit',

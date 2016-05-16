@@ -60,6 +60,7 @@ class ProjectsForm extends Component {
   }
 
   handleAddTag(tag) {
+    console.log(tag)
     this.props.createTag(tag);
   }
 
@@ -119,13 +120,7 @@ class ProjectsForm extends Component {
           handleAddTag={this.handleAddTag}
           handleDeleteTag={this.handleDeleteTag}
         />
-        <br />
-        <br />
-        <DropzoneImage
-          image={this.state.image}
-          errorMessage={this.state.errorMessage}
-          handleUpdate={this.handleUpdate}
-        />
+      
         <RaisedButton
           type="submit"
           label={submitButtonLabel}
