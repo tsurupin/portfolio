@@ -51,10 +51,6 @@ export const FETCH_TAGS = 'FETCH_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
-export const SIGN_UP = 'SIGN_UP';
-export const SIGN_IN = 'SIGN_IN';
-
-
 export const TARGET_TYPES = {
   TWITTER: {
     NAME: "ItemTwitter",

@@ -7,6 +7,8 @@ class DropzoneImage extends Component {
   constructor(props) {
     super(props);
     
+    this.state = { errorMessage: '' };
+    
     this.handleDrop = this.handleDrop.bind(this);
   }
   
@@ -14,25 +16,19 @@ class DropzoneImage extends Component {
     const file = files[0];
 
     if (!(/.*image\/(gift|jpg|jpeg|png)$/i).test(file.type)) {
-      return this.props.handleUpdate({
-        errorMessage: 'Cannot upload image file'
-      })
+      return this.setState({ errorMessage: 'Cannot upload image file' })
     }
 
     const self = this;
     const reader = new FileReader();
 
     reader.onload = function (upload) {
-      self.props.handleUpdate({
-        image: upload.target.result,
-        errorMessage: ''
-      })
+      self.props.handleUpdate({ image: upload.target.result })
+      self.setState({ errorMessage: '' })
     };
 
     reader.onerror = function () {
-      self.props.handleUpdate({
-        errorMessage: 'Cannot upload image file'
-      })
+      self.setState({ errorMessage: 'Cannot upload image file' })
     };
 
     reader.readAsDataURL(file);
@@ -45,8 +41,8 @@ class DropzoneImage extends Component {
   }
 
   renderErrorMessage() {
-    if (this.props.errorMessage) {
-      return <span className={styles.errorMessage}>{this.props.errorMessage}</span>;
+    if (this.state.errorMessage) {
+      return <span className={styles.errorMessage}>{this.state.errorMessage}</span>;
     }
   }
   
@@ -77,7 +73,6 @@ class DropzoneImage extends Component {
 
 DropzoneImage.propTypes = {
   image: PropTypes.string,
-  errorMessage: PropTypes.string,
   handleUpdate: PropTypes.func.isRequired
 };
 

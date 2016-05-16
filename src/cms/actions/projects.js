@@ -3,7 +3,7 @@ import {
   FETCH_PROJECTS, 
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT, 
-  SAVE_PROJECT 
+  SAVE_PROJECT
 } from '../constants';
 import { fetchTags } from'./tags';
 import { axios, trimProject } from '../utilities';
@@ -96,6 +96,7 @@ function fetchNewProjectFailure(error) {
 
 export function saveProject(props) {
   const project = trimProject(props.project);
+  console.log(project);
   let request;
   if (props.project.id) {
     request = axios.patch(`${PROJECT_PATH}/${project.id}`, { project });

@@ -1,8 +1,6 @@
 @value colors: './colors.scss';
-@value fonts: './fonts.scss';
 
 @value label-color, border-color from colors;
-@value font-xx-small from fonts;
 
 .clearFloat::after {
   content: "";
@@ -41,7 +39,6 @@
 }
 
 .headerLabel {
+  composes: fontXSmall from './fonts.scss';
   color: label-color;
-  font-size: calc(font-xx-small * 10) + px;
-  font-size: font-xx-small + rem;
 }

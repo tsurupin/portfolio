@@ -28,7 +28,7 @@ class TagField extends Component {
   }
 
   handleAddTag(text) {
-    this.props.handleAddTag({ id: this.state.tags.length+1, text });
+    this.props.handleAddTag({ text });
   }
 
   render() {
@@ -65,7 +65,6 @@ class TagField extends Component {
 
 TagField.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
     text: PropTypes.string
   })),
   suggestions: PropTypes.array.isRequired,

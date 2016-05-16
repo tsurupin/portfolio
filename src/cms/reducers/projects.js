@@ -4,12 +4,12 @@ import {
   FETCH_NEW_PROJECT,
   SAVE_PROJECT, 
   DELETE_PROJECT, 
-  TOGGLE_PROJECT 
+  TOGGLE_PROJECT
 } from '../constants';
 
 const INITIAL_STATE = { 
   projects: [],
-  project: null, 
+  project: {},
   error: null 
 };
 

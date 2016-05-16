@@ -39,7 +39,7 @@ const inlineStyles = {
 
 export default class TextEditor extends Component {
   constructor(props) {
-    super(...props);
+    super(props);
 
     const decorator = new CompositeDecorator([
       {
@@ -127,9 +127,8 @@ export default class TextEditor extends Component {
   }
 
   handleUpdate() {
-    const raw = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-    console.log(raw);
-    this.props.handleUpdate(raw)
+    const description = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+    this.props.handleUpdate({ description })
   }
   
   handleToggleBlockType(blockType) {
@@ -159,6 +158,7 @@ export default class TextEditor extends Component {
     }
     return false;
   }
+  
   renderURLField() {
       if (this.state.inputtable) {
         return(
@@ -190,7 +190,7 @@ export default class TextEditor extends Component {
     }
 
     return (
-      <div className={styles.root}>
+      <div className={styles.root} onBlur={this.handleUpdate}>
         <BlockStyleControls
           editorState={editorState}
           onToggle={this.handleToggleBlockType}
@@ -212,17 +212,6 @@ export default class TextEditor extends Component {
             spellCheck={true}
             ref="editor"
             handleKeyCommand={this.handleKeyCommand}
-          />
-        </div>
-        <div className={styles.actionBox} style={{textAlign: 'right'}}>
-          {this.props.cancelButton}
-          <RaisedButton
-            className={styles.actionButton}
-            label='Save'
-            labelPosition="after"
-            icon={<ContentAddCircle />}
-            style={inlineStyles.actionButton}
-            onClick={this.handleUpdate}
           />
         </div>
       </div>

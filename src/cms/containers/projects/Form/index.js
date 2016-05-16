@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchProject, fetchNewProject, saveProject } from '../../../actions/projects';
+import { fetchProject, fetchNewProject, saveProject, changeProject } from '../../../actions/projects';
 import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../components/shared/DropzoneImage/index';
 import TextField from 'material-ui/lib/text-field';
 import RefreshIndicator from 'material-ui/lib/refresh-indicator';
+import TextEditor from '../../../components/shared/TextEditor/Editor/index'
 import TagField from '../../../components/shared/TagField/index';
 import RaisedButton from 'material-ui/lib/raised-button';
 
@@ -29,14 +30,14 @@ class ProjectsForm extends Component {
 
     this.state = {
       image: props.image,
-      errorImage: ''
+      description: props.description
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleAddTag = this.handleAddTag.bind(this);
-    this.handleDeleteTag = this.handleDeleteTag.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
-
+    this.handleSubmit       = this.handleSubmit.bind(this);
+    this.handleAddTag       = this.handleAddTag.bind(this);
+    this.handleDeleteTag    = this.handleDeleteTag.bind(this);
+    this.handleUpdateImage  = this.handleUpdateImage.bind(this);
+    this.handleUpdateText   = this.handleUpdateText.bind(this);
   }
 
   componentWillMount() {
@@ -53,7 +54,8 @@ class ProjectsForm extends Component {
         project: {
           ...props,
           image: this.state.image,
-          projectTaggingsAttributes: this.props.tags
+          description: this.state.description,
+          taggingsAttributes: this.props.tags
         }
       }
     );
@@ -67,18 +69,19 @@ class ProjectsForm extends Component {
     this.props.deleteTag(sortRank);
   }
 
-  handleUpdate(props) {
-    let params = { errorMessage: props.errorMessage };
-    if(props.image) {
-      params = { ...params, image: props.image }
-    }
-    
-    this.setState(params);
+  handleUpdateImage(image) {
+    this.setState(image);
+  }
+  
+  handleUpdateText(text) {
+    this.setState(text);
   }
 
   render() {
+   
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, description, image, sampleURL, sourceURL } } = this.props
+    const { handleSubmit, fields: { title, sampleUrl, sourceUrl } } = this.props;
+
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
         <h2 className={styles.heading}>Create New Project</h2>
@@ -90,27 +93,21 @@ class ProjectsForm extends Component {
           errorText={title.touched && title.error ? title.error : ''}
         />
         <br/>
-        <TextField
-          {...description}
-          floatingLabelText="Description"
-          hintText="Enter Description"
-          multiLine={true}
-          fullWidth={true}
-          rows={2}
+        <TextEditor
+          description={this.state.description}
+          handleUpdate={this.handleUpdateText}
         />
         <br/>
         <TextField
-          {...sourceURL}
+          {...sourceUrl}
           floatingLabelText="SourceURL"
           hintText="Enter SourceURL"
-          multiLine={true}
           fullWidth={true}
         />
         <TextField
-          {...sampleURL}
+          {...sampleUrl}
           floatingLabelText="SampleURL"
           hintText="Enter SampleURL"
-          multiLine={true}
           fullWidth={true}
         />
         <TagField
@@ -122,8 +119,7 @@ class ProjectsForm extends Component {
         <br />
         <DropzoneImage
           image={this.state.image}
-          errorMessage={this.state.errorMessage}
-          handleUpdate={this.handleUpdate}
+          handleUpdate={this.handleUpdateImage}
         />
         <br />
         <br />
@@ -150,12 +146,15 @@ function validate(values) {
 }
 
 const fields = [
-  'title', 'description', 'image', 'sourceURL', 'sampleURL'
+  'title', 'sourceUrl', 'sampleUrl'
 ];
 
 function mapStateToProps(state) {
+  console.log(state.projects.project);
   return {
     initialValues: state.projects.project,
+    image: state.projects.project.image,
+    description: state.projects.project.description,
     tags: state.tags.tags,
     tagSuggestions: state.tags.tagSuggestions
   }
@@ -163,6 +162,8 @@ function mapStateToProps(state) {
 
 ProjectsForm.propTypes = {
   fields: PropTypes.object.isRequired,
+  image: PropTypes.string,
+  description: PropTypes.string,
   params: PropTypes.object,
   fetchProject: PropTypes.func.isRequired,
   fetchNewProject: PropTypes.func.isRequired,

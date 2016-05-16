@@ -26660,9 +26660,6 @@
 	var CREATE_TAG = exports.CREATE_TAG = 'CREATE_TAG';
 	var DELETE_TAG = exports.DELETE_TAG = 'DELETE_TAG';
 
-	var SIGN_UP = exports.SIGN_UP = 'SIGN_UP';
-	var SIGN_IN = exports.SIGN_IN = 'SIGN_IN';
-
 	var TARGET_TYPES = exports.TARGET_TYPES = {
 	  TWITTER: {
 	    NAME: "ItemTwitter",
@@ -38418,6 +38415,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var axios = exports.axios = _axios2.default.create({
+	  baseURL: _constants.ROOT_URL,
+	  headers: { 'Authorization': localStorage.getItem('accessToken') }
+	});
+
 	function capitalize(string) {
 	  return string.substring(0, 1).toUpperCase() + string.substring(1);
 	}
@@ -38448,11 +38450,6 @@
 	    return '_' + string.charAt(0).toLowerCase();
 	  });
 	}
-
-	var axios = exports.axios = _axios2.default.create({
-	  baseURL: _constants.ROOT_URL,
-	  headers: { 'Authorization': localStorage.getItem('accessToken') }
-	});
 
 /***/ },
 /* 361 */
@@ -42614,7 +42611,7 @@
 	      this.props.createPost({
 	        post: _extends({}, props, {
 	          itemsAttributes: this.props.items,
-	          postTaggingsAttributes: this.props.tags
+	          taggingsAttributes: this.props.tags
 	        })
 	      });
 	    }
@@ -75343,9 +75340,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDropzone = __webpack_require__(654);
+	var _index = __webpack_require__(934);
 
-	var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+	var _index2 = _interopRequireDefault(_index);
 
 	var _raisedButton = __webpack_require__(470);
 
@@ -75354,10 +75351,6 @@
 	var _addCircle = __webpack_require__(651);
 
 	var _addCircle2 = _interopRequireDefault(_addCircle);
-
-	var _paper = __webpack_require__(329);
-
-	var _paper2 = _interopRequireDefault(_paper);
 
 	var _styles = __webpack_require__(652);
 
@@ -75376,9 +75369,6 @@
 	var inlineStyles = {
 	  submitButton: {
 	    marginLeft: 12
-	  },
-	  paper: {
-	    margin: '10px 0'
 	  }
 	};
 
@@ -75396,13 +75386,17 @@
 	      image: props.image,
 	      errorMessage: ''
 	    };
-
-	    _this.handleDrop = _this.handleDrop.bind(_this);
+	    _this.handleUpdate = _this.handleUpdate.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(ItemFormImage, [{
+	    key: 'handleUpdate',
+	    value: function handleUpdate(image) {
+	      this.setState(image);
+	    }
+	  }, {
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem() {
 	      if (!this.state.image) {
@@ -75411,36 +75405,9 @@
 	      this.props.handleUpdateItem({ image: this.state.image });
 	    }
 	  }, {
-	    key: 'handleDrop',
-	    value: function handleDrop(files) {
-	      var self = this;
-	      var reader = new FileReader();
-	      var file = files[0];
-
-	      reader.onload = function (upload) {
-	        self.setState({
-	          image: upload.target.result,
-	          errorMessage: ''
-	        });
-	      };
-
-	      reader.onerror = function () {
-	        self.showErrorMessage('Cannot upload image file');
-	      };
-
-	      reader.readAsDataURL(file);
-	    }
-	  }, {
 	    key: 'showErrorMessage',
 	    value: function showErrorMessage(errorMessage) {
 	      this.setState({ errorMessage: errorMessage });
-	    }
-	  }, {
-	    key: 'renderImageBox',
-	    value: function renderImageBox() {
-	      if (this.state.image) {
-	        return _react2.default.createElement('img', { className: _styles2.default.previewImage, src: this.state.image, width: '100' });
-	      }
 	    }
 	  }, {
 	    key: 'renderErrorMessage',
@@ -75459,29 +75426,10 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
-	        _react2.default.createElement(
-	          'label',
-	          { className: _styles2.default.header },
-	          'Image'
-	        ),
-	        _react2.default.createElement(
-	          _paper2.default,
-	          { zDepth: 1, rounded: false, style: inlineStyles.paper },
-	          _react2.default.createElement(
-	            _reactDropzone2.default,
-	            {
-	              className: _styles2.default.dropzone,
-	              accepte: 'image/*',
-	              multipe: false,
-	              onDrop: this.handleDrop },
-	            _react2.default.createElement(
-	              'div',
-	              { className: _styles2.default.dropzoneHelp },
-	              'Drop file here or click to upload.'
-	            )
-	          )
-	        ),
-	        this.renderImageBox(),
+	        _react2.default.createElement(_index2.default, {
+	          image: this.state.image,
+	          handleUpdate: this.handleUpdate
+	        }),
 	        this.renderErrorMessage(),
 	        _react2.default.createElement(
 	          'div',
@@ -75507,7 +75455,6 @@
 
 
 	ItemFormImage.propTypes = {
-	  targetType: _react.PropTypes.string.isRequired,
 	  image: _react.PropTypes.string,
 	  cancelButton: _react.PropTypes.element.isRequired,
 	  handleUpdateItem: _react.PropTypes.func.isRequired
@@ -76025,7 +75972,7 @@
 	          this.props.cancelButton,
 	          _react2.default.createElement(_raisedButton2.default, {
 	            className: _styles2.default.submitButton,
-	            label: this.props.submitButtonLabel,
+	            label: 'Save',
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
 	            disabled: submitting,
@@ -76756,6 +76703,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _raisedButton = __webpack_require__(470);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _addCircle = __webpack_require__(651);
+
+	var _addCircle2 = _interopRequireDefault(_addCircle);
+
 	var _index = __webpack_require__(660);
 
 	var _index2 = _interopRequireDefault(_index);
@@ -76774,6 +76729,10 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var inlineStyles = {
+	  submitButton: { marginLeft: 12 }
+	};
+
 	var ItemFormText = function (_Component) {
 	  _inherits(ItemFormText, _Component);
 
@@ -76784,14 +76743,22 @@
 
 	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormText)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
+	    _this.state = { description: props.description };
+
+	    _this.handleUpdate = _this.handleUpdate.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(ItemFormText, [{
+	    key: 'handleUpdate',
+	    value: function handleUpdate(description) {
+	      this.setState(description);
+	    }
+	  }, {
 	    key: 'handleUpdateItem',
-	    value: function handleUpdateItem(description) {
-	      this.props.handleUpdateItem({ description: description });
+	    value: function handleUpdateItem() {
+	      this.props.handleUpdateItem({ description: this.state.description });
 	    }
 	  }, {
 	    key: 'render',
@@ -76806,9 +76773,20 @@
 	        ),
 	        _react2.default.createElement(_index2.default, {
 	          description: this.props.description,
-	          handleUpdate: this.handleUpdateItem,
-	          cancelButton: this.props.cancelButton
-	        })
+	          handleUpdate: this.handleUpdate
+	        }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: _styles2.default.submitBox },
+	          this.props.cancelButton,
+	          _react2.default.createElement(_raisedButton2.default, {
+	            className: _styles2.default.submitButton,
+	            label: 'Save',
+	            labelPosition: 'after',
+	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            style: inlineStyles.submitButton,
+	            onClick: this.handleUpdateItem })
+	        )
 	      );
 	    }
 	  }]);
@@ -76816,15 +76794,14 @@
 	  return ItemFormText;
 	}(_react.Component);
 
-	exports.default = ItemFormText;
-
-
 	ItemFormText.propTypes = {
 	  targetType: _react.PropTypes.string.isRequired,
 	  description: _react.PropTypes.string,
 	  cancelButton: _react.PropTypes.object.isRequired,
 	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
+
+	exports.default = ItemFormText;
 
 /***/ },
 /* 660 */
@@ -76872,8 +76849,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -76895,11 +76870,9 @@
 	  _inherits(TextEditor, _Component);
 
 	  function TextEditor(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, TextEditor);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(TextEditor)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TextEditor).call(this, props));
 
 	    var decorator = new _draftJs.CompositeDecorator([{
 	      strategy: _utilities.findLinkEntities,
@@ -77005,9 +76978,8 @@
 	  }, {
 	    key: 'handleUpdate',
 	    value: function handleUpdate() {
-	      var raw = JSON.stringify((0, _draftJs.convertToRaw)(this.state.editorState.getCurrentContent()));
-	      console.log(raw);
-	      this.props.handleUpdate(raw);
+	      var description = JSON.stringify((0, _draftJs.convertToRaw)(this.state.editorState.getCurrentContent()));
+	      this.props.handleUpdate({ description: description });
 	    }
 	  }, {
 	    key: 'handleToggleBlockType',
@@ -77067,7 +77039,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: _styles2.default.root },
+	        { className: _styles2.default.root, onBlur: this.handleUpdate },
 	        _react2.default.createElement(BlockStyleControls, {
 	          editorState: editorState,
 	          onToggle: this.handleToggleBlockType
@@ -77091,19 +77063,6 @@
 	            spellCheck: true,
 	            ref: 'editor',
 	            handleKeyCommand: this.handleKeyCommand
-	          })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: _styles2.default.actionBox, style: { textAlign: 'right' } },
-	          this.props.cancelButton,
-	          _react2.default.createElement(_raisedButton2.default, {
-	            className: _styles2.default.actionButton,
-	            label: 'Save',
-	            labelPosition: 'after',
-	            icon: _react2.default.createElement(_addCircle2.default, null),
-	            style: inlineStyles.actionButton,
-	            onClick: this.handleUpdate
 	          })
 	        )
 	      );
@@ -77260,7 +77219,7 @@
 	  }, {
 	    key: 'handleAddTag',
 	    value: function handleAddTag(text) {
-	      this.props.handleAddTag({ id: this.state.tags.length + 1, text: text });
+	      this.props.handleAddTag({ text: text });
 	    }
 	  }, {
 	    key: 'render',
@@ -77307,7 +77266,6 @@
 
 	TagField.propTypes = {
 	  tags: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    id: _react.PropTypes.number,
 	    text: _react.PropTypes.string
 	  })),
 	  suggestions: _react.PropTypes.array.isRequired,
@@ -89377,7 +89335,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","border-color":"#b6b6b6","theme-color":"#009688","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","root":"root___2LWdG","header":"header___19elt headerLabel___7_6E5","content":"content___1d4Ra","tags":"tags___Q0egu","tagInput":"tagInput___28PFF bottomBorder___1B_N3","selected":"selected___1ebGa","tag":"tag___2iHKb fontXXSmall___3I60a marginXXSmall___1-l67","remove":"remove___34DNa strongHoverOpaque___1q3iI","suggestions":"suggestions___2RNee fontSmall___2Ut97"};
+	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","border-color":"#b6b6b6","theme-color":"#009688","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","root":"root___2LWdG fontMedium___ZfAj_","header":"header___19elt headerLabel___7_6E5 fontXSmall___1ziQ7","content":"content___1d4Ra","tags":"tags___Q0egu","tagInput":"tagInput___28PFF bottomBorder___1B_N3","selected":"selected___1ebGa","tag":"tag___2iHKb fontXXSmall___3I60a marginXXSmall___1-l67","remove":"remove___34DNa strongHoverOpaque___1q3iI","suggestions":"suggestions___2RNee fontSmall___2Ut97"};
 
 /***/ },
 /* 927 */
@@ -89620,6 +89578,7 @@
 
 	function saveProject(props) {
 	  var project = (0, _utilities.trimProject)(props.project);
+	  console.log(project);
 	  var request = void 0;
 	  if (props.project.id) {
 	    request = _utilities.axios.patch(_constants.PROJECT_PATH + '/' + project.id, { project: project });
@@ -89789,9 +89748,13 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _index3 = __webpack_require__(661);
+	var _index3 = __webpack_require__(660);
 
 	var _index4 = _interopRequireDefault(_index3);
+
+	var _index5 = __webpack_require__(661);
+
+	var _index6 = _interopRequireDefault(_index5);
 
 	var _raisedButton = __webpack_require__(470);
 
@@ -89831,14 +89794,14 @@
 
 	    _this.state = {
 	      image: props.image,
-	      errorImage: ''
+	      description: props.description
 	    };
 
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.handleAddTag = _this.handleAddTag.bind(_this);
 	    _this.handleDeleteTag = _this.handleDeleteTag.bind(_this);
-	    _this.handleUpdate = _this.handleUpdate.bind(_this);
-
+	    _this.handleUpdateImage = _this.handleUpdateImage.bind(_this);
+	    _this.handleUpdateText = _this.handleUpdateText.bind(_this);
 	    return _this;
 	  }
 
@@ -89857,7 +89820,8 @@
 	      this.props.saveProject({
 	        project: _extends({}, props, {
 	          image: this.state.image,
-	          projectTaggingsAttributes: this.props.tags
+	          description: this.state.description,
+	          taggingsAttributes: this.props.tags
 	        })
 	      });
 	    }
@@ -89872,27 +89836,27 @@
 	      this.props.deleteTag(sortRank);
 	    }
 	  }, {
-	    key: 'handleUpdate',
-	    value: function handleUpdate(props) {
-	      var params = { errorMessage: props.errorMessage };
-	      if (props.image) {
-	        params = _extends({}, params, { image: props.image });
-	      }
-
-	      this.setState(params);
+	    key: 'handleUpdateImage',
+	    value: function handleUpdateImage(image) {
+	      this.setState(image);
+	    }
+	  }, {
+	    key: 'handleUpdateText',
+	    value: function handleUpdateText(text) {
+	      this.setState(text);
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+
 	      var submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
 	      var _props$fields = _props.fields;
 	      var title = _props$fields.title;
-	      var description = _props$fields.description;
-	      var image = _props$fields.image;
-	      var sampleURL = _props$fields.sampleURL;
-	      var sourceURL = _props$fields.sourceURL;
+	      var sampleUrl = _props$fields.sampleUrl;
+	      var sourceUrl = _props$fields.sourceUrl;
+
 
 	      return _react2.default.createElement(
 	        'form',
@@ -89909,27 +89873,22 @@
 	          errorText: title.touched && title.error ? title.error : ''
 	        })),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_textField2.default, _extends({}, description, {
-	          floatingLabelText: 'Description',
-	          hintText: 'Enter Description',
-	          multiLine: true,
-	          fullWidth: true,
-	          rows: 2
-	        })),
+	        _react2.default.createElement(_index4.default, {
+	          description: this.state.description,
+	          handleUpdate: this.handleUpdateText
+	        }),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_textField2.default, _extends({}, sourceURL, {
+	        _react2.default.createElement(_textField2.default, _extends({}, sourceUrl, {
 	          floatingLabelText: 'SourceURL',
 	          hintText: 'Enter SourceURL',
-	          multiLine: true,
 	          fullWidth: true
 	        })),
-	        _react2.default.createElement(_textField2.default, _extends({}, sampleURL, {
+	        _react2.default.createElement(_textField2.default, _extends({}, sampleUrl, {
 	          floatingLabelText: 'SampleURL',
 	          hintText: 'Enter SampleURL',
-	          multiLine: true,
 	          fullWidth: true
 	        })),
-	        _react2.default.createElement(_index4.default, {
+	        _react2.default.createElement(_index6.default, {
 	          tags: this.props.tags,
 	          suggestions: this.props.tagSuggestions,
 	          handleAddTag: this.handleAddTag,
@@ -89938,8 +89897,7 @@
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(_index2.default, {
 	          image: this.state.image,
-	          errorMessage: this.state.errorMessage,
-	          handleUpdate: this.handleUpdate
+	          handleUpdate: this.handleUpdateImage
 	        }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
@@ -89965,11 +89923,14 @@
 	  return errors;
 	}
 
-	var fields = ['title', 'description', 'image', 'sourceURL', 'sampleURL'];
+	var fields = ['title', 'sourceUrl', 'sampleUrl'];
 
 	function mapStateToProps(state) {
+	  console.log(state.projects.project);
 	  return {
 	    initialValues: state.projects.project,
+	    image: state.projects.project.image,
+	    description: state.projects.project.description,
 	    tags: state.tags.tags,
 	    tagSuggestions: state.tags.tagSuggestions
 	  };
@@ -89977,6 +89938,8 @@
 
 	ProjectsForm.propTypes = {
 	  fields: _react.PropTypes.object.isRequired,
+	  image: _react.PropTypes.string,
+	  description: _react.PropTypes.string,
 	  params: _react.PropTypes.object,
 	  fetchProject: _react.PropTypes.func.isRequired,
 	  fetchNewProject: _react.PropTypes.func.isRequired,
@@ -90037,6 +90000,8 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DropzoneImage).call(this, props));
 
+	    _this.state = { errorMessage: '' };
+
 	    _this.handleDrop = _this.handleDrop.bind(_this);
 	    return _this;
 	  }
@@ -90047,25 +90012,19 @@
 	      var file = files[0];
 
 	      if (!/.*image\/(gift|jpg|jpeg|png)$/i.test(file.type)) {
-	        return this.props.handleUpdate({
-	          errorMessage: 'Cannot upload image file'
-	        });
+	        return this.setState({ errorMessage: 'Cannot upload image file' });
 	      }
 
 	      var self = this;
 	      var reader = new FileReader();
 
 	      reader.onload = function (upload) {
-	        self.props.handleUpdate({
-	          image: upload.target.result,
-	          errorMessage: ''
-	        });
+	        self.props.handleUpdate({ image: upload.target.result });
+	        self.setState({ errorMessage: '' });
 	      };
 
 	      reader.onerror = function () {
-	        self.props.handleUpdate({
-	          errorMessage: 'Cannot upload image file'
-	        });
+	        self.setState({ errorMessage: 'Cannot upload image file' });
 	      };
 
 	      reader.readAsDataURL(file);
@@ -90080,11 +90039,11 @@
 	  }, {
 	    key: 'renderErrorMessage',
 	    value: function renderErrorMessage() {
-	      if (this.props.errorMessage) {
+	      if (this.state.errorMessage) {
 	        return _react2.default.createElement(
 	          'span',
 	          { className: _styles2.default.errorMessage },
-	          this.props.errorMessage
+	          this.state.errorMessage
 	        );
 	      }
 	    }
@@ -90131,7 +90090,6 @@
 
 	DropzoneImage.propTypes = {
 	  image: _react.PropTypes.string,
-	  errorMessage: _react.PropTypes.string,
 	  handleUpdate: _react.PropTypes.func.isRequired
 	};
 
@@ -90142,7 +90100,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","text-color":"#212121","border-color":"#b6b6b6","theme-color":"#009688","error-color":"#D32F2F","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","font-medium":"1.6","root":"root___132mP bottomBorder___1B_N3 marginBottomMiddle___2qT5s","header":"header___3p-Kq headerLabel___7_6E5","dropzone":"dropzone___1FLAt undefined","dropzoneActive":"dropzoneActive___Q-CMT dropzone___1FLAt undefined","placeholder":"placeholder___3Cp7q","previewImage":"previewImage___8Qc-p","errorMessage":"errorMessage___3tPC4 placeholder___3Cp7q"};
+	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","text-color":"#212121","border-color":"#b6b6b6","theme-color":"#009688","error-color":"#D32F2F","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","font-medium":"1.6","root":"root___132mP bottomBorder___1B_N3 marginBottomMiddle___2qT5s","header":"header___3p-Kq headerLabel___7_6E5 fontXSmall___1ziQ7","dropzone":"dropzone___1FLAt undefined","dropzoneActive":"dropzoneActive___Q-CMT dropzone___1FLAt undefined","placeholder":"placeholder___3Cp7q","previewImage":"previewImage___8Qc-p","errorMessage":"errorMessage___3tPC4 placeholder___3Cp7q"};
 
 /***/ },
 /* 936 */
@@ -103472,7 +103430,7 @@
 
 	var INITIAL_STATE = {
 	  projects: [],
-	  project: null,
+	  project: {},
 	  error: null
 	};
 

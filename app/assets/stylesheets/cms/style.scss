@@ -85,8 +85,6 @@
 
 .headerLabel___7_6E5 {
   color: #B3B3B3;
-  font-size: calc(1.2 * 10) + px;
-  font-size: 1.2 + rem;
 }
 .button___10xiH {
   border-radius: 48px;
@@ -386,34 +384,86 @@
 
 .cancelButton___4xTOU {
 
-}.marginXXSmall___1-l67 {
+}/* All Margin */
+.marginXXSmall___1-l67 {
+  margin: 5px;
+}
+
+.marginXSmall___pTCFO {
+  margin: 10px;
+}
+
+.marginSmall___u5RC_ {
+  margin: 20px;
+}
+
+.marginMedium___3MnqG {
+  margin: 30px;
+}
+
+.marginLarge___1Y3vu {
+  margin: 40px;
+}
+
+/* Horizontal Margin */
+.marginHorizontalXXSmall___2FGGd {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.marginXSmall___pTCFO {
+.marginHorizontalXSmall___2m9N9 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.marginSmall___u5RC_ {
+.marginHorizontalSmall___1qqun {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.marginMiddle___Mj_Ta {
+.marginHorizontalMedium___3XQ3G {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.marginLarge___1Y3vu {
+.marginHorizontalLarge___3HehQ {
   margin-top: 40px;
   margin-bottom: 40px;
 }
 
+
+/* Vertical Margin */
+.marginVerticalXXSmall___3T9GB {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.marginVerticalXSmall___gWBkd {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.marginVerticalSmall___26NLP {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.marginVerticalMedium___2wrMR {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.marginVerticalLarge___3ecIO {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+
+/* Top Margin */
 .marginTopZero___1fAaV {
   margin-top: 0;
 }
+
 .marginTopXXSmall___Xbhgg {
   margin-top: 5px;
 }
@@ -440,6 +490,12 @@
 
 .marginTopXXLarge___245yx {
   margin-top: 100px;
+}
+
+
+/* Bottom Margin */
+.marginBottomZero___3qx2U {
+  margin-bottom: 0;
 }
 
 .marginBottomXXSmall___2mpBl {
@@ -469,11 +525,109 @@
 .marginBottomXXLarge___3cDwV {
   margin-bottom: 100px;
 }
-.root___2LWdG {
+
+
+/* Left Margin */
+.marginLeftXXSmall___3CFEL {
+  margin-left: 5px;
+}
+
+.marginLeftXSmall___1tUjC {
+  margin-left: 10px;
+}
+
+.marginLeftSmall___2Q8No {
+  margin-left: 20px;
+}
+
+.marginLeftMiddle___wJyrp {
+  margin-left: 30px;
+}
+
+.marginLeftLarge___MaMtj {
+  margin-left: 40px;
+}
+
+.marginLeftXLarge___3ZQep {
+  margin-left: 50px;
+}
+
+.marginLeftXXLarge___181S7 {
+  margin-left: 100px;
+}
+
+
+/* Right Margin */
+.marginRightXXSmall___NU79B {
+  margin-right: 5px;
+}
+
+.marginRightXSmall___3E8tf {
+  margin-right: 10px;
+}
+
+.marginRightSmall___2DRNL {
+  margin-right: 20px;
+}
+
+.marginRightMiddle___3ea7K {
+  margin-right: 30px;
+}
+
+.marginRightLarge___2j0D9 {
+  margin-right: 40px;
+}
+
+.marginRightXLarge___28jRc {
+  margin-right: 50px;
+}
+
+.marginRightXXLarge___12BHy {
+  margin-right: 100px;
+}
+
+.root___132mP {
+  padding: 6px;
+}
+
+.header___3p-Kq {
+}
+
+
+.dropzone___1FLAt {
+  width: 100%;
+  margin-top: 10px;
+  max-height: 100px;
+}
+
+.dropzoneActive___Q-CMT {
+  backgroun-color: #009688;
+  opacity: 0.3;
+}
+
+.placeholder___3Cp7q {
+  display: block;
+  width: 100%;
+  line-height: 100px;
+  color: #212121;
+  font-size: calc(1.6 * 10) + px;
+  font-size: 1.6 + rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.previewImage___8Qc-p {
+  max-height: 100px;
+}
+
+.errorMessage___3tPC4 {
+  color: #D32F2F;
+}.root___2LWdG {
+
   position: relative;
   width: 100%;
   height: 72px;
-  font-size: 16px;
   line-height: 24px;
 }
 
@@ -510,6 +664,7 @@
   color: white;
   background-color: #009688;
   border: 1px solid #009688;
+  border-radius: 3px;
 }
 
 .remove___34DNa {
@@ -520,6 +675,7 @@
 }
 
 .suggestions___2RNee {
+
   position: absolute;
   width: 96%;
   border: 1px solid #b6b6b6;
@@ -583,43 +739,6 @@
 .itemList___380sw {
   position: relative;
   list-style: none;
-}.root___132mP {
-  padding: 6px;
-}
-
-.header___3p-Kq {
-}
-
-
-.dropzone___1FLAt {
-  width: 100%;
-  margin-top: 10px;
-  max-height: 100px;
-}
-
-.dropzoneActive___Q-CMT {
-  backgroun-color: #009688;
-  opacity: 0.3;
-}
-
-.placeholder___3Cp7q {
-  display: block;
-  width: 100%;
-  line-height: 100px;
-  color: #212121;
-  font-size: calc(1.6 * 10) + px;
-  font-size: 1.6 + rem;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-}
-
-.previewImage___8Qc-p {
-  max-height: 100px;
-}
-
-.errorMessage___3tPC4 {
-  color: #D32F2F;
 }.root___1-3Re {
   margin: 20px auto;
   padding: 10px 15px;

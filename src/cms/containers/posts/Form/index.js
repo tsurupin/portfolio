@@ -53,7 +53,7 @@ class PostsForm extends Component {
         post: { 
           ...props, 
           itemsAttributes: this.props.items, 
-          postTaggingsAttributes: this.props.tags
+          taggingsAttributes: this.props.tags
         }
       }
     );

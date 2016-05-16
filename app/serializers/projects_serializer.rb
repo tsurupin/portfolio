@@ -1,17 +1,9 @@
 class ProjectsSerializer < ActiveModel::Serializer
   format_keys :lower_camel
-  attributes :id, :title, :description, :imageURL, :sourceURL, :sampleURL, :accepted, :tags
+  attributes :id, :title, :description, :image, :source_url, :sample_url, :accepted, :tags
 
-  def imageURL
+  def image
     object.try(:image_url)
-  end
-
-  def sourceURL
-    object.try(:source_url)
-  end
-
-  def sampleURL
-    object.try(:sample_url)
   end
 
   def tags
