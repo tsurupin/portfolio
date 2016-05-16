@@ -89377,7 +89377,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","border-color":"#b6b6b6","theme-color":"#009688","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","root":"root___2LWdG","header":"header___19elt headerLabel___7_6E5","content":"content___1d4Ra","tags":"tags___Q0egu","tagInput":"tagInput___28PFF bottomBorder___1B_N3","selected":"selected___1ebGa","tag":"tag___2iHKb","remove":"remove___34DNa strongHoverOpaque___1q3iI","suggestions":"suggestions___2RNee resetUlDefaultStyle___2OVg0 strongHoverOpaque___1q3iI"};
+	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","border-color":"#b6b6b6","theme-color":"#009688","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","root":"root___2LWdG","header":"header___19elt headerLabel___7_6E5","content":"content___1d4Ra","tags":"tags___Q0egu","tagInput":"tagInput___28PFF bottomBorder___1B_N3","selected":"selected___1ebGa","tag":"tag___2iHKb fontXXSmall___3I60a marginXXSmall___1-l67","remove":"remove___34DNa strongHoverOpaque___1q3iI","suggestions":"suggestions___2RNee fontSmall___2Ut97"};
 
 /***/ },
 /* 927 */
