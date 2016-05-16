@@ -11,9 +11,7 @@
 }
 
 .header {
-  color: label-color;
-  font-size: calc(font-xx-small * 10) + px;
-  font-size: font-xx-small + rem;
+  composes: headerLabel from '../../../css/mixins.scss';
 }
 
 .content {
@@ -25,9 +23,8 @@
 }
 
 .tagInput {
+  composes: bottomBorder from '../../../css/mixins.scss';
   padding: 6px;
-
-  border-bottom: 1px solid border-color;
 
   input {
     height: 100%;

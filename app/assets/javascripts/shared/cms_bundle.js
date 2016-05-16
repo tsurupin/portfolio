@@ -89377,7 +89377,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","border-color":"#b6b6b6","theme-color":"#009688","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","root":"root___2LWdG","header":"header___19elt","content":"content___1d4Ra","tags":"tags___Q0egu","tagInput":"tagInput___28PFF","selected":"selected___1ebGa","tag":"tag___2iHKb","remove":"remove___34DNa strongHoverOpaque___1q3iI","suggestions":"suggestions___2RNee resetUlDefaultStyle___2OVg0 strongHoverOpaque___1q3iI"};
+	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","border-color":"#b6b6b6","theme-color":"#009688","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","root":"root___2LWdG","header":"header___19elt headerLabel___7_6E5","content":"content___1d4Ra","tags":"tags___Q0egu","tagInput":"tagInput___28PFF bottomBorder___1B_N3","selected":"selected___1ebGa","tag":"tag___2iHKb","remove":"remove___34DNa strongHoverOpaque___1q3iI","suggestions":"suggestions___2RNee resetUlDefaultStyle___2OVg0 strongHoverOpaque___1q3iI"};
 
 /***/ },
 /* 927 */
@@ -89864,7 +89864,6 @@
 	  }, {
 	    key: 'handleAddTag',
 	    value: function handleAddTag(tag) {
-	      console.log(tag);
 	      this.props.createTag(tag);
 	    }
 	  }, {
@@ -89936,6 +89935,14 @@
 	          handleAddTag: this.handleAddTag,
 	          handleDeleteTag: this.handleDeleteTag
 	        }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_index2.default, {
+	          image: this.state.image,
+	          errorMessage: this.state.errorMessage,
+	          handleUpdate: this.handleUpdate
+	        }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(_raisedButton2.default, {
 	          type: 'submit',
 	          label: submitButtonLabel,
@@ -90010,10 +90017,6 @@
 
 	var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
 
-	var _paper = __webpack_require__(329);
-
-	var _paper2 = _interopRequireDefault(_paper);
-
 	var _styles = __webpack_require__(935);
 
 	var _styles2 = _interopRequireDefault(_styles);
@@ -90025,12 +90028,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var inlineStyles = {
-	  paper: {
-	    margin: '10px 0'
-	  }
-	};
 
 	var DropzoneImage = function (_Component) {
 	  _inherits(DropzoneImage, _Component);
@@ -90047,9 +90044,16 @@
 	  _createClass(DropzoneImage, [{
 	    key: 'handleDrop',
 	    value: function handleDrop(files) {
+	      var file = files[0];
+
+	      if (!/.*image\/(gift|jpg|jpeg|png)$/i.test(file.type)) {
+	        return this.props.handleUpdate({
+	          errorMessage: 'Cannot upload image file'
+	        });
+	      }
+
 	      var self = this;
 	      var reader = new FileReader();
-	      var file = files[0];
 
 	      reader.onload = function (upload) {
 	        self.props.handleUpdate({
@@ -90085,30 +90089,39 @@
 	      }
 	    }
 	  }, {
+	    key: 'renderPlaceholder',
+	    value: function renderPlaceholder() {
+	      if (!this.props.image) {
+	        return _react2.default.createElement(
+	          'span',
+	          { className: _styles2.default.placeholder },
+	          'Drop file here or click to upload.'
+	        );
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(
-	          _paper2.default,
-	          { zDepth: 1, rounded: false, style: inlineStyles.paper },
-	          _react2.default.createElement(
-	            _reactDropzone2.default,
-	            {
-	              className: _styles2.default.dropzone,
-	              accepte: 'image/*',
-	              multipe: false,
-	              onDrop: this.handleDrop },
-	            _react2.default.createElement(
-	              'div',
-	              { className: _styles2.default.dropzoneHelp },
-	              'Drop file here or click to upload.'
-	            )
-	          )
+	          'label',
+	          { className: _styles2.default.header },
+	          'Image'
 	        ),
-	        this.renderImageBox(),
-	        this.renderErrorMessage()
+	        _react2.default.createElement(
+	          _reactDropzone2.default,
+	          {
+	            className: _styles2.default.dropzone,
+	            activeClassName: _styles2.default.dropzoneActive,
+	            accept: 'image/*',
+	            multipe: false,
+	            onDrop: this.handleDrop },
+	          this.renderPlaceholder(),
+	          this.renderImageBox(),
+	          this.renderErrorMessage()
+	        )
 	      );
 	    }
 	  }]);
@@ -90129,12 +90142,14 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'../../../css/colors.scss'","label-color":"#B3B3B3","text-color":"#212121","border-color":"#b6b6b6","theme-color":"#009688","error-color":"#D32F2F","strong-opaque":"0.3","fonts":"'../../../css/fonts.scss'","font-xx-small":"1.2","font-medium":"1.6","root":"root___132mP bottomBorder___1B_N3 marginBottomMiddle___2qT5s","header":"header___3p-Kq headerLabel___7_6E5","dropzone":"dropzone___1FLAt undefined","dropzoneActive":"dropzoneActive___Q-CMT dropzone___1FLAt undefined","placeholder":"placeholder___3Cp7q","previewImage":"previewImage___8Qc-p","errorMessage":"errorMessage___3tPC4 placeholder___3Cp7q"};
 
 /***/ },
 /* 936 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","border-color":"#b6b6b6","label-color":"#B3B3B3","text-color":"#212121","font-xx-small":"1.2","root":"root___1-3Re"};
 
 /***/ },
 /* 937 */

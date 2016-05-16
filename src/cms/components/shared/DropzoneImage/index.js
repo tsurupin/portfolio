@@ -1,13 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
-import Paper from 'material-ui/lib/paper';
 import styles from './styles.scss';
-
-const inlineStyles = {
-  paper: {
-    margin: '10px 0'
-  }
-};
 
 class DropzoneImage extends Component {
 
@@ -18,9 +11,16 @@ class DropzoneImage extends Component {
   }
   
   handleDrop(files) {
+    const file = files[0];
+
+    if (!(/.*image\/(gift|jpg|jpeg|png)$/i).test(file.type)) {
+      return this.props.handleUpdate({
+        errorMessage: 'Cannot upload image file'
+      })
+    }
+
     const self = this;
     const reader = new FileReader();
-    const file = files[0];
 
     reader.onload = function (upload) {
       self.props.handleUpdate({
@@ -49,21 +49,27 @@ class DropzoneImage extends Component {
       return <span className={styles.errorMessage}>{this.props.errorMessage}</span>;
     }
   }
+  
+  renderPlaceholder() {
+    if (!this.props.image) {
+      return <span className={styles.placeholder}>Drop file here or click to upload.</span>
+    }
+  }
 
   render() {
     return (
       <div className={styles.root}>
-        <Paper zDepth={1} rounded={false} style={inlineStyles.paper}>
-          <Dropzone
-            className={styles.dropzone}
-            accepte='image/*'
-            multipe={false}
-            onDrop={this.handleDrop}>
-            <div className={styles.dropzoneHelp}>Drop file here or click to upload.</div>
-          </Dropzone>
-        </Paper>
-        {this.renderImageBox()}
-        {this.renderErrorMessage()}
+        <label className={styles.header}>Image</label>
+        <Dropzone
+          className={styles.dropzone}
+          activeClassName={styles.dropzoneActive}
+          accept='image/*'
+          multipe={false}
+          onDrop={this.handleDrop}>
+          {this.renderPlaceholder()}
+          {this.renderImageBox()}
+          {this.renderErrorMessage()}
+        </Dropzone>
       </div>
     );
   }

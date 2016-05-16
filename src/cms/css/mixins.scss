@@ -1,3 +1,9 @@
+@value colors: './colors.scss';
+@value fonts: './fonts.scss';
+
+@value label-color, border-color from colors;
+@value font-xx-small from fonts;
+
 .clearFloat::after {
   content: "";
   display: block;
@@ -27,4 +33,14 @@
     cursor: pointer;
     opacity: 0.7;
   }
+}
+
+.bottomBorder {
+  border-bottom: 1px solid border-color;
+}
+
+.headerLabel {
+  color: label-color;
+  font-size: calc(font-xx-small * 10) + px;
+  font-size: font-xx-small + rem;
 }
