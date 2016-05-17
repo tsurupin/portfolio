@@ -3,9 +3,7 @@ import projectReducer from '../../../../src/cms/reducers/projects';
 import {
   FETCH_PROJECTS,
   FETCH_PROJECT,
-  SAVE_PROJECT,
-  DELETE_PROJECT,
-  TOGGLE_PROJECT
+  SAVE_PROJECT
 } from '../../../../src/cms/constants';
 
 describe('Project Reducer', () => {
@@ -20,6 +18,7 @@ describe('Project Reducer', () => {
     expect(projectReducer([], action)).to.eql(expectedResponse);
   });
 
+
   // it('handles action of type FETCH_PROJECT_SUCCESS', () => {
   //   const action = { type: FETCH_PROJECT.SUCCESS, payload: { project: { id: 1 } } };
   //   const expectedResponse = { project: { id: 1 } };
@@ -32,18 +31,7 @@ describe('Project Reducer', () => {
   //   expect(projectReducer([], action)).to.eql(expectedResponse);
   // });
 
-  // it('handles action of type UPDATE_PROJECT_SUCCESS', () => {
-  //   const action = { type: UPDATE_PROJECT.SUCCESS };
-  //   const expectedResponse = { message: 'Successfully Saved' };
-  //   expect(projectReducer([], action)).to.eql(expectedResponse);
-  // });
-
-  // it('handles action of type DELETE_PROJECT_SUCCESS', () => {
-  //   const action = { type: DELETE_PROJECT.SUCCESS };
-  //   const expectedResponse = { message: 'Successfully Deleted' };
-  //   expect(projectReducer([], action)).to.eql(expectedResponse);
-  // });
-  //
+  
   // it('handles action of type TOGGLE_PROJECT_SUCCESS', () => {
   //   const action = { type: TOGGLE_PROJECT.SUCCESS };
   //   const expectedResponse = { message: 'Successfully Change Published Status' };

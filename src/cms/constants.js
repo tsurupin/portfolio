@@ -19,10 +19,8 @@ const FAILURE = 'FAILURE';
 export const FETCH_POSTS = createRequestTypes('FETCH_POSTS');
 export const FETCH_POST = createRequestTypes('FETCH_POST');
 export const FETCH_NEW_POST = createRequestTypes('FETCH_NEW_POST');
-export const CREATE_POST = createRequestTypes('CREATE_POST');
-export const UPDATE_POST = createRequestTypes('UPDATE_POST');
+export const SAVE_POST = createRequestTypes('SAVE_POST');
 export const TOGGLE_POST = createRequestTypes('TOGGLE_POST');
-export const DELETE_POST = createRequestTypes('DELETE_POST');
 
 export const FETCH_AUTHOR = createRequestTypes('FETCH_AUTHOR');
 export const UPDATE_AUTHOR = createRequestTypes('UPDATE_AUTHOR');
@@ -34,7 +32,6 @@ export const FETCH_PROJECTS = createRequestTypes('FETCH_PROJECTS');
 export const FETCH_PROJECT = createRequestTypes('FETCH_PROJECT');
 export const FETCH_NEW_PROJECT = createRequestTypes('FETCH_NEW_PROJECT');
 export const SAVE_PROJECT = createRequestTypes('SAVE_PROJECT');
-export const DELETE_PROJECT = createRequestTypes('DELETE_PROJECT');
 export const TOGGLE_PROJECT = createRequestTypes('TOGGLE_PROJECT');
 
 

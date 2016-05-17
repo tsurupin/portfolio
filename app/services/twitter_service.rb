@@ -7,6 +7,7 @@ class TwitterService
 
   def receive!
     @response_params ||= {
+      source_url: @url,
       author_image_url: author_image_url,
       author_name: client.user.name,
       author_screen_name: client.user.screen_name,

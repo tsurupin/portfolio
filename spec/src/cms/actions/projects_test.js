@@ -1,6 +1,10 @@
 import { expect, sinon } from '../utility';
 import {
-  fetchProjects
+  fetchProjects,
+  fetchProject,
+  fetchNewProject,
+  toggleProject,
+  saveProject
 } from '../../../../src/cms/actions/projects';
 import {
   ROOT_URL, 
@@ -9,9 +13,9 @@ import {
   FETCH_PROJECTS, 
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT,
-  SAVE_PROJECT, 
-  DELETE_PROJECT, 
-  TOGGLE_PROJECT
+  SAVE_PROJECT,  
+  TOGGLE_PROJECT,
+  FETCH_TAGS,
 } from '../../../../src/cms/constants';
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
@@ -89,298 +93,230 @@ describe('project actions', () => {
     });
   });
 
-  // describe('fetchproject', () => {
-  //
-  //   it('create FETCH_project_SUCCESS when fetching project has been done', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .get(`${ROOT_URL}${project_PATH}/1/edit`)
-  //       .reply(200, { 
-  //         project: { title: 'hoge', description: 'description', id: 1 },
-  //         items: [{ }],
-  //         tags: [], 
-  //         tagSuggestions:[] 
-  //       });
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [
-  //       {
-  //         payload: {
-  //           items: [{}],
-  //           project: { 
-  //             description: "description",
-  //             id: 1,
-  //             title: "hoge" 
-  //           },
-  //           tags: {
-  //             tagSuggestions: [],
-  //             tags: []
-  //           }
-  //         },
-  //         type: FETCH_project.SUCCESS
-  //       }, 
-  //       {
-  //         payload: { items: [{}] },
-  //         type: FETCH_ITEMS
-  //       },
-  //       {
-  //         payload: {
-  //           tagSuggestions: [],
-  //           tags: []
-  //         },
-  //         type: FETCH_TAGS 
-  //       }
-  //     ];
-  //
-  //     return store.dispatch(fetchproject(1))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  //
-  //   it('create FETCH_project_FAILURE when fetching project has been failed', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .get(`${ROOT_URL}${project_PATH}/1/edit`)
-  //       .reply(400);
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [{
-  //       type: FETCH_project.FAILURE,
-  //       payload: ''
-  //     }];
-  //
-  //     return store.dispatch(fetchproject(1))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  // });
-  //
-  // describe('fetchNewproject', () => {
-  //
-  //   it('create FETCH_NEW_project_SUCCESS when fetching new project has been done', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .get(`${ROOT_URL}${project_PATH}/new`)
-  //       .reply(200, { tags: [], tagSuggestions:[] } );
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [
-  //       {
-  //         payload: {
-  //           tags: {
-  //             tagSuggestions: []
-  //           }
-  //         },
-  //         type: FETCH_NEW_project.SUCCESS
-  //       },
-  //       {
-  //         payload: {
-  //           tagSuggestions: [],
-  //           tags: undefined
-  //         },
-  //         type: FETCH_TAGS
-  //       }
-  //     ];
-  //
-  //     return store.dispatch(fetchNewproject())
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  //
-  //   it('create FETCH_NEW_project_FAILURE when fetching new project has been failed', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .get(`${ROOT_URL}${project_PATH}/new`)
-  //       .reply(400);
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [{
-  //       type: FETCH_NEW_project.FAILURE,
-  //       payload: ''
-  //     }];
-  //
-  //     return store.dispatch(fetchNewproject())
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  // });
-  //
-  // describe('createproject', () => {
-  //   let props;
-  //   beforeEach(() => {
-  //     props = {
-  //       project: {
-  //         title: 'hoge', description: 'description',
-  //         itemsAttributes: [{ targetType: 'ItemHeading', editing: false }]
-  //       }
-  //     };
-  //   });
-  //
-  //   it('create CREATE_project_SUCCESS when creating project has been done', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .project(`${ROOT_URL}${project_PATH}`, { project: trimproject(props.project) })
-  //       .reply(201);
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [
-  //       { type: CREATE_project.REQUEST },
-  //       { type: CREATE_project.SUCCESS }
-  //     ];
-  //
-  //     return store.dispatch(createproject(props))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  //
-  //   it('create CREATE_project_SUCCESS when updating project has been done', () => {
-  //     props.project.id = 1;
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .patch(`${ROOT_URL}${project_PATH}/1`, { project: trimproject(props.project) })
-  //       .reply(200);
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [
-  //       { type: CREATE_project.REQUEST },
-  //       { type: CREATE_project.SUCCESS }
-  //     ];
-  //    
-  //     return store.dispatch(createproject(props))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  //
-  //   it('create CREATE_project_FAILURE when creating project has been done', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .project(`${ROOT_URL}${project_PATH}`, { project: trimproject(props.project) })
-  //       .reply(400, 'error');
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [
-  //       { type: CREATE_project.REQUEST },
-  //       { 
-  //         type: CREATE_project.FAILURE, 
-  //         payload: 'error' 
-  //       }
-  //     ];
-  //
-  //     return store.dispatch(createproject(props)) 
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  //
-  // });
-  //
-  // // describe('updateproject', () => {
-  // //
-  // //   it('create UPDATE_project_SUCCESS when updating project has been done', () => {
-  // //     nock(TEST_DOMAIN)
-  // //       .patch(`${ROOT_URL}${project_PATH}/1`, { id: 1, title: 'hoge' })
-  // //       .reply(200);
-  // //
-  // //     const store = mockStore({});
-  // //     const expectedResponse = [{
-  // //       type: UPDATE_project.SUCCESS
-  // //     }];
-  // //
-  // //     return store.dispatch(updateproject({ id: 1, title: 'hoge' }))
-  // //       .then(() => {
-  // //         expect(store.getActions()).to.eql(expectedResponse)
-  // //       })
-  // //   });
-  // //
-  // //   it('create UPDATE_project_FAILURE when creating project has been done', () => {
-  // //     nock(TEST_DOMAIN)
-  // //       .patch(`${ROOT_URL}${project_PATH}/1`, { id: 1, title: 'hoge' })
-  // //       .reply(400);
-  // //
-  // //     const store = mockStore({});
-  // //     const expectedResponse = [{
-  // //       type: UPDATE_project.FAILURE,
-  // //       payload: ''
-  // //     }];
-  // //
-  // //     return store.dispatch(updateproject({ id: 1, title: 'hoge' }))
-  // //       .then(() => {
-  // //         expect(store.getActions()).to.eql(expectedResponse)
-  // //       })
-  // //   });
-  // //
-  // // });
-  //
-  // describe('deleteproject', () => {
-  //   it('create DELETE_project_SUCCESS when deleting project has been done', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .delete(`${ROOT_URL}${project_PATH}/1`)
-  //       .reply(204);
-  //
-  //    
-  //     const store = mockStore({});
-  //     const expectedResponse = [{
-  //       type: DELETE_project.SUCCESS
-  //     }];
-  //
-  //     return store.dispatch(deleteproject(1))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  //
-  //   it('create DELETE_project_FAILURE when deleting project has been failed', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .delete(`${ROOT_URL}${project_PATH}/1`)
-  //       .reply(400);
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [{
-  //       type: DELETE_project.FAILURE,
-  //       payload: ''
-  //     }];
-  //
-  //     return store.dispatch(deleteproject(1))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  // });
-  //
-  // describe('toggleprojects', () => {
-  //
-  //   it('create TOGGLE_project_SUCCESS when toggling project has been done', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .patch(`${ROOT_URL}${project_PATH}/1/acceptance`)
-  //       .reply(200);
-  //
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [{
-  //       type: TOGGLE_project.SUCCESS
-  //     }];
-  //
-  //     return store.dispatch(toggleproject(1))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   });
-  //
-  //   it('create TOGGLE_project_FAILURE when toggling project has been failed', () => {
-  //     nock(TEST_DOMAIN, headerConfig)
-  //       .patch(`${ROOT_URL}${project_PATH}/1/acceptance`)
-  //       .reply(400);
-  //
-  //     const store = mockStore({});
-  //     const expectedResponse = [{
-  //       type: TOGGLE_project.FAILURE,
-  //       payload: ''
-  //     }];
-  //
-  //     return store.dispatch(toggleproject(1))
-  //       .then(() => {
-  //         expect(store.getActions()).to.eql(expectedResponse)
-  //       })
-  //   })
-  //
-  // });
+  describe('toggleProjects', () => {
+
+    it('create TOGGLE_PROJECT_SUCCESS when toggling project has been done', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .patch(`${ROOT_URL}${PROJECT_PATH}/1/acceptance`)
+        .reply(200);
+
+
+      const store = mockStore({});
+      const expectedResponse = [undefined];
+
+      return store.dispatch(toggleProject(1))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create TOGGLE_PROJECT_FAILURE when toggling project has been failed', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .patch(`${ROOT_URL}${PROJECT_PATH}/1/acceptance`)
+        .reply(400, 'error');
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        type: TOGGLE_PROJECT.FAILURE,
+        payload: 'error'
+      }];
+
+      return store.dispatch(toggleProject(1))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+  });
+
+
+  describe('fetchProject', () => {
+
+    it('create FETCH_PROJECT_SUCCESS when fetching post has been done', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .get(`${ROOT_URL}${PROJECT_PATH}/1/edit`)
+        .reply(200, {
+          project: { 
+            title: 'hoge', 
+            description: 'description', 
+            id: 1 ,
+            sourceUrl: 'url',
+            sampleUrl:'url',
+            image: 'image'
+          },
+          tags: [],
+          tagSuggestions:['name']
+        });
+
+      const store = mockStore({});
+      const expectedResponse = [
+        {
+          payload: {
+            project: {
+              description: "description",
+              id: 1,
+              title: "hoge",
+              sourceUrl: 'url',
+              sampleUrl: 'url',
+              image: 'image'
+            },
+            tags: {
+              tagSuggestions: ['name'],
+              tags: []
+            }
+          },
+          type: FETCH_PROJECT.SUCCESS
+        },
+        {
+          payload: {
+            tagSuggestions: ['name'],
+            tags: []
+          },
+          type: FETCH_TAGS
+        }
+      ];
+
+      return store.dispatch(fetchProject(1))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create FETCH_PROJECT_FAILURE when fetching post has been failed', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .get(`${ROOT_URL}${PROJECT_PATH}/1/edit`)
+        .reply(400);
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        type: FETCH_PROJECT.FAILURE,
+        payload: ''
+      }];
+
+      return store.dispatch(fetchProject(1))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+  });
+
+  describe('fetchNewProject', () => {
+
+    it('create FETCH_NEW_PROJECT_SUCCESS when fetching new post has been done', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .get(`${ROOT_URL}${PROJECT_PATH}/new`)
+        .reply(200, { tags: [], tagSuggestions:[] } );
+
+      const store = mockStore({});
+      const expectedResponse = [
+        {
+          payload: {
+            tags: {
+              tagSuggestions: [],
+              tags: []
+            }
+          },
+          type: FETCH_NEW_PROJECT.SUCCESS
+        },
+        {
+          payload: {
+            tagSuggestions: [],
+            tags: []
+          },
+          type: FETCH_TAGS
+        }
+      ];
+
+      return store.dispatch(fetchNewProject())
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create FETCH_NEW_PROJECT_FAILURE when fetching new post has been failed', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .get(`${ROOT_URL}${PROJECT_PATH}/new`)
+        .reply(400, 'error');
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        type: FETCH_NEW_PROJECT.FAILURE,
+        payload: 'error'
+      }];
+
+      return store.dispatch(fetchNewProject())
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+  });
+
+  describe('saveProject', () => {
+    let props;
+    beforeEach(() => {
+      props = {
+        project: {
+          title: 'hoge', description: 'description',
+          tagsAttributes: [{ id: 1, text: 'hoge' }]
+        }
+      };
+    });
+
+    it('create SAVE_PROJECT_SUCCESS when creating post has been done', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .post(`${ROOT_URL}${PROJECT_PATH}`, { project: props })
+        .reply(201);
+
+      const store = mockStore({});
+      const expectedResponse = [
+        { type: SAVE_PROJECT.REQUEST },
+        { type: SAVE_PROJECT.SUCCESS }
+      ];
+
+      return store.dispatch(saveProject(props))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create SAVE_PROJECT_SUCCESS when updating post has been done', () => {
+      props.post.id = 1;
+      nock(TEST_DOMAIN, headerConfig)
+        .patch(`${ROOT_URL}${PROJECT_PATH}/1`, { project: props })
+        .reply(200);
+
+      const store = mockStore({});
+      const expectedResponse = [
+        { type: SAVE_PROJECT.REQUEST },
+        { type: SAVE_PROJECT.SUCCESS }
+      ];
+
+      return store.dispatch(saveProject(props))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create SAVE_PROJECT_FAILURE when creating post has been done', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .post(`${ROOT_URL}${PROJECT_PATH}`, { project: params })
+        .reply(400, 'error');
+
+      const store = mockStore({});
+      const expectedResponse = [
+        { type: SAVE_PROJECT.REQUEST },
+        {
+          type: SAVE_PROJECT.FAILURE,
+          payload: 'error'
+        }
+      ];
+
+      return store.dispatch(saveProject(props))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+  });
+
+
 });

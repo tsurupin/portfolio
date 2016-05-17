@@ -95,17 +95,14 @@ describe('item actions', () => {
   describe('fetchTweet', () => {
     it('creates FETCH_TWEET_SUCCESS when fetching tweet has been done', () => {
       nock(TEST_DOMAIN)
-        .get(`${ROOT_URL}${TWITTER_PATH}?url=http://twitter&sort_rank=0`)
-        .reply(200, { 
-          data: { 
-            sortRank: 0,
-            responseParams: {
-              sourceURL: 'http://twitter',
-              authorImageURL: 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
-              authorName: 'steve blank',
-              authorScreenName: 'sgblank',
-              description: 'Great professors are people who wish to remain students for the rest of their lives.', 
-            }
+        .get(`${ROOT_URL}${TWITTER_PATH}?url=http://twitter`)
+        .reply(200, {
+          attributes: {
+            sourceURL: 'http://twitter',
+            authorImageURL: 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
+            authorName: 'steve blank',
+            authorScreenName: 'sgblank',
+            description: 'Great professors are people who wish to remain students for the rest of their lives.',
           } 
         });
 
@@ -113,18 +110,15 @@ describe('item actions', () => {
       const expectedResponse = [{
         type: FETCH_TWEET.SUCCESS,
         payload: {
-          data: {
-            sortRank: 0,
-            responseParams: {
-              sourceURL: 'http://twitter',
-              authorImageURL: 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
-              authorName: 'steve blank',
-              authorScreenName: 'sgblank',
-              description: 'Great professors are people who wish to remain students for the rest of their lives.',
-            }
+          sortRank: 0,
+          attributes: {
+            sourceURL: 'http://twitter',
+            authorImageURL: 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
+            authorName: 'steve blank',
+            authorScreenName: 'sgblank',
+            description: 'Great professors are people who wish to remain students for the rest of their lives.',
           }
         }
-
       }];
 
       return store.dispatch(fetchTweet('http://twitter', 0))

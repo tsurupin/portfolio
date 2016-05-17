@@ -14,7 +14,6 @@ const inlineStyles = {
 class ItemRow extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.tags)
   }
 
   renderTags() {

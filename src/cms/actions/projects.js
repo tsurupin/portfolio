@@ -4,8 +4,7 @@ import {
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT, 
   SAVE_PROJECT,
-  TOGGLE_PROJECT,
-  DELETE_PROJECT
+  TOGGLE_PROJECT
 } from '../constants';
 import { fetchTags } from'./tags';
 import { axios, trimProject } from '../utilities';
@@ -71,15 +70,13 @@ function fetchProjectFailure(error) {
 export function fetchNewProject() {
   const request = axios.get(`${PROJECT_PATH}/new`);
   return dispatch => {
-    return request.then(
-      response => dispatch(fetchNewProjectSuccess(response.data)),
-      error => dispatch(fetchNewProjectFailure(error.data))
-    ).then(response => {
-      if (response.type === FETCH_NEW_PROJECT.FAILURE) { return; }
-      dispatch(fetchTags(response.payload.tags))
-    })
-  };
-}
+    return request
+      .then(response => dispatch(fetchNewProjectSuccess(response.data)))
+      .then(response => dispatch(fetchTags(response.payload.tags)))
+      .catch(error => dispatch(fetchNewProjectFailure(error.data)))
+    }
+};
+
 
 function fetchNewProjectSuccess(response) {
   return {
@@ -98,7 +95,6 @@ function fetchNewProjectFailure(error) {
 
 export function saveProject(props) {
   const project = trimProject(props.project);
-  console.log(project);
   let request;
   if (props.project.id) {
     request = axios.patch(`${PROJECT_PATH}/${project.id}`, { project });
@@ -135,7 +131,7 @@ function saveProjectFailure(error) {
 }
 
 export function toggleProject(id) {
-  const request = axios.patch(`${PROJECT_PATH}/${id}`);
+  const request = axios.patch(`${PROJECT_PATH}/${id}/acceptance`);
   return dispatch => {
     return request
       .then(response => dispatch(toggleProjectSuccess()))
@@ -147,30 +143,11 @@ function toggleProjectSuccess() {
   browserHistory.push('/cms/projects')
 };
 
-function toggleProjectFailure() {
+function toggleProjectFailure(error) {
   return {
     type: TOGGLE_PROJECT.FAILURE,
     payload: error
   }
 }
 
-export function deleteProject(id) {
-  const request = axios.delete(`${PROJECT_PATH}/${id}`);
-  return dispatch => {
-    return request
-      .then(response => dispatch(deleteProjectSuccess()))
-      .catch(error => dispatch(deleteProjectFailure(error.data)))
-  }
-}
-
-function deleteProjectSuccess() {
-  browserHistory.push('/cms/projects');
-}
-
-function deleteProjectFailure(error) {
-  return {
-    type: DELETE_PROJECT.FAILURE,
-    payload: error
-  }
-}
 

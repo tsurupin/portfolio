@@ -3,9 +3,7 @@ import postReducer from '../../../../src/cms/reducers/posts';
 import {
   FETCH_POSTS,
   FETCH_POST,
-  CREATE_POST,
-  UPDATE_POST,
-  DELETE_POST,
+  SAVE_POST,
   TOGGLE_POST
 } from '../../../../src/cms/constants';
 
@@ -27,24 +25,12 @@ describe('Post Reducer', () => {
     expect(postReducer([], action)).to.eql(expectedResponse);
   });
 
-  it('handles action of type CREATE_POST_SUCCESS', () => {
-    const action = { type: CREATE_POST.SUCCESS };
+  it('handles action of type SAVE_POST_SUCCESS', () => {
+    const action = { type: SAVE_POST.SUCCESS };
     const expectedResponse = { message: 'Successfully Saved', loading: false };
     expect(postReducer([], action)).to.eql(expectedResponse);
   });
-
-  // it('handles action of type UPDATE_POST_SUCCESS', () => {
-  //   const action = { type: UPDATE_POST.SUCCESS };
-  //   const expectedResponse = { message: 'Successfully Saved' };
-  //   expect(postReducer([], action)).to.eql(expectedResponse);
-  // });
-
-  it('handles action of type DELETE_POST_SUCCESS', () => {
-    const action = { type: DELETE_POST.SUCCESS };
-    const expectedResponse = { message: 'Successfully Deleted' };
-    expect(postReducer([], action)).to.eql(expectedResponse);
-  });
-
+  
   it('handles action of type TOGGLE_POST_SUCCESS', () => {
     const action = { type: TOGGLE_POST.SUCCESS };
     const expectedResponse = { message: 'Successfully Change Published Status' };
