@@ -212,178 +212,6 @@
 
 .title___3rgxy {
 
-}.root___3XYh5 {
-  background: #fff;
-  border: 1px solid #ddd;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
-  padding: 15px;
-}
-
-.editor___1e7gj {
-  border-top: 1px solid #ddd;
-  cursor: text;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.hidePlaceholder___298in {
-  display: none;
-}
-
-.actionBox___2PXYw {
-
-}
-
-.actionButton___1npcy {
-
-}
-
-.styleButton___Vh-lm {
-  color: #999;
-  cursor: pointer;
-  margin-right: 16px;
-  padding: 2px 0;
-  display: inline-block;
-}
-
-.activeButton___36tVT {
-  color: #5890ff;
-
-}
-
-.controls___2Tx49 {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
-  margin-bottom: 5px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.blockquote___1h9zB {
-  border-left: 5px solid #eee;
-  color: #666;
-  font-family: 'Hoefler Text', 'Georgia', serif;
-  font-style: italic;
-  margin: 16px 0;
-  padding: 10px 20px;
-}
-
-.headerOne___U11Xx {
-
-}
-
-.headerTwo___3TIpo {
-
-}
-
-.headerThree___1fswz {
-
-}
-
-.headerFive___36oG1 {
-
-}
-
-.headerSix___eyoFI {
-
-}
-
-.undecoratedListItem___1f_AL {
-
-}
-
-.orderedListItem___2oBY2 {
-
-}
-
-.codeBlock___1nM79 {
-
-}
-
-.bold___Yt_ph {
-
-}
-
-.italic___3sEag {
-
-}
-
-.underline___3UmK- {
-
-}
-
-.code___1qH88 {
-  background-color: rgba(0, 0, 0, 0.05);
-  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
-  font-size: 16px;
-  padding: 2px;
-}
-
-.link___PWlm_ {
-  color: #3b5998;
-  text-decoration: underline;
-}
-
-.urlInputContainer___2a5_3 {
-  margin-bottom: 10px;
-}
-
-.root___2f-Vz {
-
-}.root___25Dvc {
-  position: relative;
-}
-
-.inputText___1lw_a {
-
-}
-
-.header___1zo74 {
-  color: #B3B3B3;
-  font-size: calc(1.2 * 10) + px;
-  font-size: 1.2 + rem;
-}
-
-.submitBox___1ZPSK {
-  float: right;
-}
-
-.dropzone___3pgCT {
-  width: 100%;
-  height: 100px;
-  border: 0;
-  line-height: 100px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.dropzoneHelp___1bba2 {
-  text-align: center;
-  font-size: calc(1.6 * 10) + px;
-  font-size: 1.6 + rem;
-}
-
-.previweImage___3c2xR {
-
-}
-
-.errorMessage___3ZdsV {
-
-}
-
-
-.submitButton___1IhvC {
-
-}
-
-
-.cancelButton___4xTOU {
-
 }/* All Margin */
 .marginXXSmall___1-l67 {
   margin: 5px;
@@ -586,13 +414,184 @@
   margin-right: 100px;
 }
 
-.root___132mP {
+.root___3XYh5 {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  padding: 15px;
+}
+
+.header___rMhUx {
+
+}
+
+.editor___1e7gj {
+  /*border-top: 1px solid #ddd;*/
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.hidePlaceholder___298in {
+  display: none;
+}
+
+.actionBox___2PXYw {
+
+}
+
+.actionButton___1npcy {
+
+}
+
+.styleButton___Vh-lm {
+  color: #999;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+.activeButton___36tVT {
+  color: #5890ff;
+
+}
+
+.controls___2Tx49 {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.blockquote___1h9zB {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-family: 'Hoefler Text', 'Georgia', serif;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+}
+
+.headerOne___U11Xx {
+
+}
+
+.headerTwo___3TIpo {
+
+}
+
+.headerThree___1fswz {
+
+}
+
+.headerFive___36oG1 {
+
+}
+
+.headerSix___eyoFI {
+
+}
+
+.undecoratedListItem___1f_AL {
+
+}
+
+.orderedListItem___2oBY2 {
+
+}
+
+.bold___Yt_ph {
+
+}
+
+.italic___3sEag {
+
+}
+
+.underline___3UmK- {
+
+}
+
+.code___1qH88 {
+  background-color: black;
+  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+  font-size: 16px;
+  padding: 2px;
+}
+
+.link___PWlm_ {
+  color: #3b5998;
+  text-decoration: underline;
+}
+
+.urlInputContainer___2a5_3 {
+  margin-bottom: 10px;
+}
+
+.root___2f-Vz {
+
+}.root___25Dvc {
+  position: relative;
+}
+
+.inputText___1lw_a {
+
+}
+
+.header___1zo74 {
+  color: #B3B3B3;
+  font-size: calc(1.2 * 10) + px;
+  font-size: 1.2 + rem;
+}
+
+.submitBox___1ZPSK {
+  float: right;
+}
+
+.dropzone___3pgCT {
+  width: 100%;
+  height: 100px;
+  border: 0;
+  line-height: 100px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.dropzoneHelp___1bba2 {
+  text-align: center;
+  font-size: calc(1.6 * 10) + px;
+  font-size: 1.6 + rem;
+}
+
+.previweImage___3c2xR {
+
+}
+
+.errorMessage___3ZdsV {
+
+}
+
+
+.submitButton___1IhvC {
+
+}
+
+
+.cancelButton___4xTOU {
+
+}.root___132mP {
   padding: 6px;
 }
 
 .header___3p-Kq {
 }
-
 
 .dropzone___1FLAt {
   width: 100%;

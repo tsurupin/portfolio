@@ -1,0 +1,20 @@
+.public-DraftEditorPlaceholder-root,
+.public-DraftEditor-content {
+  margin: 0 -15px -15px;
+  padding: 15px;
+}
+
+.public-DraftEditor-content {
+  min-height: 100px;
+}
+
+.public-DraftEditorPlaceholder-root {
+  color: #B3B3B3;
+}
+
+.public-DraftStyleDefault-pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+  font-size: 16px;
+  padding: 20px;
+}
