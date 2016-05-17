@@ -71,6 +71,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
 
     describe 'POST /cms/api/projects' do
       let!(:tag) { create(:tag) }
+      before { post cms_api_projects_path, params, auth_header }
       context 'the params sent lack of needed params' do
         subject { JSON.parse(response.body) }
         let(:params) do
@@ -83,7 +84,6 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
           }
         end
         let(:result) { { "errorMessage" => "Title can't be blankValidation failed: Title can't be blank" } }
-        before { post cms_api_projects_path, params, auth_header }
         it 'return 400 and error message' do
           expect(response.status).to eq 400
           expect(subject).to eq result
@@ -102,7 +102,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
             }
           }
         end
-        before { post cms_api_projects_path, params, auth_header }
+
         it 'return 201' do
           expect(response.status).to eq 201
           expect(Project.last.title).to eq 'title'
@@ -145,6 +145,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
       let!(:tag2) { create(:tag) }
       let!(:tagging1) { create(:tagging, :subject_project, subject_id: project.id, tag: tag1) }
       let!(:tagging2) { create(:tagging, :subject_project, subject_id: project.id, tag: tag2) }
+      before { patch cms_api_project_path(project.id), params, auth_header }
       # TODO: think of error case
       # context 'the params sent lack of needed params' do
       #   subject { JSON.parse(response.body) }
@@ -180,13 +181,12 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
             }
           }
         end
-        before { patch cms_api_project_path(project.id), params, auth_header }
+
         it 'return 200' do
           expect(response.status).to eq 200
           expect(Project.last.taggings.map(&:name)).to eq ['hoge','test']
         end
       end
     end
-
   end
 end

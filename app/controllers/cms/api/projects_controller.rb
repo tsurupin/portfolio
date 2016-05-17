@@ -1,6 +1,5 @@
 class Cms::Api::ProjectsController < Cms::ApplicationController
-  protect_from_forgery except: %w(create update destroy)
-  before_action :set_project, only: %w(edit destroy)
+  protect_from_forgery except: %w(create update)
 
   def index
     projects = Project.order(updated_at: :desc)
@@ -22,7 +21,8 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
   end
 
   def edit
-    render json: @project, root: false
+    project = Project.find(params[:id])
+    render json: project, root: false
   end
 
   def update
@@ -34,14 +34,6 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
     end
   end
 
-  def destroy
-    if @project.update(accepted: false)
-      render nothing: true, status: :ok
-    else
-      render_error(@project)
-    end
-  end
-
   private
 
   def project_params
@@ -49,10 +41,6 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
       :title, :description, :image, :sample_url, :source_url,
       taggings_attributes: [:id, :text]
     )
-  end
-
-  def set_project
-    @project = Project.find(params[:id])
   end
 
 end

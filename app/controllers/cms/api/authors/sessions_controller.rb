@@ -2,7 +2,6 @@ class Cms::Api::Authors::SessionsController < Devise::SessionsController
   protect_from_forgery except: %w(create destroy)
   skip_before_action :authenticate_author_from_token!
   skip_before_action :verify_signed_out_user, only: :destroy
-  respond_to :json
 
   def create
     author = Author.find_for_database_authentication(email: session_params[:email])
