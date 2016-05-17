@@ -21,10 +21,6 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, project: action.payload.project };
     case FETCH_NEW_PROJECT.SUCCESS:
       return { ...state };
-    case SAVE_PROJECT.SUCCESS:
-    case DELETE_PROJECT.SUCCESS:
-    case TOGGLE_PROJECT.SUCCESS:
-      return state;
     case FETCH_PROJECTS.FAILURE:
     case FETCH_PROJECT.FAILURE:
     case SAVE_PROJECT.FAILURE:

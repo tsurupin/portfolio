@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { 
-  Editor, 
-  EditorState, 
+import {
+  Editor,
+  EditorState,
   convertFromRaw,
   Entity,
   CompositeDecorator
@@ -15,9 +15,9 @@ import {
 } from '../shared/utilities';
 import styles from '../shared/styles.scss';
 
-export default class TextDisplay extends Component {
+class TextDisplay extends Component {
   constructor(props) {
-    super(...props);
+    super(props);
     const decorator = new CompositeDecorator([
       {
         strategy: findLinkEntities,
@@ -44,4 +44,10 @@ export default class TextDisplay extends Component {
     )
   }
 }
+
+TextDisplay.propTypes = {
+  description: PropTypes.string.isRequired
+};
+
+export default TextDisplay
 

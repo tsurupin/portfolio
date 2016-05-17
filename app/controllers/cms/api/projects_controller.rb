@@ -2,7 +2,7 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
   protect_from_forgery except: %w(create update destroy)
 
   def index
-    projects = Project.order(updated_at: :desc)
+    projects = Project.order(updated_at: :desc).limit(1)
     render json: projects, each_serializer: ProjectsSerializer
   end
 

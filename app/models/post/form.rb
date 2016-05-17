@@ -30,13 +30,6 @@ class Post::Form < ActiveType::Record[Post]
       delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
 
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
-      # if params[TAGS_ATTRIBUTES]
-      #   params[TAGS_ATTRIBUTES].each do |item|
-      #     tag = Tag.find_or_create_by!(name: item['text'])
-      #     item['tag_id'] = tag.id
-      #     item.delete('text')
-      #   end
-      # end
 
       params[ITEMS_ATTRIBUTES].each.with_index(1) do |item, index|
         target = item['target_type'].constantize.find_or_initialize_by(id: item['target_id'])

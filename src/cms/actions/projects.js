@@ -3,7 +3,9 @@ import {
   FETCH_PROJECTS, 
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT, 
-  SAVE_PROJECT
+  SAVE_PROJECT,
+  TOGGLE_PROJECT,
+  DELETE_PROJECT
 } from '../constants';
 import { fetchTags } from'./tags';
 import { axios, trimProject } from '../utilities';
@@ -121,7 +123,7 @@ function saveProjectRequest() {
 }
 
 function saveProjectSuccess() {
-  browserHistory.push('/cms');
+  browserHistory.push('/cms/projects');
 
 }
 
@@ -131,3 +133,44 @@ function saveProjectFailure(error) {
     payload: error
   }
 }
+
+export function toggleProject(id) {
+  const request = axios.patch(`${PROJECT_PATH}/${id}`);
+  return dispatch => {
+    return request
+      .then(response => dispatch(toggleProjectSuccess()))
+      .catch(error => dispatch(toggleProjectFailure(error.data)))
+  }
+}
+
+function toggleProjectSuccess() {
+  browserHistory.push('/cms/projects')
+};
+
+function toggleProjectFailure() {
+  return {
+    type: TOGGLE_PROJECT.FAILURE,
+    payload: error
+  }
+}
+
+export function deleteProject(id) {
+  const request = axios.delete(`${PROJECT_PATH}/${id}`);
+  return dispatch => {
+    return request
+      .then(response => dispatch(deleteProjectSuccess()))
+      .catch(error => dispatch(deleteProjectFailure(error.data)))
+  }
+}
+
+function deleteProjectSuccess() {
+  browserHistory.push('/cms/projects');
+}
+
+function deleteProjectFailure(error) {
+  return {
+    type: DELETE_PROJECT.FAILURE,
+    payload: error
+  }
+}
+
