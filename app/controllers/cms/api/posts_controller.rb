@@ -1,6 +1,6 @@
 class Cms::Api::PostsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :index
-
+  before_action :set_post, only: %w(edit destroy)
   protect_from_forgery except: %w(create update destroy)
 
   def index
@@ -19,14 +19,12 @@ class Cms::Api::PostsController < Cms::ApplicationController
     if post.save_from_associations(post_params)
       render nothing: true, status: :created
     else
-      p post.errors.full_messages.join('')
-      render json: { errorMessage: post.errors.full_messages.join('') }, status: :bad_request
+      render_error(post)
     end
   end
 
   def edit
-    post = Post.find(params[:id])
-    render json: post, root: false
+    render json: @post, root: false
   end
 
   def update
@@ -34,12 +32,17 @@ class Cms::Api::PostsController < Cms::ApplicationController
     if post.save_from_associations(post_params)
       render nothing: true, status: :ok
     else
-      p post.errors.full_messages.join('')
-      render json: { errorMessage: post.errors.full_messages.join('') }, status: :bad_request
+      render_error(post)
     end
   end
 
-  def destroy; end
+  def destroy
+    if @post.update(accepted: false)
+      render nothing: true, status: :ok
+    else
+      render_error(@post)
+    end
+  end
 
   private
 
@@ -49,6 +52,10 @@ class Cms::Api::PostsController < Cms::ApplicationController
       items_attributes: [:id, :target_id, :target_type, :title],
       taggings_attributes: [:id, :text],
     )
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
 end
