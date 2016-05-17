@@ -1,8 +1,8 @@
 class TaggingSerializer < ActiveModel::Serializer
-  attributes :tags
+  attributes :id, :text
 
-  def tags
-    { id: object.id, text: object.name }
+  def text
+    object.name
   end
 
 end

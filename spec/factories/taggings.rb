@@ -13,13 +13,13 @@
 FactoryGirl.define do
   factory :tagging do
     association :tag, factory: :tag
-    trait :post do
+    trait :subject_post do
       subject_type 'Post'
-      association :target, factory: :post
+      association :subject, factory: :post
     end
-    trait :project do
+    trait :subject_project do
       subject_type 'Project'
-      association :target, factory: :project
+      association :subject, factory: :project
     end
   end
 end

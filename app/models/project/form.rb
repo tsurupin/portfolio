@@ -27,11 +27,13 @@ class Project::Form < ActiveType::Record[Project]
   accepts_nested_attributes_for :taggings
 
   def save(params)
+
     ActiveRecord::Base.transaction do
       delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
 
       params['image'] = convert_data_uri_to_upload(params['image']) if params['image'].try(:start_with?, 'data')
+      p params
       update!(params)
       true
     end
