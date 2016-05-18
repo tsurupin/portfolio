@@ -1,6 +1,12 @@
 import client from "axios";
 import { ROOT_URL } from './constants';
 
+export const axios = client.create({
+  baseURL: ROOT_URL,
+  headers: { 'Authorization': localStorage.getItem('accessToken') }
+});
+
+
 export function capitalize(string) {
   return (string.substring(0, 1).toUpperCase() + string.substring(1));
 }
@@ -12,6 +18,12 @@ export function trimPost(params) {
       params.itemsAttributes
         .filter(item => !item.editing)
         .map(item => convertKeyNameInSnakeCase(item))
+  };
+}
+
+export function trimProject(params) {
+  return {
+    ...convertKeyNameInSnakeCase(params)
   };
 }
 
@@ -30,8 +42,3 @@ function convertCamelCaseToSnakeCase(string) {
   );
 }
 
-
-export const axios = client.create({
-  baseURL: ROOT_URL,
-  headers: { 'Authorization': localStorage.getItem('accessToken') }
-});

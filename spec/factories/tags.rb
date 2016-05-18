@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: post_tags
+# Table name: tags
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)      not null
@@ -9,7 +9,7 @@
 #
 
 FactoryGirl.define do
-  factory :post_tag do
-    sequence(:name) { SecureRandom.hex }
+  factory :tag do
+    name { Faker::Name.title }
   end
 end

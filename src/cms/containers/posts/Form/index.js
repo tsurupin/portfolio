@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPost, fetchNewPost, createPost, deletePost } from '../../../actions/posts';
+import { fetchPost, fetchNewPost, savePost } from '../../../actions/posts';
 import { createItem, updateItem, deleteItem, moveItem } from '../../../actions/items';
 import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
@@ -48,12 +48,12 @@ class PostsForm extends Component {
   }
 
   handleSubmit(props) {
-    this.props.createPost(
+    this.props.savePost(
       { 
         post: { 
           ...props, 
           itemsAttributes: this.props.items, 
-          postTaggingsAttributes: this.props.tags
+          taggingsAttributes: this.props.tags
         }
       }
     );
@@ -188,11 +188,10 @@ function validate(values) {
 }
 
 export const fields = [
-  'title', 'description', 'publishedAt', 'id'
+  'id', 'title', 'description', 'publishedAt'
 ];
 
 function mapStateToProps(state) {
-  console.log(state.tags)
   return {
     initialValues: state.posts.post,
     items: state.items,
@@ -207,8 +206,7 @@ PostsForm.propTypes = {
   params: PropTypes.object,
   fetchPost: PropTypes.func.isRequired,
   fetchNewPost: PropTypes.func.isRequired,
-  createPost: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
+  savePost: PropTypes.func.isRequired,
   createItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
   updateItem: PropTypes.func.isRequired,
@@ -219,14 +217,13 @@ PostsForm.propTypes = {
 
 
 export default reduxForm({
-  form: 'PostsNew',
+  form: 'PostsForm',
   fields,
   validate
 }, mapStateToProps, {
   fetchPost,
   fetchNewPost,
-  createPost,
-  deletePost,
+  savePost,
   createItem,
   deleteItem,
   updateItem,

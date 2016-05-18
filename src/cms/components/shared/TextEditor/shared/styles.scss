@@ -1,13 +1,22 @@
+@value colors: '../../../../css/colors.scss';
+@value label-color from colors;
+
 .root {
   background: #fff;
   border: 1px solid #ddd;
   font-family: 'Georgia', serif;
   font-size: 14px;
   padding: 15px;
+  composes: marginHorizontalXSmall from '../../../../css/margins.scss';
+}
+
+.header {
+  composes: headerLabel from '../../../../css/mixins.scss';
+
 }
 
 .editor {
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd;*/
   cursor: text;
   font-size: 16px;
   margin-top: 10px;
@@ -83,10 +92,6 @@
 
 }
 
-.codeBlock {
-
-}
-
 .bold {
 
 }
@@ -100,7 +105,7 @@
 }
 
 .code {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: black;
   font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
   font-size: 16px;
   padding: 2px;

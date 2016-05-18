@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'webmock/rspec'
 
-RSpec.describe Cms::Api::PostsController, type: :request do
+RSpec.describe Cms::Api::ServicesController, type: :request do
   describe 'CMS Service API' do
 
     describe 'GET /cms/api/services/twitter' do
@@ -11,17 +11,16 @@ RSpec.describe Cms::Api::PostsController, type: :request do
         let(:url) { 'https://twitter.com/sgblank/status/719359456161607681' }
         let(:result) do
           {
-            'sortRank' => sort_rank,
-            'responseParams' => {
-              'sourceURL' => url,
-              'authorImageURL' => 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
+            'attributes' => {
+              'sourceUrl' => url,
+              'authorImageUrl' => 'http://pbs.twimg.com/profile_images/658353847597838336/gudlMh3p_normal.jpg',
               'authorName' => 'steve blank',
               'authorScreenName' => 'sgblank',
               'description' => 'Great professors are people who wish to remain students for the rest of their lives.',
             }
           }
         end
-        before { get twitter_cms_api_services_path, sort_rank: sort_rank, url: url }
+        before { get twitter_cms_api_services_path, url: url }
         it 'return correct info from api' do
           VCR.use_cassette 'twitter_cms_api_service_success' do
             expect(subject).to eq result
@@ -32,7 +31,7 @@ RSpec.describe Cms::Api::PostsController, type: :request do
 
       context 'when the url does not exist' do
         let(:url) { 'https://twitter.com/disney_mickey55/status/' }
-        before { get twitter_cms_api_services_path, sort_rank: sort_rank, url: url }
+        before { get twitter_cms_api_services_path, url: url }
         it 'return error message' do
           VCR.use_cassette 'twitter_cms_api_service_error' do
             expect(response.status).to eq 400

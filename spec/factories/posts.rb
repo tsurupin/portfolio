@@ -13,6 +13,13 @@
 
 FactoryGirl.define do
   factory :post do
-    title { Faker::Name.name }
+    title { Faker::Lorem.sentence }
+
+    trait :accepted do
+      description { Faker::Lorem.paragraphs }
+      published_at { Faker::Time.between(2.days.ago, Date.today, :all) }
+
+      accepted true
+    end
   end
 end

@@ -1,6 +1,10 @@
 import {
-  POST_PATH, FETCH_POSTS, FETCH_POST, FETCH_NEW_POST,
-  CREATE_POST, DELETE_POST, TOGGLE_POST
+  POST_PATH, 
+  FETCH_POSTS, 
+  FETCH_POST, 
+  FETCH_NEW_POST,
+  SAVE_POST,  
+  TOGGLE_POST
 } from '../constants';
 import { fetchTags } from'./tags';
 import { fetchItems } from'./items';
@@ -95,7 +99,7 @@ function fetchNewPostSuccess(response) {
 
   return {
     type: FETCH_NEW_POST.SUCCESS,
-    payload: { tags: { tagSuggestions: response.tagSuggestions } }
+    payload: { tags: { tags: [], tagSuggestions: response.tagSuggestions } }
   };
 }
 
@@ -108,7 +112,7 @@ function fetchNewPostFailure(error) {
 }
 
 
-export function createPost(props) {
+export function savePost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
@@ -117,80 +121,31 @@ export function createPost(props) {
     request = axios.post(`${POST_PATH}`, { post });
   }
   return dispatch => {
-    dispatch(createPostRequest());
+    dispatch(savePostRequest());
     return (
       request
-        .then(() => dispatch(createPostSuccess()))
-        .catch(error => dispatch(createPostFailure(error.data)))
+        .then(() => dispatch(savePostSuccess()))
+        .catch(error => dispatch(savePostFailure(error.data)))
     );
   };
 }
 
-export function createPostRequest() {
+export function savePostRequest() {
   return {
-    type: CREATE_POST.REQUEST
+    type: SAVE_POST.REQUEST
   }
 }
 
-function createPostSuccess() {
+function savePostSuccess() {
   browserHistory.push('/cms');
   return {
-    type: CREATE_POST.SUCCESS
+    type: SAVE_POST.SUCCESS
   }
 }
 
-function createPostFailure(error) {
+function savePostFailure(error) {
   return {
-    type: CREATE_POST.FAILURE,
-    payload: error
-  }
-}
-//
-// export function updatePost(props) {
-//   const request = axios.patch(`${ROOT_URL}${POST_PATH}/${props.id}`, props);
-//   return dispatch => {
-//     return request.then(
-//       () => dispatch(updatePostSuccess()),
-//       error => dispatch(updatePostFailure(error.data))
-//     )
-//   };
-// }
-//
-// function updatePostSuccess() {
-//   return {
-//     type: UPDATE_POST.SUCCESS
-//   }
-// }
-//
-// function updatePostFailure(error) {
-//   return {
-//     type: UPDATE_POST.FAILURE,
-//     payload: error
-//   }
-// }
-
-export function deletePost(id) {
-  const request = axios.delete(`${POST_PATH}/${id}`);
-  return dispatch => {
-    return (
-      request
-        .then(() => dispatch(deletePostSuccess()))
-        .catch(error => dispatch(deletePostFailure(error.data)))
-      );
-  }
-}
-
-function deletePostSuccess() {
-  browserHistory.push('/cms/posts');
-
-  return {
-    type: DELETE_POST.SUCCESS
-  }
-}
-
-function deletePostFailure(error) {
-  return {
-    type: DELETE_POST.FAILURE,
+    type: SAVE_POST.FAILURE,
     payload: error
   }
 }
@@ -208,9 +163,6 @@ export function togglePost(id) {
 
 function togglePostSuccess() {
   browserHistory.push('/cms/posts');
-  return {
-    type: TOGGLE_POST.SUCCESS
-  }
 }
 
 function togglePostFailure(error) {

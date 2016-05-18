@@ -18,11 +18,10 @@ import {
   Link
 } from './../shared/utilities';
 
-import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
-import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 import IconButton from 'material-ui/lib/icon-button';
+import Divider from 'material-ui/lib/divider';
 import styles from '../shared/styles.scss';
 
 
@@ -39,7 +38,7 @@ const inlineStyles = {
 
 export default class TextEditor extends Component {
   constructor(props) {
-    super(...props);
+    super(props);
 
     const decorator = new CompositeDecorator([
       {
@@ -127,9 +126,8 @@ export default class TextEditor extends Component {
   }
 
   handleUpdate() {
-    const raw = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-    console.log(raw);
-    this.props.handleUpdate(raw)
+    const description = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+    this.props.handleUpdate({ description })
   }
   
   handleToggleBlockType(blockType) {
@@ -159,6 +157,7 @@ export default class TextEditor extends Component {
     }
     return false;
   }
+  
   renderURLField() {
       if (this.state.inputtable) {
         return(
@@ -181,49 +180,35 @@ export default class TextEditor extends Component {
 
   render() {
     const {editorState} = this.state;
-    let className = styles.edior;
-    let contentState = editorState.getCurrentContent();
-    if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        className = styles.hidePlaceholder;
-      }
-    }
 
     return (
-      <div className={styles.root}>
-        <BlockStyleControls
-          editorState={editorState}
-          onToggle={this.handleToggleBlockType}
-        />
-        <InlineStyleControls
-          editorState={editorState}
-          onToggle={this.handleToggleInlineStyle}
-        />
-        <FlatButton label="Add Link" onClick={this.handlePromptForLink} />
-        <FlatButton label="Remove Link" onClick={this.handleRemoveLink} />
-        {this.renderURLField()}
-        <div className={className} onClick={this.handleFocus}>
-          <Editor
-            onChange={this.handleChange}
-            blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap}
-            editorState={this.state.editorState}
-            placeholder="This is the editor"
-            spellCheck={true}
-            ref="editor"
-            handleKeyCommand={this.handleKeyCommand}
+      <div>
+        <lable className={styles.header}>Text</lable>
+        <div className={styles.root} onBlur={this.handleUpdate}>
+          <BlockStyleControls
+            editorState={editorState}
+            onToggle={this.handleToggleBlockType}
           />
-        </div>
-        <div className={styles.actionBox} style={{textAlign: 'right'}}>
-          {this.props.cancelButton}
-          <RaisedButton
-            className={styles.actionButton}
-            label='Save'
-            labelPosition="after"
-            icon={<ContentAddCircle />}
-            style={inlineStyles.actionButton}
-            onClick={this.handleUpdate}
+          <InlineStyleControls
+            editorState={editorState}
+            onToggle={this.handleToggleInlineStyle}
+            onRemoveLink={this.handleRemoveLink}
+            onPromptForLink={this.handlePromptForLink}
           />
+          {this.renderURLField()}
+          <Divider />
+          <div className={styles.editor} onClick={this.handleFocus}>
+            <Editor
+              onChange={this.handleChange}
+              blockStyleFn={getBlockStyle}
+              customStyleMap={styleMap}
+              editorState={this.state.editorState}
+              spellCheck={true}
+              placeholder="Enter Text"
+              ref="editor"
+              handleKeyCommand={this.handleKeyCommand}
+            />
+          </div>
         </div>
       </div>
     )
@@ -295,6 +280,16 @@ const InlineStyleControls = (props) => {
           style={type.style}
         />
       )}
+      <span
+        className={styles.styleButton}
+        onMouseDown={props.onPromptForLink}>
+        Add Link
+      </span>
+      <span
+        className={styles.styleButton}
+        onMouseDown={props.onRemoveLink}>
+        Remove Link
+      </span>
     </div>
   );
 };

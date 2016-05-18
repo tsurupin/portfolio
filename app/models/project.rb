@@ -4,8 +4,8 @@
 #
 #  id          :integer          not null, primary key
 #  title       :string(255)      not null
-#  description :text(65535)      not null
-#  image       :string(255)      not null
+#  description :text(65535)
+#  image       :string(255)
 #  sample_url  :string(255)
 #  source_url  :string(255)
 #  accepted    :boolean          default("0"), not null
@@ -14,12 +14,10 @@
 #
 
 class Project < ActiveRecord::Base
-  has_many :project_taggings, dependent: :destroy
-  has_many :project_tags, through: :project_taggings
+  has_many :taggings, as: :subject, dependent: :destroy
+  has_many :tags, through: :taggings
 
   validates :title, presence: true, uniqueness: true
-  validates :image, presence: true
-  validates :description, presence: true
 
   mount_uploader :image, ProjectImageUploader
 end

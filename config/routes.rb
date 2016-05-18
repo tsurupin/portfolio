@@ -4,8 +4,12 @@ Rails.application.routes.draw do
 
   namespace :cms do
     namespace :api, default: { format: :json } do
-      resources :posts, shallow: true do
+      resources :posts, except: :destroy do
         resource :acceptance, only: :update, module: :posts
+      end
+
+      resources :projects, except: :destroy do
+        resource :acceptance, only: :update, module: :projects
       end
 
 

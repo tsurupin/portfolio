@@ -13,43 +13,40 @@
 
 class Post::Form < ActiveType::Record[Post]
   include DataURIToImageConverter
+  include TaggingCleaner
+  include TaggingAttributesTrimer
+
   ITEMS_ATTRIBUTES = 'items_attributes'.freeze
-  POST_TAGS_ATTRIBUTES = 'post_taggings_attributes'.freeze
+  TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
 
   validates :description, presence: true, if: proc { |post| post.accepted }
 
   accepts_nested_attributes_for :items, reject_if: ->(attributes) { attributes['target_type'].blank? }
-  accepts_nested_attributes_for :post_taggings, reject_if: ->(attributes) { attributes['post_tag_id'].blank? }
+  accepts_nested_attributes_for :taggings
 
-  def save_all(params)
+  def save_from_associations(params)
     ActiveRecord::Base.transaction do
       delete_unnecessary_items!(params[ITEMS_ATTRIBUTES]) if self.id
-      delete_unnecessary_post_tags!(params[POST_TAGS_ATTRIBUTES]) if self.id
+      delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
 
-      if params[POST_TAGS_ATTRIBUTES]
-        params[POST_TAGS_ATTRIBUTES].each do |item|
-          post_tag = PostTag.find_or_create_by!(name: item['text'])
-          item['post_tag_id'] = post_tag.id
-          item.delete('text')
-        end
-      end
+      trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
 
       params[ITEMS_ATTRIBUTES].each.with_index(1) do |item, index|
         target = item['target_type'].constantize.find_or_initialize_by(id: item['target_id'])
 
         case target.class.name
           when 'ItemHeading', 'ItemSubHeading'
-            target.title = item['title']
+            target.title        = item['title']
           when 'ItemQuote'
-            target.description = item['description']
-            target.source_url = item['source_url']
+            target.description  = item['description']
+            target.source_url   = item['source_url']
           when 'ItemText'
-            target.description = item['description']
+            target.description  = item['description']
           when 'ItemImage'
             target.image = convert_data_uri_to_upload(item['image']) unless target.image.try(:url) == item['image']
           when 'ItemLink'
             target.source_title = item['source_title']
-            target.source_url = item['source_url']
+            target.source_url   = item['source_url']
           when 'ItemTwitter'
             target.source_url         = item['source_url']
             target.description        = item['description']
@@ -85,9 +82,4 @@ class Post::Form < ActiveType::Record[Post]
     Item.where(post_id: id, id: removed_ids).find_each(&:destroy!)
   end
 
-  def delete_unnecessary_post_tags!(params)
-    post_tags_ids = PostTag.where(name: params.map(&:values)).pluck(:id)
-    remove_ids = post_tags.map(&:id) - post_tags_ids
-    PostTagging.where(post_id: id, post_tag_id: remove_ids).find_each(&:destroy!)
-  end
 end

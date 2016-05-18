@@ -76,7 +76,7 @@ class NavigationBar extends Component {
                                 <ActionDescription />
                             </IconButton>
                         </Link>
-                        <Link to="/cms/posts/new" >
+                        <Link to="/cms/projects" >
                             <IconButton>
                                 <AvWeb />
                             </IconButton>

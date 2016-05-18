@@ -255,7 +255,7 @@ describe('Item Reducer', () => {
       type: FETCH_TWEET.SUCCESS,
       payload: {
         sortRank: 2,
-        responseParams: { description: 'hoge' }
+        attributes: { description: 'hoge' }
       }
     };
 

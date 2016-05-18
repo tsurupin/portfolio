@@ -75,7 +75,7 @@ class Twitter extends Component {
           {this.props.cancelButton}
           <RaisedButton
             className={styles.submitButton}
-            label={this.props.submitButtonLabel}
+            label='Save'
             labelPosition="after"
             icon={<ContentAddCircle />}
             disabled={submitting}

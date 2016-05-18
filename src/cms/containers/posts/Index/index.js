@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, deletePost, togglePost } from '../../../actions/posts';
+import { fetchPosts, togglePost } from '../../../actions/posts';
 import { Link } from 'react-router';
 import ItemRow from '../../../components/posts/indexes/ItemRow/index';
 import Table from 'material-ui/lib/table/table';
@@ -101,6 +101,15 @@ class PostsIndex extends Component {
   }
 }
 
+PostsIndex.propTypes = {
+  posts: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  fetchPosts: PropTypes.func.isRequired,
+  togglePost: PropTypes.func.isRequired
+};
+
 function mapStateToProps(state) {
   return { 
     posts: state.posts.posts, 
@@ -110,4 +119,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, deletePost, togglePost })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts, togglePost })(PostsIndex);

@@ -1,7 +1,6 @@
 class Cms::Api::PostsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :index
-
-  protect_from_forgery except: %w(create update destroy)
+  protect_from_forgery except: %w(create update)
 
   def index
     posts = Post.page(params[:page])
@@ -16,11 +15,10 @@ class Cms::Api::PostsController < Cms::ApplicationController
 
   def create
     post = Post::Form.new
-    if post.save_all(post_params)
-      render nothing: true, status_code: 201
+    if post.save_from_associations(post_params)
+      render nothing: true, status: :created
     else
-      p post.errors.full_messages.join('')
-      render json: { errorMessage: post.errors.full_messages.join('') }, status: 400
+      render_error(post)
     end
   end
 
@@ -31,15 +29,12 @@ class Cms::Api::PostsController < Cms::ApplicationController
 
   def update
     post = Post::Form.find(params[:id])
-    if post.save_all(post_params)
-      render nothing: true, status_code: 200
+    if post.save_from_associations(post_params)
+      render nothing: true, status: :ok
     else
-      p post.errors.full_messages.join('')
-      render json: { errorMessage: post.errors.full_messages.join('') }, status: 400
+      render_error(post)
     end
   end
-
-  def destroy; end
 
   private
 
@@ -47,7 +42,7 @@ class Cms::Api::PostsController < Cms::ApplicationController
     params.require(:post).permit(
       :id, :title, :description, :published_at,
       items_attributes: [:id, :target_id, :target_type, :title],
-      post_taggings_attributes: [:id, :text],
+      taggings_attributes: [:id, :text],
     )
   end
 

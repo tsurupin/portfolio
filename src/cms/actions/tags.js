@@ -17,7 +17,7 @@ export function fetchTags(response) {
 export function createTag(tag) {
   return {
     type: CREATE_TAG,
-    payload: { tag }
+    payload: { tag } 
   }
 }
 

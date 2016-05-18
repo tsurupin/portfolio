@@ -17,10 +17,8 @@ module DataURIToImageConverter
       type: image_data[:type],
       tempfile: temp_image_file
     }
-    uploaded_file = ActionDispatch::Http::UploadedFile.new(image_params)
 
-    obj_hash = uploaded_file
-    obj_hash
+    ActionDispatch::Http::UploadedFile.new(image_params)
   end
 
   def split_base64(uri_str)

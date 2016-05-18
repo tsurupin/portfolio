@@ -3,7 +3,7 @@ import TextDisplay from '../../../../../shared/TextEditor/Display/index';
 import styles from './styles.scss';
 
 
-export default class Text extends Component {
+class Text extends Component {
 
   constructor(props) {
     super(...props);
@@ -23,4 +23,4 @@ Text.propTypes = {
   description: PropTypes.string.isRequired
 };
 
-
+export default Text;

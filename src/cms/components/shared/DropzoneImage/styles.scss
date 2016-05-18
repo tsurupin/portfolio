@@ -1,0 +1,48 @@
+@value colors: '../../../css/colors.scss';
+@value label-color, text-color, border-color, theme-color, error-color, strong-opaque from colors;
+@value fonts: '../../../css/fonts.scss';
+@value font-xx-small, font-medium from fonts;
+
+.root {
+  composes: bottomBorder from '../../../css/mixins.scss';
+  composes: marginBottomMiddle from '../../../css/margins.scss';
+  padding: 6px;
+}
+
+.header {
+  composes: headerLabel from '../../../css/mixins.scss';
+}
+
+.dropzone {
+  composes: marginToopXXSmall from '../../../css/margins.scss';
+  width: 100%;
+  margin-top: 10px;
+  max-height: 100px;
+}
+
+.dropzoneActive {
+  composes: dropzone;
+  backgroun-color: theme-color;
+  opacity: strong-opaque;
+}
+
+.placeholder {
+  display: block;
+  width: 100%;
+  line-height: 100px;
+  color: text-color;
+  font-size: calc(font-medium * 10) + px;
+  font-size: font-medium + rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.previewImage {
+  max-height: 100px;
+}
+
+.errorMessage {
+  composes: placeholder;
+  color: error-color;
+}

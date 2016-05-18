@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: post_tags
+# Table name: tags
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)      not null
@@ -8,9 +8,10 @@
 #  updated_at :datetime
 #
 
-class PostTag < ActiveRecord::Base
-  has_many :post_taggings, dependent: :destroy
-  has_many :posts, through: :post_taggings
+class Tag < ActiveRecord::Base
+  has_many :taggings, as: :subject, dependent: :destroy
+  has_many :posts, through: :taggings
+  has_many :ptojects, through: :taggings
   validates :name, presence: true, uniqueness: true
 
 end

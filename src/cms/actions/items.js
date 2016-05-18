@@ -50,12 +50,14 @@ export function moveItem(sortRank, type) {
 }
 
 export function fetchTweet(url, sortRank) {
-  const request = axios.get(`${ROOT_URL}${TWITTER_PATH}?url=${url}&sort_rank=${sortRank}`);
+  const request = axios.get(`${ROOT_URL}${TWITTER_PATH}?url=${url}`);
   return dispatch => {
-    return request.then(
-      response => dispatch(fetchTweetSuccess(response.data)),
-      error => { throw 'URL is not valid' }
-    );
+    return request
+      .then(response => {
+        console.log(response)
+        dispatch(fetchTweetSuccess({attributes: response.data.attributes, sortRank }))
+      })
+      .catch(() => { throw 'URL is not valid' } )
   }
 }
 

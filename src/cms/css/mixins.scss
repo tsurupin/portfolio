@@ -1,3 +1,7 @@
+@value colors: './colors.scss';
+
+@value label-color, border-color from colors;
+
 .clearFloat::after {
   content: "";
   display: block;
@@ -8,6 +12,7 @@
   -webkit-padding-start: 0;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+  list-style: none;
 }
 
 .hoverAnimation {
@@ -27,4 +32,13 @@
     cursor: pointer;
     opacity: 0.7;
   }
+}
+
+.bottomBorder {
+  border-bottom: 1px solid border-color;
+}
+
+.headerLabel {
+  composes: fontXSmall from './fonts.scss';
+  color: label-color;
 }

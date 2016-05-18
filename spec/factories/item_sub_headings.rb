@@ -8,6 +8,6 @@
 
 FactoryGirl.define do
   factory :item_sub_heading do
-    title 'subTitle'
+    title { Faker::Lorem.sentence }
   end
 end

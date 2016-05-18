@@ -12,6 +12,12 @@ class Cms::ApplicationController < ApplicationController
 
   protected
 
+  def render_error(model)
+    logger.error model.errors.full_messages.join('')
+    p model.errors.full_messages.join('')
+    render json: { errorMessage: model.errors.full_messages.join('') }, status: :bad_request
+  end
+
   def pagination(page, limit, total)
     { pagination:
         {
@@ -24,12 +30,8 @@ class Cms::ApplicationController < ApplicationController
 
   def authenticate_author_from_token!
     auth_token = request.headers['Authorization']
-    p auth_token
-    if auth_token
-      authenticate_with_auth_token(auth_token)
-    else
-      authentication_error
-    end
+    return authentication_error unless auth_token
+    authenticate_with_auth_token(auth_token)
   end
 
   private

@@ -1,17 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import Dropzone from 'react-dropzone';
-import { capitalize } from '../../../../../../utilities';
+import DropzoneImage from '../../../../../shared/DropzoneImage/index';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
-import Paper from 'material-ui/lib/paper';
 import styles from '../shared/styles.scss';
 
 const inlineStyles = {
   submitButton: {
     marginLeft: 12
-  },
-  paper: {
-    margin: '10px 0'
   }
 };
 
@@ -26,9 +21,12 @@ export default class ItemFormImage extends Component {
       image: props.image,
       errorMessage: ''
     };
-
-    this.handleDrop = this.handleDrop.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
+  }
+
+  handleUpdate(image) {
+    this.setState(image);
   }
 
   handleUpdateItem() {
@@ -38,33 +36,9 @@ export default class ItemFormImage extends Component {
     this.props.handleUpdateItem({ image: this.state.image })
   }
 
-  handleDrop(files) {
-    const self = this;
-    const reader = new FileReader();
-    const file = files[0];
-
-    reader.onload = function (upload) {
-      self.setState({
-        image: upload.target.result,
-        errorMessage: ''
-      });
-    };
-
-    reader.onerror = function () {
-      self.showErrorMessage('Cannot upload image file')
-    };
-
-    reader.readAsDataURL(file);
-  }
 
   showErrorMessage(errorMessage) {
     this.setState({ errorMessage })
-  }
-
-  renderImageBox() {
-    if (this.state.image) {
-      return <img className={styles.previewImage} src={this.state.image} width='100'/>;
-    }
   }
 
   renderErrorMessage() {
@@ -73,21 +47,13 @@ export default class ItemFormImage extends Component {
     }
   }
 
-
   render() {
     return (
       <div className={styles.root}>
-        <label className={styles.header}>Image</label>
-        <Paper zDepth={1} rounded={false} style={inlineStyles.paper}>
-          <Dropzone
-            className={styles.dropzone}
-            accepte='image/*'
-            multipe={false}
-            onDrop={this.handleDrop}>
-            <div className={styles.dropzoneHelp}>Drop file here or click to upload.</div>
-          </Dropzone>
-        </Paper>
-        {this.renderImageBox()}
+        <DropzoneImage
+          image={this.state.image}
+          handleUpdate={this.handleUpdate}
+        />
         {this.renderErrorMessage()}
         <div className={styles.submitBox}>
           {this.props.cancelButton}
@@ -106,7 +72,6 @@ export default class ItemFormImage extends Component {
 }
 
 ItemFormImage.propTypes = {
-  targetType: PropTypes.string.isRequired,
   image: PropTypes.string,
   cancelButton: PropTypes.element.isRequired,
   handleUpdateItem: PropTypes.func.isRequired

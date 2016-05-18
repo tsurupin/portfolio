@@ -8,8 +8,8 @@ class TagField extends Component {
 		super(...props);
 
     this.state = {
-      tags: props.tags,
-      suggestions: props.suggestions
+      tags: [],
+      suggestions: []
     };
 
     this.handleDeleteTag = this.handleDeleteTag.bind(this);
@@ -28,21 +28,22 @@ class TagField extends Component {
   }
 
   handleAddTag(text) {
-    const tag = { text };
-    this.props.handleAddTag(tag);
+    this.props.handleAddTag({ text });
   }
 
   render() {
+
+    const tags = this.state.tags;
+    const suggestions = this.state.suggestions;
     return (
       <div className={styles.root}>
         <label className={styles.header}>Tag</label>
         <div className={styles.content}>
           <ReactTags
-            tags={this.state.tags}
-            suggestions={this.state.suggestions}
+            tags={tags}
+            suggestions={suggestions}
             handleDelete={this.handleDeleteTag}
             handleAddition={this.handleAddTag}
-            draggable={false}
             autofocus={false}
             autocomplete={1}
             minQueryLength={1}
@@ -64,7 +65,6 @@ class TagField extends Component {
 
 TagField.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
     text: PropTypes.string
   })),
   suggestions: PropTypes.array.isRequired,
