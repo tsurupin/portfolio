@@ -42710,7 +42710,7 @@
 	  return errors;
 	}
 
-	var fields = exports.fields = ['title', 'description', 'publishedAt'];
+	var fields = exports.fields = ['id', 'title', 'description', 'publishedAt'];
 
 	function mapStateToProps(state) {
 	  return {
@@ -75513,6 +75513,7 @@
 	        _react2.default.createElement(
 	          _reactDropzone2.default,
 	          {
+	            name: 'image',
 	            className: _styles2.default.dropzone,
 	            activeClassName: _styles2.default.dropzoneActive,
 	            accept: 'image/*',
@@ -89516,7 +89517,7 @@
 	  }, {
 	    key: 'handleEdit',
 	    value: function handleEdit(id) {
-	      this.context.router.push('/cms/projects/' + id);
+	      this.context.router.push('/cms/projects/' + id + '/edit');
 	    }
 	  }, {
 	    key: 'handleToggle',
@@ -89675,7 +89676,7 @@
 	  return {
 	    type: _constants.FETCH_PROJECT.SUCCESS,
 	    payload: {
-	      project: response.project,
+	      project: response,
 	      tags: {
 	        tags: response.tags,
 	        tagSuggestions: response.tagSuggestions
@@ -89719,9 +89720,10 @@
 	}
 
 	function saveProject(props) {
+	  console.log(props);
 	  var project = (0, _utilities.trimProject)(props.project);
 	  var request = void 0;
-	  if (props.project.id) {
+	  if (project.id) {
 	    request = _utilities.axios.patch(_constants.PROJECT_PATH + '/' + project.id, { project: project });
 	  } else {
 	    request = _utilities.axios.post('' + _constants.PROJECT_PATH, { project: project });
@@ -90146,9 +90148,11 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).call(this, props));
 
+	    console.log(props);
+
 	    _this.state = {
-	      image: props.image,
-	      description: props.description
+	      image: '',
+	      description: ''
 	    };
 
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -90169,8 +90173,17 @@
 	      }
 	    }
 	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      this.setState({
+	        image: nextProps.image,
+	        description: nextProps.description
+	      });
+	    }
+	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
+	      console.log(props);
 	      this.props.saveProject({
 	        project: _extends({}, props, {
 	          image: this.state.image,
@@ -90203,6 +90216,9 @@
 	    key: 'render',
 	    value: function render() {
 
+	      console.log(this.state);
+
+	      var headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
 	      var submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
@@ -90218,7 +90234,7 @@
 	        _react2.default.createElement(
 	          'h2',
 	          { className: _styles2.default.heading },
-	          'Create New Project'
+	          headerLabel
 	        ),
 	        _react2.default.createElement(_textField2.default, _extends({}, title, {
 	          floatingLabelText: 'Title',
@@ -90277,7 +90293,7 @@
 	  return errors;
 	}
 
-	var fields = ['title', 'sourceUrl', 'sampleUrl'];
+	var fields = ['id', 'title', 'sourceUrl', 'sampleUrl'];
 
 	function mapStateToProps(state) {
 	  return {

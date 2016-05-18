@@ -188,7 +188,7 @@ function validate(values) {
 }
 
 export const fields = [
-  'title', 'description', 'publishedAt'
+  'id', 'title', 'description', 'publishedAt'
 ];
 
 function mapStateToProps(state) {

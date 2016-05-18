@@ -33,7 +33,6 @@ class Project::Form < ActiveType::Record[Project]
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
 
       params['image'] = convert_data_uri_to_upload(params['image']) if params['image'].try(:start_with?, 'data')
-      p params
       update!(params)
       true
     end

@@ -12,11 +12,11 @@ require 'factory_girl_rails'
 require 'vcr'
 
 
-Capybara.asset_host = 'http://localhost:4000'
-
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
+
+Capybara.ignore_hidden_elements = false
 
 # Capybara.register_driver :poltergeist do |app|
 #   Capybara::Poltergeist::Driver.new(

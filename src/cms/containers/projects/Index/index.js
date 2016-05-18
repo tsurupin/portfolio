@@ -33,7 +33,7 @@ class ProjectsIndex extends Component {
   }
 
   handleEdit(id) {
-    this.context.router.push(`/cms/projects/${id}`)
+    this.context.router.push(`/cms/projects/${id}/edit`)
   }
   
   handleToggle(id) {

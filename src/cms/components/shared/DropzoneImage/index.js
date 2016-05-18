@@ -57,6 +57,7 @@ class DropzoneImage extends Component {
       <div className={styles.root}>
         <label className={styles.header}>Image</label>
         <Dropzone
+          name="image"
           className={styles.dropzone}
           activeClassName={styles.dropzoneActive}
           accept='image/*'

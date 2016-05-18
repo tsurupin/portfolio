@@ -51,7 +51,7 @@ function fetchProjectSuccess(response) {
   return {
     type: FETCH_PROJECT.SUCCESS,
     payload: {
-      project: response.project,
+      project: response,
       tags: {
         tags: response.tags,
         tagSuggestions: response.tagSuggestions
@@ -94,9 +94,10 @@ function fetchNewProjectFailure(error) {
 }
 
 export function saveProject(props) {
+  console.log(props)
   const project = trimProject(props.project);
   let request;
-  if (props.project.id) {
+  if (project.id) {
     request = axios.patch(`${PROJECT_PATH}/${project.id}`, { project });
   } else {
     request = axios.post(`${PROJECT_PATH}`, { project });

@@ -26,10 +26,11 @@ const inlineStyles = {
 class ProjectsForm extends Component {
   constructor(props) {
     super(props);
+    console.log(props)
 
     this.state = {
-      image: props.image,
-      description: props.description
+      image: '',
+      description: ''
     };
 
     this.handleSubmit       = this.handleSubmit.bind(this);
@@ -47,7 +48,15 @@ class ProjectsForm extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      image: nextProps.image,
+      description: nextProps.description
+    })
+  };
+
   handleSubmit(props) {
+    console.log(props)
     this.props.saveProject(
       {
         project: {
@@ -77,13 +86,16 @@ class ProjectsForm extends Component {
   }
 
   render() {
+    
+    console.log(this.state)
    
+    const headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
     const { handleSubmit, fields: { title, sampleUrl, sourceUrl } } = this.props;
 
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
-        <h2 className={styles.heading}>Create New Project</h2>
+        <h2 className={styles.heading}>{headerLabel}</h2>
         <TextField
           {...title}
           floatingLabelText="Title"
@@ -145,7 +157,7 @@ function validate(values) {
 }
 
 const fields = [
-  'title', 'sourceUrl', 'sampleUrl'
+  'id', 'title', 'sourceUrl', 'sampleUrl'
 ];
 
 function mapStateToProps(state) {
