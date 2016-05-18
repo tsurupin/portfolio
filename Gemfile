@@ -83,6 +83,7 @@ group :test do
   gem 'capybara'
   gem 'timecop'
   gem 'poltergeist'
+  gem "chromedriver-helper"
   gem "selenium-webdriver"
   gem 'simplecov', require: false
   gem 'shoulda-matchers'

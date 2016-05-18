@@ -149,7 +149,6 @@ const fields = [
 ];
 
 function mapStateToProps(state) {
-  console.log(state.projects.project);
   return {
     initialValues: state.projects.project,
     image: state.projects.project.image,

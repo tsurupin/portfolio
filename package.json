@@ -51,8 +51,6 @@
     "babel-preset-stage-1": "^6.1.18",
     "classnames": "*",
     "draft-js": "^0.7.0",
-    "draft-js-linkify-plugin": "^1.0.1",
-    "draft-js-plugins-editor": "^1.0.1",
     "lodash": "^3.10.1",
     "material-ui": "^0.14.4",
     "react": "^0.14.8",

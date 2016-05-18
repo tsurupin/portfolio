@@ -47,6 +47,8 @@ GEM
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
+    archive-zip (0.7.0)
+      io-like (~> 0.3.0)
     arel (6.0.3)
     ast (2.2.0)
     autoprefixer-rails (6.3.6)
@@ -97,6 +99,9 @@ GEM
       mime-types (>= 1.16)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (1.0.0)
+      archive-zip (~> 0.7.0)
+      nokogiri (~> 1.6)
     cliver (0.3.2)
     coderay (1.1.1)
     coffee-rails (4.1.1)
@@ -307,6 +312,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     inflecto (0.0.2)
+    io-like (0.3.0)
     ipaddress (0.8.3)
     json (1.8.3)
     kaminari (0.16.3)
@@ -541,6 +547,7 @@ DEPENDENCIES
   capistrano3-unicorn
   capybara
   carrierwave
+  chromedriver-helper
   config
   database_cleaner
   devise

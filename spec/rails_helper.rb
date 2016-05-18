@@ -6,25 +6,34 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rspec'
 require 'capybara/rails'
-require 'capybara/poltergeist'
+require 'selenium-webdriver'
+#require 'capybara/poltergeist'
 require 'factory_girl_rails'
 require 'vcr'
 
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(
-      app,
-      debug: true,
-      phantomjs_logger: true,
-      window_size: [1100, 6000],
-      phantomjs_option: ['--load-images=no', '--ignore-ssl-errors=yes']
-  )
+
+Capybara.asset_host = 'http://localhost:4000'
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
-Capybara.javascript_driver = :poltergeist
+
+# Capybara.register_driver :poltergeist do |app|
+#   Capybara::Poltergeist::Driver.new(
+#       app,
+#       debug: true,
+#       phantomjs_logger: true,
+#       window_size: [1100, 6000],
+#       phantomjs_option: ['--load-images=no', '--ignore-ssl-errors=yes']
+#   )
+# end
+# Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join('spec/supports/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include SignInMacros
 
   config.include Capybara::DSL
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
