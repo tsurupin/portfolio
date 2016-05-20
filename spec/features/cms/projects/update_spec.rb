@@ -1,20 +1,13 @@
 require 'rails_helper'
 
-feature 'update existing project', js: true do
-  given!(:author) { create(:author, email: 'sample@gmail.com', password: 'sampletest') }
-
-  background do
-    sign_in(author)
-    visit "/cms/projects/#{project.id}/edit"
-  end
-
-  after do
-    page.execute_script("localStorage.clear()")
-  end
+feature 'Update existing project', js: true do
+  background { sign_in_and_redirect_to("/cms/projects/#{project.id}/edit") }
+  after { page.execute_script("localStorage.clear()") }
 
   context 'when the project status is accepted' do
     given!(:project) { create(:project, accepted: true) }
     scenario "fails to update the project owing to lack of description" do
+
       fill_in 'title', with: 'title'
       fill_in 'sourceUrl', with: 'http://google.com'
       fill_in 'sampleUrl', with: 'http://google.com'

@@ -24,9 +24,9 @@ export default (
       <Route path="/cms/projects/:id/edit" component={Authentication(ProjectsForm)}/>
       <Route path="/cms/sign-up" component={AuthorsSinUp}/>
       <Route path="/cms/sign-in" component={AuthorsSingIn}/>
-      <Route path="/cms/authors/edit" component={Authentication(AuthorsForm)}/>
-      <Route path="/cms/sites/new" component={Authentication(SitesForm)}/>
-      <Route path="/cms/sites/:id/edit" component={Authentication(SitesForm)}/>
+      <Route path="/cms/about" component={Authentication(AuthorsForm)}/>
+      <Route path="/cms/about/edit" component={Authentication(AuthorsForm)}/>
+      <Route path="/cms/sites/edit" component={Authentication(SitesForm)}/>
       <Route path="*" component={NotFound} />
   </ Route>
 );

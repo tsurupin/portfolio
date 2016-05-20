@@ -10,7 +10,7 @@
 #
 
 class SocialAccount < ActiveRecord::Base
-  belongs_to :social_account, touch: true
+  belongs_to :author, touch: true
   validates :name, presence: true
   validates :url, presence: true
   validates :author, presence: true

@@ -1,16 +1,9 @@
 require 'rails_helper'
 
-feature 'create new project', js: true do
-  given!(:author) { create(:author, email: 'sample@gmail.com', password: 'sampletest') }
+feature 'Create new project', js: true do
 
-  background do
-    sign_in(author)
-    visit '/cms/projects/new'
-  end
-
-  after do
-    page.execute_script("localStorage.clear()")
-  end
+  background { sign_in_and_redirect_to('/cms/projects/new') }
+  after { page.execute_script("localStorage.clear()") }
 
   context 'when necessary info are blank' do
     scenario "fails to create new project owing to lack of title" do

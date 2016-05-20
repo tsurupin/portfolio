@@ -18,5 +18,6 @@ FactoryGirl.define do
     sequence(:name) { Faker::Name.name }
     sequence(:email) { Faker::Internet.email }
     sequence(:password) { SecureRandom.hex }
+    github_url 'http://github.com'
   end
 end

@@ -20,6 +20,7 @@ class Author < ActiveRecord::Base
   after_create :update_devise_token!
 
   validates :name, presence: true, uniqueness: true
+  validates :github_url, presence: true, uniqueness: true, allow_blank: true
   validates :email, presence: true, uniqueness: true, email_format: { message: 'is not valid address' }
 
   mount_uploader :image, AuthorImageUploader

@@ -10,6 +10,7 @@ class AddDeviseToAuthors < ActiveRecord::Migration
       t.string :name, null: false, unique: true
       t.string :image
       t.text :description
+      t.string :github_url, null: false, unique: true, default: ''
       t.string :access_token
 
       t.timestamps null: false

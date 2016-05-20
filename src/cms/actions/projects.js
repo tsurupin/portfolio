@@ -22,6 +22,7 @@ export function fetchProjects() {
 }
 
 function fetchProjectsSuccess(response) {
+  console.log(response)
   return {
     type: FETCH_PROJECTS.SUCCESS,
     payload: {

@@ -36,17 +36,17 @@ class Post::Form < ActiveType::Record[Post]
 
         case target.class.name
           when 'ItemHeading', 'ItemSubHeading'
-            target.title        = item['title']
+            target.title              = item['title']
           when 'ItemQuote'
-            target.description  = item['description']
-            target.source_url   = item['source_url']
+            target.description        = item['description']
+            target.source_url         = item['source_url']
           when 'ItemText'
-            target.description  = item['description']
+            target.description        = item['description']
           when 'ItemImage'
-            target.image = convert_data_uri_to_upload(item['image']) unless target.image.try(:url) == item['image']
+            target.image              = convert_data_uri_to_upload(item['image']) unless target.image.try(:url) == item['image']
           when 'ItemLink'
-            target.source_title = item['source_title']
-            target.source_url   = item['source_url']
+            target.source_title       = item['source_title']
+            target.source_url         = item['source_url']
           when 'ItemTwitter'
             target.source_url         = item['source_url']
             target.description        = item['description']

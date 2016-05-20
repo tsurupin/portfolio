@@ -66,15 +66,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(947);
+	var _reducers = __webpack_require__(949);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(955);
+	var _reactTapEventPlugin = __webpack_require__(957);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(960);
+	var _reduxThunk = __webpack_require__(962);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26653,6 +26653,10 @@
 	var MOVE_ITEM_DOWN = exports.MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
 	var MOVE_ITEM_BOTTOM = exports.MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
 
+	var CREATE_SOCIAL_ACCOUNT = exports.CREATE_SOCIAL_ACCOUNT = 'CREATE_SOCIAL_ACCOUNT';
+	var UPDATE_SOCIAL_ACCOUNT = exports.UPDATE_SOCIAL_ACCOUNT = 'UPDATE_SOCIAL_ACCOUNT';
+	var DELETE_SOCIAL_ACCOUNT = exports.DELETE_SOCIAL_ACCOUNT = 'DELETE_SOCIAL_ACCOUNT';
+
 	var FETCH_TAGS = exports.FETCH_TAGS = 'FETCH_TAGS';
 	var CREATE_TAG = exports.CREATE_TAG = 'CREATE_TAG';
 	var DELETE_TAG = exports.DELETE_TAG = 'DELETE_TAG';
@@ -26736,23 +26740,23 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index11 = __webpack_require__(940);
+	var _index11 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./containers/authors/Form/index\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(941);
+	var _index13 = __webpack_require__(943);
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(943);
+	var _index15 = __webpack_require__(945);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(945);
+	var _index17 = __webpack_require__(947);
 
 	var _index18 = _interopRequireDefault(_index17);
 
-	var _index19 = __webpack_require__(946);
+	var _index19 = __webpack_require__(948);
 
 	var _index20 = _interopRequireDefault(_index19);
 
@@ -26770,9 +26774,9 @@
 	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: (0, _index20.default)(_index10.default) }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-up', component: _index14.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-in', component: _index16.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/authors/edit', component: (0, _index20.default)(_index12.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/new', component: (0, _index20.default)(_form2.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/:id/edit', component: (0, _index20.default)(_form2.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about', component: (0, _index20.default)(_index12.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about/edit', component: (0, _index20.default)(_index12.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/edit', component: (0, _index20.default)(_form2.default) }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _index18.default })
 	);
 
@@ -89644,6 +89648,7 @@
 	}
 
 	function fetchProjectsSuccess(response) {
+	  console.log(response);
 	  return {
 	    type: _constants.FETCH_PROJECTS.SUCCESS,
 	    payload: {
@@ -89863,7 +89868,7 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'li',
+	        'div',
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(
 	          'h2',
@@ -90386,56 +90391,10 @@
 	exports.default = SitesForm;
 
 /***/ },
-/* 940 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AuthorsForm = function (_Component) {
-	  _inherits(AuthorsForm, _Component);
-
-	  function AuthorsForm() {
-	    _classCallCheck(this, AuthorsForm);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).apply(this, arguments));
-	  }
-
-	  _createClass(AuthorsForm, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'Hoge'
-	      );
-	    }
-	  }]);
-
-	  return AuthorsForm;
-	}(_react.Component);
-
-	exports.default = AuthorsForm;
-
-/***/ },
-/* 941 */
+/* 940 */,
+/* 941 */,
+/* 942 */,
+/* 943 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90471,7 +90430,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(942);
+	var _styles = __webpack_require__(944);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90640,14 +90599,14 @@
 	}, mapStateToProps, { signUp: _auths.signUp })(AuthorsSignUp);
 
 /***/ },
-/* 942 */
+/* 944 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1GONa","heading":"heading___3z-Um","error":"error___29st_"};
 
 /***/ },
-/* 943 */
+/* 945 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90683,7 +90642,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(944);
+	var _styles = __webpack_require__(946);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90832,14 +90791,14 @@
 	})(AuthorsSignIn);
 
 /***/ },
-/* 944 */
+/* 946 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1aOrv","heading":"heading___3F7ic","error":"error___xJ9qB"};
 
 /***/ },
-/* 945 */
+/* 947 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90865,7 +90824,7 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 946 */
+/* 948 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90943,7 +90902,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ },
-/* 947 */
+/* 949 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90956,27 +90915,31 @@
 
 	var _reduxForm = __webpack_require__(392);
 
-	var _posts = __webpack_require__(948);
+	var _posts = __webpack_require__(950);
 
 	var _posts2 = _interopRequireDefault(_posts);
 
-	var _items = __webpack_require__(949);
+	var _items = __webpack_require__(951);
 
 	var _items2 = _interopRequireDefault(_items);
 
-	var _tags = __webpack_require__(951);
+	var _tags = __webpack_require__(953);
 
 	var _tags2 = _interopRequireDefault(_tags);
 
-	var _authors = __webpack_require__(952);
+	var _authors = __webpack_require__(954);
 
 	var _authors2 = _interopRequireDefault(_authors);
 
-	var _auths = __webpack_require__(953);
+	var _auths = __webpack_require__(955);
 
 	var _auths2 = _interopRequireDefault(_auths);
 
-	var _projects = __webpack_require__(954);
+	var _socialAccounts = __webpack_require__(963);
+
+	var _socialAccounts2 = _interopRequireDefault(_socialAccounts);
+
+	var _projects = __webpack_require__(956);
 
 	var _projects2 = _interopRequireDefault(_projects);
 
@@ -90989,13 +90952,14 @@
 	  tags: _tags2.default,
 	  authors: _authors2.default,
 	  auths: _auths2.default,
+	  socialAccounts: _socialAccounts2.default,
 	  projects: _projects2.default
 	});
 
 	exports.default = rootReducer;
 
 /***/ },
-/* 948 */
+/* 950 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -91061,7 +91025,7 @@
 	};
 
 /***/ },
-/* 949 */
+/* 951 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -91128,7 +91092,7 @@
 
 	var _constants = __webpack_require__(243);
 
-	var _lodash = __webpack_require__(950);
+	var _lodash = __webpack_require__(952);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -91137,7 +91101,7 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ },
-/* 950 */
+/* 952 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -103495,7 +103459,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(705)(module), (function() { return this; }())))
 
 /***/ },
-/* 951 */
+/* 953 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103532,7 +103496,7 @@
 	var INITIAL_STATE = { tags: [], tagSuggestions: [] };
 
 /***/ },
-/* 952 */
+/* 954 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103574,7 +103538,7 @@
 	var INITIAL_STATE = { author: null, error: null, loading: false };
 
 /***/ },
-/* 953 */
+/* 955 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103611,7 +103575,7 @@
 	var INITIAL_STATE = { error: '', authenticated: false };
 
 /***/ },
-/* 954 */
+/* 956 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103652,23 +103616,23 @@
 	};
 
 /***/ },
-/* 955 */
+/* 957 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(956);
+	var defaultClickRejectionStrategy = __webpack_require__(958);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(30).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(957)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(959)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 956 */
+/* 958 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -103679,7 +103643,7 @@
 
 
 /***/ },
-/* 957 */
+/* 959 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -103707,10 +103671,10 @@
 	var EventPluginUtils = __webpack_require__(32);
 	var EventPropagators = __webpack_require__(72);
 	var SyntheticUIEvent = __webpack_require__(86);
-	var TouchEventUtils = __webpack_require__(958);
+	var TouchEventUtils = __webpack_require__(960);
 	var ViewportMetrics = __webpack_require__(37);
 
-	var keyOf = __webpack_require__(959);
+	var keyOf = __webpack_require__(961);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -103856,7 +103820,7 @@
 
 
 /***/ },
-/* 958 */
+/* 960 */
 /***/ function(module, exports) {
 
 	/**
@@ -103904,7 +103868,7 @@
 
 
 /***/ },
-/* 959 */
+/* 961 */
 /***/ function(module, exports) {
 
 	/**
@@ -103944,7 +103908,7 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 960 */
+/* 962 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -103970,6 +103934,40 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 
 	exports['default'] = thunk;
+
+/***/ },
+/* 963 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+
+	    case _constants.CREATE_SOCIAL_ACCOUNT:
+	      return [].concat(_toConsumableArray(state), [action.payload.socialAccount]);
+
+	    case _constants.UPDATE_SOCIAL_ACCOUNT:
+	      return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), [action.payload.socialAccount], _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+
+	    case _constants.DELETE_SOCIAL_ACCOUNT:
+	      return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+
+	    default:
+	      return state;
+	  }
+	};
+
+	var _constants = __webpack_require__(243);
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ }
 /******/ ]);
