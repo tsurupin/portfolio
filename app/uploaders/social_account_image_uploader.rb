@@ -13,7 +13,7 @@ class SocialAccountImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "uploads/project/#{mounted_as}/#{model.id}/"
+    "uploads/social_account/#{mounted_as}/#{model.id}/"
   end
 
   def extension_white_list

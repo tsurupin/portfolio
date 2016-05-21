@@ -15,7 +15,15 @@
 
 class Author < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable, :validatable
+
+  PERMITTED_ATTRIBUTES = [
+    :name, :email, :password, :password_confirmation, :github_url,
+    social_accounts_attributes: [ :id, :name, :url, :image ]
+  ]
+
   has_many :social_accounts, dependent: :destroy
+
+  accepts_nested_attributes_for :social_accounts, reject_if: ->(attributes) { attributes['name'].blank? || attributes['url'].blank?}
 
   after_create :update_devise_token!
 

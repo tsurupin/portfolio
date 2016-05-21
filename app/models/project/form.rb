@@ -19,12 +19,17 @@ class Project::Form < ActiveType::Record[Project]
   include TaggingAttributesTrimer
 
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
+  PERMITTED_ATTRIBUTES = [
+    :title, :description, :image, :sample_url, :source_url,
+    taggings_attributes: [:id, :text]
+  ].freeze
 
   validates :description, presence: true, if: proc { |project| project.accepted }
   validates :image, presence: true, if: proc { |project| project.accepted }
   validates :source_url, presence: true, if: proc { |project| project.accepted }
 
-  accepts_nested_attributes_for :taggings
+  accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['name'].blank? }
+
 
   def save(params)
 

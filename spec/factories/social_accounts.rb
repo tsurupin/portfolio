@@ -14,10 +14,10 @@
 #
 
 FactoryGirl.define do
-  factory :author do
-    sequence(:name) { Faker::Name.name }
-    sequence(:email) { Faker::Internet.email }
-    sequence(:password) { SecureRandom.hex }
-    github_url { Faker::Internet.url }
+  factory :social_account do
+    association :author, factory: :author
+    url { Faker::Internet.url }
+    name { Faker::Name.title }
+    image File.new("#{Rails.root}/spec/fixtures/images/sample.png")
   end
 end

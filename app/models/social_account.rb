@@ -11,8 +11,10 @@
 
 class SocialAccount < ActiveRecord::Base
   belongs_to :author, touch: true
+
   validates :name, presence: true
   validates :url, presence: true
+  validates :image, presence: true
   validates :author, presence: true
 
   mount_uploader :image, SocialAccountImageUploader

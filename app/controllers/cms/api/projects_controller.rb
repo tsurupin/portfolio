@@ -3,7 +3,6 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
 
   def index
     projects = Project.order(updated_at: :desc)
-    p projects
     render json: projects, each_serializer: ProjectsSerializer
   end
 
@@ -38,10 +37,7 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(
-      :title, :description, :image, :sample_url, :source_url,
-      taggings_attributes: [:id, :text]
-    )
+    params.require(:project).permit(*Project::Form::PERMITTED_ATTRIBUTES)
   end
 
 end
