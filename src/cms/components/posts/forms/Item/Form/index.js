@@ -10,7 +10,7 @@ import Link from './Link/index';
 import Text from './Text/index';
 import styles from './shared/styles.scss';
 
-export default class PostItemForm extends Component {
+class PostItemForm extends Component {
   constructor(props) {
     super(...props);
 
@@ -128,3 +128,4 @@ PostItemForm.propTypes = {
   handleDeleteItem: PropTypes.func.isRequired
 };
 
+export default PostItemForm;

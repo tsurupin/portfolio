@@ -32,7 +32,8 @@ const inlineStyles = {
 class PostsIndex extends Component {
   
   constructor(props) {
-    super(...props);
+    super(props);
+    
     this.handleDeletePost = this.handleDeletePost.bind(this);
     this.handleTogglePost = this.handleTogglePost.bind(this);
     this.handleMovePage = this.handleMovePage.bind(this);

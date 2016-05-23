@@ -21,7 +21,7 @@ const inlineStyles = {
   }
 };
 
-export default class EditBox extends Component {
+class EditBox extends Component {
 
   constructor(props) {
     super(...props);
@@ -54,3 +54,5 @@ export default class EditBox extends Component {
 EditBox.propTypes = {
   handleAddItem: PropTypes.func.isRequired
 };
+
+export default EditBox;

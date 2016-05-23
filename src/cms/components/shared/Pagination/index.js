@@ -7,7 +7,7 @@ import styles from './styles.scss';
 class Pagination extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
   }
   
   render() {

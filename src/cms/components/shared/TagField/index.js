@@ -5,7 +5,7 @@ import styles from './styles.scss';
 class TagField extends Component {
 
 	constructor(props) {
-		super(...props);
+		super(props);
 
     this.state = {
       tags: [],

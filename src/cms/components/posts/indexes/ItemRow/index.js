@@ -11,10 +11,10 @@ import ActionVisibilityOff from '../../../../../../node_modules/material-ui/lib/
 
 import styles from './styles.scss';
 
-export default class ItemRow extends Component {
+class ItemRow extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
 
     this.handleDeletePost = this.handleDeletePost.bind(this);
     this.handleTogglePost = this.handleTogglePost.bind(this);
@@ -75,3 +75,5 @@ ItemRow.propTypes = {
   handleDeletePost: PropTypes.func.isRequired,
   handleTogglePost: PropTypes.func.isRequired
 };
+
+export default ItemRow;

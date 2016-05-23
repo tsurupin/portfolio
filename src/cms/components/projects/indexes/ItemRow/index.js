@@ -35,7 +35,6 @@ class ItemRow extends Component {
 
   renderDescription() {
     if(this.props.description) {
-      console.log('hoge')
       return <TextDisplay description={this.props.description} />
     }
   }

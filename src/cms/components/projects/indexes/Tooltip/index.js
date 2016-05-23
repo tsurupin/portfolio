@@ -10,7 +10,7 @@ import ActionVisibilityOff from 'material-ui/lib/svg-icons/action/visibility-off
 import IconButton from 'material-ui/lib/icon-button';
 import styles from './styles.scss';
 
-export default class Tooltip extends Component {
+class Tooltip extends Component {
   constructor(props) {
     super(props);
 
@@ -85,3 +85,5 @@ Tooltip.propTypes = {
   handleToggle: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired
 };
+
+export default Tooltip;
