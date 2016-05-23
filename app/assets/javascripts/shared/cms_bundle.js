@@ -42572,6 +42572,7 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
+	      console.log(this.props.items);
 	      this.props.savePost({
 	        post: _extends({}, props, {
 	          itemsAttributes: this.props.items,
@@ -52427,33 +52428,17 @@
 	      switch (this.props.item.targetType) {
 	        case _constants.TARGET_TYPES.HEADING.NAME:
 	        case _constants.TARGET_TYPES.SUB_HEADING.NAME:
-	          return _react2.default.createElement(_index4.default, {
-	            title: this.props.item.title,
-	            targetType: this.props.item.targetType
-	          });
-
+	          return _react2.default.createElement(_index4.default, this.props.item);
 	        case _constants.TARGET_TYPES.IMAGE.NAME:
-	          return _react2.default.createElement(_index6.default, { image: this.props.item.image });
+	          return _react2.default.createElement(_index6.default, this.props.item);
 	        case _constants.TARGET_TYPES.TWITTER.NAME:
-	          return _react2.default.createElement(_index8.default, {
-	            authorName: this.props.item.authorName,
-	            authorScreenName: this.props.item.authorScreenName,
-	            authorImageURL: this.props.item.authorImageURL,
-	            sourceURL: this.props.item.sourceURL,
-	            description: this.props.item.description });
+	          return _react2.default.createElement(_index8.default, this.props.item);
 	        case _constants.TARGET_TYPES.QUOTE.NAME:
-	          return _react2.default.createElement(_index10.default, {
-	            sourceURL: this.props.item.sourceURL,
-	            description: this.props.item.description });
+	          return _react2.default.createElement(_index10.default, this.props.item);
 	        case _constants.TARGET_TYPES.LINK.NAME:
-	          return _react2.default.createElement(_index12.default, {
-	            sourceURL: this.props.item.sourceURL,
-	            sourceTitle: this.props.item.sourceTitle });
+	          return _react2.default.createElement(_index12.default, this.props.item);
 	        case _constants.TARGET_TYPES.TEXT.NAME:
-	          return _react2.default.createElement(_index14.default, {
-	            style: this.props.item.style,
-	            description: this.props.item.description });
-
+	          return _react2.default.createElement(_index14.default, this.props.item);
 	        default:
 	          return;
 	      }
@@ -56272,8 +56257,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -56284,11 +56267,9 @@
 	  _inherits(Image, _Component);
 
 	  function Image(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Image);
 
-	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Image)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Image).call(this, props));
 	  }
 
 	  _createClass(Image, [{
@@ -56305,12 +56286,11 @@
 	  return Image;
 	}(_react.Component);
 
-	exports.default = Image;
-
-
 	Image.propTypes = {
 	  image: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Image;
 
 /***/ },
 /* 496 */
@@ -56373,13 +56353,13 @@
 	        _react2.default.createElement(
 	          'a',
 	          { className: _styles2.default.authorName,
-	            href: this.props.sourceURL,
+	            href: this.props.sourceUrl,
 	            ref: 'nofollow',
 	            target: '_blank' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: _styles2.default.header },
-	            _react2.default.createElement(_avatar2.default, { src: this.props.authorImageURL }),
+	            _react2.default.createElement(_avatar2.default, { src: this.props.authorImageUrl }),
 	            this.props.authorName,
 	            _react2.default.createElement(
 	              'p',
@@ -56400,16 +56380,15 @@
 	  return Twitter;
 	}(_react.Component);
 
-	exports.default = Twitter;
-
-
 	Twitter.propTypes = {
 	  authorName: _react.PropTypes.string.isRequired,
 	  authorScreenName: _react.PropTypes.string,
-	  authorImageURL: _react.PropTypes.string.isRequired,
-	  sourceURL: _react.PropTypes.string.isRequired,
+	  authorImageUrl: _react.PropTypes.string.isRequired,
+	  sourceUrl: _react.PropTypes.string.isRequired,
 	  description: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Twitter;
 
 /***/ },
 /* 498 */
@@ -56624,8 +56603,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -56636,11 +56613,9 @@
 	  _inherits(Quote, _Component);
 
 	  function Quote(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Quote);
 
-	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Quote)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Quote).call(this, props));
 	  }
 
 	  _createClass(Quote, [{
@@ -56651,7 +56626,7 @@
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(
 	          'a',
-	          { href: this.props.sourceURL, target: '_blank' },
+	          { href: this.props.sourceUrl, target: '_blank' },
 	          _react2.default.createElement(
 	            'blockquote',
 	            { className: _styles2.default.block },
@@ -56669,13 +56644,12 @@
 	  return Quote;
 	}(_react.Component);
 
-	exports.default = Quote;
-
-
 	Quote.propTypes = {
-	  sourceURL: _react.PropTypes.string.isRequired,
+	  sourceUrl: _react.PropTypes.string.isRequired,
 	  description: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Quote;
 
 /***/ },
 /* 501 */
@@ -56735,7 +56709,7 @@
 	          'a',
 	          {
 	            className: _styles2.default.title,
-	            href: this.props.sourceURL,
+	            href: this.props.sourceUrl,
 	            target: '_blank'
 	          },
 	          this.props.sourceTitle
@@ -56747,13 +56721,12 @@
 	  return Link;
 	}(_react.Component);
 
-	exports.default = Link;
-
-
 	Link.propTypes = {
-	  sourceURL: _react.PropTypes.string.isRequired,
+	  sourceUrl: _react.PropTypes.string.isRequired,
 	  sourceTitle: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Link;
 
 /***/ },
 /* 503 */
@@ -56788,8 +56761,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -56800,11 +56771,9 @@
 	  _inherits(Text, _Component);
 
 	  function Text(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Text);
 
-	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Text)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Text).call(this, props));
 	  }
 
 	  _createClass(Text, [{
@@ -75162,21 +75131,21 @@
 	  }
 	};
 
-	var ItemFormHeading = function (_Component) {
-	  _inherits(ItemFormHeading, _Component);
+	var Heading = function (_Component) {
+	  _inherits(Heading, _Component);
 
-	  function ItemFormHeading(props) {
+	  function Heading(props) {
 	    var _Object$getPrototypeO;
 
-	    _classCallCheck(this, ItemFormHeading);
+	    _classCallCheck(this, Heading);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormHeading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Heading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormHeading, [{
+	  _createClass(Heading, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
 	      this.props.handleUpdateItem({ title: props.title });
@@ -75220,10 +75189,10 @@
 	    }
 	  }]);
 
-	  return ItemFormHeading;
+	  return Heading;
 	}(_react.Component);
 
-	ItemFormHeading.propTypes = {
+	Heading.propTypes = {
 	  targetType: _react.PropTypes.string.isRequired,
 	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.object.isRequired,
@@ -75239,10 +75208,10 @@
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'ItemFormHeading',
+	  form: 'ItemHeadingForm',
 	  fields: ['title'],
 	  validate: validate
-	})(ItemFormHeading);
+	})(Heading);
 
 /***/ },
 /* 651 */
@@ -75302,6 +75271,8 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -75319,6 +75290,8 @@
 	var _addCircle = __webpack_require__(651);
 
 	var _addCircle2 = _interopRequireDefault(_addCircle);
+
+	var _reduxForm = __webpack_require__(392);
 
 	var _styles = __webpack_require__(652);
 
@@ -75340,64 +75313,53 @@
 	  }
 	};
 
-	var ItemFormImage = function (_Component) {
-	  _inherits(ItemFormImage, _Component);
+	var Image = function (_Component) {
+	  _inherits(Image, _Component);
 
-	  function ItemFormImage(props) {
+	  function Image(props) {
 	    var _Object$getPrototypeO;
 
-	    _classCallCheck(this, ItemFormImage);
+	    _classCallCheck(this, Image);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormImage)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Image)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	    _this.state = {
-	      image: props.image,
-	      errorMessage: ''
-	    };
-	    _this.handleUpdate = _this.handleUpdate.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormImage, [{
-	    key: 'handleUpdate',
-	    value: function handleUpdate(image) {
-	      this.setState(image);
-	    }
-	  }, {
+	  _createClass(Image, [{
 	    key: 'handleUpdateItem',
-	    value: function handleUpdateItem() {
-	      if (!this.state.image) {
-	        return this.showErrorMessage('Please upload image');
-	      }
-	      this.props.handleUpdateItem({ image: this.state.image });
-	    }
-	  }, {
-	    key: 'showErrorMessage',
-	    value: function showErrorMessage(errorMessage) {
-	      this.setState({ errorMessage: errorMessage });
+	    value: function handleUpdateItem(props) {
+	      this.props.handleUpdateItem({ image: props.image });
 	    }
 	  }, {
 	    key: 'renderErrorMessage',
 	    value: function renderErrorMessage() {
-	      if (this.state.errorMessage) {
+	      if (this.props.fields.image.touched && this.props.fields.image.error) {
 	        return _react2.default.createElement(
 	          'span',
 	          { className: _styles2.default.errorMessage },
-	          this.state.errorMessage
+	          this.props.fields.image.error
 	        );
 	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var image = _props.fields.image;
+
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
-	        _react2.default.createElement(_index2.default, {
-	          image: this.state.image,
-	          handleUpdate: this.handleUpdate
-	        }),
+	        _react2.default.createElement(_index2.default, _extends({}, image, {
+	          handleUpdate: function handleUpdate(file) {
+	            return image.onChange(file);
+	          }
+	        })),
 	        this.renderErrorMessage(),
 	        _react2.default.createElement(
 	          'div',
@@ -75407,26 +75369,39 @@
 	            className: _styles2.default.submitButton,
 	            label: 'Save',
 	            labelPosition: 'after',
+	            disabled: submitting,
 	            icon: _react2.default.createElement(_addCircle2.default, null),
 	            style: inlineStyles.submitButton,
-	            onClick: this.handleUpdateItem
+	            onClick: handleSubmit(this.handleUpdateItem)
 	          })
 	        )
 	      );
 	    }
 	  }]);
 
-	  return ItemFormImage;
+	  return Image;
 	}(_react.Component);
 
-	exports.default = ItemFormImage;
-
-
-	ItemFormImage.propTypes = {
-	  image: _react.PropTypes.string,
+	Image.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.element.isRequired,
 	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
+
+	function validate(values) {
+	  var errors = {};
+	  if (!values.image) {
+	    errors.image = 'Entry image';
+	  }
+
+	  return errors;
+	}
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'ItemImageForm',
+	  fields: ['image'],
+	  validate: validate
+	})(Image);
 
 /***/ },
 /* 654 */
@@ -76031,13 +76006,13 @@
 	        setTimeout(function () {
 
 	          _this2.setState({ loading: true });
-	          _this2.props.fetchTweet(props.sourceURL, _this2.props.sortRank).then(function () {
+	          _this2.props.fetchTweet(props.sourceUrl, _this2.props.sortRank).then(function () {
 	            _this2.setState({ loading: false });
 	            _this2.props.handleUpdateItem({});
 	            resolve();
 	          }).catch(function (error) {
 	            _this2.setState({ loading: false });
-	            reject({ sourceURL: error });
+	            reject({ sourceUrl: error });
 	          });
 	        }, 1000);
 	      });
@@ -76062,7 +76037,7 @@
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
 	      var submitting = _props.submitting;
-	      var sourceURL = _props.fields.sourceURL;
+	      var sourceUrl = _props.fields.sourceUrl;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -76070,11 +76045,11 @@
 	        this.renderLoadingIndicator(),
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
-	        }, sourceURL, {
+	        }, sourceUrl, {
 	          floatingLabelText: 'Twitter',
 	          hintText: 'Enter the sourceURL',
 	          fullWidth: true,
-	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	          errorText: sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''
 	        })),
 	        _react2.default.createElement(
 	          'div',
@@ -76110,8 +76085,8 @@
 
 	function validate(values) {
 	  var errors = {};
-	  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceURL)) {
-	    errors.sourceURL = 'URL is not valid';
+	  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceUrl)) {
+	    errors.sourceUrl = 'URL is not valid';
 	  }
 
 	  return errors;
@@ -76119,7 +76094,7 @@
 
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'ItemFormTwitter',
-	  fields: ['sourceURL'],
+	  fields: ['sourceUrl'],
 	  validate: validate
 	}, null, { fetchTweet: _items.fetchTweet })(Twitter);
 
@@ -76540,8 +76515,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -76554,24 +76527,22 @@
 	  }
 	};
 
-	var ItemFormQuote = function (_Component) {
-	  _inherits(ItemFormQuote, _Component);
+	var Quote = function (_Component) {
+	  _inherits(Quote, _Component);
 
-	  function ItemFormQuote(props) {
-	    var _Object$getPrototypeO;
+	  function Quote(props) {
+	    _classCallCheck(this, Quote);
 
-	    _classCallCheck(this, ItemFormQuote);
-
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormQuote)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Quote).call(this, props));
 
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormQuote, [{
+	  _createClass(Quote, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
-	      this.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
+	      this.props.handleUpdateItem({ sourceUrl: props.sourceUrl, description: props.description });
 	    }
 	  }, {
 	    key: 'render',
@@ -76580,7 +76551,7 @@
 	      var handleSubmit = _props.handleSubmit;
 	      var submitting = _props.submitting;
 	      var _props$fields = _props.fields;
-	      var sourceURL = _props$fields.sourceURL;
+	      var sourceUrl = _props$fields.sourceUrl;
 	      var description = _props$fields.description;
 
 	      return _react2.default.createElement(
@@ -76597,11 +76568,11 @@
 	        })),
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
-	        }, sourceURL, {
+	        }, sourceUrl, {
 	          floatingLabelText: 'SourceURL',
 	          hintText: 'Enter the sourceURL',
 	          fullWidth: true,
-	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	          errorText: sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''
 	        })),
 	        _react2.default.createElement(
 	          'div',
@@ -76621,10 +76592,10 @@
 	    }
 	  }]);
 
-	  return ItemFormQuote;
+	  return Quote;
 	}(_react.Component);
 
-	ItemFormQuote.propTypes = {
+	Quote.propTypes = {
 	  targetType: _react.PropTypes.string.isRequired,
 	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.object.isRequired,
@@ -76638,18 +76609,18 @@
 	    errors.description = 'Enter description';
 	  }
 
-	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
-	    errors.sourceURL = 'URL is not valid';
+	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceUrl)) {
+	    errors.sourceUrl = 'URL is not valid';
 	  }
 
 	  return errors;
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'ItemFormQuote',
-	  fields: ['sourceURL', 'description'],
+	  form: 'ItemQuoteForm',
+	  fields: ['sourceUrl', 'description'],
 	  validate: validate
-	})(ItemFormQuote);
+	})(Quote);
 
 /***/ },
 /* 660 */
@@ -76718,7 +76689,7 @@
 	  _createClass(Link, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
-	      this.props.handleUpdateItem({ sourceURL: props.sourceURL, sourceTitle: props.sourceTitle });
+	      this.props.handleUpdateItem({ sourceUrl: props.sourceUrl, sourceTitle: props.sourceTitle });
 	    }
 	  }, {
 	    key: 'render',
@@ -76727,7 +76698,7 @@
 	      var handleSubmit = _props.handleSubmit;
 	      var submitting = _props.submitting;
 	      var _props$fields = _props.fields;
-	      var sourceURL = _props$fields.sourceURL;
+	      var sourceUrl = _props$fields.sourceUrl;
 	      var sourceTitle = _props$fields.sourceTitle;
 
 	      return _react2.default.createElement(
@@ -76735,11 +76706,11 @@
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
-	        }, sourceURL, {
+	        }, sourceUrl, {
 	          floatingLabelText: 'SourceURL',
 	          hintText: 'Enter the sourceURL',
 	          fullWidth: true,
-	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	          errorText: sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''
 	        })),
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
@@ -76784,16 +76755,16 @@
 	    errors.sourceTitle = 'Enter sourceTitle';
 	  }
 
-	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
-	    errors.sourceURL = 'URL is not valid';
+	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceUrl)) {
+	    errors.sourceUrl = 'URL is not valid';
 	  }
 
 	  return errors;
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'ItemFormLink',
-	  fields: ['sourceURL', 'sourceTitle'],
+	  form: 'ItemLinkForm',
+	  fields: ['sourceUrl', 'sourceTitle'],
 	  validate: validate
 	})(Link);
 
@@ -76806,6 +76777,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -76825,6 +76798,8 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
+	var _reduxForm = __webpack_require__(392);
+
 	var _styles = __webpack_require__(652);
 
 	var _styles2 = _interopRequireDefault(_styles);
@@ -76843,36 +76818,44 @@
 	  submitButton: { marginLeft: 12 }
 	};
 
-	var ItemFormText = function (_Component) {
-	  _inherits(ItemFormText, _Component);
+	var Text = function (_Component) {
+	  _inherits(Text, _Component);
 
-	  function ItemFormText(props) {
+	  function Text(props) {
 	    var _Object$getPrototypeO;
 
-	    _classCallCheck(this, ItemFormText);
+	    _classCallCheck(this, Text);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormText)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Text)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	    _this.state = { description: props.description };
-
-	    _this.handleUpdate = _this.handleUpdate.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormText, [{
-	    key: 'handleUpdate',
-	    value: function handleUpdate(description) {
-	      this.setState(description);
+	  _createClass(Text, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem(props) {
+	      this.props.handleUpdateItem({ description: props.description });
 	    }
 	  }, {
-	    key: 'handleUpdateItem',
-	    value: function handleUpdateItem() {
-	      this.props.handleUpdateItem({ description: this.state.description });
+	    key: 'renderErrorMessage',
+	    value: function renderErrorMessage() {
+	      if (this.props.fields.description.touched && this.props.fields.description.error) {
+	        return _react2.default.createElement(
+	          'span',
+	          { className: _styles2.default.errorMessage },
+	          this.props.fields.description.error
+	        );
+	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var description = _props.fields.description;
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
@@ -76881,10 +76864,12 @@
 	          { className: _styles2.default.header },
 	          'Text'
 	        ),
-	        _react2.default.createElement(_index2.default, {
-	          description: this.state.description,
-	          handleUpdate: this.handleUpdate
-	        }),
+	        _react2.default.createElement(_index2.default, _extends({}, description, {
+	          handleUpdate: function handleUpdate(value) {
+	            description.onChange(value);
+	          }
+	        })),
+	        this.renderErrorMessage(),
 	        _react2.default.createElement(
 	          'div',
 	          { className: _styles2.default.submitBox },
@@ -76894,24 +76879,38 @@
 	            label: 'Save',
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            disabled: submitting,
 	            style: inlineStyles.submitButton,
-	            onClick: this.handleUpdateItem })
+	            onClick: handleSubmit(this.handleUpdateItem) })
 	        )
 	      );
 	    }
 	  }]);
 
-	  return ItemFormText;
+	  return Text;
 	}(_react.Component);
 
-	ItemFormText.propTypes = {
+	Text.propTypes = {
 	  targetType: _react.PropTypes.string.isRequired,
-	  description: _react.PropTypes.string,
+	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.object.isRequired,
 	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
 
-	exports.default = ItemFormText;
+	function validate(values) {
+	  var errors = {};
+	  if (!values.description) {
+	    errors.description = 'Enter description';
+	  }
+
+	  return errors;
+	}
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'ItemTextForm',
+	  fields: ['description'],
+	  validate: validate
+	})(Text);
 
 /***/ },
 /* 662 */
@@ -89570,6 +89569,7 @@
 	    value: function render() {
 	      var _this2 = this;
 
+	      // TODO: show nice apology message when there is no project
 	      if (this.props.projects.length === 0) {
 	        return _react2.default.createElement('div', null);
 	      }
@@ -89891,6 +89891,7 @@
 	    key: 'renderDescription',
 	    value: function renderDescription() {
 	      if (this.props.description) {
+	        console.log('hoge');
 	        return _react2.default.createElement(_index2.default, { description: this.props.description });
 	      }
 	    }
@@ -90183,16 +90184,9 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).call(this, props));
 
-	    _this.state = {
-	      image: '',
-	      description: ''
-	    };
-
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.handleAddTag = _this.handleAddTag.bind(_this);
 	    _this.handleDeleteTag = _this.handleDeleteTag.bind(_this);
-	    _this.handleUpdateImage = _this.handleUpdateImage.bind(_this);
-	    _this.handleUpdateText = _this.handleUpdateText.bind(_this);
 	    return _this;
 	  }
 
@@ -90206,20 +90200,10 @@
 	      }
 	    }
 	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      this.setState({
-	        image: nextProps.image,
-	        description: nextProps.description
-	      });
-	    }
-	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
 	      this.props.saveProject({
 	        project: _extends({}, props, {
-	          image: this.state.image,
-	          description: this.state.description,
 	          taggingsAttributes: this.props.tags
 	        })
 	      });
@@ -90235,16 +90219,6 @@
 	      this.props.deleteTag(sortRank);
 	    }
 	  }, {
-	    key: 'handleUpdateImage',
-	    value: function handleUpdateImage(image) {
-	      this.setState(image);
-	    }
-	  }, {
-	    key: 'handleUpdateText',
-	    value: function handleUpdateText(text) {
-	      this.setState(text);
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 
@@ -90256,6 +90230,8 @@
 	      var title = _props$fields.title;
 	      var sampleUrl = _props$fields.sampleUrl;
 	      var sourceUrl = _props$fields.sourceUrl;
+	      var image = _props$fields.image;
+	      var description = _props$fields.description;
 
 
 	      return _react2.default.createElement(
@@ -90273,10 +90249,11 @@
 	          errorText: title.touched && title.error ? title.error : ''
 	        })),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_index4.default, {
-	          description: this.state.description,
-	          handleUpdate: this.handleUpdateText
-	        }),
+	        _react2.default.createElement(_index4.default, _extends({}, description, {
+	          handleUpdate: function handleUpdate(value) {
+	            description.onChange(value);
+	          }
+	        })),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(_textField2.default, _extends({}, sourceUrl, {
 	          floatingLabelText: 'SourceURL',
@@ -90295,10 +90272,11 @@
 	          handleDeleteTag: this.handleDeleteTag
 	        }),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_index2.default, {
-	          image: this.state.image,
-	          handleUpdate: this.handleUpdateImage
-	        }),
+	        _react2.default.createElement(_index2.default, _extends({}, image, {
+	          handleUpdate: function handleUpdate(file) {
+	            return image.onChange(file);
+	          }
+	        })),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(_raisedButton2.default, {
@@ -90323,13 +90301,11 @@
 	  return errors;
 	}
 
-	var fields = ['id', 'title', 'sourceUrl', 'sampleUrl'];
+	var fields = ['id', 'title', 'sourceUrl', 'sampleUrl', 'image', 'description'];
 
 	function mapStateToProps(state) {
 	  return {
 	    initialValues: state.projects.project,
-	    image: state.projects.project.image,
-	    description: state.projects.project.description,
 	    tags: state.tags.tags,
 	    tagSuggestions: state.tags.tagSuggestions
 	  };
@@ -90337,8 +90313,6 @@
 
 	ProjectsForm.propTypes = {
 	  fields: _react.PropTypes.object.isRequired,
-	  image: _react.PropTypes.string,
-	  description: _react.PropTypes.string,
 	  params: _react.PropTypes.object,
 	  fetchProject: _react.PropTypes.func.isRequired,
 	  fetchNewProject: _react.PropTypes.func.isRequired,
@@ -90538,6 +90512,7 @@
 	    value: function render() {
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
 	      var _props$fields = _props.fields;
 	      var name = _props$fields.name;
 	      var image = _props$fields.image;
@@ -90578,6 +90553,7 @@
 	          type: 'submit',
 	          label: 'Update',
 	          secondary: true,
+	          submitting: submitting,
 	          style: inlineStyles.submitButton
 	        })
 	      );

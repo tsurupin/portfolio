@@ -20,7 +20,11 @@ class Post::Form < ActiveType::Record[Post]
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
   PERMITTED_ATTRIBUTES = [
     :id, :title, :description, :published_at,
-    items_attributes: [:id, :target_id, :target_type, :title],
+    items_attributes: [
+      :id, :target_id, :target_type, :title, :description,
+      :source_title, :source_url, :image, :author_name,
+      :author_screen_name, :author_image_url
+    ],
     taggings_attributes: [:id, :text]
   ].freeze
 
@@ -38,7 +42,6 @@ class Post::Form < ActiveType::Record[Post]
 
       params[ITEMS_ATTRIBUTES].each.with_index(1) do |item, index|
         target = item['target_type'].constantize.find_or_initialize_by(id: item['target_id'])
-
         case target.class.name
           when 'ItemHeading', 'ItemSubHeading'
             target.title              = item['title']

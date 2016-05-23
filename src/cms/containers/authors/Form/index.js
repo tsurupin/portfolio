@@ -67,7 +67,7 @@ class AuthorsForm extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: { name, image, description } } = this.props;
+    const { handleSubmit, submitting, fields: { name, image, description } } = this.props;
     
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
@@ -97,6 +97,7 @@ class AuthorsForm extends Component {
           type="submit"
           label='Update'
           secondary={true}
+          submitting={submitting}
           style={inlineStyles.submitButton}
         />
       </form>

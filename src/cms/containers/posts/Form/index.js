@@ -48,6 +48,7 @@ class PostsForm extends Component {
   }
 
   handleSubmit(props) {
+    console.log(this.props.items)
     this.props.savePost(
       { 
         post: { 

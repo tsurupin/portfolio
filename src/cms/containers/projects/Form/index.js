@@ -27,16 +27,9 @@ class ProjectsForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      image: '',
-      description: ''
-    };
-
     this.handleSubmit       = this.handleSubmit.bind(this);
     this.handleAddTag       = this.handleAddTag.bind(this);
     this.handleDeleteTag    = this.handleDeleteTag.bind(this);
-    this.handleUpdateImage  = this.handleUpdateImage.bind(this);
-    this.handleUpdateText   = this.handleUpdateText.bind(this);
   }
 
   componentWillMount() {
@@ -47,20 +40,11 @@ class ProjectsForm extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      image: nextProps.image,
-      description: nextProps.description
-    })
-  };
-
   handleSubmit(props) {
     this.props.saveProject(
       {
         project: {
           ...props,
-          image: this.state.image,
-          description: this.state.description,
           taggingsAttributes: this.props.tags
         }
       }
@@ -74,20 +58,12 @@ class ProjectsForm extends Component {
   handleDeleteTag(sortRank) {
     this.props.deleteTag(sortRank);
   }
-
-  handleUpdateImage(image) {
-    this.setState(image);
-  }
   
-  handleUpdateText(text) {
-    this.setState(text);
-  }
-
   render() {
    
     const headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, sampleUrl, sourceUrl } } = this.props;
+    const { handleSubmit, fields: { title, sampleUrl, sourceUrl, image, description } } = this.props;
 
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
@@ -101,8 +77,8 @@ class ProjectsForm extends Component {
         />
         <br/>
         <TextEditor
-          description={this.state.description}
-          handleUpdate={this.handleUpdateText}
+          {...description}
+          handleUpdate={ (value) => { description.onChange(value) }}
         />
         <br/>
         <TextField
@@ -125,8 +101,8 @@ class ProjectsForm extends Component {
         />
         <br />
         <DropzoneImage
-          image={this.state.image}
-          handleUpdate={this.handleUpdateImage}
+          {...image}
+          handleUpdate={ (file) => image.onChange(file) }
         />
         <br />
         <br />
@@ -153,14 +129,12 @@ function validate(values) {
 }
 
 const fields = [
-  'id', 'title', 'sourceUrl', 'sampleUrl'
+  'id', 'title', 'sourceUrl', 'sampleUrl', 'image', 'description'
 ];
 
 function mapStateToProps(state) {
   return {
     initialValues: state.projects.project,
-    image: state.projects.project.image,
-    description: state.projects.project.description,
     tags: state.tags.tags,
     tagSuggestions: state.tags.tagSuggestions
   }
@@ -168,8 +142,6 @@ function mapStateToProps(state) {
 
 ProjectsForm.propTypes = {
   fields: PropTypes.object.isRequired,
-  image: PropTypes.string,
-  description: PropTypes.string,
   params: PropTypes.object,
   fetchProject: PropTypes.func.isRequired,
   fetchNewProject: PropTypes.func.isRequired,

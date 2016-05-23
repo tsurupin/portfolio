@@ -11,7 +11,7 @@ const inlineStyles = {
   }
 };
 
-class ItemFormHeading extends Component {
+class Heading extends Component {
 
   constructor(props) {
     super(...props);
@@ -54,7 +54,7 @@ class ItemFormHeading extends Component {
   }
 }
 
-ItemFormHeading.propTypes = {
+Heading.propTypes = {
   targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.object.isRequired,
@@ -70,8 +70,8 @@ function validate(values) {
 }
 
 export default reduxForm({
-  form: 'ItemFormHeading',
+  form: 'ItemHeadingForm',
   fields: ['title'],
   validate
-})(ItemFormHeading);
+})(Heading);
 

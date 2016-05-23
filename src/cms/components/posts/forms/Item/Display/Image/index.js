@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './styles.scss';
 
-export default class Image extends Component {
+class Image extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
   }
 
   render() {
@@ -20,3 +20,5 @@ export default class Image extends Component {
 Image.propTypes = {
   image: PropTypes.string.isRequired
 };
+
+export default Image

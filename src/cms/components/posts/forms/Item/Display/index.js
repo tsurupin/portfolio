@@ -41,43 +41,17 @@ export default class PostItemCell extends Component {
     switch (this.props.item.targetType) {
       case TARGET_TYPES.HEADING.NAME:
       case TARGET_TYPES.SUB_HEADING.NAME:
-        return (
-          <Heading
-            title={this.props.item.title}
-            targetType={this.props.item.targetType}
-          />
-        );
-
+        return <Heading {...this.props.item} />;
       case TARGET_TYPES.IMAGE.NAME:
-        return <Image image={this.props.item.image} />;
+        return <Image {...this.props.item} />;
       case TARGET_TYPES.TWITTER.NAME:
-        return (
-          <Twitter
-            authorName={this.props.item.authorName}
-            authorScreenName={this.props.item.authorScreenName}
-            authorImageURL={this.props.item.authorImageURL}
-            sourceURL={this.props.item.sourceURL}
-            description={this.props.item.description}/>
-        );
+        return <Twitter {...this.props.item} />;
       case TARGET_TYPES.QUOTE.NAME:
-        return (
-          <Quote
-            sourceURL={this.props.item.sourceURL}
-            description={this.props.item.description}/>
-        );
+        return <Quote {...this.props.item} />;
       case TARGET_TYPES.LINK.NAME:
-        return (
-          <Link
-            sourceURL={this.props.item.sourceURL}
-            sourceTitle={this.props.item.sourceTitle}/>
-        );
+        return <Link {...this.props.item} />;
       case TARGET_TYPES.TEXT.NAME:
-        return (
-          <Text
-            style={this.props.item.style}
-            description={this.props.item.description}/>
-        );
-
+        return <Text {...this.props.item} />;
       default:
         return;
     }

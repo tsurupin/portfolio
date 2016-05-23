@@ -23,7 +23,7 @@ class ProjectsIndex extends Component {
   constructor(props) {
     super(props);
 
-    this.handleEdit = this.handleEdit.bind(this);
+    this.handleEdit   = this.handleEdit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -45,6 +45,8 @@ class ProjectsIndex extends Component {
   }
   
   render() {
+
+    // TODO: show nice apology message when there is no project
     if (this.props.projects.length === 0 ) { return <div></div> }
     return (
       <section className={styles.root}>
@@ -70,7 +72,7 @@ class ProjectsIndex extends Component {
                 sourceUrl={project.sourceUrl}
                 sampleUrl={project.sampleUrl}
               />
-              </li>
+            </li>
           );
         })}
         </ul>
