@@ -5,10 +5,10 @@ module TaggingAttributesTrimer
 
   def trim_tagging_attributes!(params)
     return unless params
-    params.each do |item|
-      tag = Tag.find_or_create_by!(name: item['text'])
-      item['tag_id'] = tag.id
-      item.delete('text')
+    params.each do |param|
+      tag             = Tag.find_or_create_by!(name: param['text'])
+      param['tag_id'] = tag.id
+      param.delete('text')
     end
   end
 end

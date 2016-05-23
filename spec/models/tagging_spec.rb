@@ -1,10 +1,13 @@
 # == Schema Information
 #
-# Table name: post_taggings
+# Table name: taggings
 #
-#  id          :integer          not null, primary key
-#  post_id     :integer          not null
-#  post_tag_id :integer          not null
+#  id           :integer          not null, primary key
+#  tag_id       :integer          not null
+#  subject_id   :integer          not null
+#  subject_type :string(255)      not null
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 require 'rails_helper'

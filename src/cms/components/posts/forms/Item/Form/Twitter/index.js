@@ -28,7 +28,7 @@ class Twitter extends Component {
       setTimeout(() => {
         
         this.setState({ loading: true });
-        this.props.fetchTweet(props.sourceURL, this.props.sortRank).then(
+        this.props.fetchTweet(props.sourceUrl, this.props.sortRank).then(
           () => {
             this.setState({ loading: false });
             this.props.handleUpdateItem({});
@@ -36,7 +36,7 @@ class Twitter extends Component {
           }
         ).catch(error => {
           this.setState({ loading: false });
-          reject({ sourceURL: error })
+          reject({ sourceUrl: error })
         })
         
       }, 1000)
@@ -59,17 +59,17 @@ class Twitter extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting, fields: { sourceURL } } = this.props;
+    const { handleSubmit, submitting, fields: { sourceUrl } } = this.props;
     return (
       <div className={styles.root}>
         {this.renderLoadingIndicator()}
         <TextField
           className={styles.inputText}
-          {...sourceURL}
+          {...sourceUrl}
           floatingLabelText="Twitter"
           hintText='Enter the sourceURL'
           fullWidth={true}
-          errorText={sourceURL.touched && sourceURL.error ? sourceURL.error : ''}
+          errorText={sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''}
         />
         <div className={styles.submitBox}>
           {this.props.cancelButton}
@@ -101,8 +101,8 @@ Twitter.propTypes = {
 
 function validate(values) {
   const errors = {};
-  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceURL)) {
-    errors.sourceURL = 'URL is not valid'
+  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceUrl)) {
+    errors.sourceUrl = 'URL is not valid'
   }
 
   return errors;
@@ -110,7 +110,7 @@ function validate(values) {
 
 export default reduxForm({
   form: 'ItemFormTwitter',
-  fields: ['sourceURL'],
+  fields: ['sourceUrl'],
   validate
 }, null, { fetchTweet })(Twitter);
 

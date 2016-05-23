@@ -10,10 +10,7 @@
   composes: marginHorizontalXSmall from '../../../../css/margins.scss';
 }
 
-.header {
-  composes: headerLabel from '../../../../css/mixins.scss';
 
-}
 
 .editor {
   /*border-top: 1px solid #ddd;*/
@@ -120,3 +117,9 @@
   margin-bottom: 10px;
 }
 
+.header {
+  /* TODO: figure out how to solve error,Order in extracted chunk undefined */
+  font-size: 12px;
+  font-size: 1.2rem;
+  color: label-color;
+}

@@ -13,20 +13,20 @@ const inlineStyles = {
 };
 
 
-class ItemFormQuote extends Component {
+class Quote extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
 
   handleUpdateItem(props) {
-    this.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
+    this.props.handleUpdateItem({ sourceUrl: props.sourceUrl, description: props.description });
   }
 
   render() {
-    const { handleSubmit, submitting, fields: { sourceURL, description } } = this.props;
+    const { handleSubmit, submitting, fields: { sourceUrl, description } } = this.props;
     return (
       <div className={styles.root}>
         <TextField
@@ -40,11 +40,11 @@ class ItemFormQuote extends Component {
         />
         <TextField
           className={styles.inputText}
-          {...sourceURL}
+          {...sourceUrl}
           floatingLabelText="SourceURL"
           hintText='Enter the sourceURL'
           fullWidth={true}
-          errorText={sourceURL.touched && sourceURL.error ? sourceURL.error : ''}
+          errorText={sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''}
         />
         <div className={styles.submitBox}>
           {this.props.cancelButton}
@@ -63,7 +63,7 @@ class ItemFormQuote extends Component {
   }
 }
 
-ItemFormQuote.propTypes = {
+Quote.propTypes = {
   targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.object.isRequired,
@@ -77,16 +77,16 @@ function validate(values) {
     errors.description = 'Enter description'
   }
 
-  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
-    errors.sourceURL = 'URL is not valid'
+  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceUrl)) {
+    errors.sourceUrl = 'URL is not valid'
   }
 
   return errors;
 }
 
 export default reduxForm({
-  form: 'ItemFormQuote',
-  fields: ['sourceURL', 'description'],
+  form: 'ItemQuoteForm',
+  fields: ['sourceUrl', 'description'],
   validate
-})(ItemFormQuote);
+})(Quote);
 

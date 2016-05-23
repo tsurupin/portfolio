@@ -50,14 +50,13 @@ function fetchPostsFailure(error) {
 export function fetchPost(id) {
   const request = axios.get(`${POST_PATH}/${id}/edit`);
   return dispatch => {
-    return request.then(
-      response => dispatch(fetchPostSuccess(response.data)),
-      error => dispatch(fetchPostFailure(error.data))
-    ).then(response => {
-      if (response.type === FETCH_POST.FAILURE) { return; }
-      dispatch(fetchItems(response.payload.items));
-      dispatch(fetchTags(response.payload.tags))
-    })
+    return request
+      .then(response => dispatch(fetchPostSuccess(response.data)))
+      .then(response => {
+        dispatch(fetchItems(response.payload.items));
+        dispatch(fetchTags(response.payload.tags))
+      })
+      .catch(error => dispatch(fetchPostFailure(error.data)))
   };
 }
 
@@ -85,13 +84,10 @@ function fetchPostFailure(error) {
 export function fetchNewPost() {
   const request = axios.get(`${POST_PATH}/new`);
   return dispatch => {
-    return request.then(
-      response => dispatch(fetchNewPostSuccess(response.data)),
-      error => dispatch(fetchNewPostFailure(error.data))
-    ).then(response => {
-      if (response.type === FETCH_NEW_POST.FAILURE) { return; }
-      dispatch(fetchTags(response.payload.tags))
-    })
+    return request
+      .then(response => dispatch(fetchNewPostSuccess(response.data)))
+      .then(response => dispatch(fetchTags(response.payload.tags)))
+      .catch(error => dispatch(fetchNewPostFailure(error.data)))
   };
 }
 

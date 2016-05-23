@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
 import TextEditor from '../../../../../shared/TextEditor/Editor/index';
+import { reduxForm } from 'redux-form';
 import styles from '../shared/styles.scss';
 
 const inlineStyles = {
@@ -9,32 +10,36 @@ const inlineStyles = {
 };
 
 
-class ItemFormText extends Component {
+class Text extends Component {
 
   constructor(props) {
     super(...props);
-    this.state = { description: props.description };
-
-    this.handleUpdate = this.handleUpdate.bind(this);
+    
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
+  
 
-  handleUpdate(description) {
-    this.setState(description)
+  handleUpdateItem(props) {
+    this.props.handleUpdateItem({ description: props.description });
   }
-
-  handleUpdateItem() {
-    this.props.handleUpdateItem({ description: this.state.description });
+  
+  renderErrorMessage() {
+    if (this.props.fields.description.touched && this.props.fields.description.error) {
+      return <span className={styles.errorMessage}>{this.props.fields.description.error}</span>;
+    }
   }
 
   render() {
+
+    const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className={styles.root}>
         <label className={styles.header}>Text</label>
         <TextEditor
-          description={this.props.description}
-          handleUpdate={this.handleUpdate}
+          {...description}
+          handleUpdate={ (value) => { description.onChange(value) }}
         />
+        {this.renderErrorMessage()}
         <div className={styles.submitBox}>
           {this.props.cancelButton}
           <RaisedButton
@@ -42,8 +47,9 @@ class ItemFormText extends Component {
             label='Save'
             labelPosition="after"
             icon={<ContentAddCircle />}
+            disabled={submitting}
             style={inlineStyles.submitButton}
-            onClick={this.handleUpdateItem}/>
+            onClick={handleSubmit(this.handleUpdateItem)}/>
         </div>
       </div>
     );
@@ -51,11 +57,25 @@ class ItemFormText extends Component {
 }
 
 
-ItemFormText.propTypes = {
+Text.propTypes = {
   targetType: PropTypes.string.isRequired,
-  description: PropTypes.string,
+  fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
 
-export default ItemFormText;
+function validate(values) {
+  const errors = {};
+  if (!values.description) {
+    errors.description = 'Enter description'
+  }
+
+  return errors;
+}
+
+export default reduxForm({
+  form: 'ItemTextForm',
+  fields: ['description'],
+  validate
+})(Text);
+

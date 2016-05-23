@@ -3,9 +3,8 @@ class Initialize < ActiveRecord::Migration
 
     create_table :social_accounts do |t|
       t.belongs_to :author, null: false
-      t.string :name, null: false
-      t.string :url, null: false
-      t.string :image, null: false
+      t.integer :account_type, null: false, unique: true
+      t.string :url, null: false, unique: true
     end
 
     create_table :posts do |t|

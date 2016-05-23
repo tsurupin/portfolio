@@ -28,6 +28,7 @@ export const SIGN_OUT= createRequestTypes('SIGN_OUT');
 export const AUTH = createRequestTypes('AUTH');
 export const FETCH_TWEET = createRequestTypes('FETCH_TWEET');
 
+
 export const FETCH_PROJECTS = createRequestTypes('FETCH_PROJECTS');
 export const FETCH_PROJECT = createRequestTypes('FETCH_PROJECT');
 export const FETCH_NEW_PROJECT = createRequestTypes('FETCH_NEW_PROJECT');
@@ -43,6 +44,11 @@ export const MOVE_ITEM_TOP = 'MOVE_ITEM_TOP';
 export const MOVE_ITEM_UP = 'MOVE_ITEM_UP';
 export const MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
 export const MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
+
+export const FETCH_SOCIAL_ACCOUNTS = 'FETCH_SOCIAL_ACCOUNTS';
+export const CREATE_SOCIAL_ACCOUNT = 'CREATE_SOCIAL_ACCOUNT';
+export const UPDATE_SOCIAL_ACCOUNT = 'UPDATE_SOCIAL_ACCOUNT';
+export const DELETE_SOCIAL_ACCOUNT = 'DELETE_SOCIAL_ACCOUNT';
 
 export const FETCH_TAGS = 'FETCH_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';

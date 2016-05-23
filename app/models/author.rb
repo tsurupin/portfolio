@@ -3,8 +3,8 @@
 # Table name: authors
 #
 #  id                 :integer          not null, primary key
-#  email              :string(255)      default(""), not null
-#  encrypted_password :string(255)      default(""), not null
+#  email              :string(255)      not null
+#  encrypted_password :string(255)      not null
 #  name               :string(255)      not null
 #  image              :string(255)
 #  description        :text(65535)
@@ -15,12 +15,14 @@
 
 class Author < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable, :validatable
+
   has_many :social_accounts, dependent: :destroy
 
   after_create :update_devise_token!
 
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, email_format: { message: 'is not valid address' }
+  validates :encrypted_password, presence: true, uniqueness: true
 
   mount_uploader :image, AuthorImageUploader
 

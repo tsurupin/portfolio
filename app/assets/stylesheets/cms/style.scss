@@ -79,13 +79,14 @@
   }
 }
 
+.headerLabel___7_6E5 {
+  color: #B3B3B3;
+}
+
 .bottomBorder___1B_N3 {
   border-bottom: 1px solid #b6b6b6;
 }
 
-.headerLabel___7_6E5 {
-  color: #B3B3B3;
-}
 .button___10xiH {
   border-radius: 48px;
 }
@@ -422,9 +423,7 @@
   padding: 15px;
 }
 
-.header___rMhUx {
 
-}
 
 .editor___1e7gj {
   /*border-top: 1px solid #ddd;*/
@@ -533,7 +532,12 @@
   margin-bottom: 10px;
 }
 
-.root___2f-Vz {
+.header___rMhUx {
+  /* TODO: figure out how to solve error,Order in extracted chunk undefined */
+  font-size: 12px;
+  font-size: 1.2rem;
+  color: #B3B3B3;
+}.root___2f-Vz {
 
 }.root___25Dvc {
   position: relative;
@@ -750,7 +754,14 @@
   border: 1px solid #b6b6b6;
   background: white;
   z-index: 1;
-}.root___1GONa {
+}.root___1Nc_D {
+  margin: 20px auto;
+  padding: 10px 15px;
+  border: 1px solid #b6b6b6;
+  background: white;
+  z-index: 1;
+}
+.root___1GONa {
 
 }
 

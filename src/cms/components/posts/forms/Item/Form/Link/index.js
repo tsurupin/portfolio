@@ -18,20 +18,20 @@ class Link extends Component {
   }
 
   handleUpdateItem(props) {
-    this.props.handleUpdateItem({ sourceURL: props.sourceURL, sourceTitle: props.sourceTitle });
+    this.props.handleUpdateItem({ sourceUrl: props.sourceUrl, sourceTitle: props.sourceTitle });
   }
 
   render() {
-    const { handleSubmit, submitting, fields: { sourceURL, sourceTitle } } = this.props;
+    const { handleSubmit, submitting, fields: { sourceUrl, sourceTitle } } = this.props;
     return (
       <div className={styles.root}>
         <TextField
           className={styles.inputText}
-          {...sourceURL}
+          {...sourceUrl}
           floatingLabelText="SourceURL"
           hintText='Enter the sourceURL'
           fullWidth={true}
-          errorText={sourceURL.touched && sourceURL.error ? sourceURL.error : ''}
+          errorText={sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''}
         />
         <TextField
           className={styles.inputText}
@@ -72,17 +72,18 @@ function validate(values) {
     errors.sourceTitle = 'Enter sourceTitle'
   }
 
-  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
-    errors.sourceURL = 'URL is not valid'
+  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceUrl)) {
+    errors.sourceUrl = 'URL is not valid'
   }
 
   return errors;
 }
 
 
+
 export default reduxForm({
-  form: 'ItemFormLink',
-  fields: ['sourceURL', 'sourceTitle'],
+  form: 'ItemLinkForm',
+  fields: ['sourceUrl', 'sourceTitle'],
   validate
 })(Link);
 

@@ -3,8 +3,8 @@
 # Table name: authors
 #
 #  id                 :integer          not null, primary key
-#  email              :string(255)      default(""), not null
-#  encrypted_password :string(255)      default(""), not null
+#  email              :string(255)      not null
+#  encrypted_password :string(255)      not null
 #  name               :string(255)      not null
 #  image              :string(255)
 #  description        :text(65535)

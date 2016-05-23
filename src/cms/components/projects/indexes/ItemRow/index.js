@@ -35,13 +35,14 @@ class ItemRow extends Component {
 
   renderDescription() {
     if(this.props.description) {
+      console.log('hoge')
       return <TextDisplay description={this.props.description} />
     }
   }
 
   render() {
     return(
-      <li className={styles.root}>
+      <div className={styles.root}>
         <h2 className={styles.title}>{this.props.title}</h2>
         <Divider />
         {this.renderTags()}
@@ -50,7 +51,7 @@ class ItemRow extends Component {
         <a href={this.props.sourceUrl} target="_blank">
           <RaisedButton label="FORK ON GITHUB" styles={inlineStyles.button} />
         </a>
-      </li>
+      </div>
     );
   }
 }

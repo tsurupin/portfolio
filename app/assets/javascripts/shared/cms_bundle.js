@@ -66,15 +66,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(947);
+	var _reducers = __webpack_require__(952);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(955);
+	var _reactTapEventPlugin = __webpack_require__(961);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(960);
+	var _reduxThunk = __webpack_require__(966);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26653,6 +26653,11 @@
 	var MOVE_ITEM_DOWN = exports.MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
 	var MOVE_ITEM_BOTTOM = exports.MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
 
+	var FETCH_SOCIAL_ACCOUNTS = exports.FETCH_SOCIAL_ACCOUNTS = 'FETCH_SOCIAL_ACCOUNTS';
+	var CREATE_SOCIAL_ACCOUNT = exports.CREATE_SOCIAL_ACCOUNT = 'CREATE_SOCIAL_ACCOUNT';
+	var UPDATE_SOCIAL_ACCOUNT = exports.UPDATE_SOCIAL_ACCOUNT = 'UPDATE_SOCIAL_ACCOUNT';
+	var DELETE_SOCIAL_ACCOUNT = exports.DELETE_SOCIAL_ACCOUNT = 'DELETE_SOCIAL_ACCOUNT';
+
 	var FETCH_TAGS = exports.FETCH_TAGS = 'FETCH_TAGS';
 	var CREATE_TAG = exports.CREATE_TAG = 'CREATE_TAG';
 	var DELETE_TAG = exports.DELETE_TAG = 'DELETE_TAG';
@@ -26736,25 +26741,29 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index11 = __webpack_require__(940);
+	var _index11 = __webpack_require__(967);
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(941);
+	var _index13 = __webpack_require__(940);
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(943);
+	var _index15 = __webpack_require__(946);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(945);
+	var _index17 = __webpack_require__(948);
 
 	var _index18 = _interopRequireDefault(_index17);
 
-	var _index19 = __webpack_require__(946);
+	var _index19 = __webpack_require__(950);
 
 	var _index20 = _interopRequireDefault(_index19);
+
+	var _index21 = __webpack_require__(951);
+
+	var _index22 = _interopRequireDefault(_index21);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26762,18 +26771,18 @@
 	  _reactRouter.Route,
 	  { path: '/cms', component: _index2.default },
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _index4.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: (0, _index20.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: (0, _index20.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: (0, _index20.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: (0, _index20.default)(_index8.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: (0, _index20.default)(_index10.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: (0, _index20.default)(_index10.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-up', component: _index14.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-in', component: _index16.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/authors/edit', component: (0, _index20.default)(_index12.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/new', component: (0, _index20.default)(_form2.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/:id/edit', component: (0, _index20.default)(_form2.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _index18.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: (0, _index22.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: (0, _index22.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: (0, _index22.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: (0, _index22.default)(_index8.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: (0, _index22.default)(_index10.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: (0, _index22.default)(_index10.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-up', component: _index16.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-in', component: _index18.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about', component: (0, _index22.default)(_index12.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about/edit', component: (0, _index22.default)(_index14.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/edit', component: (0, _index22.default)(_form2.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _index20.default })
 	);
 
 /***/ },
@@ -26980,7 +26989,7 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/cms/posts/new' },
+	            { to: '/cms/about' },
 	            _react2.default.createElement(
 	              _iconButton2.default,
 	              null,
@@ -26989,7 +26998,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/cms/posts/new' },
+	            { to: '/cms' },
 	            _react2.default.createElement(
 	              _iconButton2.default,
 	              null,
@@ -38083,14 +38092,11 @@
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchPostSuccess(response.data));
-	    }, function (error) {
-	      return dispatch(fetchPostFailure(error.data));
 	    }).then(function (response) {
-	      if (response.type === _constants.FETCH_POST.FAILURE) {
-	        return;
-	      }
 	      dispatch((0, _items.fetchItems)(response.payload.items));
 	      dispatch((0, _tags.fetchTags)(response.payload.tags));
+	    }).catch(function (error) {
+	      return dispatch(fetchPostFailure(error.data));
 	    });
 	  };
 	}
@@ -38121,13 +38127,10 @@
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchNewPostSuccess(response.data));
-	    }, function (error) {
-	      return dispatch(fetchNewPostFailure(error.data));
 	    }).then(function (response) {
-	      if (response.type === _constants.FETCH_NEW_POST.FAILURE) {
-	        return;
-	      }
-	      dispatch((0, _tags.fetchTags)(response.payload.tags));
+	      return dispatch((0, _tags.fetchTags)(response.payload.tags));
+	    }).catch(function (error) {
+	      return dispatch(fetchNewPostFailure(error.data));
 	    });
 	  };
 	}
@@ -38350,6 +38353,7 @@
 	exports.capitalize = capitalize;
 	exports.trimPost = trimPost;
 	exports.trimProject = trimProject;
+	exports.trimAuthor = trimAuthor;
 
 	var _axios = __webpack_require__(335);
 
@@ -38359,9 +38363,20 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function getCSRFToken() {
+	  var el = document.querySelector('meta[name="csrf-token"]');
+	  return el ? el.getAttribute('content') : '';
+	}
+
 	var axios = exports.axios = _axios2.default.create({
+
 	  baseURL: _constants.ROOT_URL,
-	  headers: { 'Authorization': localStorage.getItem('accessToken') }
+	  headers: {
+	    'Accept': 'application/json',
+	    'Content-Type': 'application/json',
+	    'X-CSRF-Token': getCSRFToken(),
+	    'Authorization': localStorage.getItem('accessToken')
+	  }
 	});
 
 	function capitalize(string) {
@@ -38380,6 +38395,15 @@
 
 	function trimProject(params) {
 	  return _extends({}, convertKeyNameInSnakeCase(params));
+	}
+	function trimAuthor(params) {
+	  return _extends({}, convertKeyNameInSnakeCase(params), {
+	    social_accounts_attributes: params.socialAccountsAttributes.filter(function (item) {
+	      return item.url;
+	    }).map(function (item) {
+	      return convertKeyNameInSnakeCase(item);
+	    })
+	  });
 	}
 
 	function convertKeyNameInSnakeCase(object) {
@@ -52407,33 +52431,17 @@
 	      switch (this.props.item.targetType) {
 	        case _constants.TARGET_TYPES.HEADING.NAME:
 	        case _constants.TARGET_TYPES.SUB_HEADING.NAME:
-	          return _react2.default.createElement(_index4.default, {
-	            title: this.props.item.title,
-	            targetType: this.props.item.targetType
-	          });
-
+	          return _react2.default.createElement(_index4.default, this.props.item);
 	        case _constants.TARGET_TYPES.IMAGE.NAME:
-	          return _react2.default.createElement(_index6.default, { image: this.props.item.image });
+	          return _react2.default.createElement(_index6.default, this.props.item);
 	        case _constants.TARGET_TYPES.TWITTER.NAME:
-	          return _react2.default.createElement(_index8.default, {
-	            authorName: this.props.item.authorName,
-	            authorScreenName: this.props.item.authorScreenName,
-	            authorImageURL: this.props.item.authorImageURL,
-	            sourceURL: this.props.item.sourceURL,
-	            description: this.props.item.description });
+	          return _react2.default.createElement(_index8.default, this.props.item);
 	        case _constants.TARGET_TYPES.QUOTE.NAME:
-	          return _react2.default.createElement(_index10.default, {
-	            sourceURL: this.props.item.sourceURL,
-	            description: this.props.item.description });
+	          return _react2.default.createElement(_index10.default, this.props.item);
 	        case _constants.TARGET_TYPES.LINK.NAME:
-	          return _react2.default.createElement(_index12.default, {
-	            sourceURL: this.props.item.sourceURL,
-	            sourceTitle: this.props.item.sourceTitle });
+	          return _react2.default.createElement(_index12.default, this.props.item);
 	        case _constants.TARGET_TYPES.TEXT.NAME:
-	          return _react2.default.createElement(_index14.default, {
-	            style: this.props.item.style,
-	            description: this.props.item.description });
-
+	          return _react2.default.createElement(_index14.default, this.props.item);
 	        default:
 	          return;
 	      }
@@ -56252,8 +56260,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -56264,11 +56270,9 @@
 	  _inherits(Image, _Component);
 
 	  function Image(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Image);
 
-	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Image)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Image).call(this, props));
 	  }
 
 	  _createClass(Image, [{
@@ -56285,12 +56289,11 @@
 	  return Image;
 	}(_react.Component);
 
-	exports.default = Image;
-
-
 	Image.propTypes = {
 	  image: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Image;
 
 /***/ },
 /* 496 */
@@ -56353,13 +56356,13 @@
 	        _react2.default.createElement(
 	          'a',
 	          { className: _styles2.default.authorName,
-	            href: this.props.sourceURL,
+	            href: this.props.sourceUrl,
 	            ref: 'nofollow',
 	            target: '_blank' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: _styles2.default.header },
-	            _react2.default.createElement(_avatar2.default, { src: this.props.authorImageURL }),
+	            _react2.default.createElement(_avatar2.default, { src: this.props.authorImageUrl }),
 	            this.props.authorName,
 	            _react2.default.createElement(
 	              'p',
@@ -56380,16 +56383,15 @@
 	  return Twitter;
 	}(_react.Component);
 
-	exports.default = Twitter;
-
-
 	Twitter.propTypes = {
 	  authorName: _react.PropTypes.string.isRequired,
 	  authorScreenName: _react.PropTypes.string,
-	  authorImageURL: _react.PropTypes.string.isRequired,
-	  sourceURL: _react.PropTypes.string.isRequired,
+	  authorImageUrl: _react.PropTypes.string.isRequired,
+	  sourceUrl: _react.PropTypes.string.isRequired,
 	  description: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Twitter;
 
 /***/ },
 /* 498 */
@@ -56604,8 +56606,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -56616,11 +56616,9 @@
 	  _inherits(Quote, _Component);
 
 	  function Quote(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Quote);
 
-	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Quote)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Quote).call(this, props));
 	  }
 
 	  _createClass(Quote, [{
@@ -56631,7 +56629,7 @@
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(
 	          'a',
-	          { href: this.props.sourceURL, target: '_blank' },
+	          { href: this.props.sourceUrl, target: '_blank' },
 	          _react2.default.createElement(
 	            'blockquote',
 	            { className: _styles2.default.block },
@@ -56649,13 +56647,12 @@
 	  return Quote;
 	}(_react.Component);
 
-	exports.default = Quote;
-
-
 	Quote.propTypes = {
-	  sourceURL: _react.PropTypes.string.isRequired,
+	  sourceUrl: _react.PropTypes.string.isRequired,
 	  description: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Quote;
 
 /***/ },
 /* 501 */
@@ -56715,7 +56712,7 @@
 	          'a',
 	          {
 	            className: _styles2.default.title,
-	            href: this.props.sourceURL,
+	            href: this.props.sourceUrl,
 	            target: '_blank'
 	          },
 	          this.props.sourceTitle
@@ -56727,13 +56724,12 @@
 	  return Link;
 	}(_react.Component);
 
-	exports.default = Link;
-
-
 	Link.propTypes = {
-	  sourceURL: _react.PropTypes.string.isRequired,
+	  sourceUrl: _react.PropTypes.string.isRequired,
 	  sourceTitle: _react.PropTypes.string.isRequired
 	};
+
+	exports.default = Link;
 
 /***/ },
 /* 503 */
@@ -56768,8 +56764,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -56780,11 +56774,9 @@
 	  _inherits(Text, _Component);
 
 	  function Text(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Text);
 
-	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Text)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Text).call(this, props));
 	  }
 
 	  _createClass(Text, [{
@@ -74850,7 +74842,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"colors":"'../../../../css/colors.scss'","label-color":"#B3B3B3","root":"root___3XYh5 marginHorizontalXSmall___2m9N9","header":"header___rMhUx headerLabel___7_6E5 fontXSmall___1ziQ7","editor":"editor___1e7gj","hidePlaceholder":"hidePlaceholder___298in","actionBox":"actionBox___2PXYw","actionButton":"actionButton___1npcy","styleButton":"styleButton___Vh-lm","activeButton":"activeButton___36tVT styleButton___Vh-lm","controls":"controls___2Tx49","blockquote":"blockquote___1h9zB","headerOne":"headerOne___U11Xx","headerTwo":"headerTwo___3TIpo","headerThree":"headerThree___1fswz","headerFive":"headerFive___36oG1","headerSix":"headerSix___eyoFI","undecoratedListItem":"undecoratedListItem___1f_AL","orderedListItem":"orderedListItem___2oBY2","bold":"bold___Yt_ph","italic":"italic___3sEag","underline":"underline___3UmK-","code":"code___1qH88","link":"link___PWlm_","urlInputContainer":"urlInputContainer___2a5_3"};
+	module.exports = {"colors":"'../../../../css/colors.scss'","label-color":"#B3B3B3","root":"root___3XYh5 marginHorizontalXSmall___2m9N9","editor":"editor___1e7gj","hidePlaceholder":"hidePlaceholder___298in","actionBox":"actionBox___2PXYw","actionButton":"actionButton___1npcy","styleButton":"styleButton___Vh-lm","activeButton":"activeButton___36tVT styleButton___Vh-lm","controls":"controls___2Tx49","blockquote":"blockquote___1h9zB","headerOne":"headerOne___U11Xx","headerTwo":"headerTwo___3TIpo","headerThree":"headerThree___1fswz","headerFive":"headerFive___36oG1","headerSix":"headerSix___eyoFI","undecoratedListItem":"undecoratedListItem___1f_AL","orderedListItem":"orderedListItem___2oBY2","bold":"bold___Yt_ph","italic":"italic___3sEag","underline":"underline___3UmK-","code":"code___1qH88","link":"link___PWlm_","urlInputContainer":"urlInputContainer___2a5_3","header":"header___rMhUx"};
 
 /***/ },
 /* 646 */
@@ -74963,6 +74955,7 @@
 	        case _constants.TARGET_TYPES.HEADING.NAME:
 	        case _constants.TARGET_TYPES.SUB_HEADING.NAME:
 	          return _react2.default.createElement(_index2.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { title: this.props.item.title },
 	            handleUpdateItem: this.handleUpdateItem,
@@ -74970,6 +74963,7 @@
 	          });
 	        case _constants.TARGET_TYPES.IMAGE.NAME:
 	          return _react2.default.createElement(_index4.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            image: this.props.item.image,
 	            handleUpdateItem: this.handleUpdateItem,
@@ -74977,6 +74971,7 @@
 	          });
 	        case _constants.TARGET_TYPES.TWITTER.NAME:
 	          return _react2.default.createElement(_index6.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { sourceURL: this.props.item.sourceURL },
 	            sortRank: this.props.sortRank,
@@ -74985,6 +74980,7 @@
 	          });
 	        case _constants.TARGET_TYPES.QUOTE.NAME:
 	          return _react2.default.createElement(_index8.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { sourceURL: this.props.item.sourceURL, description: this.props.item.description },
 	            handleUpdateItem: this.handleUpdateItem,
@@ -74992,6 +74988,7 @@
 	          });
 	        case _constants.TARGET_TYPES.LINK.NAME:
 	          return _react2.default.createElement(_index10.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { sourceURL: this.props.item.sourceURL, sourceTitle: this.props.item.sourceTitle },
 	            handleUpdateItem: this.handleUpdateItem,
@@ -75137,21 +75134,21 @@
 	  }
 	};
 
-	var ItemFormHeading = function (_Component) {
-	  _inherits(ItemFormHeading, _Component);
+	var Heading = function (_Component) {
+	  _inherits(Heading, _Component);
 
-	  function ItemFormHeading(props) {
+	  function Heading(props) {
 	    var _Object$getPrototypeO;
 
-	    _classCallCheck(this, ItemFormHeading);
+	    _classCallCheck(this, Heading);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormHeading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Heading)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormHeading, [{
+	  _createClass(Heading, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
 	      this.props.handleUpdateItem({ title: props.title });
@@ -75164,13 +75161,15 @@
 	      var submitting = _props.submitting;
 	      var title = _props.fields.title;
 
+	      var label = this.props.targetType === 'ItemHeading' ? 'Heading' : 'SubHeading';
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
 	        }, title, {
-	          floatingLabelText: this.props.targetType == 'ItemHeading' ? 'Heading' : 'SubHeading',
+	          floatingLabelText: label,
 	          hintText: 'Enter the title',
 	          fullWidth: true,
 	          errorText: title.touched && title.error ? title.error : ''
@@ -75193,10 +75192,10 @@
 	    }
 	  }]);
 
-	  return ItemFormHeading;
+	  return Heading;
 	}(_react.Component);
 
-	ItemFormHeading.propTypes = {
+	Heading.propTypes = {
 	  targetType: _react.PropTypes.string.isRequired,
 	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.object.isRequired,
@@ -75212,10 +75211,10 @@
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'ItemFormHeading',
+	  form: 'ItemHeadingForm',
 	  fields: ['title'],
 	  validate: validate
-	})(ItemFormHeading);
+	})(Heading);
 
 /***/ },
 /* 651 */
@@ -75275,6 +75274,8 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -75292,6 +75293,8 @@
 	var _addCircle = __webpack_require__(651);
 
 	var _addCircle2 = _interopRequireDefault(_addCircle);
+
+	var _reduxForm = __webpack_require__(392);
 
 	var _styles = __webpack_require__(652);
 
@@ -75313,64 +75316,53 @@
 	  }
 	};
 
-	var ItemFormImage = function (_Component) {
-	  _inherits(ItemFormImage, _Component);
+	var Image = function (_Component) {
+	  _inherits(Image, _Component);
 
-	  function ItemFormImage(props) {
+	  function Image(props) {
 	    var _Object$getPrototypeO;
 
-	    _classCallCheck(this, ItemFormImage);
+	    _classCallCheck(this, Image);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormImage)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Image)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	    _this.state = {
-	      image: props.image,
-	      errorMessage: ''
-	    };
-	    _this.handleUpdate = _this.handleUpdate.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormImage, [{
-	    key: 'handleUpdate',
-	    value: function handleUpdate(image) {
-	      this.setState(image);
-	    }
-	  }, {
+	  _createClass(Image, [{
 	    key: 'handleUpdateItem',
-	    value: function handleUpdateItem() {
-	      if (!this.state.image) {
-	        return this.showErrorMessage('Please upload image');
-	      }
-	      this.props.handleUpdateItem({ image: this.state.image });
-	    }
-	  }, {
-	    key: 'showErrorMessage',
-	    value: function showErrorMessage(errorMessage) {
-	      this.setState({ errorMessage: errorMessage });
+	    value: function handleUpdateItem(props) {
+	      this.props.handleUpdateItem({ image: props.image });
 	    }
 	  }, {
 	    key: 'renderErrorMessage',
 	    value: function renderErrorMessage() {
-	      if (this.state.errorMessage) {
+	      if (this.props.fields.image.touched && this.props.fields.image.error) {
 	        return _react2.default.createElement(
 	          'span',
 	          { className: _styles2.default.errorMessage },
-	          this.state.errorMessage
+	          this.props.fields.image.error
 	        );
 	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var image = _props.fields.image;
+
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
-	        _react2.default.createElement(_index2.default, {
-	          image: this.state.image,
-	          handleUpdate: this.handleUpdate
-	        }),
+	        _react2.default.createElement(_index2.default, _extends({}, image, {
+	          handleUpdate: function handleUpdate(file) {
+	            return image.onChange(file);
+	          }
+	        })),
 	        this.renderErrorMessage(),
 	        _react2.default.createElement(
 	          'div',
@@ -75380,26 +75372,39 @@
 	            className: _styles2.default.submitButton,
 	            label: 'Save',
 	            labelPosition: 'after',
+	            disabled: submitting,
 	            icon: _react2.default.createElement(_addCircle2.default, null),
 	            style: inlineStyles.submitButton,
-	            onClick: this.handleUpdateItem
+	            onClick: handleSubmit(this.handleUpdateItem)
 	          })
 	        )
 	      );
 	    }
 	  }]);
 
-	  return ItemFormImage;
+	  return Image;
 	}(_react.Component);
 
-	exports.default = ItemFormImage;
-
-
-	ItemFormImage.propTypes = {
-	  image: _react.PropTypes.string,
+	Image.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.element.isRequired,
 	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
+
+	function validate(values) {
+	  var errors = {};
+	  if (!values.image) {
+	    errors.image = 'Entry image';
+	  }
+
+	  return errors;
+	}
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'ItemImageForm',
+	  fields: ['image'],
+	  validate: validate
+	})(Image);
 
 /***/ },
 /* 654 */
@@ -75442,7 +75447,6 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DropzoneImage).call(this, props));
 
 	    _this.state = { errorMessage: '' };
-
 	    _this.handleDrop = _this.handleDrop.bind(_this);
 	    return _this;
 	  }
@@ -75460,7 +75464,7 @@
 	      var reader = new FileReader();
 
 	      reader.onload = function (upload) {
-	        self.props.handleUpdate({ image: upload.target.result });
+	        self.props.handleUpdate(upload.target.result);
 	        self.setState({ errorMessage: '' });
 	      };
 
@@ -75473,8 +75477,8 @@
 	  }, {
 	    key: 'renderImageBox',
 	    value: function renderImageBox() {
-	      if (this.props.image) {
-	        return _react2.default.createElement('img', { className: _styles2.default.previewImage, src: this.props.image, width: '100' });
+	      if (this.props.value) {
+	        return _react2.default.createElement('img', { className: _styles2.default.previewImage, src: this.props.value, width: '100' });
 	      }
 	    }
 	  }, {
@@ -75491,7 +75495,7 @@
 	  }, {
 	    key: 'renderPlaceholder',
 	    value: function renderPlaceholder() {
-	      if (!this.props.image) {
+	      if (!this.props.value) {
 	        return _react2.default.createElement(
 	          'span',
 	          { className: _styles2.default.placeholder },
@@ -76005,13 +76009,13 @@
 	        setTimeout(function () {
 
 	          _this2.setState({ loading: true });
-	          _this2.props.fetchTweet(props.sourceURL, _this2.props.sortRank).then(function () {
+	          _this2.props.fetchTweet(props.sourceUrl, _this2.props.sortRank).then(function () {
 	            _this2.setState({ loading: false });
 	            _this2.props.handleUpdateItem({});
 	            resolve();
 	          }).catch(function (error) {
 	            _this2.setState({ loading: false });
-	            reject({ sourceURL: error });
+	            reject({ sourceUrl: error });
 	          });
 	        }, 1000);
 	      });
@@ -76036,7 +76040,7 @@
 	      var _props = this.props;
 	      var handleSubmit = _props.handleSubmit;
 	      var submitting = _props.submitting;
-	      var sourceURL = _props.fields.sourceURL;
+	      var sourceUrl = _props.fields.sourceUrl;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -76044,11 +76048,11 @@
 	        this.renderLoadingIndicator(),
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
-	        }, sourceURL, {
+	        }, sourceUrl, {
 	          floatingLabelText: 'Twitter',
 	          hintText: 'Enter the sourceURL',
 	          fullWidth: true,
-	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	          errorText: sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''
 	        })),
 	        _react2.default.createElement(
 	          'div',
@@ -76084,8 +76088,8 @@
 
 	function validate(values) {
 	  var errors = {};
-	  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceURL)) {
-	    errors.sourceURL = 'URL is not valid';
+	  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.sourceUrl)) {
+	    errors.sourceUrl = 'URL is not valid';
 	  }
 
 	  return errors;
@@ -76093,7 +76097,7 @@
 
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'ItemFormTwitter',
-	  fields: ['sourceURL'],
+	  fields: ['sourceUrl'],
 	  validate: validate
 	}, null, { fetchTweet: _items.fetchTweet })(Twitter);
 
@@ -76514,8 +76518,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -76528,24 +76530,22 @@
 	  }
 	};
 
-	var ItemFormQuote = function (_Component) {
-	  _inherits(ItemFormQuote, _Component);
+	var Quote = function (_Component) {
+	  _inherits(Quote, _Component);
 
-	  function ItemFormQuote(props) {
-	    var _Object$getPrototypeO;
+	  function Quote(props) {
+	    _classCallCheck(this, Quote);
 
-	    _classCallCheck(this, ItemFormQuote);
-
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormQuote)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Quote).call(this, props));
 
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormQuote, [{
+	  _createClass(Quote, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
-	      this.props.handleUpdateItem({ sourceURL: props.sourceURL, description: props.description });
+	      this.props.handleUpdateItem({ sourceUrl: props.sourceUrl, description: props.description });
 	    }
 	  }, {
 	    key: 'render',
@@ -76554,7 +76554,7 @@
 	      var handleSubmit = _props.handleSubmit;
 	      var submitting = _props.submitting;
 	      var _props$fields = _props.fields;
-	      var sourceURL = _props$fields.sourceURL;
+	      var sourceUrl = _props$fields.sourceUrl;
 	      var description = _props$fields.description;
 
 	      return _react2.default.createElement(
@@ -76571,11 +76571,11 @@
 	        })),
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
-	        }, sourceURL, {
+	        }, sourceUrl, {
 	          floatingLabelText: 'SourceURL',
 	          hintText: 'Enter the sourceURL',
 	          fullWidth: true,
-	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	          errorText: sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''
 	        })),
 	        _react2.default.createElement(
 	          'div',
@@ -76595,10 +76595,10 @@
 	    }
 	  }]);
 
-	  return ItemFormQuote;
+	  return Quote;
 	}(_react.Component);
 
-	ItemFormQuote.propTypes = {
+	Quote.propTypes = {
 	  targetType: _react.PropTypes.string.isRequired,
 	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.object.isRequired,
@@ -76612,18 +76612,18 @@
 	    errors.description = 'Enter description';
 	  }
 
-	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
-	    errors.sourceURL = 'URL is not valid';
+	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceUrl)) {
+	    errors.sourceUrl = 'URL is not valid';
 	  }
 
 	  return errors;
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'ItemFormQuote',
-	  fields: ['sourceURL', 'description'],
+	  form: 'ItemQuoteForm',
+	  fields: ['sourceUrl', 'description'],
 	  validate: validate
-	})(ItemFormQuote);
+	})(Quote);
 
 /***/ },
 /* 660 */
@@ -76692,7 +76692,7 @@
 	  _createClass(Link, [{
 	    key: 'handleUpdateItem',
 	    value: function handleUpdateItem(props) {
-	      this.props.handleUpdateItem({ sourceURL: props.sourceURL, sourceTitle: props.sourceTitle });
+	      this.props.handleUpdateItem({ sourceUrl: props.sourceUrl, sourceTitle: props.sourceTitle });
 	    }
 	  }, {
 	    key: 'render',
@@ -76701,7 +76701,7 @@
 	      var handleSubmit = _props.handleSubmit;
 	      var submitting = _props.submitting;
 	      var _props$fields = _props.fields;
-	      var sourceURL = _props$fields.sourceURL;
+	      var sourceUrl = _props$fields.sourceUrl;
 	      var sourceTitle = _props$fields.sourceTitle;
 
 	      return _react2.default.createElement(
@@ -76709,11 +76709,11 @@
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
-	        }, sourceURL, {
+	        }, sourceUrl, {
 	          floatingLabelText: 'SourceURL',
 	          hintText: 'Enter the sourceURL',
 	          fullWidth: true,
-	          errorText: sourceURL.touched && sourceURL.error ? sourceURL.error : ''
+	          errorText: sourceUrl.touched && sourceUrl.error ? sourceUrl.error : ''
 	        })),
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
@@ -76758,16 +76758,16 @@
 	    errors.sourceTitle = 'Enter sourceTitle';
 	  }
 
-	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceURL)) {
-	    errors.sourceURL = 'URL is not valid';
+	  if (!/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(values.sourceUrl)) {
+	    errors.sourceUrl = 'URL is not valid';
 	  }
 
 	  return errors;
 	}
 
 	exports.default = (0, _reduxForm.reduxForm)({
-	  form: 'ItemFormLink',
-	  fields: ['sourceURL', 'sourceTitle'],
+	  form: 'ItemLinkForm',
+	  fields: ['sourceUrl', 'sourceTitle'],
 	  validate: validate
 	})(Link);
 
@@ -76780,6 +76780,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -76799,6 +76801,8 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
+	var _reduxForm = __webpack_require__(392);
+
 	var _styles = __webpack_require__(652);
 
 	var _styles2 = _interopRequireDefault(_styles);
@@ -76817,36 +76821,44 @@
 	  submitButton: { marginLeft: 12 }
 	};
 
-	var ItemFormText = function (_Component) {
-	  _inherits(ItemFormText, _Component);
+	var Text = function (_Component) {
+	  _inherits(Text, _Component);
 
-	  function ItemFormText(props) {
+	  function Text(props) {
 	    var _Object$getPrototypeO;
 
-	    _classCallCheck(this, ItemFormText);
+	    _classCallCheck(this, Text);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ItemFormText)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Text)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
 
-	    _this.state = { description: props.description };
-
-	    _this.handleUpdate = _this.handleUpdate.bind(_this);
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(ItemFormText, [{
-	    key: 'handleUpdate',
-	    value: function handleUpdate(description) {
-	      this.setState(description);
+	  _createClass(Text, [{
+	    key: 'handleUpdateItem',
+	    value: function handleUpdateItem(props) {
+	      this.props.handleUpdateItem({ description: props.description });
 	    }
 	  }, {
-	    key: 'handleUpdateItem',
-	    value: function handleUpdateItem() {
-	      this.props.handleUpdateItem({ description: this.state.description });
+	    key: 'renderErrorMessage',
+	    value: function renderErrorMessage() {
+	      if (this.props.fields.description.touched && this.props.fields.description.error) {
+	        return _react2.default.createElement(
+	          'span',
+	          { className: _styles2.default.errorMessage },
+	          this.props.fields.description.error
+	        );
+	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var description = _props.fields.description;
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
@@ -76855,10 +76867,12 @@
 	          { className: _styles2.default.header },
 	          'Text'
 	        ),
-	        _react2.default.createElement(_index2.default, {
-	          description: this.props.description,
-	          handleUpdate: this.handleUpdate
-	        }),
+	        _react2.default.createElement(_index2.default, _extends({}, description, {
+	          handleUpdate: function handleUpdate(value) {
+	            description.onChange(value);
+	          }
+	        })),
+	        this.renderErrorMessage(),
 	        _react2.default.createElement(
 	          'div',
 	          { className: _styles2.default.submitBox },
@@ -76868,24 +76882,38 @@
 	            label: 'Save',
 	            labelPosition: 'after',
 	            icon: _react2.default.createElement(_addCircle2.default, null),
+	            disabled: submitting,
 	            style: inlineStyles.submitButton,
-	            onClick: this.handleUpdateItem })
+	            onClick: handleSubmit(this.handleUpdateItem) })
 	        )
 	      );
 	    }
 	  }]);
 
-	  return ItemFormText;
+	  return Text;
 	}(_react.Component);
 
-	ItemFormText.propTypes = {
+	Text.propTypes = {
 	  targetType: _react.PropTypes.string.isRequired,
-	  description: _react.PropTypes.string,
+	  fields: _react.PropTypes.object.isRequired,
 	  cancelButton: _react.PropTypes.object.isRequired,
 	  handleUpdateItem: _react.PropTypes.func.isRequired
 	};
 
-	exports.default = ItemFormText;
+	function validate(values) {
+	  var errors = {};
+	  if (!values.description) {
+	    errors.description = 'Enter description';
+	  }
+
+	  return errors;
+	}
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'ItemTextForm',
+	  fields: ['description'],
+	  validate: validate
+	})(Text);
 
 /***/ },
 /* 662 */
@@ -76946,6 +76974,11 @@
 	  }
 	};
 
+	var decorator = new _draftJs.CompositeDecorator([{
+	  strategy: _utilities.findLinkEntities,
+	  component: _utilities.Link
+	}]);
+
 	var TextEditor = function (_Component) {
 	  _inherits(TextEditor, _Component);
 
@@ -76954,15 +76987,10 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TextEditor).call(this, props));
 
-	    var decorator = new _draftJs.CompositeDecorator([{
-	      strategy: _utilities.findLinkEntities,
-	      component: _utilities.Link
-	    }]);
-
-	    if (props.description) {
-	      var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(props.description));
+	    if (props.value) {
+	      var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(props.value));
 	      _this.state = {
-	        editorState: _draftJs.EditorState.createWithContent(blocks, decorator),
+	        editorState: _draftJs.EditorState.createWithContent(_draftJs.ContentState.createFromText('text'), decorator),
 	        inputtable: false,
 	        urlValue: ''
 	      };
@@ -76995,6 +77023,16 @@
 	  }
 
 	  _createClass(TextEditor, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (!this.props.value && nextProps.value) {
+	        var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(nextProps.value));
+	        this.setState({
+	          editorState: _draftJs.EditorState.createWithContent(blocks, decorator)
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'handlePromptForLink',
 	    value: function handlePromptForLink(e) {
 	      var _this2 = this;
@@ -77059,7 +77097,7 @@
 	    key: 'handleUpdate',
 	    value: function handleUpdate() {
 	      var description = JSON.stringify((0, _draftJs.convertToRaw)(this.state.editorState.getCurrentContent()));
-	      this.props.handleUpdate({ description: description });
+	      this.props.handleUpdate(description);
 	    }
 	  }, {
 	    key: 'handleToggleBlockType',
@@ -89534,6 +89572,7 @@
 	    value: function render() {
 	      var _this2 = this;
 
+	      // TODO: show nice apology message when there is no project
 	      if (this.props.projects.length === 0) {
 	        return _react2.default.createElement('div', null);
 	      }
@@ -89720,7 +89759,6 @@
 	}
 
 	function saveProject(props) {
-	  console.log(props);
 	  var project = (0, _utilities.trimProject)(props.project);
 	  var request = void 0;
 	  if (project.id) {
@@ -89856,6 +89894,7 @@
 	    key: 'renderDescription',
 	    value: function renderDescription() {
 	      if (this.props.description) {
+	        console.log('hoge');
 	        return _react2.default.createElement(_index2.default, { description: this.props.description });
 	      }
 	    }
@@ -89863,7 +89902,7 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'li',
+	        'div',
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(
 	          'h2',
@@ -90148,18 +90187,9 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).call(this, props));
 
-	    console.log(props);
-
-	    _this.state = {
-	      image: '',
-	      description: ''
-	    };
-
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.handleAddTag = _this.handleAddTag.bind(_this);
 	    _this.handleDeleteTag = _this.handleDeleteTag.bind(_this);
-	    _this.handleUpdateImage = _this.handleUpdateImage.bind(_this);
-	    _this.handleUpdateText = _this.handleUpdateText.bind(_this);
 	    return _this;
 	  }
 
@@ -90173,21 +90203,10 @@
 	      }
 	    }
 	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      this.setState({
-	        image: nextProps.image,
-	        description: nextProps.description
-	      });
-	    }
-	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
-	      console.log(props);
 	      this.props.saveProject({
 	        project: _extends({}, props, {
-	          image: this.state.image,
-	          description: this.state.description,
 	          taggingsAttributes: this.props.tags
 	        })
 	      });
@@ -90203,20 +90222,8 @@
 	      this.props.deleteTag(sortRank);
 	    }
 	  }, {
-	    key: 'handleUpdateImage',
-	    value: function handleUpdateImage(image) {
-	      this.setState(image);
-	    }
-	  }, {
-	    key: 'handleUpdateText',
-	    value: function handleUpdateText(text) {
-	      this.setState(text);
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-
-	      console.log(this.state);
 
 	      var headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
 	      var submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
@@ -90226,6 +90233,8 @@
 	      var title = _props$fields.title;
 	      var sampleUrl = _props$fields.sampleUrl;
 	      var sourceUrl = _props$fields.sourceUrl;
+	      var image = _props$fields.image;
+	      var description = _props$fields.description;
 
 
 	      return _react2.default.createElement(
@@ -90243,10 +90252,11 @@
 	          errorText: title.touched && title.error ? title.error : ''
 	        })),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_index4.default, {
-	          description: this.state.description,
-	          handleUpdate: this.handleUpdateText
-	        }),
+	        _react2.default.createElement(_index4.default, _extends({}, description, {
+	          handleUpdate: function handleUpdate(value) {
+	            description.onChange(value);
+	          }
+	        })),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(_textField2.default, _extends({}, sourceUrl, {
 	          floatingLabelText: 'SourceURL',
@@ -90265,10 +90275,11 @@
 	          handleDeleteTag: this.handleDeleteTag
 	        }),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_index2.default, {
-	          image: this.state.image,
-	          handleUpdate: this.handleUpdateImage
-	        }),
+	        _react2.default.createElement(_index2.default, _extends({}, image, {
+	          handleUpdate: function handleUpdate(file) {
+	            return image.onChange(file);
+	          }
+	        })),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(_raisedButton2.default, {
@@ -90293,13 +90304,11 @@
 	  return errors;
 	}
 
-	var fields = ['id', 'title', 'sourceUrl', 'sampleUrl'];
+	var fields = ['id', 'title', 'sourceUrl', 'sampleUrl', 'image', 'description'];
 
 	function mapStateToProps(state) {
 	  return {
 	    initialValues: state.projects.project,
-	    image: state.projects.project.image,
-	    description: state.projects.project.description,
 	    tags: state.tags.tags,
 	    tagSuggestions: state.tags.tagSuggestions
 	  };
@@ -90307,8 +90316,6 @@
 
 	ProjectsForm.propTypes = {
 	  fields: _react.PropTypes.object.isRequired,
-	  image: _react.PropTypes.string,
-	  description: _react.PropTypes.string,
 	  params: _react.PropTypes.object,
 	  fetchProject: _react.PropTypes.func.isRequired,
 	  fetchNewProject: _react.PropTypes.func.isRequired,
@@ -90395,11 +90402,45 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _authors = __webpack_require__(941);
+
+	var _socialAccounts = __webpack_require__(942);
+
+	var _reactRedux = __webpack_require__(158);
+
+	var _reduxForm = __webpack_require__(392);
+
+	var _index = __webpack_require__(654);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _textField = __webpack_require__(441);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _index3 = __webpack_require__(662);
+
+	var _index4 = _interopRequireDefault(_index3);
+
+	var _index5 = __webpack_require__(943);
+
+	var _index6 = _interopRequireDefault(_index5);
+
+	var _raisedButton = __webpack_require__(470);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _styles = __webpack_require__(945);
+
+	var _styles2 = _interopRequireDefault(_styles);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -90409,22 +90450,115 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var inlineStyles = {
+	  submitButton: {
+	    position: 'absolute',
+	    bottom: 10,
+	    right: 15
+	  },
+	  indicator: {
+	    display: 'inline-block',
+	    position: 'relative'
+	  }
+	};
+
 	var AuthorsForm = function (_Component) {
 	  _inherits(AuthorsForm, _Component);
 
-	  function AuthorsForm() {
+	  function AuthorsForm(props) {
 	    _classCallCheck(this, AuthorsForm);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).call(this, props));
+
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.handleUpdateSocialAccount = _this.handleUpdateSocialAccount.bind(_this);
+
+	    return _this;
 	  }
 
 	  _createClass(AuthorsForm, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.fetchAuthor();
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(props) {
+	      this.props.updateAuthor({
+	        author: _extends({}, props, {
+	          socialAccountsAttributes: this.props.socialAccounts
+	        })
+	      });
+	    }
+	  }, {
+	    key: 'handleUpdateSocialAccount',
+	    value: function handleUpdateSocialAccount(sortRank, url) {
+	      this.props.updateSocialAccount(sortRank, url);
+	    }
+	  }, {
+	    key: 'renderSocialAccounts',
+	    value: function renderSocialAccounts() {
+	      var _this2 = this;
+
+	      return this.props.socialAccounts.map(function (account, index) {
+	        return _react2.default.createElement(_index6.default, {
+	          key: index,
+	          sortRank: index,
+	          accountType: account.accountType,
+	          url: account.url,
+	          handleUpdate: _this2.handleUpdateSocialAccount
+	        });
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var submitting = _props.submitting;
+	      var _props$fields = _props.fields;
+	      var name = _props$fields.name;
+	      var image = _props$fields.image;
+	      var description = _props$fields.description;
+
+
 	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'Hoge'
+	        'form',
+	        { className: _styles2.default.root, onSubmit: handleSubmit(this.handleSubmit) },
+	        _react2.default.createElement(
+	          'h2',
+	          { className: _styles2.default.heading },
+	          'Update About'
+	        ),
+	        _react2.default.createElement(_textField2.default, _extends({}, name, {
+	          floatingLabelText: 'name',
+	          hintText: 'Enter name',
+	          fullWidth: true,
+	          errorText: name.touched && name.error ? name.error : ''
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_index4.default, _extends({}, description, {
+	          handleUpdate: function handleUpdate(value) {
+	            description.onChange(value);
+	          }
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_index2.default, _extends({}, image, {
+	          handleUpdate: function handleUpdate(file) {
+	            return image.onChange(file);
+	          }
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        this.renderSocialAccounts(),
+	        _react2.default.createElement(_raisedButton2.default, {
+	          type: 'submit',
+	          label: 'Update',
+	          secondary: true,
+	          submitting: submitting,
+	          style: inlineStyles.submitButton
+	        })
 	      );
 	    }
 	  }]);
@@ -90432,10 +90566,254 @@
 	  return AuthorsForm;
 	}(_react.Component);
 
-	exports.default = AuthorsForm;
+	function validate(values) {
+	  var errors = {};
+	  if (!values.name) {
+	    errors.name = 'Entry name';
+	  }
+
+	  return errors;
+	}
+
+	var fields = ['id', 'name', 'image', 'description'];
+
+	function mapStateToProps(state) {
+	  return {
+	    initialValues: state.authors.author,
+	    socialAccounts: state.socialAccounts
+	  };
+	}
+
+	AuthorsForm.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
+	  socialAccounts: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    accountType: _react.PropTypes.string.isRequired,
+	    url: _react.PropTypes.string,
+	    id: _react.PropTypes.number,
+	    authorId: _react.PropTypes.number
+	  })),
+	  params: _react.PropTypes.object,
+	  fetchAuthor: _react.PropTypes.func.isRequired,
+	  updateAuthor: _react.PropTypes.func.isRequired,
+	  updateSocialAccount: _react.PropTypes.func.isRequired
+	};
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'AuthorsForm',
+	  fields: fields,
+	  validate: validate
+	}, mapStateToProps, {
+	  fetchAuthor: _authors.fetchAuthor,
+	  updateAuthor: _authors.updateAuthor,
+	  createSocialAccount: _socialAccounts.createSocialAccount,
+	  updateSocialAccount: _socialAccounts.updateSocialAccount,
+	  deleteSocialAccount: _socialAccounts.deleteSocialAccount
+	})(AuthorsForm);
 
 /***/ },
 /* 941 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchAuthor = fetchAuthor;
+	exports.updateAuthor = updateAuthor;
+	exports.updateAuthorRequest = updateAuthorRequest;
+
+	var _utilities = __webpack_require__(360);
+
+	var _constants = __webpack_require__(243);
+
+	var _reactRouter = __webpack_require__(184);
+
+	var _socialAccounts = __webpack_require__(942);
+
+	function fetchAuthor() {
+	  var request = _utilities.axios.get(_constants.AUTHOR_PATH + '/');
+	  return function (dispatch) {
+	    return request.then(function (response) {
+	      dispatch(fetchAuthorSuccess(response.data));
+	      dispatch((0, _socialAccounts.fetchSocialAccounts)(response.data));
+	    }).catch(function (error) {
+	      return dispatch(fetchAuthorFailure(error.data));
+	    });
+	  };
+	}
+
+	function fetchAuthorSuccess(response) {
+	  return {
+	    type: _constants.FETCH_AUTHOR.SUCCESS,
+	    payload: { author: response }
+	  };
+	}
+
+	function fetchAuthorFailure(error) {
+	  return {
+	    type: _constants.FETCH_AUTHOR.FAILURE,
+	    payload: error
+	  };
+	};
+
+	function updateAuthor(props) {
+	  var author = (0, _utilities.trimAuthor)(props.author);
+	  var request = _utilities.axios.patch('' + _constants.AUTHOR_PATH, { author: author });
+
+	  return function (dispatch) {
+	    dispatch(updateAuthorRequest());
+	    return request.then(function () {
+	      return dispatch(updateAuthorSuccess());
+	    }).catch(function (error) {
+	      return dispatch(updateAuthorFailure(error.data));
+	    });
+	  };
+	}
+
+	function updateAuthorRequest() {
+	  return {
+	    type: _constants.UPDATE_AUTHOR.REQUEST
+	  };
+	}
+
+	function updateAuthorSuccess() {
+	  _reactRouter.browserHistory.push('/cms/projects');
+	}
+
+	function updateAuthorFailure(error) {
+	  return {
+	    type: _constants.UPDATE_AUTHOR.FAILURE,
+	    payload: error
+	  };
+	}
+
+/***/ },
+/* 942 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchSocialAccounts = fetchSocialAccounts;
+	exports.updateSocialAccount = updateSocialAccount;
+
+	var _constants = __webpack_require__(243);
+
+	function fetchSocialAccounts(response) {
+	  return {
+	    type: _constants.FETCH_SOCIAL_ACCOUNTS,
+	    payload: {
+	      socialAccounts: response.socialAccounts
+	    }
+	  };
+	}
+
+	function updateSocialAccount(sortRank, url) {
+	  console.log(url);
+	  return {
+	    type: _constants.UPDATE_SOCIAL_ACCOUNT,
+	    payload: { sortRank: sortRank, url: url }
+	  };
+	}
+
+/***/ },
+/* 943 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _textField = __webpack_require__(441);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _styles = __webpack_require__(944);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SocialAccount = function (_Component) {
+	  _inherits(SocialAccount, _Component);
+
+	  function SocialAccount(props) {
+	    _classCallCheck(this, SocialAccount);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SocialAccount).call(this, props));
+
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(SocialAccount, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      this.props.handleUpdate(this.props.sortRank, event.target.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: _styles2.default.root },
+	        _react2.default.createElement(_textField2.default, {
+	          value: this.props.url,
+	          className: _styles2.default.inputText,
+	          name: 'url',
+	          floatingLabelText: this.props.accountType + ' URL',
+	          hintText: 'Enter ',
+	          fullWidth: true,
+	          onChange: this.handleChange
+	        })
+	      );
+	    }
+	  }]);
+
+	  return SocialAccount;
+	}(_react.Component);
+
+	SocialAccount.propTypes = {
+	  sortRank: _react.PropTypes.number.isRequired,
+	  url: _react.PropTypes.string,
+	  accountType: _react.PropTypes.string.isRequired,
+	  handleUpdate: _react.PropTypes.func.isRequired
+	};
+
+	exports.default = SocialAccount;
+
+/***/ },
+/* 944 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 945 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","border-color":"#b6b6b6","label-color":"#B3B3B3","text-color":"#212121","font-xx-small":"1.2","root":"root___1Nc_D"};
+
+/***/ },
+/* 946 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90471,7 +90849,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(942);
+	var _styles = __webpack_require__(947);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90640,14 +91018,14 @@
 	}, mapStateToProps, { signUp: _auths.signUp })(AuthorsSignUp);
 
 /***/ },
-/* 942 */
+/* 947 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1GONa","heading":"heading___3z-Um","error":"error___29st_"};
 
 /***/ },
-/* 943 */
+/* 948 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90683,7 +91061,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(944);
+	var _styles = __webpack_require__(949);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90832,14 +91210,14 @@
 	})(AuthorsSignIn);
 
 /***/ },
-/* 944 */
+/* 949 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1aOrv","heading":"heading___3F7ic","error":"error___xJ9qB"};
 
 /***/ },
-/* 945 */
+/* 950 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90865,7 +91243,7 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 946 */
+/* 951 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90943,7 +91321,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ },
-/* 947 */
+/* 952 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90956,27 +91334,31 @@
 
 	var _reduxForm = __webpack_require__(392);
 
-	var _posts = __webpack_require__(948);
+	var _posts = __webpack_require__(953);
 
 	var _posts2 = _interopRequireDefault(_posts);
 
-	var _items = __webpack_require__(949);
+	var _items = __webpack_require__(954);
 
 	var _items2 = _interopRequireDefault(_items);
 
-	var _tags = __webpack_require__(951);
+	var _tags = __webpack_require__(956);
 
 	var _tags2 = _interopRequireDefault(_tags);
 
-	var _authors = __webpack_require__(952);
+	var _authors = __webpack_require__(957);
 
 	var _authors2 = _interopRequireDefault(_authors);
 
-	var _auths = __webpack_require__(953);
+	var _auths = __webpack_require__(958);
 
 	var _auths2 = _interopRequireDefault(_auths);
 
-	var _projects = __webpack_require__(954);
+	var _socialAccounts = __webpack_require__(959);
+
+	var _socialAccounts2 = _interopRequireDefault(_socialAccounts);
+
+	var _projects = __webpack_require__(960);
 
 	var _projects2 = _interopRequireDefault(_projects);
 
@@ -90989,13 +91371,14 @@
 	  tags: _tags2.default,
 	  authors: _authors2.default,
 	  auths: _auths2.default,
+	  socialAccounts: _socialAccounts2.default,
 	  projects: _projects2.default
 	});
 
 	exports.default = rootReducer;
 
 /***/ },
-/* 948 */
+/* 953 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -91061,7 +91444,7 @@
 	};
 
 /***/ },
-/* 949 */
+/* 954 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -91128,7 +91511,7 @@
 
 	var _constants = __webpack_require__(243);
 
-	var _lodash = __webpack_require__(950);
+	var _lodash = __webpack_require__(955);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -91137,7 +91520,7 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ },
-/* 950 */
+/* 955 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -103495,7 +103878,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(705)(module), (function() { return this; }())))
 
 /***/ },
-/* 951 */
+/* 956 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103532,7 +103915,7 @@
 	var INITIAL_STATE = { tags: [], tagSuggestions: [] };
 
 /***/ },
-/* 952 */
+/* 957 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103550,10 +103933,7 @@
 	  switch (action.type) {
 
 	    case _constants.FETCH_AUTHOR.SUCCESS:
-	      return _extends({}, state, { author: action.payload.author });
-
-	    case _constants.UPDATE_AUTHOR.SUCCESS:
-	      return _extends({}, state, { message: 'Successfully Updated', loading: false });
+	      return _extends({}, state, { author: action.payload.author, loading: false });
 
 	    case _constants.UPDATE_AUTHOR.REQUEST:
 	      return _extends({}, state, { loading: true });
@@ -103571,10 +103951,10 @@
 
 	var _constants = __webpack_require__(243);
 
-	var INITIAL_STATE = { author: null, error: null, loading: false };
+	var INITIAL_STATE = { author: {}, error: null, loading: false };
 
 /***/ },
-/* 953 */
+/* 958 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103599,7 +103979,7 @@
 
 	    case _constants.AUTH.FAILURE:
 	    case _constants.SIGN_OUT.FAILURE:
-	      return _extends({}, state, { error: action.payload.error });
+	      return _extends({}, state, { error: action.payload });
 
 	    default:
 	      return state;
@@ -103611,7 +103991,41 @@
 	var INITIAL_STATE = { error: '', authenticated: false };
 
 /***/ },
-/* 954 */
+/* 959 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+
+	    case _constants.FETCH_SOCIAL_ACCOUNTS:
+	      return action.payload.socialAccounts;
+
+	    case _constants.UPDATE_SOCIAL_ACCOUNT:
+	      var account = _extends({}, state[action.payload.sortRank], { url: action.payload.url });
+	      return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), [account], _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+
+	    default:
+	      return state;
+	  }
+	};
+
+	var _constants = __webpack_require__(243);
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/***/ },
+/* 960 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103652,23 +104066,23 @@
 	};
 
 /***/ },
-/* 955 */
+/* 961 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(956);
+	var defaultClickRejectionStrategy = __webpack_require__(962);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(30).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(957)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(963)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 956 */
+/* 962 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -103679,7 +104093,7 @@
 
 
 /***/ },
-/* 957 */
+/* 963 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -103707,10 +104121,10 @@
 	var EventPluginUtils = __webpack_require__(32);
 	var EventPropagators = __webpack_require__(72);
 	var SyntheticUIEvent = __webpack_require__(86);
-	var TouchEventUtils = __webpack_require__(958);
+	var TouchEventUtils = __webpack_require__(964);
 	var ViewportMetrics = __webpack_require__(37);
 
-	var keyOf = __webpack_require__(959);
+	var keyOf = __webpack_require__(965);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -103856,7 +104270,7 @@
 
 
 /***/ },
-/* 958 */
+/* 964 */
 /***/ function(module, exports) {
 
 	/**
@@ -103904,7 +104318,7 @@
 
 
 /***/ },
-/* 959 */
+/* 965 */
 /***/ function(module, exports) {
 
 	/**
@@ -103944,7 +104358,7 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 960 */
+/* 966 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -103970,6 +104384,83 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 
 	exports['default'] = thunk;
+
+/***/ },
+/* 967 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _authors = __webpack_require__(941);
+
+	var _reactRouter = __webpack_require__(184);
+
+	var _reactRedux = __webpack_require__(158);
+
+	var _styles = __webpack_require__(968);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AuthorsIndex = function (_Component) {
+	  _inherits(AuthorsIndex, _Component);
+
+	  function AuthorsIndex(props) {
+	    _classCallCheck(this, AuthorsIndex);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsIndex).call(this, props));
+	  }
+
+	  _createClass(AuthorsIndex, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.fetchAuthor();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('section', { className: _styles2.default.root });
+	    }
+	  }]);
+
+	  return AuthorsIndex;
+	}(_react.Component);
+
+	AuthorsIndex.propTypes = {
+	  author: _react.PropTypes.object
+	};
+
+	function mapStateToProps(state) {
+	  return {
+	    author: state.authors.author,
+	    socialAccounts: state.socialAccounts
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchAuthor: _authors.fetchAuthor })(AuthorsIndex);
+
+/***/ },
+/* 968 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

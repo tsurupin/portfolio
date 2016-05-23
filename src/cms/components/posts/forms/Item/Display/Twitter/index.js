@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Avatar from 'material-ui/lib/avatar';
 import styles from './styles.scss';
 
-export default class Twitter extends Component {
+class Twitter extends Component {
 
   constructor(props) {
     super(...props);
@@ -12,11 +12,11 @@ export default class Twitter extends Component {
     return (
         <blockquote className={styles.root}>
           <a className={styles.authorName}
-             href={this.props.sourceURL}
+             href={this.props.sourceUrl}
              ref="nofollow"
              target="_blank">
               <div className={styles.header}>
-                <Avatar src={this.props.authorImageURL} />
+                <Avatar src={this.props.authorImageUrl} />
                 {this.props.authorName}
                 <p className={styles.screenName}>{`@${this.props.authorScreenName}`}</p>
               </div>
@@ -30,9 +30,11 @@ export default class Twitter extends Component {
 Twitter.propTypes = {
   authorName: PropTypes.string.isRequired,
   authorScreenName: PropTypes.string,
-  authorImageURL: PropTypes.string.isRequired,
-  sourceURL: PropTypes.string.isRequired,
+  authorImageUrl: PropTypes.string.isRequired,
+  sourceUrl: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
 };
 
+
+export default Twitter
 

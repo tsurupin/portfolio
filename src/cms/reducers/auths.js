@@ -13,7 +13,7 @@ export default function (state = INITIAL_STATE, action) {
     
     case AUTH.FAILURE:
     case SIGN_OUT.FAILURE:
-      return { ...state, error: action.payload.error };
+      return { ...state, error: action.payload };
 
     default:
       return state;

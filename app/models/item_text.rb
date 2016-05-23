@@ -9,5 +9,4 @@
 class ItemText < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
   validates :description, presence: true
-
 end

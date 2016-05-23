@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   Editor,
   EditorState,
+  ContentState,
   RichUtils,
   convertFromRaw,
   convertToRaw,
@@ -36,22 +37,25 @@ const inlineStyles = {
   }
 };
 
+const decorator = new CompositeDecorator([
+  {
+    strategy: findLinkEntities,
+    component: Link
+  }
+]);
+
 export default class TextEditor extends Component {
+
+
+
   constructor(props) {
     super(props);
 
-    const decorator = new CompositeDecorator([
-      {
-        strategy: findLinkEntities,
-        component: Link
-      }
-    ]);
-
-
-    if(props.description) {
-      const blocks = convertFromRaw(JSON.parse(props.description));
+    if(props.value) {
+      const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
-        editorState: EditorState.createWithContent(blocks, decorator),
+        editorState: EditorState.createWithContent( ContentState.createFromText('text'),
+          decorator),
         inputtable: false,
         urlValue: ''
       };
@@ -61,7 +65,7 @@ export default class TextEditor extends Component {
         inputtable: false,
         urlValue: ''
       };
-    }
+     }
 
 
     this.handleFocus = () => this.refs.editor.focus();
@@ -75,6 +79,15 @@ export default class TextEditor extends Component {
     this.handleConfirmLink = this.handleConfirmLink.bind(this);
     this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
     this.handleRemoveLink = this.handleRemoveLink.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.value && nextProps.value) {
+      const blocks = convertFromRaw(JSON.parse(nextProps.value));
+      this.setState({
+        editorState: EditorState.createWithContent(blocks, decorator),
+      })
+    }
   }
 
   handlePromptForLink(e) {
@@ -127,7 +140,7 @@ export default class TextEditor extends Component {
 
   handleUpdate() {
     const description = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-    this.props.handleUpdate({ description })
+    this.props.handleUpdate(description)
   }
   
   handleToggleBlockType(blockType) {
@@ -179,7 +192,7 @@ export default class TextEditor extends Component {
   }
 
   render() {
-    const {editorState} = this.state;
+    const { editorState } = this.state;
 
     return (
       <div>

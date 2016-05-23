@@ -1,31 +1,27 @@
-import { axios } from '../utilities';
+import { axios, trimAuthor } from '../utilities';
 import { AUTHOR_PATH, UPDATE_AUTHOR, FETCH_AUTHOR } from "../constants";
 import { browserHistory } from 'react-router';
+import { fetchSocialAccounts } from'./socialAccounts';
 
-
-export function fetchAuthor(id) {
-  const request = axios.get(`${AUTHOR_PATH}/${id}`);
+export function fetchAuthor() {
+  const request = axios.get(`${AUTHOR_PATH}/`);
   return dispatch => {
     return (
       request
         .then(response => {
-
-          //sessionStorate.setItem('accessToken', response.accessToken);
+          dispatch(fetchAuthorSuccess(response.data));
+          dispatch(fetchSocialAccounts(response.data));
         })
-        .catch(error => {
-
-
-        })
+        .catch(error => dispatch(fetchAuthorFailure(error.data)))
     );
   };
 }
-  
+
+
 function fetchAuthorSuccess(response) {
   return {
     type: FETCH_AUTHOR.SUCCESS,
-    payload: {
-      author: response.author
-    }
+    payload: { author: response }
   };
 }
 
@@ -37,8 +33,9 @@ function fetchAuthorFailure(error) {
 };
 
 
-export function updateAuthor(author) {
-  const request = axios.patch(`${AUTHOR_PATH}/${author.id}`, { author });
+export function updateAuthor(props) {
+  const author = trimAuthor(props.author);
+  const request = axios.patch(`${AUTHOR_PATH}`, { author });
   
   return dispatch => {
     dispatch(updateAuthorRequest());
@@ -57,9 +54,7 @@ export function updateAuthorRequest() {
 }
 
 function updateAuthorSuccess() {
-  return {
-    type: UPDATE_AUTHOR.SUCCESS
-  };
+  browserHistory.push('/cms/projects');
 }
 
 function updateAuthorFailure(error) {
@@ -68,7 +63,6 @@ function updateAuthorFailure(error) {
     payload: error
   };
 }
-
 
 
 

@@ -6,7 +6,7 @@ import styles from './styles.scss';
 class Text extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
   }
 
   render() {

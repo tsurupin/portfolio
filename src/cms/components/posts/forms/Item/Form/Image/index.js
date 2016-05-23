@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import DropzoneImage from '../../../../../shared/DropzoneImage/index';
 import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
+import { reduxForm } from 'redux-form';
 import styles from '../shared/styles.scss';
 
 const inlineStyles = {
@@ -11,48 +12,33 @@ const inlineStyles = {
 };
 
 
-
-export default class ItemFormImage extends Component {
+class Image extends Component {
 
   constructor(props) {
     super(...props);
-
-    this.state = {
-      image: props.image,
-      errorMessage: ''
-    };
-    this.handleUpdate = this.handleUpdate.bind(this);
+   
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
-
-  handleUpdate(image) {
-    this.setState(image);
-  }
-
-  handleUpdateItem() {
-    if (!this.state.image) {
-      return this.showErrorMessage('Please upload image');
-    }
-    this.props.handleUpdateItem({ image: this.state.image })
-  }
-
-
-  showErrorMessage(errorMessage) {
-    this.setState({ errorMessage })
+  
+  handleUpdateItem(props) {
+    this.props.handleUpdateItem({ image: props.image })
   }
 
   renderErrorMessage() {
-    if (this.state.errorMessage) {
-      return <span className={styles.errorMessage}>{this.state.errorMessage}</span>;
+    if (this.props.fields.image.touched && this.props.fields.image.error) {
+      return <span className={styles.errorMessage}>{this.props.fields.image.error}</span>;
     }
   }
 
   render() {
+
+    const { handleSubmit, submitting, fields: { image } } = this.props;
+
     return (
       <div className={styles.root}>
         <DropzoneImage
-          image={this.state.image}
-          handleUpdate={this.handleUpdate}
+          {...image}
+          handleUpdate={ (file) => image.onChange(file) }
         />
         {this.renderErrorMessage()}
         <div className={styles.submitBox}>
@@ -61,9 +47,10 @@ export default class ItemFormImage extends Component {
             className={styles.submitButton}
             label='Save'
             labelPosition='after'
+            disabled={submitting}
             icon={<ContentAddCircle />}
             style={inlineStyles.submitButton}
-            onClick={this.handleUpdateItem}
+            onClick={handleSubmit(this.handleUpdateItem)}
           />
         </div>
       </div>
@@ -71,9 +58,26 @@ export default class ItemFormImage extends Component {
   }
 }
 
-ItemFormImage.propTypes = {
-  image: PropTypes.string,
+Image.propTypes = {
+  fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.element.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
+
+function validate(values) {
+  const errors = {};
+  if(!values.image) {
+    errors.image = 'Entry image'
+  }
+
+  return errors;
+}
+
+export default reduxForm({
+  form: 'ItemImageForm',
+  fields: ['image'],
+  validate
+})(Image);
+
+
 

@@ -12,5 +12,5 @@
 
 class Comment < ActiveRecord::Base
   belongs_to :post, touch: true
-  belongs_to :reply, class_name: 'Comment'
+  belongs_to :reply, class_name: Comment.name
 end

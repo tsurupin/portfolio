@@ -1,6 +1,6 @@
 class Cms::Api::PostsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :index
-  protect_from_forgery except: %w(create update)
+  #protect_from_forgery except: %w(create update)
 
   def index
     posts = Post.page(params[:page])
@@ -39,11 +39,7 @@ class Cms::Api::PostsController < Cms::ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(
-      :id, :title, :description, :published_at,
-      items_attributes: [:id, :target_id, :target_type, :title],
-      taggings_attributes: [:id, :text],
-    )
+    params.require(:post).permit(*Post::Form::PERMITTED_ATTRIBUTES)
   end
 
 end
