@@ -26741,25 +26741,29 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index11 = __webpack_require__(940);
+	var _index11 = __webpack_require__(967);
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(946);
+	var _index13 = __webpack_require__(940);
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(948);
+	var _index15 = __webpack_require__(946);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(950);
+	var _index17 = __webpack_require__(948);
 
 	var _index18 = _interopRequireDefault(_index17);
 
-	var _index19 = __webpack_require__(951);
+	var _index19 = __webpack_require__(950);
 
 	var _index20 = _interopRequireDefault(_index19);
+
+	var _index21 = __webpack_require__(951);
+
+	var _index22 = _interopRequireDefault(_index21);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26767,18 +26771,18 @@
 	  _reactRouter.Route,
 	  { path: '/cms', component: _index2.default },
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _index4.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: (0, _index20.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: (0, _index20.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: (0, _index20.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: (0, _index20.default)(_index8.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: (0, _index20.default)(_index10.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: (0, _index20.default)(_index10.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-up', component: _index14.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-in', component: _index16.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about', component: (0, _index20.default)(_index12.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about/edit', component: (0, _index20.default)(_index12.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/edit', component: (0, _index20.default)(_form2.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _index18.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: (0, _index22.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: (0, _index22.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: (0, _index22.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: (0, _index22.default)(_index8.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: (0, _index22.default)(_index10.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: (0, _index22.default)(_index10.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-up', component: _index16.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-in', component: _index18.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about', component: (0, _index22.default)(_index12.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about/edit', component: (0, _index22.default)(_index14.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/edit', component: (0, _index22.default)(_form2.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _index20.default })
 	);
 
 /***/ },
@@ -26985,7 +26989,7 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/cms/about/edit' },
+	            { to: '/cms/about' },
 	            _react2.default.createElement(
 	              _iconButton2.default,
 	              null,
@@ -26994,7 +26998,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/cms/posts/new' },
+	            { to: '/cms' },
 	            _react2.default.createElement(
 	              _iconButton2.default,
 	              null,
@@ -42572,7 +42576,6 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
-	      console.log(this.props.items);
 	      this.props.savePost({
 	        post: _extends({}, props, {
 	          itemsAttributes: this.props.items,
@@ -103948,7 +103951,7 @@
 
 	var _constants = __webpack_require__(243);
 
-	var INITIAL_STATE = { author: null, error: null, loading: false };
+	var INITIAL_STATE = { author: {}, error: null, loading: false };
 
 /***/ },
 /* 958 */
@@ -104381,6 +104384,83 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 
 	exports['default'] = thunk;
+
+/***/ },
+/* 967 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _authors = __webpack_require__(941);
+
+	var _reactRouter = __webpack_require__(184);
+
+	var _reactRedux = __webpack_require__(158);
+
+	var _styles = __webpack_require__(968);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AuthorsIndex = function (_Component) {
+	  _inherits(AuthorsIndex, _Component);
+
+	  function AuthorsIndex(props) {
+	    _classCallCheck(this, AuthorsIndex);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsIndex).call(this, props));
+	  }
+
+	  _createClass(AuthorsIndex, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.fetchAuthor();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('section', { className: _styles2.default.root });
+	    }
+	  }]);
+
+	  return AuthorsIndex;
+	}(_react.Component);
+
+	AuthorsIndex.propTypes = {
+	  author: _react.PropTypes.object
+	};
+
+	function mapStateToProps(state) {
+	  return {
+	    author: state.authors.author,
+	    socialAccounts: state.socialAccounts
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchAuthor: _authors.fetchAuthor })(AuthorsIndex);
+
+/***/ },
+/* 968 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

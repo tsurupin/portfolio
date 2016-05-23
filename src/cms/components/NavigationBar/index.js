@@ -66,12 +66,12 @@ class NavigationBar extends Component {
         iconStyleRight={inlineStyles.elementRight}
         iconElementRight={
                     <div>
-                        <Link to="/cms/about/edit" >
+                        <Link to="/cms/about" >
                             <IconButton>
                                 <SocialPerson />
                             </IconButton>
                         </Link>
-                        <Link to="/cms/posts/new" >
+                        <Link to="/cms" >
                             <IconButton>
                                 <ActionDescription />
                             </IconButton>

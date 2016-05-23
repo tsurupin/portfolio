@@ -1,6 +1,6 @@
 import { FETCH_AUTHOR, UPDATE_AUTHOR } from '../constants';
 
-const INITIAL_STATE = { author: null, error: null, loading: false };
+const INITIAL_STATE = { author: {}, error: null, loading: false };
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

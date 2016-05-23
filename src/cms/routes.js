@@ -7,6 +7,7 @@ import PostsForm from './containers/posts/Form/index';
 import ProjectsIndex from './containers/projects/Index/index';
 import ProjectsForm from './containers/projects/Form/index';
 import SitesForm from './containers/sites/form';
+import AuthorsIndex from './containers/authors/Index/index';
 import AuthorsForm from './containers/authors/Form/index';
 import AuthorsSinUp from './containers/authors/SignUp/index';
 import AuthorsSingIn from './containers/authors/SignIn/index';
@@ -24,7 +25,7 @@ export default (
       <Route path="/cms/projects/:id/edit" component={Authentication(ProjectsForm)}/>
       <Route path="/cms/sign-up" component={AuthorsSinUp}/>
       <Route path="/cms/sign-in" component={AuthorsSingIn}/>
-      <Route path="/cms/about" component={Authentication(AuthorsForm)}/>
+      <Route path="/cms/about" component={Authentication(AuthorsIndex)}/>
       <Route path="/cms/about/edit" component={Authentication(AuthorsForm)}/>
       <Route path="/cms/sites/edit" component={Authentication(SitesForm)}/>
       <Route path="*" component={NotFound} />
