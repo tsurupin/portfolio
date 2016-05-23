@@ -32,7 +32,7 @@ class ItemFormText extends Component {
       <div className={styles.root}>
         <label className={styles.header}>Text</label>
         <TextEditor
-          description={this.props.description}
+          description={this.state.description}
           handleUpdate={this.handleUpdate}
         />
         <div className={styles.submitBox}>

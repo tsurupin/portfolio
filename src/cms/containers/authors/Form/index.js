@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchAuthor, saveAuthor } from '../../../actions/authors';
+import { fetchAuthor, updateAuthor } from '../../../actions/authors';
 import { createSocialAccount, updateSocialAccount, deleteSocialAccount } from '../../../actions/socialAccounts';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../components/shared/DropzoneImage/index';
 import TextField from 'material-ui/lib/text-field';
 import TextEditor from '../../../components/shared/TextEditor/Editor/index'
-import SocialAccount from '../../../components/authors/forms/SocialAcount/index';
+import SocialAccount from '../../../components/authors/forms/SocialAccount/index';
 import RaisedButton from 'material-ui/lib/raised-button';
 import styles from './styles.scss';
 
@@ -26,90 +26,49 @@ class AuthorsForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      image: '',
-      description: ''
-    };
+    this.handleSubmit               = this.handleSubmit.bind(this);
+    this.handleUpdateSocialAccount  = this.handleUpdateSocialAccount.bind(this);
 
-    this.handleSubmit       = this.handleSubmit.bind(this);
-    this.handleCreateSocialAccount    = this.handleCreateSocialAccount.bind(this);
-    this.handleUpdateSocialAccount    = this.handleUpdateSocialAccount.bind(this);
-    this.handleDeleteSocialAccount    = this.handleDeleteSocialAccount.bind(this);
-    this.handleUpdateImage  = this.handleUpdateImage.bind(this);
-    this.handleUpdateText   = this.handleUpdateText.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetchAuthor(this.props.params.id)
+    this.props.fetchAuthor()
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      image: nextProps.image,
-      description: nextProps.description
-    })
-  };
-
   handleSubmit(props) {
-    console.log(props)
-    this.props.saveAuthor(
+    this.props.updateAuthor(
       {
         author: {
           ...props,
-          image: this.state.image,
-          description: this.state.description,
-          socialAccountAttributes: this.props.socialAccount
+          socialAccountsAttributes: this.props.socialAccounts
         }
       }
     );
   }
-  
-  handleCreateSocialAccount() {
-    this.props.createSocialAccount();
-  }
-  
-  handleUpdateSocialAccount(params) {
-    this.props.updateSocialAccount(params)
-  }
-  
-  handleDeleteSocialAccount(sortRank) {
-    this.props.deleteSocialAccount(sortRank)
+ 
+  handleUpdateSocialAccount(sortRank, url) {
+    this.props.updateSocialAccount(sortRank, url)
   }
 
-  handleUpdateSNS(accountInfo) {
-    //this.props.createTag(tag);
-  }
-
-
-  handleUpdateImage(image) {
-    this.setState(image);
-  }
-
-  handleUpdateText(text) {
-    this.setState(text);
-  }
-  
   renderSocialAccounts() {
-    if (this.props.socialAccounts.length > 0) {
-      {this.props.socialAccounts.map((account, index) => {
+    return(
+      this.props.socialAccounts.map((account, index) => {
         return (
           <SocialAccount
             key={index}
-            socialAccount={account}
+            sortRank={index}
+            accountType={account.accountType}
+            url={account.url}
             handleUpdate={this.handleUpdateSocialAccount}
-            handleDelete={this.handleDeleteSocialAccount}
           />
         )
       })
-    }
+    );
   }
 
   render() {
-
-    console.log(this.state)
-
-    const { handleSubmit, fields: { name, githubUrl } } = this.props;
-
+    const { handleSubmit, fields: { name, image, description } } = this.props;
+    
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
         <h2 className={styles.heading}>Update About</h2>
@@ -122,21 +81,14 @@ class AuthorsForm extends Component {
         />
         <br/>
         <TextEditor
-          description={this.state.description}
-          handleUpdate={this.handleUpdateText}
-        />
-        <TextField
-          {...githubUrl}
-          floatingLabelText="GitHub URL"
-          hintText="Enter GitHub URL"
-          fullWidth={true}
-          errorText={githubUrl.touched && githubUrl.error ? githubUrl.error : ''}
+          {...description}
+          handleUpdate={ (value) => { description.onChange(value) }}
         />
         <br/>
         <br />
         <DropzoneImage
-          image={this.state.image}
-          handleUpdate={this.handleUpdateImage}
+          {...image}
+          handleUpdate={ (file) => image.onChange(file) }
         />
         <br />
         <br />
@@ -164,34 +116,29 @@ function validate(values) {
 }
 
 const fields = [
-  'id', 'name', 'githubUrl'
+  'id', 'name', 'image', 'description'
 ];
 
 function mapStateToProps(state) {
   return {
     initialValues: state.authors.author,
-    image: state.authors.author.image,
-    description: state.authors.author.description,
     socialAccounts: state.socialAccounts
   }
 }
 
 AuthorsForm.propTypes = {
   fields: PropTypes.object.isRequired,
-  image: PropTypes.string,
-  description: PropTypes.string,
   socialAccounts: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
-      sourceUrl: PropTypes.string,
-      image: PropTypes.string
+      accountType: PropTypes.string.isRequired,
+      url: PropTypes.string,
+      id: PropTypes.number,
+      authorId: PropTypes.number
   })),
   params: PropTypes.object,
   fetchAuthor: PropTypes.func.isRequired,
-  saveAuthor: PropTypes.func.isRequired,
-  createSocialAccount: PropTypes.func.isRequired,
-  updateSocialAccount: PropTypes.func.isRequired,
-  deleteSocialAccount: PropTypes.func.isRequired
+  updateAuthor: PropTypes.func.isRequired,
+  updateSocialAccount: PropTypes.func.isRequired
 };
 
 export default reduxForm({
@@ -200,7 +147,7 @@ export default reduxForm({
   validate
 }, mapStateToProps, {
   fetchAuthor,
-  saveAuthor,
+  updateAuthor,
   createSocialAccount,
   updateSocialAccount,
   deleteSocialAccount

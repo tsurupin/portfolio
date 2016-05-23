@@ -66,15 +66,15 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(949);
+	var _reducers = __webpack_require__(952);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _reactTapEventPlugin = __webpack_require__(957);
+	var _reactTapEventPlugin = __webpack_require__(961);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _reduxThunk = __webpack_require__(962);
+	var _reduxThunk = __webpack_require__(966);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26653,6 +26653,7 @@
 	var MOVE_ITEM_DOWN = exports.MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
 	var MOVE_ITEM_BOTTOM = exports.MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
 
+	var FETCH_SOCIAL_ACCOUNTS = exports.FETCH_SOCIAL_ACCOUNTS = 'FETCH_SOCIAL_ACCOUNTS';
 	var CREATE_SOCIAL_ACCOUNT = exports.CREATE_SOCIAL_ACCOUNT = 'CREATE_SOCIAL_ACCOUNT';
 	var UPDATE_SOCIAL_ACCOUNT = exports.UPDATE_SOCIAL_ACCOUNT = 'UPDATE_SOCIAL_ACCOUNT';
 	var DELETE_SOCIAL_ACCOUNT = exports.DELETE_SOCIAL_ACCOUNT = 'DELETE_SOCIAL_ACCOUNT';
@@ -26740,23 +26741,23 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _index11 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./containers/authors/Form/index\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _index11 = __webpack_require__(940);
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(943);
+	var _index13 = __webpack_require__(946);
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(945);
+	var _index15 = __webpack_require__(948);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(947);
+	var _index17 = __webpack_require__(950);
 
 	var _index18 = _interopRequireDefault(_index17);
 
-	var _index19 = __webpack_require__(948);
+	var _index19 = __webpack_require__(951);
 
 	var _index20 = _interopRequireDefault(_index19);
 
@@ -26984,7 +26985,7 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/cms/posts/new' },
+	            { to: '/cms/about/edit' },
 	            _react2.default.createElement(
 	              _iconButton2.default,
 	              null,
@@ -38087,14 +38088,11 @@
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchPostSuccess(response.data));
-	    }, function (error) {
-	      return dispatch(fetchPostFailure(error.data));
 	    }).then(function (response) {
-	      if (response.type === _constants.FETCH_POST.FAILURE) {
-	        return;
-	      }
 	      dispatch((0, _items.fetchItems)(response.payload.items));
 	      dispatch((0, _tags.fetchTags)(response.payload.tags));
+	    }).catch(function (error) {
+	      return dispatch(fetchPostFailure(error.data));
 	    });
 	  };
 	}
@@ -38125,13 +38123,10 @@
 	  return function (dispatch) {
 	    return request.then(function (response) {
 	      return dispatch(fetchNewPostSuccess(response.data));
-	    }, function (error) {
-	      return dispatch(fetchNewPostFailure(error.data));
 	    }).then(function (response) {
-	      if (response.type === _constants.FETCH_NEW_POST.FAILURE) {
-	        return;
-	      }
-	      dispatch((0, _tags.fetchTags)(response.payload.tags));
+	      return dispatch((0, _tags.fetchTags)(response.payload.tags));
+	    }).catch(function (error) {
+	      return dispatch(fetchNewPostFailure(error.data));
 	    });
 	  };
 	}
@@ -38354,6 +38349,7 @@
 	exports.capitalize = capitalize;
 	exports.trimPost = trimPost;
 	exports.trimProject = trimProject;
+	exports.trimAuthor = trimAuthor;
 
 	var _axios = __webpack_require__(335);
 
@@ -38363,9 +38359,20 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function getCSRFToken() {
+	  var el = document.querySelector('meta[name="csrf-token"]');
+	  return el ? el.getAttribute('content') : '';
+	}
+
 	var axios = exports.axios = _axios2.default.create({
+
 	  baseURL: _constants.ROOT_URL,
-	  headers: { 'Authorization': localStorage.getItem('accessToken') }
+	  headers: {
+	    'Accept': 'application/json',
+	    'Content-Type': 'application/json',
+	    'X-CSRF-Token': getCSRFToken(),
+	    'Authorization': localStorage.getItem('accessToken')
+	  }
 	});
 
 	function capitalize(string) {
@@ -38384,6 +38391,15 @@
 
 	function trimProject(params) {
 	  return _extends({}, convertKeyNameInSnakeCase(params));
+	}
+	function trimAuthor(params) {
+	  return _extends({}, convertKeyNameInSnakeCase(params), {
+	    social_accounts_attributes: params.socialAccountsAttributes.filter(function (item) {
+	      return item.url;
+	    }).map(function (item) {
+	      return convertKeyNameInSnakeCase(item);
+	    })
+	  });
 	}
 
 	function convertKeyNameInSnakeCase(object) {
@@ -74854,7 +74870,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"colors":"'../../../../css/colors.scss'","label-color":"#B3B3B3","root":"root___3XYh5 marginHorizontalXSmall___2m9N9","header":"header___rMhUx headerLabel___7_6E5 fontXSmall___1ziQ7","editor":"editor___1e7gj","hidePlaceholder":"hidePlaceholder___298in","actionBox":"actionBox___2PXYw","actionButton":"actionButton___1npcy","styleButton":"styleButton___Vh-lm","activeButton":"activeButton___36tVT styleButton___Vh-lm","controls":"controls___2Tx49","blockquote":"blockquote___1h9zB","headerOne":"headerOne___U11Xx","headerTwo":"headerTwo___3TIpo","headerThree":"headerThree___1fswz","headerFive":"headerFive___36oG1","headerSix":"headerSix___eyoFI","undecoratedListItem":"undecoratedListItem___1f_AL","orderedListItem":"orderedListItem___2oBY2","bold":"bold___Yt_ph","italic":"italic___3sEag","underline":"underline___3UmK-","code":"code___1qH88","link":"link___PWlm_","urlInputContainer":"urlInputContainer___2a5_3"};
+	module.exports = {"colors":"'../../../../css/colors.scss'","label-color":"#B3B3B3","root":"root___3XYh5 marginHorizontalXSmall___2m9N9","editor":"editor___1e7gj","hidePlaceholder":"hidePlaceholder___298in","actionBox":"actionBox___2PXYw","actionButton":"actionButton___1npcy","styleButton":"styleButton___Vh-lm","activeButton":"activeButton___36tVT styleButton___Vh-lm","controls":"controls___2Tx49","blockquote":"blockquote___1h9zB","headerOne":"headerOne___U11Xx","headerTwo":"headerTwo___3TIpo","headerThree":"headerThree___1fswz","headerFive":"headerFive___36oG1","headerSix":"headerSix___eyoFI","undecoratedListItem":"undecoratedListItem___1f_AL","orderedListItem":"orderedListItem___2oBY2","bold":"bold___Yt_ph","italic":"italic___3sEag","underline":"underline___3UmK-","code":"code___1qH88","link":"link___PWlm_","urlInputContainer":"urlInputContainer___2a5_3","header":"header___rMhUx"};
 
 /***/ },
 /* 646 */
@@ -74967,6 +74983,7 @@
 	        case _constants.TARGET_TYPES.HEADING.NAME:
 	        case _constants.TARGET_TYPES.SUB_HEADING.NAME:
 	          return _react2.default.createElement(_index2.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { title: this.props.item.title },
 	            handleUpdateItem: this.handleUpdateItem,
@@ -74974,6 +74991,7 @@
 	          });
 	        case _constants.TARGET_TYPES.IMAGE.NAME:
 	          return _react2.default.createElement(_index4.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            image: this.props.item.image,
 	            handleUpdateItem: this.handleUpdateItem,
@@ -74981,6 +74999,7 @@
 	          });
 	        case _constants.TARGET_TYPES.TWITTER.NAME:
 	          return _react2.default.createElement(_index6.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { sourceURL: this.props.item.sourceURL },
 	            sortRank: this.props.sortRank,
@@ -74989,6 +75008,7 @@
 	          });
 	        case _constants.TARGET_TYPES.QUOTE.NAME:
 	          return _react2.default.createElement(_index8.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { sourceURL: this.props.item.sourceURL, description: this.props.item.description },
 	            handleUpdateItem: this.handleUpdateItem,
@@ -74996,6 +75016,7 @@
 	          });
 	        case _constants.TARGET_TYPES.LINK.NAME:
 	          return _react2.default.createElement(_index10.default, {
+	            formKey: this.props.sortRank.toString(),
 	            targetType: this.props.item.targetType,
 	            initialValues: { sourceURL: this.props.item.sourceURL, sourceTitle: this.props.item.sourceTitle },
 	            handleUpdateItem: this.handleUpdateItem,
@@ -75168,13 +75189,15 @@
 	      var submitting = _props.submitting;
 	      var title = _props.fields.title;
 
+	      var label = this.props.targetType === 'ItemHeading' ? 'Heading' : 'SubHeading';
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _styles2.default.root },
 	        _react2.default.createElement(_textField2.default, _extends({
 	          className: _styles2.default.inputText
 	        }, title, {
-	          floatingLabelText: this.props.targetType == 'ItemHeading' ? 'Heading' : 'SubHeading',
+	          floatingLabelText: label,
 	          hintText: 'Enter the title',
 	          fullWidth: true,
 	          errorText: title.touched && title.error ? title.error : ''
@@ -75446,7 +75469,6 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DropzoneImage).call(this, props));
 
 	    _this.state = { errorMessage: '' };
-
 	    _this.handleDrop = _this.handleDrop.bind(_this);
 	    return _this;
 	  }
@@ -75464,7 +75486,7 @@
 	      var reader = new FileReader();
 
 	      reader.onload = function (upload) {
-	        self.props.handleUpdate({ image: upload.target.result });
+	        self.props.handleUpdate(upload.target.result);
 	        self.setState({ errorMessage: '' });
 	      };
 
@@ -75477,8 +75499,8 @@
 	  }, {
 	    key: 'renderImageBox',
 	    value: function renderImageBox() {
-	      if (this.props.image) {
-	        return _react2.default.createElement('img', { className: _styles2.default.previewImage, src: this.props.image, width: '100' });
+	      if (this.props.value) {
+	        return _react2.default.createElement('img', { className: _styles2.default.previewImage, src: this.props.value, width: '100' });
 	      }
 	    }
 	  }, {
@@ -75495,7 +75517,7 @@
 	  }, {
 	    key: 'renderPlaceholder',
 	    value: function renderPlaceholder() {
-	      if (!this.props.image) {
+	      if (!this.props.value) {
 	        return _react2.default.createElement(
 	          'span',
 	          { className: _styles2.default.placeholder },
@@ -76860,7 +76882,7 @@
 	          'Text'
 	        ),
 	        _react2.default.createElement(_index2.default, {
-	          description: this.props.description,
+	          description: this.state.description,
 	          handleUpdate: this.handleUpdate
 	        }),
 	        _react2.default.createElement(
@@ -76950,6 +76972,11 @@
 	  }
 	};
 
+	var decorator = new _draftJs.CompositeDecorator([{
+	  strategy: _utilities.findLinkEntities,
+	  component: _utilities.Link
+	}]);
+
 	var TextEditor = function (_Component) {
 	  _inherits(TextEditor, _Component);
 
@@ -76958,15 +76985,10 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TextEditor).call(this, props));
 
-	    var decorator = new _draftJs.CompositeDecorator([{
-	      strategy: _utilities.findLinkEntities,
-	      component: _utilities.Link
-	    }]);
-
-	    if (props.description) {
-	      var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(props.description));
+	    if (props.value) {
+	      var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(props.value));
 	      _this.state = {
-	        editorState: _draftJs.EditorState.createWithContent(blocks, decorator),
+	        editorState: _draftJs.EditorState.createWithContent(_draftJs.ContentState.createFromText('text'), decorator),
 	        inputtable: false,
 	        urlValue: ''
 	      };
@@ -76999,6 +77021,16 @@
 	  }
 
 	  _createClass(TextEditor, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (!this.props.value && nextProps.value) {
+	        var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(nextProps.value));
+	        this.setState({
+	          editorState: _draftJs.EditorState.createWithContent(blocks, decorator)
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'handlePromptForLink',
 	    value: function handlePromptForLink(e) {
 	      var _this2 = this;
@@ -77063,7 +77095,7 @@
 	    key: 'handleUpdate',
 	    value: function handleUpdate() {
 	      var description = JSON.stringify((0, _draftJs.convertToRaw)(this.state.editorState.getCurrentContent()));
-	      this.props.handleUpdate({ description: description });
+	      this.props.handleUpdate(description);
 	    }
 	  }, {
 	    key: 'handleToggleBlockType',
@@ -89648,7 +89680,6 @@
 	}
 
 	function fetchProjectsSuccess(response) {
-	  console.log(response);
 	  return {
 	    type: _constants.FETCH_PROJECTS.SUCCESS,
 	    payload: {
@@ -89725,7 +89756,6 @@
 	}
 
 	function saveProject(props) {
-	  console.log(props);
 	  var project = (0, _utilities.trimProject)(props.project);
 	  var request = void 0;
 	  if (project.id) {
@@ -90153,8 +90183,6 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsForm).call(this, props));
 
-	    console.log(props);
-
 	    _this.state = {
 	      image: '',
 	      description: ''
@@ -90188,7 +90216,6 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(props) {
-	      console.log(props);
 	      this.props.saveProject({
 	        project: _extends({}, props, {
 	          image: this.state.image,
@@ -90220,8 +90247,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-
-	      console.log(this.state);
 
 	      var headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
 	      var submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
@@ -90391,10 +90416,425 @@
 	exports.default = SitesForm;
 
 /***/ },
-/* 940 */,
-/* 941 */,
-/* 942 */,
+/* 940 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _authors = __webpack_require__(941);
+
+	var _socialAccounts = __webpack_require__(942);
+
+	var _reactRedux = __webpack_require__(158);
+
+	var _reduxForm = __webpack_require__(392);
+
+	var _index = __webpack_require__(654);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _textField = __webpack_require__(441);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _index3 = __webpack_require__(662);
+
+	var _index4 = _interopRequireDefault(_index3);
+
+	var _index5 = __webpack_require__(943);
+
+	var _index6 = _interopRequireDefault(_index5);
+
+	var _raisedButton = __webpack_require__(470);
+
+	var _raisedButton2 = _interopRequireDefault(_raisedButton);
+
+	var _styles = __webpack_require__(945);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var inlineStyles = {
+	  submitButton: {
+	    position: 'absolute',
+	    bottom: 10,
+	    right: 15
+	  },
+	  indicator: {
+	    display: 'inline-block',
+	    position: 'relative'
+	  }
+	};
+
+	var AuthorsForm = function (_Component) {
+	  _inherits(AuthorsForm, _Component);
+
+	  function AuthorsForm(props) {
+	    _classCallCheck(this, AuthorsForm);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AuthorsForm).call(this, props));
+
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.handleUpdateSocialAccount = _this.handleUpdateSocialAccount.bind(_this);
+
+	    return _this;
+	  }
+
+	  _createClass(AuthorsForm, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.fetchAuthor();
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(props) {
+	      this.props.updateAuthor({
+	        author: _extends({}, props, {
+	          socialAccountsAttributes: this.props.socialAccounts
+	        })
+	      });
+	    }
+	  }, {
+	    key: 'handleUpdateSocialAccount',
+	    value: function handleUpdateSocialAccount(sortRank, url) {
+	      this.props.updateSocialAccount(sortRank, url);
+	    }
+	  }, {
+	    key: 'renderSocialAccounts',
+	    value: function renderSocialAccounts() {
+	      var _this2 = this;
+
+	      return this.props.socialAccounts.map(function (account, index) {
+	        return _react2.default.createElement(_index6.default, {
+	          key: index,
+	          sortRank: index,
+	          accountType: account.accountType,
+	          url: account.url,
+	          handleUpdate: _this2.handleUpdateSocialAccount
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var handleSubmit = _props.handleSubmit;
+	      var _props$fields = _props.fields;
+	      var name = _props$fields.name;
+	      var image = _props$fields.image;
+	      var description = _props$fields.description;
+
+
+	      return _react2.default.createElement(
+	        'form',
+	        { className: _styles2.default.root, onSubmit: handleSubmit(this.handleSubmit) },
+	        _react2.default.createElement(
+	          'h2',
+	          { className: _styles2.default.heading },
+	          'Update About'
+	        ),
+	        _react2.default.createElement(_textField2.default, _extends({}, name, {
+	          floatingLabelText: 'name',
+	          hintText: 'Enter name',
+	          fullWidth: true,
+	          errorText: name.touched && name.error ? name.error : ''
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_index4.default, _extends({}, description, {
+	          handleUpdate: function handleUpdate(value) {
+	            description.onChange(value);
+	          }
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(_index2.default, _extends({}, image, {
+	          handleUpdate: function handleUpdate(file) {
+	            return image.onChange(file);
+	          }
+	        })),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        this.renderSocialAccounts(),
+	        _react2.default.createElement(_raisedButton2.default, {
+	          type: 'submit',
+	          label: 'Update',
+	          secondary: true,
+	          style: inlineStyles.submitButton
+	        })
+	      );
+	    }
+	  }]);
+
+	  return AuthorsForm;
+	}(_react.Component);
+
+	function validate(values) {
+	  var errors = {};
+	  if (!values.name) {
+	    errors.name = 'Entry name';
+	  }
+
+	  return errors;
+	}
+
+	var fields = ['id', 'name', 'image', 'description'];
+
+	function mapStateToProps(state) {
+	  return {
+	    initialValues: state.authors.author,
+	    socialAccounts: state.socialAccounts
+	  };
+	}
+
+	AuthorsForm.propTypes = {
+	  fields: _react.PropTypes.object.isRequired,
+	  socialAccounts: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    accountType: _react.PropTypes.string.isRequired,
+	    url: _react.PropTypes.string,
+	    id: _react.PropTypes.number,
+	    authorId: _react.PropTypes.number
+	  })),
+	  params: _react.PropTypes.object,
+	  fetchAuthor: _react.PropTypes.func.isRequired,
+	  updateAuthor: _react.PropTypes.func.isRequired,
+	  updateSocialAccount: _react.PropTypes.func.isRequired
+	};
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'AuthorsForm',
+	  fields: fields,
+	  validate: validate
+	}, mapStateToProps, {
+	  fetchAuthor: _authors.fetchAuthor,
+	  updateAuthor: _authors.updateAuthor,
+	  createSocialAccount: _socialAccounts.createSocialAccount,
+	  updateSocialAccount: _socialAccounts.updateSocialAccount,
+	  deleteSocialAccount: _socialAccounts.deleteSocialAccount
+	})(AuthorsForm);
+
+/***/ },
+/* 941 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchAuthor = fetchAuthor;
+	exports.updateAuthor = updateAuthor;
+	exports.updateAuthorRequest = updateAuthorRequest;
+
+	var _utilities = __webpack_require__(360);
+
+	var _constants = __webpack_require__(243);
+
+	var _reactRouter = __webpack_require__(184);
+
+	var _socialAccounts = __webpack_require__(942);
+
+	function fetchAuthor() {
+	  var request = _utilities.axios.get(_constants.AUTHOR_PATH + '/');
+	  return function (dispatch) {
+	    return request.then(function (response) {
+	      dispatch(fetchAuthorSuccess(response.data));
+	      dispatch((0, _socialAccounts.fetchSocialAccounts)(response.data));
+	    }).catch(function (error) {
+	      return dispatch(fetchAuthorFailure(error.data));
+	    });
+	  };
+	}
+
+	function fetchAuthorSuccess(response) {
+	  return {
+	    type: _constants.FETCH_AUTHOR.SUCCESS,
+	    payload: { author: response }
+	  };
+	}
+
+	function fetchAuthorFailure(error) {
+	  return {
+	    type: _constants.FETCH_AUTHOR.FAILURE,
+	    payload: error
+	  };
+	};
+
+	function updateAuthor(props) {
+	  var author = (0, _utilities.trimAuthor)(props.author);
+	  var request = _utilities.axios.patch('' + _constants.AUTHOR_PATH, { author: author });
+
+	  return function (dispatch) {
+	    dispatch(updateAuthorRequest());
+	    return request.then(function () {
+	      return dispatch(updateAuthorSuccess());
+	    }).catch(function (error) {
+	      return dispatch(updateAuthorFailure(error.data));
+	    });
+	  };
+	}
+
+	function updateAuthorRequest() {
+	  return {
+	    type: _constants.UPDATE_AUTHOR.REQUEST
+	  };
+	}
+
+	function updateAuthorSuccess() {
+	  _reactRouter.browserHistory.push('/cms/projects');
+	}
+
+	function updateAuthorFailure(error) {
+	  return {
+	    type: _constants.UPDATE_AUTHOR.FAILURE,
+	    payload: error
+	  };
+	}
+
+/***/ },
+/* 942 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchSocialAccounts = fetchSocialAccounts;
+	exports.updateSocialAccount = updateSocialAccount;
+
+	var _constants = __webpack_require__(243);
+
+	function fetchSocialAccounts(response) {
+	  return {
+	    type: _constants.FETCH_SOCIAL_ACCOUNTS,
+	    payload: {
+	      socialAccounts: response.socialAccounts
+	    }
+	  };
+	}
+
+	function updateSocialAccount(sortRank, url) {
+	  console.log(url);
+	  return {
+	    type: _constants.UPDATE_SOCIAL_ACCOUNT,
+	    payload: { sortRank: sortRank, url: url }
+	  };
+	}
+
+/***/ },
 /* 943 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _textField = __webpack_require__(441);
+
+	var _textField2 = _interopRequireDefault(_textField);
+
+	var _styles = __webpack_require__(944);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SocialAccount = function (_Component) {
+	  _inherits(SocialAccount, _Component);
+
+	  function SocialAccount(props) {
+	    _classCallCheck(this, SocialAccount);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SocialAccount).call(this, props));
+
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(SocialAccount, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      this.props.handleUpdate(this.props.sortRank, event.target.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: _styles2.default.root },
+	        _react2.default.createElement(_textField2.default, {
+	          value: this.props.url,
+	          className: _styles2.default.inputText,
+	          name: 'url',
+	          floatingLabelText: this.props.accountType + ' URL',
+	          hintText: 'Enter ',
+	          fullWidth: true,
+	          onChange: this.handleChange
+	        })
+	      );
+	    }
+	  }]);
+
+	  return SocialAccount;
+	}(_react.Component);
+
+	SocialAccount.propTypes = {
+	  sortRank: _react.PropTypes.number.isRequired,
+	  url: _react.PropTypes.string,
+	  accountType: _react.PropTypes.string.isRequired,
+	  handleUpdate: _react.PropTypes.func.isRequired
+	};
+
+	exports.default = SocialAccount;
+
+/***/ },
+/* 944 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 945 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","border-color":"#b6b6b6","label-color":"#B3B3B3","text-color":"#212121","font-xx-small":"1.2","root":"root___1Nc_D"};
+
+/***/ },
+/* 946 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90430,7 +90870,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(944);
+	var _styles = __webpack_require__(947);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90599,14 +91039,14 @@
 	}, mapStateToProps, { signUp: _auths.signUp })(AuthorsSignUp);
 
 /***/ },
-/* 944 */
+/* 947 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1GONa","heading":"heading___3z-Um","error":"error___29st_"};
 
 /***/ },
-/* 945 */
+/* 948 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90642,7 +91082,7 @@
 
 	var _refreshIndicator2 = _interopRequireDefault(_refreshIndicator);
 
-	var _styles = __webpack_require__(946);
+	var _styles = __webpack_require__(949);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -90791,14 +91231,14 @@
 	})(AuthorsSignIn);
 
 /***/ },
-/* 946 */
+/* 949 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"colors":"\"../../../css/colors.scss\"","fonts":"\"../../../css/fonts.scss\"","error-color":"#D32F2F","root":"root___1aOrv","heading":"heading___3F7ic","error":"error___xJ9qB"};
 
 /***/ },
-/* 947 */
+/* 950 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90824,7 +91264,7 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 948 */
+/* 951 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90902,7 +91342,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ },
-/* 949 */
+/* 952 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -90915,31 +91355,31 @@
 
 	var _reduxForm = __webpack_require__(392);
 
-	var _posts = __webpack_require__(950);
+	var _posts = __webpack_require__(953);
 
 	var _posts2 = _interopRequireDefault(_posts);
 
-	var _items = __webpack_require__(951);
+	var _items = __webpack_require__(954);
 
 	var _items2 = _interopRequireDefault(_items);
 
-	var _tags = __webpack_require__(953);
+	var _tags = __webpack_require__(956);
 
 	var _tags2 = _interopRequireDefault(_tags);
 
-	var _authors = __webpack_require__(954);
+	var _authors = __webpack_require__(957);
 
 	var _authors2 = _interopRequireDefault(_authors);
 
-	var _auths = __webpack_require__(955);
+	var _auths = __webpack_require__(958);
 
 	var _auths2 = _interopRequireDefault(_auths);
 
-	var _socialAccounts = __webpack_require__(963);
+	var _socialAccounts = __webpack_require__(959);
 
 	var _socialAccounts2 = _interopRequireDefault(_socialAccounts);
 
-	var _projects = __webpack_require__(956);
+	var _projects = __webpack_require__(960);
 
 	var _projects2 = _interopRequireDefault(_projects);
 
@@ -90959,7 +91399,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 950 */
+/* 953 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -91025,7 +91465,7 @@
 	};
 
 /***/ },
-/* 951 */
+/* 954 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -91092,7 +91532,7 @@
 
 	var _constants = __webpack_require__(243);
 
-	var _lodash = __webpack_require__(952);
+	var _lodash = __webpack_require__(955);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -91101,7 +91541,7 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ },
-/* 952 */
+/* 955 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -103459,7 +103899,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(705)(module), (function() { return this; }())))
 
 /***/ },
-/* 953 */
+/* 956 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103496,7 +103936,7 @@
 	var INITIAL_STATE = { tags: [], tagSuggestions: [] };
 
 /***/ },
-/* 954 */
+/* 957 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103514,10 +103954,7 @@
 	  switch (action.type) {
 
 	    case _constants.FETCH_AUTHOR.SUCCESS:
-	      return _extends({}, state, { author: action.payload.author });
-
-	    case _constants.UPDATE_AUTHOR.SUCCESS:
-	      return _extends({}, state, { message: 'Successfully Updated', loading: false });
+	      return _extends({}, state, { author: action.payload.author, loading: false });
 
 	    case _constants.UPDATE_AUTHOR.REQUEST:
 	      return _extends({}, state, { loading: true });
@@ -103538,7 +103975,7 @@
 	var INITIAL_STATE = { author: null, error: null, loading: false };
 
 /***/ },
-/* 955 */
+/* 958 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103563,7 +104000,7 @@
 
 	    case _constants.AUTH.FAILURE:
 	    case _constants.SIGN_OUT.FAILURE:
-	      return _extends({}, state, { error: action.payload.error });
+	      return _extends({}, state, { error: action.payload });
 
 	    default:
 	      return state;
@@ -103575,7 +104012,41 @@
 	var INITIAL_STATE = { error: '', authenticated: false };
 
 /***/ },
-/* 956 */
+/* 959 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+
+	    case _constants.FETCH_SOCIAL_ACCOUNTS:
+	      return action.payload.socialAccounts;
+
+	    case _constants.UPDATE_SOCIAL_ACCOUNT:
+	      var account = _extends({}, state[action.payload.sortRank], { url: action.payload.url });
+	      return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), [account], _toConsumableArray(state.slice(action.payload.sortRank + 1)));
+
+	    default:
+	      return state;
+	  }
+	};
+
+	var _constants = __webpack_require__(243);
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/***/ },
+/* 960 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -103616,23 +104087,23 @@
 	};
 
 /***/ },
-/* 957 */
+/* 961 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defaultClickRejectionStrategy = __webpack_require__(958);
+	var defaultClickRejectionStrategy = __webpack_require__(962);
 
 	module.exports = function injectTapEventPlugin (strategyOverrides) {
 	  strategyOverrides = strategyOverrides || {}
 	  var shouldRejectClick = strategyOverrides.shouldRejectClick || defaultClickRejectionStrategy;
 
 	  __webpack_require__(30).injection.injectEventPluginsByName({
-	    "TapEventPlugin":       __webpack_require__(959)(shouldRejectClick)
+	    "TapEventPlugin":       __webpack_require__(963)(shouldRejectClick)
 	  });
 	};
 
 
 /***/ },
-/* 958 */
+/* 962 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -103643,7 +104114,7 @@
 
 
 /***/ },
-/* 959 */
+/* 963 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -103671,10 +104142,10 @@
 	var EventPluginUtils = __webpack_require__(32);
 	var EventPropagators = __webpack_require__(72);
 	var SyntheticUIEvent = __webpack_require__(86);
-	var TouchEventUtils = __webpack_require__(960);
+	var TouchEventUtils = __webpack_require__(964);
 	var ViewportMetrics = __webpack_require__(37);
 
-	var keyOf = __webpack_require__(961);
+	var keyOf = __webpack_require__(965);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -103820,7 +104291,7 @@
 
 
 /***/ },
-/* 960 */
+/* 964 */
 /***/ function(module, exports) {
 
 	/**
@@ -103868,7 +104339,7 @@
 
 
 /***/ },
-/* 961 */
+/* 965 */
 /***/ function(module, exports) {
 
 	/**
@@ -103908,7 +104379,7 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 962 */
+/* 966 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -103934,40 +104405,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 
 	exports['default'] = thunk;
-
-/***/ },
-/* 963 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-	  var action = arguments[1];
-
-	  switch (action.type) {
-
-	    case _constants.CREATE_SOCIAL_ACCOUNT:
-	      return [].concat(_toConsumableArray(state), [action.payload.socialAccount]);
-
-	    case _constants.UPDATE_SOCIAL_ACCOUNT:
-	      return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), [action.payload.socialAccount], _toConsumableArray(state.slice(action.payload.sortRank + 1)));
-
-	    case _constants.DELETE_SOCIAL_ACCOUNT:
-	      return [].concat(_toConsumableArray(state.slice(0, action.payload.sortRank)), _toConsumableArray(state.slice(action.payload.sortRank + 1)));
-
-	    default:
-	      return state;
-	  }
-	};
-
-	var _constants = __webpack_require__(243);
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ }
 /******/ ]);

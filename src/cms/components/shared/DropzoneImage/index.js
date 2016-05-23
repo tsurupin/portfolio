@@ -8,7 +8,6 @@ class DropzoneImage extends Component {
     super(props);
     
     this.state = { errorMessage: '' };
-    
     this.handleDrop = this.handleDrop.bind(this);
   }
   
@@ -23,7 +22,7 @@ class DropzoneImage extends Component {
     const reader = new FileReader();
 
     reader.onload = function (upload) {
-      self.props.handleUpdate({ image: upload.target.result })
+      self.props.handleUpdate(upload.target.result)
       self.setState({ errorMessage: '' })
     };
 
@@ -35,8 +34,8 @@ class DropzoneImage extends Component {
   }
   
   renderImageBox() {
-    if (this.props.image) {
-      return <img className={styles.previewImage} src={this.props.image} width='100'/>;
+    if (this.props.value) {
+      return <img className={styles.previewImage} src={this.props.value} width='100'/>;
     }
   }
 
@@ -47,7 +46,7 @@ class DropzoneImage extends Component {
   }
   
   renderPlaceholder() {
-    if (!this.props.image) {
+    if (!this.props.value) {
       return <span className={styles.placeholder}>Drop file here or click to upload.</span>
     }
   }

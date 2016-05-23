@@ -22,7 +22,6 @@ export function fetchProjects() {
 }
 
 function fetchProjectsSuccess(response) {
-  console.log(response)
   return {
     type: FETCH_PROJECTS.SUCCESS,
     payload: {
@@ -95,7 +94,6 @@ function fetchNewProjectFailure(error) {
 }
 
 export function saveProject(props) {
-  console.log(props)
   const project = trimProject(props.project);
   let request;
   if (project.id) {
@@ -122,7 +120,6 @@ function saveProjectRequest() {
 
 function saveProjectSuccess() {
   browserHistory.push('/cms/projects');
-
 }
 
 function saveProjectFailure(error) {

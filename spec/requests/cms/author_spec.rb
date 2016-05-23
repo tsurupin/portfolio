@@ -7,7 +7,11 @@ RSpec.describe Cms::Api::AuthorsController, type: :request do
     describe 'GET /cms/api/authors' do
       subject { JSON.parse(response.body) }
       let!(:author) { create(:author) }
-      let!(:social_account) { create(:social_account, author: author) }
+      let!(:sa_twitter) { create(:social_account, author: author, account_type: 'twitter') }
+      let!(:sa_linked_in) { author.social_accounts.new(account_type: 'linked_in') }
+      let!(:sa_github) { author.social_accounts.new(account_type: 'github') }
+      let!(:sa_facebook) { author.social_accounts.new(account_type: 'facebook') }
+      let(:social_accounts) { [sa_github, sa_facebook, sa_twitter, sa_linked_in] }
       context 'when access_token is sent in header' do
         let(:result) do
           {
@@ -15,12 +19,12 @@ RSpec.describe Cms::Api::AuthorsController, type: :request do
             'image' => author.image_url,
             'email' => author.email,
             'description' => author.description,
-            'githubUrl' => author.github_url,
-            'socialAccounts' => author.social_accounts.map do |social_account|
-               {
-                 'name' => social_account.name,
-                 'url' => social_account.url,
-                 'image' => social_account.try(:image_url)
+            'socialAccounts' => social_accounts.map do |social_account|
+              {
+                 'id' => social_account.id,
+                 'authorId' => social_account.author_id,
+                 'accountType' => social_account.account_type,
+                 'url' => social_account.url
                }
             end
           }

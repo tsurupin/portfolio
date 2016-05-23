@@ -6,16 +6,15 @@
 #  author_id :integer          not null
 #  name      :string(255)      not null
 #  url       :string(255)      not null
-#  image     :string(255)      not null
 #
 
 class SocialAccount < ActiveRecord::Base
   belongs_to :author, touch: true
 
-  validates :name, presence: true
-  validates :url, presence: true
-  validates :image, presence: true
-  validates :author, presence: true
+  enum account_type: [:github, :facebook, :twitter, :linked_in ]
 
-  mount_uploader :image, SocialAccountImageUploader
+  validates :url, presence: true, uniqueness: true, format: { with: URI.regexp }
+  validates :author, presence: true
+  validates :account_type, presence: true, inclusion: { in: SocialAccount.account_types.keys }, uniqueness: true
+
 end

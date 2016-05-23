@@ -1,5 +1,5 @@
 class Cms::Api::ProjectsController < Cms::ApplicationController
-  protect_from_forgery except: %w(create update)
+  #protect_from_forgery except: %w(create update)
 
   def index
     projects = Project.order(updated_at: :desc)

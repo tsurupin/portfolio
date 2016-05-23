@@ -1,6 +1,6 @@
 class Cms::Api::PostsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :index
-  protect_from_forgery except: %w(create update)
+  #protect_from_forgery except: %w(create update)
 
   def index
     posts = Post.page(params[:page])

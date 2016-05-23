@@ -25,12 +25,14 @@ class ItemFormHeading extends Component {
 
   render() {
     const { handleSubmit, submitting, fields: { title } } = this.props;
+    const label = this.props.targetType === 'ItemHeading' ? 'Heading' : 'SubHeading';
+
     return (
       <div className={styles.root}>
         <TextField
           className={styles.inputText}
           {...title}
-          floatingLabelText={ this.props.targetType == 'ItemHeading' ? 'Heading' : 'SubHeading' }
+          floatingLabelText={ label }
           hintText='Enter the title'
           fullWidth={true}
           errorText={title.touched && title.error ? title.error : ''}

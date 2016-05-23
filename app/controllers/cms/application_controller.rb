@@ -2,6 +2,7 @@ class Cms::ApplicationController < ApplicationController
   include AbstractController::Translation
   protect_from_forgery with: :null_session
   before_action :authenticate_author_from_token!, except: :layout
+
   respond_to :json
 
   layout 'cms/layouts/application'

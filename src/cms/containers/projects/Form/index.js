@@ -26,7 +26,6 @@ const inlineStyles = {
 class ProjectsForm extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
 
     this.state = {
       image: '',
@@ -56,7 +55,6 @@ class ProjectsForm extends Component {
   };
 
   handleSubmit(props) {
-    console.log(props)
     this.props.saveProject(
       {
         project: {
@@ -86,8 +84,6 @@ class ProjectsForm extends Component {
   }
 
   render() {
-    
-    console.log(this.state)
    
     const headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';

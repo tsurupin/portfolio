@@ -1,5 +1,6 @@
 class Cms::Api::AuthorsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :create
+  #protect_from_forgery except: %w(create update)
 
   def create
     author = Author.new(author_params)
@@ -19,17 +20,19 @@ class Cms::Api::AuthorsController < Cms::ApplicationController
   end
 
   def update
-    if current_cms_api_author.update(author_params)
+    author = Author::Form.find(current_cms_api_author.id)
+    p author_params
+    if author.save(author_params)
       render nothing: true, status: :ok
     else
-      render_error(current_cms_api_author)
+      render_error(author)
     end
   end
 
   private
 
   def author_params
-    params.require(:author).permit(*Author::PERMITTED_ATTRIBUTES)
+    params.require(:author).permit(*Author::Form::PERMITTED_ATTRIBUTES)
   end
 
   def render_author

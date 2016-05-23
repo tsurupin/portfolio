@@ -3,8 +3,8 @@
 # Table name: authors
 #
 #  id                 :integer          not null, primary key
-#  email              :string(255)      default(""), not null
-#  encrypted_password :string(255)      default(""), not null
+#  email              :string(255)      not null
+#  encrypted_password :string(255)      not null
 #  name               :string(255)      not null
 #  image              :string(255)
 #  description        :text(65535)
@@ -16,20 +16,13 @@
 class Author < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable, :validatable
 
-  PERMITTED_ATTRIBUTES = [
-    :name, :email, :password, :password_confirmation, :github_url,
-    social_accounts_attributes: [ :id, :name, :url, :image ]
-  ]
-
   has_many :social_accounts, dependent: :destroy
-
-  accepts_nested_attributes_for :social_accounts, reject_if: ->(attributes) { attributes['name'].blank? || attributes['url'].blank?}
 
   after_create :update_devise_token!
 
   validates :name, presence: true, uniqueness: true
-  validates :github_url, presence: true, uniqueness: true, allow_blank: true
   validates :email, presence: true, uniqueness: true, email_format: { message: 'is not valid address' }
+  validates :encrypted_password, presence: true, uniqueness: true
 
   mount_uploader :image, AuthorImageUploader
 

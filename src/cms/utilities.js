@@ -1,10 +1,24 @@
 import client from "axios";
 import { ROOT_URL } from './constants';
 
+
+function getCSRFToken() {
+  const el = document.querySelector('meta[name="csrf-token"]');
+  return el ? el.getAttribute('content') : '';
+}
+
+
 export const axios = client.create({
+
   baseURL: ROOT_URL,
-  headers: { 'Authorization': localStorage.getItem('accessToken') }
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'X-CSRF-Token': getCSRFToken(),
+    'Authorization': localStorage.getItem('accessToken') 
+  }
 });
+
 
 
 export function capitalize(string) {
@@ -24,6 +38,15 @@ export function trimPost(params) {
 export function trimProject(params) {
   return {
     ...convertKeyNameInSnakeCase(params)
+  };
+}
+export function trimAuthor(params) {
+  return {
+    ...convertKeyNameInSnakeCase(params),
+    social_accounts_attributes:
+      params.socialAccountsAttributes
+        .filter(item => item.url)
+        .map(item => convertKeyNameInSnakeCase(item))
   };
 }
 

@@ -34,11 +34,12 @@
   }
 }
 
-.bottomBorder {
-  border-bottom: 1px solid border-color;
-}
-
 .headerLabel {
   composes: fontXSmall from './fonts.scss';
   color: label-color;
 }
+
+.bottomBorder {
+  border-bottom: 1px solid border-color;
+}
+

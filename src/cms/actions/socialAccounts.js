@@ -1,29 +1,19 @@
-import {
-  CREATE_SOCIAL_ACCOUNT,
-  UPDATE_SOCIAL_ACCOUNT,
-  DELETE_SOCIAL_ACCOUNT
-} from '../constants';
+import { FETCH_SOCIAL_ACCOUNTS, UPDATE_SOCIAL_ACCOUNT } from '../constants';
 
-export function createSocialAccount(socialAccount = {}) {
+export function fetchSocialAccounts(response) {
   return {
-    type: CREATE_SOCIAL_ACCOUNT,
-    payload: { socialAccount }
-  }
-}
-
-export function updateSocialAccount(sortRank, socialAccount) {
-  return {
-    type: UPDATE_SOCIAL_ACCOUNT,
+    type: FETCH_SOCIAL_ACCOUNTS,
     payload: {
-      sortRank,
-      socialAccount
+      socialAccounts: response.socialAccounts
     }
   }
 }
 
-export function deleteSocialAccount(sortRank) {
+export function updateSocialAccount(sortRank, url) {
+  console.log(url)
   return {
-    type: DELETE_SOCIAL_ACCOUNT,
-    payload: { sortRank }
+    type: UPDATE_SOCIAL_ACCOUNT,
+    payload: { sortRank, url }
   }
 }
+

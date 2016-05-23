@@ -35,6 +35,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.SUB_HEADING.NAME:
         return (
           <Heading
+            formKey={this.props.sortRank.toString()}
             targetType={this.props.item.targetType}
             initialValues={{title: this.props.item.title}}
             handleUpdateItem={this.handleUpdateItem}
@@ -44,6 +45,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.IMAGE.NAME:
         return (
           <Image
+            formKey={this.props.sortRank.toString()}
             targetType={this.props.item.targetType}
             image={this.props.item.image}
             handleUpdateItem={this.handleUpdateItem}
@@ -53,6 +55,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.TWITTER.NAME:
         return (
           <Twitter
+            formKey={this.props.sortRank.toString()}
             targetType={this.props.item.targetType}
             initialValues={{sourceURL: this.props.item.sourceURL}}
             sortRank={this.props.sortRank}
@@ -63,6 +66,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.QUOTE.NAME:
         return (
           <Quote
+            formKey={this.props.sortRank.toString()}
             targetType={this.props.item.targetType}
             initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
             handleUpdateItem={this.handleUpdateItem}
@@ -72,6 +76,7 @@ export default class PostItemForm extends Component {
       case TARGET_TYPES.LINK.NAME:
         return (
           <Link
+            formKey={this.props.sortRank.toString()}
             targetType={this.props.item.targetType}
             initialValues={{ sourceURL: this.props.item.sourceURL, sourceTitle: this.props.item.sourceTitle }}
             handleUpdateItem={this.handleUpdateItem}
