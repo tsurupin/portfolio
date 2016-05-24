@@ -1,10 +1,10 @@
 require 'rails_helper'
 require 'webmock/rspec'
 
-RSpec.describe Cms::Api::ServicesController, type: :request do
-  describe 'CMS Service API' do
+RSpec.describe Cms::Api::V1::Services::TwittersController, type: :request do
+  describe 'CMS Twitter API' do
 
-    describe 'GET /cms/api/services/twitter' do
+    describe 'GET /cms/api/v1/services/twitter' do
       subject { JSON.parse(response.body) }
       let(:sort_rank) { '1' }
       context 'when the url exists' do
@@ -20,7 +20,7 @@ RSpec.describe Cms::Api::ServicesController, type: :request do
             }
           }
         end
-        before { get twitter_cms_api_services_path, url: url }
+        before { get cms_api_v1_services_twitter_path, url: url }
         it 'return correct info from api' do
           VCR.use_cassette 'twitter_cms_api_service_success' do
             expect(subject).to eq result
@@ -31,7 +31,7 @@ RSpec.describe Cms::Api::ServicesController, type: :request do
 
       context 'when the url does not exist' do
         let(:url) { 'https://twitter.com/disney_mickey55/status/' }
-        before { get twitter_cms_api_services_path, url: url }
+        before { get cms_api_v1_services_twitter_path, url: url }
         it 'return error message' do
           VCR.use_cassette 'twitter_cms_api_service_error' do
             expect(response.status).to eq 400

@@ -31,7 +31,7 @@ class Post::Form < ActiveType::Record[Post]
   validates :description, presence: true, if: proc { |post| post.accepted }
 
   accepts_nested_attributes_for :items, reject_if: ->(attributes) { attributes['target_type'].blank? }
-  accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['name'].blank? }
+  accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }
 
   def save_from_associations(params)
     ActiveRecord::Base.transaction do
@@ -86,7 +86,7 @@ class Post::Form < ActiveType::Record[Post]
   end
 
   def delete_unnecessary_items!(params)
-    removed_ids = items.map(&:id) - params.map { |key, _| key['id'] }
+    removed_ids = items.map(&:id) - (params || []).map { |key, _| key['id'] }
     Item.where(post_id: id, id: removed_ids).find_each(&:destroy!)
   end
 

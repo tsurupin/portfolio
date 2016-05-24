@@ -28,16 +28,14 @@ class Project::Form < ActiveType::Record[Project]
   validates :image, presence: true, if: proc { |project| project.accepted }
   validates :source_url, presence: true, if: proc { |project| project.accepted }
 
-  accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['name'].blank? }
-
+  accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }
 
   def save(params)
-
     ActiveRecord::Base.transaction do
       delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
 
-      params['image'] = convert_data_uri_to_upload(params['image']) if params['image'].try(:start_with?, 'data')
+      params['image'] = convert_data_uri_to_upload(params['image']) if params['image']&.start_with?('data')
       update!(params)
       true
     end
@@ -48,6 +46,5 @@ class Project::Form < ActiveType::Record[Project]
     logger.error "error: #{e.message}, location: #{e.backtrace_locations}"
     false
   end
-
 
 end

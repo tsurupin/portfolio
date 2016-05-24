@@ -26614,12 +26614,11 @@
 	  return requestType;
 	}
 
-	var ROOT_URL = exports.ROOT_URL = '/cms/api';
+	var ROOT_URL = exports.ROOT_URL = '/cms/api/v1';
 	var POST_PATH = exports.POST_PATH = '/posts';
 	var AUTHOR_PATH = exports.AUTHOR_PATH = '/authors';
 	var PROJECT_PATH = exports.PROJECT_PATH = '/projects';
 	var TWITTER_PATH = exports.TWITTER_PATH = '/services/twitter';
-
 	var TEST_DOMAIN = exports.TEST_DOMAIN = 'http://localhost:80';
 
 	var REQUEST = 'REQUEST';
@@ -26634,15 +26633,16 @@
 
 	var FETCH_AUTHOR = exports.FETCH_AUTHOR = createRequestTypes('FETCH_AUTHOR');
 	var UPDATE_AUTHOR = exports.UPDATE_AUTHOR = createRequestTypes('UPDATE_AUTHOR');
-	var SIGN_OUT = exports.SIGN_OUT = createRequestTypes('SIGN_OUT');
-	var AUTH = exports.AUTH = createRequestTypes('AUTH');
-	var FETCH_TWEET = exports.FETCH_TWEET = createRequestTypes('FETCH_TWEET');
 
 	var FETCH_PROJECTS = exports.FETCH_PROJECTS = createRequestTypes('FETCH_PROJECTS');
 	var FETCH_PROJECT = exports.FETCH_PROJECT = createRequestTypes('FETCH_PROJECT');
 	var FETCH_NEW_PROJECT = exports.FETCH_NEW_PROJECT = createRequestTypes('FETCH_NEW_PROJECT');
 	var SAVE_PROJECT = exports.SAVE_PROJECT = createRequestTypes('SAVE_PROJECT');
 	var TOGGLE_PROJECT = exports.TOGGLE_PROJECT = createRequestTypes('TOGGLE_PROJECT');
+
+	var SIGN_OUT = exports.SIGN_OUT = createRequestTypes('SIGN_OUT');
+	var AUTH = exports.AUTH = createRequestTypes('AUTH');
+	var FETCH_TWEET = exports.FETCH_TWEET = createRequestTypes('FETCH_TWEET');
 
 	var FETCH_ITEMS = exports.FETCH_ITEMS = 'FETCH_ITEMS';
 	var CREATE_ITEM = exports.CREATE_ITEM = 'CREATE_ITEM';
@@ -26737,52 +26737,52 @@
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _form = __webpack_require__(939);
-
-	var _form2 = _interopRequireDefault(_form);
-
-	var _index11 = __webpack_require__(940);
+	var _index11 = __webpack_require__(939);
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(944);
+	var _index13 = __webpack_require__(940);
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(948);
+	var _index15 = __webpack_require__(944);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(950);
+	var _index17 = __webpack_require__(948);
 
 	var _index18 = _interopRequireDefault(_index17);
 
-	var _index19 = __webpack_require__(952);
+	var _index19 = __webpack_require__(950);
 
 	var _index20 = _interopRequireDefault(_index19);
 
-	var _index21 = __webpack_require__(953);
+	var _index21 = __webpack_require__(952);
 
 	var _index22 = _interopRequireDefault(_index21);
+
+	var _index23 = __webpack_require__(953);
+
+	var _index24 = _interopRequireDefault(_index23);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
 	  _reactRouter.Route,
 	  { path: '/cms', component: _index2.default },
-	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _index4.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: (0, _index22.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: (0, _index22.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: (0, _index22.default)(_index6.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: (0, _index22.default)(_index8.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: (0, _index22.default)(_index10.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: (0, _index22.default)(_index10.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-up', component: _index16.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-in', component: _index18.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about', component: (0, _index22.default)(_index12.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about/edit', component: (0, _index22.default)(_index14.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sites/edit', component: (0, _index22.default)(_form2.default) }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _index20.default })
+	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _index12.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts', component: (0, _index24.default)(_index4.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/new', component: (0, _index24.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id/edit', component: (0, _index24.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/posts/:id', component: (0, _index24.default)(_index6.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects', component: (0, _index24.default)(_index8.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/new', component: (0, _index24.default)(_index10.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/projects/:id/edit', component: (0, _index24.default)(_index10.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-up', component: _index18.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/sign-in', component: _index20.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about', component: (0, _index24.default)(_index14.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/cms/about/edit', component: (0, _index24.default)(_index16.default) }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _index22.default })
 	);
 
 /***/ },
@@ -26998,7 +26998,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/cms' },
+	            { to: '/cms/posts' },
 	            _react2.default.createElement(
 	              _iconButton2.default,
 	              null,
@@ -38349,6 +38349,7 @@
 	exports.capitalize = capitalize;
 	exports.trimPost = trimPost;
 	exports.trimProject = trimProject;
+	exports.trimSite = trimSite;
 	exports.trimAuthor = trimAuthor;
 
 	var _axios = __webpack_require__(335);
@@ -38392,6 +38393,11 @@
 	function trimProject(params) {
 	  return _extends({}, convertKeyNameInSnakeCase(params));
 	}
+
+	function trimSite(params) {
+	  return _extends({}, convertKeyNameInSnakeCase(params));
+	}
+
 	function trimAuthor(params) {
 	  return _extends({}, convertKeyNameInSnakeCase(params), {
 	    social_accounts_attributes: params.socialAccountsAttributes.filter(function (item) {
@@ -76968,7 +76974,7 @@
 	    if (props.value) {
 	      var blocks = (0, _draftJs.convertFromRaw)(JSON.parse(props.value));
 	      _this.state = {
-	        editorState: _draftJs.EditorState.createWithContent(_draftJs.ContentState.createFromText('text'), decorator),
+	        editorState: _draftJs.EditorState.createWithContent(blocks, decorator),
 	        inputtable: false,
 	        urlValue: ''
 	      };
@@ -90339,30 +90345,30 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var SitesForm = function (_Component) {
-	  _inherits(SitesForm, _Component);
+	var HomesIndex = function (_Component) {
+	  _inherits(HomesIndex, _Component);
 
-	  function SitesForm() {
-	    _classCallCheck(this, SitesForm);
+	  function HomesIndex(props) {
+	    _classCallCheck(this, HomesIndex);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SitesForm).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(HomesIndex).call(this, props));
 	  }
 
-	  _createClass(SitesForm, [{
+	  _createClass(HomesIndex, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
+	        'section',
 	        null,
-	        'Hoge'
+	        'Hello world!'
 	      );
 	    }
 	  }]);
 
-	  return SitesForm;
+	  return HomesIndex;
 	}(_react.Component);
 
-	exports.default = SitesForm;
+	exports.default = HomesIndex;
 
 /***/ },
 /* 940 */

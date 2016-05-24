@@ -46,16 +46,13 @@ const decorator = new CompositeDecorator([
 
 export default class TextEditor extends Component {
 
-
-
   constructor(props) {
     super(props);
 
     if(props.value) {
       const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
-        editorState: EditorState.createWithContent( ContentState.createFromText('text'),
-          decorator),
+        editorState: EditorState.createWithContent(blocks, decorator),
         inputtable: false,
         urlValue: ''
       };

@@ -71,7 +71,7 @@ class NavigationBar extends Component {
                                 <SocialPerson />
                             </IconButton>
                         </Link>
-                        <Link to="/cms" >
+                        <Link to="/cms/posts" >
                             <IconButton>
                                 <ActionDescription />
                             </IconButton>

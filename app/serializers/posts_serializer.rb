@@ -8,6 +8,6 @@ class PostsSerializer < ActiveModel::Serializer
 
   def status
     return 'not accepted' unless object.accepted
-    object.published_at >= Time.current ? 'publishing' : 'will publish'
+    object.published_at <= Time.current ? 'publishing' : 'will publish'
   end
 end

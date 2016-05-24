@@ -1,8 +1,11 @@
-class Cms::Api::Projects::AcceptancesController < Cms::ApplicationController
+class Cms::Api::V1::Projects::AcceptancesController < Cms::ApplicationController
 
   def update
     project = Project.find(params[:project_id])
-    status = project.toggle!(:accepted) ? 200 : 500
-    render json: { status: status }
+    if project.update(accepted: !project.accepted)
+      head :ok
+    else
+      head :bad_request
+    end
   end
 end

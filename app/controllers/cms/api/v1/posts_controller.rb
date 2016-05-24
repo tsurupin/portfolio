@@ -1,6 +1,5 @@
-class Cms::Api::PostsController < Cms::ApplicationController
+class Cms::Api::V1::PostsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :index
-  #protect_from_forgery except: %w(create update)
 
   def index
     posts = Post.page(params[:page])
@@ -16,7 +15,7 @@ class Cms::Api::PostsController < Cms::ApplicationController
   def create
     post = Post::Form.new
     if post.save_from_associations(post_params)
-      render nothing: true, status: :created
+      head :created
     else
       render_error(post)
     end
@@ -30,7 +29,7 @@ class Cms::Api::PostsController < Cms::ApplicationController
   def update
     post = Post::Form.find(params[:id])
     if post.save_from_associations(post_params)
-      render nothing: true, status: :ok
+      head :ok
     else
       render_error(post)
     end

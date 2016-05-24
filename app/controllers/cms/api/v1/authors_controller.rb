@@ -1,13 +1,12 @@
-class Cms::Api::AuthorsController < Cms::ApplicationController
+class Cms::Api::V1::AuthorsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :create
-  #protect_from_forgery except: %w(create update)
 
   def create
     author = Author.new(author_params)
     if author.save
       render json: { accessToken: author.access_token }
     else
-      render json: { error: 'author create error' }, status: :unprocessable_entity
+      render json: { errorMessage: 'author create error' }, status: :unprocessable_entity
     end
   end
 
@@ -20,9 +19,10 @@ class Cms::Api::AuthorsController < Cms::ApplicationController
   end
 
   def update
-    author = Author::Form.find(current_cms_api_author.id)
+    # TODO: figure out how to change device helper name
+    author = Author::Form.find(current_cms_api_v1_author.id)
     if author.save(author_params)
-      render nothing: true, status: :ok
+      head :ok
     else
       render_error(author)
     end
@@ -35,6 +35,6 @@ class Cms::Api::AuthorsController < Cms::ApplicationController
   end
 
   def render_author
-    render json: current_cms_api_author, root: false
+    render json: current_cms_api_v1_author, root: false
   end
 end

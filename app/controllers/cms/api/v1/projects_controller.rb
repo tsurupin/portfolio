@@ -1,5 +1,4 @@
-class Cms::Api::ProjectsController < Cms::ApplicationController
-  #protect_from_forgery except: %w(create update)
+class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def index
     projects = Project.order(updated_at: :desc)
@@ -14,7 +13,7 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
   def create
     project = Project::Form.new
     if project.save(project_params)
-      render nothing: true, status: :created
+      head :created
     else
       render_error(project)
     end
@@ -28,7 +27,7 @@ class Cms::Api::ProjectsController < Cms::ApplicationController
   def update
     project = Project::Form.find(params[:id])
     if project.save(project_params)
-      render nothing: true, status: :ok
+      head :ok
     else
       render_error(project)
     end

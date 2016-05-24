@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Cms::Api::Projects::AcceptancesController, type: :request do
+RSpec.describe Cms::Api::V1::Projects::AcceptancesController, type: :request do
   describe 'CMS Project API' do
     let(:author) { create(:author) }
     let(:auth_header) { { 'Authorization' => author.access_token } }
 
-    describe 'PATCH /cms/api/projects/:id/acceptance' do
-      before { patch cms_api_project_acceptance_path(project.id), {}, auth_header }
+    describe 'PATCH /cms/api/v1/projects/:id/acceptance' do
+      before { patch cms_api_v1_project_acceptance_path(project.id), {}, auth_header }
       context 'when project was accepted' do
         let!(:project) { create(:project, :accepted) }
         it 'changes accepted from true to false' do
@@ -22,7 +22,6 @@ RSpec.describe Cms::Api::Projects::AcceptancesController, type: :request do
           expect(Project.find(project.id).accepted).to be_truthy
         end
       end
-
     end
   end
 end

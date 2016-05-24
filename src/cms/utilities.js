@@ -40,6 +40,15 @@ export function trimProject(params) {
     ...convertKeyNameInSnakeCase(params)
   };
 }
+
+
+export function trimSite(params) {
+  return {
+    ...convertKeyNameInSnakeCase(params)
+  };
+}
+
+
 export function trimAuthor(params) {
   return {
     ...convertKeyNameInSnakeCase(params),

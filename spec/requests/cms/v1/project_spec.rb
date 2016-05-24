@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Cms::Api::ProjectsController, type: :request do
+RSpec.describe Cms::Api::V1::ProjectsController, type: :request do
   describe 'CMS Project API' do
     let(:author) { create(:author) }
     let(:auth_header) { { 'Authorization' => author.access_token } }
 
-    describe 'GET /cms/api/projects' do
+    describe 'GET /cms/api/v1/projects' do
       subject { JSON.parse(response.body) }
       let!(:project1) { create(:project, :accepted) }
       let!(:project2) { create(:project) }
@@ -28,7 +28,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
             end
           }
         end
-        before { get cms_api_projects_path, {}, auth_header }
+        before { get cms_api_v1_projects_path, {}, auth_header }
         it 'return correct info from api' do
           expect(response.status).to eq 200
           expect(subject).to eq result
@@ -36,14 +36,14 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
       end
 
       context 'when access_token is not sent in header' do
-        before { get cms_api_projects_path, {} }
-        it 'return error message' do
+        before { get cms_api_v1_projects_path, {} }
+        it 'returns error message' do
           expect(response.status).to eq 401
         end
       end
     end
 
-    describe 'GET /cms/api/projects/new' do
+    describe 'GET /cms/api/v1/projects/new' do
       subject { JSON.parse(response.body) }
       let!(:tag1) { create(:tag) }
       let!(:tag2) { create(:tag) }
@@ -62,16 +62,16 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
         }
       end
 
-      before { get new_cms_api_project_path, {}, auth_header }
-      it 'return tagSuggestions params' do
+      before { get new_cms_api_v1_project_path, {}, auth_header }
+      it 'returns tag suggestions params' do
         expect(response.status).to eq 200
         expect(subject).to eq result
       end
     end
 
-    describe 'POST /cms/api/projects' do
+    describe 'POST /cms/api/v1/projects' do
       let!(:tag) { create(:tag) }
-      before { post cms_api_projects_path, params, auth_header }
+      before { post cms_api_v1_projects_path, params, auth_header }
       context 'the params sent lack of needed params' do
         subject { JSON.parse(response.body) }
         let(:params) do
@@ -111,7 +111,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
       end
     end
 
-    describe 'GET /cms/api/projects/:id/edit' do
+    describe 'GET /cms/api/v1/projects/:id/edit' do
       subject { JSON.parse(response.body) }
       let!(:project) { create(:project) }
       let!(:tag1) { create(:tag) }
@@ -128,24 +128,24 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
           'sampleUrl' => project.sample_url,
           'image' => project.image_url,
           'tagSuggestions' => tags.map(&:name),
-          'tags' => [{ 'id' => tagging.id, 'text' => tagging.name }]
+          'tags' => [{ 'text' => tagging.name }]
         }
       end
 
-      before { get edit_cms_api_project_path(project.id), {}, auth_header }
+      before { get edit_cms_api_v1_project_path(project.id), {}, auth_header }
       it 'return tagSuggestions params' do
         expect(response.status).to eq 200
         expect(subject).to eq result
       end
     end
 
-    describe 'PATCH /cms/api/projects/:id' do
+    describe 'PATCH /cms/api/v1/projects/:id' do
       let!(:project) { create(:project) }
       let!(:tag1) { create(:tag, name: 'hoge') }
       let!(:tag2) { create(:tag) }
       let!(:tagging1) { create(:tagging, :subject_project, subject_id: project.id, tag: tag1) }
       let!(:tagging2) { create(:tagging, :subject_project, subject_id: project.id, tag: tag2) }
-      before { patch cms_api_project_path(project.id), params, auth_header }
+      before { patch cms_api_v1_project_path(project.id), params, auth_header }
       # TODO: think of error case
       # context 'the params sent lack of needed params' do
       #   subject { JSON.parse(response.body) }
@@ -159,7 +159,7 @@ RSpec.describe Cms::Api::ProjectsController, type: :request do
       #       }
       #     }
       #   end
-      #   before { patch cms_api_project_path(project.id), params, auth_header }
+      #   before { patch cms_api_v1_project_path(project.id), params, auth_header }
       #   it 'return 400 and error message' do
       #     expect(response.status).to eq 400
       #     expect(Tagging.exists?(subject_id: project.id)).to be_truthy

@@ -14,13 +14,13 @@
 
 require 'rails_helper'
 
-RSpec.describe Post::Form, type: :model do
+RSpec.describe Author::Form, type: :model do
   describe '#validations' do
     it { is_expected.to accept_nested_attributes_for(:items) }
     it { is_expected.to accept_nested_attributes_for(:taggings) }
 
     context 'description' do
-      let(:post) { Post::Form.find(original_post.id) }
+      let(:post) { Author::Form.find(original_post.id) }
       context 'when description is nil' do
         let!(:original_post) { create(:post) }
         it { expect { post.update!(accepted: true) }.to raise_error { ArgumentError } }
@@ -38,7 +38,7 @@ RSpec.describe Post::Form, type: :model do
     let(:product) { create(:product) }
 
     context 'when new_record' do
-      let!(:post) { Post::Form.new }
+      let!(:post) { Author::Form.new }
 
       let(:item_attributes) do
         [
@@ -90,7 +90,7 @@ RSpec.describe Post::Form, type: :model do
         shared_examples 'failing to save' do
           it 'fails to save and gets false'  do
             expect(subject).to be_falsey
-            expect(Post.count).to eq 0
+            expect(Author.count).to eq 0
             expect(Item.count).to eq 0
             expect(ItemTwitter.count).to eq 0
           end
@@ -137,7 +137,7 @@ RSpec.describe Post::Form, type: :model do
         end
         it 'succeeds in saving and gets true' do
           expect(subject).to be_truthy
-          expect(Post.last.items.size).to eq 7
+          expect(Author.last.items.size).to eq 7
           expect(ItemText.count).to eq 1
           expect(ItemTwitter.count).to eq 1
           expect(ItemLink.count).to eq 1
@@ -145,7 +145,7 @@ RSpec.describe Post::Form, type: :model do
           expect(ItemHeading.count).to eq 1
           expect(ItemSubHeading.count).to eq 1
           expect(ItemImage.count).to eq 1
-          expect(Post.last.taggings.size).to eq 2
+          expect(Author.last.taggings.size).to eq 2
           expect(Tag.count).to eq 2
         end
       end
@@ -153,7 +153,7 @@ RSpec.describe Post::Form, type: :model do
 
     context 'when persisted record' do
       let!(:original_post) { create(:post) }
-      let(:post) { Post::Form.find(original_post.id) }
+      let(:post) { Author::Form.find(original_post.id) }
       let!(:link) { create(:item_link) }
       let!(:item_link) { create(:item, :link, target_id: link.id, post: post, sort_rank: 1) }
       let!(:twitter) { create(:item_twitter) }
@@ -192,7 +192,7 @@ RSpec.describe Post::Form, type: :model do
 
         it 'fails to save and gets false' do
           expect(subject).to be_falsey
-          expect(Post.last.items.size).to eq 2
+          expect(Author.last.items.size).to eq 2
           expect(Item.where(post_id: post.id, target_type: 'ItemLink').count).to eq 1
           expect(Item.where(post_id: post.id, target_type: 'ItemText').count).to eq 0
           expect(ItemText.count).to eq 0
@@ -202,8 +202,8 @@ RSpec.describe Post::Form, type: :model do
       context 'when succeeding in saving' do
         let!(:tag1) { create(:tag, name: 'hoge1') }
         let!(:tag2) { create(:tag, name: 'hoge2') }
-        let!(:tagging1) { create(:tagging, tag: tag1, subject_id: post.id, subject_type: 'Post') }
-        let!(:tagging2) { create(:tagging, tag: tag2, subject_id: post.id, subject_type: "Post") }
+        let!(:tagging1) { create(:tagging, tag: tag1, subject_id: post.id, subject_type: 'Author') }
+        let!(:tagging2) { create(:tagging, tag: tag2, subject_id: post.id, subject_type: "Author") }
         let(:tag_params) do
           [
             { 'id' => tagging1.id, 'text' => tag1.name },
@@ -221,11 +221,11 @@ RSpec.describe Post::Form, type: :model do
         end
         it 'succeeds in saving and gets true' do
           expect(subject).to be_truthy
-          expect(Post.find(post.id).title).to eq 'title_updated'
-          expect(Post.last.items.size).to eq 2
+          expect(Author.find(post.id).title).to eq 'title_updated'
+          expect(Author.last.items.size).to eq 2
           expect(Item.where(post_id: post.id, target_type: 'ItemLink').count).to eq 1
           expect(Item.find(item_twitter.id).sort_rank).to eq 2
-          expect(Post.last.taggings.map(&:id)).to eq [tagging1.id, Tagging.where.not(id: tagging2.id).last.id]
+          expect(Author.last.taggings.map(&:id)).to eq [tagging1.id, Tagging.where.not(id: tagging2.id).last.id]
           expect(Tag.count).to eq 3
         end
       end
@@ -235,7 +235,7 @@ RSpec.describe Post::Form, type: :model do
 
   describe '#delete_unnecessary_items!' do
     let!(:original_post) { create(:post) }
-    let(:post) { Post::Form.find(original_post.id) }
+    let(:post) { Author::Form.find(original_post.id) }
     let!(:item) { create(:item, :text, post: post, id: 1) }
     let!(:item) { create(:item, :text, post: post, id: 2) }
     shared_examples 'deleting items' do
@@ -257,11 +257,11 @@ RSpec.describe Post::Form, type: :model do
 
   describe '#delete_unnecessary_tags!' do
     let!(:original_post) { create(:post) }
-    let(:post) { Post::Form.find(original_post.id) }
+    let(:post) { Author::Form.find(original_post.id) }
     let!(:tag1) { create(:tag, name: 'tag1') }
     let!(:tag2) { create(:tag, name: 'tag2') }
-    let!(:tagging1) { create(:tagging, subject_id: post.id, subject_type: 'Post', tag: tag1) }
-    let!(:tagging2) { create(:tagging, subject_id: post.id, subject_type: 'Post', tag: tag2) }
+    let!(:tagging1) { create(:tagging, subject_id: post.id, subject_type: 'Author', tag: tag1) }
+    let!(:tagging2) { create(:tagging, subject_id: post.id, subject_type: 'Author', tag: tag2) }
 
     shared_examples 'deleting taggings' do
       subject { post.delete_unnecessary_tags!(params) }
