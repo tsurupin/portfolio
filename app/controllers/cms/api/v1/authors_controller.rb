@@ -21,7 +21,6 @@ class Cms::Api::AuthorsController < Cms::ApplicationController
 
   def update
     author = Author::Form.find(current_cms_api_author.id)
-    p author_params
     if author.save(author_params)
       render nothing: true, status: :ok
     else
