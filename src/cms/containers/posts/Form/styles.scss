@@ -5,6 +5,7 @@
 @value font-xx-small from fonts;
 
 .root {
+  composes: row from '../../../css/flexboxgrid.scss';
   margin: 20px auto;
   padding: 10px 15px;
   border: 1px solid border-color;

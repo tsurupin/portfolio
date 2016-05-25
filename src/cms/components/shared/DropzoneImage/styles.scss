@@ -4,6 +4,7 @@
 @value font-xx-small, font-medium from fonts;
 
 .root {
+  composes: row from '../../../css/flexboxgrid.scss';
   composes: bottomBorder from '../../../css/mixins.scss';
   composes: marginBottomMiddle from '../../../css/margins.scss';
   padding: 6px;
@@ -14,6 +15,7 @@
 }
 
 .dropzone {
+  composes: col-xs-12 from '../../../css/flexboxgrid.scss';
   composes: marginToopXXSmall from '../../../css/margins.scss';
   width: 100%;
   margin-top: 10px;

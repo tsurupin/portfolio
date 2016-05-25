@@ -7,7 +7,6 @@ require 'shoulda/matchers'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'selenium-webdriver'
-#require 'capybara/poltergeist'
 require 'factory_girl_rails'
 require 'vcr'
 
@@ -18,34 +17,26 @@ end
 
 Capybara.ignore_hidden_elements = false
 
-# Capybara.register_driver :poltergeist do |app|
-#   Capybara::Poltergeist::Driver.new(
-#       app,
-#       debug: true,
-#       phantomjs_logger: true,
-#       window_size: [1100, 6000],
-#       phantomjs_option: ['--load-images=no', '--ignore-ssl-errors=yes']
-#   )
-# end
-# Capybara.javascript_driver = :poltergeist
+
 Dir[Rails.root.join('spec/supports/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
-  config.include SignInMacros
-
+  config.include SessionHelpers
   config.include Capybara::DSL
-  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = false
 
   config.infer_spec_type_from_file_location!
 
+  config.after(:each) do
+    page.execute_script("localStorage.clear()")
+  end
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
-    # FactoryGirl.reload
   end
 
   config.before(:each) do
