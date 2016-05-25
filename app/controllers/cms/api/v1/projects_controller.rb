@@ -7,7 +7,7 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def new
     project = Project.new
-    render json: project, root: false
+    render json: project
   end
 
   def create
@@ -15,13 +15,13 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
     if project.save(project_params)
       head :created
     else
-      render_error(project)
+      render_error_message(project)
     end
   end
 
   def edit
     project = Project.find(params[:id])
-    render json: project, root: false
+    render json: project
   end
 
   def update
@@ -29,7 +29,7 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
     if project.save(project_params)
       head :ok
     else
-      render_error(project)
+      render_error_message(project)
     end
   end
 

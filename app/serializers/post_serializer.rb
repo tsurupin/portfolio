@@ -1,4 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
+  self.root = false
   format_keys :lower_camel
   attributes :id, :title, :accepted, :published_at, :tag_suggestions
 

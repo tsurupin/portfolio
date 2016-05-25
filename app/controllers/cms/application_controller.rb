@@ -13,7 +13,7 @@ class Cms::ApplicationController < ApplicationController
 
   protected
 
-  def render_error(model)
+  def render_error_message(model)
     logger.error model.errors.full_messages.join('')
     p model.errors.full_messages.join('')
     render json: { errorMessage: model.errors.full_messages.join('') }, status: :bad_request

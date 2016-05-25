@@ -24,7 +24,7 @@ class Cms::Api::V1::AuthorsController < Cms::ApplicationController
     if author.save(author_params)
       head :ok
     else
-      render_error(author)
+      render_error_message(author)
     end
   end
 
@@ -35,6 +35,6 @@ class Cms::Api::V1::AuthorsController < Cms::ApplicationController
   end
 
   def render_author
-    render json: current_cms_api_v1_author, root: false
+    render json: current_cms_api_v1_author
   end
 end

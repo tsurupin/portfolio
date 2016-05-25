@@ -9,7 +9,7 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
 
   def new
     post = Post.new
-    render json: post, root: false
+    render json: post
   end
 
   def create
@@ -17,13 +17,13 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
     if post.save_from_associations(post_params)
       head :created
     else
-      render_error(post)
+      render_error_message(post)
     end
   end
 
   def edit
     post = Post.find(params[:id])
-    render json: post, root: false
+    render json: post
   end
 
   def update
@@ -31,7 +31,7 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
     if post.save_from_associations(post_params)
       head :ok
     else
-      render_error(post)
+      render_error_message(post)
     end
   end
 
