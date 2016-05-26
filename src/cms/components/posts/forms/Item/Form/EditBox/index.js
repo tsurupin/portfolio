@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../../constants';
 import List from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 import EditBoxItem from './EditBoxItem/index';
 import styles from './styles.scss';
 
@@ -29,10 +30,8 @@ class EditBox extends Component {
 
   render() {
     return (
-      <List className={styles.root}
-            insetSubheader={true}
-            subheader='Add Item'
-            subheaderStyle={inlineStyles.subHeader}>
+      <List className={styles.root}>
+        <Subheader style={inlineStyles.subHeader}>Add Item</Subheader>
         <ul className={styles.list}>
           {TARGET_TYPE_LIST.map((targetType, index) => {
             return (

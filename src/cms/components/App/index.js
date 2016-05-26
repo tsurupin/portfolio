@@ -1,14 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import NavigationBar from '../NavigationBar/index';
-import ThemeManager from 'material-ui/styles/themeManager';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MyRawTheme from '../../theme';
 import styles from './styles.scss';
 
-export default class App extends Component {
+
+class App extends Component {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(MyRawTheme)
+      muiTheme: getMuiTheme(MyRawTheme)
     };
   }
 
@@ -25,5 +26,8 @@ export default class App extends Component {
 }
 
 App.childContextTypes = {
-  muiTheme: PropTypes.object
+  muiTheme: PropTypes.object.isRequired
 };
+
+
+export default App;

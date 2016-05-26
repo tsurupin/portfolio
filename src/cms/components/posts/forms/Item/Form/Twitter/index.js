@@ -17,7 +17,7 @@ const inlineStyles = {
 class Twitter extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
     this.state = { loading: false };
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);

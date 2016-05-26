@@ -27468,9 +27468,9 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _themeManager = __webpack_require__(321);
+	var _getMuiTheme = __webpack_require__(329);
 
-	var _themeManager2 = _interopRequireDefault(_themeManager);
+	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
 	var _theme = __webpack_require__(416);
 
@@ -27501,7 +27501,7 @@
 	    key: 'getChildContext',
 	    value: function getChildContext() {
 	      return {
-	        muiTheme: _themeManager2.default.getMuiTheme(_theme2.default)
+	        muiTheme: (0, _getMuiTheme2.default)(_theme2.default)
 	      };
 	    }
 	  }, {
@@ -27523,12 +27523,11 @@
 	  return App;
 	}(_react.Component);
 
-	exports.default = App;
-
-
 	App.childContextTypes = {
-	  muiTheme: _react.PropTypes.object
+	  muiTheme: _react.PropTypes.object.isRequired
 	};
+
+	exports.default = App;
 
 /***/ },
 /* 255 */
@@ -33129,54 +33128,7 @@
 
 
 /***/ },
-/* 321 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _reactAddonsUpdate = __webpack_require__(280);
-
-	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
-
-	var _lodash = __webpack_require__(322);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	var _getMuiTheme2 = __webpack_require__(329);
-
-	var _getMuiTheme3 = _interopRequireDefault(_getMuiTheme2);
-
-	var _warning = __webpack_require__(196);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = {
-	  getMuiTheme: function getMuiTheme(baseTheme, muiTheme) {
-	    (undefined) !== "production" ? (0, _warning2.default)(false, 'ThemeManager is deprecated. please import getMuiTheme' + ' directly from "material-ui/getMuiTheme"') : void 0;
-	    return (0, _getMuiTheme3.default)(baseTheme, muiTheme);
-	  },
-	  modifyRawThemeSpacing: function modifyRawThemeSpacing(muiTheme, spacing) {
-	    (undefined) !== "production" ? (0, _warning2.default)(false, 'modifyRawThemeSpacing is deprecated. please use getMuiTheme ' + ' to modify your theme directly. http://www.material-ui.com/#/customization/themes') : void 0;
-	    return (0, _getMuiTheme3.default)((0, _reactAddonsUpdate2.default)(muiTheme.baseTheme, { spacing: { $set: spacing } }));
-	  },
-	  modifyRawThemePalette: function modifyRawThemePalette(muiTheme, palette) {
-	    (undefined) !== "production" ? (0, _warning2.default)(false, 'modifyRawThemePalette is deprecated. please use getMuiTheme ' + ' to modify your theme directly. http://www.material-ui.com/#/customization/themes') : void 0;
-	    var newPalette = (0, _lodash2.default)(muiTheme.baseTheme.palette, palette);
-	    return (0, _getMuiTheme3.default)((0, _reactAddonsUpdate2.default)(muiTheme.baseTheme, { palette: { $set: newPalette } }));
-	  },
-	  modifyRawThemeFontFamily: function modifyRawThemeFontFamily(muiTheme, fontFamily) {
-	    (undefined) !== "production" ? (0, _warning2.default)(false, 'modifyRawThemeFontFamily is deprecated. please use getMuiTheme ' + ' to modify your theme directly. http://www.material-ui.com/#/customization/themes') : void 0;
-	    return (0, _getMuiTheme3.default)((0, _reactAddonsUpdate2.default)(muiTheme.baseTheme, { fontFamily: { $set: fontFamily } }));
-	  }
-	};
-
-/***/ },
+/* 321 */,
 /* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49880,6 +49832,10 @@
 
 	var _List2 = _interopRequireDefault(_List);
 
+	var _Subheader = __webpack_require__(502);
+
+	var _Subheader2 = _interopRequireDefault(_Subheader);
+
 	var _index = __webpack_require__(509);
 
 	var _index2 = _interopRequireDefault(_index);
@@ -49925,10 +49881,12 @@
 
 	      return _react2.default.createElement(
 	        _List2.default,
-	        { className: _styles2.default.root,
-	          insetSubheader: true,
-	          subheader: 'Add Item',
-	          subheaderStyle: inlineStyles.subHeader },
+	        { className: _styles2.default.root },
+	        _react2.default.createElement(
+	          _Subheader2.default,
+	          { style: inlineStyles.subHeader },
+	          'Add Item'
+	        ),
 	        _react2.default.createElement(
 	          'ul',
 	          { className: _styles2.default.list },
@@ -58693,8 +58651,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -58705,11 +58661,9 @@
 	  _inherits(PostItemCell, _Component);
 
 	  function PostItemCell(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, PostItemCell);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemCell)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PostItemCell).call(this, props));
 
 	    _this.state = { hovering: false };
 
@@ -60888,8 +60842,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -60900,11 +60852,9 @@
 	  _inherits(Twitter, _Component);
 
 	  function Twitter(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Twitter);
 
-	    return _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Twitter)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Twitter).call(this, props));
 	  }
 
 	  _createClass(Twitter, [{
@@ -78904,8 +78854,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -78916,11 +78864,9 @@
 	  _inherits(PostItemForm, _Component);
 
 	  function PostItemForm(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, PostItemForm);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PostItemForm)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PostItemForm).call(this, props));
 
 	    _this.handleUpdateItem = _this.handleUpdateItem.bind(_this);
 	    _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
@@ -79949,8 +79895,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -79966,11 +79910,9 @@
 	  _inherits(Twitter, _Component);
 
 	  function Twitter(props) {
-	    var _Object$getPrototypeO;
-
 	    _classCallCheck(this, Twitter);
 
-	    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Twitter)).call.apply(_Object$getPrototypeO, [this].concat(_toConsumableArray(props))));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Twitter).call(this, props));
 
 	    _this.state = { loading: false };
 

@@ -12,7 +12,7 @@ import styles from './shared/styles.scss';
 
 class PostItemForm extends Component {
   constructor(props) {
-    super(...props);
+    super(props);
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);

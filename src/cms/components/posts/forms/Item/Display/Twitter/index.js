@@ -5,7 +5,7 @@ import styles from './styles.scss';
 class Twitter extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
   }
 
   render() {
