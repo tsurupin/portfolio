@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../constants';
-import RaisedButton from 'material-ui/lib/raised-button';
-import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import Heading from './Heading/index';
 import Image from './Image/index';
 import Twitter from './Twitter/index';

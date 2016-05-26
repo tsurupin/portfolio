@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../../constants';
-import List from 'material-ui/lib/lists/list';
+import List from 'material-ui/List';
 import EditBoxItem from './EditBoxItem/index';
 import styles from './styles.scss';
 

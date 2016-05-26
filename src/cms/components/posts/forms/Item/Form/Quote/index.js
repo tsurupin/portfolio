@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
 import styles from '../shared/styles.scss';
 

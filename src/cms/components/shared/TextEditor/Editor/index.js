@@ -19,10 +19,10 @@ import {
   Link
 } from './../shared/utilities';
 
-import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
-import TextField from 'material-ui/lib/text-field';
-import IconButton from 'material-ui/lib/icon-button';
-import Divider from 'material-ui/lib/divider';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
+import TextField from 'material-ui/TextField';
+import IconButton from 'material-ui/IconButton';
+import Divider from 'material-ui/Divider';
 import styles from '../shared/styles.scss';
 
 

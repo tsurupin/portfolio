@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import TableRow from '../../../../../../node_modules/material-ui/lib/table/table-row';
-import TableRowColumn from '../../../../../../node_modules/material-ui/lib/table/table-row-column';
-import IconButton from '../../../../../../node_modules/material-ui/lib/icon-button';
-import EditorModeEdit from '../../../../../../node_modules/material-ui/lib/svg-icons/editor/mode-edit';
-import ContentClear from '../../../../../../node_modules/material-ui/lib/svg-icons/content/clear';
-import AvAirplay from '../../../../../../node_modules/material-ui/lib/svg-icons/av/airplay';
-import ActionVisibility from '../../../../../../node_modules/material-ui/lib/svg-icons/action/visibility';
-import ActionVisibilityOff from '../../../../../../node_modules/material-ui/lib/svg-icons/action/visibility-off';
+import IconButton from 'material-ui/IconButton';
+import { TableRow, TableRowColumn } from 'material-ui/Table';
+import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import ContentClear from 'material-ui/svg-icons/content/clear';
+import AvAirplay from 'material-ui/svg-icons/av/airplay';
+import ActionVisibility from 'material-ui/svg-icons/action/visibility';
+import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 
 import styles from './styles.scss';
 

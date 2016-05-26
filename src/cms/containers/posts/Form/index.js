@@ -5,11 +5,11 @@ import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import EditBox from '../../../components/posts/forms/Item/Form/EditBox/index';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 import DatePicker from '../../../components/shared/DatePickerWrapper/index';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 import Item from '../../../components/posts/forms/Item/index';
-import RefreshIndicator from 'material-ui/lib/refresh-indicator';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 import TagField from '../../../components/shared/TagField/index';
 import styles from './styles.scss';
 

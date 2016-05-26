@@ -3,15 +3,9 @@ import { connect } from 'react-redux';
 import { fetchPosts, togglePost } from '../../../actions/posts';
 import { Link } from 'react-router';
 import ItemRow from '../../../components/posts/indexes/ItemRow/index';
-import Table from 'material-ui/lib/table/table';
-import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
-import TableHeader from 'material-ui/lib/table/table-header';
-import TableBody from 'material-ui/lib/table/table-body';
-import TableRow from 'material-ui/lib/table/table-row';
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
-import TableFooter from 'material-ui/lib/table/table-footer';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+import { Table, TableHeaderColumn, TableHeader, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui/Table';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import Pagination from '../../../components/shared/Pagination/index';
 import styles from'./styles.scss';
 

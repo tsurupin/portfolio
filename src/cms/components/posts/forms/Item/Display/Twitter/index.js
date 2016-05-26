@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Avatar from 'material-ui/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 import styles from './styles.scss';
 
 class Twitter extends Component {

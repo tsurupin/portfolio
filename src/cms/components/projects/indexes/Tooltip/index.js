@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import ModeEdit from 'material-ui/lib/svg-icons/editor/mode-edit';
-import Clear from 'material-ui/lib/svg-icons/content/clear';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import ExpandMore from 'material-ui/lib/svg-icons/navigation/expand-more';
-import ActionVisibility from 'material-ui/lib/svg-icons/action/visibility';
-import ActionVisibilityOff from 'material-ui/lib/svg-icons/action/visibility-off';
+import MenuItem from 'material-ui/MenuItem';
+import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import Clear from 'material-ui/svg-icons/content/clear';
+import IconMenu from 'material-ui/IconMenu';
+import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
+import ActionVisibility from 'material-ui/svg-icons/action/visibility';
+import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+import IconButton from 'material-ui/IconButton';
 
-import IconButton from 'material-ui/lib/icon-button';
 import styles from './styles.scss';
 
 class Tooltip extends Component {

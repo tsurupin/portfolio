@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import TextDisplay from '../../../shared/TextEditor/Display/index';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Divider from 'material-ui/lib/divider';
+import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
 import styles from './styles.scss';
 
 

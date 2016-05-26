@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import ChevronLeft from 'material-ui/lib/svg-icons/navigation/chevron-left';
-import ChevronRight from 'material-ui/lib/svg-icons/navigation/chevron-right';
-import IconButton from 'material-ui/lib/icon-button';
+import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import IconButton from 'material-ui/IconButton';
 import styles from './styles.scss';
 
 class Pagination extends Component {

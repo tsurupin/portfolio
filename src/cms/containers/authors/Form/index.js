@@ -4,10 +4,10 @@ import { createSocialAccount, updateSocialAccount, deleteSocialAccount } from '.
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../components/shared/DropzoneImage/index';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 import TextEditor from '../../../components/shared/TextEditor/Editor/index'
 import SocialAccount from '../../../components/authors/forms/SocialAccount/index';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 import styles from './styles.scss';
 
 const inlineStyles = {

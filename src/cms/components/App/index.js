@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import NavigationBar from '../NavigationBar/index';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeManager from 'material-ui/styles/themeManager';
 import MyRawTheme from '../../theme';
 import styles from './styles.scss';
 
