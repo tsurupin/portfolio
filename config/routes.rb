@@ -1,7 +1,20 @@
 Rails.application.routes.draw do
 
-  get '/health_check' => 'application#health_check'
+  ################################################################################
+  # For General User
+  scope module: :client do
+    namespace :api, default: { format: :json } do
+      namespace :v1 do
+        resource :home, only: :show
+        resource :about, only: :show
+        resources :projects, only: :index
+        resources :posts, only: %w(index show)
+      end
+    end
+  end
 
+  ################################################################################
+  # Admin only
   namespace :cms do
     namespace :api, default: { format: :json } do
       namespace :v1 do
@@ -27,9 +40,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get '/health_check' => 'application#health_check'
     get '/', to: 'application#layout'
     get "*path", to: "application#layout", default: { format: :html }
 
   end
-
 end

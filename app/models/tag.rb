@@ -12,6 +12,5 @@ class Tag < ActiveRecord::Base
   has_many :taggings, as: :subject, dependent: :destroy
   has_many :posts, through: :taggings
   has_many :ptojects, through: :taggings
-  validates :name, presence: true, uniqueness: true
-
+  validates :name, presence: true, uniqueness: { message: "%{value} is already used" }
 end

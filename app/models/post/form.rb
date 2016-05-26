@@ -40,9 +40,10 @@ class Post::Form < ActiveType::Record[Post]
 
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
 
-      params[ITEMS_ATTRIBUTES].each.with_index(1) do |item, index|
+      params[ITEMS_ATTRIBUTES]&.each&.with_index(1) do |item, index|
         target = item['target_type'].constantize.find_or_initialize_by(id: item['target_id'])
         case target.class.name
+          # TODO: consider whether heading, quote, link are needed or not
           when 'ItemHeading', 'ItemSubHeading'
             target.title              = item['title']
           when 'ItemQuote'
@@ -74,6 +75,8 @@ class Post::Form < ActiveType::Record[Post]
         )
       end
 
+      p params
+
       update!(params)
       true
     end
@@ -86,7 +89,7 @@ class Post::Form < ActiveType::Record[Post]
   end
 
   def delete_unnecessary_items!(params)
-    removed_ids = items.map(&:id) - (params || []).map { |key, _| key['id'] }
+    removed_ids = items.map(&:id) - (params || []).map { |key, _| key['id'].to_i }
     Item.where(post_id: id, id: removed_ids).find_each(&:destroy!)
   end
 

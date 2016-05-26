@@ -9,7 +9,5 @@
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons', media: 'all', 'data-turbolinks-track' => 'reload'
     = stylesheet_link_tag  'cms/application', media: 'all', 'data-turbolinks-track' => 'reload'
   %body
-    - unless content_for?(:hide_react)
-      = render 'cms/shared/react_container'
-    = yield
+    .react-container
     = javascript_include_tag 'shared/cms_bundle', 'data-turbolinks-track' => 'reload'

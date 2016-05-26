@@ -11,6 +11,7 @@ class ItemLink < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
 
   validates :source_title, presence: true
-  validates :source_url, format: { with: URI.regexp }
-  validates :source_url, presence: true
+  validates :source_url,
+            presence: true,
+            format: { with: URI.regexp, message: "%{value} does not appear to be a valid URL" }
 end

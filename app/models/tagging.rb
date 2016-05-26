@@ -15,5 +15,7 @@ class Tagging < ActiveRecord::Base
   belongs_to :tag
 
   validates :tag, presence: true
+  validates :tag_id, uniqueness: { scope: [:subject_id, :subject_type] }
+
   delegate :name, to: :tag
 end

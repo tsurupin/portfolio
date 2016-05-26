@@ -1,9 +1,6 @@
 class Cms::ApplicationController < ApplicationController
   include AbstractController::Translation
-  protect_from_forgery with: :null_session
   before_action :authenticate_author_from_token!, except: :layout
-
-  respond_to :json
 
   layout 'cms/layouts/application'
 
@@ -12,12 +9,6 @@ class Cms::ApplicationController < ApplicationController
   end
 
   protected
-
-  def render_error_message(model)
-    logger.error model.errors.full_messages.join('')
-    p model.errors.full_messages.join('')
-    render json: { errorMessage: model.errors.full_messages.join('') }, status: :bad_request
-  end
 
   def pagination(page, limit, total)
     { pagination:

@@ -128,7 +128,7 @@ RSpec.describe Cms::Api::V1::ProjectsController, type: :request do
           'sampleUrl' => project.sample_url,
           'image' => project.image_url,
           'tagSuggestions' => tags.map(&:name),
-          'tags' => [{ 'text' => tagging.name }]
+          'tags' => [{ 'id' => tagging.id, 'text' => tagging.name }]
         }
       end
 
@@ -142,29 +142,11 @@ RSpec.describe Cms::Api::V1::ProjectsController, type: :request do
     describe 'PATCH /cms/api/v1/projects/:id' do
       let!(:project) { create(:project) }
       let!(:tag1) { create(:tag, name: 'hoge') }
-      let!(:tag2) { create(:tag) }
+      let!(:tag2) { create(:tag, name: 'sample') }
       let!(:tagging1) { create(:tagging, :subject_project, subject_id: project.id, tag: tag1) }
       let!(:tagging2) { create(:tagging, :subject_project, subject_id: project.id, tag: tag2) }
       before { patch cms_api_v1_project_path(project.id), params, auth_header }
-      # TODO: think of error case
-      # context 'the params sent lack of needed params' do
-      #   subject { JSON.parse(response.body) }
-      #   let(:params) do
-      #     {
-      #       'project' => {
-      #         'description' => nil,
-      #         'source_url' => 'http://google.com',
-      #         'sample_url' => 'http://google.com',
-      #         'taggings_attributes' => [ { 'text' => 'test' } ]
-      #       }
-      #     }
-      #   end
-      #   before { patch cms_api_v1_project_path(project.id), params, auth_header }
-      #   it 'return 400 and error message' do
-      #     expect(response.status).to eq 400
-      #     expect(Tagging.exists?(subject_id: project.id)).to be_truthy
-      #   end
-      # end
+
       context 'needed params are sent' do
         let(:params) do
           {
@@ -175,7 +157,7 @@ RSpec.describe Cms::Api::V1::ProjectsController, type: :request do
               'source_url' => 'http://google.com',
               'sample_url' => 'http://google.com',
               'taggings_attributes' => [
-                { 'id' => tag1.id, 'text' => tag1.name },
+                { 'id' => tagging1.id, 'text' => tag1.name },
                 { 'text' => 'test' }
               ]
             }

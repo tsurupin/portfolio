@@ -31,7 +31,7 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
-  config.after(:each) do
+  config.after(:each, js: true) do
     page.execute_script("localStorage.clear()")
   end
 

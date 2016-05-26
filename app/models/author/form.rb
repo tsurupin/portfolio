@@ -39,7 +39,7 @@ class Author::Form < ActiveType::Record[Author]
   end
 
   def delete_unnecessary_accounts!(params)
-    removed_ids = social_accounts.map(&:id) - (params || []).map { |key, _| key['id'] }
+    removed_ids = social_accounts.map(&:id) - (params || []).map { |key, _| key['id'].to_i }
     SocialAccount.where(id: removed_ids).find_each(&:destroy!)
   end
 

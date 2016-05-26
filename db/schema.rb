@@ -101,15 +101,6 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.datetime "updated_at",                                null: false
   end
 
-  create_table "sites", force: :cascade do |t|
-    t.string   "title",       limit: 255,   null: false
-    t.text     "description", limit: 65535, null: false
-    t.string   "image",       limit: 255
-    t.string   "source_url",  limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
   create_table "social_accounts", force: :cascade do |t|
     t.integer "author_id",    limit: 4,   null: false
     t.integer "account_type", limit: 4,   null: false
@@ -125,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   end
 
   add_index "taggings", ["subject_type", "subject_id"], name: "index_taggings_on_subject_type_and_subject_id", using: :btree
+  add_index "taggings", ["tag_id", "subject_id", "subject_type"], name: "index_taggings_on_tag_id_and_subject_id_and_subject_type", unique: true, using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false

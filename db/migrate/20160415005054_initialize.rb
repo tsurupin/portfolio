@@ -79,6 +79,8 @@ class Initialize < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :taggings, [:tag_id, :subject_id, :subject_type], unique: true
+
     create_table :projects do |t|
       t.string :title, null: false, unique: true
       t.text :description

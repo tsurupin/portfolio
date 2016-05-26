@@ -1,6 +1,4 @@
 class Cms::Api::V1::PostsController < Cms::ApplicationController
-  skip_before_action :authenticate_author_from_token!, only: :index
-
   def index
     posts = Post.page(params[:page])
     render json: posts, each_serializer: PostsSerializer,

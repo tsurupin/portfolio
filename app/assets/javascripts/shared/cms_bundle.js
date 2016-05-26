@@ -42508,7 +42508,6 @@
 	exports.capitalize = capitalize;
 	exports.trimPost = trimPost;
 	exports.trimProject = trimProject;
-	exports.trimSite = trimSite;
 	exports.trimAuthor = trimAuthor;
 
 	var _axios = __webpack_require__(303);
@@ -42550,10 +42549,6 @@
 	}
 
 	function trimProject(params) {
-	  return _extends({}, convertKeyNameInSnakeCase(params));
-	}
-
-	function trimSite(params) {
 	  return _extends({}, convertKeyNameInSnakeCase(params));
 	}
 

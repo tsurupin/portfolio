@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   has_many :items, -> { order('sort_rank asc') }, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: { message: "%{value} is already used"}
 
   paginates_per PAGINATES_PER
 end
