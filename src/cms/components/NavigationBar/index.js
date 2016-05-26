@@ -84,7 +84,7 @@ class NavigationBar extends Component {
                         <a href="https://github.com/tsurupin" onClick={this.handleMove} >
                             <IconButton iconClassName="muidocs-icon-custom-github"/>
                         </a>
-                        <IconButton onClick={this.handleSignOut}>
+                        <IconButton name="signOut" onClick={this.handleSignOut}>
                             <ExitToApp />
                         </IconButton>
                     </div>

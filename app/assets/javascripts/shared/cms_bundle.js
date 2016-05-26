@@ -27683,7 +27683,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _IconButton2.default,
-	            { onClick: this.handleSignOut },
+	            { name: 'signOut', onClick: this.handleSignOut },
 	            _react2.default.createElement(_exitToApp2.default, null)
 	          )
 	        )
