@@ -3,7 +3,7 @@ import Display from './Display/index';
 import Form from './Form/index';
 
 
-export default class Item extends Component {
+class Item extends Component {
 
   renderComponent() {
     if (this.props.item.editing) {
@@ -43,3 +43,5 @@ Item.propTypes = {
   handleMoveItem: PropTypes.func.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
+
+export default Item;

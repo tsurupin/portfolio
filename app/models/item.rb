@@ -25,6 +25,15 @@ class Item < ActiveRecord::Base
            sub_heading: 'ItemSubHeading'
        }
 
+  after_destroy :destroy_target
+
   validates :sort_rank, presence: true
-  validates :target_type, presence: true, inclusion: { in: Item.target_types.keys }
+  validates :target_type,
+            presence: true,
+            inclusion: { in: Item.target_types.keys, message: "%{value} is not a valid type" }
+
+  private
+  def destroy_target
+    target.destroy
+  end
 end

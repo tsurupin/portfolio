@@ -40,6 +40,7 @@ export function trimProject(params) {
     ...convertKeyNameInSnakeCase(params)
   };
 }
+
 export function trimAuthor(params) {
   return {
     ...convertKeyNameInSnakeCase(params),

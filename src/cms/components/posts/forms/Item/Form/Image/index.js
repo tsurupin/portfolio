@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import DropzoneImage from '../../../../../shared/DropzoneImage/index';
-import RaisedButton from 'material-ui/lib/raised-button';
-import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
 import styles from '../shared/styles.scss';
 

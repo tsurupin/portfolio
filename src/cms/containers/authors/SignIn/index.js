@@ -2,9 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { signIn } from '../../../actions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-import RefreshIndicator from 'material-ui/lib/refresh-indicator';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import styles from './styles.scss';
 
 const inlineStyles = {
@@ -26,7 +25,7 @@ class AuthorsSignIn extends Component {
   };
 
   constructor(props) {
-    super(...props);
+    super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }

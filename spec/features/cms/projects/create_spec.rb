@@ -3,7 +3,6 @@ require 'rails_helper'
 feature 'Create new project', js: true do
 
   background { sign_in_and_redirect_to('/cms/projects/new') }
-  after { page.execute_script("localStorage.clear()") }
 
   context 'when necessary info are blank' do
     scenario "fails to create new project owing to lack of title" do

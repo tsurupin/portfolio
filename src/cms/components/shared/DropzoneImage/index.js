@@ -22,7 +22,7 @@ class DropzoneImage extends Component {
     const reader = new FileReader();
 
     reader.onload = function (upload) {
-      self.props.handleUpdate(upload.target.result)
+      self.props.handleUpdate(upload.target.result);
       self.setState({ errorMessage: '' })
     };
 

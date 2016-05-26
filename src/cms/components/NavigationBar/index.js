@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import AppBar  from 'material-ui/lib/app-bar'
-import AvWeb from 'material-ui/lib/svg-icons/av/web';
-import ActionDescription from 'material-ui/lib/svg-icons/action/description';
-import SocialPerson from 'material-ui/lib/svg-icons/social/person';
-import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
-import IconButton from 'material-ui/lib/icon-button';
+import AppBar  from 'material-ui/AppBar'
+import AvWeb from 'material-ui/svg-icons/av/web';
+import ActionDescription from 'material-ui/svg-icons/action/description';
+import SocialPerson from 'material-ui/svg-icons/social/person';
+import ExitToApp from 'material-ui/svg-icons/action/exit-to-app';
+import IconButton from 'material-ui/IconButton';
 import { signOut } from '../../actions/auths';
 
 const inlineStyles = {
@@ -71,7 +71,7 @@ class NavigationBar extends Component {
                                 <SocialPerson />
                             </IconButton>
                         </Link>
-                        <Link to="/cms" >
+                        <Link to="/cms/posts" >
                             <IconButton>
                                 <ActionDescription />
                             </IconButton>
@@ -84,7 +84,7 @@ class NavigationBar extends Component {
                         <a href="https://github.com/tsurupin" onClick={this.handleMove} >
                             <IconButton iconClassName="muidocs-icon-custom-github"/>
                         </a>
-                        <IconButton onClick={this.handleSignOut}>
+                        <IconButton name="signOut" onClick={this.handleSignOut}>
                             <ExitToApp />
                         </IconButton>
                     </div>

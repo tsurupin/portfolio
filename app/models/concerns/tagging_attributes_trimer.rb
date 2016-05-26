@@ -4,9 +4,9 @@ module TaggingAttributesTrimer
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
 
   def trim_tagging_attributes!(params)
-    return unless params
-    params.each do |param|
+    params&.each do |param|
       tag             = Tag.find_or_create_by!(name: param['text'])
+      p tag
       param['tag_id'] = tag.id
       param.delete('text')
     end

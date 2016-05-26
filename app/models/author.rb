@@ -20,8 +20,11 @@ class Author < ActiveRecord::Base
 
   after_create :update_devise_token!
 
-  validates :name, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true, email_format: { message: 'is not valid address' }
+  validates :name, presence: true, uniqueness: { message: "%{value} is already used" }
+  validates :email,
+            presence: true,
+            uniqueness: { message: "%{value} is already used" },
+            email_format: { message: "%{value} is not a valid email" }
   validates :encrypted_password, presence: true, uniqueness: true
 
   mount_uploader :image, AuthorImageUploader

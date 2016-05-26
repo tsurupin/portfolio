@@ -11,7 +11,7 @@ import styles from './styles.scss';
 
 export default class PostItemCell extends Component {
   constructor(props) {
-    super(...props);
+    super(props);
     this.state = { hovering: false };
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);

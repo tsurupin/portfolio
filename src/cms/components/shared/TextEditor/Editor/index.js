@@ -19,10 +19,10 @@ import {
   Link
 } from './../shared/utilities';
 
-import ContentAddCircle from 'material-ui/lib/svg-icons/content/add-circle';
-import TextField from 'material-ui/lib/text-field';
-import IconButton from 'material-ui/lib/icon-button';
-import Divider from 'material-ui/lib/divider';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
+import TextField from 'material-ui/TextField';
+import IconButton from 'material-ui/IconButton';
+import Divider from 'material-ui/Divider';
 import styles from '../shared/styles.scss';
 
 
@@ -46,16 +46,13 @@ const decorator = new CompositeDecorator([
 
 export default class TextEditor extends Component {
 
-
-
   constructor(props) {
     super(props);
 
     if(props.value) {
       const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
-        editorState: EditorState.createWithContent( ContentState.createFromText('text'),
-          decorator),
+        editorState: EditorState.createWithContent(blocks, decorator),
         inputtable: false,
         urlValue: ''
       };

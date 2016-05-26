@@ -4,10 +4,11 @@ import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../components/shared/DropzoneImage/index';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 import TextEditor from '../../../components/shared/TextEditor/Editor/index'
+import RaisedButton from 'material-ui/RaisedButton';
 import TagField from '../../../components/shared/TagField/index';
-import RaisedButton from 'material-ui/lib/raised-button';
+
 
 import styles from './styles.scss';
 

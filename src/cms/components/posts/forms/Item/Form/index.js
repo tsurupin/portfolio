@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../constants';
-import RaisedButton from 'material-ui/lib/raised-button';
-import ContentRemoveCircle from 'material-ui/lib/svg-icons/content/remove-circle';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import Heading from './Heading/index';
 import Image from './Image/index';
 import Twitter from './Twitter/index';
@@ -10,9 +10,9 @@ import Link from './Link/index';
 import Text from './Text/index';
 import styles from './shared/styles.scss';
 
-export default class PostItemForm extends Component {
+class PostItemForm extends Component {
   constructor(props) {
-    super(...props);
+    super(props);
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
@@ -128,3 +128,4 @@ PostItemForm.propTypes = {
   handleDeleteItem: PropTypes.func.isRequired
 };
 
+export default PostItemForm;

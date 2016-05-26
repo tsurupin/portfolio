@@ -17,7 +17,7 @@ class Author::Form < ActiveType::Record[Author]
   include DataURIToImageConverter
   PERMITTED_ATTRIBUTES = [
     :name, :email, :password, :password_confirmation, :image, :description,
-    social_accounts_attributes: [ :id, :author_id, :account_type, :url ]
+    social_accounts_attributes: [ :id, :account_type, :url ]
   ]
 
   SOCIAL_ACCOUNTS_ATTRIBUTES = 'social_accounts_attributes'.freeze
@@ -27,7 +27,7 @@ class Author::Form < ActiveType::Record[Author]
   def save(params)
     delete_unnecessary_accounts!(params[SOCIAL_ACCOUNTS_ATTRIBUTES])
     ActiveRecord::Base.transaction do
-      params['image'] = convert_data_uri_to_upload(params['image']) if params['image'].try(:start_with?, 'data')
+      params['image'] = convert_data_uri_to_upload(params['image']) if params['image']&.start_with?('data')
       update!(params)
       true
     end
@@ -39,11 +39,8 @@ class Author::Form < ActiveType::Record[Author]
   end
 
   def delete_unnecessary_accounts!(params)
-    removed_ids = social_accounts.map(&:id) - params.map { |key, _| key['id'] }
+    removed_ids = social_accounts.map(&:id) - (params || []).map { |key, _| key['id'].to_i }
     SocialAccount.where(id: removed_ids).find_each(&:destroy!)
   end
 
-  def convert_image(params)
-    params['image'] = convert_data_uri_to_upload(params['image']) if params['image'].try(:start_with?, 'data')
-  end
 end

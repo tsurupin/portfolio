@@ -35,6 +35,7 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx', '.css', '.scss']
   },
+  
   devServer: {
     historyApiFallback: true,
     contentBase: './'

@@ -17,7 +17,6 @@ export function fetchAuthor() {
   };
 }
 
-
 function fetchAuthorSuccess(response) {
   return {
     type: FETCH_AUTHOR.SUCCESS,
@@ -54,7 +53,7 @@ export function updateAuthorRequest() {
 }
 
 function updateAuthorSuccess() {
-  browserHistory.push('/cms/projects');
+  browserHistory.push('/cms');
 }
 
 function updateAuthorFailure(error) {

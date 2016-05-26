@@ -6,7 +6,7 @@ import PostsIndex from './containers/posts/Index/index';
 import PostsForm from './containers/posts/Form/index';
 import ProjectsIndex from './containers/projects/Index/index';
 import ProjectsForm from './containers/projects/Form/index';
-import SitesForm from './containers/sites/form';
+import HomesIndex from './containers/homes/Index/index';
 import AuthorsIndex from './containers/authors/Index/index';
 import AuthorsForm from './containers/authors/Form/index';
 import AuthorsSinUp from './containers/authors/SignUp/index';
@@ -16,7 +16,8 @@ import Authentication from './containers/shared/Authentication/index';
 
 export default (
   <Route path="/cms" component={App}>
-    <IndexRoute component={PostsIndex}/>
+    <IndexRoute component={HomesIndex}/>
+      <Route path="/cms/posts" component={Authentication(PostsIndex)}/>
       <Route path="/cms/posts/new" component={Authentication(PostsForm)}/>
       <Route path="/cms/posts/:id/edit" component={Authentication(PostsForm)}/>
       <Route path="/cms/posts/:id" component={Authentication(PostsForm)}/>
@@ -27,7 +28,6 @@ export default (
       <Route path="/cms/sign-in" component={AuthorsSingIn}/>
       <Route path="/cms/about" component={Authentication(AuthorsIndex)}/>
       <Route path="/cms/about/edit" component={Authentication(AuthorsForm)}/>
-      <Route path="/cms/sites/edit" component={Authentication(SitesForm)}/>
       <Route path="*" component={NotFound} />
   </ Route>
 );

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 import styles from './styles.scss';
 
 export default class EditBoxItem extends Component {

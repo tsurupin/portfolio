@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../../constants';
-import List from 'material-ui/lib/lists/list';
+import List from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 import EditBoxItem from './EditBoxItem/index';
 import styles from './styles.scss';
 
@@ -21,7 +22,7 @@ const inlineStyles = {
   }
 };
 
-export default class EditBox extends Component {
+class EditBox extends Component {
 
   constructor(props) {
     super(...props);
@@ -29,10 +30,8 @@ export default class EditBox extends Component {
 
   render() {
     return (
-      <List className={styles.root}
-            insetSubheader={true}
-            subheader='Add Item'
-            subheaderStyle={inlineStyles.subHeader}>
+      <List className={styles.root}>
+        <Subheader style={inlineStyles.subHeader}>Add Item</Subheader>
         <ul className={styles.list}>
           {TARGET_TYPE_LIST.map((targetType, index) => {
             return (
@@ -54,3 +53,5 @@ export default class EditBox extends Component {
 EditBox.propTypes = {
   handleAddItem: PropTypes.func.isRequired
 };
+
+export default EditBox;

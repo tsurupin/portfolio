@@ -24,15 +24,6 @@ class Initialize < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :sites do |t|
-      t.string :title, null: false
-      t.text :description, null: false
-      t.string :image
-      t.string :source_url
-
-      t.timestamps null: false
-    end
-
     create_table :items do |t|
       t.belongs_to    :post, index: true, null: false
       t.integer       :sort_rank, null: false
@@ -87,6 +78,8 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :subject, polymorphic: true, null: false, index: true
       t.timestamps
     end
+
+    add_index :taggings, [:tag_id, :subject_id, :subject_type], unique: true
 
     create_table :projects do |t|
       t.string :title, null: false, unique: true

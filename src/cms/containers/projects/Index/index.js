@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 import { fetchProjects, toggleProject, deleteProject } from '../../../actions/projects';
 import ItemRow from '../../../components/projects/indexes/ItemRow/index';
 import Tooltip from '../../../components/projects/indexes/Tooltip/index';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import styles from './styles.scss';
 
 const inlineStyles = {
