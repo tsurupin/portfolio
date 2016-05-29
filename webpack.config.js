@@ -1,16 +1,17 @@
 const webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
+var path = require('path');
 
 module.exports = {
   context: __dirname,
   entry: {
-    'cms_bundle': './src/cms/index.js'
-    //'client_bundle': './src/client/index.js'
+    'cms': './src/cms/index.js',
+    'client': './src/client/index.js'
   },
   output: {
-    path: './app/assets/javascripts/shared',
-    filename: '[name].js'
+    path: './app/assets/javascripts',
+    filename: '[name]/bundle.js'
   },
   module: {
     loaders: [
@@ -32,8 +33,15 @@ module.exports = {
   postcss: [autoprefixer({ browsers: ['> 1%'] })],
 
   resolve: {
+    root: path.resolve(__dirname),
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js', '.jsx', '.css', '.scss']
+    extensions: ['', '.js', '.jsx', '.css', '.scss'],
+    alias: {
+      cmsActions: 'src/cms/actions',
+      cmsComponents: 'src/cms/components',
+      clientActions: 'src/client/actions',
+      clientComponents: 'src/client/components'
+    }
   },
   
   devServer: {
@@ -41,7 +49,7 @@ module.exports = {
     contentBase: './'
   },
   plugins: [
-    new ExtractTextPlugin('../../stylesheets/cms/style.scss', { allChunks: true }),
+    new ExtractTextPlugin('../../assets/stylesheets/[name]/style.scss', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

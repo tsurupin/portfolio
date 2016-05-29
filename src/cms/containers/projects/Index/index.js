@@ -9,10 +9,17 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import styles from './styles.scss';
 
 const inlineStyles = {
-  floatButton: {
-
+  submitButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 15
+  },
+  indicator: {
+    display: 'inline-block',
+    position: 'relative'
   }
 };
+
 
 class ProjectsIndex extends Component {
 
@@ -32,6 +39,10 @@ class ProjectsIndex extends Component {
     this.props.fetchProjects();
   }
 
+  componentWillReceiveProps(nextProps) {
+
+  }
+
   handleEdit(id) {
     this.context.router.push(`/cms/projects/${id}/edit`)
   }
@@ -46,16 +57,17 @@ class ProjectsIndex extends Component {
   
   render() {
 
+    console.log(this.props.projects)
     // TODO: show nice apology message when there is no project
-    if (this.props.projects.length === 0 ) { return <div></div> }
+    //if (this.props.projects.length === 0 ) { return <div></div> }
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>Projects</h1>
         <p className={styles.description}>Overall description about my projects</p>
         <ul>
-          {this.props.projects.map((project, index) => {
+          {this.props.projects.map((project) => {
           return (
-            <li key={index}>
+            <li key={project.id}>
               <Tooltip
                 id={project.id}
                 accepted={project.accepted}
@@ -64,7 +76,7 @@ class ProjectsIndex extends Component {
                 handleDelete={this.handleDelete}
               />
               <ItemRow
-                key={index}
+                key={project.id}
                 title={project.title}
                 description={project.description}
                 image={project.image}

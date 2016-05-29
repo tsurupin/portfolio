@@ -1,17 +1,6 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Portfolio
-    = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
-  %body
-    = yield
-
-  !!!
-%html
-  %head
     %meta{ charset: 'UTF-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     %title Portfolio
@@ -21,5 +10,5 @@
     = stylesheet_link_tag  'client/application', media: 'all', 'data-turbolinks-track' => 'reload'
   %body
     .react-container
-    = javascript_include_tag 'shared/client_bundle', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'client/bundle', 'data-turbolinks-track' => 'reload'
 

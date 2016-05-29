@@ -7,9 +7,12 @@ import styles from './styles.scss';
 
 const inlineStyles = {
   button: {
-    
+    position: 'absolute',
+    bottom: 10,
+    right: 15
   }
-};
+}
+
 
 class ItemRow extends Component {
   constructor(props) {
