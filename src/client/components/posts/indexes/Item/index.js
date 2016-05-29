@@ -27,7 +27,7 @@ class Item extends Component {
                   className={styles.tagItem} 
                   onClick={this.handleClickTag.bind(tag.id, this)}
                 >
-                  {tag.name}
+                  {`${tag.id}/${tag.name}`}
                 </span>
               )}
               )}

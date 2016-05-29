@@ -10,9 +10,6 @@ class PostsIndex extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { isInfiniteLoading: false };
-    console.log(styles)
-
     this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
@@ -22,7 +19,6 @@ class PostsIndex extends Component {
   }
   
   handleInfiniteLoad() {
-    console.log(this.props.page)
     if (this.props.total - (this.props.limit*this.props.page) > 0) {
       this.props.fetchPosts(this.props.page + 1);
     }
@@ -37,8 +33,9 @@ class PostsIndex extends Component {
       <Infinite
         infiniteLoadBeginEdgeOffset={400}
         onInfiniteLoad={this.handleInfiniteLoad}
-        containerHeight={1000}
-        elementHeight={300}
+        containerHeight={700}
+        elementHeight={100}
+        useWindowAsScrollContainer
       >
         {this.props.posts.map((post, index) => {
           return (
