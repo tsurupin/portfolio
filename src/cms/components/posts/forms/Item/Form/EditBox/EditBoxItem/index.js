@@ -5,7 +5,8 @@ import styles from './styles.scss';
 export default class EditBoxItem extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
+    
     this.handleAddItem = this.handleAddItem.bind(this);
   }
 

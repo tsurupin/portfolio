@@ -33,8 +33,10 @@ class Cms::ApplicationController < ApplicationController
 
     author_id = auth_token.split(':').first
     author = Author.find(author_id)
+    p author
 
     if author && Devise.secure_compare(author.access_token, auth_token)
+      p 'sign'
       sign_in(author, store: false)
     else
       authenticate_error

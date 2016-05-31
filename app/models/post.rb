@@ -22,4 +22,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, uniqueness: { message: "%{value} is already used"}
 
   paginates_per PAGINATES_PER
+
+  def self.accepted
+    where(accepted: true)
+  end
 end

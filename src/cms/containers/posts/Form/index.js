@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPost, fetchNewPost, savePost } from '../../../actions/posts';
-import { createItem, updateItem, deleteItem, moveItem } from '../../../actions/items';
-import { createTag, deleteTag } from '../../../actions/tags';
+import { fetchPost, fetchNewPost, savePost } from 'cmsActions/posts';
+import { createItem, updateItem, deleteItem, moveItem } from 'cmsActions/items';
+import { createTag, deleteTag } from 'cmsActions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import EditBox from '../../../components/posts/forms/Item/Form/EditBox/index';

@@ -50,7 +50,7 @@ class NavigationBar extends Component {
   handleHome() {
     this.context.router.push('/cms');
   }
-  
+
   handleSignOut(){
     this.props.signOut();
   }

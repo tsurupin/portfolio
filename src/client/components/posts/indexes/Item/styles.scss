@@ -1,0 +1,46 @@
+
+.root {
+  composes: row from '../../../../../shared/css/flexboxgrids.scss';
+  composes: marginBottomMedium from '../../../../../shared/css/margins.scss';
+  min-height: 56px;
+}
+
+.title {
+  composes: col-xs-10 from '../../../../../shared/css/flexboxgrids.scss';
+  composes: col-sm-10 from '../../../../../shared/css/flexboxgrids.scss';
+  composes: col-md-10 from '../../../../../shared/css/flexboxgrids.scss';
+  line-height: 1.6;
+}
+
+
+.tagList {
+
+}
+
+.tagItem {
+  display: inline-flex;
+  composes: marginTopXXSmall from '../../../../../shared/css/margins.scss';
+  composes: fontSmall from '../../../../../shared/css/fonts.scss';
+  color: #307EA9;
+
+}
+
+.tagName {
+  line-height: 1.4;
+  composes: marginLeftXXSmall from '../../../../../shared/css/margins.scss';
+}
+
+.publishDate {
+
+  composes: col-xs-2 from '../../../../../shared/css/flexboxgrids.scss';
+  composes: col-sm-2 from '../../../../../shared/css/flexboxgrids.scss';
+  composes: col-md-2 from '../../../../../shared/css/flexboxgrids.scss';
+  composes: fontMedium from '../../../../../shared/css/fonts.scss';
+  color: #a5bac5;
+  text-align: right;
+}
+
+.text {
+  composes: fontLarge from '../../../../../shared/css/fonts.scss';
+
+}

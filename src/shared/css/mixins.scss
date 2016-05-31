@@ -1,0 +1,45 @@
+@value colors: './colors.scss';
+
+@value label-color, border-color from colors;
+
+.clearFloat::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.resetUlDefaultStyle {
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  list-style: none;
+}
+
+.hoverAnimation {
+  transition: 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: lightgray !important;
+    opacity: 0.3;
+  }
+}
+
+.strongHoverOpaque {
+  transition: 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}
+
+.headerLabel {
+  composes: fontXSmall from './fonts.scss';
+  color: label-color;
+}
+
+.bottomBorder {
+  border-bottom: 1px solid border-color;
+}
+
