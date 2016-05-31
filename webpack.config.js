@@ -39,8 +39,10 @@ module.exports = {
     alias: {
       cmsActions: 'src/cms/actions',
       cmsComponents: 'src/cms/components',
+      cmsCss: 'src/cms/css',
       clientActions: 'src/client/actions',
       clientComponents: 'src/client/components'
+      
     }
   },
   
@@ -49,7 +51,7 @@ module.exports = {
     contentBase: './'
   },
   plugins: [
-    new ExtractTextPlugin('../../assets/stylesheets/[name]/style.scss', { allChunks: true }),
+    new ExtractTextPlugin('../../assets/stylesheets/[name]/style.scss', { allChunks: true, ignoreOrder: true }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

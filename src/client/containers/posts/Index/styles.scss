@@ -1,3 +1,16 @@
+@value colors: "../../../../shared/css/colors.scss";
+@value fonts: "../../../../shared/css/fonts.scss";
+
+@value border-color, label-color, border-color, text-color from colors;
+@value font-large from fonts;
+
 .root {
+  color: #69808C;
+  fon-family: 'Raleway,sans-serif';
+}
+
+.title {
+  composes: fontXXLarge from '../../../../shared/css/fonts.scss';
+  composes: marginBottomSmall from '../../../../shared/css/margins.scss';
 
 }

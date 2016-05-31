@@ -1,7 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-
 import styles from './styles.scss';
+import LabelOutline from 'material-ui/svg-icons/action/label-outline';
+
+const inlineStyles ={
+  tagIcon: {
+    marginLeft: 0,
+    width: 18,
+    height: 18
+  }
+};
 
 class Item extends Component {
 
@@ -18,19 +26,18 @@ class Item extends Component {
       <Link to={`/posts/${this.props.post.id}`}>
         <div className={styles.root}>
           <div className={styles.title}>
-            <div className={styles.text}>{this.props.post.title}</div>
+            <p className={styles.text}>{this.props.post.title}</p>
             <div className={styles.tagList}>
               {this.props.post.tags.map((tag) => {
               return (
-                <span 
+                <div
                   key={tag.id} 
-                  className={styles.tagItem} 
-                  onClick={this.handleClickTag.bind(tag.id, this)}
-                >
-                  {`${tag.id}/${tag.name}`}
-                </span>
-              )}
-              )}
+                  className={styles.tagItem}
+                  onClick={this.handleClickTag.bind(tag.id, this)} >
+                  <LabelOutline color='#307EA9' style={inlineStyles.tagIcon}/>
+                  <span className={styles.tagName}>{tag.name}</span>
+                </div>
+              )})}
             </div>
           </div>
           <div className={styles.publishDate}>{this.props.post.publishedAt}</div>

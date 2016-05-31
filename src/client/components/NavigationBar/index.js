@@ -5,25 +5,41 @@ import AvWeb from 'material-ui/svg-icons/av/web';
 import ActionDescription from 'material-ui/svg-icons/action/description';
 import SocialPerson from 'material-ui/svg-icons/social/person';
 import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import { teal500 } from 'material-ui/styles/colors';
+import styles from  './styles.scss';
+const iconStyles = {
+  height: 48,
+  marginTop: 0
+};
 
 
 const inlineStyles = {
   appBar: {
+    boxSizing: 'contentBox',
     backgroundColor: '#fff',
-    height: 50,
-    minHeight: 50
+    height: 48,
+    minHeight: 48,
+    width: '80%',
+    paddingLeft:'10%',
+    paddingRight: '10%',
+    border: '1px solid #eee'
   },
   title: {
-    color: '#00796B',
+    color: '#69808C',
     fontSize: '1.6rem',
     fontFamily: 'Raleway,sans-serif',
     lineHeight: '5.0rem',
     cursor: 'pointer'
   },
   elementRight: {
-    height: 50,
-    minHeight: 50,
+    height: 48,
+    minHeight: 48,
     marginTop: 0
+  },
+  githubButton: {
+    color: '#69808C',
+    margin: 0
   }
 };
 
@@ -52,30 +68,34 @@ class NavigationBar extends Component {
     return (
       <AppBar
         showMenuIconButton={false}
-        title="Tomoaki Tsuruta"
+        title="TOMOAKI TSURUTA"
         style={inlineStyles.appBar}
         titleStyle={inlineStyles.title}
         onTitleTouchTap={this.handleHome}
+        zDepth={0}
         iconStyleRight={inlineStyles.elementRight}
         iconElementRight={
                     <div>
                         <Link to="/about" >
                             <IconButton>
-                                <SocialPerson />
+                                <SocialPerson color='#69808C' />
                             </IconButton>
                         </Link>
                         <Link to="/posts" >
                             <IconButton>
-                                <ActionDescription />
+                                <ActionDescription color='#69808C' />
                             </IconButton>
                         </Link>
                         <Link to="/projects" >
                             <IconButton>
-                                <AvWeb />
+                                <AvWeb color='#69808C'/>
                             </IconButton>
                         </Link>
                         <a href="https://github.com/tsurupin" onClick={this.handleMove} >
-                            <IconButton iconClassName="muidocs-icon-custom-github"/>
+
+                            <IconButton iconStyle={inlineStyles.githubButton}>
+                              <FontIcon className="muidocs-icon-custom-github" style={iconStyles} />
+                            </IconButton>
                         </a>
                     </div>
                     }

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../../actions/posts';
+import { fetchPosts } from 'clientActions/posts';
 import { Link } from 'react-router';
-import Item from '../../../components/posts/indexes/Item/index';
+import Item from 'clientComponents/posts/indexes/Item/index';
 import styles from'./styles.scss';
 import Infinite from 'react-infinite';
 class PostsIndex extends Component {
@@ -10,7 +10,7 @@ class PostsIndex extends Component {
   constructor(props) {
     super(props);
 
-    this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
+    this.handleLoad = this.handleLoad.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -18,8 +18,8 @@ class PostsIndex extends Component {
     this.props.fetchPosts();
   }
   
-  handleInfiniteLoad() {
-    if (this.props.total - (this.props.limit*this.props.page) > 0) {
+  handleLoad() {
+    if (this.canLoad()) {
       this.props.fetchPosts(this.props.page + 1);
     }
   }
@@ -28,11 +28,15 @@ class PostsIndex extends Component {
     this.props.fetchPosts(props);
   }
 
+  canLoad() {
+    this.props.total - (this.props.limit * this.props.page) > 0
+  }
+
   renderItems() {
     return (
       <Infinite
         infiniteLoadBeginEdgeOffset={400}
-        onInfiniteLoad={this.handleInfiniteLoad}
+        onInfiniteLoad={this.handleLoad}
         containerHeight={700}
         elementHeight={100}
         useWindowAsScrollContainer
@@ -54,6 +58,7 @@ class PostsIndex extends Component {
     if(this.props.posts.length === 0 ) { return <div></div> }
     return (
       <section className={styles.root}>
+        <h1 className={styles.title}>POSTS</h1>
         {this.renderItems()}
       </section>
     );

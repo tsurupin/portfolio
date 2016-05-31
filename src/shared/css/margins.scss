@@ -1,0 +1,210 @@
+@value xx-small: 5px;
+@value x-small: 10px;
+@value small: 20px;
+@value medium: 30px;
+@value large: 40px;
+@value x-large: 50px;
+@value xx-large: 100px;
+
+/* All Margin */
+.marginXXSmall {
+  margin: xx-small;
+}
+
+.marginXSmall {
+  margin: x-small;
+}
+
+.marginSmall {
+  margin: small;
+}
+
+.marginMedium {
+  margin: medium;
+}
+
+.marginLarge {
+  margin: large;
+}
+
+/* Horizontal Margin */
+.marginHorizontalXXSmall {
+  margin-top: xx-small;
+  margin-bottom: xx-small;
+}
+
+.marginHorizontalXSmall {
+  margin-top: x-small;
+  margin-bottom: x-small;
+}
+
+.marginHorizontalSmall {
+  margin-top: small;
+  margin-bottom: small;
+}
+
+.marginHorizontalMedium {
+  margin-top: medium;
+  margin-bottom: medium;
+}
+
+.marginHorizontalLarge {
+  margin-top: large;
+  margin-bottom: large;
+}
+
+
+/* Vertical Margin */
+.marginVerticalXXSmall {
+  margin-left: xx-small;
+  margin-right: xx-small;
+}
+
+.marginVerticalXSmall {
+  margin-left: x-small;
+  margin-right: x-small;
+}
+
+.marginVerticalSmall {
+  margin-left: small;
+  margin-right: small;
+}
+
+.marginVerticalMedium {
+  margin-left: medium;
+  margin-right: medium;
+}
+
+.marginVerticalLarge {
+  margin-left: large;
+  margin-right: large;
+}
+
+
+/* Top Margin */
+.marginTopZero {
+  margin-top: 0;
+}
+
+.marginTopXXSmall {
+  margin-top: xx-small;
+}
+
+.marginTopXSmall {
+  margin-top: x-small;
+}
+
+.marginTopSmall {
+  margin-top: small;
+}
+
+.marginTopMedium {
+  margin-top: medium;
+}
+
+.marginTopLarge {
+  margin-top: large;
+}
+
+.marginTopXLarge {
+  margin-top: x-large;
+}
+
+.marginTopXXLarge {
+  margin-top: xx-large;
+}
+
+
+/* Bottom Margin */
+.marginBottomZero {
+  margin-bottom: 0;
+}
+
+.marginBottomXXSmall {
+  margin-bottom: xx-small;
+}
+
+.marginBottomXSmall {
+  margin-bottom: x-small;
+}
+
+.marginBottomSmall {
+  margin-bottom: small;
+}
+
+.marginBottomMedium {
+  margin-bottom: medium;
+}
+
+.marginBottomLarge {
+  margin-bottom: large;
+}
+
+.marginBottomXLarge {
+  margin-bottom: x-large;
+}
+
+.marginBottomXXLarge {
+  margin-bottom: xx-large;
+}
+
+
+/* Left Margin */
+.marginLeftXXSmall {
+  margin-left: xx-small;
+}
+
+.marginLeftXSmall {
+  margin-left: x-small;
+}
+
+.marginLeftSmall {
+  margin-left: small;
+}
+
+.marginLeftMedium {
+  margin-left: medium;
+}
+
+.marginLeftLarge {
+  margin-left: large;
+}
+
+.marginLeftXLarge {
+  margin-left: x-large;
+}
+
+.marginLeftXXLarge {
+  margin-left: xx-large;
+}
+
+
+/* Right Margin */
+.marginRightXXSmall {
+  margin-right: xx-small;
+}
+
+.marginRightXSmall {
+  margin-right: x-small;
+}
+
+.marginRightSmall {
+  margin-right: small;
+}
+
+.marginRightMedium {
+  margin-right: medium;
+}
+
+.marginRightLarge {
+  margin-right: large;
+}
+
+.marginRightXLarge {
+  margin-right: x-large;
+}
+
+.marginRightXXLarge {
+  margin-right: xx-large;
+}
+

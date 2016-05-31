@@ -9,7 +9,7 @@ import zIndex from 'material-ui/styles/zIndex';
 export default {
   spacing: Spacing,
   zIndex: zIndex,
-  fontFamily: 'Roboto, sans-serif',
+  fontFamily: "Source Serif Pro Helvetica Neue Helvetica Arial sans-serif",
   palette: {
     primary1Color: teal500,
     primary2Color: teal700,

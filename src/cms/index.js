@@ -24,4 +24,4 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory} routes={routes}/>
   </Provider>
-  , document.querySelector('.react-container'));
+  , document.querySelector('.container'));
