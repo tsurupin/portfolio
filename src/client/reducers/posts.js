@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   limit: 20, 
   page: 1, 
   total: 0, 
-  post: null, 
+  post: { title: null, publishedAt: null },
   error: null
 };
 

@@ -4,9 +4,6 @@ export function fetchTags(response) {
   
   return {
     type: FETCH_TAGS,
-    payload: { 
-      tags: response.tags,
-      tagSuggestions: response.tagSuggestions
-    }
+    payload: { tags: response.tags }
   }
 }

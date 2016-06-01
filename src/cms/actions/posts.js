@@ -61,10 +61,16 @@ export function fetchPost(id) {
 }
 
 function fetchPostSuccess(response) {
+  console.log(response.items)
   return {
     type: FETCH_POST.SUCCESS,
     payload: {
-      post: response.post,
+      post: {
+        id: response.id,
+        title: response.title,
+        description: response.description,
+        publishedAt: response.publishedAt
+      },
       items: response.items,
       tags: {
         tags: response.tags,
@@ -109,6 +115,7 @@ function fetchNewPostFailure(error) {
 
 
 export function savePost(props) {
+  console.log(props)
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {

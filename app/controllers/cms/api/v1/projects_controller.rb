@@ -2,7 +2,7 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def index
     projects = Project.order(updated_at: :desc)
-    render json: projects, each_serializer: ProjectsSerializer
+    render json: projects
   end
 
   def new

@@ -61,12 +61,9 @@ function fetchPostSuccess(response) {
   return {
     type: FETCH_POST.SUCCESS,
     payload: {
-      post: response.post,
+      post: { title: response.title, publishedAt: response.publishedAt },
       items: response.items,
-      tags: {
-        tags: response.tags,
-        tagSuggestions: response.tagSuggestions
-      }
+      tags: response.tags
     }
   };
 }

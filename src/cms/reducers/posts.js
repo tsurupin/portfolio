@@ -38,10 +38,10 @@ export default function (state = INITIAL_STATE, action) {
     
     case SAVE_POST.SUCCESS:
       return { ...state, message: 'Successfully Saved', loading: false };
-    
+
     case TOGGLE_POST.SUCCESS:
       return { ...state, message: 'Successfully Change Published Status' };
-    
+
     case SAVE_POST.FAILURE:
       return { ...state, error: action.payload, loading: false };
     

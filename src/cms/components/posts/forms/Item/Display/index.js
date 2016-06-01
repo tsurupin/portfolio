@@ -38,6 +38,7 @@ export default class PostItemCell extends Component {
   }
 
   renderComponent() {
+    console.log(this.props.item)
     switch (this.props.item.targetType) {
       case TARGET_TYPES.HEADING.NAME:
       case TARGET_TYPES.SUB_HEADING.NAME:

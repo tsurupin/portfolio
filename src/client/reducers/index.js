@@ -5,7 +5,6 @@ import itemReducer from './items';
 import tagReducer from './tags';
 
 
-
 const rootReducer = combineReducers({
   posts: postReducer,
   projects: projectReducer,

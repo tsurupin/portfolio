@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import TextDisplay from '../../../../../shared/TextEditor/Display/index';
+import TextDisplay from '../../../../cms/components/shared/TextEditor/Display/index';
 import styles from './styles.scss';
 
 
@@ -7,6 +7,7 @@ class Text extends Component {
 
   constructor(props) {
     super(props);
+    console.log('hoge')
   }
 
   render() {
