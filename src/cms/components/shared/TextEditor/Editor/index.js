@@ -10,7 +10,7 @@ import {
 } from 'draft-js';
 
 import { styleMap, getBlockStyle } from './../shared/utilities';
-import { LinkDecorator } from '../shared/LinkDecorator/index';
+import { decorator } from '../shared/Decorator/index';
 import { BlockStyleControls } from '../shared/BlockStyleControl/index';
 import { InlineStyleControls } from '../shared/InlineStyleControl/index';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
@@ -37,13 +37,13 @@ export default class TextEditor extends Component {
     if(props.value) {
       const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
-        editorState: EditorState.createWithContent(blocks, LinkDecorator),
+        editorState: EditorState.createWithContent(blocks, decorator),
         inputtable: false,
         urlValue: ''
       };
     } else {
       this.state = {
-        editorState: EditorState.createEmpty(LinkDecorator),
+        editorState: EditorState.createEmpty(decorator),
         inputtable: false,
         urlValue: ''
       };
@@ -67,7 +67,7 @@ export default class TextEditor extends Component {
     if (!this.props.value && nextProps.value) {
       const blocks = convertFromRaw(JSON.parse(nextProps.value));
       this.setState({
-        editorState: EditorState.createWithContent(blocks, LinkDecorator),
+        editorState: EditorState.createWithContent(blocks, decorator),
       })
     }
   }

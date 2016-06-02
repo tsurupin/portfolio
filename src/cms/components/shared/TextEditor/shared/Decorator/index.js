@@ -1,5 +1,7 @@
 import React from 'react';
 import { Entity, CompositeDecorator } from 'draft-js';
+import MultiDecorator from 'draft-js-multidecorators';
+import PrismDecorator from 'draft-js-prism';
 import styles from './styles.scss';
 
 
@@ -28,10 +30,13 @@ function findLinkEntities(contentBlock, callback) {
   );
 }
 
-export const LinkDecorator = new CompositeDecorator([
-  {
-    strategy: findLinkEntities,
-    component: Link
-  }
+export const decorator = new MultiDecorator([
+  new PrismDecorator(),
+  new CompositeDecorator([
+    {
+      strategy: findLinkEntities,
+      component: Link
+    }
+  ])
 ]);
 

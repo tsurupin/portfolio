@@ -7,7 +7,7 @@ import {
 } from 'draft-js';
 
 import { styleMap, getBlockStyle } from '../shared/utilities';
-import { LinkDecorator } from '../shared/LinkDecorator/index';
+import { decorator } from '../shared/Decorator/index';
 import styles from '../shared/styles.scss';
 
 class TextDisplay extends Component {
@@ -15,7 +15,7 @@ class TextDisplay extends Component {
     super(props);
     
     const blocks = convertFromRaw(JSON.parse(props.description));
-    this.state = { editorState: EditorState.createWithContent(blocks, LinkDecorator) };
+    this.state = { editorState: EditorState.createWithContent(blocks, decorator) };
   }
 
   render() {
