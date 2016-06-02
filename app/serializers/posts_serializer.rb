@@ -4,6 +4,7 @@ class PostsSerializer < ActiveModel::Serializer
   attributes :id, :title, :accepted, :published_at, :status
 
   def published_at
+    p 'hoge'
     object.published_at.try(:strftime,'%b %d, %Y') || 'not publishing yet'
   end
 

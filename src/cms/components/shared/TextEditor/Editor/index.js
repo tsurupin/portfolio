@@ -6,19 +6,13 @@ import {
   RichUtils,
   convertFromRaw,
   convertToRaw,
-  Entity,
-  CompositeDecorator
+  Entity
 } from 'draft-js';
 
-import {
-  styleMap,
-  getBlockStyle,
-  BLOCK_TYPES,
-  INLINE_STYLES,
-  findLinkEntities,
-  Link
-} from './../shared/utilities';
-
+import { styleMap, getBlockStyle } from './../shared/utilities';
+import { LinkDecorator } from '../shared/LinkDecorator/index';
+import { BlockStyleControls } from '../shared/BlockStyleControl/index';
+import { InlineStyleControls } from '../shared/InlineStyleControl/index';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
@@ -27,9 +21,6 @@ import styles from '../shared/styles.scss';
 
 
 const inlineStyles = {
-  actionButton: {
-    marginLeft: 12
-  },
   urlInput: {
     fontFamily: "'Georgia', serif",
     marginRight: 10,
@@ -37,12 +28,6 @@ const inlineStyles = {
   }
 };
 
-const decorator = new CompositeDecorator([
-  {
-    strategy: findLinkEntities,
-    component: Link
-  }
-]);
 
 export default class TextEditor extends Component {
 
@@ -52,13 +37,13 @@ export default class TextEditor extends Component {
     if(props.value) {
       const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
-        editorState: EditorState.createWithContent(blocks, decorator),
+        editorState: EditorState.createWithContent(blocks, LinkDecorator),
         inputtable: false,
         urlValue: ''
       };
     } else {
       this.state = {
-        editorState: EditorState.createEmpty(decorator),
+        editorState: EditorState.createEmpty(LinkDecorator),
         inputtable: false,
         urlValue: ''
       };
@@ -82,7 +67,7 @@ export default class TextEditor extends Component {
     if (!this.props.value && nextProps.value) {
       const blocks = convertFromRaw(JSON.parse(nextProps.value));
       this.setState({
-        editorState: EditorState.createWithContent(blocks, decorator),
+        editorState: EditorState.createWithContent(blocks, LinkDecorator),
       })
     }
   }
@@ -103,8 +88,8 @@ export default class TextEditor extends Component {
 
   handleConfirmLink(e) {
     e.preventDefault();
-    const {editorState, urlValue} = this.state;
-    const entityKey = Entity.create('LINK', 'MUTABLE', {url: urlValue});
+    const { editorState, urlValue } = this.state;
+    const entityKey = Entity.create('LINK', 'MUTABLE', {url: urlValue });
     this.setState({
       editorState: RichUtils.toggleLink(
         editorState,
@@ -226,81 +211,6 @@ export default class TextEditor extends Component {
   }
 }
 
-class StyleButton extends Component {
-  constructor() {
-    super();
-    this.handleToggle =this.handleToggle.bind(this);
-  }
-
-  handleToggle(event) {
-    event.preventDefault();
-    this.props.onToggle(this.props.style);
-  }
-
-  render() {
-    let className;
-    if (this.props.active) {
-      className = styles.activeButton
-    } else {
-      className = styles.styleButton
-    };
-
-    return (
-      <span className={className} onMouseDown={this.handleToggle}>
-        {this.props.label}
-      </span>
-    );
-  }
-}
 
 
-const BlockStyleControls = (props) => {
-  const { editorState } = props;
-  const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
-
-  return (
-    <div className={styles.control}>
-      {BLOCK_TYPES.map((type) =>
-        <StyleButton
-          key={type.label}
-          active={type.style === blockType}
-          label={type.label}
-          onToggle={props.onToggle}
-          style={type.style}
-        />
-      )}
-    </div>
-  );
-};
-
-const InlineStyleControls = (props) => {
-  const currentStyle = props.editorState.getCurrentInlineStyle();
-  return (
-    <div className={styles.controls}>
-      {INLINE_STYLES.map(type =>
-        <StyleButton
-          key={type.label}
-          active={currentStyle.has(type.style)}
-          label={type.label}
-          onToggle={props.onToggle}
-          style={type.style}
-        />
-      )}
-      <span
-        className={styles.styleButton}
-        onMouseDown={props.onPromptForLink}>
-        Add Link
-      </span>
-      <span
-        className={styles.styleButton}
-        onMouseDown={props.onRemoveLink}>
-        Remove Link
-      </span>
-    </div>
-  );
-};
 

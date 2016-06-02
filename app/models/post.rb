@@ -26,4 +26,8 @@ class Post < ActiveRecord::Base
   def self.accepted
     where(accepted: true)
   end
+
+  def self.latest
+    order(updated_at: :desc)
+  end
 end

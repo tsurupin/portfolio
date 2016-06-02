@@ -10,8 +10,6 @@ class Show extends  Component {
   constructor(props) {
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
-
-    console.log(this.props)
   }
   
   handleSearch() {

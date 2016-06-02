@@ -10,8 +10,6 @@
   composes: marginHorizontalXSmall from '../../../../css/margins.scss';
 }
 
-
-
 .editor {
   /*border-top: 1px solid #ddd;*/
   cursor: text;
@@ -19,37 +17,9 @@
   margin-top: 10px;
 }
 
+
 .hidePlaceholder {
   display: none;
-}
-
-.actionBox {
-
-}
-
-.actionButton {
-
-}
-
-.styleButton {
-  color: #999;
-  cursor: pointer;
-  margin-right: 16px;
-  padding: 2px 0;
-  display: inline-block;
-}
-
-.activeButton {
-  composes: styleButton;
-  color: #5890ff;
-
-}
-
-.controls {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
-  margin-bottom: 5px;
-  user-select: none;
 }
 
 .blockquote {
@@ -61,25 +31,30 @@
   padding: 10px 20px;
 }
 
-.headerOne {
+.h1 {
+  color: red;
+  font-size: 2.4rem;
+}
+
+.h2 {
+
+}
+.text {
+  color: blue;
+}
+
+.caption {
 
 }
 
-.headerTwo {
+.code {
 
 }
 
-.headerThree {
 
-}
 
-.headerFive {
 
-}
 
-.headerSix {
-
-}
 
 .undecoratedListItem {
 
@@ -108,10 +83,6 @@
   padding: 2px;
 }
 
-.link {
-  color: #3b5998;
-  text-decoration: underline;
-}
 
 .urlInputContainer {
   margin-bottom: 10px;

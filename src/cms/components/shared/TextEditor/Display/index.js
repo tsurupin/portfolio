@@ -3,30 +3,19 @@ import {
   Editor,
   EditorState,
   convertFromRaw,
-  Entity,
-  CompositeDecorator
+  Entity
 } from 'draft-js';
 
-import {
-  styleMap,
-  getBlockStyle,
-  findLinkEntities,
-  Link
-} from '../shared/utilities';
+import { styleMap, getBlockStyle } from '../shared/utilities';
+import { LinkDecorator } from '../shared/LinkDecorator/index';
 import styles from '../shared/styles.scss';
 
 class TextDisplay extends Component {
   constructor(props) {
     super(props);
-    const decorator = new CompositeDecorator([
-      {
-        strategy: findLinkEntities,
-        component: Link
-      }
-    ]);
     
     const blocks = convertFromRaw(JSON.parse(props.description));
-    this.state = { editorState: EditorState.createWithContent(blocks, decorator) };
+    this.state = { editorState: EditorState.createWithContent(blocks, LinkDecorator) };
   }
 
   render() {
