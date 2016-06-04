@@ -2,13 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import {
   Editor,
   EditorState,
-  convertFromRaw,
-  Entity
+  convertFromRaw
 } from 'draft-js';
 
-import { styleMap, getBlockStyle } from '../shared/utilities';
+import { getBlockStyle } from '../shared/utilities';
 import { decorator } from '../shared/Decorator/index';
-import styles from '../shared/styles.scss';
+import styles from './styles.scss';
 
 class TextDisplay extends Component {
   constructor(props) {
@@ -24,7 +23,6 @@ class TextDisplay extends Component {
         <div className={styles.editor}>
           <Editor
             blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap}
             editorState={this.state.editorState}
             readOnly={true}
           />

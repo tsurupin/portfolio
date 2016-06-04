@@ -64,7 +64,7 @@ class ProjectsForm extends Component {
    
     const headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, sampleUrl, sourceUrl, image, description } } = this.props;
+    const { handleSubmit, fields: { title, caption, sourceUrl, image, description } } = this.props;
 
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
@@ -88,12 +88,6 @@ class ProjectsForm extends Component {
           hintText="Enter SourceURL"
           fullWidth={true}
         />
-        <TextField
-          {...sampleUrl}
-          floatingLabelText="SampleURL"
-          hintText="Enter SampleURL"
-          fullWidth={true}
-        />
         <TagField
           tags={this.props.tags}
           suggestions={this.props.tagSuggestions}
@@ -104,6 +98,12 @@ class ProjectsForm extends Component {
         <DropzoneImage
           {...image}
           handleUpdate={ (file) => image.onChange(file) }
+        />
+        <TextField
+          {...caption}
+          floatingLabelText="Caption"
+          hintText="Enter Caption"
+          fullWidth={true}
         />
         <br />
         <br />
@@ -130,7 +130,7 @@ function validate(values) {
 }
 
 const fields = [
-  'id', 'title', 'sourceUrl', 'sampleUrl', 'image', 'description'
+  'id', 'title', 'sourceUrl', 'caption', 'image', 'description'
 ];
 
 function mapStateToProps(state) {

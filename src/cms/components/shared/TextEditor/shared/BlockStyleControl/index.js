@@ -3,11 +3,13 @@ import StyleButton from '../StyleButton/index';
 import styles from './styles.scss';
 
 export const BLOCK_TYPES = [
-  {label: 'H1', style: 'header-one'},
-  {label: 'H2', style: 'header-two'},
-  {label: 'Caption', style: 'header-three'},
-  {label: 'Blockquote', style: 'blockquote'},
-  {label: 'Code Block', style: 'code-block'}
+  { label: 'H2', style: 'header-two' },
+  { label: 'H3', style: 'header-three' },
+  { label: 'Blockquote', style: 'blockquote' },
+  { label: 'Code', style: 'code-block' },
+  { label: 'Caption', style: 'header-four' },
+  { label: 'OL', style: 'ordered-list-item' },
+  { label: 'UL', style: 'unordered-list-item' }
 ];
 
 export const BlockStyleControls = (props) => {

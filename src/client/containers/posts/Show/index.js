@@ -3,8 +3,16 @@ import { connect } from 'react-redux';
 import { fetchPost } from 'clientActions/posts';
 import Tag from 'clientComponents/posts/shows/Tag/index';
 import Item from 'clientComponents/posts/shows/Item/index';
-
+import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
+
+const inlineStyles = {
+  dateTimeLogo:{
+    verticalAlign: 'middle',
+    height: 18,
+    width: 18
+  }
+};
 
 class Show extends  Component {
   constructor(props) {
@@ -12,7 +20,8 @@ class Show extends  Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
   
-  handleSearch() {
+  handleSearch(tagId) {
+    
     
   }
   
@@ -21,8 +30,11 @@ class Show extends  Component {
   }
 
   renderTags() {
+    console.log(this.props.tags)
     return(
-      this.props.tags.map(tag => {
+      <div>
+        return(
+        {this.props.tags.map(tag => {
         return(
           <Tag
             key={tag.id}
@@ -30,8 +42,8 @@ class Show extends  Component {
             name={tag.name}
             handleSearch={this.handleSearch}
           />
-        )
-      })
+        )})})
+        </div>
     );
   }
 
@@ -49,10 +61,14 @@ class Show extends  Component {
   }
 
   render() {
+    console.log(this.renderTags())
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>{this.props.post.title} </h1>
-        <div className={styles.dateTime}> {this.props.post.publishedAt} </div>
+        <div className={styles.dateTime}>
+          <ActionSchedule color='#8F8F8F' style={inlineStyles.dateTimeLogo} />
+          <span className={styles.time}>{this.props.post.publishedAt}</span>
+        </div>
         {this.renderItems()}
         {this.renderTags()}
       </section>

@@ -7,7 +7,6 @@ class Text extends Component {
 
   constructor(props) {
     super(props);
-    console.log('hoge')
   }
 
   render() {

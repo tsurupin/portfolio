@@ -33,11 +33,14 @@
 }
 
 .itemContainer {
-
+  width: 100%;
+  display: block;
 }
 
 .itemList {
   composes: resetUlDefaultStyle from '../../../css/mixins.scss';
   position: relative;
+
   list-style: none;
+
 }

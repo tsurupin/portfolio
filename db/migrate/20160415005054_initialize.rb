@@ -9,7 +9,6 @@ class Initialize < ActiveRecord::Migration
 
     create_table :posts do |t|
       t.string :title, null: false, unique: true
-      t.text :description
       t.boolean :accepted, null: false, default: false
       t.datetime :published_at
 
@@ -36,6 +35,7 @@ class Initialize < ActiveRecord::Migration
 
     create_table :item_images do |t|
       t.string    :image, null: false
+      t.string    :caption
     end
 
     create_table :item_texts do |t|
@@ -61,11 +61,7 @@ class Initialize < ActiveRecord::Migration
     end
 
     create_table :item_twitters do |t|
-      t.text      :source_url, null: false
-      t.text      :description, null: false
-      t.string    :author_image_url, null: false
-      t.string    :author_name, null: false
-      t.string    :author_screen_name, null: false
+      t.string :twitter_id, null: false
     end
 
     create_table :tags do |t|
@@ -85,7 +81,7 @@ class Initialize < ActiveRecord::Migration
       t.string :title, null: false, unique: true
       t.text :description
       t.string :image
-      t.string :sample_url
+      t.string :caption
       t.string :source_url
       t.boolean :accepted, null: false, default: false
 

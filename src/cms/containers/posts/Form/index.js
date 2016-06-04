@@ -125,7 +125,7 @@ class PostsForm extends Component {
   
   render() {
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
+    const { handleSubmit, fields: { title, publishedAt } } = this.props;
     
 
     return (
@@ -140,14 +140,6 @@ class PostsForm extends Component {
           errorText={title.touched && title.error ? title.error : ''}
         />
         <br/>
-        <TextField
-          {...description}
-          floatingLabelText="Description"
-          hintText="Enter Description"
-          multiLine={true}
-          fullWidth={true}
-          rows={2}
-        />
         <br/>
         <label className={styles.label}>Published At</label>
         <DatePicker
@@ -191,7 +183,7 @@ function validate(values) {
 }
 
 export const fields = [
-  'id', 'title', 'description', 'publishedAt'
+  'id', 'title', 'publishedAt'
 ];
 
 function mapStateToProps(state) {

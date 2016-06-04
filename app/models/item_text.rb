@@ -9,4 +9,10 @@
 class ItemText < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
   validates :description, presence: true
+
+  private
+  def save_from_association!(params)
+    self.description = params['description']
+    self.save!
+  end
 end

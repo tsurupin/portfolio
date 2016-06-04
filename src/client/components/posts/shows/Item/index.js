@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from 'shared/constants';
 import Text from 'sharedComponents/posts/Text/index';
+import Twitter from 'sharedComponents/posts/Twitter/index';
+import Image from 'sharedComponents/posts/Image/index';
 import styles from './styles.scss';
 
 class Item extends Component {

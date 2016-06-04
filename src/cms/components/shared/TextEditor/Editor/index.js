@@ -9,7 +9,7 @@ import {
   Entity
 } from 'draft-js';
 
-import { styleMap, getBlockStyle } from './../shared/utilities';
+import { getBlockStyle } from './../shared/utilities';
 import { decorator } from '../shared/Decorator/index';
 import { BlockStyleControls } from '../shared/BlockStyleControl/index';
 import { InlineStyleControls } from '../shared/InlineStyleControl/index';
@@ -89,7 +89,7 @@ export default class TextEditor extends Component {
   handleConfirmLink(e) {
     e.preventDefault();
     const { editorState, urlValue } = this.state;
-    const entityKey = Entity.create('LINK', 'MUTABLE', {url: urlValue });
+    const entityKey = Entity.create('LINK', 'MUTABLE', { url: urlValue });
     this.setState({
       editorState: RichUtils.toggleLink(
         editorState,
@@ -111,7 +111,7 @@ export default class TextEditor extends Component {
 
   handleRemoveLink(e) {
     e.preventDefault();
-    const {editorState} = this.state;
+    const { editorState } = this.state;
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
       this.setState({
@@ -196,7 +196,6 @@ export default class TextEditor extends Component {
             <Editor
               onChange={this.handleChange}
               blockStyleFn={getBlockStyle}
-              customStyleMap={styleMap}
               editorState={this.state.editorState}
               spellCheck={true}
               placeholder="Enter Text"

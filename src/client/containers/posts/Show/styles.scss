@@ -1,2 +1,24 @@
 .root {
+
 }
+
+.title {
+  font-size: 28px;
+  margin-left: -1.75px;
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: 700;
+}
+
+.dateTime {
+  padding: 10px 0;
+  display: table-cell;
+}
+
+.time {
+  margin-left: 5px;
+  vertical-align: middle;
+  color: #8F8F8F;
+  font-size: 1.2rem;
+}
+

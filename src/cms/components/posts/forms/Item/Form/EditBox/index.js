@@ -6,13 +6,9 @@ import EditBoxItem from './EditBoxItem/index';
 import styles from './styles.scss';
 
 const TARGET_TYPE_LIST = [
-  TARGET_TYPES.HEADING,
-  TARGET_TYPES.SUB_HEADING,
   TARGET_TYPES.TEXT,
   TARGET_TYPES.IMAGE,
-  TARGET_TYPES.TWITTER,
-  TARGET_TYPES.LINK,
-  TARGET_TYPES.QUOTE
+  TARGET_TYPES.TWITTER
 ];
 
 const inlineStyles = {

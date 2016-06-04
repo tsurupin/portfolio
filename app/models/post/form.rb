@@ -12,19 +12,14 @@
 #
 
 class Post::Form < ActiveType::Record[Post]
-  include DataURIToImageConverter
   include TaggingCleaner
   include TaggingAttributesTrimer
 
   ITEMS_ATTRIBUTES = 'items_attributes'.freeze
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
   PERMITTED_ATTRIBUTES = [
-    :id, :title, :description, :published_at,
-    items_attributes: [
-      :id, :target_id, :target_type, :title, :description,
-      :source_title, :source_url, :image, :author_name,
-      :author_screen_name, :author_image_url
-    ],
+    :id, :title, :published_at,
+    items_attributes: [:id, :sort_rank, :target_id, :target_type, :description, :image, :caption, :twitter_id],
     taggings_attributes: [:id, :text]
   ].freeze
 
@@ -42,30 +37,8 @@ class Post::Form < ActiveType::Record[Post]
 
       params[ITEMS_ATTRIBUTES]&.each&.with_index(1) do |item, index|
         target = item['target_type'].constantize.find_or_initialize_by(id: item['target_id'])
-        case target.class.name
-          # TODO: consider whether heading, quote, link are needed or not
-          when 'ItemHeading', 'ItemSubHeading'
-            target.title              = item['title']
-          when 'ItemQuote'
-            target.description        = item['description']
-            target.source_url         = item['source_url']
-          when 'ItemText'
-            target.description        = item['description']
-          when 'ItemImage'
-            target.image              = convert_data_uri_to_upload(item['image']) unless target.image.try(:url) == item['image']
-          when 'ItemLink'
-            target.source_title       = item['source_title']
-            target.source_url         = item['source_url']
-          when 'ItemTwitter'
-            target.source_url         = item['source_url']
-            target.description        = item['description']
-            target.author_name        = item['author_name']
-            target.author_image_url   = item['author_image_url']
-            target.author_screen_name = item['author_screen_name']
-          else
-        end
+        target.save_from_associations!(item)
 
-        target.save!
         item_id = item['id']
         item.clear.merge!(
           id: item_id,
@@ -74,8 +47,6 @@ class Post::Form < ActiveType::Record[Post]
           target_type: target.class.name
         )
       end
-
-      p params
 
       update!(params)
       true

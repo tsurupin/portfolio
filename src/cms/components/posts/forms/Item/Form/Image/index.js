@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import DropzoneImage from '../../../../../shared/DropzoneImage/index';
+import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
@@ -15,13 +16,13 @@ const inlineStyles = {
 class Image extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
    
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
   
   handleUpdateItem(props) {
-    this.props.handleUpdateItem({ image: props.image })
+    this.props.handleUpdateItem({ image: props.image, caption: props.caption })
   }
 
   renderErrorMessage() {
@@ -32,7 +33,7 @@ class Image extends Component {
 
   render() {
 
-    const { handleSubmit, submitting, fields: { image } } = this.props;
+    const { handleSubmit, submitting, fields: { image, caption } } = this.props;
 
     return (
       <div className={styles.root}>
@@ -41,6 +42,13 @@ class Image extends Component {
           handleUpdate={ (file) => image.onChange(file) }
         />
         {this.renderErrorMessage()}
+        <TextField
+          className={styles.inputText}
+          {...caption}
+          floatingLabelText="Caption"
+          hintText='Enter the caption'
+          fullWidth={true}
+        />
         <div className={styles.submitBox}>
           {this.props.cancelButton}
           <RaisedButton
@@ -75,7 +83,7 @@ function validate(values) {
 
 export default reduxForm({
   form: 'ItemImageForm',
-  fields: ['image'],
+  fields: ['image', 'caption'],
   validate
 })(Image);
 

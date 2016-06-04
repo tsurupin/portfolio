@@ -1,19 +1,48 @@
 .root {
 
+  //padding: 12px;
+  //margin-bottom: 20px;
+  //color: #333;
+  //
+  //border: 1px solid #ccc;
 }
 
 .authorName {
-
+  color: #333;
 }
 
 .header {
+  height: 61px;
 
+  font-size: 1.6rem;
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  &::before {
+    float: right;
+    width: 30px;
+    height: 30px;
+    content: '';
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpENDM0Q0M3ODkxN0YxMUU1OEEzQ0NGODY2OEU5QTQ4NSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpENDM0Q0M3OTkxN0YxMUU1OEEzQ0NGODY2OEU5QTQ4NSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjdCOTVGNDdGOTE3RTExRTU4QTNDQ0Y4NjY4RTlBNDg1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjdCOTVGNDgwOTE3RTExRTU4QTNDQ0Y4NjY4RTlBNDg1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+enPyvAAAA/JJREFUeNrMmctLVFEcx8+9WiZYFNZkpfQmaVGUheX0FAohKqVNi8oWoRSkuQtaS0RUSrWoVdQf0ItCsiyzKQQnKlpY0cLS7KGVPagInb4/+M5wG+/j3Bln9Acf7qBn7vl6zu9xzk8jEomoRCwcDk/BYyZYAzaCQjCVv+4DneAueADegS/W7xcVFWnNk+lTlElBQbAaLAHTwYS4obPAUrAdfADPwCPwELSBId05DZ0VhDADj1KwF2yiqERMxDaDC6AFqxhJWiDEybYdAbtBrhoZ6weXQD1E9iUsEOJW4HGK25oKE/+sg8gO3wIhrgKP0/SnVFoPOAiRl7UFQlw5HufBNJUe+wSqIPKKp0CIk/iXv6ZApdfeggqIDFt/aNoEROMoiFOcs5Ea7AUyWoNq9CxIDcO3GMpLubWT1OjaN251S2wFIU4qSmWKxA0w7/1y+H18lIqGSmqKbbGUrTKNyf76EPYeNIAdYDPYB26wzEWYA187fLeMmmK1eD0IeEwoK1APtkS/7GIy8X5w27JCj8E17pSI7AInxc1svh+gpjYTSzkZH4o1VqSLubEKPHEZ9xMcZc2N374f4Cy4CObyD/nt8J5i0SZbnM+Th5fJy7PhvM/x3MmCP2AzrpPB5uUq97l6WQ5jRFO+ydAOaAicEw0iiHzBLZQDxFXwxnKEkhX57PEuqVDH6WuGwxjRFDR5jMrSECgJ9ACWfZxFyHUGgVBLF2i2ya/xthiscxGnqKk0kydhpemDCyUiIfKmxb8GQQdRnNTQzAjZHmMKM32c8cQHDzN9mBTmlNe8DqIBzZyba/rIa4vAfPhfDxhMInFnaAZlrBb3a46V1a7H9pYkWVny6PdaJ2+TaUHXFoBzELkribIox7llmmM7RaAU5T8+JhBffOqz7EVtIqNdx7VEU4sMDIGPPiaRxD7Ppfi72R6WMB0TTSHxq26uSIEPgZLv5vNi3qWRmMVW8ayXoTmPaOo2EZFf8aHd50pImjgBzoDZGuOXi++CGT7maBdt0dNMK5c04JLbBoiUtF5wC9wDLz0ifxs4xgBTPra31XrckrZEE33E9vbHaJdVuMNk7RYk45k3q9iNyPG5Q03U5PvI/4pnuhBvYXJd/M6ozOEOiG9uAFt9bqntkf+/aydEShfhkMZLIgyuXgo0mELyGESGStwaIK7OqbslJ+aVGjc7g1E/0tfTEDXYXzvZyKnl9qXbZM7a+GbSsIzOm30N/StdJnPVxHcVlFPJYY+kmo2dVJvMUW3Xl1FuNZHdpnJeD1Nl8u5yp86WZ3/Q0q8Zmw1Mi8ix2wKOEyousRaUKPcmurJcrKxN9BC3dUi3y2+M9X9D/BNgAJfLUFWOTKX2AAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    background-size: 30px;
+  }
 }
 
 .screenName {
-
+  color: #bbb;
+  padding-bottom: 13px;
 }
 
 .description {
+  font-size: 1.4rem;
+  color: #333;
+  font-family: "メイリオ";
+  line-height: 1.8;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 
 }
