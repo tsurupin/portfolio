@@ -13,13 +13,10 @@ class PostsIndex extends Component {
   }
 
   componentDidMount() {
-    console.log('didMount');
-    console.log(this.props)
-    let params = {}
+    let params = {};
     if (this.props.hasOwnProperty('location')) {
       params.tag = this.props.location.query.tag
     }
-    console.log(params)
     this.props.fetchPosts(params);
   }
 

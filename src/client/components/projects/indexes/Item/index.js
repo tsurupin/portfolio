@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Tag from '../Tag/index';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 const inlineStyles = {
   root: {
@@ -82,10 +82,9 @@ class Item extends Component {
             key={tag.id}
             id={tag.id}
             name={tag.name}
-            handleSearch={this.props.handleSearch}
           />
           )
-          })}
+         })}
       />
       <CardMedia style={inlineStyles.image}>
         <img src={this.props.project.image} />
@@ -119,8 +118,7 @@ Item.propTypes = {
       name: PropTypes.string.isRequired
     }).isRequired
   ).isRequired
-  }).isRequired,
-  handleSearch: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default Item;

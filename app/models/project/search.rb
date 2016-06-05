@@ -11,9 +11,6 @@
 #  updated_at   :datetime         not null
 #
 
-class Post::Search < ActiveType::Record[Post]
+class Project::Search < ActiveType::Record[Project]
   include ClientSearch
-
-  scope :previous, ->(post_id) { accepted.where('id < ?', post_id).last }
-  scope :next, ->(post_id) { accepted.where('id > ?', post_id).first }
 end
