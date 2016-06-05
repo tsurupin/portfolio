@@ -4,21 +4,21 @@ class Cms::ApplicationController < ApplicationController
 
   layout 'cms/layouts/application'
 
-  def layout
-    render text: nil, layout: true
-  end
-
-  protected
-
-  def pagination(page, limit, total)
-    { pagination:
-        {
-          page: page.to_i,
-          limit: limit,
-          total: total
-        }
-    }
-  end
+  # def layout
+  #   render text: nil, layout: true
+  # end
+  #
+  # protected
+  #
+  # def pagination(page, limit, total)
+  #   { pagination:
+  #       {
+  #         page: page.to_i,
+  #         limit: limit,
+  #         total: total
+  #       }
+  #   }
+  # end
 
   def authenticate_author_from_token!
     auth_token = request.headers['Authorization']
@@ -33,13 +33,11 @@ class Cms::ApplicationController < ApplicationController
 
     author_id = auth_token.split(':').first
     author = Author.find(author_id)
-    p author
 
     if author && Devise.secure_compare(author.access_token, auth_token)
-      p 'sign'
       sign_in(author, store: false)
     else
-      authenticate_error
+      authentication_error
     end
   end
 

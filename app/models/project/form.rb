@@ -20,7 +20,7 @@ class Project::Form < ActiveType::Record[Project]
 
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
   PERMITTED_ATTRIBUTES = [
-    :title, :description, :image, :sample_url, :source_url,
+    :title, :description, :image, :source_url, :caption,
     taggings_attributes: [:id, :text]
   ].freeze
 

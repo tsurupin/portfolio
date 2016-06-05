@@ -7,7 +7,7 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
 
   def new
     post = Post.new
-    render json: post
+    render json: PostFormSerializer.new(post)
   end
 
   def create
@@ -21,7 +21,7 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
 
   def edit
     post = Post.find(params[:id])
-    render json: post
+    render json: PostFormSerializer.new(post)
   end
 
   def update

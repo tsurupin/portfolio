@@ -7,17 +7,22 @@ class ProjectsIndex extends Component {
   
   constructor(props) {
     super(props);
-    
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  componentWillMount() {
-    this.props.fetchProjects();
+  componentDidMount() {
+    let params = {}
+    if (this.props.hasOwnProperty('location')) {
+      params.tag = this.props.location.query.tag
+    }
+    this.props.fetchProjects(params);
   }
 
-  handleSearch(props) {
-    this.props.fetchProjects(props);
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.location.query.tag !== this.props.location.query.tag) {
+      nextProps.fetchProjects({ tag: nextProps.location.query.tag })
+    }
   }
+
 
   render() {
     if(this.props.projects.length === 0 ) { return <div></div> }
@@ -25,12 +30,7 @@ class ProjectsIndex extends Component {
       <section className={styles.root}>
         <h1 className={styles.title}>PROJECTS</h1>
         {this.props.projects.map((project, index) => {
-          return (
-            <Item
-              key={index}
-              project={project}
-              handleSearch={this.handleSearch}
-            />);
+          return <Item key={index} project={project}/>
         })}
       </section>
     );

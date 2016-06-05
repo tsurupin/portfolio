@@ -1,0 +1,16 @@
+.root {
+  font-style: normal;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: 0;
+  display: inline-block;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #46494B;
+  background: #e9f2f7;
+  padding: 5px 10px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

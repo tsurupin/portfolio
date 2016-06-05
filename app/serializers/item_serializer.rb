@@ -1,37 +1,33 @@
 class ItemSerializer < ActiveModel::Serializer
   format_keys :lower_camel
-  attributes :id, :sort_rank, :title, :description, :imageURL, :sourceURL, :source_title, :authorImageURL, :author_screen_name, :author_name
+  attributes :id,
+             :target_id,
+             :target_type,
+             :sort_rank,
+             :description,
+             :image,
+             :caption,
+             :twitter_id
 
-  def title
-    target_column(:title)
+
+  def target_type
+    object[:target_type]
   end
 
   def description
     target_column(:description)
   end
 
-  def imageURL
+  def image
     target_column(:image_url)
   end
 
-  def sourceURL
-    target_column(:source_url)
+  def caption
+    target_column(:caption)
   end
 
-  def source_title
-    target_column(:source_title)
-  end
-
-  def author_screen_name
-    target_column(:author_screen_name)
-  end
-
-  def author_name
-    target_column(:author_name)
-  end
-
-  def authorImageURL
-    target_column(:author_image_url)
+  def twitter_id
+    target_column(:twitter_id)
   end
 
   private

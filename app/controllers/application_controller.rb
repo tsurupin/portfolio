@@ -8,6 +8,20 @@ class ApplicationController < ActionController::Base
     render text:  'ok', status: :ok
   end
 
+  def layout
+    render text: nil, layout: true
+  end
+
+  def pagination(page, limit, total)
+    { pagination:
+        {
+          page: page.to_i,
+          limit: limit,
+          total: total
+        }
+    }
+  end
+
   protected
 
   def render_error_message(model)

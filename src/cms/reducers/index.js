@@ -8,7 +8,6 @@ import authReducer from './auths';
 import socialAccountReducer from  './socialAccounts';
 import projectReducer from  './projects';
 
-
 const rootReducer = combineReducers({
   form: formReducer,
   posts: postReducer,

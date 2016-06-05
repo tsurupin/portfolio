@@ -1,0 +1,41 @@
+.root {
+  border-top: 1px solid #ddd;
+  position: relative;
+  height: 88px;
+  margin-top: 15px;
+  display: table;
+  width: 100%;
+  font-size: 1.8rem;
+  line-height: 1.6;
+
+  font-family: 'Source Serif Pro,Helvetica Neue,Helvetica,Arial,sans-serif';
+}
+
+.prevBox {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+  padding-left: 3%;
+  overflow: hidden;
+  color: #46494B;
+
+
+  &:hover {
+    background: rgba(0,0,0,.08);
+  }
+}
+
+
+.nextBox {
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+  width: 50%;
+  padding-right: 3%;
+  overflow: hidden;
+  color: #46494B;
+
+  &:hover {
+    background: rgba(0,0,0,.08);
+  }
+}

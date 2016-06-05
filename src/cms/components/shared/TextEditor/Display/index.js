@@ -2,28 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import {
   Editor,
   EditorState,
-  convertFromRaw,
-  Entity,
-  CompositeDecorator
+  convertFromRaw
 } from 'draft-js';
 
-import {
-  styleMap,
-  getBlockStyle,
-  findLinkEntities,
-  Link
-} from '../shared/utilities';
-import styles from '../shared/styles.scss';
+import { getBlockStyle } from '../shared/utilities';
+import { decorator } from '../shared/Decorator/index';
+import styles from './styles.scss';
 
 class TextDisplay extends Component {
   constructor(props) {
     super(props);
-    const decorator = new CompositeDecorator([
-      {
-        strategy: findLinkEntities,
-        component: Link
-      }
-    ]);
     
     const blocks = convertFromRaw(JSON.parse(props.description));
     this.state = { editorState: EditorState.createWithContent(blocks, decorator) };
@@ -35,7 +23,6 @@ class TextDisplay extends Component {
         <div className={styles.editor}>
           <Editor
             blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap}
             editorState={this.state.editorState}
             readOnly={true}
           />

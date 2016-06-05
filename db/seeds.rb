@@ -17,7 +17,7 @@ ActiveRecord::Base.transaction do
 
   FactoryGirl.create(:social_account, author: author)
 
-  item_types = %i(image twitter quote text heading sub_heading link)
+  item_types = %i(image twitter text)
   30.times do |i|
     project_tag = FactoryGirl.create(:tag)
     project = i.odd? ? FactoryGirl.create(:project) :  FactoryGirl.create(:project, :accepted)
@@ -27,7 +27,7 @@ ActiveRecord::Base.transaction do
     post = i.odd? ? FactoryGirl.create(:post) :  FactoryGirl.create(:post, :accepted)
     FactoryGirl.create(:tagging, subject_type: 'Post', subject_id: post.id, tag: post_tag)
 
-    4.times { FactoryGirl.create(:item, item_types[rand(7)], post: post) }
+    4.times { FactoryGirl.create(:item, item_types[rand(3)], post: post) }
   end
 
 end

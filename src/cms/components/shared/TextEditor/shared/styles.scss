@@ -4,13 +4,11 @@
 .root {
   background: #fff;
   border: 1px solid #ddd;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
+  font-family: 'Source Serif Pro,Helvetica Neue,Helvetica,Arial,sans-serif';
+  font-size: 1.8rem;
   padding: 15px;
   composes: marginHorizontalXSmall from '../../../../css/margins.scss';
 }
-
-
 
 .editor {
   /*border-top: 1px solid #ddd;*/
@@ -19,107 +17,62 @@
   margin-top: 10px;
 }
 
+
 .hidePlaceholder {
   display: none;
 }
 
-.actionBox {
-
-}
-
-.actionButton {
-
-}
-
-.styleButton {
-  color: #999;
-  cursor: pointer;
-  margin-right: 16px;
-  padding: 2px 0;
-  display: inline-block;
-}
-
-.activeButton {
-  composes: styleButton;
-  color: #5890ff;
-
-}
-
-.controls {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
-  margin-bottom: 5px;
-  user-select: none;
-}
-
 .blockquote {
-  border-left: 5px solid #eee;
-  color: #666;
-  font-family: 'Hoefler Text', 'Georgia', serif;
-  font-style: italic;
-  margin: 16px 0;
-  padding: 10px 20px;
+  background: #e9f2f7;
+  padding: 2rem;
+  margin: 2rem 0;
+  line-height: 1.6;
+  font-size: 1.8rem;
 }
 
-.headerOne {
-
-}
-
-.headerTwo {
-
-}
-
-.headerThree {
-
-}
-
-.headerFive {
+.h2 {
+  color: #1D1E1F;
+  line-height: 1.3;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
 
 }
 
-.headerSix {
-
+.h3 {
+  line-height: 1.35;
+  letter-spacing: 0.18rem;
+  color: #1D1E1F;
+  font-size: 2.0rem;
 }
 
-.undecoratedListItem {
+.text {
+  margin-bottom: 2.5rem;
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
 
+.caption {
+  font-size: 1.8rem;
+  position: relative;
+  padding: 15px 0 0 44px;
+  margin-bottom: 3rem;
+  list-style-type: none;
+}
+
+.unorderedListItem {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
 }
 
 .orderedListItem {
-
-}
-
-.bold {
-
-}
-
-.italic {
-
-}
-
-.underline {
-
-}
-
-.code {
-  background-color: black;
-  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
-  font-size: 16px;
-  padding: 2px;
-}
-
-.link {
-  color: #3b5998;
-  text-decoration: underline;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
 }
 
 .urlInputContainer {
   margin-bottom: 10px;
-}
-
-.header {
-  /* TODO: figure out how to solve error,Order in extracted chunk undefined */
-  font-size: 12px;
-  font-size: 1.2rem;
-  color: label-color;
 }

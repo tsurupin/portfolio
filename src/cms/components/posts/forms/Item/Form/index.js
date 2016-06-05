@@ -2,11 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../constants';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
-import Heading from './Heading/index';
 import Image from './Image/index';
 import Twitter from './Twitter/index';
-import Quote from './Quote/index';
-import Link from './Link/index';
 import Text from './Text/index';
 import styles from './shared/styles.scss';
 
@@ -31,17 +28,6 @@ class PostItemForm extends Component {
 
   renderComponent() {
     switch (this.props.item.targetType) {
-      case TARGET_TYPES.HEADING.NAME:
-      case TARGET_TYPES.SUB_HEADING.NAME:
-        return (
-          <Heading
-            formKey={this.props.sortRank.toString()}
-            targetType={this.props.item.targetType}
-            initialValues={{title: this.props.item.title}}
-            handleUpdateItem={this.handleUpdateItem}
-            cancelButton={this.renderCancelButton()}
-          />
-        );
       case TARGET_TYPES.IMAGE.NAME:
         return (
           <Image
@@ -57,28 +43,8 @@ class PostItemForm extends Component {
           <Twitter
             formKey={this.props.sortRank.toString()}
             targetType={this.props.item.targetType}
-            initialValues={{sourceURL: this.props.item.sourceURL}}
+            initialValues={{sourceURL: this.props.item.tweetId}}
             sortRank={this.props.sortRank}
-            handleUpdateItem={this.handleUpdateItem}
-            cancelButton={this.renderCancelButton()}
-          />
-        );
-      case TARGET_TYPES.QUOTE.NAME:
-        return (
-          <Quote
-            formKey={this.props.sortRank.toString()}
-            targetType={this.props.item.targetType}
-            initialValues={{ sourceURL: this.props.item.sourceURL, description: this.props.item.description }}
-            handleUpdateItem={this.handleUpdateItem}
-            cancelButton={this.renderCancelButton()}
-          />
-        );
-      case TARGET_TYPES.LINK.NAME:
-        return (
-          <Link
-            formKey={this.props.sortRank.toString()}
-            targetType={this.props.item.targetType}
-            initialValues={{ sourceURL: this.props.item.sourceURL, sourceTitle: this.props.item.sourceTitle }}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />

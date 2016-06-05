@@ -23,7 +23,4 @@ class Post < ActiveRecord::Base
 
   paginates_per PAGINATES_PER
 
-  def self.accepted
-    where(accepted: true)
-  end
 end

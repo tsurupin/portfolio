@@ -8,8 +8,15 @@ import { fetchItems } from'./items';
 import { axios } from '../utilities';
 import { browserHistory } from 'react-router';
 
-export function fetchPosts(page = 1) {
-  const request = axios.get(`${POST_PATH}?page=${page}`);
+export function fetchPosts(params = {}) {
+  let url = `${POST_PATH}`;
+  url = params.page ? `${url}?page=${params.page}` : `${url}?page=1`;
+
+  if (params.tag) {
+    url = `${url}&tag=${params.tag}`;
+  }
+  
+  const request = axios.get(url);
   return dispatch => {
     return (
       request
@@ -61,12 +68,16 @@ function fetchPostSuccess(response) {
   return {
     type: FETCH_POST.SUCCESS,
     payload: {
-      post: response.post,
+      post: { 
+        title: response.title, 
+        publishedAt: response.publishedAt,
+        prevId: response.prevId,
+        prevTitle: response.prevTitle,
+        nextId: response.nextId,
+        nextTitle: response.nextTitle
+      },
       items: response.items,
-      tags: {
-        tags: response.tags,
-        tagSuggestions: response.tagSuggestions
-      }
+      tags: response.tags
     }
   };
 }

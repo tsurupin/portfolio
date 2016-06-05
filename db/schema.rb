@@ -39,7 +39,8 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   end
 
   create_table "item_images", force: :cascade do |t|
-    t.string "image", limit: 255, null: false
+    t.string "image",   limit: 255, null: false
+    t.string "caption", limit: 255
   end
 
   create_table "item_links", force: :cascade do |t|
@@ -61,11 +62,7 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   end
 
   create_table "item_twitters", force: :cascade do |t|
-    t.text   "source_url",         limit: 65535, null: false
-    t.text   "description",        limit: 65535, null: false
-    t.string "author_image_url",   limit: 255,   null: false
-    t.string "author_name",        limit: 255,   null: false
-    t.string "author_screen_name", limit: 255,   null: false
+    t.string "twitter_id", limit: 255, null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -82,19 +79,18 @@ ActiveRecord::Schema.define(version: 20160415005054) do
   add_index "items", ["target_type", "target_id"], name: "index_items_on_target_type_and_target_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",        limit: 255,                   null: false
-    t.text     "description",  limit: 65535
-    t.boolean  "accepted",                   default: false, null: false
+    t.string   "title",        limit: 255,                 null: false
+    t.boolean  "accepted",                 default: false, null: false
     t.datetime "published_at"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "projects", force: :cascade do |t|
     t.string   "title",       limit: 255,                   null: false
     t.text     "description", limit: 65535
     t.string   "image",       limit: 255
-    t.string   "sample_url",  limit: 255
+    t.string   "caption",     limit: 255
     t.string   "source_url",  limit: 255
     t.boolean  "accepted",                  default: false, null: false
     t.datetime "created_at",                                null: false

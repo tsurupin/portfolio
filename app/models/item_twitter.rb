@@ -11,13 +11,13 @@
 #
 
 class ItemTwitter < ActiveRecord::Base
-  has_one :item, as: :target, dependent: :destroy
 
-  validates :source_url,
-            presence: true,
-            format: { with: URI.regexp, message: "%{value} does not appear to be a valid URL" }
-  validates :description, presence: true
-  validates :author_name, presence: true
-  validates :author_screen_name, presence: true
-  validates :author_image_url, presence: true
+  has_one :item, as: :target, dependent: :destroy
+  validates :twitter_id, presence: true
+
+
+  def set_attributes_and_save!(params)
+    self.twitter_id = params['twitter_id']
+    self.save!
+  end
 end

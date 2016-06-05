@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from 'clientActions/posts';
-import { Link } from 'react-router';
 import Item from 'clientComponents/posts/indexes/Item/index';
 import styles from'./styles.scss';
 import Infinite from 'react-infinite';
@@ -11,25 +10,37 @@ class PostsIndex extends Component {
     super(props);
 
     this.handleLoad = this.handleLoad.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  componentWillMount() {
-    this.props.fetchPosts();
+  componentDidMount() {
+    let params = {};
+    if (this.props.hasOwnProperty('location')) {
+      params.tag = this.props.location.query.tag
+    }
+    this.props.fetchPosts(params);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    // TODO: figure out how to insert hyphen in the queries so that the query changes from tag to tag-id
+    console.log('nextProps');
+    if (nextProps.location.query.tag !== this.props.location.query.tag) {
+      nextProps.fetchPosts({ tag: nextProps.location.query.tag })
+    }
   }
   
   handleLoad() {
     if (this.canLoad()) {
-      this.props.fetchPosts(this.props.page + 1);
+      let params = { page: this.props.page + 1 };
+      
+      if (this.props.params.hasOwnProperty('location')) {
+        params.tag = this.props.params.location.query.tag
+      }
+      this.props.fetchPosts(params);
     }
-  }
-  
-  handleSearch(props) {
-    this.props.fetchPosts(props);
   }
 
   canLoad() {
-    this.props.total - (this.props.limit * this.props.page) > 0
+    return (this.props.total - (this.props.limit * this.props.page)) > 0
   }
 
   renderItems() {
@@ -43,11 +54,7 @@ class PostsIndex extends Component {
       >
         {this.props.posts.map((post, index) => {
           return (
-            <Item
-              key={index}
-              post={post}
-              handleSearch={this.handleSearch}
-            />
+            <Item key={index} post={post} />
           );
         })}
       </Infinite>
@@ -55,7 +62,9 @@ class PostsIndex extends Component {
   }
 
   render() {
-    if(this.props.posts.length === 0 ) { return <div></div> }
+    if(!this.props.posts || this.props.posts.length === 0 ) {
+      return <div></div>
+    }
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>POSTS</h1>

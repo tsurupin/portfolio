@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import EditBox from '../../../components/posts/forms/Item/Form/EditBox/index';
 import TextField from 'material-ui/TextField';
-import DatePicker from '../../../components/shared/DatePickerWrapper/index';
+import DatePicker from '../../../components/shared/CustomDatePicker/index';
 import RaisedButton from 'material-ui/RaisedButton';
 import Item from '../../../components/posts/forms/Item/index';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
@@ -85,6 +85,7 @@ class PostsForm extends Component {
 
 
   renderItems() {
+
     return (
       <section className={styles.itemContainer}>
         <ul className={styles.itemList}>
@@ -120,10 +121,13 @@ class PostsForm extends Component {
       );
     }
   }
+
   
   render() {
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, description, publishedAt } } = this.props;
+    const { handleSubmit, fields: { title, publishedAt } } = this.props;
+    
+
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
         {this.renderLoadingIndicator()}
@@ -136,14 +140,6 @@ class PostsForm extends Component {
           errorText={title.touched && title.error ? title.error : ''}
         />
         <br/>
-        <TextField
-          {...description}
-          floatingLabelText="Description"
-          hintText="Enter Description"
-          multiLine={true}
-          fullWidth={true}
-          rows={2}
-        />
         <br/>
         <label className={styles.label}>Published At</label>
         <DatePicker
@@ -151,7 +147,6 @@ class PostsForm extends Component {
           container="inline"
           autoOk={true}
           placeholder="PublishedAt"
-          defaultDate={new Date()}
           errorText={publishedAt.touched && publishedAt.error ? publishedAt.error : ''}
           {...publishedAt}
         />
@@ -188,7 +183,7 @@ function validate(values) {
 }
 
 export const fields = [
-  'id', 'title', 'description', 'publishedAt'
+  'id', 'title', 'publishedAt'
 ];
 
 function mapStateToProps(state) {

@@ -17,12 +17,8 @@ class Item < ActiveRecord::Base
 
   enum target_type: {
            twitter: 'ItemTwitter',
-           link: 'ItemLink',
-           quote: 'ItemQuote',
            text: 'ItemText',
-           image: 'ItemImage',
-           heading: 'ItemHeading',
-           sub_heading: 'ItemSubHeading'
+           image: 'ItemImage'
        }
 
   after_destroy :destroy_target
