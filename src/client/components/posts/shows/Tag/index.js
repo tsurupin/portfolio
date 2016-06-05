@@ -1,31 +1,27 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import styles from './styles.scss';
 
 class Tag extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  
-  handleClick(){
-    this.props.handleSearch(this.props.id)
   }
   
   render() {
+    console.log(this.props)
     return(
-      <div 
-        className={styles.root}
-        onClick={this.handleClick}
-      >
-        {this.props.name}
-      </div>
+      <Link to={`/posts?tag=${this.props.id}`}>
+        <div className={styles.root}>
+          {this.props.name}
+        </div>
+      </Link>
     );
   }
 }
 
 Tag.propTpes = {
   id: PropTypes.number.isRequired,
-  name : PropTypes.string.isRequired,
-  handleSearch: PropTypes.func.isRequired
+  name : PropTypes.string.isRequired
 };
+
 export default Tag

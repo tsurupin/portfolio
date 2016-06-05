@@ -16,17 +16,9 @@ const inlineStyles = {
 };
 
 class Show extends  Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
   constructor(props) {
     super(props);
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-  
-  handleSearch(tagId) {
-    this.context.router.push(`/posts?tag_id=${tagId}`)
   }
   
   componentDidMount() {
@@ -48,7 +40,7 @@ class Show extends  Component {
             key={tag.id}
             id={tag.id}
             name={tag.name}
-            handleSearch={this.handleSearch}
+
           />
         );
         })}

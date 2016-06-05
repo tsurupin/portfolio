@@ -13,12 +13,19 @@ class PostsIndex extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts();
+    console.log('didMount');
+    console.log(this.props)
+    let params = {}
+    if (this.props.hasOwnProperty('location')) {
+      params.tag = this.props.location.query.tag
+    }
+    console.log(params)
+    this.props.fetchPosts(params);
   }
 
   componentWillReceiveProps (nextProps) {
     // TODO: figure out how to insert hyphen in the queries so that the query changes from tag to tag-id
-
+    console.log('nextProps');
     if (nextProps.location.query.tag !== this.props.location.query.tag) {
       nextProps.fetchPosts({ tag: nextProps.location.query.tag })
     }
@@ -58,7 +65,9 @@ class PostsIndex extends Component {
   }
 
   render() {
-    if(this.props.posts.length === 0 ) { return <div></div> }
+    if(!this.props.posts || this.props.posts.length === 0 ) {
+      return <div></div>
+    }
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>POSTS</h1>

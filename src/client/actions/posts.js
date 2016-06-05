@@ -31,7 +31,6 @@ export function fetchPosts(params = {}) {
 }
 
 function fetchPostsSuccess(response) {
-  console.log(response)
   return {
     type: FETCH_POSTS.SUCCESS,
     payload: {

@@ -16,8 +16,8 @@ injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router
-      history={browserHistory}
+    <Router 
+      history={browserHistory} 
       routes={routes}
       render={applyRouterMiddleware(useScroll())}
     />

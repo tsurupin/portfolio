@@ -1,8 +1,8 @@
 import { FETCH_TAGS } from '../constants';
 
-export function fetchTags(response) {
+export function fetchTags(tags) {
   return {
     type: FETCH_TAGS,
-    payload: { tags: response }
+    payload: { tags }
   }
 }
