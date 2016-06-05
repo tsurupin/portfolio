@@ -18,7 +18,6 @@ class ProjectsIndex extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('nextProps');
     if (nextProps.location.query.tag !== this.props.location.query.tag) {
       nextProps.fetchProjects({ tag: nextProps.location.query.tag })
     }

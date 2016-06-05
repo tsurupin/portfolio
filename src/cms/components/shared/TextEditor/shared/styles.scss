@@ -26,10 +26,12 @@
   background: #e9f2f7;
   padding: 2rem;
   margin: 2rem 0;
+  line-height: 1.6;
+  font-size: 1.8rem;
 }
 
 .h2 {
-  color: #5a6e79;
+  color: #1D1E1F;
   line-height: 1.3;
   font-size: 2.2rem;
   margin-bottom: 2rem;
@@ -43,10 +45,10 @@
 .h3 {
   line-height: 1.35;
   letter-spacing: 0.18rem;
-  color: #5a6e79;
+  color: #1D1E1F;
   font-size: 2.0rem;
-  font-family: 'Raleway,sans-serif';
 }
+
 .text {
   margin-bottom: 2.5rem;
   font-size: 1.8rem;
@@ -59,7 +61,6 @@
   padding: 15px 0 0 44px;
   margin-bottom: 3rem;
   list-style-type: none;
-
 }
 
 .unorderedListItem {
@@ -72,14 +73,6 @@
   font-size: 1.8rem;
 }
 
-
-
 .urlInputContainer {
   margin-bottom: 10px;
-}
-
-.header {
-  font-size: 12px;
-  font-size: 1.2rem;
-  color: label-color;
 }

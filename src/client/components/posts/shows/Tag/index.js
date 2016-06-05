@@ -8,12 +8,9 @@ class Tag extends Component {
   }
   
   render() {
-    console.log(this.props)
     return(
-      <Link to={`/posts?tag=${this.props.id}`}>
-        <div className={styles.root}>
-          {this.props.name}
-        </div>
+      <Link to={`/posts?tag=${this.props.id}`} className={styles.root}>
+        {this.props.name}
       </Link>
     );
   }

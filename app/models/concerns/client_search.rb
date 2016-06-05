@@ -7,7 +7,7 @@ module ClientSearch
         .latest
     }
 
-    scope :related_by_tag, ->(tag_id = nil) {
+    scope :related_by_tag, lambda { |tag_id = nil|
       joins(:taggings).merge(Tagging.by_tag(tag_id)) if tag_id
     }
 

@@ -20,12 +20,4 @@ class Project < ActiveRecord::Base
   validates :title, presence: true, uniqueness: { message: "%{value} is already used" }
 
   mount_uploader :image, ProjectImageUploader
-
-  def self.latest
-    order(updated_at: :desc)
-  end
-
-  def self.by_tag(tag_id)
-    joins(:taggings).merge(Tagging.by_tag(tag_id))
-  end
 end

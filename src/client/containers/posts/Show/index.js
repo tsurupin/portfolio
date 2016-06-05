@@ -33,7 +33,7 @@ class Show extends  Component {
 
   renderTags() {
     return(
-      <div>
+      <section className={styles.tagContainer}>
         {this.props.tags.map(tag => {
         return(
           <Tag
@@ -44,7 +44,7 @@ class Show extends  Component {
           />
         );
         })}
-      </div>
+      </section>
     );
   }
 

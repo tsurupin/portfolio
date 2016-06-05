@@ -3,11 +3,12 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: 3.0rem;
   margin-left: -1.75px;
   line-height: 1.12;
-  letter-spacing: -.022em;
+  letter-spacing: -.02em;
   font-weight: 700;
+  color: #1D1E1F;
 }
 
 .dateTime {
@@ -22,3 +23,8 @@
   font-size: 1.2rem;
 }
 
+.tagContainer {
+  width: 100%;
+  margin: 15px 0;
+
+}

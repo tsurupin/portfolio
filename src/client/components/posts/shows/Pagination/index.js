@@ -5,6 +5,17 @@ import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left
 import NavigationChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import styles from './styles.scss';
 
+const inlineStyles = {
+  prevIcon: {
+    width: '15%',
+    display: 'inline-block'
+  },
+  nextIcon: {
+    width: '15%',
+    display: 'inline-block'
+  }
+};
+
 class Pagination extends Component {
   constructor(props) {
     super(props)
@@ -13,13 +24,8 @@ class Pagination extends Component {
   renderPrev() {
     if (!this.props.prevId) { return; }
     return(
-      <Link to={`/posts/${this.props.prevId}`}>
-        <FlatButton
-          label={this.props.prevTitle}
-          labelPosition="after"
-          labelStyle={styles.label}
-          icon={<NavigationChevronLeft style={styles.iconStyle} />}
-        />
+      <Link to={`/posts/${this.props.prevId}`} className={styles.prevBox}>
+        {this.props.prevTitle}
       </Link>
     )
   }
@@ -27,23 +33,18 @@ class Pagination extends Component {
   renderNext() {
     if (!this.props.nextId) { return; }
     return(
-      <Link to={`/posts/${this.props.nextId}`}>
-        <FlatButton
-          label={this.props.nextTitle}
-          labelPosition="before"
-          labelStyle={styles.label}
-          icon={<NavigationChevronRight style={styles.iconStyle} />}
-        />
+      <Link to={`/posts/${this.props.nextId}`} className={styles.nextBox}>
+        {this.props.nextTitle}
       </Link>
     )
   }
 
   render() {
     return(
-      <div className={styles.root}>
+      <section className={styles.root}>
         {this.renderPrev()}
         {this.renderNext()}
-      </div>
+      </section>
     );
   }
 }

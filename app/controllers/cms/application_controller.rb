@@ -4,21 +4,21 @@ class Cms::ApplicationController < ApplicationController
 
   layout 'cms/layouts/application'
 
-  def layout
-    render text: nil, layout: true
-  end
-
-  protected
-
-  def pagination(page, limit, total)
-    { pagination:
-        {
-          page: page.to_i,
-          limit: limit,
-          total: total
-        }
-    }
-  end
+  # def layout
+  #   render text: nil, layout: true
+  # end
+  #
+  # protected
+  #
+  # def pagination(page, limit, total)
+  #   { pagination:
+  #       {
+  #         page: page.to_i,
+  #         limit: limit,
+  #         total: total
+  #       }
+  #   }
+  # end
 
   def authenticate_author_from_token!
     auth_token = request.headers['Authorization']
