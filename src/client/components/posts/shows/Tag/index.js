@@ -4,11 +4,10 @@ import styles from './styles.scss';
 class Tag extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this)
-    console.log('hoge')
+    this.handleClick = this.handleClick.bind(this);
   }
   
-  handleSearch(){
+  handleClick(){
     this.props.handleSearch(this.props.id)
   }
   
@@ -17,7 +16,9 @@ class Tag extends Component {
       <div 
         className={styles.root}
         onClick={this.handleClick}
-      >{this.props.name}</div>
+      >
+        {this.props.name}
+      </div>
     );
   }
 }

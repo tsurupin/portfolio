@@ -16,33 +16,28 @@ class Item extends Component {
   constructor(props) {
     super(props);
   }
-
-  handleClickTag(tagId) {
-    this.props.handleSearch({tagId})
-  }
   
   render() {
     return (
-      <Link to={`/posts/${this.props.post.id}`}>
         <div className={styles.root}>
           <div className={styles.title}>
-            <p className={styles.text}>{this.props.post.title}</p>
+            <Link to={`/posts/${this.props.post.id}`}>
+              <p className={styles.text}>{this.props.post.title}</p>
+            </Link>
             <div className={styles.tagList}>
-              {this.props.post.tags.map((tag) => {
-              return (
-                <div
-                  key={tag.id} 
-                  className={styles.tagItem}
-                  onClick={this.handleClickTag.bind(tag.id, this)} >
+            {this.props.post.tags.map((tag) => {
+            return (
+              <Link key={tag.id} to={`/posts?tag=${tag.id}`}>
+                <div className={styles.tagItem}>
                   <LabelOutline color='#307EA9' style={inlineStyles.tagIcon}/>
                   <span className={styles.tagName}>{tag.name}</span>
                 </div>
-              )})}
-            </div>
+              </Link>
+            )})}
           </div>
-          <div className={styles.publishDate}>{this.props.post.publishedAt}</div>
         </div>
-      </Link>
+        <div className={styles.publishDate}>{this.props.post.publishedAt}</div>
+      </div>
     )
   }
 };
@@ -58,8 +53,7 @@ Item.propTypes = {
       name: PropTypes.string.isRequired
     }).isRequired
   ).isRequired
-  }).isRequired,
-  handleSearch: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default Item;

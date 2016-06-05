@@ -24,4 +24,8 @@ class Project < ActiveRecord::Base
   def self.latest
     order(updated_at: :desc)
   end
+
+  def self.by_tag(tag_id)
+    joins(:taggings).merge(Tagging.by_tag(tag_id))
+  end
 end

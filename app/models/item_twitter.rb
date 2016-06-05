@@ -15,9 +15,8 @@ class ItemTwitter < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
   validates :twitter_id, presence: true
 
-  private
 
-  def save_from_association!(params)
+  def set_attributes_and_save!(params)
     self.twitter_id = params['twitter_id']
     self.save!
   end

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-
+import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
+import useScroll from 'react-router-scroll';
 import { createStore, applyMiddleware } from 'redux';
 
 import routes from './routes';
@@ -16,6 +16,10 @@ injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
+    <Router
+      history={browserHistory}
+      routes={routes}
+      render={applyRouterMiddleware(useScroll())}
+    />
   </Provider>
   , document.querySelector('.container'));

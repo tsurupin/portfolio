@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPost } from 'clientActions/posts';
 import Tag from 'clientComponents/posts/shows/Tag/index';
 import Item from 'clientComponents/posts/shows/Item/index';
+import Pagination from 'clientComponents/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
 
@@ -15,25 +16,32 @@ const inlineStyles = {
 };
 
 class Show extends  Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
   }
   
   handleSearch(tagId) {
-    
-    
+    this.context.router.push(`/posts?tag_id=${tagId}`)
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPost(this.props.params.id)
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      nextProps.fetchPost(nextProps.params.id)
+     }
+  }
+
   renderTags() {
-    console.log(this.props.tags)
     return(
       <div>
-        return(
         {this.props.tags.map(tag => {
         return(
           <Tag
@@ -42,8 +50,9 @@ class Show extends  Component {
             name={tag.name}
             handleSearch={this.handleSearch}
           />
-        )})})
-        </div>
+        );
+        })}
+      </div>
     );
   }
 
@@ -59,9 +68,21 @@ class Show extends  Component {
       })
     )
   }
-
+  
+  renderPagination() {
+    if (this.props.post.prevId || this.props.post.nextId) {
+      return (
+        <Pagination
+          prevId={this.props.post.prevId}
+          prevTitle={this.props.post.prevTitle}
+          nextId={this.props.post.nextId}
+          nextTitle={this.props.post.nextTitle}
+        />
+      );
+    }
+  }
+  
   render() {
-    console.log(this.renderTags())
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>{this.props.post.title} </h1>
@@ -71,6 +92,7 @@ class Show extends  Component {
         </div>
         {this.renderItems()}
         {this.renderTags()}
+        {this.renderPagination()}
       </section>
     )
   }
@@ -79,7 +101,11 @@ class Show extends  Component {
 Show.propTypes = {
   post : PropTypes.shape({
     title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string.isRequired
+    publishedAt: PropTypes.string.isRequired,
+    prevId: PropTypes.number,
+    prevTitle: PropTypes.string,
+    nextId: PropTypes.number,
+    nextTitle: PropTypes.string
   }).isRequired,
   tags: PropTypes.arrayOf(
     PropTypes.shape({

@@ -23,8 +23,6 @@ class Post::Form < ActiveType::Record[Post]
     taggings_attributes: [:id, :text]
   ].freeze
 
-  validates :description, presence: true, if: proc { |post| post.accepted }
-
   accepts_nested_attributes_for :items, reject_if: ->(attributes) { attributes['target_type'].blank? }
   accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }
 
@@ -35,9 +33,9 @@ class Post::Form < ActiveType::Record[Post]
 
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
 
-      params[ITEMS_ATTRIBUTES]&.each&.with_index(1) do |item, index|
+      params[ITEMS_ATTRIBUTES]&.each.with_index(1) do |item, index|
         target = item['target_type'].constantize.find_or_initialize_by(id: item['target_id'])
-        target.save_from_associations!(item)
+        target.set_attributes_and_save!(item)
 
         item_id = item['id']
         item.clear.merge!(

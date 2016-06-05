@@ -16,17 +16,24 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
    
     case FETCH_POSTS.SUCCESS:
+     
+      let posts;
+      if(action.payload.page === 1) {
+        posts = [...action.payload.posts]
+      } else {
+        posts = [...state.posts, ...action.payload.posts]
+      }
 
       return { 
         ...state, 
-        posts: [...state.posts, ...action.payload.posts],
+        posts,
         limit: action.payload.limit, 
         page: action.payload.page, 
         total: action.payload.total 
       };
     
     case FETCH_POST.SUCCESS:
-      return { ...state, post: action.payload.post };
+      return { post: action.payload.post };
     
     case FETCH_POSTS.FAILURE:
     case FETCH_POST.FAILURE:
