@@ -9,6 +9,7 @@ class AddDeviseToAuthors < ActiveRecord::Migration
       # Customize
       t.string :name, null: false, unique: true
       t.string :image
+      t.text :introduction
       t.text :description
       t.string :access_token
 

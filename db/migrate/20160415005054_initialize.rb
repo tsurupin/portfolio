@@ -1,6 +1,13 @@
 class Initialize < ActiveRecord::Migration
   def change
 
+    create_table :sites do |t|
+      t.text :description, null: false
+      t.string :image, null: false
+
+      t.timestamps null: false
+    end
+
     create_table :social_accounts do |t|
       t.belongs_to :author, null: false
       t.integer :account_type, null: false, unique: true
@@ -42,23 +49,23 @@ class Initialize < ActiveRecord::Migration
       t.text      :description, null: false
     end
 
-    create_table :item_headings do |t|
-      t.string    :title, null: false
-    end
-
-    create_table :item_sub_headings do |t|
-      t.string     :title, null: false
-    end
-
-    create_table :item_links do |t|
-      t.string     :source_title, null: false
-      t.text       :source_url, null: false
-    end
-
-    create_table :item_quotes do |t|
-      t.text       :description, null: false
-      t.text       :source_url, null: false
-    end
+    # create_table :item_headings do |t|
+    #   t.string    :title, null: false
+    # end
+    #
+    # create_table :item_sub_headings do |t|
+    #   t.string     :title, null: false
+    # end
+    #
+    # create_table :item_links do |t|
+    #   t.string     :source_title, null: false
+    #   t.text       :source_url, null: false
+    # end
+    #
+    # create_table :item_quotes do |t|
+    #   t.text       :description, null: false
+    #   t.text       :source_url, null: false
+    # end
 
     create_table :item_twitters do |t|
       t.string :twitter_id, null: false

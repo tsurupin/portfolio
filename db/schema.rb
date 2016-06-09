@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.string   "encrypted_password", limit: 255,   null: false
     t.string   "name",               limit: 255,   null: false
     t.string   "image",              limit: 255
+    t.text     "introduction",       limit: 65535
     t.text     "description",        limit: 65535
     t.string   "access_token",       limit: 255
     t.datetime "created_at",                       null: false
@@ -34,27 +35,9 @@ ActiveRecord::Schema.define(version: 20160415005054) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
-  create_table "item_headings", force: :cascade do |t|
-    t.string "title", limit: 255, null: false
-  end
-
   create_table "item_images", force: :cascade do |t|
     t.string "image",   limit: 255, null: false
     t.string "caption", limit: 255
-  end
-
-  create_table "item_links", force: :cascade do |t|
-    t.string "source_title", limit: 255,   null: false
-    t.text   "source_url",   limit: 65535, null: false
-  end
-
-  create_table "item_quotes", force: :cascade do |t|
-    t.text "description", limit: 65535, null: false
-    t.text "source_url",  limit: 65535, null: false
-  end
-
-  create_table "item_sub_headings", force: :cascade do |t|
-    t.string "title", limit: 255, null: false
   end
 
   create_table "item_texts", force: :cascade do |t|
@@ -95,6 +78,13 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.boolean  "accepted",                  default: false, null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.text     "description", limit: 65535, null: false
+    t.string   "image",       limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "social_accounts", force: :cascade do |t|

@@ -13,6 +13,7 @@ end
 
 ActiveRecord::Base.transaction do
 
+  FactoryGirl.create(:site)
   author = FactoryGirl.create(:author, email: 'england0112@gmail.com', password: 'england0112')
 
   FactoryGirl.create(:social_account, author: author)
