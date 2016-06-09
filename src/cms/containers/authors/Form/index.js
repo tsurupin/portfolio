@@ -84,6 +84,10 @@ class AuthorsForm extends Component {
           {...description}
           handleUpdate={ (value) => { description.onChange(value) }}
         />
+        <TextEditor
+          {...introduction}
+          handleUpdate={ (value) => { description.onChange(value) }}
+        />
         <br/>
         <br />
         <DropzoneImage
@@ -117,7 +121,7 @@ function validate(values) {
 }
 
 const fields = [
-  'id', 'name', 'image', 'description'
+  'id', 'name', 'image', 'description', 'introduction'
 ];
 
 function mapStateToProps(state) {

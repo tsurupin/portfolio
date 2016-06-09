@@ -17,9 +17,12 @@
 class Author::Form < ActiveType::Record[Author]
   include DataURIToImageConverter
   PERMITTED_ATTRIBUTES = [
-    :name, :email, :password, :password_confirmation, :image, :description,
+    :name, :email, :password, :password_confirmation, :image, :description, :introduction,
     social_accounts_attributes: [ :id, :account_type, :url ]
   ]
+
+  validates :description, presence: true
+  validates :introduction, presence: true
 
   SOCIAL_ACCOUNTS_ATTRIBUTES = 'social_accounts_attributes'.freeze
 
