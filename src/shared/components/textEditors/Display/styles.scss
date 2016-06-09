@@ -1,0 +1,14 @@
+.root {
+  background: #fff;
+  font-family: 'Source Serif Pro,Helvetica Neue,Helvetica,Arial,sans-serif';
+  font-size: 1.8rem;
+  //padding: 15px;
+  composes: marginHorizontalXSmall from '../../../css/margins.scss';
+}
+
+.editor {
+  /*border-top: 1px solid #ddd;*/
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+}

@@ -17,10 +17,15 @@ export function fetchAuthor() {
   };
 }
 
-function fetchAuthorSuccess(response) {
+function fetchAuthorSuccess(author) {
   return {
     type: FETCH_AUTHOR.SUCCESS,
-    payload: { author: response }
+    payload: { author: {
+      email: author.email,
+      name: author.name,
+      image: author.image,
+      description: author.description
+    } }
   };
 }
 

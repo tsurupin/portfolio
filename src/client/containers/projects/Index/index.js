@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { fetchProjects } from 'clientActions/projects';
 import Item from 'clientComponents/projects/indexes/Item/index';
 import styles from'./styles.scss';
-class ProjectsIndex extends Component {
+
+class ProjectIndex extends Component {
   
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    let params = {}
+    let params = {};
     if (this.props.hasOwnProperty('location')) {
       params.tag = this.props.location.query.tag
     }
@@ -37,7 +38,7 @@ class ProjectsIndex extends Component {
   }
 }
 
-ProjectsIndex.propTypes = {
+ProjectIndex.propTypes = {
   projects: PropTypes.array.isRequired,
   fetchProjects: PropTypes.func.isRequired
 };
@@ -46,4 +47,4 @@ function mapStateToProps(state) {
   return { projects: state.projects.projects }
 }
 
-export default connect(mapStateToProps, { fetchProjects })(ProjectsIndex);
+export default connect(mapStateToProps, { fetchProjects })(ProjectIndex);

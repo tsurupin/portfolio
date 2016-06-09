@@ -4,7 +4,8 @@ import { fetchPosts } from 'clientActions/posts';
 import Item from 'clientComponents/posts/indexes/Item/index';
 import styles from'./styles.scss';
 import Infinite from 'react-infinite';
-class PostsIndex extends Component {
+
+class PostIndex extends Component {
   
   constructor(props) {
     super(props);
@@ -74,7 +75,7 @@ class PostsIndex extends Component {
   }
 }
 
-PostsIndex.propTypes = {
+PostIndex.propTypes = {
   posts: PropTypes.array.isRequired,
   page: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
@@ -91,4 +92,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostIndex);

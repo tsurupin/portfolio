@@ -1,0 +1,11 @@
+class AboutSerializer < ActiveModel::Serializer
+  self.root = false
+  format_keys :lower_camel
+  attributes :email, :name, :image, :description
+
+  has_many :social_accounts, root: :social_accounts
+
+  def image
+    object.try(:image_url)
+  end
+end

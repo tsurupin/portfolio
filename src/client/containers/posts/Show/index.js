@@ -15,7 +15,7 @@ const inlineStyles = {
   }
 };
 
-class Show extends  Component {
+class PostShow extends  Component {
 
   constructor(props) {
     super(props);
@@ -90,7 +90,7 @@ class Show extends  Component {
   }
 }
 
-Show.propTypes = {
+PostShow.propTypes = {
   post : PropTypes.shape({
     title: PropTypes.string.isRequired,
     publishedAt: PropTypes.string.isRequired,
@@ -116,4 +116,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPost })(Show)
+export default connect(mapStateToProps, { fetchPost })(PostShow)
