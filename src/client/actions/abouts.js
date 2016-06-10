@@ -11,7 +11,7 @@ export function fetchAbout(){
           dispatch(fetchSocialAccounts(response.data));
         })
         .catch(error => {
-          dispatch(fetchAboutFailure(error.data))
+          dispatch(fetchAboutFailure(error))
         })
     )
   }
@@ -24,7 +24,8 @@ function fetchAboutSuccess(about) {
       email: about.email,
       name: about.name,
       image: about.image,
-      description: about.description
+      description: about.description,
+      siteDescription: about.siteDescription
     } }
   };
 }

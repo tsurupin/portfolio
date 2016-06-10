@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchAuthor, updateAuthor } from '../../../actions/authors';
-import { createSocialAccount, updateSocialAccount, deleteSocialAccount } from '../../../actions/socialAccounts';
+import { updateSocialAccount } from '../../../actions/socialAccounts';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../components/shared/DropzoneImage/index';
@@ -67,7 +67,7 @@ class AuthorsForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting, fields: { name, image, description } } = this.props;
+    const { handleSubmit, submitting, fields: { name, image, description, introduction } } = this.props;
     
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
@@ -81,12 +81,14 @@ class AuthorsForm extends Component {
         />
         <br/>
         <TextEditor
+          key="description"
           {...description}
           handleUpdate={ (value) => { description.onChange(value) }}
         />
         <TextEditor
+          key="introduction"
           {...introduction}
-          handleUpdate={ (value) => { description.onChange(value) }}
+          handleUpdate={ (value) => { introduction.onChange(value) }}
         />
         <br/>
         <br />
@@ -153,7 +155,5 @@ export default reduxForm({
 }, mapStateToProps, {
   fetchAuthor,
   updateAuthor,
-  createSocialAccount,
-  updateSocialAccount,
-  deleteSocialAccount
+  updateSocialAccount
 })(AuthorsForm);

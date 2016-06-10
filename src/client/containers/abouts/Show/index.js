@@ -30,14 +30,15 @@ class AboutShow extends Component {
     )
   }
   
-  renderText() {
-    if (this.props.about.description) {
-      return(
+  renderText(description) {
+    if (description) {
+      return (
         <div className={styles.description}>
-          <TextDisplay description={this.props.about.description} />
+          <TextDisplay description={description}/>
         </div>
       )
     }
+
     
   }
 
@@ -45,8 +46,10 @@ class AboutShow extends Component {
     return(
       <section className={styles.root}>
         <h1 className={styles.title}>ABOUT</h1>
-        {this.renderText()}
+        {this.renderText(this.props.about.description)}
         {this.renderSocialAccounts()}
+        <h2 className={styles.subHeading}>About this Site</h2>
+        {this.renderText(this.props.about.siteDescription)}
       </section>
     )
   }
@@ -58,7 +61,8 @@ AboutShow.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
     image: PropTypes.string,
-    description: PropTypes.string
+    description: PropTypes.string,
+    siteDescription: PropTypes.string
   }).isRequired,
 
   socialAccounts: PropTypes.arrayOf(PropTypes.shape({

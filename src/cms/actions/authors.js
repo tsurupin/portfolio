@@ -21,10 +21,12 @@ function fetchAuthorSuccess(author) {
   return {
     type: FETCH_AUTHOR.SUCCESS,
     payload: { author: {
+      id: author.id,
       email: author.email,
       name: author.name,
       image: author.image,
-      description: author.description
+      description: author.description,
+      introduction: author.introduction
     } }
   };
 }
