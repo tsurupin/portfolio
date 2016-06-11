@@ -5,6 +5,20 @@ import SocialAccount from 'clientComponents/abouts/shows/SocialAccount/index';
 import TextDisplay from 'sharedComponents/textEditors/Display/index';
 import styles from './styles.scss';
 
+const propTypes = {
+  about: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    siteDescription: PropTypes.string
+  }).isRequired,
+  socialAccounts: PropTypes.arrayOf(PropTypes.shape({ 
+    accountType: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  })).isRequired
+};
+
 class AboutShow extends Component {
   constructor(props) {
     super(props);
@@ -56,20 +70,7 @@ class AboutShow extends Component {
 
 }
 
-AboutShow.propTypes = {
-  about: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
-    image: PropTypes.string,
-    description: PropTypes.string,
-    siteDescription: PropTypes.string
-  }).isRequired,
-
-  socialAccounts: PropTypes.arrayOf(PropTypes.shape({
-    accountType: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
-  })).isRequired
-};
+AboutShow.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {

@@ -6,7 +6,8 @@ export function fetchAbout(){
   const request = axios.get(ABOUT_PATH);
   return dispatch => {
     return (
-      request.then(response => {
+      request
+        .then(response => {
           dispatch(fetchAboutSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
@@ -18,6 +19,7 @@ export function fetchAbout(){
 }
 
 function fetchAboutSuccess(about) {
+
   return {
     type: FETCH_ABOUT.SUCCESS,
     payload: { about: {

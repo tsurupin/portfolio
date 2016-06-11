@@ -8,6 +8,7 @@ export const ROOT_URL     = '/api/v1';
 export const POST_PATH    = '/posts';
 export const AUTHOR_PATH  = '/authors';
 export const ABOUT_PATH  = '/about';
+export const HOME_PATH  = '/home';
 export const PROJECT_PATH = '/projects';
 export const TEST_DOMAIN  = 'http://localhost:80';
 
@@ -22,6 +23,7 @@ export const SAVE_POST          = createRequestTypes('SAVE_POST');
 export const TOGGLE_POST        = createRequestTypes('TOGGLE_POST');
 
 export const FETCH_ABOUT       = createRequestTypes('FETCH_ABOUT');
+export const FETCH_HOME       = createRequestTypes('FETCH_HOME');
 
 export const FETCH_AUTHOR       = createRequestTypes('FETCH_AUTHOR');
 export const UPDATE_AUTHOR      = createRequestTypes('UPDATE_AUTHOR');

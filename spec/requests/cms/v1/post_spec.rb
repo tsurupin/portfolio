@@ -10,7 +10,7 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       let!(:post1) { create(:post, :accepted, published_at: Time.current + 1.days) }
       let!(:post2) { create(:post) }
       let!(:tagging1) { create(:tagging, subject_id: post1.id, subject_type: "Post") }
-      let(:posts) { Post.order(updated_at: :desc) }
+      let(:RecentProjects) { Post.order(updated_at: :desc) }
       context 'when access_token is sent in header' do
         let(:result) do
           {

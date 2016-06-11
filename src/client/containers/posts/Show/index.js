@@ -7,6 +7,25 @@ import Pagination from 'clientComponents/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
 
+
+const propTypes = {
+  post : PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string.isRequired,
+    prevId: PropTypes.number,
+    prevTitle: PropTypes.string,
+    nextId: PropTypes.number,
+    nextTitle: PropTypes.string
+  }).isRequired,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
+  fetchPost: PropTypes.func.isRequired
+};
+
 const inlineStyles = {
   dateTimeLogo:{
     verticalAlign: 'middle',
@@ -40,7 +59,6 @@ class PostShow extends  Component {
             key={tag.id}
             id={tag.id}
             name={tag.name}
-
           />
         );
         })}
@@ -90,23 +108,7 @@ class PostShow extends  Component {
   }
 }
 
-PostShow.propTypes = {
-  post : PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string.isRequired,
-    prevId: PropTypes.number,
-    prevTitle: PropTypes.string,
-    nextId: PropTypes.number,
-    nextTitle: PropTypes.string
-  }).isRequired,
-  tags: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  fetchPost: PropTypes.func.isRequired
-};
+PostShow.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {

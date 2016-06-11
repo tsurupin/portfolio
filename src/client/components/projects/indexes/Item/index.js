@@ -4,6 +4,20 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
+const propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+      }).isRequired
+    ).isRequired
+  }).isRequired
+};
+
 const inlineStyles = {
   root: {
     marginBottom: 20
@@ -48,6 +62,9 @@ const inlineStyles = {
     fontFamily: 'Raleway,sans-serif'
   }
 };
+
+
+
 
 class Item extends Component {
 
@@ -107,18 +124,6 @@ class Item extends Component {
   }
 };
 
-Item.propTypes = {
-  project: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired
-  }).isRequired
-};
+Item.propTypes = propTypes;
 
 export default Item;

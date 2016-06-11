@@ -5,6 +5,7 @@ import itemReducer from './items';
 import tagReducer from './tags';
 import aboutReducer from './abouts';
 import socialAccountReducer from './socialAccounts';
+import homeReducer from './homes';
 
 const rootReducer = combineReducers({
   posts: postReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   items: itemReducer,
   tags: tagReducer,
   about: aboutReducer,
-  socialAccounts: socialAccountReducer
+  socialAccounts: socialAccountReducer,
+  home: homeReducer
 });
 
 export default rootReducer;

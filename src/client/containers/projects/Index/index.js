@@ -4,6 +4,11 @@ import { fetchProjects } from 'clientActions/projects';
 import Item from 'clientComponents/projects/indexes/Item/index';
 import styles from'./styles.scss';
 
+const propTypes = {
+  projects: PropTypes.array.isRequired,
+  fetchProjects: PropTypes.func.isRequired
+};
+
 class ProjectIndex extends Component {
   
   constructor(props) {
@@ -12,7 +17,7 @@ class ProjectIndex extends Component {
 
   componentDidMount() {
     let params = {};
-    if (this.props.hasOwnProperty('location')) {
+    if (this.props.hasOwnProperty("location")) {
       params.tag = this.props.location.query.tag
     }
     this.props.fetchProjects(params);
@@ -30,18 +35,15 @@ class ProjectIndex extends Component {
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>PROJECTS</h1>
-        {this.props.projects.map((project, index) => {
-          return <Item key={index} project={project}/>
+        {this.props.projects.map((project) => {
+          return <Item key={project.id} project={project}/>
         })}
       </section>
     );
   }
 }
 
-ProjectIndex.propTypes = {
-  projects: PropTypes.array.isRequired,
-  fetchProjects: PropTypes.func.isRequired
-};
+ProjectIndex.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return { projects: state.projects.projects }

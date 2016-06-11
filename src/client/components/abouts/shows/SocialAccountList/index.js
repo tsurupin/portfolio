@@ -3,6 +3,10 @@ import IconButton from 'material-ui/IconButton';
 import { ACCOUNT_TYPE_ICONS } from '../../../../constants';
 import styles from './styles.scss';
 
+const propTypes = {
+  accountType: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
+};
 
 class SocialAccount extends Component {
   constructor(props) {
@@ -11,13 +15,13 @@ class SocialAccount extends Component {
 
   get accountIconImage() {
     switch(this.props.accountType) {
-      case 'github':
+      case "github":
         return ACCOUNT_TYPE_ICONS.GITHUB;
-      case 'facebook':
+      case "facebook":
       return ACCOUNT_TYPE_ICONS.FACEBOOK;
-      case 'linked_in':
+      case "linked_in":
         return ACCOUNT_TYPE_ICONS.LINKED_IN;
-      case 'twitter':
+      case "twitter":
         return ACCOUNT_TYPE_ICONS.TWITTER;
       default:
     }
@@ -36,9 +40,5 @@ class SocialAccount extends Component {
   }
 }
 
-SocialAccount.propTypes = {
-  accountType: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
-};
-
+SocialAccount.propTypes = propTypes;
 export default SocialAccount;
