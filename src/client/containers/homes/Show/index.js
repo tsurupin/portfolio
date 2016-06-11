@@ -58,13 +58,12 @@ class HomeShow extends Component {
 
 
   render() {
-    console.log(this.props)
+    // TODO: figure out how to specify image path after assets processing
     return(
       <section className={styles.root}>
         <img
           className={styles.image}
-          src={this.props.home.image}
-          role="presentation"
+          src='images/sample.png'
         />
         {this.renderText()}
         <div className={styles.listContainer} >

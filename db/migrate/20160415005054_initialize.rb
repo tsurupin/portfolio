@@ -1,13 +1,6 @@
 class Initialize < ActiveRecord::Migration
   def change
 
-    create_table :sites do |t|
-      t.text :description, null: false
-      t.string :image, null: false
-
-      t.timestamps null: false
-    end
-
     create_table :social_accounts do |t|
       t.belongs_to :author, null: false
       t.integer :account_type, null: false, unique: true

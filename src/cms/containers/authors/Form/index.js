@@ -10,6 +10,23 @@ import SocialAccount from '../../../components/authors/forms/SocialAccount/index
 import RaisedButton from 'material-ui/RaisedButton';
 import styles from './styles.scss';
 
+
+const propTypes = {
+  fields: PropTypes.object.isRequired,
+  socialAccounts: PropTypes.arrayOf(
+    PropTypes.shape({
+      accountType: PropTypes.string.isRequired,
+      url: PropTypes.string,
+      id: PropTypes.number,
+      authorId: PropTypes.number
+    })),
+  params: PropTypes.object,
+  fetchAuthor: PropTypes.func.isRequired,
+  updateAuthor: PropTypes.func.isRequired,
+  updateSocialAccount: PropTypes.func.isRequired
+};
+
+
 const inlineStyles = {
   submitButton: {
     position: 'absolute',
@@ -22,7 +39,7 @@ const inlineStyles = {
   }
 };
 
-class AuthorsForm extends Component {
+class AuthorForm extends Component {
   constructor(props) {
     super(props);
 
@@ -101,7 +118,7 @@ class AuthorsForm extends Component {
         {this.renderSocialAccounts()}
         <RaisedButton
           type="submit"
-          label='Update'
+          label="Update"
           secondary={true}
           submitting={submitting}
           style={inlineStyles.submitButton}
@@ -116,14 +133,14 @@ class AuthorsForm extends Component {
 function validate(values) {
   const errors = {};
   if(!values.name) {
-    errors.name = 'Entry name'
+    errors.name = "Entry name"
   }
 
   return errors;
 }
 
 const fields = [
-  'id', 'name', 'image', 'description', 'introduction'
+  "id", "name", "image", "description", "introduction"
 ];
 
 function mapStateToProps(state) {
@@ -133,27 +150,14 @@ function mapStateToProps(state) {
   }
 }
 
-AuthorsForm.propTypes = {
-  fields: PropTypes.object.isRequired,
-  socialAccounts: PropTypes.arrayOf(
-    PropTypes.shape({
-      accountType: PropTypes.string.isRequired,
-      url: PropTypes.string,
-      id: PropTypes.number,
-      authorId: PropTypes.number
-  })),
-  params: PropTypes.object,
-  fetchAuthor: PropTypes.func.isRequired,
-  updateAuthor: PropTypes.func.isRequired,
-  updateSocialAccount: PropTypes.func.isRequired
-};
+AuthorForm.propTypes = propTypes;
 
 export default reduxForm({
-  form: 'AuthorsForm',
+  form: "AuthorForm",
   fields,
   validate
 }, mapStateToProps, {
   fetchAuthor,
   updateAuthor,
   updateSocialAccount
-})(AuthorsForm);
+})(AuthorForm);

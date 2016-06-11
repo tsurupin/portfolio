@@ -1,22 +1,17 @@
 class Home
-  ITEM_NUMBER = 5.freeze
+  POST_NUMBER = 5.freeze
   include ActiveModel::Serialization
 
   def initialize
     @author = Author.first
-    @site = Site.first
   end
 
   def introduction
     @author.introduction
   end
 
-  def image
-    @site.image_url
-  end
-
   def latest_posts
-    Post::Search.latest.limit(ITEM_NUMBER)
+    Post::Search.latest.limit(POST_NUMBER)
   end
 
   def latest_project

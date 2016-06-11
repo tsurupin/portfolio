@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchAbout } from 'clientActions/abouts';
 import { connect } from 'react-redux';
-import SocialAccount from 'clientComponents/abouts/shows/SocialAccount/index';
+import SocialAccount from 'clientComponents/abouts/shows/SocialAccountList/index';
 import TextDisplay from 'sharedComponents/textEditors/Display/index';
 import styles from './styles.scss';
 
@@ -44,26 +44,26 @@ class AboutShow extends Component {
     )
   }
   
-  renderText(description) {
-    if (description) {
+  renderText() {
+    if (this.props.about.description) {
       return (
         <div className={styles.description}>
-          <TextDisplay description={description}/>
+          <TextDisplay description={this.props.about.description}/>
         </div>
       )
     }
-
-    
   }
 
   render() {
     return(
       <section className={styles.root}>
         <h1 className={styles.title}>ABOUT</h1>
-        {this.renderText(this.props.about.description)}
+        {this.renderText()}
         {this.renderSocialAccounts()}
         <h2 className={styles.subHeading}>About this Site</h2>
-        {this.renderText(this.props.about.siteDescription)}
+        <div className={styles.siteDescription}>
+          <p className={styles.text}>This website is written in ruby</p>
+        </div>
       </section>
     )
   }

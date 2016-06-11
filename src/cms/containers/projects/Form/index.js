@@ -8,9 +8,17 @@ import TextField from 'material-ui/TextField';
 import TextEditor from '../../../components/shared/TextEditor/Editor/index'
 import RaisedButton from 'material-ui/RaisedButton';
 import TagField from '../../../components/shared/TagField/index';
-
-
 import styles from './styles.scss';
+
+const propTypes = {
+  fields: PropTypes.object.isRequired,
+  params: PropTypes.object,
+  fetchProject: PropTypes.func.isRequired,
+  fetchNewProject: PropTypes.func.isRequired,
+  saveProject: PropTypes.func.isRequired,
+  createTag: PropTypes.func.isRequired,
+  deleteTag: PropTypes.func.isRequired
+};
 
 const inlineStyles = {
   submitButton: {
@@ -24,7 +32,7 @@ const inlineStyles = {
   }
 };
 
-class ProjectsForm extends Component {
+class ProjectForm extends Component {
   constructor(props) {
     super(props);
 
@@ -141,18 +149,10 @@ function mapStateToProps(state) {
   }
 }
 
-ProjectsForm.propTypes = {
-  fields: PropTypes.object.isRequired,
-  params: PropTypes.object,
-  fetchProject: PropTypes.func.isRequired,
-  fetchNewProject: PropTypes.func.isRequired,
-  saveProject: PropTypes.func.isRequired,
-  createTag: PropTypes.func.isRequired,
-  deleteTag: PropTypes.func.isRequired
-};
+ProjectForm.propTypes = propTypes;
 
 export default reduxForm({
-  form: 'ProjectsForm',
+  form: 'ProjectForm',
   fields,
   validate
 }, mapStateToProps, {
@@ -161,4 +161,4 @@ export default reduxForm({
   saveProject,
   createTag,
   deleteTag
-})(ProjectsForm);
+})(ProjectForm);

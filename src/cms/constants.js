@@ -7,6 +7,7 @@ function createRequestTypes(base) {
 export const ROOT_URL     = '/cms/api/v1';
 export const POST_PATH    = '/posts';
 export const AUTHOR_PATH  = '/authors';
+export const SITE_PATH  = '/site';
 export const PROJECT_PATH = '/projects';
 export const TWITTER_PATH = '/services/twitter';
 export const TEST_DOMAIN  = 'http://localhost:80';

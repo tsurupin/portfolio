@@ -80,13 +80,6 @@ ActiveRecord::Schema.define(version: 20160415005054) do
     t.datetime "updated_at",                                null: false
   end
 
-  create_table "sites", force: :cascade do |t|
-    t.text     "description", limit: 65535, null: false
-    t.string   "image",       limit: 255,   null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
   create_table "social_accounts", force: :cascade do |t|
     t.integer "author_id",    limit: 4,   null: false
     t.integer "account_type", limit: 4,   null: false
