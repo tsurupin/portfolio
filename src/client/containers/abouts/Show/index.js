@@ -57,7 +57,7 @@ class AboutShow extends Component {
   render() {
     return(
       <section className={styles.root}>
-        <h1 className={styles.title}>ABOUT</h1>
+        <h1 className={styles.title}>About</h1>
         {this.renderText()}
         {this.renderSocialAccounts()}
         <h2 className={styles.subHeading}>About this Site</h2>
