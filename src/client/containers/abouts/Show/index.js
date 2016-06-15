@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchAbout } from 'clientActions/abouts';
 import { connect } from 'react-redux';
-import SocialAccount from 'clientComponents/abouts/shows/SocialAccountList/index';
+import SocialAccounts from 'clientComponents/abouts/shows/SocialAccounts/index';
 import TextDisplay from 'sharedComponents/textEditors/Display/index';
 import styles from './styles.scss';
 
@@ -27,22 +27,6 @@ class AboutShow extends Component {
   componentDidMount() {
     this.props.fetchAbout();
   }
-
-  renderSocialAccounts() {
-    return(
-      <ul className={styles.socialAccountList}>
-        {this.props.socialAccounts.map(account => {
-          return(
-            <SocialAccount
-              key={account.id}
-              accountType={account.accountType}
-              url={account.url}
-            />
-          );
-        })}
-      </ul>
-    )
-  }
   
   renderText() {
     if (this.props.about.description) {
@@ -59,7 +43,7 @@ class AboutShow extends Component {
       <section className={styles.root}>
         <h1 className={styles.title}>About</h1>
         {this.renderText()}
-        {this.renderSocialAccounts()}
+        <SocialAccounts socialAccounts={this.props.socialAccounts} />
         <h2 className={styles.subHeading}>About this Site</h2>
         <div className={styles.siteDescription}>
           <p className={styles.text}>This website is written in ruby</p>
