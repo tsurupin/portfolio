@@ -34,22 +34,17 @@ class Item extends Component {
   render() {
     return (
         <div className={styles.root}>
-          <div className={styles.title}>
-            <Link to={`/posts/${this.props.post.id}`}>
-              <p className={styles.text}>{this.props.post.title}</p>
+          <Link to={`/posts/${this.props.post.id}`}>
+            <p className={styles.title}>{this.props.post.title}</p>
+            <p className={styles.leadSentence}>{this.props.post.leadSentence}</p>
+          </Link>
+          {this.props.post.tags.map((tag) => {
+          return (
+            <Link key={tag.id} to={`/posts?tag=${tag.id}`} className={styles.tagItem}>
+              <LabelOutline color='#00AB6B' style={inlineStyles.tagIcon}/>
+              <span className={styles.tagName}>{tag.name}</span>
             </Link>
-            <div className={styles.tagList}>
-            {this.props.post.tags.map((tag) => {
-            return (
-              <Link key={tag.id} to={`/posts?tag=${tag.id}`}>
-                <div className={styles.tagItem}>
-                  <LabelOutline color='#307EA9' style={inlineStyles.tagIcon}/>
-                  <span className={styles.tagName}>{tag.name}</span>
-                </div>
-              </Link>
-            )})}
-          </div>
-        </div>
+          )})}
         <div className={styles.publishDate}>{this.props.post.publishedAt}</div>
       </div>
     )

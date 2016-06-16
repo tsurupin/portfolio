@@ -55,6 +55,7 @@ class PostIndex extends Component {
   renderItems() {
     return (
       <Infinite
+        className={styles.list}
         infiniteLoadBeginEdgeOffset={400}
         onInfiniteLoad={this.handleLoad}
         containerHeight={700}
@@ -74,7 +75,7 @@ class PostIndex extends Component {
     }
     return (
       <section className={styles.root}>
-        <h1 className={styles.title}>POSTS</h1>
+        <h1 className={styles.title}>Posts</h1>
         {this.renderItems()}
       </section>
     );
