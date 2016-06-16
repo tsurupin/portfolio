@@ -1,0 +1,41 @@
+.root {
+  width: 48%;
+  margin-left: 2%;
+}
+
+.title {
+  font-size: 2.4rem;
+  letter-spacing: -.02em;
+  font-weight: 700;
+  color: rgba(0,0,0,.8);
+  border-bottom: 1px solid #ddd;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+
+.button {
+  display: inline-block;
+  height: 37px;
+  padding: 0 16px;
+  color: #009E5D;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 35px;
+  &:hover {
+    color: #1c9963;
+
+  }
+}

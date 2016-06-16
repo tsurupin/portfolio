@@ -18,13 +18,12 @@ class Item extends Component {
 
   render() {
     return (
-      <div className={styles.root}>
-        <div className={styles.title}>
-          <Link to={`/posts/${this.props.post.id}`}>
-            <p className={styles.text}>{this.props.post.title}</p>
-          </Link>
-        </div>
-      </div>
+      <li className={styles.root}>
+        <Link to={`/posts/${this.props.post.id}`} className={styles.content}>
+          <p className={styles.title}>{this.props.post.title}</p>
+          <p className={styles.leadSentence}>{this.props.post.leadSentence}</p>
+        </Link>
+      </li>
     )
   }
 };

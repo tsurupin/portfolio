@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Item from './Item/index';
 import { Link } from 'react-router';
-import FlatButton from 'material-ui/FlatButton';
 import styles from './styles.scss';
 
 const propTypes = {
@@ -10,12 +9,6 @@ const propTypes = {
       id: PropTypes.number.isRequired
     })
   )
-};
-
-const inlineStyles ={
-  button: {
-
-  }
 };
 
 class RecentProjects extends Component {
@@ -27,11 +20,13 @@ class RecentProjects extends Component {
     return (
       <div className={styles.root}>
         <h3 className={styles.title}>RECENT POSTS</h3>
-        {this.props.posts.map(post => {
-          return <Item key={post.id} post={post} />;
-        })}
+        <ul className={styles.list} >
+          {this.props.posts.map(post => {
+            return <Item key={post.id} post={post} />;
+          })}
+        </ul>
         <Link to="/posts" className={styles.button}>
-          <FlatButton label="ALL POSTS" style={inlineStyles.button} />
+          ALL POSTS
         </Link>
       </div>
     );

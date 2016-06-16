@@ -42,17 +42,13 @@ class HomeShow extends Component {
 
   renderRecentPosts() {
     if (this.props.home.latestPosts) {
-      return (
-        <div className={styles.list} >
-          <RecentPosts posts={this.props.home.latestPosts} />
-        </div>
-      )
+      return (<RecentPosts posts={this.props.home.latestPosts} />)
     }
   }
 
   renderRecentProject() {
     if (this.props.home.latestProject) {
-      return <RecentProject project={this.props.home.latestProject}/>;
+      return <RecentProject project={this.props.home.latestProject} />;
     }
   }
 
@@ -64,6 +60,7 @@ class HomeShow extends Component {
         <img
           className={styles.image}
           src='images/sample.png'
+          alt="main image"
         />
         {this.renderText()}
         <div className={styles.listContainer} >

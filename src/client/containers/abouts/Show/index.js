@@ -44,7 +44,7 @@ class AboutShow extends Component {
         <h1 className={styles.title}>About</h1>
         {this.renderText()}
         <SocialAccounts socialAccounts={this.props.socialAccounts} />
-        <h2 className={styles.subHeading}>About this Site</h2>
+        <h2 className={styles.subHeading}>Portfolio</h2>
         <div className={styles.siteDescription}>
           <p className={styles.text}>This website is written in ruby</p>
         </div>

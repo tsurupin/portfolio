@@ -16,11 +16,12 @@
   margin-top: 4px;
 }
 
-.socialAccountList {
-
-}
 
 .subHeading {
+  composes: title;
+  font-size: 2.2rem;
+  border-bottom: 1px solid #ddd;
+  margin-top: 30px;
 
 }
 
@@ -29,5 +30,7 @@
 }
 
 .text {
-
+  font-size: 1.6rem;
+  line-height: 1.4;
+  margin-top: 4px;
 }

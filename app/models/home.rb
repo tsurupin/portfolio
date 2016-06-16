@@ -1,5 +1,5 @@
 class Home
-  POST_NUMBER = 5.freeze
+  POST_NUMBER = 3.freeze
   include ActiveModel::Serialization
 
   def initialize

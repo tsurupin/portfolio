@@ -259,6 +259,7 @@
   width: 20px;
   height: 20px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .root___m7w4F {
@@ -1399,11 +1400,11 @@
   margin-top: 4px;
 }
 
-.socialAccountList___1vrjd {
-
-}
 
 .subHeading___2KmKX {
+  font-size: 2.2rem;
+  border-bottom: 1px solid #ddd;
+  margin-top: 30px;
 
 }
 
@@ -1412,12 +1413,119 @@
 }
 
 .text___1IFeQ {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  margin-top: 4px;
+}.root___3VJGc {
+  margin-bottom: 25px;
+}
 
+.content___REPyQ {
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: -.02em;
+  color: #363636;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+
+.leadSentence___3lBXM {
+  margin-top: 5px;
+  color: #8F8F8F;
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+.root___2Flug {
+  width: 48%;
+  margin-right: 2%;
+}
+
+.title___1dBFZ {
+  font-size: 2.4rem;
+  letter-spacing: -.02em;
+  font-weight: 700;
+  color: rgba(0,0,0,.8);
+  border-bottom: 1px solid #ddd;
+}
+.list___aN-hs {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.button___2pFmV {
+  display: inline-block;
+  height: 37px;
+  padding: 0 16px;
+  color: #009E5D;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 35px;
+  &:hover {
+    color: #1c9963;
+
+  }
+}.root___1RQTP {
+  width: 48%;
+  margin-left: 2%;
+}
+
+.title___xGM6j {
+  font-size: 2.4rem;
+  letter-spacing: -.02em;
+  font-weight: 700;
+  color: rgba(0,0,0,.8);
+  border-bottom: 1px solid #ddd;
+}
+
+.image___grvF2 {
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+
+.button___1h3Vi {
+  display: inline-block;
+  height: 37px;
+  padding: 0 16px;
+  color: #009E5D;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 35px;
+  &:hover {
+    color: #1c9963;
+
+  }
 }.root___2gq7E {
 
 }
 
-.title___3_wq1 {
+.image___1nCEw {
+  display: block;
+  max-width: 100%;
+}
+.introduction___3vo_0 {
 
 }
 
@@ -1425,6 +1533,9 @@
 
 }
 
-.socialAccountList___3XSHW {
+
+.listContainer___Ym-XL {
+  display: -webkit-box;
+  display: flex;
 
 }
