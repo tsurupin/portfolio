@@ -1,0 +1,23 @@
+.root {
+
+}
+
+.image {
+  composes: marginBottomMedium from '../../../../shared/css/margins.scss';
+  display: block;
+  max-width: 100%;
+}
+.introduction {
+
+}
+
+.description {
+
+}
+
+
+.listContainer {
+  display: flex;
+  composes: marginBottomMedium from '../../../../shared/css/margins.scss';
+
+}

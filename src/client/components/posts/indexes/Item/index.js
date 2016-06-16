@@ -11,6 +11,20 @@ const inlineStyles ={
   }
 };
 
+const propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+      }).isRequired
+    ).isRequired
+  }).isRequired
+};
+
 class Item extends Component {
 
   constructor(props) {
@@ -42,18 +56,5 @@ class Item extends Component {
   }
 };
 
-Item.propTypes = {
-  post: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired
-  }).isRequired
-};
-
+Item.propTypes = propTypes;
 export default Item;

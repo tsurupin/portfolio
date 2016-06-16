@@ -42,23 +42,23 @@ class Initialize < ActiveRecord::Migration
       t.text      :description, null: false
     end
 
-    create_table :item_headings do |t|
-      t.string    :title, null: false
-    end
-
-    create_table :item_sub_headings do |t|
-      t.string     :title, null: false
-    end
-
-    create_table :item_links do |t|
-      t.string     :source_title, null: false
-      t.text       :source_url, null: false
-    end
-
-    create_table :item_quotes do |t|
-      t.text       :description, null: false
-      t.text       :source_url, null: false
-    end
+    # create_table :item_headings do |t|
+    #   t.string    :title, null: false
+    # end
+    #
+    # create_table :item_sub_headings do |t|
+    #   t.string     :title, null: false
+    # end
+    #
+    # create_table :item_links do |t|
+    #   t.string     :source_title, null: false
+    #   t.text       :source_url, null: false
+    # end
+    #
+    # create_table :item_quotes do |t|
+    #   t.text       :description, null: false
+    #   t.text       :source_url, null: false
+    # end
 
     create_table :item_twitters do |t|
       t.string :twitter_id, null: false

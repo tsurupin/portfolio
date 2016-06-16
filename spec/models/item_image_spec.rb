@@ -2,8 +2,9 @@
 #
 # Table name: item_images
 #
-#  id    :integer          not null, primary key
-#  image :string(255)      not null
+#  id      :integer          not null, primary key
+#  image   :string(255)      not null
+#  caption :string(255)
 #
 
 require 'rails_helper'

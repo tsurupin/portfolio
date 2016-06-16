@@ -2,12 +2,8 @@
 #
 # Table name: item_twitters
 #
-#  id                 :integer          not null, primary key
-#  source_url         :text(65535)      not null
-#  description        :text(65535)      not null
-#  author_image_url   :string(255)      not null
-#  author_name        :string(255)      not null
-#  author_screen_name :string(255)      not null
+#  id         :integer          not null, primary key
+#  twitter_id :string(255)      not null
 #
 
 require 'rails_helper'

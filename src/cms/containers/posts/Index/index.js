@@ -9,6 +9,16 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Pagination from '../../../components/shared/Pagination/index';
 import styles from'./styles.scss';
 
+
+const propTypes = {
+  posts: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  fetchPosts: PropTypes.func.isRequired,
+  togglePost: PropTypes.func.isRequired
+};
+
 const inlineStyles = {
   floatButton: {
     position: 'fixed',
@@ -23,7 +33,7 @@ const inlineStyles = {
   }
 };
 
-class PostsIndex extends Component {
+class PostIndex extends Component {
   
   constructor(props) {
     super(props);
@@ -96,14 +106,7 @@ class PostsIndex extends Component {
   }
 }
 
-PostsIndex.propTypes = {
-  posts: PropTypes.array.isRequired,
-  page: PropTypes.number.isRequired,
-  limit: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  fetchPosts: PropTypes.func.isRequired,
-  togglePost: PropTypes.func.isRequired
-};
+PostIndex.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return { 
@@ -114,4 +117,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, togglePost })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts, togglePost })(PostIndex);

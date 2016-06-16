@@ -8,6 +8,12 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import styles from './styles.scss';
 
+
+const propTypes =  {
+  projects: PropTypes.array.isRequired,
+  fetchProjects: PropTypes.func.isRequired
+};
+
 const inlineStyles = {
   submitButton: {
     position: 'absolute',
@@ -21,7 +27,7 @@ const inlineStyles = {
 };
 
 
-class ProjectsIndex extends Component {
+class ProjectIndex extends Component {
 
   static contextTypes = {
     router: PropTypes.object
@@ -98,14 +104,10 @@ class ProjectsIndex extends Component {
   }
 }
 
-ProjectsIndex.propTypes = {
-  projects: PropTypes.array.isRequired,
-  fetchProjects: PropTypes.func.isRequired
-};
-
+ProjectIndex.propTypes = propTypes;
 function mapStateToProps(state) {
   return {
     projects: state.projects.projects
   }
 }
-export default connect(mapStateToProps, { fetchProjects, toggleProject, deleteProject })(ProjectsIndex)
+export default connect(mapStateToProps, { fetchProjects, toggleProject, deleteProject })(ProjectIndex)

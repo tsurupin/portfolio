@@ -1,24 +1,21 @@
 class Home
-  attr_reader :description, :image, :latest_projects, :latest_posts
+  POST_NUMBER = 3.freeze
+  include ActiveModel::Serialization
 
   def initialize
     @author = Author.first
-    @site = [] # Site.first
   end
 
-  def description
-    @author.description
-  end
-
-  def image
-    @site.image_url
-  end
-
-  def latest_projects
-    Project.latest
+  def introduction
+    @author.introduction
   end
 
   def latest_posts
-    Post.latest
+    Post::Search.latest.limit(POST_NUMBER)
   end
+
+  def latest_project
+    Project::Search.latest.last
+  end
+
 end

@@ -26,7 +26,7 @@ module.exports = {
         },
         { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
-        { test: /\.(png|jpg|gif|ico)$/, loaders: ['file?name=[name].[ext]'] }
+        { test: /\.(jpg|png|gif)$/, loader: 'file?name=../images/[name].[ext]', exclude: /node_modules/ }
     ]
   },
 
@@ -52,7 +52,7 @@ module.exports = {
     contentBase: './'
   },
   plugins: [
-    new ExtractTextPlugin('../../assets/stylesheets/[name]/style.scss', { allChunks: true, ignoreOrder: true }),
+    new ExtractTextPlugin('../stylesheets/[name]/style.scss', { allChunks: true, ignoreOrder: true }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

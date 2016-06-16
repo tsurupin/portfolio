@@ -6,6 +6,14 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import styles from './styles.scss';
 
+
+const propTypes = {
+  fields: PropTypes.object.isRequired,
+  signIn: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string
+};
+
 const inlineStyles = {
   submitButton: {
     position: 'absolute',
@@ -18,7 +26,7 @@ const inlineStyles = {
   }
 };
 
-class AuthorsSignIn extends Component {
+class AuthorSignIn extends Component {
 
   static contextTypes = {
     router: PropTypes.object
@@ -32,7 +40,7 @@ class AuthorsSignIn extends Component {
 
   componentWillMount() {
     if(this.props.authenticated) {
-      this.context.router.push('/cms')
+      this.context.router.push("/cms")
     }
   }
 
@@ -101,12 +109,7 @@ function mapStateToProps(state) {
   }
 }
 
-AuthorsSignIn.propTypes = {
-  fields: PropTypes.object.isRequired,
-  signIn: PropTypes.func.isRequired,
-  authenticated: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string
-};
+AuthorSignIn.propTypes = propTypes;
 
 export default reduxForm({
   form: 'SignIn',
@@ -114,4 +117,4 @@ export default reduxForm({
   validate
 }, mapStateToProps, {
   signIn
-})(AuthorsSignIn);
+})(AuthorSignIn);

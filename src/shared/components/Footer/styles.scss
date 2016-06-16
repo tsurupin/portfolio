@@ -1,0 +1,25 @@
+@value colors: '../../css/colors.scss';
+@value theme-color, second-text-color, border-color from colors;
+
+.root {
+  border-top : 1px solid border-color;
+  height: 60px;
+  line-height: 60px;
+}
+
+.text {
+  composes: fontSmall from '../../css/fonts.scss';
+  display: block;
+  text-align: center;
+  opacity: 0.7;
+  color: second-text-color;
+}
+
+.githubIcon {
+  composes: marginLeftXSmall from '../../css/margins.scss';
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+

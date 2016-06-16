@@ -7,6 +7,25 @@ import Pagination from 'clientComponents/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
 
+
+const propTypes = {
+  post : PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string.isRequired,
+    prevId: PropTypes.number,
+    prevTitle: PropTypes.string,
+    nextId: PropTypes.number,
+    nextTitle: PropTypes.string
+  }).isRequired,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
+  fetchPost: PropTypes.func.isRequired
+};
+
 const inlineStyles = {
   dateTimeLogo:{
     verticalAlign: 'middle',
@@ -15,7 +34,7 @@ const inlineStyles = {
   }
 };
 
-class Show extends  Component {
+class PostShow extends  Component {
 
   constructor(props) {
     super(props);
@@ -40,7 +59,6 @@ class Show extends  Component {
             key={tag.id}
             id={tag.id}
             name={tag.name}
-
           />
         );
         })}
@@ -90,23 +108,7 @@ class Show extends  Component {
   }
 }
 
-Show.propTypes = {
-  post : PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string.isRequired,
-    prevId: PropTypes.number,
-    prevTitle: PropTypes.string,
-    nextId: PropTypes.number,
-    nextTitle: PropTypes.string
-  }).isRequired,
-  tags: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  fetchPost: PropTypes.func.isRequired
-};
+PostShow.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {
@@ -116,4 +118,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPost })(Show)
+export default connect(mapStateToProps, { fetchPost })(PostShow)

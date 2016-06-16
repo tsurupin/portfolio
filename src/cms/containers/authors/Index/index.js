@@ -5,8 +5,11 @@ import { connect } from 'react-redux';
 
 import styles from './styles.scss'
 
+const propTypes = {
+  author: PropTypes.object
+};
 
-class AuthorsIndex extends Component {
+class AuthorIndex extends Component {
   constructor(props) {
     super(props);
   }
@@ -22,9 +25,7 @@ class AuthorsIndex extends Component {
   }
 }
 
-AuthorsIndex.propTypes = {
-  author: PropTypes.object
-};
+AuthorIndex.propTypes = propTypes
 
 function mapStateToProps(state) {
   return {
@@ -33,4 +34,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchAuthor })(AuthorsIndex);
+export default connect(mapStateToProps, { fetchAuthor })(AuthorIndex);

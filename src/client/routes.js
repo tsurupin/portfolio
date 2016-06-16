@@ -2,22 +2,21 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App/index';
-import PostsIndex from './containers/posts/Index/index';
-import PostsShow from './containers/posts/Show/index';
-import ProjectsIndex from './containers/projects/Index/index';
-// import HomesIndex from './containers/homes/Index/index';
-// import AuthorsIndex from './containers/authors/Index/index';
-// import AuthorsForm from './containers/authors/Form/index';
-// import AuthorsSinUp from './containers/authors/SignUp/index';
-// import AuthorsSingIn from './containers/authors/SignIn/index';
+import PostIndex from './containers/posts/Index/index';
+import PostShow from './containers/posts/Show/index';
+import ProjectIndex from './containers/projects/Index/index';
+import AboutShow from './containers/abouts/Show/index';
+import HomeShow from './containers/homes/Show/index';
+
 import NotFound from './components/NotFound/index';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={PostsIndex} />
-      <Route path="/posts" component={PostsIndex} />
-      <Route path="/posts/:id" component={PostsShow} />
-      <Route path="/projects" component={ProjectsIndex} />
+    <IndexRoute component={HomeShow} />
+      <Route path="/posts" component={PostIndex} />
+      <Route path="/posts/:id" component={PostShow} />
+      <Route path="/projects" component={ProjectIndex} />
+      <Route path="/about" component={AboutShow} />
       <Route path="*" component={NotFound} />
   </ Route>
 );

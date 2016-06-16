@@ -1,0 +1,36 @@
+.root {
+
+}
+
+.title {
+  color: rgba(0,0,0,.8);
+  font-size: 3.2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spaceing: 0;
+}
+
+.description {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+
+.subHeading {
+  composes: title;
+  font-size: 2.2rem;
+  border-bottom: 1px solid #ddd;
+  margin-top: 30px;
+
+}
+
+.siteDescription {
+
+}
+
+.text {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  margin-top: 4px;
+}

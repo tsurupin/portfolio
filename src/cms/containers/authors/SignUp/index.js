@@ -6,6 +6,14 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import styles from './styles.scss';
 
+
+const propTypes = {
+  fields: PropTypes.object.isRequired,
+  signUp: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string
+};
+
 const inlineStyles = {
   submitButton: {
     position: 'absolute',
@@ -18,7 +26,7 @@ const inlineStyles = {
   }
 };
 
-class AuthorsSignUp extends Component {
+class AuthorSignUp extends Component {
 
   static contextTypes = {
     router: PropTypes.object
@@ -122,16 +130,11 @@ function mapStateToProps(state) {
   }
 }
 
-AuthorsSignUp.propTypes = {
-  fields: PropTypes.object.isRequired,
-  signUp: PropTypes.func.isRequired,
-  authenticated: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string
-};
+AuthorSignUp.propTypes = propTypes
 
 
 export default reduxForm({
   form: 'SignUp',
   fields,
   validate
-}, mapStateToProps, { signUp })(AuthorsSignUp);
+}, mapStateToProps, { signUp })(AuthorSignUp);

@@ -17,10 +17,17 @@ export function fetchAuthor() {
   };
 }
 
-function fetchAuthorSuccess(response) {
+function fetchAuthorSuccess(author) {
   return {
     type: FETCH_AUTHOR.SUCCESS,
-    payload: { author: response }
+    payload: { author: {
+      id: author.id,
+      email: author.email,
+      name: author.name,
+      image: author.image,
+      description: author.description,
+      introduction: author.introduction
+    } }
   };
 }
 

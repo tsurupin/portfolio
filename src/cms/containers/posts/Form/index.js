@@ -13,6 +13,22 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 import TagField from '../../../components/shared/TagField/index';
 import styles from './styles.scss';
 
+
+const propTypes = {
+  fields: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
+  params: PropTypes.object,
+  fetchPost: PropTypes.func.isRequired,
+  fetchNewPost: PropTypes.func.isRequired,
+  savePost: PropTypes.func.isRequired,
+  createItem: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  updateItem: PropTypes.func.isRequired,
+  moveItem: PropTypes.func.isRequired,
+  createTag: PropTypes.func.isRequired,
+  deleteTag: PropTypes.func.isRequired
+};
+
 const inlineStyles = {
   submitButton: {
     position: 'absolute', 
@@ -25,7 +41,7 @@ const inlineStyles = {
   }
 };
 
-class PostsForm extends Component {
+class PostForm extends Component {
 
   constructor(props) {
     super(props);
@@ -195,24 +211,11 @@ function mapStateToProps(state) {
   }
 }
 
-PostsForm.propTypes = {
-  fields: PropTypes.object.isRequired,
-  items: PropTypes.array.isRequired,
-  params: PropTypes.object,
-  fetchPost: PropTypes.func.isRequired,
-  fetchNewPost: PropTypes.func.isRequired,
-  savePost: PropTypes.func.isRequired,
-  createItem: PropTypes.func.isRequired,
-  deleteItem: PropTypes.func.isRequired,
-  updateItem: PropTypes.func.isRequired,
-  moveItem: PropTypes.func.isRequired,
-  createTag: PropTypes.func.isRequired,
-  deleteTag: PropTypes.func.isRequired
-};
+PostForm.propTypes = propTypes;
 
 
 export default reduxForm({
-  form: 'PostsForm',
+  form: 'PostForm',
   fields,
   validate
 }, mapStateToProps, {
@@ -225,4 +228,4 @@ export default reduxForm({
   moveItem,
   createTag,
   deleteTag
-})(PostsForm);
+})(PostForm);

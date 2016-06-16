@@ -4,7 +4,17 @@ import { fetchPosts } from 'clientActions/posts';
 import Item from 'clientComponents/posts/indexes/Item/index';
 import styles from'./styles.scss';
 import Infinite from 'react-infinite';
-class PostsIndex extends Component {
+
+
+const propTypes = {
+  posts: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  fetchPosts: PropTypes.func.isRequired
+};
+
+class PostIndex extends Component {
   
   constructor(props) {
     super(props);
@@ -14,7 +24,7 @@ class PostsIndex extends Component {
 
   componentDidMount() {
     let params = {};
-    if (this.props.hasOwnProperty('location')) {
+    if (this.props.hasOwnProperty("location")) {
       params.tag = this.props.location.query.tag
     }
     this.props.fetchPosts(params);
@@ -22,7 +32,6 @@ class PostsIndex extends Component {
 
   componentWillReceiveProps (nextProps) {
     // TODO: figure out how to insert hyphen in the queries so that the query changes from tag to tag-id
-    console.log('nextProps');
     if (nextProps.location.query.tag !== this.props.location.query.tag) {
       nextProps.fetchPosts({ tag: nextProps.location.query.tag })
     }
@@ -32,7 +41,7 @@ class PostsIndex extends Component {
     if (this.canLoad()) {
       let params = { page: this.props.page + 1 };
       
-      if (this.props.params.hasOwnProperty('location')) {
+      if (this.props.params.hasOwnProperty("location")) {
         params.tag = this.props.params.location.query.tag
       }
       this.props.fetchPosts(params);
@@ -52,10 +61,8 @@ class PostsIndex extends Component {
         elementHeight={100}
         useWindowAsScrollContainer
       >
-        {this.props.posts.map((post, index) => {
-          return (
-            <Item key={index} post={post} />
-          );
+        {this.props.posts.map((post) => {
+          return <Item key={post.id} post={post} />;
         })}
       </Infinite>
     );
@@ -74,13 +81,7 @@ class PostsIndex extends Component {
   }
 }
 
-PostsIndex.propTypes = {
-  posts: PropTypes.array.isRequired,
-  page: PropTypes.number.isRequired,
-  limit: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  fetchPosts: PropTypes.func.isRequired
-};
+PostIndex.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return { 
@@ -91,4 +92,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostIndex);

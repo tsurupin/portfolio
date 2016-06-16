@@ -10,7 +10,6 @@ export function fetchSocialAccounts(response) {
 }
 
 export function updateSocialAccount(sortRank, url) {
-  console.log(url)
   return {
     type: UPDATE_SOCIAL_ACCOUNT,
     payload: { sortRank, url }

@@ -2,10 +2,10 @@
 #
 # Table name: social_accounts
 #
-#  id        :integer          not null, primary key
-#  author_id :integer          not null
-#  name      :string(255)      not null
-#  url       :string(255)      not null
+#  id           :integer          not null, primary key
+#  author_id    :integer          not null
+#  account_type :integer          not null
+#  url          :string(255)      not null
 #
 
 class SocialAccount < ActiveRecord::Base

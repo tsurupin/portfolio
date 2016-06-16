@@ -30,6 +30,7 @@
     "expect": "^1.18.0",
     "extract-text-webpack-plugin": "github:michelebertoli/extract-text-webpack-plugin#614c3bb1ed72587218aa644df12bbf514fb77a06",
     "fbjs": "^0.8.1",
+    "file-loader": "^0.8.5",
     "ignore-styles": "^1.2.0",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
@@ -43,6 +44,7 @@
     "redux-mock-store": "^1.0.2",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },

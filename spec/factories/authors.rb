@@ -7,6 +7,7 @@
 #  encrypted_password :string(255)      not null
 #  name               :string(255)      not null
 #  image              :string(255)
+#  introduction       :text(65535)
 #  description        :text(65535)
 #  access_token       :string(255)
 #  created_at         :datetime         not null
