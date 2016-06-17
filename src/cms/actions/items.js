@@ -54,7 +54,6 @@ export function fetchTweet(url, sortRank) {
   return dispatch => {
     return request
       .then(response => {
-        console.log(response)
         dispatch(fetchTweetSuccess({attributes: response.data.attributes, sortRank }))
       })
       .catch(() => { throw 'URL is not valid' } )

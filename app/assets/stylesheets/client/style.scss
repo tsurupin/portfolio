@@ -327,12 +327,6 @@
   color: #00AB6B;
   margin-left: 5px;
 }
-
-.name___vrOLn {
-
-
-}
-
 .root___2Eku3 {
   color: #333333;
 }
@@ -357,12 +351,13 @@
   display: inline-block;
   border-radius: 3px;
   text-decoration: none;
-  color: #46494B;
-  background: #e9f2f7;
+  color: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.05);
   padding: 5px 10px;
 
   &:hover {
-    opacity: 0.8;
+    background: rgba(0,0,0,.1);
+    color: rgba(0,0,0,.6);
   }
 }.root___1X8N6 {
   background: #fff;
@@ -509,12 +504,17 @@
 .image___uZf7p {
   display: block;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .caption___FK0sD {
   display: block;
+  margin-top: 10px;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
   font-size: 1.4rem;
-  font-style: italic;
+  line-height: 1.4;
+  color: #797979;
+  letter-spacing: 0;
   text-align: center;
 }.root___3c9lv {
   border-top: 1px solid #ddd;
@@ -561,13 +561,24 @@
 
 }
 
+.heading___2_JSA {
+  margin-bottom: 40px;
+}
+
 .title___I900e {
-  font-size: 3.0rem;
-  margin-left: -1.75px;
+  font-size: 2.8rem;
   line-height: 1.12;
   letter-spacing: -.02em;
-  font-weight: 700;
-  color: #1D1E1F;
+  font-weight: bold;
+}
+
+.leadSentence___3pwpE {
+  font-size: 24px;
+  margin-left: -1.5px;
+  line-height: 1.18;
+  letter-spacing: -.022em;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  color: rgba(0,0,0,.44);
 }
 
 .dateTime___394UP {

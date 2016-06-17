@@ -12,7 +12,16 @@ import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import IconButton from 'material-ui/IconButton';
 import styles from './styles.scss';
 
-export default class Tooltip extends Component {
+
+const propTypes = {
+  sortRank: PropTypes.number.isRequired,
+  totalCount: PropTypes.number.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired,
+  handleMoveItem: PropTypes.func.isRequired,
+  handleDeleteItem: PropTypes.func.isRequired
+};
+
+class Tooltip extends Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
@@ -81,10 +90,6 @@ export default class Tooltip extends Component {
   }
 }
 
-Tooltip.propTypes = {
-  sortRank: PropTypes.number.isRequired,
-  totalCount: PropTypes.number.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired,
-  handleMoveItem: PropTypes.func.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired
-};
+Tooltip.propTypes = propTypes;
+
+export default Tooltip;

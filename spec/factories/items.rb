@@ -21,26 +21,6 @@ FactoryGirl.define do
       target_type 'ItemTwitter'
     end
 
-    trait :heading do
-      association :target, factory: :item_heading
-      target_type 'ItemHeading'
-    end
-
-    trait :sub_heading do
-      association :target, factory: :item_sub_heading
-      target_type 'ItemSubHeading'
-    end
-
-    trait :quote do
-      association :target, factory: :item_quote
-      target_type 'ItemQuote'
-    end
-
-    trait :link do
-      association :target, factory: :item_link
-      target_type 'ItemLink'
-    end
-
     trait :image do
       association :target, factory: :item_image
       target_type 'ItemImage'

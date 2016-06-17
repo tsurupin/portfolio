@@ -13,7 +13,7 @@ const inlineStyles = {
 class Text extends Component {
 
   constructor(props) {
-    super(...props);
+    super(props);
     
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
@@ -30,7 +30,7 @@ class Text extends Component {
   }
 
   render() {
-
+    
     const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className={styles.root}>
@@ -65,6 +65,7 @@ Text.propTypes = {
 };
 
 function validate(values) {
+  console.log(values)
   const errors = {};
   if (!values.description) {
     errors.description = 'Enter description'

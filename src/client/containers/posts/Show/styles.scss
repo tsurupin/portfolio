@@ -2,13 +2,24 @@
 
 }
 
+.heading {
+  margin-bottom: 40px;
+}
+
 .title {
-  font-size: 3.0rem;
-  margin-left: -1.75px;
+  font-size: 2.8rem;
   line-height: 1.12;
   letter-spacing: -.02em;
-  font-weight: 700;
-  color: #1D1E1F;
+  font-weight: bold;
+}
+
+.leadSentence {
+  font-size: 24px;
+  margin-left: -1.5px;
+  line-height: 1.18;
+  letter-spacing: -.022em;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  color: rgba(0,0,0,.44);
 }
 
 .dateTime {

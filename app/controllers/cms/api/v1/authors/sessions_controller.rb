@@ -8,7 +8,7 @@ class Cms::Api::V1::Authors::SessionsController < Devise::SessionsController
     return invalid_login_attempt unless author
 
     if author.valid_password?(session_params[:password])
-      sign_in(:author , author)
+      sign_in(author)
       render json: { accessToken: author.access_token }
     else
       invalid_login_attempt

@@ -7,6 +7,19 @@ import Twitter from './Twitter/index';
 import Text from './Text/index';
 import styles from './shared/styles.scss';
 
+
+const propTypes = {
+  item: PropTypes.shape({
+    targetType: PropTypes.string.isRequired,
+    isNew: PropTypes.bool.isRequired,
+    editing: PropTypes.bool.isRequired,
+    title: PropTypes.string
+  }).isRequired,
+  sortRank: PropTypes.number.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired,
+  handleDeleteItem: PropTypes.func.isRequired
+};
+
 class PostItemForm extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +46,10 @@ class PostItemForm extends Component {
           <Image
             formKey={this.props.sortRank.toString()}
             targetType={this.props.item.targetType}
-            image={this.props.item.image}
+            initialValues={{
+              image: this.props.item.image,
+              caption: this.props.item.caption
+            }}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -53,7 +69,7 @@ class PostItemForm extends Component {
         return (
           <Text
             targetType={this.props.item.targetType}
-            description={this.props.item.description}
+            initialValues={{description: this.props.item.description}}
             handleUpdateItem={this.handleUpdateItem}
             cancelButton={this.renderCancelButton()}
           />
@@ -77,21 +93,13 @@ class PostItemForm extends Component {
   }
 
   render() {
+    console.log('form')
+    console.log(this.props)
     return this.renderComponent();
   }
 
 }
 
-PostItemForm.propTypes = {
-  item: PropTypes.shape({
-    targetType: PropTypes.string.isRequired,
-    isNew: PropTypes.bool.isRequired,
-    editing: PropTypes.bool.isRequired,
-    title: PropTypes.string
-  }).isRequired,
-  sortRank: PropTypes.number.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired
-};
+PostItemForm.propTypes = propTypes;
 
 export default PostItemForm;

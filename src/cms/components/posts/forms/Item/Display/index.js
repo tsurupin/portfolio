@@ -17,6 +17,7 @@ export default class PostItemCell extends Component {
   }
 
   handleUpdateItem() {
+    console.log(this.props)
     this.props.handleUpdateItem(this.props.sortRank, { ...this.props.item, editing: true })
   }
 
