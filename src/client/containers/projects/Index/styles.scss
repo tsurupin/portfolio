@@ -5,12 +5,19 @@
 @value font-large from fonts;
 
 .root {
-  color: #69808C;
-  fon-family: 'Raleway,sans-serif';
+  color: #333333;
 }
 
 .title {
-  composes: fontXXLarge from '../../../../shared/css/fonts.scss';
-  composes: marginBottomSmall from '../../../../shared/css/margins.scss';
+  font-size: 2.4rem;
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: 300;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f3f3;
 
+}
+
+.list {
+  padding-bottom: 15px;
 }

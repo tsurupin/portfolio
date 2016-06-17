@@ -34,10 +34,12 @@ class ProjectIndex extends Component {
     if(this.props.projects.length === 0 ) { return <div></div> }
     return (
       <section className={styles.root}>
-        <h1 className={styles.title}>PROJECTS</h1>
-        {this.props.projects.map((project) => {
-          return <Item key={project.id} project={project}/>
-        })}
+        <h1 className={styles.title}>Projects</h1>
+        <div className={styles.list}>
+          {this.props.projects.map((project) => {
+            return <Item key={project.id} project={project} />
+          })}
+        </div>
       </section>
     );
   }

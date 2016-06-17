@@ -316,6 +316,23 @@
   margin-bottom: 10px;
 }
 
+.root___EtFA3 {
+  margin-top: 8px;
+  display: -webkit-inline-box;
+  display: inline-flex;
+}
+
+.item___38fK6 {
+  font-size: 1.4rem;
+  color: #00AB6B;
+  margin-left: 5px;
+}
+
+.name___vrOLn {
+
+
+}
+
 .root___2Eku3 {
   color: #333333;
 }
@@ -569,30 +586,87 @@
   width: 100%;
   margin: 15px 0;
 
-}.root___jF6HU {
-  display: -webkit-inline-box;
-  display: inline-flex;
+}
+.root___2eBaj {
+  position: relative;
+  margin-top: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f3f3f3;
+}
 
+.title___eBTFn {
+  font-size: 28px;
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: bold;
+}
+
+
+.imageContainer___cl__f {
+  margin-top: 20px;
+}
+
+.image___1jcFV {
+  max-width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.caption___1YC_q {
+  display: block;
+  font-style: italic;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.description___3Byzv {
+  padding-bottom: 5px;
+  line-height: 1.6;
+  font-size: 1.6rem;
+  font-family: Source Serif Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.button___-TWpQ {
+  position: absolute;
+  bottom: 1.5%;
+  right: 1%;
+  display: inline-block;
+  height: 37px;
+  padding: 0 16px;
+  color: #009E5D;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 35px;
   &:hover {
-    cursor: pointer;
+    color: #1c9963;
+
   }
 }
-
-.name___2pJMY {
-  color: #fff;
-  background-color: #5a6e79;
-  border-radius: 4px;
-  padding: 4px 8px;
-
-}
-
 .root___2zdju {
-  color: #69808C;
-  fon-family: 'Raleway,sans-serif';
+  color: #333333;
 }
 
 .title___P9rc1 {
+  font-size: 2.4rem;
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: 300;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f3f3;
 
+}
+
+.list___2Xmlt {
+  padding-bottom: 15px;
 }.root___29wsE {
   display: -webkit-box;
   display: flex;
