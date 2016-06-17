@@ -26,7 +26,7 @@ class App extends Component {
     };
 
     return (
-      <div className={rootStyle}>
+      <div className={styles.root}>
         <NavigationBar />
         <div className={styles.container}>
           {this.props.children}

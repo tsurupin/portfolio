@@ -1,9 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
-import TextEditor from '../../../../../shared/TextEditor/Editor/index';
+import TextEditor from 'sharedComponents/textEditors/Editor/index';
 import { reduxForm } from 'redux-form';
 import styles from '../shared/styles.scss';
+
+
+const propTypes = {
+  targetType: PropTypes.string.isRequired,
+  fields: PropTypes.object.isRequired,
+  cancelButton: PropTypes.object.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired
+};
 
 const inlineStyles = {
   submitButton: { marginLeft: 12 }
@@ -13,11 +21,9 @@ const inlineStyles = {
 class Text extends Component {
 
   constructor(props) {
-    super(...props);
-    
+    super(props);
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
-  
 
   handleUpdateItem(props) {
     this.props.handleUpdateItem({ description: props.description });
@@ -30,7 +36,7 @@ class Text extends Component {
   }
 
   render() {
-
+    
     const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className={styles.root}>
@@ -57,12 +63,7 @@ class Text extends Component {
 }
 
 
-Text.propTypes = {
-  targetType: PropTypes.string.isRequired,
-  fields: PropTypes.object.isRequired,
-  cancelButton: PropTypes.object.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired
-};
+Text.propTypes = propTypes;
 
 function validate(values) {
   const errors = {};

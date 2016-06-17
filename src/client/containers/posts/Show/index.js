@@ -93,12 +93,15 @@ class PostShow extends  Component {
   }
   
   render() {
+    if (!this.props.post) { return <section className={styles.root} /> }
     return (
       <section className={styles.root}>
-        <h1 className={styles.title}>{this.props.post.title} </h1>
-        <div className={styles.dateTime}>
-          <ActionSchedule color='#8F8F8F' style={inlineStyles.dateTimeLogo} />
-          <span className={styles.time}>{this.props.post.publishedAt}</span>
+        <div className={styles.heading}>
+          <h1 className={styles.title}>{this.props.post.title} </h1>
+          <div className={styles.dateTime}>
+            <ActionSchedule color='#8F8F8F' style={inlineStyles.dateTimeLogo} />
+            <span className={styles.time}>{this.props.post.publishedAt}</span>
+          </div>
         </div>
         {this.renderItems()}
         {this.renderTags()}

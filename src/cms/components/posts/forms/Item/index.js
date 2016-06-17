@@ -3,6 +3,15 @@ import Display from './Display/index';
 import Form from './Form/index';
 
 
+const propTypes = {
+  sortRank: PropTypes.number.isRequired,
+  item: PropTypes.object.isRequired,
+  totalCount: PropTypes.number.isRequired,
+  handleDeleteItem: PropTypes.func.isRequired,
+  handleMoveItem: PropTypes.func.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired
+};
+
 class Item extends Component {
 
   renderComponent() {
@@ -35,13 +44,6 @@ class Item extends Component {
 }
 
 
-Item.propTypes = {
-  sortRank: PropTypes.number.isRequired,
-  item: PropTypes.object.isRequired,
-  totalCount: PropTypes.number.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired,
-  handleMoveItem: PropTypes.func.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired
-};
+Item.propTypes = propTypes;
 
 export default Item;

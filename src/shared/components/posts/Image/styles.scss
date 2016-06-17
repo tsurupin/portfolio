@@ -6,11 +6,16 @@
 .image {
   display: block;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .caption {
   display: block;
+  margin-top: 10px;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
   font-size: 1.4rem;
-  font-style: italic;
+  line-height: 1.4;
+  color: #797979;
+  letter-spacing: 0;
   text-align: center;
 }

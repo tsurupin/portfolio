@@ -16,19 +16,17 @@ const iconStyles = {
 
 const inlineStyles = {
   appBar: {
-    boxSizing: 'contentBox',
+    boxSizing: 'border-box',
     backgroundColor: '#fff',
-    height: 48,
-    minHeight: 48,
-    width: '80%',
-    paddingLeft:'10%',
-    paddingRight: '10%',
-    border: '1px solid #eee'
+    height: 56,
+    minHeight: 56,
+    padding: '4px 10%',
+    border: '1px solid #f3f3f3'
   },
   title: {
-    color: '#69808C',
+    color: '#8F8F8F',
     fontSize: '1.6rem',
-    fontFamily: 'Raleway,sans-serif',
+    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
     lineHeight: '5.0rem',
     cursor: 'pointer'
   },
@@ -38,7 +36,7 @@ const inlineStyles = {
     marginTop: 0
   },
   githubButton: {
-    color: '#69808C',
+    color: '#8F8F8F',
     margin: 0
   }
 };
@@ -78,17 +76,17 @@ class NavigationBar extends Component {
                     <div>
                         <Link to="/about" >
                             <IconButton>
-                                <SocialPerson color='#69808C' />
+                                <SocialPerson color='#8F8F8F' />
                             </IconButton>
                         </Link>
                         <Link to="/posts" >
                             <IconButton>
-                                <ActionDescription color='#69808C' />
+                                <ActionDescription color='#8F8F8F' />
                             </IconButton>
                         </Link>
                         <Link to="/projects" >
                             <IconButton>
-                                <AvWeb color='#69808C'/>
+                                <AvWeb color='#8F8F8F'/>
                             </IconButton>
                         </Link>
                         <a href="https://github.com/tsurupin" onClick={this.handleMove} >

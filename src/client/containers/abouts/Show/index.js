@@ -27,7 +27,7 @@ class AboutShow extends Component {
   componentDidMount() {
     this.props.fetchAbout();
   }
-  
+
   renderText() {
     if (this.props.about.description) {
       return (
@@ -39,6 +39,10 @@ class AboutShow extends Component {
   }
 
   render() {
+    if (!this.props.about) {
+      return <seciont className={styles.root} />
+    }
+
     return(
       <section className={styles.root}>
         <h1 className={styles.title}>About</h1>

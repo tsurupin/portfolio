@@ -5,6 +5,11 @@ import Twitter from 'sharedComponents/posts/Twitter/index';
 import Image from 'sharedComponents/posts/Image/index';
 import styles from './styles.scss';
 
+
+const propTypes = { 
+  item: PropTypes.object.isRequired
+};
+
 class Item extends Component {
   constructor(props) {
     super(props);
@@ -32,8 +37,6 @@ class Item extends Component {
   }
 }
 
-Item.propTypes = {
-  item: PropTypes.object.isRequired
-};
+Item.propTypes = propTypes;
 
 export default Item;

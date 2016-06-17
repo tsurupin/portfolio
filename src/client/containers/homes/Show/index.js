@@ -29,7 +29,7 @@ class HomeShow extends Component {
   componentDidMount() {
     this.props.fetchHome();
   }
-  
+
   renderText() {
     if (this.props.home.introduction) {
       return (
@@ -55,6 +55,9 @@ class HomeShow extends Component {
 
   render() {
     // TODO: figure out how to specify image path after assets processing
+    if (!this.props.home) {
+      return <sectioon className={styles.root} />
+    }
     return(
       <section className={styles.root}>
         <img

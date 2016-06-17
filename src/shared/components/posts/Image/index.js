@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './styles.scss';
 
+const propTypes = {
+  image: PropTypes.string.isRequired,
+  caption: PropTypes.string
+};
+
 class Image extends Component {
 
   constructor(props) {
@@ -8,28 +13,25 @@ class Image extends Component {
   }
   
   renderCaption() {
-    if (this.props.caption) {
-      return  <span className={styles.caption}>{this.props.caption}</span>;
-    }
+
+      return  <figcaption className={styles.caption}>item image</figcaption>;
+
   }
 
   render() {
     return (
-      <div className={styles.root}>
+      <figure className={styles.root}>
         <img
           className={styles.image}
           src={this.props.image}
-          alt={this.props.image}
-        />;
+          alt=''
+        />
         {this.renderCaption()}       
-      </div>
+      </figure>
     );
   }
 }
 
-Image.propTypes = {
-  image: PropTypes.string.isRequired,
-  caption: PropTypes.string
-};
+Image.propTypes = propTypes;
 
 export default Image

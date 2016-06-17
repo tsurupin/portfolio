@@ -6,6 +6,13 @@ import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
 import styles from '../shared/styles.scss';
 
+
+const propTypes = {
+  fields: PropTypes.object.isRequired,
+  cancelButton: PropTypes.element.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired
+};
+
 const inlineStyles = {
   submitButton: {
     marginLeft: 12
@@ -66,11 +73,7 @@ class Image extends Component {
   }
 }
 
-Image.propTypes = {
-  fields: PropTypes.object.isRequired,
-  cancelButton: PropTypes.element.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired
-};
+Image.propTypes = propTypes;
 
 function validate(values) {
   const errors = {};
