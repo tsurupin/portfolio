@@ -5,9 +5,9 @@
 .content {
   font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 300;
   letter-spacing: -.02em;
-  color: #363636;
+  color: rgba(0,0,0,0.8);
 
   &:hover {
     opacity: 0.7;

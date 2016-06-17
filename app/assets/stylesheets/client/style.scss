@@ -329,6 +329,7 @@
 }
 .root___2Eku3 {
   color: #333333;
+  min-height: 500px;
 }
 
 .title___34Ft4 {
@@ -532,7 +533,7 @@
 
 }
 .root___3VZsy {
-
+  min-height: 500px;
 }
 
 .heading___2_JSA {
@@ -642,7 +643,9 @@
 }
 .root___2zdju {
   color: #333333;
+  min-height: 500px;
 }
+
 
 .title___P9rc1 {
   font-size: 2.4rem;
@@ -665,7 +668,7 @@
 
 }
 .root___1Eifd {
-
+  min-height: 500px;
 }
 
 .title___Heki8 {
@@ -685,7 +688,7 @@
 
 .subHeading___2KmKX {
   font-size: 2.2rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #f3f3f3;
   margin-top: 30px;
 
 }
@@ -705,9 +708,9 @@
 .content___REPyQ {
   font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 300;
   letter-spacing: -.02em;
-  color: #363636;
+  color: rgba(0,0,0,0.8);
 
   &:hover {
     opacity: 0.7;
@@ -729,7 +732,7 @@
 .title___1dBFZ {
   font-size: 2.4rem;
   letter-spacing: -.02em;
-  font-weight: 700;
+  font-weight: bold;
   color: rgba(0,0,0,.8);
   border-bottom: 1px solid #ddd;
 }
@@ -775,6 +778,7 @@
 .image___grvF2 {
   display: block;
   width: 100%;
+  margin-top: 10px;
   margin-bottom: 25px;
 }
 
@@ -800,7 +804,7 @@
 
   }
 }.root___2gq7E {
-
+  min-height: 500px;
 }
 
 .image___1nCEw {
@@ -819,5 +823,6 @@
 .listContainer___Ym-XL {
   display: -webkit-box;
   display: flex;
+  margin-top: 30px;
 
 }

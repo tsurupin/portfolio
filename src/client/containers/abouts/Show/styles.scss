@@ -1,5 +1,5 @@
 .root {
-
+  min-height: 500px;
 }
 
 .title {
@@ -20,7 +20,7 @@
 .subHeading {
   composes: title;
   font-size: 2.2rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #f3f3f3;
   margin-top: 30px;
 
 }

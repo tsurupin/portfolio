@@ -71,7 +71,7 @@ class PostIndex extends Component {
 
   render() {
     if(!this.props.posts || this.props.posts.length === 0 ) {
-      return <div></div>
+      return <section className={styles.root} />
     }
     return (
       <section className={styles.root}>

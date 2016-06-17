@@ -31,7 +31,9 @@ class ProjectIndex extends Component {
 
 
   render() {
-    if(this.props.projects.length === 0 ) { return <div></div> }
+    if(this.props.projects.length === 0 ) { 
+      return <section className={styles.root} /> 
+    }
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>Projects</h1>

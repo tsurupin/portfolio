@@ -93,6 +93,7 @@ class PostShow extends  Component {
   }
   
   render() {
+    if (!this.props.post) { return <section className={styles.root} /> }
     return (
       <section className={styles.root}>
         <div className={styles.heading}>

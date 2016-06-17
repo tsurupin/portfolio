@@ -20,7 +20,7 @@ const inlineStyles = {
     backgroundColor: '#fff',
     height: 56,
     minHeight: 56,
-    padding: '4px 20px',
+    padding: '4px 10%',
     border: '1px solid #f3f3f3'
   },
   title: {
@@ -66,7 +66,7 @@ class NavigationBar extends Component {
     return (
       <AppBar
         showMenuIconButton={false}
-        title="T.T.T"
+        title="TOMOAKI TSURUTA"
         style={inlineStyles.appBar}
         titleStyle={inlineStyles.title}
         onTitleTouchTap={this.handleHome}
