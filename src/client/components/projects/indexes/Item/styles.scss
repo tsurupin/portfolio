@@ -26,16 +26,20 @@
 
 .caption {
   display: block;
-  font-style: italic;
-  font-size: 1.4rem;
-  text-align: center;
   margin-top: 5px;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: #797979;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .description {
   padding-bottom: 5px;
   line-height: 1.6;
   font-size: 1.6rem;
+  margin-bottom: 40px;
   font-family: Source Serif Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 

@@ -1,41 +1,43 @@
 .root {
   border-top: 1px solid #ddd;
   position: relative;
-  height: 88px;
   margin-top: 15px;
-  display: table;
+  padding: 10px 0;
   width: 100%;
   font-size: 1.8rem;
   line-height: 1.6;
+  display: inline-flex;
+  min-height: 80px;
+  overflow: hidden;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+}
 
-  font-family: 'Source Serif Pro,Helvetica Neue,Helvetica,Arial,sans-serif';
+.box {
+  display: inline-flex;
+  width: 50%;
+  color: #8F8F8F;
 }
 
 .prevBox {
-  display: table-cell;
-  vertical-align: middle;
-  width: 50%;
-  padding-left: 3%;
-  overflow: hidden;
-  color: #46494B;
-
-
-  &:hover {
-    background: rgba(0,0,0,.08);
-  }
+  composes: box;
+  text-align: left;
 }
 
+.prevTitle {
+  width: 85%;
+  margin: auto 0;
+  vertical-align: middle;
+
+}
+
+.nextTitle {
+  width: 85%;
+  margin: auto 0;
+  vertical-align: middle;
+}
 
 .nextBox {
-  display: table-cell;
+  composes: box;
   text-align: right;
-  vertical-align: middle;
-  width: 50%;
-  padding-right: 3%;
-  overflow: hidden;
-  color: #46494B;
 
-  &:hover {
-    background: rgba(0,0,0,.08);
-  }
 }

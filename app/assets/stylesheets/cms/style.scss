@@ -262,6 +262,98 @@
   cursor: pointer;
 }
 
+.root___1X8N6 {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-size: 1.8rem;
+  padding: 15px;
+}
+
+.editor___2yWX3 {
+  /*border-top: 1px solid #ddd;*/
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+
+.hidePlaceholder___NLXqf {
+  display: none;
+}
+
+.h2___2VzhK {
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 36px;
+  margin-left: -2.25px;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: rgba(0,0,0,.8);
+  -webkit-font-smoothing: antialiased;
+
+  & + .text___3ZAwN {
+    margin-top: 30px;
+  }
+}
+
+.h3___Q3WAE {
+  color: rgba(0,0,0,.44);
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 28px;
+  margin-left: -1.75px;
+  line-height: 1.22;
+  letter-spacing: -.022em;
+  word-wrap: break-word;
+
+  & + .text___3ZAwN {
+    margin-top: 30px;
+  }
+
+}
+
+.text___3ZAwN {
+  font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -.003em;
+  color: rgba(0,0,0,.8);
+}
+
+
+.blockquote___3-V9K {
+  background: #f3f3f3;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+
+.caption___1Efu5 {
+  border-left: 3px solid rgba(0,0,0,.8);
+  padding-left: 20px;
+  margin-left: -23px;
+  padding-bottom: 3px;
+  margin-top: 30px;
+}
+
+.unorderedListItem___puaIq {
+  padding-left: 5px;
+}
+
+.orderedListItem___oZHeo {
+  padding-left: 5px;
+}
+
+.urlInputContainer___2gXfa {
+  margin-bottom: 10px;
+}
+.root___3nnHW {
+  color: #307EA9;
+}
 .root___1HE_k {
   margin-left: 24px;
   margin-right: 24px;
@@ -1652,7 +1744,7 @@
   font-size: 1.6 + rem;
 }
 
-.previweImage___3c2xR {
+.previewImage___eloFe {
 
 }
 
@@ -1668,7 +1760,7 @@
 
 .cancelButton___4xTOU {
 
-}.button___3-9h6 {
+}.button___3903E {
   color: #999;
   cursor: pointer;
   margin-right: 16px;
@@ -1676,11 +1768,11 @@
   display: inline-block;
 }
 
-.activeButton___1rlcg {
+.activeButton___3mXcf {
   color: #5890ff;
 }
 
-.controls___3a2IY {
+.controls___2nAXV {
   font-family: 'Helvetica', sans-serif;
   font-size: 14px;
   margin-bottom: 5px;
@@ -1689,7 +1781,7 @@
       -ms-user-select: none;
           user-select: none;
 }
-.root___1ZDq3 {
+.root___2SSIY {
   font-family: 'Helvetica', sans-serif;
   font-size: 14px;
   margin-bottom: 5px;
@@ -1698,7 +1790,7 @@
       -ms-user-select: none;
           user-select: none;
 }
-.root___1nmle {
+.root___79Wb0 {
   font-family: 'Helvetica', sans-serif;
   font-size: 14px;
   margin-bottom: 5px;
@@ -1708,7 +1800,7 @@
           user-select: none;
 }
 
-.button___ulXgJ {
+.button___exVsT {
   color: #999;
   cursor: pointer;
   margin-right: 16px;
@@ -1841,7 +1933,55 @@
   border: 1px solid #b6b6b6;
   background: white;
   z-index: 1;
-}.root___1-3Re {
+}.button___3-9h6 {
+  color: #999;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+.activeButton___1rlcg {
+  color: #5890ff;
+}
+
+.controls___3a2IY {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.root___1ZDq3 {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.root___1nmle {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.button___ulXgJ {
+  color: #999;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+.root___1-3Re {
   margin: 20px auto;
   padding: 10px 15px;
   border: 1px solid #b6b6b6;

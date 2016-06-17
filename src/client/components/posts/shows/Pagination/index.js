@@ -1,18 +1,30 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import FlatButton from 'material-ui/FlatButton';
 import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import NavigationChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import styles from './styles.scss';
 
+const propTypes = {
+  prevId: PropTypes.number,
+  prevTitle: PropTypes.string,
+  nextId: PropTypes.number,
+  nextTitle: PropTypes.string
+};
+
 const inlineStyles = {
   prevIcon: {
     width: '15%',
-    display: 'inline-block'
+    display: 'inline-block',
+    height: '40px',
+    margin: 'auto 0',
+    verticalAlign: 'middle'
   },
   nextIcon: {
     width: '15%',
-    display: 'inline-block'
+    display: 'inline-block',
+    height: '40px',
+    margin: 'auto 0',
+    verticalAlign: 'middle'
   }
 };
 
@@ -22,19 +34,21 @@ class Pagination extends Component {
   }
 
   renderPrev() {
-    if (!this.props.prevId) { return; }
+    if (!this.props.prevId) { return <span className={styles.prevBox} />;  }
     return(
       <Link to={`/posts/${this.props.prevId}`} className={styles.prevBox}>
-        {this.props.prevTitle}
+        <NavigationChevronLeft color='#8F8F8F' style={inlineStyles.prevIcon} />
+        <div className={styles.prevTitle}>{this.props.prevTitle}</div>
       </Link>
     )
   }
 
   renderNext() {
-    if (!this.props.nextId) { return; }
+    if (!this.props.nextId) { return <span className={styles.nextBox} /> }
     return(
       <Link to={`/posts/${this.props.nextId}`} className={styles.nextBox}>
-        {this.props.nextTitle}
+        <div className={styles.nextTitle}>{this.props.nextTitle}</div>
+        <NavigationChevronRight color='#8F8F8F' style={inlineStyles.nextIcon} />
       </Link>
     )
   }
@@ -49,11 +63,6 @@ class Pagination extends Component {
   }
 }
 
-Pagination.propTypes = {
-  prevId: PropTypes.number,
-  prevTitle: PropTypes.string,
-  nextId: PropTypes.number,
-  nextTitle: PropTypes.string
-};
+Pagination.propTypes = propTypes;
 
 export default Pagination;
