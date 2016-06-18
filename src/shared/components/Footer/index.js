@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import styles from './styles.scss';
-
+import icon from './gitHubIcon.png';
 
 export function Footer() {
   return (
@@ -8,7 +8,7 @@ export function Footer() {
       <div className={styles.text}>
         <span>© 2016 Tomoaki Tsuruta</span>
         <a href="https://github.com/tsurupin">
-          <img className={styles.githubIcon} src="images/githubIcon.png" />
+          <img className={styles.githubIcon} src={icon} />
         </a>
       </div>
     </footer>
