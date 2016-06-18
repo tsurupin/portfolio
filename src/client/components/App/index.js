@@ -15,16 +15,6 @@ class App extends Component {
   }
 
   render() {
-    let rootStyle;
-    switch (this.props.location.pathname) {
-      case '/posts':
-      case '/projects':
-        rootStyle = styles.rootIndex;
-        break;
-      default:
-        rootStyle = styles.root
-    };
-
     return (
       <div className={styles.root}>
         <NavigationBar />

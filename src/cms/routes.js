@@ -11,7 +11,7 @@ import AuthorIndex from './containers/authors/Index/index';
 import AuthorForm from './containers/authors/Form/index';
 import AuthorSinUp from './containers/authors/SignUp/index';
 import AuthorSingIn from './containers/authors/SignIn/index';
-import NotFound from './components/NotFound/index';
+import NotFound from 'sharedComponents/NotFound/index';
 import Authentication from './containers/shared/Authentication/index';
 
 export default (

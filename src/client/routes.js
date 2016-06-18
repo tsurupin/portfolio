@@ -8,7 +8,7 @@ import ProjectIndex from './containers/projects/Index/index';
 import AboutShow from './containers/abouts/Show/index';
 import HomeShow from './containers/homes/Show/index';
 
-import NotFound from './components/NotFound/index';
+import NotFound from 'sharedComponents/NotFound/index';
 
 export default (
   <Route path="/" component={App}>

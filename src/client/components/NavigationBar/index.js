@@ -6,8 +6,8 @@ import ActionDescription from 'material-ui/svg-icons/action/description';
 import SocialPerson from 'material-ui/svg-icons/social/person';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
-import { teal500 } from 'material-ui/styles/colors';
-import styles from  './styles.scss';
+import config from 'shared/config';
+
 const iconStyles = {
   height: 48,
   marginTop: 0
@@ -35,7 +35,7 @@ const inlineStyles = {
     minHeight: 48,
     marginTop: 0
   },
-  githubButton: {
+  gitHubButton: {
     color: '#8F8F8F',
     margin: 0
   }
@@ -45,19 +45,13 @@ class NavigationBar extends Component {
 
   constructor(props) {
     super(props);
-    this.handleMove = this.handleMove.bind(this);
     this.handleHome = this.handleHome.bind(this);
   }
 
   static contextTypes = {
     router: PropTypes.object
   };
-
-
-  handleMove(e) {
-    location.href = e.target.href;
-  }
-
+  
   handleHome() {
     this.context.router.push('/');
   }
@@ -66,7 +60,7 @@ class NavigationBar extends Component {
     return (
       <AppBar
         showMenuIconButton={false}
-        title="TOMOAKI TSURUTA"
+        title={config.authorName}
         style={inlineStyles.appBar}
         titleStyle={inlineStyles.title}
         onTitleTouchTap={this.handleHome}
@@ -89,9 +83,8 @@ class NavigationBar extends Component {
                                 <AvWeb color='#8F8F8F'/>
                             </IconButton>
                         </Link>
-                        <a href="https://github.com/tsurupin" onClick={this.handleMove} >
-
-                            <IconButton iconStyle={inlineStyles.githubButton}>
+                        <a href={config.gitHubUrl} >
+                            <IconButton iconStyle={inlineStyles.gitHubButton}>
                               <FontIcon className="muidocs-icon-custom-github" style={iconStyles} />
                             </IconButton>
                         </a>

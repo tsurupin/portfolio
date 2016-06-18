@@ -8,6 +8,8 @@ import SocialPerson from 'material-ui/svg-icons/social/person';
 import ExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import IconButton from 'material-ui/IconButton';
 import { signOut } from '../../actions/auths';
+import config from 'shared/config';
+
 
 const inlineStyles = {
   appBar: {
@@ -33,7 +35,6 @@ class NavigationBar extends Component {
 
   constructor(props) {
     super(...props);
-    this.handleMove = this.handleMove.bind(this);
     this.handleHome = this.handleHome.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
@@ -42,10 +43,6 @@ class NavigationBar extends Component {
     router: PropTypes.object
   };
 
-
-  handleMove(e) {
-    location.href = e.target.href;
-  }
 
   handleHome() {
     this.context.router.push('/cms');
@@ -59,7 +56,7 @@ class NavigationBar extends Component {
     return (
       <AppBar
         showMenuIconButton={false}
-        title="Tomoaki Tsuruta"
+        title={config.authorName}
         style={inlineStyles.appBar}
         titleStyle={inlineStyles.title}
         onTitleTouchTap={this.handleHome}
@@ -81,7 +78,7 @@ class NavigationBar extends Component {
                                 <AvWeb />
                             </IconButton>
                         </Link>
-                        <a href="https://github.com/tsurupin" onClick={this.handleMove} >
+                        <a href={config.gitHubUrl} >
                             <IconButton iconClassName="muidocs-icon-custom-github"/>
                         </a>
                         <IconButton name="signOut" onClick={this.handleSignOut}>
