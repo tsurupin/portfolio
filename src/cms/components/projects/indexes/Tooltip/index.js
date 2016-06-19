@@ -10,6 +10,14 @@ import IconButton from 'material-ui/IconButton';
 
 import styles from './styles.scss';
 
+const propTypes = {
+  id: PropTypes.number.isRequired,
+  accepted: PropTypes.bool.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  handleToggle: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired
+};
+
 class Tooltip extends Component {
   constructor(props) {
     super(props);
@@ -78,12 +86,6 @@ class Tooltip extends Component {
   }
 }
 
-Tooltip.propTypes = {
-  id: PropTypes.number.isRequired,
-  accepted: PropTypes.bool.isRequired,
-  handleEdit: PropTypes.func.isRequired,
-  handleToggle: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired
-};
+Tooltip.propTypes = propTypes;
 
 export default Tooltip;

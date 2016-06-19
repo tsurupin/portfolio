@@ -1,26 +1,19 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import TextDisplay from '../../textEditors/Display/index';
 import styles from './styles.scss';
 
-
-class Text extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-
-    return (
-      <div className={styles.root}>
-        <TextDisplay description={this.props.description} />
-      </div>
-    );
-  }
-}
-
-Text.propTypes = {
+const propTypes = {
   description: PropTypes.string.isRequired
 };
+
+function Text({ description}) {
+  return (
+    <div className={styles.root}>
+      <TextDisplay description={description} />
+    </div>
+  );
+}
+
+Text.propTypes = propTypes;
 
 export default Text;

@@ -1,12 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../constants';
 import Tooltip from './Tooltip/index';
-import Image from './Image/index';
-import Twitter from './Twitter/index';
-import Text from './Text/index';
+import Image from 'sharedComponents/posts/Image/index';
+import Twitter from 'sharedComponents/posts/Twitter/index';
+import Text from 'sharedComponents/posts/Text/index';
 import styles from './styles.scss';
 
-export default class PostItemCell extends Component {
+const propTypes = {
+  sortRank: PropTypes.number.isRequired,
+  totalCount: PropTypes.number.isRequired,
+  handleDeleteItem: PropTypes.func.isRequired,
+  handleMoveItem: PropTypes.func.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired
+};
+
+class PostItemCell extends Component {
   constructor(props) {
     super(props);
     this.state = { hovering: false };
@@ -17,7 +25,6 @@ export default class PostItemCell extends Component {
   }
 
   handleUpdateItem() {
-    console.log(this.props)
     this.props.handleUpdateItem(this.props.sortRank, { ...this.props.item, editing: true })
   }
 
@@ -76,10 +83,6 @@ export default class PostItemCell extends Component {
   }
 }
 
-PostItemCell.propTypes = {
-  sortRank: PropTypes.number.isRequired,
-  totalCount: PropTypes.number.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired,
-  handleMoveItem: PropTypes.func.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired
-};
+PostItemCell.propTypes = propTypes;
+
+export default PostItemCell

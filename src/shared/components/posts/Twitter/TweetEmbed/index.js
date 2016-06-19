@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react'
 
 const widgetJS = '//platform.twitter.com/widgets.js';
 
+const propTypes = {
+  id: PropTypes.string.isRequired
+};
+
 class TweetEmbed extends Component {
 
   constructor(props) {
@@ -28,8 +32,6 @@ class TweetEmbed extends Component {
   }
 }
 
-TweetEmbed.propTypes = {
-  id: PropTypes.string.isRequired
-};
+TweetEmbed.propTypes = propTypes;
 
 export default TweetEmbed

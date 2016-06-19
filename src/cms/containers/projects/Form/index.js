@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
-import TextEditor from '../../../components/shared/TextEditor/Editor/index'
+import TextEditor from 'sharedComponents/textEditors/Editor/index'
 import RaisedButton from 'material-ui/RaisedButton';
 import TagField from '../../../components/shared/TagField/index';
 import styles from './styles.scss';

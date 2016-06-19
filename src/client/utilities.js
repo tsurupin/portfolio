@@ -1,12 +1,6 @@
 import client from "axios";
 import { ROOT_URL } from './constants';
-
-
-function getCSRFToken() {
-  const el = document.querySelector('meta[name="csrf-token"]');
-  return el ? el.getAttribute('content') : '';
-}
-
+import  { getCSRFToken, capitalize } from 'shared/utilities';
 
 export const axios = client.create({
 

@@ -1,9 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import TextDisplay from '../../../shared/TextEditor/Display/index';
+import TextDisplay from 'sharedComponents/textEditors/Display/index';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
 import styles from './styles.scss';
 
+
+
+const propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  sourceUrl: PropTypes.string,
+  sampleUrl: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string)
+};
 
 const inlineStyles = {
   button: {
@@ -11,8 +21,7 @@ const inlineStyles = {
     bottom: 10,
     right: 15
   }
-}
-
+};
 
 class ItemRow extends Component {
   constructor(props) {
@@ -58,13 +67,6 @@ class ItemRow extends Component {
   }
 }
 
-ItemRow.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  sourceUrl: PropTypes.string,
-  sampleUrl: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.string)
-};
+ItemRow.propTypes = propTypes;
 
 export default ItemRow;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './components/App/index';
+import App from './containers/App/index';
 import PostIndex from './containers/posts/Index/index';
 import PostForm from './containers/posts/Form/index';
 import ProjectIndex from './containers/projects/Index/index';
@@ -11,7 +11,7 @@ import AuthorIndex from './containers/authors/Index/index';
 import AuthorForm from './containers/authors/Form/index';
 import AuthorSinUp from './containers/authors/SignUp/index';
 import AuthorSingIn from './containers/authors/SignIn/index';
-import NotFound from 'sharedComponents/NotFound/index';
+import NotFound from 'shared/containers/NotFound/index';
 import Authentication from './containers/shared/Authentication/index';
 
 export default (

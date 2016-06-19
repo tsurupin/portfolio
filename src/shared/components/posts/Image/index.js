@@ -1,37 +1,30 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import styles from './styles.scss';
 
 const propTypes = {
   image: PropTypes.string.isRequired,
   caption: PropTypes.string
-};
+}
 
-class Image extends Component {
+function Image({ image, caption }) {
+  return (
+    <figure className={styles.root}>
+      <img
+        className={styles.image}
+        src={image}
+        alt=''
+      />
+      {renderCaption(caption)}
+    </figure>
+  );
 
-  constructor(props) {
-    super(props);
-  }
-  
-  renderCaption() {
+}
 
-      return  <figcaption className={styles.caption}>item image</figcaption>;
-
-  }
-
-  render() {
-    return (
-      <figure className={styles.root}>
-        <img
-          className={styles.image}
-          src={this.props.image}
-          alt=''
-        />
-        {this.renderCaption()}       
-      </figure>
-    );
+function renderCaption(caption) {
+  if (caption) {
+    return <figcaption className={styles.caption}>item image</figcaption>;
   }
 }
 
 Image.propTypes = propTypes;
-
-export default Image
+export default Image;
