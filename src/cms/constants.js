@@ -7,7 +7,6 @@ function createRequestTypes(base) {
 export const ROOT_URL     = '/cms/api/v1';
 export const POST_PATH    = '/posts';
 export const AUTHOR_PATH  = '/authors';
-export const SITE_PATH  = '/site';
 export const PROJECT_PATH = '/projects';
 export const TWITTER_PATH = '/services/twitter';
 export const TEST_DOMAIN  = 'http://localhost:80';
@@ -21,7 +20,8 @@ export const FETCH_POST         = createRequestTypes('FETCH_POST');
 export const FETCH_NEW_POST     = createRequestTypes('FETCH_NEW_POST');
 export const SAVE_POST          = createRequestTypes('SAVE_POST');
 export const TOGGLE_POST        = createRequestTypes('TOGGLE_POST');
-
+export const FETCH_POST_FORM    = createRequestTypes('FETCH_POST_FORM');
+export const FETCH_ABOUT       = createRequestTypes('FETCH_ABOUT');
 export const FETCH_AUTHOR       = createRequestTypes('FETCH_AUTHOR');
 export const UPDATE_AUTHOR      = createRequestTypes('UPDATE_AUTHOR');
 

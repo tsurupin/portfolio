@@ -26,7 +26,7 @@ module.exports = {
         },
         { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
-        { test: /\.(jpg|png|gif)$/, loader: 'file?name=../images/[name].[ext]', exclude: /node_modules/ }
+        { test: /\.(jpg|png)$/, loader: 'url-loader', exclude: /node_modules/ }
     ]
   },
 

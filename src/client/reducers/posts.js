@@ -17,6 +17,7 @@ export default function (state = INITIAL_STATE, action) {
    
     case FETCH_POSTS.SUCCESS:
      
+      // NOTE: reset params in the case of initial load, otherwise keep previous params
       let posts;
       if(action.payload.page === 1) {
         posts = [...action.payload.posts]

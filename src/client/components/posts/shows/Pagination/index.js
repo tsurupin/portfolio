@@ -36,7 +36,7 @@ class Pagination extends Component {
   renderPrev() {
     if (!this.props.prevId) { return <span className={styles.prevBox} />;  }
     return(
-      <Link to={`/posts/${this.props.prevId}`} className={styles.prevBox}>
+      <Link to={`${this.props.adminPath}/posts/${this.props.prevId}`} className={styles.prevBox}>
         <NavigationChevronLeft color='#8F8F8F' style={inlineStyles.prevIcon} />
         <div className={styles.prevTitle}>{this.props.prevTitle}</div>
       </Link>
@@ -46,7 +46,7 @@ class Pagination extends Component {
   renderNext() {
     if (!this.props.nextId) { return <span className={styles.nextBox} /> }
     return(
-      <Link to={`/posts/${this.props.nextId}`} className={styles.nextBox}>
+      <Link to={`${this.props.adminPath}/posts/${this.props.nextId}`} className={styles.nextBox}>
         <div className={styles.nextTitle}>{this.props.nextTitle}</div>
         <NavigationChevronRight color='#8F8F8F' style={inlineStyles.nextIcon} />
       </Link>
@@ -62,6 +62,7 @@ class Pagination extends Component {
     );
   }
 }
+
 
 Pagination.propTypes = propTypes;
 

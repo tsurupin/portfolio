@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TextDisplay from 'sharedComponents/textEditors/Display/index';
 import RecentPosts from 'clientComponents/homes/shows/RecentPosts/index';
 import RecentProject from 'clientComponents/homes/shows/RecentProject/index';
+import mainImage from './sample.png';
 import styles from './styles.scss';
 
 const propTypes = {
@@ -48,7 +49,7 @@ class HomeShow extends Component {
 
   renderRecentProject() {
     if (this.props.home.latestProject) {
-      return <RecentProject project={this.props.home.latestProject} />;
+      return <RecentProject {...this.props.home.latestProject} />;
     }
   }
 
@@ -62,7 +63,7 @@ class HomeShow extends Component {
       <section className={styles.root}>
         <img
           className={styles.image}
-          src='images/sample.png'
+          src={mainImage}
           alt="main image"
         />
         {this.renderText()}

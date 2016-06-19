@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../utility';
-import App from '../../../../src/cms/components/App/index'
+import App from '../../../../src/cms/containers/App/index'
 
 describe('App', () => {
   let component;

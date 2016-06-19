@@ -7,18 +7,13 @@ const propTypes = {
   name : PropTypes.string.isRequired
 };
 
-class Tag extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  render() {
-    return(
-      <Link to={`/posts?tag=${this.props.id}`} className={styles.root}>
-        {this.props.name}
-      </Link>
-    );
-  }
+function Tag({ adminPath, id, name }) {
+  return(
+    <Link to={`${adminPath}/posts?tag=${id}`} className={styles.root}>
+      {name}
+    </Link>
+  );
+
 }
 
 Tag.propTpes = propTypes;

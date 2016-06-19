@@ -7,7 +7,7 @@ import Pagination from 'clientComponents/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
 
-
+const cmsRegexp = /^(\/cms)*/;
 const propTypes = {
   post : PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -50,15 +50,20 @@ class PostShow extends  Component {
      }
   }
 
+  get adminPath() {
+    const paths = this.props.location.pathname.match(cmsRegexp);
+    return paths[0] ? paths[0] : '';
+  }
+
   renderTags() {
     return(
       <section className={styles.tagContainer}>
-        {this.props.tags.map(tag => {
+        {this.props.tags.map((tag) => {
         return(
           <Tag
             key={tag.id}
-            id={tag.id}
-            name={tag.name}
+            adminPath={this.adminPath}
+            {...tag}
           />
         );
         })}
@@ -68,7 +73,7 @@ class PostShow extends  Component {
 
   renderItems() {
     return(
-      this.props.items.map(item => {
+      this.props.items.map((item) => {
         return (
           <Item
             key={item.id}
@@ -83,6 +88,7 @@ class PostShow extends  Component {
     if (this.props.post.prevId || this.props.post.nextId) {
       return (
         <Pagination
+          adminPath={this.adminPath}
           prevId={this.props.post.prevId}
           prevTitle={this.props.post.prevTitle}
           nextId={this.props.post.nextId}
@@ -93,6 +99,7 @@ class PostShow extends  Component {
   }
   
   render() {
+    console.log(this.adminPath)
     if (!this.props.post) { return <section className={styles.root} /> }
     return (
       <section className={styles.root}>
@@ -116,7 +123,7 @@ PostShow.propTypes = propTypes;
 function mapStateToProps(state) {
   return {
     post: state.posts.post,
-    tags: state.tags,
+    tags: state.tags.tags,
     items: state.items
   }
 }

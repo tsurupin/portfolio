@@ -3,6 +3,7 @@ import { fetchAbout } from 'clientActions/abouts';
 import { connect } from 'react-redux';
 import SocialAccounts from 'clientComponents/abouts/shows/SocialAccounts/index';
 import TextDisplay from 'sharedComponents/textEditors/Display/index';
+import config from 'shared/config';
 import styles from './styles.scss';
 
 const propTypes = {
@@ -48,9 +49,9 @@ class AboutShow extends Component {
         <h1 className={styles.title}>About</h1>
         {this.renderText()}
         <SocialAccounts socialAccounts={this.props.socialAccounts} />
-        <h2 className={styles.subHeading}>Portfolio</h2>
+        <h2 className={styles.subHeading}>{config.siteName}</h2>
         <div className={styles.siteDescription}>
-          <p className={styles.text}>This website is written in ruby</p>
+          <p className={styles.text}>{config.siteDescription}</p>
         </div>
       </section>
     )

@@ -20,17 +20,15 @@ export function fetchPosts(params = {}) {
   return dispatch => {
     return (
       request
-        .then(response => {
-          dispatch(fetchPostsSuccess(response.data))
-        })
-        .catch(error => {
-          dispatch(fetchPostsFailure(error.data))
-        })
+        .then(response => dispatch(fetchPostsSuccess(response.data)))
+        .catch(error => dispatch(fetchPostsFailure(error.data)))
     );
   };
 }
 
 function fetchPostsSuccess(response) {
+  console.log(response)
+  console.log('response')
   return {
     type: FETCH_POSTS.SUCCESS,
     payload: {
@@ -56,7 +54,7 @@ export function fetchPost(id) {
   return dispatch => {
     return request
       .then(response => dispatch(fetchPostSuccess(response.data)))
-      .then(response => {
+      .then((response) => {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTags(response.payload.tags))
       })

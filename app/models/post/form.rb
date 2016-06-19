@@ -12,7 +12,7 @@
 
 class Post::Form < ActiveType::Record[Post]
   include TaggingCleaner
-  include TaggingAttributesTrimer
+  include TaggingAttributesTrimmer
 
   ITEMS_ATTRIBUTES = 'items_attributes'.freeze
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze

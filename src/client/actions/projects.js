@@ -12,17 +12,15 @@ export function fetchProjects(params = {}) {
   return dispatch => {
     return (
       request
-        .then(response => {
-          dispatch(fetchProjectsSuccess(response.data))
-        })
-        .catch(error => {
-          dispatch(fetchProjectsFailure(error))
-        })
+        .then(response => dispatch(fetchProjectsSuccess(response.data)))
+        .catch(error => dispatch(fetchProjectsFailure(error)))
     );
   };
 }
 
 function fetchProjectsSuccess(response) {
+  console.log(response.projects.length)
+  console.log('fetchPro')
   return {
     type: FETCH_PROJECTS.SUCCESS,
     payload: { projects: response.projects }

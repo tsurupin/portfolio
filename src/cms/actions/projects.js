@@ -6,7 +6,7 @@ import {
   SAVE_PROJECT,
   TOGGLE_PROJECT
 } from '../constants';
-import { fetchTags } from'./tags';
+import { fetchTagsForm } from'./tags';
 import { axios, trimProject } from '../utilities';
 import { browserHistory } from 'react-router';
 
@@ -22,6 +22,7 @@ export function fetchProjects() {
 }
 
 function fetchProjectsSuccess(response) {
+  console.log('admin')
   return {
     type: FETCH_PROJECTS.SUCCESS,
     payload: {
@@ -42,7 +43,7 @@ export function fetchProject(id) {
   return dispatch => {
     return request
       .then(response => dispatch(fetchProjectSuccess(response.data)))
-      .then(response => dispatch(fetchTags(response.payload.tags)))
+      .then(response => dispatch(fetchTagsForm(response.payload.tags)))
       .catch(error => dispatch(fetchProjectFailure(error.data)))
   };
 }
@@ -72,7 +73,7 @@ export function fetchNewProject() {
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewProjectSuccess(response.data)))
-      .then(response => dispatch(fetchTags(response.payload.tags)))
+      .then(response => dispatch(fetchTagsForm(response.payload.tags)))
       .catch(error => dispatch(fetchNewProjectFailure(error.data)))
     }
 };

@@ -9,7 +9,7 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
    
     case FETCH_PROJECTS.SUCCESS:
-      return { projects: [...action.payload.projects] };
+      return { projects: action.payload.projects };
     
     case FETCH_PROJECTS.FAILURE:
       return { ...state, error: action.payload.error };

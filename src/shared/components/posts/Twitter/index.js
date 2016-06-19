@@ -1,26 +1,21 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import styles from './styles.scss';
 import TweetEmbed from  './TweetEmbed/index'
 
-class Twitter extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-        <div className={styles.root}>
-          <TweetEmbed id={this.props.twitterId}/>
-        </div>
-    );
-  }
-}
-
-Twitter.propTypes = {
+const propTypes = {
   twitterId: PropTypes.string.isRequired
 };
 
+function Twitter({twitterId}){
+    return (
+        <div className={styles.root}>
+          <TweetEmbed id={twitterId}/>
+        </div>
+    );
+}
+
+
+Twitter.propTypes = propTypes;
 
 export default Twitter
 

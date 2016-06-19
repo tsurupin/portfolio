@@ -130,7 +130,7 @@ function mapStateToProps(state) {
   }
 }
 
-AuthorSignUp.propTypes = propTypes
+AuthorSignUp.propTypes = propTypes;
 
 
 export default reduxForm({

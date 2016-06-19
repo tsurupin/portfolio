@@ -4,12 +4,13 @@ class PostsSerializer < ActiveModel::Serializer
   attributes :id, :title, :accepted, :published_at, :status
 
   def published_at
-    object.published_at.try(:strftime,'%b %d, %Y') || 'not publishing yet'
+    object.published_at.try(:strftime,'%b %d, %Y') || '-'
   end
 
   def status
-    return 'not accepted' unless object.accepted
-    object.published_at <= Time.current ? 'publishing' : 'will publish'
+    # NOTE: 0: not accepted, 1: will publish, 2: publishing
+    return 0 unless object.accepted
+    object.published_at <= Time.current ? 2 : 1
   end
 
   # def filter(keys)

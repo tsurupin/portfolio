@@ -1,9 +1,11 @@
 import { FETCH_TAGS } from '../constants';
 
-export default function (state = [], action) {
+const INITIAL_STATE = { tags: [] };
+
+export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_TAGS:
-      return [ ...action.payload.tags ];
+      return { tags: action.payload.tags };
     default:
       return state;
   }

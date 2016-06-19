@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts, togglePost } from '../../../actions/posts';
 import { Link } from 'react-router';
-import ItemRow from '../../../components/posts/indexes/ItemRow/index';
+import Item from '../../../components/posts/indexes/Item/index';
 import { Table, TableHeaderColumn, TableHeader, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -11,7 +11,14 @@ import styles from'./styles.scss';
 
 
 const propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      publishedAt: PropTypes.string,
+      status: PropTypes.number.isRequired,
+      accepted: PropTypes.bool.isRequired
+    }).isRequired
+  ).isRequired,
   page: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
@@ -38,20 +45,15 @@ class PostIndex extends Component {
   constructor(props) {
     super(props);
     
-    this.handleDeletePost = this.handleDeletePost.bind(this);
-    this.handleTogglePost = this.handleTogglePost.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     this.handleMovePage = this.handleMovePage.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPosts();
   }
-
-  handleDeletePost(post_id) {
-    this.props.deletePost(post_id);
-  }
-
-  handleTogglePost(post_id) {
+  
+  handleToggle(post_id) {
     this.props.togglePost(post_id);
   }
   
@@ -60,31 +62,31 @@ class PostIndex extends Component {
   }
 
   render() {
-    if(this.props.posts.length === 0 ) { return <div></div> }
+    if(this.props.posts.length === 0 ) { return <section /> }
     return (
       <section className={styles.root}>
         <Link to="/cms/posts/new">
-          <FloatingActionButton style={inlineStyles.floatButton} secondary={true}>
+          <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
             <ContentAdd />
           </FloatingActionButton>
         </Link>
+        <h1 className={styles.title}>Post</h1>
         <Table fixedHeader={true} fixedFooter={true}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow selectable={false}>
               <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>ID</TableHeaderColumn>
-              <TableHeaderColumn colSpan="3" style={inlineStyles.headerColumn}>Title</TableHeaderColumn>
+              <TableHeaderColumn colSpan="4" style={inlineStyles.headerColumn}>Title</TableHeaderColumn>
               <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>Status</TableHeaderColumn>
-              <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>Date</TableHeaderColumn>
+              <TableHeaderColumn colSpan="2" style={inlineStyles.headerColumn}>Date</TableHeaderColumn>
               <TableHeaderColumn colSpan="3" style={inlineStyles.headerColumn}>Action</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {this.props.posts.map((post, index) => (
-              <ItemRow
-                post={post}
-                key={index}
-                handleDeletePost={this.handleDeletePost}
-                handleTogglePost={this.handleTogglePost}
+              <Item
+                {...post}
+                key={post.id}
+                handleToggle={this.handleToggle}
               />
             ))}
           </TableBody>

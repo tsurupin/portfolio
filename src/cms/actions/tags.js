@@ -1,12 +1,22 @@
 import {
-  FETCH_TAGS, CREATE_TAG, DELETE_TAG
+  FETCH_TAGS, 
+  FETCH_TAGS_FORM,
+  CREATE_TAG, 
+  DELETE_TAG
 } from '../constants';
 
 
-export function fetchTags(response) {
-  
+export function fetchTags(tags) {
   return {
     type: FETCH_TAGS,
+    payload: { tags }
+  }
+}
+
+export function fetchTagsForm(response) {
+  
+  return {
+    type: FETCH_TAGS_FORM,
     payload: { 
       tags: response.tags,
       tagSuggestions: response.tagSuggestions
