@@ -17,8 +17,7 @@ const propTypes = {
   publishedAt: PropTypes.string,
   status: PropTypes.number.isRequired,
   accepted: PropTypes.bool.isRequired,
-  handleDeletePost: PropTypes.func.isRequired,
-  handleTogglePost: PropTypes.func.isRequired
+  handleToggle: PropTypes.func.isRequired
 };
 
 const inlineStyles = {
@@ -37,12 +36,12 @@ class ItemRow extends Component {
   constructor(props) {
     super(props);
 
-    this.handleTogglePost = this.handleTogglePost.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
 
-  handleTogglePost() {
-    this.props.handleTogglePost(this.props.id);
+  handleToggle() {
+    this.props.handleToggle(this.props.id);
   }
   
   render() {
@@ -84,7 +83,7 @@ class ItemRow extends Component {
               <EditorModeEdit />
             </IconButton>
           </Link>
-          <IconButton className={styles.toggleButton} onClick={this.handleTogglePost}>
+          <IconButton className={styles.toggleButton} onClick={this.handleToggle}>
             {publishIcon}
           </IconButton>
         </TableRowColumn>

@@ -1,72 +1,69 @@
 import React, { Component, PropTypes } from 'react';
-import TextDisplay from 'sharedComponents/textEditors/Display/index';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
+import { Link } from 'react-router';
+import IconButton from 'material-ui/IconButton';
+import { TableRow, TableRowColumn } from 'material-ui/Table';
+import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import ActionVisibility from 'material-ui/svg-icons/action/visibility';
+import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 import styles from './styles.scss';
 
-
-
 const propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  sourceUrl: PropTypes.string,
-  sampleUrl: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.string)
+  accepted: PropTypes.bool.isRequired,
+  handleToggle: PropTypes.func.isRequired
 };
 
 const inlineStyles = {
-  button: {
-    position: 'absolute',
-    bottom: 10,
-    right: 15
+  rowColumn:{
+    height: 70,
+    paddingLeft: 16,
+    paddingRight: 16,
+    fontSize: 14,
+    whiteSpace: 'normal',
+    overFlow: 'visible'
   }
 };
 
 class ItemRow extends Component {
+
   constructor(props) {
     super(props);
+
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
-  renderTags() {
-    console.log(this.props.tags)
-    if (this.props.tags.length > 0)
+
+  handleToggle() {
+    this.props.handleToggle(this.props.id);
+  }
+  
+  render() {
+    let publishIcon;
+    if (this.props.accepted) {
+      publishIcon =  <ActionVisibility className={styles.visibleIcon} />;
+    } else {
+      publishIcon = <ActionVisibilityOff className={styles.inVisibleIcon} />;
+    }
+
     return (
-      <div className={styles.tagList}>
-        {this.props.tags.map((tag, index) => {
-        return <span key={index} className={styles.tag}>{tag}</span>
-        })}
-      </div>
+      <TableRow>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{this.props.id}</TableRowColumn>
+        <TableRowColumn colSpan="6" style={inlineStyles.rowColumn} >{this.props.title}</TableRowColumn>
+        <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >
+          <Link to={`/cms/projects/${this.props.id}/edit`}>
+            <IconButton className={styles.button}>
+              <EditorModeEdit />
+            </IconButton>
+          </Link>
+          <IconButton className={styles.toggleButton} onClick={this.handleToggle}>
+            {publishIcon}
+          </IconButton>
+        </TableRowColumn>
+      </TableRow>
     )
   }
-
-  renderImage() {
-    if (this.props.image) {
-      return <img src={this.props.image} className={styles.image} />
-    }
-  }
-
-  renderDescription() {
-    if(this.props.description) {
-      return <TextDisplay description={this.props.description} />
-    }
-  }
-
-  render() {
-    return(
-      <div className={styles.root}>
-        <h2 className={styles.title}>{this.props.title}</h2>
-        <Divider />
-        {this.renderTags()}
-        {this.renderImage()}
-        {this.renderDescription()}
-        <a href={this.props.sourceUrl} target="_blank">
-          <RaisedButton label="FORK ON GITHUB" styles={inlineStyles.button} />
-        </a>
-      </div>
-    );
-  }
-}
+};
 
 ItemRow.propTypes = propTypes;
 

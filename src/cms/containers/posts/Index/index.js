@@ -38,20 +38,15 @@ class PostIndex extends Component {
   constructor(props) {
     super(props);
     
-    this.handleDeletePost = this.handleDeletePost.bind(this);
-    this.handleTogglePost = this.handleTogglePost.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     this.handleMovePage = this.handleMovePage.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPosts();
   }
-
-  handleDeletePost(post_id) {
-    this.props.deletePost(post_id);
-  }
-
-  handleTogglePost(post_id) {
+  
+  handleToggle(post_id) {
     this.props.togglePost(post_id);
   }
   
@@ -60,7 +55,7 @@ class PostIndex extends Component {
   }
 
   render() {
-    if(this.props.posts.length === 0 ) { return <div></div> }
+    if(this.props.posts.length === 0 ) { return <section /> }
     return (
       <section className={styles.root}>
         <Link to="/cms/posts/new">
@@ -84,8 +79,7 @@ class PostIndex extends Component {
               <ItemRow
                 {...post}
                 key={post.id}
-                handleDeletePost={this.handleDeletePost}
-                handleTogglePost={this.handleTogglePost}
+                handleTogglePost={this.handleToggle}
               />
             ))}
           </TableBody>
@@ -110,8 +104,6 @@ class PostIndex extends Component {
 PostIndex.propTypes = propTypes;
 
 function mapStateToProps(state) {
-  console.log(state)
-  console.log('map')
   return { 
     posts: state.posts.posts, 
     page: state.posts.page, 
