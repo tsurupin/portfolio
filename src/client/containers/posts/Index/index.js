@@ -63,7 +63,7 @@ class PostIndex extends Component {
         useWindowAsScrollContainer
       >
         {this.props.posts.map((post) => {
-          return <Item key={post.id} post={post} />;
+          return <Item key={post.id} {...post} />;
         })}
       </Infinite>
     );

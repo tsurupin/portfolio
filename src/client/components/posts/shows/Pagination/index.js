@@ -63,6 +63,7 @@ class Pagination extends Component {
   }
 }
 
+
 Pagination.propTypes = propTypes;
 
 export default Pagination;

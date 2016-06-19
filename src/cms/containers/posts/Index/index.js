@@ -11,7 +11,14 @@ import styles from'./styles.scss';
 
 
 const propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      publishedAt: PropTypes.string,
+      status: PropTypes.number.isRequired,
+      accepted: PropTypes.bool.isRequired
+    }).isRequired
+  ).isRequired,
   page: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
@@ -79,7 +86,7 @@ class PostIndex extends Component {
               <ItemRow
                 {...post}
                 key={post.id}
-                handleTogglePost={this.handleToggle}
+                handleToggle={this.handleToggle}
               />
             ))}
           </TableBody>

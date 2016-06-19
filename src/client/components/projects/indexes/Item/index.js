@@ -5,54 +5,47 @@ import TextDisplay from 'sharedComponents/textEditors/Display/index';
 import styles from './styles.scss';
 
 const propTypes = {
-  project: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired
-      }).isRequired
-    ).isRequired
-  }).isRequired
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  sourceUrl: PropTypes.string,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired
 };
 
-class Item extends Component {
+function Item({ title, description, image, sourceUrl, tags }) {
 
-  constructor(props) {
-    super(props);
-  }
-
-  renderText() {
-    if (this.props.project.description) {
-      return (
-        <div className={styles.description}>
-          <TextDisplay description={this.props.project.description}/>
-        </div>
-      )
-    }
-  }
-
-
-  render() {
-    return (
+  return (
     <div className={styles.root}>
-      <h3 className={styles.title}>{this.props.project.title} </h3>
-      <TagList tags={this.props.project.tags} path="projects" />
+      <h3 className={styles.title}>{title} </h3>
+      <TagList tags={tags} path="projects" />
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={this.props.project.image} alt={this.props.project.title} />
+        <img className={styles.image} src={image} alt={title} />
         <span className={styles.caption}>Card Subtitle</span>
       </div>
-      {this.renderText()}
-      <Link to={this.props.project.sourceUrl} className={styles.button}>
+      {renderText(description)}
+      <Link to={sourceUrl} className={styles.button}>
         Fork on GitHub
       </Link>
     </div>
     )
-  }
+  
 };
 
+
+function renderText(description) {
+  if (description) {
+    return (
+      <div className={styles.description}>
+        <TextDisplay description={description} />
+      </div>
+    )
+  }
+}
 Item.propTypes = propTypes;
 
 export default Item;

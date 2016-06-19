@@ -49,7 +49,7 @@ class HomeShow extends Component {
 
   renderRecentProject() {
     if (this.props.home.latestProject) {
-      return <RecentProject project={this.props.home.latestProject} />;
+      return <RecentProject {...this.props.home.latestProject} />;
     }
   }
 

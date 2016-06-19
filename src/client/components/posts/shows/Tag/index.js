@@ -7,26 +7,13 @@ const propTypes = {
   name : PropTypes.string.isRequired
 };
 
-class Tag extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  render() {
-    console.log(this.props)
-    // let path;
-    //
-    // if (/^\/cms*/.test(this.props.location.pathname) ){
-    //   path = `/cms/posts?tag=${this.props.id}`
-    // } else {
-    //   path = `/cms/posts?tag=${this.props.id}`
-    // }
-    return(
-      <Link to={`${this.props.adminPath}/posts?tag=${this.props.id}`} className={styles.root}>
-        {this.props.name}
-      </Link>
-    );
-  }
+function Tag({ adminPath, id, name }) {
+  return(
+    <Link to={`${adminPath}/posts?tag=${id}`} className={styles.root}>
+      {name}
+    </Link>
+  );
+
 }
 
 Tag.propTpes = propTypes;

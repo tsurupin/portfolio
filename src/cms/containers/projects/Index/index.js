@@ -10,7 +10,13 @@ import styles from './styles.scss';
 
 
 const propTypes =  {
-  projects: PropTypes.array.isRequired,
+  projects: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      accepted: PropTypes.bool.isRequired
+    }).isRequired
+  ).isRequired,
   fetchProjects: PropTypes.func.isRequired
 };
 

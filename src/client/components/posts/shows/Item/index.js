@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { TARGET_TYPES } from 'shared/constants';
 import Text from 'sharedComponents/posts/Text/index';
 import Twitter from 'sharedComponents/posts/Twitter/index';
@@ -10,30 +10,24 @@ const propTypes = {
   item: PropTypes.object.isRequired
 };
 
-class Item extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  renderComponent() {
-    switch (this.props.item.targetType) {
-      case TARGET_TYPES.IMAGE.NAME:
-        return <Image {...this.props.item} />;
-      case TARGET_TYPES.TWITTER.NAME:
-        return <Twitter {...this.props.item} />;
-      case TARGET_TYPES.TEXT.NAME:
-        return <Text {...this.props.item} />;
-      default:
-        return;
-    }
-  }
+function Item({ item }) {
+  return (
+    <div className={styles.root}>
+      {renderComponent(item)}
+    </div>
+  );
+}
 
-  render() {
-    return (
-      <div className={styles.root}>
-        {this.renderComponent()}
-      </div>
-    );
+function renderComponent(item) {
+  switch (item.targetType) {
+    case TARGET_TYPES.IMAGE.NAME:
+      return <Image {...item} />;
+    case TARGET_TYPES.TWITTER.NAME:
+      return <Twitter {...item} />;
+    case TARGET_TYPES.TEXT.NAME:
+      return <Text {...item} />;
+    default:
+      return;
   }
 }
 

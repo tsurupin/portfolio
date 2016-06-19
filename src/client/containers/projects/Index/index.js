@@ -39,7 +39,7 @@ class ProjectIndex extends Component {
         <h1 className={styles.title}>Projects</h1>
         <div className={styles.list}>
           {this.props.projects.map((project) => {
-            return <Item key={project.id} project={project} />
+            return <Item key={project.id} {...project} />
           })}
         </div>
       </section>
