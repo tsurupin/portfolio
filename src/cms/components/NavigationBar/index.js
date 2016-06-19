@@ -5,31 +5,44 @@ import AppBar  from 'material-ui/AppBar'
 import AvWeb from 'material-ui/svg-icons/av/web';
 import ActionDescription from 'material-ui/svg-icons/action/description';
 import SocialPerson from 'material-ui/svg-icons/social/person';
-import ExitToApp from 'material-ui/svg-icons/action/exit-to-app';
+import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import IconButton from 'material-ui/IconButton';
-import { signOut } from '../../actions/auths';
+import FontIcon from 'material-ui/FontIcon';
 import config from 'shared/config';
+import { signOut } from '../../actions/auths';
 
-
+const iconColor = '#8F8F8F';
 const inlineStyles = {
   appBar: {
+    boxSizing: 'border-box',
     backgroundColor: '#fff',
-    height: 50,
-    minHeight: 50
+    height: 56,
+    minHeight: 56,
+    padding: '4px 10%',
+    border: '1px solid #f3f3f3'
   },
   title: {
-    color: '#00796B',
+    color: iconColor,
     fontSize: '1.6rem',
-    fontFamily: 'Raleway,sans-serif',
+    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
     lineHeight: '5.0rem',
     cursor: 'pointer'
   },
   elementRight: {
-    height: 50,
-    minHeight: 50,
+    height: 48,
+    minHeight: 48,
+    marginTop: 0
+  },
+  gitHubButton: {
+    color: iconColor,
+    margin: 0
+  },
+  iconStyle: {
+    height: 48,
     marginTop: 0
   }
 };
+
 
 class NavigationBar extends Component {
 
@@ -60,29 +73,32 @@ class NavigationBar extends Component {
         style={inlineStyles.appBar}
         titleStyle={inlineStyles.title}
         onTitleTouchTap={this.handleHome}
+        zDepth={0}
         iconStyleRight={inlineStyles.elementRight}
         iconElementRight={
                     <div>
                         <Link to="/cms/about" >
                             <IconButton>
-                                <SocialPerson />
+                                <SocialPerson color={iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/cms/posts" >
                             <IconButton>
-                                <ActionDescription />
+                                <ActionDescription color={iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/cms/projects" >
                             <IconButton>
-                                <AvWeb />
+                                <AvWeb color={iconColor}/>
                             </IconButton>
                         </Link>
                         <a href={config.gitHubUrl} >
-                            <IconButton iconClassName="muidocs-icon-custom-github"/>
+                            <IconButton iconStyle={inlineStyles.gitHubButton}>
+                              <FontIcon className="muidocs-icon-custom-github" style={inlineStyles.iconStyles} />
+                            </IconButton>
                         </a>
                         <IconButton name="signOut" onClick={this.handleSignOut}>
-                            <ExitToApp />
+                            <ActionExitToApp color={iconColor} />
                         </IconButton>
                     </div>
                     }

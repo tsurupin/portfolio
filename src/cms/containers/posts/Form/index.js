@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPost, fetchNewPost, savePost } from 'cmsActions/posts';
+import { fetchPostForm, fetchNewPost, savePost } from 'cmsActions/posts';
 import { createItem, updateItem, deleteItem, moveItem } from 'cmsActions/items';
 import { createTag, deleteTag } from 'cmsActions/tags';
 import { connect } from 'react-redux';
@@ -57,7 +57,7 @@ class PostForm extends Component {
 
   componentWillMount() {
     if (this.props.params.id) {
-      this.props.fetchPost(this.props.params.id)
+      this.props.fetchPostForm(this.props.params.id)
     } else {
       this.props.fetchNewPost()
     }
@@ -143,7 +143,6 @@ class PostForm extends Component {
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
     const { handleSubmit, fields: { title, publishedAt } } = this.props;
     
-
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
         {this.renderLoadingIndicator()}
@@ -204,7 +203,7 @@ export const fields = [
 
 function mapStateToProps(state) {
   return {
-    initialValues: state.posts.post,
+    initialValues: state.posts.postForm,
     items: state.items,
     tags: state.tags.tags,
     tagSuggestions: state.tags.tagSuggestions
@@ -219,7 +218,7 @@ export default reduxForm({
   fields,
   validate
 }, mapStateToProps, {
-  fetchPost,
+  fetchPostForm,
   fetchNewPost,
   savePost,
   createItem,

@@ -64,25 +64,26 @@ class PostIndex extends Component {
     return (
       <section className={styles.root}>
         <Link to="/cms/posts/new">
-          <FloatingActionButton style={inlineStyles.floatButton} secondary={true}>
+          <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
             <ContentAdd />
           </FloatingActionButton>
         </Link>
+        <h1 className={styles.title}>Post</h1>
         <Table fixedHeader={true} fixedFooter={true}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow selectable={false}>
               <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>ID</TableHeaderColumn>
-              <TableHeaderColumn colSpan="3" style={inlineStyles.headerColumn}>Title</TableHeaderColumn>
+              <TableHeaderColumn colSpan="4" style={inlineStyles.headerColumn}>Title</TableHeaderColumn>
               <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>Status</TableHeaderColumn>
-              <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>Date</TableHeaderColumn>
+              <TableHeaderColumn colSpan="2" style={inlineStyles.headerColumn}>Date</TableHeaderColumn>
               <TableHeaderColumn colSpan="3" style={inlineStyles.headerColumn}>Action</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {this.props.posts.map((post, index) => (
               <ItemRow
-                post={post}
-                key={index}
+                {...post}
+                key={post.id}
                 handleDeletePost={this.handleDeletePost}
                 handleTogglePost={this.handleTogglePost}
               />
@@ -109,6 +110,8 @@ class PostIndex extends Component {
 PostIndex.propTypes = propTypes;
 
 function mapStateToProps(state) {
+  console.log(state)
+  console.log('map')
   return { 
     posts: state.posts.posts, 
     page: state.posts.page, 

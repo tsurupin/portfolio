@@ -38,7 +38,7 @@ class PostIndex extends Component {
   }
   
   handleLoad() {
-    if (this.canLoad()) {
+    if (this.canLoad) {
       let params = { page: this.props.page + 1 };
       
       if (this.props.params.hasOwnProperty("location")) {
@@ -48,7 +48,7 @@ class PostIndex extends Component {
     }
   }
 
-  canLoad() {
+  get canLoad() {
     return (this.props.total - (this.props.limit * this.props.page)) > 0
   }
 

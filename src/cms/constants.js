@@ -21,6 +21,7 @@ export const FETCH_POST         = createRequestTypes('FETCH_POST');
 export const FETCH_NEW_POST     = createRequestTypes('FETCH_NEW_POST');
 export const SAVE_POST          = createRequestTypes('SAVE_POST');
 export const TOGGLE_POST        = createRequestTypes('TOGGLE_POST');
+export const FETCH_POST_FORM    = createRequestTypes('FETCH_POST_FORM');
 
 export const FETCH_AUTHOR       = createRequestTypes('FETCH_AUTHOR');
 export const UPDATE_AUTHOR      = createRequestTypes('UPDATE_AUTHOR');

@@ -16,9 +16,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.root}>
         <NavigationBar />
-        <div className={styles.root}>
+        <div className={styles.container}>
           {this.props.children}
         </div>
         <Footer />

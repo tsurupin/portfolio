@@ -4,7 +4,7 @@ import styles from './styles.scss';
 const propTypes = {
   image: PropTypes.string.isRequired,
   caption: PropTypes.string
-}
+};
 
 function Image({ image, caption }) {
   return (

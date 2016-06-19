@@ -1,5 +1,8 @@
 import {
-  FETCH_TAGS, CREATE_TAG, DELETE_TAG
+  FETCH_TAGS,
+  FETCH_TAGS_FORM,
+  CREATE_TAG,
+  DELETE_TAG
 } from '../constants';
 
 const INITIAL_STATE = { tags: [], tagSuggestions: [] };
@@ -7,6 +10,9 @@ const INITIAL_STATE = { tags: [], tagSuggestions: [] };
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_TAGS:
+      return { tags: action.payload.tags };
+
+    case FETCH_TAGS_FORM:
       return { ...state, tags: action.payload.tags, tagSuggestions: action.payload.tagSuggestions };
 
     case CREATE_TAG:

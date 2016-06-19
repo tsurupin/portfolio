@@ -7,13 +7,11 @@ export function fetchAbout(){
   return dispatch => {
     return (
       request
-        .then(response => {
+        .then((response) => {
           dispatch(fetchAboutSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
-        .catch(error => {
-          dispatch(fetchAboutFailure(error))
-        })
+        .catch(error => dispatch(fetchAboutFailure(error)))
     )
   }
 }

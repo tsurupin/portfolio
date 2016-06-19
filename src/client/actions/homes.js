@@ -6,12 +6,8 @@ export function fetchHome() {
   return dispatch => {
     return (
       request
-        .then(response => {
-          dispatch(fetchHomeSuccess(response.data))
-        })
-        .catch(error => {
-          dispatch(fetchHomeFailure(error.data))
-        })
+        .then(response => dispatch(fetchHomeSuccess(response.data)))
+        .catch(error => dispatch(fetchHomeFailure(error.data)))
     )
   }
 }

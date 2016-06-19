@@ -1,12 +1,12 @@
 import {
   POST_PATH, 
-  FETCH_POSTS, 
-  FETCH_POST, 
+  FETCH_POSTS,
+  FETCH_POST_FORM,
   FETCH_NEW_POST,
   SAVE_POST,  
   TOGGLE_POST
 } from '../constants';
-import { fetchTags } from'./tags';
+import { fetchTagsFrom } from'./tags';
 import { fetchItems } from'./items';
 import { axios, trimPost } from '../utilities';
 import { browserHistory } from 'react-router';
@@ -16,17 +16,14 @@ export function fetchPosts(page = 1) {
   return dispatch => {
     return (
       request
-        .then(response => {
-          dispatch(fetchPostsSuccess(response.data))
-        })
-        .catch(error => {
-          dispatch(fetchPostsFailure(error.data))
-        })
+        .then(response => dispatch(fetchPostsSuccess(response.data)))
+        .catch(error => dispatch(fetchPostsFailure(error.data)))
     );
   };
 }
 
 function fetchPostsSuccess(response) {
+  console.log(response.posts)
   return {
     type: FETCH_POSTS.SUCCESS,
     payload: {
@@ -47,23 +44,23 @@ function fetchPostsFailure(error) {
 
 
 
-export function fetchPost(id) {
+export function fetchPostForm(id) {
   const request = axios.get(`${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchPostSuccess(response.data)))
-      .then(response => {
+      .then((response) => {
         dispatch(fetchItems(response.payload.items));
-        dispatch(fetchTags(response.payload.tags))
+        dispatch(fetchTagsFrom(response.payload.tags))
       })
       .catch(error => dispatch(fetchPostFailure(error.data)))
   };
 }
 
-function fetchPostSuccess(response) {
+function fetchPostFormSuccess(response) {
   console.log(response.items)
   return {
-    type: FETCH_POST.SUCCESS,
+    type: FETCH_POST_FORM.SUCCESS,
     payload: {
       post: {
         id: response.id,
@@ -80,9 +77,9 @@ function fetchPostSuccess(response) {
   };
 }
 
-function fetchPostFailure(error) {
+function fetchPostFormFailure(error) {
   return {
-    type: FETCH_POST.FAILURE,
+    type: FETCH_POST_FORM.FAILURE,
     payload: error
   };
 }
@@ -92,7 +89,7 @@ export function fetchNewPost() {
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewPostSuccess(response.data)))
-      .then(response => dispatch(fetchTags(response.payload.tags)))
+      .then(response => dispatch(fetchTagsFrom(response.payload.tags)))
       .catch(error => dispatch(fetchNewPostFailure(error.data)))
   };
 }

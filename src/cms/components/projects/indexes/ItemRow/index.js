@@ -29,6 +29,7 @@ class ItemRow extends Component {
   }
 
   renderTags() {
+    console.log(this.props.tags)
     if (this.props.tags.length > 0)
     return (
       <div className={styles.tagList}>

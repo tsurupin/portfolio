@@ -1,6 +1,7 @@
 import { 
   FETCH_POSTS, 
-  FETCH_POST, 
+  FETCH_POST,
+  FETCH_POST_FORM,
   FETCH_NEW_POST, 
   SAVE_POST,
   TOGGLE_POST 
@@ -10,8 +11,9 @@ const INITIAL_STATE = {
   posts: [], 
   limit: 20, 
   page: 1, 
-  total: 0, 
-  post: null, 
+  total: 0,
+  post: { title: '', publishedAt: '' },
+  postForm: null,
   error: null, 
   message: null 
 };
@@ -20,7 +22,7 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case SAVE_POST.REQUEST:
       return { ...state, loading: true };
-    
+
     case FETCH_POSTS.SUCCESS:
       return { 
         ...state, 
@@ -29,9 +31,14 @@ export default function (state = INITIAL_STATE, action) {
         page: action.payload.page, 
         total: action.payload.total 
       };
-    
+
     case FETCH_POST.SUCCESS:
-      return { ...state, post: action.payload.post };
+      return {...state, post: action.payload.post };
+
+    case FETCH_POST_FORM.SUCCESS:
+      console.log('cms')
+      console.log(action.payload.post);
+      return { ...state, postForm: action.payload.postForm };
     
     case FETCH_NEW_POST.SUCCESS:
       return { ...state };
@@ -47,6 +54,7 @@ export default function (state = INITIAL_STATE, action) {
     
     case FETCH_NEW_POST.FAILURE:
     case FETCH_POSTS.FAILURE:
+    case FETCH_POST_FORM.FAILURE:
     case FETCH_POST.FAILURE:
     case TOGGLE_POST.FAILURE:
       return { ...state, error: action.payload };

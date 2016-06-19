@@ -12,12 +12,8 @@ export function fetchProjects(params = {}) {
   return dispatch => {
     return (
       request
-        .then(response => {
-          dispatch(fetchProjectsSuccess(response.data))
-        })
-        .catch(error => {
-          dispatch(fetchProjectsFailure(error))
-        })
+        .then(response => dispatch(fetchProjectsSuccess(response.data)))
+        .catch(error => dispatch(fetchProjectsFailure(error)))
     );
   };
 }

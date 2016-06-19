@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './containers/App/index';
 import PostIndex from './containers/posts/Index/index';
 import PostForm from './containers/posts/Form/index';
+import PostShow from '../client/containers/posts/Show/index';
 import ProjectIndex from './containers/projects/Index/index';
 import ProjectForm from './containers/projects/Form/index';
 import HomeIndex from './containers/homes/Index/index';
@@ -20,7 +21,7 @@ export default (
       <Route path="/cms/posts" component={Authentication(PostIndex)}/>
       <Route path="/cms/posts/new" component={Authentication(PostForm)}/>
       <Route path="/cms/posts/:id/edit" component={Authentication(PostForm)}/>
-      <Route path="/cms/posts/:id" component={Authentication(PostForm)}/>
+      <Route path="/cms/posts/:id" component={PostShow}/>
       <Route path="/cms/projects" component={Authentication(ProjectIndex)}/>
       <Route path="/cms/projects/new" component={Authentication(ProjectForm)}/>
       <Route path="/cms/projects/:id/edit" component={Authentication(ProjectForm)}/>

@@ -6,7 +6,7 @@ const propTypes = {
   description: PropTypes.string.isRequired
 };
 
-function Text({ description}) {
+function Text({ description }) {
   return (
     <div className={styles.root}>
       <TextDisplay description={description} />

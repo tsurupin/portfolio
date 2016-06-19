@@ -24,6 +24,7 @@ class Item extends Component {
   }
   
   render() {
+    console.log(this.props.post)
     return (
         <div className={styles.root}>
           <Link to={`/posts/${this.props.post.id}`}>

@@ -13,8 +13,16 @@ class Tag extends Component {
   }
   
   render() {
+    console.log(this.props)
+    // let path;
+    //
+    // if (/^\/cms*/.test(this.props.location.pathname) ){
+    //   path = `/cms/posts?tag=${this.props.id}`
+    // } else {
+    //   path = `/cms/posts?tag=${this.props.id}`
+    // }
     return(
-      <Link to={`/posts?tag=${this.props.id}`} className={styles.root}>
+      <Link to={`${this.props.adminPath}/posts?tag=${this.props.id}`} className={styles.root}>
         {this.props.name}
       </Link>
     );
