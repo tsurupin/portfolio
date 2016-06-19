@@ -1,4 +1,4 @@
-module TaggingAttributesTrimer
+module TaggingAttributesTrimmer
   extend ActiveSupport::Concern
 
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze

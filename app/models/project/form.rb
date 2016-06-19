@@ -16,7 +16,7 @@
 class Project::Form < ActiveType::Record[Project]
   include DataURIToImageConverter
   include TaggingCleaner
-  include TaggingAttributesTrimer
+  include TaggingAttributesTrimmer
 
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
   PERMITTED_ATTRIBUTES = [

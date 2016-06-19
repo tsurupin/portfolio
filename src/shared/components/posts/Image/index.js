@@ -12,7 +12,7 @@ function Image({ image, caption }) {
       <img
         className={styles.image}
         src={image}
-        alt=''
+        alt={caption}
       />
       {renderCaption(caption)}
     </figure>
@@ -22,7 +22,7 @@ function Image({ image, caption }) {
 
 function renderCaption(caption) {
   if (caption) {
-    return <figcaption className={styles.caption}>item image</figcaption>;
+    return <figcaption className={styles.caption}>{caption}</figcaption>;
   }
 }
 

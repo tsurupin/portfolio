@@ -5,7 +5,20 @@ import Item from 'clientComponents/projects/indexes/Item/index';
 import styles from'./styles.scss';
 
 const propTypes = {
-  projects: PropTypes.array.isRequired,
+  projects: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      image: PropTypes.string,
+      sourceUrl: PropTypes.string,
+      tags: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired
+        }).isRequired
+      ).isRequired
+    }).isRequired
+  ).isRequired,
   fetchProjects: PropTypes.func.isRequired
 };
 
@@ -15,7 +28,7 @@ class ProjectIndex extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let params = {};
     if (this.props.hasOwnProperty("location")) {
       params.tag = this.props.location.query.tag

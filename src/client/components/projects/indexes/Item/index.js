@@ -6,9 +6,9 @@ import styles from './styles.scss';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  sourceUrl: PropTypes.string,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  sourceUrl: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -17,25 +17,15 @@ const propTypes = {
   ).isRequired
 };
 
-function Item({ title, description, image, sourceUrl, tags }) {
-
-  return (
-    <div className={styles.root}>
-      <h3 className={styles.title}>{title} </h3>
-      <TagList tags={tags} path="projects" />
-      <div className={styles.imageContainer}>
-        <img className={styles.image} src={image} alt={title} />
-        <span className={styles.caption}>Card Subtitle</span>
-      </div>
-      {renderText(description)}
+function renderLink(sourceUrl) {
+  if (sourceUrl) {
+    return (
       <Link to={sourceUrl} className={styles.button}>
         Fork on GitHub
       </Link>
-    </div>
-    )
-  
-};
-
+    );
+  }
+}
 
 function renderText(description) {
   if (description) {
@@ -46,6 +36,22 @@ function renderText(description) {
     )
   }
 }
+
+function Item({ title, description, image, caption, sourceUrl, tags }) {
+  return (
+    <div className={styles.root}>
+      <h3 className={styles.title}>{title} </h3>
+      <TagList tags={tags} path="projects" />
+      <div className={styles.imageContainer}>
+        <img className={styles.image} src={image} alt={title} />
+        <span className={styles.caption}>{caption}</span>
+      </div>
+      {renderText(description)}
+      {renderLink(sourceUrl)}
+    </div>
+  )
+}
+
 Item.propTypes = propTypes;
 
 export default Item;

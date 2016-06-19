@@ -5,6 +5,8 @@ import { TableRow, TableRowColumn } from 'material-ui/Table';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ActionVisibility from 'material-ui/svg-icons/action/visibility';
 import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+import ContentFlag from 'material-ui/svg-icons/content/flag';
+import NotificationPriorityHigh from 'material-ui/svg-icons/notification/priority-high';
 import styles from './styles.scss';
 
 const propTypes = {
@@ -25,7 +27,7 @@ const inlineStyles = {
   }
 };
 
-class ItemRow extends Component {
+class Item extends Component {
 
   constructor(props) {
     super(props);
@@ -39,25 +41,29 @@ class ItemRow extends Component {
   }
   
   render() {
-    let publishIcon;
+    let publishActionIcon;
+    let statusIcon;
     if (this.props.accepted) {
-      publishIcon =  <ActionVisibility className={styles.visibleIcon} />;
+      publishActionIcon =  <ActionVisibilityOff className={styles.inVisibleIcon} />;
+      statusIcon = <ContentFlag />;
     } else {
-      publishIcon = <ActionVisibilityOff className={styles.inVisibleIcon} />;
+      publishActionIcon = <ActionVisibility className={styles.visibleIcon} />;
+      statusIcon = <NotificationPriorityHigh />;
     }
 
     return (
       <TableRow>
         <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{this.props.id}</TableRowColumn>
         <TableRowColumn colSpan="6" style={inlineStyles.rowColumn} >{this.props.title}</TableRowColumn>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>
         <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >
           <Link to={`/cms/projects/${this.props.id}/edit`}>
             <IconButton className={styles.button}>
               <EditorModeEdit />
             </IconButton>
           </Link>
-          <IconButton className={styles.toggleButton} onClick={this.handleToggle}>
-            {publishIcon}
+          <IconButton className={styles.toggleButton} onClick={this.handleToggle} >
+            {publishActionIcon}
           </IconButton>
         </TableRowColumn>
       </TableRow>
@@ -65,6 +71,6 @@ class ItemRow extends Component {
   }
 };
 
-ItemRow.propTypes = propTypes;
+Item.propTypes = propTypes;
 
-export default ItemRow;
+export default Item;

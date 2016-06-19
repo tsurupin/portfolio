@@ -31,7 +31,7 @@ const inlineStyles = {
   }
 };
 
-class ItemRow extends Component {
+class Item extends Component {
 
   constructor(props) {
     super(props);
@@ -45,11 +45,11 @@ class ItemRow extends Component {
   }
   
   render() {
-    let publishIcon;
+    let publishActionIcon;
     if (this.props.accepted) {
-      publishIcon =  <ActionVisibility className={styles.visibleIcon} />;
+      publishActionIcon = <ActionVisibilityOff className={styles.inVisibleIcon} />;
     } else {
-      publishIcon = <ActionVisibilityOff className={styles.inVisibleIcon} />;
+      publishActionIcon = <ActionVisibility className={styles.visibleIcon} />;
     }
 
     // 0: not accepted, 1: will publish, 2: publishing
@@ -84,7 +84,7 @@ class ItemRow extends Component {
             </IconButton>
           </Link>
           <IconButton className={styles.toggleButton} onClick={this.handleToggle}>
-            {publishIcon}
+            {publishActionIcon}
           </IconButton>
         </TableRowColumn>
       </TableRow>
@@ -92,6 +92,6 @@ class ItemRow extends Component {
   }
 };
 
-ItemRow.propTypes = propTypes;
+Item.propTypes = propTypes;
 
-export default ItemRow;
+export default Item;

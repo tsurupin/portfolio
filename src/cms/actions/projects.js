@@ -22,6 +22,7 @@ export function fetchProjects() {
 }
 
 function fetchProjectsSuccess(response) {
+  console.log('admin')
   return {
     type: FETCH_PROJECTS.SUCCESS,
     payload: {

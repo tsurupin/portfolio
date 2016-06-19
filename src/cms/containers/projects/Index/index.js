@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchProjects, toggleProject } from '../../../actions/projects';
-import ItemRow from '../../../components/projects/indexes/ItemRow/index';
+import Item from '../../../components/projects/indexes/Item/index';
 import { Table, TableHeaderColumn, TableHeader, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -66,12 +66,13 @@ class ProjectIndex extends Component {
             <TableRow selectable={false}>
               <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>ID</TableHeaderColumn>
               <TableHeaderColumn colSpan="6" style={inlineStyles.headerColumn}>Title</TableHeaderColumn>
+              <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>Status</TableHeaderColumn>
               <TableHeaderColumn colSpan="2" style={inlineStyles.headerColumn}>Action</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {this.props.projects.map((project, index) => (
-              <ItemRow
+              <Item
                 {...project}
                 key={project.id}
                 handleToggle={this.handleToggle}

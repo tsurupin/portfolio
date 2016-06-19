@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts, togglePost } from '../../../actions/posts';
 import { Link } from 'react-router';
-import ItemRow from '../../../components/posts/indexes/ItemRow/index';
+import Item from '../../../components/posts/indexes/Item/index';
 import { Table, TableHeaderColumn, TableHeader, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -83,7 +83,7 @@ class PostIndex extends Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {this.props.posts.map((post, index) => (
-              <ItemRow
+              <Item
                 {...post}
                 key={post.id}
                 handleToggle={this.handleToggle}
