@@ -93,8 +93,6 @@ class PostItemForm extends Component {
   }
 
   render() {
-    console.log('form')
-    console.log(this.props)
     return this.renderComponent();
   }
 
