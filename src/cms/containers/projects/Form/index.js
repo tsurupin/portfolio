@@ -48,7 +48,7 @@ class ProjectForm extends Component {
       this.props.fetchNewProject()
     }
   }
-
+  
   handleSubmit(props) {
     this.props.saveProject(
       {
@@ -74,6 +74,8 @@ class ProjectForm extends Component {
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
     const { handleSubmit, fields: { title, caption, sourceUrl, image, description } } = this.props;
 
+    console.log(this.props.fields)
+    console.log(description)
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
         <h2 className={styles.heading}>{headerLabel}</h2>
@@ -119,6 +121,7 @@ class ProjectForm extends Component {
           type="submit"
           label={submitButtonLabel}
           secondary={true}
+          defaultValue=""
           style={inlineStyles.submitButton}
         />
       </form>

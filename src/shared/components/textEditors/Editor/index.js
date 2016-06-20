@@ -33,7 +33,7 @@ export default class TextEditor extends Component {
 
   constructor(props) {
     super(props);
-
+    
     if(props.value) {
       const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
@@ -66,9 +66,9 @@ export default class TextEditor extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.value && nextProps.value) {
       const blocks = convertFromRaw(JSON.parse(nextProps.value));
-      this.setState({
-        editorState: EditorState.createWithContent(blocks, decorator),
-      })
+      this.setState({ editorState: EditorState.createWithContent(blocks, decorator) });
+    } else if (!nextProps.value) {
+      this.state = { editorState: EditorState.createEmpty(decorator) };
     }
   }
 

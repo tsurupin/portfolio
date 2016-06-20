@@ -47,10 +47,8 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, message: 'Successfully Saved', loading: false };
     
     case TOGGLE_POST.SUCCESS:
-      let post = state.posts.slice(action.payload.sortRank, action.payload.sortRank+1);
-      post[0].accepted = action.payload.accepted;
-      post[0].status = action.payload.status;
-      const posts = [...state.posts.slice(0, action.payload.sortRank), post[0], ...state.posts.slice(action.payload.sortRank + 1)];
+      const post = { ...state.posts[action.payload.sortRank], ...action.payload };
+      const posts = [...state.posts.slice(0, action.payload.sortRank), post, ...state.posts.slice(action.payload.sortRank + 1)];
       return { ...state, posts };
     case SAVE_POST.FAILURE:
       return { ...state, error: action.payload, loading: false };

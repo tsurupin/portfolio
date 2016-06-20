@@ -14,6 +14,7 @@ export function fetchTags(tags) {
 }
 
 export function fetchTagsForm(response) {
+  console.log(response)
   
   return {
     type: FETCH_TAGS_FORM,

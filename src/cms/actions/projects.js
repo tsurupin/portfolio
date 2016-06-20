@@ -48,6 +48,7 @@ export function fetchProject(id) {
 }
 
 function fetchProjectSuccess(response) {
+  console.log(response)
   return {
     type: FETCH_PROJECT.SUCCESS,
     payload: {
@@ -154,5 +155,4 @@ function toggleProjectFailure(error) {
     payload: error
   }
 }
-
 

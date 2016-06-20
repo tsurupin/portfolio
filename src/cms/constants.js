@@ -35,7 +35,6 @@ export const SIGN_OUT           = createRequestTypes('SIGN_OUT');
 export const AUTH               = createRequestTypes('AUTH');
 export const FETCH_TWEET        = createRequestTypes('FETCH_TWEET');
 
-
 export const FETCH_ITEMS        = 'FETCH_ITEMS';
 export const CREATE_ITEM        = 'CREATE_ITEM';
 export const UPDATE_ITEM        = 'UPDATE_ITEM';
@@ -51,6 +50,7 @@ export const UPDATE_SOCIAL_ACCOUNT = 'UPDATE_SOCIAL_ACCOUNT';
 export const DELETE_SOCIAL_ACCOUNT = 'DELETE_SOCIAL_ACCOUNT';
 
 export const FETCH_TAGS = 'FETCH_TAGS';
+export const FETCH_TAGS_FORM = 'FETCH_TAGS_FORM';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 

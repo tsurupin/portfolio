@@ -20,7 +20,7 @@ class Project::Form < ActiveType::Record[Project]
 
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
   PERMITTED_ATTRIBUTES = [
-    :title, :description, :image, :source_url, :caption,
+    :id, :title, :description, :image, :source_url, :caption,
     taggings_attributes: [:id, :text]
   ].freeze
 
@@ -37,6 +37,7 @@ class Project::Form < ActiveType::Record[Project]
     ActiveRecord::Base.transaction do
       delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
+      p params
 
       params['image'] = convert_data_uri_to_upload(params['image']) if params['image']&.start_with?('data')
       update!(params)

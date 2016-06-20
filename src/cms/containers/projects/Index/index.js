@@ -43,7 +43,6 @@ class ProjectIndex extends Component {
   }
 
   componentDidMount() {
-    console.log('reload')
     this.props.fetchProjects();
   }
   
