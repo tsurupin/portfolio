@@ -43,11 +43,12 @@ class ProjectIndex extends Component {
   }
 
   componentDidMount() {
+    console.log('reload')
     this.props.fetchProjects();
   }
   
-  handleToggle(id) {
-    this.props.toggleProject(id);
+  handleToggle(sortRank, id) {
+    this.props.toggleProject(sortRank, id);
   }
   
 
@@ -75,6 +76,7 @@ class ProjectIndex extends Component {
               <Item
                 {...project}
                 key={project.id}
+                sortRank={index}
                 handleToggle={this.handleToggle}
               />
             ))}

@@ -10,11 +10,6 @@ class PostsSerializer < ActiveModel::Serializer
   def status
     # NOTE: 0: not accepted, 1: will publish, 2: publishing
     return 0 unless object.accepted
-    object.published_at <= Time.current ? 2 : 1
+    (object.published_at && object.published_at <= Time.current) ? 2 : 1
   end
-
-  # def filter(keys)
-  #   keys.delete :tags if scope.try(:admin?)
-  #   keys.delete :status unless scope.try(:admin?)
-  # end
 end

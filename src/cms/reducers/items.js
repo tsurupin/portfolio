@@ -25,10 +25,10 @@ export default function (state = [], action) {
       }
       return state;
    
-    case FETCH_TWEET.SUCCESS:
-      const item = _.merge(state[action.payload.sortRank], action.payload.attributes);
-      return [...state.slice(0, action.payload.sortRank), item, ...state.slice(action.payload.sortRank + 1)];
-      
+    // case FETCH_TWEET.SUCCESS:
+    //   const item = _.merge(state[action.payload.sortRank], action.payload.attributes);
+    //   return [...state.slice(0, action.payload.sortRank), item, ...state.slice(action.payload.sortRank + 1)];
+    //  
     case MOVE_ITEM_UP:
       if (state.length > 0) {
         const subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);

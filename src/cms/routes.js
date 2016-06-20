@@ -14,6 +14,7 @@ import AuthorSinUp from './containers/authors/SignUp/index';
 import AuthorSingIn from './containers/authors/SignIn/index';
 import NotFound from 'shared/containers/NotFound/index';
 import Authentication from './containers/shared/Authentication/index';
+import Alert from './containers/shared/Alert/index';
 
 export default (
   <Route path="/cms" component={App}>
@@ -28,7 +29,7 @@ export default (
       <Route path="/cms/projects/:id/edit" component={Authentication(ProjectForm)}/>
       <Route path="/cms/sign-up" component={AuthorSinUp}/>
       <Route path="/cms/sign-in" component={AuthorSingIn}/>
-      <Route path="/cms/about" component={AboutShow}/>
+      <Route path="/cms/about" component={Alert(AboutShow)}/>
       <Route path="/cms/about/edit" component={Authentication(AuthorForm)}/>
       <Route path="*" component={NotFound} />
   </ Route>

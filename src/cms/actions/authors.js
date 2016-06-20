@@ -1,14 +1,15 @@
 import { axios, trimAuthor } from '../utilities';
 import { AUTHOR_PATH, UPDATE_AUTHOR, FETCH_AUTHOR } from "../constants";
 import { browserHistory } from 'react-router';
-import { fetchSocialAccounts } from'./socialAccounts';
+import { fetchSocialAccounts } from './socialAccounts';
+import { createAlert } from './alerts';
 
 export function fetchAuthor() {
   const request = axios.get(`${AUTHOR_PATH}/`);
   return dispatch => {
     return (
       request
-        .then(response => {
+        .then((response) => {
           dispatch(fetchAuthorSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
@@ -44,11 +45,18 @@ export function updateAuthor(props) {
   const request = axios.patch(`${AUTHOR_PATH}`, { author });
   
   return dispatch => {
-    dispatch(updateAuthorRequest());
+   // dispatch(updateAuthorRequest());
     return (
       request
-        .then(() => dispatch(updateAuthorSuccess()))
-        .catch(error => dispatch(updateAuthorFailure(error.data)))
+        .then(() => {
+          dispatch(updateAuthorSuccess());
+          console.log('hoge')
+          //dispatch(createAlert('succeeded to update', 'success'))
+        })
+        .catch(error => {
+          console.log(error)
+          //dispatch(createAlert(`failed to update. ${error}`, 'error'))
+        })
     );
   };
 }
@@ -60,7 +68,7 @@ export function updateAuthorRequest() {
 }
 
 function updateAuthorSuccess() {
-  browserHistory.push('/cms');
+  browserHistory.push('/cms/about');
 }
 
 function updateAuthorFailure(error) {

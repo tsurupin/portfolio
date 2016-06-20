@@ -53,8 +53,8 @@ class PostIndex extends Component {
     this.props.fetchPosts();
   }
   
-  handleToggle(post_id) {
-    this.props.togglePost(post_id);
+  handleToggle(sortRank, post_id) {
+    this.props.togglePost(sortRank, post_id);
   }
   
   handleMovePage(page) {
@@ -86,6 +86,7 @@ class PostIndex extends Component {
               <Item
                 {...post}
                 key={post.id}
+                sortRank={index}
                 handleToggle={this.handleToggle}
               />
             ))}

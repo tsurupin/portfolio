@@ -45,10 +45,13 @@ export default function (state = INITIAL_STATE, action) {
     
     case SAVE_POST.SUCCESS:
       return { ...state, message: 'Successfully Saved', loading: false };
-
+    
     case TOGGLE_POST.SUCCESS:
-      return { ...state, message: 'Successfully Change Published Status' };
-
+      let post = state.posts.slice(action.payload.sortRank, action.payload.sortRank+1);
+      post[0].accepted = action.payload.accepted;
+      post[0].status = action.payload.status;
+      const posts = [...state.posts.slice(0, action.payload.sortRank), post[0], ...state.posts.slice(action.payload.sortRank + 1)];
+      return { ...state, posts };
     case SAVE_POST.FAILURE:
       return { ...state, error: action.payload, loading: false };
     

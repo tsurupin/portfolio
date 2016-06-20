@@ -150,21 +150,28 @@ function savePostFailure(error) {
   }
 }
 
-export function togglePost(id) {
+export function togglePost(sortRank, id) {
   const request = axios.patch(`${POST_PATH}/${id}/acceptance`);
   return dispatch => {
     return (
       request
-        .then(() => dispatch(togglePostSuccess()))
+        .then(response => dispatch(togglePostSuccess(sortRank, response.data)))
         .catch(error => dispatch(togglePostFailure(error.data)))
     )
   }
 }
 
-function togglePostSuccess() {
-  browserHistory.push('/cms/posts');
+function togglePostSuccess(sortRank, response) {
+  console.log(response)
+  return {
+    type: TOGGLE_POST.SUCCESS,
+    payload: {
+      sortRank,
+      status: response.status,
+      accepted: response.accepted
+    }
+  }
 }
-
 function togglePostFailure(error) {
   return {
     type: TOGGLE_POST.FAILURE,

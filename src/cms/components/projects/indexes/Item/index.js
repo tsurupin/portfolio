@@ -13,6 +13,7 @@ const propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   accepted: PropTypes.bool.isRequired,
+  sortRank: PropTypes.number.isRequired,
   handleToggle: PropTypes.func.isRequired
 };
 
@@ -40,7 +41,7 @@ class Item extends Component {
 
 
   handleToggle() {
-    this.props.handleToggle(this.props.id);
+    this.props.handleToggle(this.props.sortRank, this.props.id);
   }
   
   render() {

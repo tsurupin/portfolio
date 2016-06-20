@@ -5,6 +5,7 @@ import {
   SAVE_PROJECT,
   TOGGLE_PROJECT
 } from '../constants';
+import update from 'react-addons-update';
 
 const INITIAL_STATE = { 
   projects: [],
@@ -20,6 +21,11 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, project: action.payload.project };
     case FETCH_NEW_PROJECT.SUCCESS:
       return { ...state };
+    case TOGGLE_PROJECT.SUCCESS:
+      let project = state.projects.slice(action.payload.sortRank, action.payload.sortRank+1);
+      project[0].accepted = action.payload.accepted;
+      const projects = [...state.projects.slice(0, action.payload.sortRank), project[0], ...state.projects.slice(action.payload.sortRank + 1)];
+      return { ...state, projects };
     case FETCH_PROJECTS.FAILURE:
     case FETCH_PROJECT.FAILURE:
     case SAVE_PROJECT.FAILURE:

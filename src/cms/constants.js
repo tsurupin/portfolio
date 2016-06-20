@@ -54,6 +54,9 @@ export const FETCH_TAGS = 'FETCH_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
+export const CREATE_ALERT = 'CREATE_ALERT';
+export const DELETE_ALERT = 'DELETE_ALERT';
+
 export const TARGET_TYPES = {
   TWITTER: {
     NAME: "ItemTwitter",

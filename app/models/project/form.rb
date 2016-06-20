@@ -33,7 +33,7 @@ class Project::Form < ActiveType::Record[Project]
 
   accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }
 
-  def save(params)
+  def save_from_associations(params)
     ActiveRecord::Base.transaction do
       delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])

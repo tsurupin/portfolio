@@ -22,6 +22,8 @@ class Post::Form < ActiveType::Record[Post]
     taggings_attributes: [:id, :text]
   ].freeze
 
+  validates :published_at, presence: true, if: proc { |post| post.accepted }
+
   accepts_nested_attributes_for :items, reject_if: ->(attributes) { attributes['target_type'].blank? }
   accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }
 
