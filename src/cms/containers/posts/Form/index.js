@@ -39,6 +39,9 @@ const inlineStyles = {
   indicator: {
     display: 'inline-block', 
     position: 'relative'
+  },
+  textField: {
+    marginBottom: 10
   }
 };
 
@@ -130,20 +133,20 @@ class PostForm extends Component {
     );
   }
 
-  renderLoadingIndicator() {
-    if (this.props.loading) {
-      return (
-        <RefreshIndicator
-          size={40}
-          left={100}
-          top={100}
-          loadingColor={"#FF9800"}
-          status="loading"
-          style={inlineStyles.indicator}
-        />
-      );
-    }
-  }
+  // renderLoadingIndicator() {
+  //   if (this.props.loading) {
+  //     return (
+  //       <RefreshIndicator
+  //         size={40}
+  //         left={100}
+  //         top={100}
+  //         loadingColor={"#FF9800"}
+  //         status="loading"
+  //         style={inlineStyles.indicator}
+  //       />
+  //     );
+  //   }
+  // }
 
   
   render() {
@@ -152,7 +155,6 @@ class PostForm extends Component {
     
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
-        {this.renderLoadingIndicator()}
         <h2 className={styles.heading}>Create New Post</h2>
         <TextField
           {...title}
@@ -160,24 +162,26 @@ class PostForm extends Component {
           hintText="Enter Title"
           fullWidth={true}
           errorText={title.touched && title.error ? title.error : ''}
+          style={inlineStyles.textField}
         />
         <TextField
           {...leadSentence}
           floatingLabelText="Lead Sentence"
           hintText="Enter Lead Sentence"
           fullWidth={true}
+          style={inlineStyles.textField}
         />
-        <br/>
-        <br/>
-        <label className={styles.label}>Published At</label>
-        <DatePicker
-          className={styles.datapicker}
-          container="inline"
-          autoOk={true}
-          placeholder="PublishedAt"
-          errorText={publishedAt.touched && publishedAt.error ? publishedAt.error : ''}
-          {...publishedAt}
-        />
+        <div className={styles.dateField} >
+          <label className={styles.label}>Published At</label>
+          <DatePicker
+            className={styles.datapicker}
+            container="inline"
+            autoOk={true}
+            placeholder="PublishedAt"
+            errorText={publishedAt.touched && publishedAt.error ? publishedAt.error : ''}
+            {...publishedAt}
+          />
+        </div>
         <TagField
           tags={this.props.tags}
           suggestions={this.props.tagSuggestions}

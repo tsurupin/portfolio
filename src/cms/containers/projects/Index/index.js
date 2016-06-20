@@ -52,7 +52,9 @@ class ProjectIndex extends Component {
   
 
   render() {
-    if(this.props.projects.length === 0 ) { return <section /> }
+    if(this.props.projects.length === 0 ) {
+      return <section />
+    }
     return (
       <section className={styles.root}>
         <Link to="/cms/projects/new">
