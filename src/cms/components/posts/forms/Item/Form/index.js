@@ -17,7 +17,8 @@ const propTypes = {
   }).isRequired,
   sortRank: PropTypes.number.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired
+  handleDeleteItem: PropTypes.func.isRequired,
+  handleCancelItem: PropTypes.func.isRequired
 };
 
 class PostItemForm extends Component {
@@ -26,6 +27,7 @@ class PostItemForm extends Component {
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
+    this.handleCancelItem = this.handleCancelItem.bind(this);
   }
 
   handleUpdateItem(updatedProps) {
@@ -37,6 +39,12 @@ class PostItemForm extends Component {
 
   handleDeleteItem() {
     this.props.handleDeleteItem(this.props.sortRank)
+  }
+  
+  handleCancelItem() {
+    this.props.handleCancelItem(
+      this.props.sortRank, { ...this.props.item, editing: false }
+    )
   }
 
   renderComponent() {
@@ -51,6 +59,7 @@ class PostItemForm extends Component {
               caption: this.props.item.caption
             }}
             handleUpdateItem={this.handleUpdateItem}
+            deleteButton={this.renderDeleteButton()}
             cancelButton={this.renderCancelButton()}
           />
         );
@@ -62,6 +71,7 @@ class PostItemForm extends Component {
             initialValues={{sourceURL: this.props.item.tweetId}}
             sortRank={this.props.sortRank}
             handleUpdateItem={this.handleUpdateItem}
+            deleteButton={this.renderDeleteButton()}
             cancelButton={this.renderCancelButton()}
           />
         );
@@ -71,6 +81,7 @@ class PostItemForm extends Component {
             targetType={this.props.item.targetType}
             initialValues={{description: this.props.item.description}}
             handleUpdateItem={this.handleUpdateItem}
+            deleteButton={this.renderDeleteButton()}
             cancelButton={this.renderCancelButton()}
           />
         );
@@ -80,14 +91,27 @@ class PostItemForm extends Component {
   }
   
 
+  renderDeleteButton() {
+    return (
+      <RaisedButton
+        className={styles.cancelButton}
+        label="Delete"
+        labelPosition="after"
+        icon={<ContentRemoveCircle />}
+        onClick={this.handleDeleteItem}
+      />
+    );
+  }
+
   renderCancelButton() {
+    if (this.props.item.isNew) { return }
     return (
       <RaisedButton
         className={styles.cancelButton}
         label="Cancel"
         labelPosition="after"
         icon={<ContentRemoveCircle />}
-        onClick={this.handleDeleteItem}
+        onClick={this.handleCancelItem}
       />
     );
   }

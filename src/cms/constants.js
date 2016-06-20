@@ -33,12 +33,12 @@ export const TOGGLE_PROJECT     = createRequestTypes('TOGGLE_PROJECT');
 
 export const SIGN_OUT           = createRequestTypes('SIGN_OUT');
 export const AUTH               = createRequestTypes('AUTH');
-export const FETCH_TWEET        = createRequestTypes('FETCH_TWEET');
 
 export const FETCH_ITEMS        = 'FETCH_ITEMS';
 export const CREATE_ITEM        = 'CREATE_ITEM';
 export const UPDATE_ITEM        = 'UPDATE_ITEM';
 export const DELETE_ITEM        = 'DELETE_ITEM';
+export const CANCEL_ITEM        = 'CANCEL_ITEM';
 export const MOVE_ITEM_TOP      = 'MOVE_ITEM_TOP';
 export const MOVE_ITEM_UP       = 'MOVE_ITEM_UP';
 export const MOVE_ITEM_DOWN     = 'MOVE_ITEM_DOWN';

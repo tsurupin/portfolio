@@ -9,7 +9,8 @@ import styles from '../shared/styles.scss';
 
 const propTypes = {
   fields: PropTypes.object.isRequired,
-  cancelButton: PropTypes.element.isRequired,
+  cancelButton: PropTypes.element,
+  deleteButton: PropTypes.element.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
 
@@ -58,6 +59,7 @@ class Image extends Component {
         />
         <div className={styles.submitBox}>
           {this.props.cancelButton}
+          {this.props.deleteButton}
           <RaisedButton
             className={styles.submitButton}
             label='Save'

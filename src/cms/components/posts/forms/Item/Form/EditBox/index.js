@@ -5,6 +5,11 @@ import Subheader from 'material-ui/Subheader';
 import EditBoxItem from './EditBoxItem/index';
 import styles from './styles.scss';
 
+
+const propTypes = {
+  handleAddItem: PropTypes.func.isRequired
+};
+
 const TARGET_TYPE_LIST = [
   TARGET_TYPES.TEXT,
   TARGET_TYPES.IMAGE,
@@ -18,36 +23,27 @@ const inlineStyles = {
   }
 };
 
-class EditBox extends Component {
-
-  constructor(props) {
-    super(...props);
-  }
-
-  render() {
-    return (
-      <List className={styles.root}>
-        <Subheader style={inlineStyles.subHeader}>Add Item</Subheader>
-        <ul className={styles.list}>
-          {TARGET_TYPE_LIST.map((targetType, index) => {
-            return (
-              <EditBoxItem
-                key={index}
-                name={targetType.NAME}
-                label={targetType.LABEL}
-                image={targetType.IMAGE}
-                handleAddItem={this.props.handleAddItem}
-              />
-            );
-          })}
-        </ul>
-      </List>
-    );
-  }
+function EditBox({ handleAddItem }) {
+  return (
+    <List className={styles.root}>
+      <Subheader style={inlineStyles.subHeader}>Add Item</Subheader>
+      <ul className={styles.list}>
+        {TARGET_TYPE_LIST.map((targetType, index) => {
+          return (
+            <EditBoxItem
+              key={index}
+              name={targetType.NAME}
+              label={targetType.LABEL}
+              image={targetType.IMAGE}
+              handleAddItem={handleAddItem}
+            />
+          );
+        })}
+      </ul>
+    </List>
+  );
 }
 
-EditBox.propTypes = {
-  handleAddItem: PropTypes.func.isRequired
-};
+EditBox.propTypes = propTypes;
 
 export default EditBox;

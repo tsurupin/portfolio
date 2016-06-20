@@ -8,6 +8,7 @@ const propTypes = {
   item: PropTypes.object.isRequired,
   totalCount: PropTypes.number.isRequired,
   handleDeleteItem: PropTypes.func.isRequired,
+  handleCancelItem: PropTypes.func.isRequired,
   handleMoveItem: PropTypes.func.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
@@ -21,6 +22,7 @@ class Item extends Component {
           sortRank={this.props.sortRank}
           item={this.props.item}
           handleDeleteItem={this.props.handleDeleteItem}
+          handleCancelItem={this.props.handleCancelItem}
           handleUpdateItem={this.props.handleUpdateItem}
         />
       );

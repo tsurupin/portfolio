@@ -9,7 +9,8 @@ import styles from '../shared/styles.scss';
 const propTypes = {
   targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
-  cancelButton: PropTypes.object.isRequired,
+  cancelButton: PropTypes.object,
+  deleteButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
 
@@ -36,7 +37,6 @@ class Text extends Component {
   }
 
   render() {
-    
     const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className={styles.root}>
@@ -48,6 +48,7 @@ class Text extends Component {
         {this.renderErrorMessage()}
         <div className={styles.submitBox}>
           {this.props.cancelButton}
+          {this.props.deleteButton}
           <RaisedButton
             className={styles.submitButton}
             label='Save'

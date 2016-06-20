@@ -2,7 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import styles from './styles.scss';
 
-export default class EditBoxItem extends Component {
+const propTypes = {
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  handleAddItem: PropTypes.func.isRequired
+};
+
+class EditBoxItem extends Component {
 
   constructor(props) {
     super(props);
@@ -30,9 +37,6 @@ export default class EditBoxItem extends Component {
   }
 }
 
-EditBoxItem.propTypes = {
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  handleAddItem: PropTypes.func.isRequired
-};
+EditBoxItem.propTypes = propTypes;
+
+export default EditBoxItem;

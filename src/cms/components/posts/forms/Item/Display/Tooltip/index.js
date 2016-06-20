@@ -42,7 +42,6 @@ class Tooltip extends Component {
   }
 
   render() {
-    console.log('tooltip')
     return (
       <div className={styles.root}>
         <IconMenu

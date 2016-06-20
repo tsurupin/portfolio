@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchEditPost, fetchNewPost, savePost } from 'cmsActions/posts';
-import { createItem, updateItem, deleteItem, moveItem } from 'cmsActions/items';
+import { createItem, updateItem, deleteItem, moveItem, cancelItem } from 'cmsActions/items';
 import { createTag, deleteTag } from 'cmsActions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
@@ -23,6 +23,7 @@ const propTypes = {
   savePost: PropTypes.func.isRequired,
   createItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
+  cancelItem: PropTypes.func.isRequired,
   updateItem: PropTypes.func.isRequired,
   moveItem: PropTypes.func.isRequired,
   createTag: PropTypes.func.isRequired,
@@ -50,6 +51,7 @@ class PostForm extends Component {
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
+    this.handleCancelItem = this.handleCancelItem.bind(this);
     this.handleMoveItem = this.handleMoveItem.bind(this);
     this.handleAddTag = this.handleAddTag.bind(this);
     this.handleDeleteTag = this.handleDeleteTag.bind(this);
@@ -86,6 +88,10 @@ class PostForm extends Component {
   handleDeleteItem(sortRank) {
     this.props.deleteItem(sortRank);
   }
+  
+  handleCancelItem(sortRank, item) {
+    this.props.cancelItem(sortRank, item);
+  }
 
   handleMoveItem(sortRank, type) {
     this.props.moveItem(sortRank, type)
@@ -114,6 +120,7 @@ class PostForm extends Component {
                 totalCount={this.props.items.length-1}
                 handleUpdateItem={this.handleUpdateItem}
                 handleDeleteItem={this.handleDeleteItem}
+                handleCancelItem={this.handleCancelItem}
                 handleMoveItem={this.handleMoveItem}
               />
             );
@@ -229,6 +236,7 @@ export default reduxForm({
   savePost,
   createItem,
   deleteItem,
+  cancelItem,
   updateItem,
   moveItem,
   createTag,

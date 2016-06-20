@@ -6,6 +6,15 @@ import { reduxForm } from 'redux-form';
 import styles from '../shared/styles.scss';
 
 
+const propTypes = {
+  targetType: PropTypes.string.isRequired,
+  sortRank: PropTypes.number.isRequired,
+  twitterId: PropTypes.string,
+  cancelButton: PropTypes.object,
+  deleteButton: PropTypes.object.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired
+};
 const inlineStyles = {
   submitButton: { marginLeft: 12 },
   indicator: {display: 'inline-block', position: 'relative'}
@@ -41,6 +50,7 @@ class Twitter extends Component {
         />
         <div className={styles.submitBox}>
           {this.props.cancelButton}
+          {this.props.deleteButton}
           <RaisedButton
             className={styles.submitButton}
             label='Save'
@@ -55,14 +65,7 @@ class Twitter extends Component {
   }
 }
 
-Twitter.propTypes = {
-  targetType: PropTypes.string.isRequired,
-  sortRank: PropTypes.number.isRequired,
-  twitterId: PropTypes.string,
-  cancelButton: PropTypes.object.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired
-};
+Twitter.propTypes = propTypes;
 
 function validate(values) {
   const errors = {};
