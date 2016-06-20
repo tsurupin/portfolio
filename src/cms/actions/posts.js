@@ -1,12 +1,12 @@
 import {
   POST_PATH, 
   FETCH_POSTS,
-  FETCH_POST_FORM,
+  FETCH_EDIT_POST,
   FETCH_NEW_POST,
   SAVE_POST,  
   TOGGLE_POST
 } from '../constants';
-import { fetchTagsFrom } from'./tags';
+import { fetchTagsForm } from'./tags';
 import { fetchItems } from'./items';
 import { axios, trimPost } from '../utilities';
 import { browserHistory } from 'react-router';
@@ -23,7 +23,6 @@ export function fetchPosts(page = 1) {
 }
 
 function fetchPostsSuccess(response) {
-  console.log(response.posts)
   return {
     type: FETCH_POSTS.SUCCESS,
     payload: {
@@ -44,28 +43,27 @@ function fetchPostsFailure(error) {
 
 
 
-export function fetchPostForm(id) {
+export function fetchEditPost(id) {
   const request = axios.get(`${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request
-      .then(response => dispatch(fetchPostSuccess(response.data)))
+      .then(response => dispatch(fetchEditPostSuccess(response.data)))
       .then((response) => {
         dispatch(fetchItems(response.payload.items));
-        dispatch(fetchTagsFrom(response.payload.tags))
+        dispatch(fetchTagsForm(response.payload.tags))
       })
-      .catch(error => dispatch(fetchPostFailure(error.data)))
+      .catch(error => dispatch(fetchEditPostFailure(error.data)))
   };
 }
 
-function fetchPostFormSuccess(response) {
-  console.log(response.items)
+function fetchEditPostSuccess(response) {
   return {
-    type: FETCH_POST_FORM.SUCCESS,
+    type: FETCH_EDIT_POST.SUCCESS,
     payload: {
-      post: {
+      postForm: {
         id: response.id,
         title: response.title,
-        description: response.description,
+        leadSentence: response.leadSentence,
         publishedAt: response.publishedAt
       },
       items: response.items,
@@ -77,9 +75,9 @@ function fetchPostFormSuccess(response) {
   };
 }
 
-function fetchPostFormFailure(error) {
+function fetchEditPostFailure(error) {
   return {
-    type: FETCH_POST_FORM.FAILURE,
+    type: FETCH_EDIT_POST.FAILURE,
     payload: error
   };
 }
@@ -162,7 +160,6 @@ export function togglePost(sortRank, id) {
 }
 
 function togglePostSuccess(sortRank, response) {
-  console.log(response)
   return {
     type: TOGGLE_POST.SUCCESS,
     payload: {

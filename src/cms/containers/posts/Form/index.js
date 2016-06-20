@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPostForm, fetchNewPost, savePost } from 'cmsActions/posts';
+import { fetchEditPost, fetchNewPost, savePost } from 'cmsActions/posts';
 import { createItem, updateItem, deleteItem, moveItem } from 'cmsActions/items';
 import { createTag, deleteTag } from 'cmsActions/tags';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ const propTypes = {
   fields: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired,
   params: PropTypes.object,
-  fetchPost: PropTypes.func.isRequired,
+  fetchEditPost: PropTypes.func.isRequired,
   fetchNewPost: PropTypes.func.isRequired,
   savePost: PropTypes.func.isRequired,
   createItem: PropTypes.func.isRequired,
@@ -57,7 +57,7 @@ class PostForm extends Component {
 
   componentWillMount() {
     if (this.props.params.id) {
-      this.props.fetchPostForm(this.props.params.id)
+      this.props.fetchEditPost(this.props.params.id)
     } else {
       this.props.fetchNewPost()
     }
@@ -141,7 +141,7 @@ class PostForm extends Component {
   
   render() {
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, publishedAt } } = this.props;
+    const { handleSubmit, fields: { title, publishedAt, leadSentence } } = this.props;
     
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
@@ -153,6 +153,12 @@ class PostForm extends Component {
           hintText="Enter Title"
           fullWidth={true}
           errorText={title.touched && title.error ? title.error : ''}
+        />
+        <TextField
+          {...leadSentence}
+          floatingLabelText="Lead Sentence"
+          hintText="Enter Lead Sentence"
+          fullWidth={true}
         />
         <br/>
         <br/>
@@ -198,7 +204,7 @@ function validate(values) {
 }
 
 export const fields = [
-  'id', 'title', 'publishedAt'
+  'id', 'title', 'publishedAt', 'leadSentence'
 ];
 
 function mapStateToProps(state) {
@@ -218,7 +224,7 @@ export default reduxForm({
   fields,
   validate
 }, mapStateToProps, {
-  fetchPostForm,
+  fetchEditPost,
   fetchNewPost,
   savePost,
   createItem,

@@ -22,4 +22,11 @@ class Post < ActiveRecord::Base
 
   paginates_per PAGINATES_PER
 
+
+  def status
+    # NOTE: 0: not accepted, 1: will publish, 2: publishing
+    return 0 unless accepted
+    published_at <= Time.current ? 1 : 2
+  end
+
 end

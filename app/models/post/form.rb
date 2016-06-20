@@ -17,7 +17,7 @@ class Post::Form < ActiveType::Record[Post]
   ITEMS_ATTRIBUTES = 'items_attributes'.freeze
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
   PERMITTED_ATTRIBUTES = [
-    :id, :title, :published_at,
+    :id, :title, :published_at, :lead_sentence,
     items_attributes: [:id, :sort_rank, :target_id, :target_type, :description, :image, :caption, :twitter_id],
     taggings_attributes: [:id, :text]
   ].freeze
