@@ -36,8 +36,7 @@ export default function (state = INITIAL_STATE, action) {
       return {...state, post: action.payload.post };
 
     case FETCH_EDIT_POST.SUCCESS:
-      console.log('cms')
-      console.log(action.payload.post);
+      console.log('aasadas')
       return { ...state, postForm: action.payload.postForm };
     
     case FETCH_NEW_POST.SUCCESS:

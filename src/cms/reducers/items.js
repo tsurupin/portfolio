@@ -1,13 +1,13 @@
 import {
-  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM, FETCH_TWEET,
+  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM, 
   MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM
 } from '../constants';
-import _ from 'lodash';
+
 
 export default function (state = [], action) {
   switch (action.type) {
     case FETCH_ITEMS:
-      return [...state, ...action.payload.items];
+      return [...action.payload.items];
 
     case CREATE_ITEM:
       return [...state, action.payload.item];
