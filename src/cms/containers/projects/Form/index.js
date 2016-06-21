@@ -6,7 +6,6 @@ import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
-import RaisedButton from 'material-ui/RaisedButton';
 import TagField from '../../../components/shared/TagField/index';
 import styles from './styles.scss';
 
@@ -21,14 +20,8 @@ const propTypes = {
 };
 
 const inlineStyles = {
-  submitButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 15
-  },
-  indicator: {
-    display: 'inline-block',
-    position: 'relative'
+  textField: {
+    marginBottom: 10
   }
 };
 
@@ -71,11 +64,9 @@ class ProjectForm extends Component {
   render() {
    
     const headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
-    const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, caption, sourceUrl, image, description } } = this.props;
-
-    console.log(this.props.fields)
-    console.log(description)
+    const submitLabel = this.props.params.id ? 'Update' : 'Create';
+    const { handleSubmit, submitting, fields: { title, caption, sourceUrl, image, description } } = this.props;
+    
     return (
       <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
         <h2 className={styles.heading}>{headerLabel}</h2>
@@ -84,46 +75,49 @@ class ProjectForm extends Component {
           floatingLabelText="Title"
           hintText="Enter Title"
           fullWidth={true}
+          style={inlineStyles.textField}
           errorText={title.touched && title.error ? title.error : ''}
         />
-        <br/>
-        <TextEditor
-          {...description}
-          handleUpdate={ (value) => { description.onChange(value) }}
-        />
-        <br/>
+        <div className={styles.item}>
+          <label className={styles.label}>Description</label>
+          <TextEditor
+            {...description}
+            handleUpdate={ (value) => { description.onChange(value) }}
+          />
+        </div>
         <TextField
           {...sourceUrl}
           floatingLabelText="SourceURL"
           hintText="Enter SourceURL"
           fullWidth={true}
         />
-        <TagField
-          tags={this.props.tags}
-          suggestions={this.props.tagSuggestions}
-          handleAddTag={this.handleAddTag}
-          handleDeleteTag={this.handleDeleteTag}
-        />
-        <br />
-        <DropzoneImage
-          {...image}
-          handleUpdate={ (file) => image.onChange(file) }
-        />
-        <TextField
-          {...caption}
-          floatingLabelText="Caption"
-          hintText="Enter Caption"
-          fullWidth={true}
-        />
-        <br />
-        <br />
-        <RaisedButton
-          type="submit"
-          label={submitButtonLabel}
-          secondary={true}
-          defaultValue=""
-          style={inlineStyles.submitButton}
-        />
+        <div className={styles.item}>
+          <TagField
+            tags={this.props.tags}
+            suggestions={this.props.tagSuggestions}
+            handleAddTag={this.handleAddTag}
+            handleDeleteTag={this.handleDeleteTag}
+          />
+        </div>
+        <div className={styles.item}>
+          <label className={styles.label}>Image</label>
+          <DropzoneImage
+            {...image}
+            handleUpdate={ (file) => image.onChange(file) }
+          />
+          <TextField
+            {...caption}
+            floatingLabelText="Caption"
+            hintText="Enter Caption"
+            fullWidth={true}
+          />
+        </div>
+        <button type="submit"
+                disabled={submitting}
+                className={styles.button}
+        >
+          {submitLabel}
+        </button>
       </form>
       
     );

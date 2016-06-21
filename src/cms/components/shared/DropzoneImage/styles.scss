@@ -6,7 +6,6 @@
 .root {
   composes: row from '../../../css/flexboxgrid.scss';
   border-bottom: 1px solid #E0E0E0;
-  composes: marginBottomMiddle from '../../../css/margins.scss';
   padding: 6px;
 }
 

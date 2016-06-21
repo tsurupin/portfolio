@@ -7,7 +7,6 @@ import DropzoneImage from '../../../components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
 import SocialAccount from '../../../components/authors/forms/SocialAccount/index';
-import RaisedButton from 'material-ui/RaisedButton';
 import styles from './styles.scss';
 
 
@@ -28,14 +27,8 @@ const propTypes = {
 
 
 const inlineStyles = {
-  submitButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 15
-  },
-  indicator: {
-    display: 'inline-block',
-    position: 'relative'
+  textField: {
+    marginBottom: 10
   }
 };
 
@@ -94,35 +87,39 @@ class AuthorForm extends Component {
           floatingLabelText="name"
           hintText="Enter name"
           fullWidth={true}
+          style={inlineStyles.textField}
           errorText={name.touched && name.error ? name.error : ''}
         />
-        <br/>
-        <TextEditor
-          key="description"
-          {...description}
-          handleUpdate={ (value) => { description.onChange(value) }}
-        />
-        <TextEditor
-          key="introduction"
-          {...introduction}
-          handleUpdate={ (value) => { introduction.onChange(value) }}
-        />
-        <br/>
-        <br />
-        <DropzoneImage
-          {...image}
-          handleUpdate={ (file) => image.onChange(file) }
-        />
-        <br />
-        <br />
+        <div className={styles.item}>
+          <label className={styles.label}>Description</label>
+          <TextEditor
+            key="description"
+            {...description}
+            handleUpdate={ (value) => { description.onChange(value) }}
+          />
+        </div>
+        <div className={styles.item}>
+          <label className={styles.label}>Introduction</label>
+          <TextEditor
+            key="introduction"
+            {...introduction}
+            handleUpdate={ (value) => { introduction.onChange(value) }}
+          />
+        </div>
+        <div className={styles.item}>
+          <label className={styles.label}>Image</label>
+          <DropzoneImage
+            {...image}
+            handleUpdate={ (file) => image.onChange(file) }
+          />
+        </div>
         {this.renderSocialAccounts()}
-        <RaisedButton
-          type="submit"
-          label="Update"
-          secondary={true}
-          submitting={submitting}
-          style={inlineStyles.submitButton}
-        />
+        <button type="submit"
+                disabled={submitting}
+                className={styles.button}
+        >
+          Update
+        </button>
       </form>
 
     );
