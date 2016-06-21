@@ -4,8 +4,7 @@ import {
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT, 
   SAVE_PROJECT,
-  TOGGLE_PROJECT,
-  RESET_PROJECT
+  TOGGLE_PROJECT
 } from '../constants';
 import { fetchTagsForm } from'./tags';
 import { createAlert } from'./alerts';
@@ -61,7 +60,10 @@ export function fetchNewProject() {
     return request
       .then(response => dispatch(fetchNewProjectSuccess(response.data)))
       .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => dispatch(createAlert(error.data, "error")))
+      .catch(error => {
+        console.log(error)
+        dispatch(createAlert(error.data, "error"))
+      })
     }
 };
 
@@ -139,9 +141,3 @@ function toggleProjectSuccess(sortRank, response) {
   }
 }
 
-
-export function resetProject() {
-  return {
-    type: RESET_PROJECT
-  }
-}

@@ -24,7 +24,8 @@ const propTypes = {
   params: PropTypes.object,
   fetchAuthor: PropTypes.func.isRequired,
   updateAuthor: PropTypes.func.isRequired,
-  updateSocialAccount: PropTypes.func.isRequired
+  updateSocialAccount: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired
 };
 
 
@@ -43,8 +44,11 @@ class AuthorForm extends Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchAuthor()
+      .then(() => setTimeout(() => {
+        this.props.finishLoading()
+      }, 2000))
   }
 
   handleSubmit(props) {

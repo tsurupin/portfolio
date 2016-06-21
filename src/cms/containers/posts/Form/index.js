@@ -10,7 +10,6 @@ import DatePicker from '../../../components/shared/CustomDatePicker/index';
 import Item from '../../../components/posts/forms/Item/index';
 import TagField from '../../../components/shared/TagField/index';
 import ErrorMessage from '../../../components/shared/ErrorMessage/index';
-
 import styles from './styles.scss';
 
 
@@ -27,17 +26,24 @@ const propTypes = {
   updateItem: PropTypes.func.isRequired,
   moveItem: PropTypes.func.isRequired,
   createTag: PropTypes.func.isRequired,
-  deleteTag: PropTypes.func.isRequired
+  deleteTag: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired
 };
 
 const inlineStyles = {
 
   indicator: {
-    display: 'inline-block', 
+    display: 'inline-block',
     position: 'relative'
   },
   textField: {
     marginBottom: 10
+  },
+  progressBar: {
+    position: 'fixed',
+    top: 56,
+    left: 0,
+    right: 0
   }
 };
 
@@ -56,13 +62,20 @@ class PostForm extends Component {
     this.handleDeleteTag = this.handleDeleteTag.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.params.id) {
       this.props.fetchEditPost(this.props.params.id)
+        .then(() => setTimeout(() => {
+          this.props.finishLoading()
+        }, 2000));
     } else {
       this.props.fetchNewPost()
+        .then(() => setTimeout(() => {
+          this.props.finishLoading()
+        }, 2000));
     }
   }
+
 
   handleSubmit(props) {
     this.props.savePost(
@@ -133,7 +146,6 @@ class PostForm extends Component {
       return <ErrorMessage message={this.props.errorMessage} />
     }
   }
-  
   
   render() {
     const submitLabel = this.props.params.id ? 'Update' : 'Create';

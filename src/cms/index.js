@@ -10,8 +10,7 @@ import routes from './routes';
 import reducers from './reducers';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import thunk from 'redux-thunk'
-//const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
-const store = createStore(reducers, applyMiddleware(thunk))
+const store = createStore(reducers, applyMiddleware(thunk));
 injectTapEventPlugin();
 
 const accessToken = localStorage.getItem('accessToken');
