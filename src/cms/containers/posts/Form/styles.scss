@@ -5,11 +5,7 @@
 @value font-xx-small from fonts;
 
 .root {
-  composes: row from '../../../css/flexboxgrid.scss';
-
-
   color: #333333;
-
 }
 
 .heading {

@@ -131,12 +131,12 @@ class PostForm extends Component {
   
   
   render() {
-    const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
+    const submitLabel = this.props.params.id ? 'Update' : 'Create';
     const { handleSubmit, submitting, fields: { title, publishedAt, leadSentence } } = this.props;
     
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
-        <h2 className={styles.heading}>Create New Post</h2>
+        <h2 className={styles.heading}>{`${submitLabel} Post`}</h2>
         <TextField
           {...title}
           floatingLabelText="Title"
@@ -170,14 +170,12 @@ class PostForm extends Component {
           handleDeleteTag={this.handleDeleteTag}
         />
         {this.renderItems()}
-        <EditBox handleAddItem={this.handleAddItem}/>
-        <br />
-        <br />
+        <EditBox handleAddItem={this.handleAddItem} />
         <button type="submit"
                 disabled={submitting}
                 className={styles.button}
         >
-          {submitButtonLabel}
+          {submitLabel}
         </button>
       </form>
     );

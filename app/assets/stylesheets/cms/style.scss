@@ -2057,10 +2057,7 @@
 }
 
 .root___3yKDg {
-
-
   color: #333333;
-
 }
 
 .heading___28l67 {
@@ -2156,19 +2153,103 @@
   letter-spacing: 0;
   margin-bottom: 5px;
 }.root___1-3Re {
-  margin: 20px auto;
-  padding: 10px 15px;
-  border: 1px solid #b6b6b6;
-  background: white;
-  z-index: 1;
-}.root___1Nc_D {
-  margin: 20px auto;
-  padding: 10px 15px;
-  border: 1px solid #b6b6b6;
-  background: white;
-  z-index: 1;
+  color: #333333;
+  margin-bottom: 40px;
 }
-.root___1GONa {
+
+.heading___1hEIK {
+  color: rgba(0,0,0,.8);
+  font-size: 3.2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin-bottom: 5px;
+}
+
+.label___1bcKC {
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.498039);
+  font-size: calc(1.2 * 10) + px;
+  font-size: 1.2 + rem;
+}
+
+.item___2aJ3R {
+  margin-bottom: 20px;
+}
+
+
+.button___3aVxd {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: inline-block;
+  height: 40px;
+  padding: 0 24px;
+  color: #009E5D;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 38px;
+  &:hover {
+    color: #1c9963;
+
+  }
+}.root___1Nc_D {
+  mcolor: #333333;
+  margin-bottom: 40px;
+}
+
+.heading___3DGLS {
+  color: rgba(0,0,0,.8);
+  font-size: 3.2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin-bottom: 5px;
+}
+
+.label___9CRlE {
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.498039);
+  font-size: calc(1.2 * 10) + px;
+  font-size: 1.2 + rem;
+}
+
+.item___2_C68 {
+  margin-bottom: 20px;
+}
+
+.button___15ACB {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: inline-block;
+  height: 40px;
+  padding: 0 24px;
+  color: #009E5D;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 38px;
+  &:hover {
+    color: #1c9963;
+
+  }
+}.root___1GONa {
 
 }
 

@@ -5,9 +5,52 @@
 @value font-xx-small from fonts;
 
 .root {
-  margin: 20px auto;
-  padding: 10px 15px;
-  border: 1px solid border-color;
-  background: white;
-  z-index: 1;
+  color: #333333;
+  margin-bottom: 40px;
+}
+
+.heading {
+  color: rgba(0,0,0,.8);
+  font-size: 3.2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin-bottom: 5px;
+}
+
+.label {
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.498039);
+  font-size: calc(font-xx-small * 10) + px;
+  font-size: font-xx-small + rem;
+}
+
+.item {
+  margin-bottom: 20px;
+}
+
+
+.button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: inline-block;
+  height: 40px;
+  padding: 0 24px;
+  color: #009E5D;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 38px;
+  &:hover {
+    color: #1c9963;
+
+  }
 }
