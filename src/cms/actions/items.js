@@ -1,7 +1,9 @@
-import axios from 'axios';
 import {
-  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, 
-  UPDATE_ITEM, FETCH_TWEET, ROOT_URL, TWITTER_PATH
+  FETCH_ITEMS, 
+  CREATE_ITEM, 
+  DELETE_ITEM, 
+  CANCEL_ITEM,
+  UPDATE_ITEM
 } from '../constants';
 
 
@@ -42,6 +44,16 @@ export function deleteItem(sortRank) {
   }
 }
 
+export function cancelItem(sortRank, item) {
+  return {
+    type: CANCEL_ITEM,
+    payload: {
+      sortRank,
+      item
+    }
+  }
+}
+
 export function moveItem(sortRank, type) {
   return {
     type,
@@ -49,21 +61,4 @@ export function moveItem(sortRank, type) {
   }
 }
 
-export function fetchTweet(url, sortRank) {
-  const request = axios.get(`${ROOT_URL}${TWITTER_PATH}?url=${url}`);
-  return dispatch => {
-    return request
-      .then(response => {
-        dispatch(fetchTweetSuccess({attributes: response.data.attributes, sortRank }))
-      })
-      .catch(() => { throw 'URL is not valid' } )
-  }
-}
-
-function fetchTweetSuccess(response) {
-  return {
-    type: FETCH_TWEET.SUCCESS,
-    payload: response
-  }
-}
 

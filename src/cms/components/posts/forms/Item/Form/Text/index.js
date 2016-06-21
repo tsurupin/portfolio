@@ -1,20 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
-import TextEditor from 'sharedComponents/textEditors/Editor/index';
 import { reduxForm } from 'redux-form';
+import TextEditor from 'sharedComponents/textEditors/Editor/index';
+import IconButton from 'material-ui/IconButton';
+import ContentSave from 'material-ui/svg-icons/content/save';
 import styles from '../shared/styles.scss';
 
 
 const propTypes = {
   targetType: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
-  cancelButton: PropTypes.object.isRequired,
+  cancelButton: PropTypes.object,
+  deleteButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
-};
-
-const inlineStyles = {
-  submitButton: { marginLeft: 12 }
 };
 
 
@@ -36,11 +33,10 @@ class Text extends Component {
   }
 
   render() {
-    
     const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className={styles.root}>
-        <label className={styles.header}>Text</label>
+        <label className={styles.label}>Text</label>
         <TextEditor
           {...description}
           handleUpdate={ (value) => { description.onChange(value) }}
@@ -48,14 +44,15 @@ class Text extends Component {
         {this.renderErrorMessage()}
         <div className={styles.submitBox}>
           {this.props.cancelButton}
-          <RaisedButton
-            className={styles.submitButton}
-            label='Save'
-            labelPosition="after"
-            icon={<ContentAddCircle />}
+          {this.props.deleteButton}
+          <IconButton
             disabled={submitting}
-            style={inlineStyles.submitButton}
-            onClick={handleSubmit(this.handleUpdateItem)}/>
+            tooltip="Save"
+            tooltipPosition="bottom-center"
+            onClick={handleSubmit(this.handleUpdateItem)}
+          >
+            <ContentSave color="8F8F8F" />
+          </IconButton>
         </div>
       </div>
     );

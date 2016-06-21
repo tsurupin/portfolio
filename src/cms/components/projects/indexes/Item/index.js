@@ -13,17 +13,21 @@ const propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   accepted: PropTypes.bool.isRequired,
+  sortRank: PropTypes.number.isRequired,
   handleToggle: PropTypes.func.isRequired
 };
 
 const inlineStyles = {
+  row: {
+    lineHeight: 1.6,
+    fontSize: 14
+  },
   rowColumn:{
+    whiteSpace: 'normal',
+    overFlow: 'visible',
     height: 70,
     paddingLeft: 16,
     paddingRight: 16,
-    fontSize: 14,
-    whiteSpace: 'normal',
-    overFlow: 'visible'
   }
 };
 
@@ -37,7 +41,7 @@ class Item extends Component {
 
 
   handleToggle() {
-    this.props.handleToggle(this.props.id);
+    this.props.handleToggle(this.props.sortRank, this.props.id);
   }
   
   render() {
@@ -52,7 +56,7 @@ class Item extends Component {
     }
 
     return (
-      <TableRow>
+      <TableRow style={inlineStyles.row} >
         <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{this.props.id}</TableRowColumn>
         <TableRowColumn colSpan="6" style={inlineStyles.rowColumn} >{this.props.title}</TableRowColumn>
         <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>

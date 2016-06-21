@@ -11,6 +11,7 @@ class Initialize < ActiveRecord::Migration
       t.string :title, null: false, unique: true
       t.boolean :accepted, null: false, default: false
       t.datetime :published_at
+      t.string :lead_sentence
 
       t.timestamps null: false
     end

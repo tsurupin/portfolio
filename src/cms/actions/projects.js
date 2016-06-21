@@ -22,7 +22,6 @@ export function fetchProjects() {
 }
 
 function fetchProjectsSuccess(response) {
-  console.log('admin')
   return {
     type: FETCH_PROJECTS.SUCCESS,
     payload: {
@@ -49,6 +48,7 @@ export function fetchProject(id) {
 }
 
 function fetchProjectSuccess(response) {
+  console.log(response)
   return {
     type: FETCH_PROJECT.SUCCESS,
     payload: {
@@ -130,18 +130,24 @@ function saveProjectFailure(error) {
   }
 }
 
-export function toggleProject(id) {
+export function toggleProject(sortRank, id) {
   const request = axios.patch(`${PROJECT_PATH}/${id}/acceptance`);
   return dispatch => {
     return request
-      .then(response => dispatch(toggleProjectSuccess()))
+      .then(response => dispatch(toggleProjectSuccess(sortRank, response.data)))
       .catch(error => dispatch(toggleProjectFailure(error.data)))
   }
 }
 
-function toggleProjectSuccess() {
-  browserHistory.push('/cms/projects')
-};
+function toggleProjectSuccess(sortRank, response) {
+  return {
+    type: TOGGLE_PROJECT.SUCCESS,
+    payload: { 
+      sortRank,
+      accepted: response.accepted
+    }
+  }
+}
 
 function toggleProjectFailure(error) {
   return {
@@ -149,5 +155,4 @@ function toggleProjectFailure(error) {
     payload: error
   }
 }
-
 

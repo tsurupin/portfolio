@@ -16,6 +16,10 @@ class ProjectSerializer < ActiveModel::Serializer
     object.try(:image_url)
   end
 
+  # def caption
+  #   object.try(:caption) || ''
+  # end
+
   def tag_suggestions
     Tag.pluck(:name)
   end

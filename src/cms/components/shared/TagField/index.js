@@ -2,6 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import {  WithContext as ReactTags } from 'react-tag-input';
 import styles from './styles.scss';
 
+
+const propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string
+  })),
+  suggestions: PropTypes.array.isRequired,
+  handleAddTag: PropTypes.func.isRequired,
+  handleDeleteTag: PropTypes.func.isRequired
+};
+
 class TagField extends Component {
 
 	constructor(props) {
@@ -47,7 +57,7 @@ class TagField extends Component {
             autofocus={false}
             autocomplete={1}
             minQueryLength={1}
-            placeholder='Enter Tag Name'
+            placeholder='Tag Name'
             classNames={{
               tags: styles.tags,
               tagInput: styles.tagInput,
@@ -63,14 +73,7 @@ class TagField extends Component {
   }
 }
 
-TagField.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string
-  })),
-  suggestions: PropTypes.array.isRequired,
-  handleAddTag: PropTypes.func.isRequired,
-  handleDeleteTag: PropTypes.func.isRequired
-};
+TagField.propTypes = propTypes;
 
 TagField.defaultProps = {
   tags: [],

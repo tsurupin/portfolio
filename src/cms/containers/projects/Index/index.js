@@ -46,13 +46,15 @@ class ProjectIndex extends Component {
     this.props.fetchProjects();
   }
   
-  handleToggle(id) {
-    this.props.toggleProject(id);
+  handleToggle(sortRank, id) {
+    this.props.toggleProject(sortRank, id);
   }
   
 
   render() {
-    if(this.props.projects.length === 0 ) { return <section /> }
+    if(this.props.projects.length === 0 ) {
+      return <section />
+    }
     return (
       <section className={styles.root}>
         <Link to="/cms/projects/new">
@@ -75,6 +77,7 @@ class ProjectIndex extends Component {
               <Item
                 {...project}
                 key={project.id}
+                sortRank={index}
                 handleToggle={this.handleToggle}
               />
             ))}

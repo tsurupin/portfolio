@@ -13,7 +13,7 @@ export default function (state = INITIAL_STATE, action) {
       return { tags: action.payload.tags };
 
     case FETCH_TAGS_FORM:
-      return { ...state, tags: action.payload.tags, tagSuggestions: action.payload.tagSuggestions };
+      return { ...state, ...action.payload };
 
     case CREATE_TAG:
       return { ...state, tags: [...state.tags, action.payload.tag] };

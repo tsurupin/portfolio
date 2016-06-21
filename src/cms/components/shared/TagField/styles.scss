@@ -4,12 +4,12 @@
 @value font-xx-small from fonts;
 
 .root {
+  margin: 20px 0;
   composes: fontMedium from '../../../css/fonts.scss';
 
   position: relative;
   width: 100%;
-  height: 72px;
-  line-height: 24px;
+
 }
 
 .header {
@@ -25,38 +25,46 @@
 }
 
 .tagInput {
-  composes: bottomBorder from '../../../css/mixins.scss';
+  border-bottom: 1px solid #E0E0E0;
   padding: 6px;
-
+  margin-top: 10px;
   input {
+    font-size: 16px;
     height: 100%;
     width: 100%;
-    padding-left: 3px;
-    padding-right: 3px;
     border: none;
   }
 }
 
 .selected {
-
+  margin: 10px 0 5px;
 }
 
 .tag {
-  composes: fontXXSmall from '../../../css/fonts.scss';
-  composes: marginXXSmall from '../../../css/margins.scss';
-
-  padding: 3px;
-  color: white;
-  background-color: theme-color;
-  border: 1px solid theme-color;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: 0;
+  display: inline-block;
   border-radius: 3px;
+  text-decoration: none;
+  color: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.05);
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+
+  &:hover {
+    background: rgba(0,0,0,.1);
+    color: rgba(0,0,0,.6);
+  }
 }
 
 .remove {
   composes: strongHoverOpaque from '../../../css/mixins.scss';
 
-  margin-left: 3px;
-  color: white;
+  margin-left: 10px;
+  color: #3d3d3d;
   font-weight: bold;
 }
 
@@ -67,6 +75,7 @@
   width: 96%;
   border: 1px solid border-color;
   background: white;
+  z-index: 10;
 
   ul {
     -webkit-padding-start: 0;

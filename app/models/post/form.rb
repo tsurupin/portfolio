@@ -17,10 +17,12 @@ class Post::Form < ActiveType::Record[Post]
   ITEMS_ATTRIBUTES = 'items_attributes'.freeze
   TAGGINGS_ATTRIBUTES = 'taggings_attributes'.freeze
   PERMITTED_ATTRIBUTES = [
-    :id, :title, :published_at,
+    :id, :title, :published_at, :lead_sentence,
     items_attributes: [:id, :sort_rank, :target_id, :target_type, :description, :image, :caption, :twitter_id],
     taggings_attributes: [:id, :text]
   ].freeze
+
+  validates :published_at, presence: true, if: proc { |post| post.accepted }
 
   accepts_nested_attributes_for :items, reject_if: ->(attributes) { attributes['target_type'].blank? }
   accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }

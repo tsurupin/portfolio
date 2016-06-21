@@ -7,7 +7,7 @@ const propTypes = {
   name : PropTypes.string.isRequired
 };
 
-function Tag({ adminPath, id, name }) {
+function Item({ adminPath, id, name }) {
   return(
     <Link to={`${adminPath}/posts?tag=${id}`} className={styles.root}>
       {name}
@@ -16,6 +16,6 @@ function Tag({ adminPath, id, name }) {
 
 }
 
-Tag.propTpes = propTypes;
+Item.propTpes = propTypes;
 
-export default Tag
+export default Item

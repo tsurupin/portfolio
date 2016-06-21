@@ -2,12 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
 import styles from './styles.scss';
 
+const propTypes = {
+  image: PropTypes.string,
+  handleUpdate: PropTypes.func.isRequired
+};
+
 class DropzoneImage extends Component {
 
   constructor(props) {
     super(props);
     
-    this.state = { errorMessage: '' };
+    this.state = { errorMessage: "" };
     this.handleDrop = this.handleDrop.bind(this);
   }
   
@@ -15,7 +20,7 @@ class DropzoneImage extends Component {
     const file = files[0];
 
     if (!(/.*image\/(gift|jpg|jpeg|png)$/i).test(file.type)) {
-      return this.setState({ errorMessage: 'Cannot upload image file' })
+      return this.setState({ errorMessage: "Cannot upload image file" })
     }
 
     const self = this;
@@ -23,11 +28,11 @@ class DropzoneImage extends Component {
 
     reader.onload = function (upload) {
       self.props.handleUpdate(upload.target.result);
-      self.setState({ errorMessage: '' })
+      self.setState({ errorMessage: "" })
     };
 
     reader.onerror = function () {
-      self.setState({ errorMessage: 'Cannot upload image file' })
+      self.setState({ errorMessage: "Cannot upload image file" })
     };
 
     reader.readAsDataURL(file);
@@ -54,12 +59,11 @@ class DropzoneImage extends Component {
   render() {
     return (
       <div className={styles.root}>
-        <label className={styles.header}>Image</label>
         <Dropzone
           name="image"
           className={styles.dropzone}
           activeClassName={styles.dropzoneActive}
-          accept='image/*'
+          accept="image/*"
           multipe={false}
           onDrop={this.handleDrop}>
           {this.renderPlaceholder()}
@@ -71,10 +75,6 @@ class DropzoneImage extends Component {
   }
 }
 
-DropzoneImage.propTypes = {
-  image: PropTypes.string,
-  handleUpdate: PropTypes.func.isRequired
-};
-
+DropzoneImage.propTypes = propTypes; 
 
 export default DropzoneImage;

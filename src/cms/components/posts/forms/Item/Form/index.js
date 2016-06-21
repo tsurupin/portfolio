@@ -1,23 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../constants';
-import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
+import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
 import Image from './Image/index';
 import Twitter from './Twitter/index';
 import Text from './Text/index';
-import styles from './shared/styles.scss';
 
 
 const propTypes = {
   item: PropTypes.shape({
     targetType: PropTypes.string.isRequired,
-    isNew: PropTypes.bool.isRequired,
+    isNew: PropTypes.bool,
     editing: PropTypes.bool.isRequired,
     title: PropTypes.string
   }).isRequired,
   sortRank: PropTypes.number.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired
+  handleDeleteItem: PropTypes.func.isRequired,
+  handleCancelItem: PropTypes.func.isRequired
 };
 
 class PostItemForm extends Component {
@@ -26,6 +27,7 @@ class PostItemForm extends Component {
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
+    this.handleCancelItem = this.handleCancelItem.bind(this);
   }
 
   handleUpdateItem(updatedProps) {
@@ -37,6 +39,12 @@ class PostItemForm extends Component {
 
   handleDeleteItem() {
     this.props.handleDeleteItem(this.props.sortRank)
+  }
+  
+  handleCancelItem() {
+    this.props.handleCancelItem(
+      this.props.sortRank, { ...this.props.item, editing: false }
+    )
   }
 
   renderComponent() {
@@ -51,6 +59,7 @@ class PostItemForm extends Component {
               caption: this.props.item.caption
             }}
             handleUpdateItem={this.handleUpdateItem}
+            deleteButton={this.renderDeleteButton()}
             cancelButton={this.renderCancelButton()}
           />
         );
@@ -62,6 +71,7 @@ class PostItemForm extends Component {
             initialValues={{sourceURL: this.props.item.tweetId}}
             sortRank={this.props.sortRank}
             handleUpdateItem={this.handleUpdateItem}
+            deleteButton={this.renderDeleteButton()}
             cancelButton={this.renderCancelButton()}
           />
         );
@@ -71,6 +81,7 @@ class PostItemForm extends Component {
             targetType={this.props.item.targetType}
             initialValues={{description: this.props.item.description}}
             handleUpdateItem={this.handleUpdateItem}
+            deleteButton={this.renderDeleteButton()}
             cancelButton={this.renderCancelButton()}
           />
         );
@@ -80,21 +91,32 @@ class PostItemForm extends Component {
   }
   
 
-  renderCancelButton() {
+  renderDeleteButton() {
     return (
-      <RaisedButton
-        className={styles.cancelButton}
-        label="Cancel"
-        labelPosition="after"
-        icon={<ContentRemoveCircle />}
+      <IconButton
+        tooltip="Delete"
+        tooltipPosition="bottom-center"
         onClick={this.handleDeleteItem}
-      />
-    );
+      >
+        <ContentDeleteSweep color="8F8F8F" />
+      </IconButton>
+    )
+  }
+
+  renderCancelButton() {
+    if (this.props.item.isNew) { return }
+    return (
+      <IconButton
+        tooltip="Cancel"
+        tooltipPosition="bottom-center"
+        onClick={this.handleCancelItem}
+      >
+        <ContentRemoveCircle color="8F8F8F" />
+      </IconButton>
+    )
   }
 
   render() {
-    console.log('form')
-    console.log(this.props)
     return this.renderComponent();
   }
 

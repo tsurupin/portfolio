@@ -33,7 +33,7 @@ export default class TextEditor extends Component {
 
   constructor(props) {
     super(props);
-
+    
     if(props.value) {
       const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
@@ -66,9 +66,9 @@ export default class TextEditor extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.value && nextProps.value) {
       const blocks = convertFromRaw(JSON.parse(nextProps.value));
-      this.setState({
-        editorState: EditorState.createWithContent(blocks, decorator),
-      })
+      this.setState({ editorState: EditorState.createWithContent(blocks, decorator) });
+    } else if (!nextProps.value) {
+      this.state = { editorState: EditorState.createEmpty(decorator) };
     }
   }
 
@@ -177,9 +177,8 @@ export default class TextEditor extends Component {
     const { editorState } = this.state;
 
     return (
-      <div>
-        <lable className={styles.header}>Text</lable>
-        <div className={styles.root} onBlur={this.handleUpdate}>
+      <div className={styles.root} onBlur={this.handleUpdate}>
+        <div className={styles.controls}>
           <BlockStyleControls
             editorState={editorState}
             onToggle={this.handleToggleBlockType}
@@ -192,17 +191,17 @@ export default class TextEditor extends Component {
           />
           {this.renderURLField()}
           <Divider />
-          <div className={styles.editor} onClick={this.handleFocus}>
-            <Editor
-              onChange={this.handleChange}
-              blockStyleFn={getBlockStyle}
-              editorState={this.state.editorState}
-              spellCheck={true}
-              placeholder="Enter Text"
-              ref="editor"
-              handleKeyCommand={this.handleKeyCommand}
-            />
-          </div>
+        </div>
+        <div className={styles.editor} onClick={this.handleFocus}>
+          <Editor
+            onChange={this.handleChange}
+            blockStyleFn={getBlockStyle}
+            editorState={this.state.editorState}
+            spellCheck={true}
+            placeholder="Enter Text"
+            ref="editor"
+            handleKeyCommand={this.handleKeyCommand}
+          />
         </div>
       </div>
     )

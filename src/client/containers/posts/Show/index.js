@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost } from 'clientActions/posts';
-import Tag from 'clientComponents/posts/shows/Tag/index';
+import Tags from 'clientComponents/posts/shows/Tags/index';
 import Item from 'clientComponents/posts/shows/Item/index';
 import Pagination from 'clientComponents/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
@@ -54,35 +54,6 @@ class PostShow extends  Component {
     const paths = this.props.location.pathname.match(cmsRegexp);
     return paths[0] ? paths[0] : '';
   }
-
-  renderTags() {
-    return(
-      <section className={styles.tagContainer}>
-        {this.props.tags.map((tag) => {
-        return(
-          <Tag
-            key={tag.id}
-            adminPath={this.adminPath}
-            {...tag}
-          />
-        );
-        })}
-      </section>
-    );
-  }
-
-  renderItems() {
-    return(
-      this.props.items.map((item) => {
-        return (
-          <Item
-            key={item.id}
-            item={item}
-          />
-        )
-      })
-    )
-  }
   
   renderPagination() {
     if (this.props.post.prevId || this.props.post.nextId) {
@@ -99,7 +70,6 @@ class PostShow extends  Component {
   }
   
   render() {
-    console.log(this.adminPath)
     if (!this.props.post) { return <section className={styles.root} /> }
     return (
       <section className={styles.root}>
@@ -110,8 +80,10 @@ class PostShow extends  Component {
             <span className={styles.time}>{this.props.post.publishedAt}</span>
           </div>
         </div>
-        {this.renderItems()}
-        {this.renderTags()}
+        {this.props.items.map((item) => {
+          return <Item key={item.id} item={item} />
+        })}
+        <Tags adminPath={this.adminPath} tags={this.props.tags} />
         {this.renderPagination()}
       </section>
     )

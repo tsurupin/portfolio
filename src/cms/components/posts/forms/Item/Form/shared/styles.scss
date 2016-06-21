@@ -6,21 +6,24 @@
 
 .root {
   position: relative;
+  padding-bottom: 40px;
 }
 
 .inputText {
 
 }
 
-.header {
-  color: label-color;
+.label {
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.498039);
   font-size: calc(font-xx-small * 10) + px;
   font-size: font-xx-small + rem;
 }
 
 .submitBox {
-  composes: clearFloat from "../../../../../../css/mixins.scss";
-  float: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .dropzone {

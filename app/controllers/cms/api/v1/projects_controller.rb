@@ -12,7 +12,7 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def create
     project = Project::Form.new
-    if project.save(project_params)
+    if project.save_from_associations(project_params)
       head :created
     else
       render_error_message(project)
@@ -21,12 +21,13 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def edit
     project = Project.find(params[:id])
+    p project.taggings
     render json: project
   end
 
   def update
     project = Project::Form.find(params[:id])
-    if project.save(project_params)
+    if project.save_from_associations(project_params)
       head :ok
     else
       render_error_message(project)

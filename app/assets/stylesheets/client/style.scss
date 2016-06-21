@@ -338,7 +338,7 @@
 
 .list___293ye {
   margin-top: 30px;
-}.root___1E-Qn {
+}.root___3v-N5 {
   font-style: normal;
   font-size: 13px;
   line-height: 22px;
@@ -355,18 +355,25 @@
     background: rgba(0,0,0,.1);
     color: rgba(0,0,0,.6);
   }
+}.root___leGh- {
+  width: 100%;
+  margin: 15px 0;
 }.root___1X8N6 {
+  position: relative;
   background: #fff;
   border: 1px solid #ddd;
   font-size: 1.8rem;
   padding: 15px;
 }
 
+.controls___2fb50 {
+}
 .editor___2yWX3 {
-  /*border-top: 1px solid #ddd;*/
   cursor: text;
+  max-height: 500px;
   font-size: 16px;
   margin-top: 10px;
+  overflow:hidden;
 }
 
 
@@ -428,7 +435,7 @@
 .caption___1Efu5 {
   border-left: 3px solid rgba(0,0,0,.8);
   padding-left: 20px;
-  margin-left: -23px;
+  /*margin-left: -23px;*/
   padding-bottom: 3px;
   margin-top: 30px;
 }
@@ -562,11 +569,7 @@
   font-size: 1.2rem;
 }
 
-.tagContainer___3z0UD {
-  width: 100%;
-  margin: 15px 0;
 
-}
 .root___2eBaj {
   position: relative;
   margin-top: 30px;
@@ -688,13 +691,15 @@
 }
 
 .siteDescription___2GbEF {
-
+  margin-top: 20px;
 }
 
 .text___1IFeQ {
-  font-size: 1.6rem;
-  line-height: 1.4;
-  margin-top: 4px;
+  font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -.003em;
+  color: rgba(0, 0, 0, 0.8);
 }.root___3VJGc {
   margin-bottom: 25px;
 }

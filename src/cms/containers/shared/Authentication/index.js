@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+
 export default function(ComposedComponent) {
   class Authentication extends Component {
     constructor(props) {
@@ -29,12 +30,12 @@ export default function(ComposedComponent) {
     }
   }
 
-  function mapStateTopProps(state) {
+  function mapStateToProps(state) {
     return {
       authenticated: state.auths.authenticated
     }
   }
 
-  return connect(mapStateTopProps)(Authentication)
+  return connect(mapStateToProps)(Authentication)
 }
 

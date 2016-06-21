@@ -30,7 +30,7 @@ function TagList({ tags, path }) {
       {tags.map((tag) => {
         return (
           <Link key={tag.id} to={`/${path}?tag=${tag.id}`} className={styles.item}>
-            <span className={styles.tagName}>{tag.name}</span>
+            <span className={styles.name}>{tag.name}</span>
           </Link>
         )})}
     </div>
