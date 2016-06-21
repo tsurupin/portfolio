@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { TARGET_TYPES } from '../../../../../constants';
-import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
+import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
 import Image from './Image/index';
 import Twitter from './Twitter/index';
 import Text from './Text/index';
-import styles from './shared/styles.scss';
 
 
 const propTypes = {
   item: PropTypes.shape({
     targetType: PropTypes.string.isRequired,
-    isNew: PropTypes.bool.isRequired,
+    isNew: PropTypes.bool,
     editing: PropTypes.bool.isRequired,
     title: PropTypes.string
   }).isRequired,
@@ -93,27 +93,27 @@ class PostItemForm extends Component {
 
   renderDeleteButton() {
     return (
-      <RaisedButton
-        className={styles.cancelButton}
-        label="Delete"
-        labelPosition="after"
-        icon={<ContentRemoveCircle />}
+      <IconButton
+        tooltip="Delete"
+        tooltipPosition="bottom-center"
         onClick={this.handleDeleteItem}
-      />
-    );
+      >
+        <ContentDeleteSweep color="8F8F8F" />
+      </IconButton>
+    )
   }
 
   renderCancelButton() {
     if (this.props.item.isNew) { return }
     return (
-      <RaisedButton
-        className={styles.cancelButton}
-        label="Cancel"
-        labelPosition="after"
-        icon={<ContentRemoveCircle />}
+      <IconButton
+        tooltip="Cancel"
+        tooltipPosition="bottom-center"
         onClick={this.handleCancelItem}
-      />
-    );
+      >
+        <ContentRemoveCircle color="8F8F8F" />
+      </IconButton>
+    )
   }
 
   render() {

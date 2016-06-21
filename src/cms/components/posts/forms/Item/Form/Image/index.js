@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
 import DropzoneImage from '../../../../../shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
-import { reduxForm } from 'redux-form';
+import IconButton from 'material-ui/IconButton';
+import ContentSave from 'material-ui/svg-icons/content/save';
 import styles from '../shared/styles.scss';
 
 
@@ -12,12 +12,6 @@ const propTypes = {
   cancelButton: PropTypes.element,
   deleteButton: PropTypes.element.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
-};
-
-const inlineStyles = {
-  submitButton: {
-    marginLeft: 12
-  }
 };
 
 
@@ -40,7 +34,6 @@ class Image extends Component {
   }
 
   render() {
-
     const { handleSubmit, submitting, fields: { image, caption } } = this.props;
 
     return (
@@ -60,15 +53,14 @@ class Image extends Component {
         <div className={styles.submitBox}>
           {this.props.cancelButton}
           {this.props.deleteButton}
-          <RaisedButton
-            className={styles.submitButton}
-            label='Save'
-            labelPosition='after'
+          <IconButton
             disabled={submitting}
-            icon={<ContentAddCircle />}
-            style={inlineStyles.submitButton}
+            tooltip="Save"
+            tooltipPosition="bottom-center"
             onClick={handleSubmit(this.handleUpdateItem)}
-          />
+          >
+            <ContentSave color="8F8F8F" />
+          </IconButton>
         </div>
       </div>
     );

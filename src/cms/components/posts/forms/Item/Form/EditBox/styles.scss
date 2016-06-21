@@ -1,14 +1,14 @@
 .root {
-  margin-top: 50px;
+  margin: 20px 0;
   display: flex;
   height: 60px;
-  vertical_align: middle;
+  vertical-align: middle;
 }
 
 .list {
   list-style: none;
   display: flex;
-  vertical_align: middle;
+  vertical-align: middle;
   flex-direction: row;
   padding: 0;
   margin: 8px 0;

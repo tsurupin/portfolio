@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import { reduxForm } from 'redux-form';
+import TextField from 'material-ui/TextField';
+import IconButton from 'material-ui/IconButton';
+import ContentSave from 'material-ui/svg-icons/content/save';
 import styles from '../shared/styles.scss';
 
 
@@ -14,10 +14,6 @@ const propTypes = {
   deleteButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired
-};
-const inlineStyles = {
-  submitButton: { marginLeft: 12 },
-  indicator: {display: 'inline-block', position: 'relative'}
 };
 
 
@@ -51,14 +47,14 @@ class Twitter extends Component {
         <div className={styles.submitBox}>
           {this.props.cancelButton}
           {this.props.deleteButton}
-          <RaisedButton
-            className={styles.submitButton}
-            label='Save'
-            labelPosition="after"
-            icon={<ContentAddCircle />}
+          <IconButton
             disabled={submitting}
-            style={inlineStyles.submitButton}
-            onClick={handleSubmit(this.handleUpdateItem)}/>
+            tooltip="Save"
+            tooltipPosition="bottom-center"
+            onClick={handleSubmit(this.handleUpdateItem)}
+          >
+            <ContentSave color="8F8F8F" />
+          </IconButton>
         </div>
       </div>
     );
@@ -69,7 +65,6 @@ Twitter.propTypes = propTypes;
 
 function validate(values) {
   const errors = {};
-  console.log(!/[\d]+$/ig.test(values.twitterId))
   if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId) ) {
     errors.twitterId = 'Enter Valid Twitter URL or Twitter ID'
   }

@@ -775,18 +775,18 @@
   width: 100%;
   height: 100%;
 }.root___17ynZ {
-  margin-top: 50px;
+  margin: 20px 0;
   display: -webkit-box;
   display: flex;
   height: 60px;
-  vertical_align: middle;
+  vertical-align: middle;
 }
 
 .list___2jWyB {
   list-style: none;
   display: -webkit-box;
   display: flex;
-  vertical_align: middle;
+  vertical-align: middle;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-direction: row;
@@ -1858,6 +1858,7 @@
   color: #D32F2F;
 }.root___25Dvc {
   position: relative;
+  padding-bottom: 40px;
 }
 
 .inputText___1lw_a {
@@ -1871,7 +1872,9 @@
 }
 
 .submitBox___1ZPSK {
-  float: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .dropzone___3pgCT {

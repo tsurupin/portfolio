@@ -4,7 +4,6 @@ import List from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
 import ContentAddCircleOutLine from 'material-ui/svg-icons/content/add-circle-outline';
 import ActionHighlightOff from 'material-ui/svg-icons/action/highlight-off';
-import Subheader from 'material-ui/Subheader';
 import EditBoxItem from './EditBoxItem/index';
 import styles from './styles.scss';
 

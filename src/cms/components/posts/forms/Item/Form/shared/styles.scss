@@ -6,6 +6,7 @@
 
 .root {
   position: relative;
+  padding-bottom: 40px;
 }
 
 .inputText {
@@ -19,8 +20,9 @@
 }
 
 .submitBox {
-  composes: clearFloat from "../../../../../../css/mixins.scss";
-  float: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .dropzone {
