@@ -8,7 +8,6 @@ import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
 import TagField from '../../../components/shared/TagField/index';
 import ErrorMessage from '../../../components/shared/ErrorMessage/index';
-
 import styles from './styles.scss';
 
 const propTypes = {
@@ -17,9 +16,9 @@ const propTypes = {
   fetchProject: PropTypes.func.isRequired,
   fetchNewProject: PropTypes.func.isRequired,
   saveProject: PropTypes.func.isRequired,
-  resetProject: PropTypes.func.isRequired,
   createTag: PropTypes.func.isRequired,
-  deleteTag: PropTypes.func.isRequired
+  deleteTag: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired
 };
 
 const inlineStyles = {
@@ -41,8 +40,14 @@ class ProjectForm extends Component {
   componentWillMount() {
     if (this.props.params.id) {
       this.props.fetchProject(this.props.params.id)
+        .then(() => setTimeout(() => {
+          this.props.finishLoading()
+        }, 2000))
     } else {
       this.props.fetchNewProject()
+        .then(() => setTimeout(() => {
+          this.props.finishLoading()
+          }, 2000))
     }
   }
   

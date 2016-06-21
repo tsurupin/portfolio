@@ -15,22 +15,23 @@ import AuthorSingIn from './containers/authors/SignIn/index';
 import NotFound from 'shared/containers/NotFound/index';
 import Authentication from './containers/shared/Authentication/index';
 import Alert from './containers/shared/Alert/index';
+import ProgressBar from './containers/shared/ProgressBar/index';
 
 export default (
   <Route path="/cms" component={App}>
-    <IndexRoute component={Alert(Authentication(PostIndex))}/>
-      <Route path="/cms/posts" component={Alert(Authentication(PostIndex))}/>
-      <Route path="/cms/posts/new" component={Alert(Authentication(PostForm))}/>
-      <Route path="/cms/posts/:id/edit" component={Alert(Authentication(PostForm))}/>
+    <IndexRoute component={ProgressBar(Alert(Authentication(PostIndex)))}/>
+      <Route path="/cms/posts" component={ProgressBar(Alert(Authentication(PostIndex)))}/>
+      <Route path="/cms/posts/new" component={ProgressBar(Alert(Authentication(PostForm)))}/>
+      <Route path="/cms/posts/:id/edit" component={ProgressBar(Alert(Authentication(PostForm)))}/>
       <Route path="/cms/posts/:id" component={PostShow}/>
-      <Route path="/cms/projects" component={Alert(Authentication(ProjectIndex))}/>
+      <Route path="/cms/projects" component={ProgressBar(Alert(Authentication(ProjectIndex)))} />
       <Route path="/cms/projects/preview" component={ProjectIndexPreview}/>
-      <Route path="/cms/projects/new" component={Alert(Authentication(ProjectForm))}/>
-      <Route path="/cms/projects/:id/edit" component={Alert(Authentication(ProjectForm))}/>
+      <Route path="/cms/projects/new" component={ProgressBar(Alert(Authentication(ProjectForm)))}/>
+      <Route path="/cms/projects/:id/edit" component={ProgressBar(Alert(Authentication(ProjectForm)))}/>
       <Route path="/cms/sign-up" component={AuthorSinUp}/>
       <Route path="/cms/sign-in" component={AuthorSingIn}/>
       <Route path="/cms/about" component={AboutShow}/>
-      <Route path="/cms/about/edit" component={Alert(Authentication(AuthorForm))}/>
+      <Route path="/cms/about/edit" component={ProgressBar(Alert(Authentication(AuthorForm)))}/>
       <Route path="*" component={NotFound} />
   </ Route>
 );

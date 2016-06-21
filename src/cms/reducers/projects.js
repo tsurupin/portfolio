@@ -3,8 +3,7 @@ import {
   FETCH_PROJECT,
   FETCH_NEW_PROJECT,
   SAVE_PROJECT,
-  TOGGLE_PROJECT,
-  RESET_PROJECT,
+  TOGGLE_PROJECT
 } from '../constants';
 
 const INITIAL_STATE = { 
@@ -31,6 +30,7 @@ export default function (state = INITIAL_STATE, action) {
     case TOGGLE_PROJECT.FAILURE:
       return { ...state, errorMessage: action.payload.errorMessage };
     case SAVE_PROJECT.SUCCESS:
+      return { ...state, project: {}, errorMessage: '' };
     default:
       return state;
   }

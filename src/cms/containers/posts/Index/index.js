@@ -23,7 +23,8 @@ const propTypes = {
   limit: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   fetchPosts: PropTypes.func.isRequired,
-  togglePost: PropTypes.func.isRequired
+  togglePost: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired
 };
 
 const inlineStyles = {
@@ -50,7 +51,10 @@ class PostIndex extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPosts()
+      .then(() => setTimeout(() => {
+        this.props.finishLoading()
+      }, 2000));
   }
   
   handleToggle(sortRank, post_id) {

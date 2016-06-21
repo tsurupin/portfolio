@@ -8,9 +8,8 @@ import { createStore, applyMiddleware } from 'redux';
 import routes from './routes';
 import reducers from './reducers';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import thunkMiddleware from 'redux-thunk'
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
-const store = createStoreWithMiddleware(reducers);
+import thunk from 'redux-thunk'
+const store = createStore(reducers, applyMiddleware(thunk));
 
 injectTapEventPlugin();
 

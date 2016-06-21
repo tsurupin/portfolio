@@ -17,7 +17,8 @@ const propTypes =  {
       accepted: PropTypes.bool.isRequired
     }).isRequired
   ).isRequired,
-  fetchProjects: PropTypes.func.isRequired
+  fetchProjects: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired
 };
 
 const inlineStyles = {
@@ -43,7 +44,10 @@ class ProjectIndex extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchProjects();
+    this.props.fetchProjects()
+      .then(() => setTimeout(() => {
+        this.props.finishLoading()
+      }, 2000));
   }
   
   handleToggle(sortRank, id) {
