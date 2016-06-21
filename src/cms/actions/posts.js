@@ -8,6 +8,7 @@ import {
 } from '../constants';
 import { fetchTagsForm } from'./tags';
 import { fetchItems } from'./items';
+import { createAlert } from'./alerts';
 import { axios, trimPost } from '../utilities';
 import { browserHistory } from 'react-router';
 
@@ -17,7 +18,7 @@ export function fetchPosts(page = 1) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => dispatch(fetchPostsFailure(error.data)))
+        .catch(error => dispatch(createAlert(error.data, "error")))
     );
   };
 }
@@ -34,15 +35,6 @@ function fetchPostsSuccess(response) {
   };
 }
 
-function fetchPostsFailure(error) {
-  return {
-    type: FETCH_POSTS.FAILURE,
-    payload: error
-  };
-}
-
-
-
 export function fetchEditPost(id) {
   const request = axios.get(`${POST_PATH}/${id}/edit`);
   return dispatch => {
@@ -52,7 +44,7 @@ export function fetchEditPost(id) {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTagsForm(response.payload.tags))
       })
-      .catch(error => dispatch(fetchEditPostFailure(error.data)))
+      .catch(error => dispatch(createAlert(error.data, "error")))
   };
 }
 
@@ -75,20 +67,13 @@ function fetchEditPostSuccess(response) {
   };
 }
 
-function fetchEditPostFailure(error) {
-  return {
-    type: FETCH_EDIT_POST.FAILURE,
-    payload: error
-  };
-}
-
 export function fetchNewPost() {
   const request = axios.get(`${POST_PATH}/new`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewPostSuccess(response.data)))
-      .then(response => dispatch(fetchTagsFrom(response.payload.tags)))
-      .catch(error => dispatch(fetchNewPostFailure(error.data)))
+      .then(response => dispatch(fetchTagsForm(response.payload.tags)))
+      .catch(error => dispatch(createAlert(error.data, "error")))
   };
 }
 
@@ -101,16 +86,7 @@ function fetchNewPostSuccess(response) {
 }
 
 
-function fetchNewPostFailure(error) {
-  return {
-    type: FETCH_NEW_POST.FAILURE,
-    payload: error
-  };
-}
-
-
 export function savePost(props) {
-  console.log(props)
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
@@ -141,10 +117,14 @@ function savePostSuccess() {
   }
 }
 
-function savePostFailure(error) {
+function savePostFailure(response) {
+  console.log('failure')
+  console.log(response)
   return {
     type: SAVE_POST.FAILURE,
-    payload: error
+    payload: {
+      errorMessage: response.errorMessage
+    }
   }
 }
 
@@ -154,7 +134,7 @@ export function togglePost(sortRank, id) {
     return (
       request
         .then(response => dispatch(togglePostSuccess(sortRank, response.data)))
-        .catch(error => dispatch(togglePostFailure(error.data)))
+        .catch(error => dispatch(createAlert(error.data, "error")))
     )
   }
 }
@@ -169,9 +149,4 @@ function togglePostSuccess(sortRank, response) {
     }
   }
 }
-function togglePostFailure(error) {
-  return {
-    type: TOGGLE_POST.FAILURE,
-    payload: error
-  }
-}
+

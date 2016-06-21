@@ -7,6 +7,8 @@ import DropzoneImage from '../../../components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
 import SocialAccount from '../../../components/authors/forms/SocialAccount/index';
+import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+
 import styles from './styles.scss';
 
 
@@ -76,6 +78,12 @@ class AuthorForm extends Component {
     );
   }
 
+  renderErrorMessage() {
+    if(this.props.errorMessage) {
+      return <ErrorMessage message={this.props.errorMessage} />
+    }
+  }
+
   render() {
     const { handleSubmit, submitting, fields: { name, image, description, introduction } } = this.props;
     
@@ -114,6 +122,7 @@ class AuthorForm extends Component {
           />
         </div>
         {this.renderSocialAccounts()}
+        {this.renderErrorMessage()}
         <button type="submit"
                 disabled={submitting}
                 className={styles.button}
@@ -143,7 +152,8 @@ const fields = [
 function mapStateToProps(state) {
   return {
     initialValues: state.authors.author,
-    socialAccounts: state.socialAccounts
+    socialAccounts: state.socialAccounts,
+    errorMessage: state.authors.errorMessage
   }
 }
 

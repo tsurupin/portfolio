@@ -2056,7 +2056,16 @@
 
 }
 
-.root___3yKDg {
+.root___gLJWn {
+  margin: 10px 0;
+}
+
+.text___3Sz5s {
+  font-size: 1.6rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #F44336;
+}.root___3yKDg {
   color: #333333;
 }
 
@@ -2173,7 +2182,7 @@
   font-size: 1.2 + rem;
 }
 
-.item___2aJ3R {
+.formGroup___EcXI4 {
   margin-bottom: 20px;
 }
 
@@ -2271,4 +2280,27 @@
 .error___xJ9qB {
   font-weight: bold;
   color: #D32F2F;
+}.root___ctoD9 {
+  position: relative
+}
+
+.alert___3rBcs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  line-height: 56px;
+  font-size: 1.6rem;
+  color: #fff;
+  z-index: 10000;
+  text-align: center;
+}
+
+.error___BShne {
+  background-color: #CE4844;
+}
+
+.success___9NkP4 {
+  background-color: #5CB85C;
 }

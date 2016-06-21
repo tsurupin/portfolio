@@ -5,7 +5,7 @@ class Cms::Api::V1::Posts::AcceptancesController < Cms::ApplicationController
     if post.update(accepted: !post.accepted)
       render json: { accepted: post.accepted, status: post.status }
     else
-      head :bad_request
+      render_error_message(post)
     end
   end
 

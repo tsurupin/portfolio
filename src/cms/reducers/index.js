@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   socialAccounts: socialAccountReducer,
   projects: projectReducer,
   about: aboutReducer,
-  alert: alertReducer
+  alerts: alertReducer
 });
 
 export default rootReducer;

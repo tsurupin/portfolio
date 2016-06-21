@@ -42,10 +42,12 @@ function authSuccess(accessToken) {
   return { type: AUTH.SUCCESS };
 }
 
-function authFailure(error) {
+function authFailure(response) {
   return {
     type: AUTH.FAILURE,
-    payload: error
+    payload: {
+      errorMessage: response.errorMessage
+    }
   };
 }
 
@@ -54,11 +56,9 @@ export function signOut() {
   return dispatch => {
     return(
       request
-        .then(
-          () => {
+        .then(() => {
             localStorage.removeItem('accessToken');
             dispatch(signOutSuccess());
-            browserHistory.push('/cms/sign-in')
           })
         .catch(error => dispatch(signOutFailure(error.data)))
     );
@@ -66,14 +66,17 @@ export function signOut() {
 }
 
 function signOutSuccess() {
+  browserHistory.push('/cms/sign-in');
   return {
     type: SIGN_OUT.SUCCESS
   };
 }
 
-function signOutFailure(error) {
+function signOutFailure(response) {
   return {
     type: SIGN_OUT.FAILURE,
-    payload: error
+    payload: {
+      errorMessage: response.errorMessage
+    }
   };
 }

@@ -7,18 +7,20 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
-  line-height: 50px;
+  height: 56px;
+  line-height: 56px;
   font-size: 1.6rem;
   color: #fff;
+  z-index: 10000;
+  text-align: center;
 }
 
-.alert--error {
+.error {
   composes: alert;
-  background-color: red;
+  background-color: #CE4844;
 }
 
-.alert--success {
+.success {
   composes: alert;
-  background-color: green;
+  background-color: #5CB85C;
 }

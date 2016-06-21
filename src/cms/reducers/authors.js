@@ -6,16 +6,14 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
 
     case FETCH_AUTHOR.SUCCESS:
-      return { ...state, author: action.payload.author, loading: false };
+      return { ...state, author: action.payload.author, loading: false, errorMessage: '' };
     
     case UPDATE_AUTHOR.REQUEST:
       return { ...state, loading: true };
-    
+    case UPDATE_AUTHOR.SUCCESS:
+      return { ...state, author: {}, errorMessage: '' };
     case UPDATE_AUTHOR.FAILURE:
-      return { ...state, error: action.payload, loading: false };
-    
-    case FETCH_AUTHOR.FAILURE:
-      return { ...state, error: action.payload };
+      return { ...state, errorMessage: action.payload.errorMessage };
 
     default:
       return state;

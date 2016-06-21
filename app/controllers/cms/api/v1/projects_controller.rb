@@ -21,7 +21,6 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def edit
     project = Project.find(params[:id])
-    p project.taggings
     render json: project
   end
 

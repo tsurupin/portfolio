@@ -14,8 +14,7 @@ const INITIAL_STATE = {
   total: 0,
   post: { title: '', publishedAt: '' },
   postForm: { },
-  error: null, 
-  message: null 
+  errorMessage: ''
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -33,31 +32,23 @@ export default function (state = INITIAL_STATE, action) {
       };
 
     case FETCH_POST.SUCCESS:
-      return {...state, post: action.payload.post };
+      return {...state, post: action.payload.post, errorMessage: '' };
 
     case FETCH_EDIT_POST.SUCCESS:
-      console.log('aasadas')
-      return { ...state, postForm: action.payload.postForm };
+      return { ...state, postForm: action.payload.postForm, errorMessage: '' };
     
     case FETCH_NEW_POST.SUCCESS:
-      return { ...state, postForm: {} };
+      return { ...state, postForm: {}, errorMessage: '' };
     
     case SAVE_POST.SUCCESS:
-      return { ...state, message: 'Successfully Saved', loading: false };
+      return { ...state,  postForm: {}, errorMessage: '' };
     
     case TOGGLE_POST.SUCCESS:
       const post = { ...state.posts[action.payload.sortRank], ...action.payload };
       const posts = [...state.posts.slice(0, action.payload.sortRank), post, ...state.posts.slice(action.payload.sortRank + 1)];
       return { ...state, posts };
     case SAVE_POST.FAILURE:
-      return { ...state, error: action.payload, loading: false };
-    
-    case FETCH_NEW_POST.FAILURE:
-    case FETCH_POSTS.FAILURE:
-    case FETCH_EDIT_POST.FAILURE:
-    case FETCH_POST.FAILURE:
-    case TOGGLE_POST.FAILURE:
-      return { ...state, error: action.payload };
+      return { ...state, errorMessage: action.payload.errorMessage };
     
     default:
       return state;

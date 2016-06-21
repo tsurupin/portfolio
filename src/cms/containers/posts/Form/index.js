@@ -7,10 +7,10 @@ import { reduxForm } from 'redux-form';
 import EditBox from '../../../components/posts/forms/Item/Form/EditBox/index';
 import TextField from 'material-ui/TextField';
 import DatePicker from '../../../components/shared/CustomDatePicker/index';
-import RaisedButton from 'material-ui/RaisedButton';
 import Item from '../../../components/posts/forms/Item/index';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
 import TagField from '../../../components/shared/TagField/index';
+import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+
 import styles from './styles.scss';
 
 
@@ -106,7 +106,6 @@ class PostForm extends Component {
 
 
   renderItems() {
-
     return (
       <section className={styles.itemContainer}>
         <ul className={styles.itemList}>
@@ -127,6 +126,12 @@ class PostForm extends Component {
         </ul>
       </section>
     );
+  }
+
+  renderErrorMessage() {
+    if(this.props.errorMessage) {
+      return <ErrorMessage message={this.props.errorMessage} />
+    }
   }
   
   
@@ -171,6 +176,7 @@ class PostForm extends Component {
         />
         {this.renderItems()}
         <EditBox handleAddItem={this.handleAddItem} />
+        {this.renderErrorMessage()}
         <button type="submit"
                 disabled={submitting}
                 className={styles.button}
@@ -202,7 +208,8 @@ function mapStateToProps(state) {
     initialValues: state.posts.postForm,
     items: state.items,
     tags: state.tags.tags,
-    tagSuggestions: state.tags.tagSuggestions
+    tagSuggestions: state.tags.tagSuggestions,
+    errorMessage: state.posts.errorMessage
   }
 }
 

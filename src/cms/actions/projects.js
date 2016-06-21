@@ -4,9 +4,11 @@ import {
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT, 
   SAVE_PROJECT,
-  TOGGLE_PROJECT
+  TOGGLE_PROJECT,
+  RESET_PROJECT
 } from '../constants';
 import { fetchTagsForm } from'./tags';
+import { createAlert } from'./alerts';
 import { axios, trimProject } from '../utilities';
 import { browserHistory } from 'react-router';
 
@@ -16,7 +18,7 @@ export function fetchProjects() {
     return (
       request
         .then(response => dispatch(fetchProjectsSuccess(response.data)))
-        .catch(error => dispatch(fetchProjectsFailure(error.data)))
+        .catch(error => dispatch(createAlert(error.data, "error")))
     )
   }
 }
@@ -30,25 +32,17 @@ function fetchProjectsSuccess(response) {
   }
 }
 
-function fetchProjectsFailure(error) {
-  return {
-    type: FETCH_PROJECTS.FAILURE,
-    payload: { error }
-  }
-}
-
 export function fetchProject(id) {
   const request = axios.get(`${PROJECT_PATH}/${id}/edit`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchProjectSuccess(response.data)))
       .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => dispatch(fetchProjectFailure(error.data)))
+      .catch(error => dispatch(createAlert(error.data, "error")))
   };
 }
 
 function fetchProjectSuccess(response) {
-  console.log(response)
   return {
     type: FETCH_PROJECT.SUCCESS,
     payload: {
@@ -61,20 +55,13 @@ function fetchProjectSuccess(response) {
   };
 }
 
-function fetchProjectFailure(error) {
-  return {
-    type: FETCH_PROJECT.FAILURE,
-    payload: error
-  };
-}
-
 export function fetchNewProject() {
   const request = axios.get(`${PROJECT_PATH}/new`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewProjectSuccess(response.data)))
       .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => dispatch(fetchNewProjectFailure(error.data)))
+      .catch(error => dispatch(createAlert(error.data, "error")))
     }
 };
 
@@ -82,17 +69,15 @@ export function fetchNewProject() {
 function fetchNewProjectSuccess(response) {
   return {
     type: FETCH_NEW_PROJECT.SUCCESS,
-    payload: { tags: { tags: [], tagSuggestions: response.tagSuggestions } }
+    payload: { 
+      tags: { 
+        tags: [], 
+        tagSuggestions: response.tagSuggestions 
+      }
+    }
   };
 }
 
-
-function fetchNewProjectFailure(error) {
-  return {
-    type: FETCH_NEW_PROJECT.FAILURE,
-    payload: error
-  };
-}
 
 export function saveProject(props) {
   const project = trimProject(props.project);
@@ -103,7 +88,7 @@ export function saveProject(props) {
     request = axios.post(`${PROJECT_PATH}`, { project });
   }
   return dispatch => {
-    dispatch(saveProjectRequest());
+    // dispatch(saveProjectRequest());
     return (
       request
       .then(() => dispatch(saveProjectSuccess()))
@@ -120,13 +105,18 @@ function saveProjectRequest() {
 }
 
 function saveProjectSuccess() {
-  browserHistory.push('/cms/projects');
+  browserHistory.push("/cms/projects");
+  return {
+    type: SAVE_PROJECT.SUCCESS
+  }
 }
 
-function saveProjectFailure(error) {
+function saveProjectFailure(response) {
   return {
     type: SAVE_PROJECT.FAILURE,
-    payload: error
+    payload: {
+      errorMessage: response.errorMessage 
+    }
   }
 }
 
@@ -135,7 +125,7 @@ export function toggleProject(sortRank, id) {
   return dispatch => {
     return request
       .then(response => dispatch(toggleProjectSuccess(sortRank, response.data)))
-      .catch(error => dispatch(toggleProjectFailure(error.data)))
+      .catch(error => dispatch(createAlert(error.data, "error")))
   }
 }
 
@@ -149,10 +139,9 @@ function toggleProjectSuccess(sortRank, response) {
   }
 }
 
-function toggleProjectFailure(error) {
+
+export function resetProject() {
   return {
-    type: TOGGLE_PROJECT.FAILURE,
-    payload: error
+    type: RESET_PROJECT
   }
 }
-
