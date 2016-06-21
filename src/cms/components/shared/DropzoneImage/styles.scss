@@ -5,14 +5,11 @@
 
 .root {
   composes: row from '../../../css/flexboxgrid.scss';
-  composes: bottomBorder from '../../../css/mixins.scss';
+  border-bottom: 1px solid #E0E0E0;
   composes: marginBottomMiddle from '../../../css/margins.scss';
   padding: 6px;
 }
 
-.header {
-  composes: headerLabel from '../../../css/mixins.scss';
-}
 
 .dropzone {
   composes: col-xs-12 from '../../../css/flexboxgrid.scss';
@@ -32,7 +29,7 @@
   display: block;
   width: 100%;
   line-height: 100px;
-  color: text-color;
+  color: #B3B3B3;
   font-size: calc(font-medium * 10) + px;
   font-size: font-medium + rem;
   font-weight: bold;

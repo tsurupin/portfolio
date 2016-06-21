@@ -31,11 +31,7 @@ const propTypes = {
 };
 
 const inlineStyles = {
-  submitButton: {
-    position: 'absolute', 
-    bottom: 10, 
-    right: 15
-  },
+
   indicator: {
     display: 'inline-block', 
     position: 'relative'
@@ -132,26 +128,11 @@ class PostForm extends Component {
       </section>
     );
   }
-
-  // renderLoadingIndicator() {
-  //   if (this.props.loading) {
-  //     return (
-  //       <RefreshIndicator
-  //         size={40}
-  //         left={100}
-  //         top={100}
-  //         loadingColor={"#FF9800"}
-  //         status="loading"
-  //         style={inlineStyles.indicator}
-  //       />
-  //     );
-  //   }
-  // }
-
+  
   
   render() {
     const submitButtonLabel = this.props.params.id ? 'Update' : 'Create';
-    const { handleSubmit, fields: { title, publishedAt, leadSentence } } = this.props;
+    const { handleSubmit, submitting, fields: { title, publishedAt, leadSentence } } = this.props;
     
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
@@ -192,12 +173,12 @@ class PostForm extends Component {
         <EditBox handleAddItem={this.handleAddItem}/>
         <br />
         <br />
-        <RaisedButton
-          type="submit"
-          label={submitButtonLabel}
-          primary={true}
-          style={inlineStyles.submitButton}
-        />
+        <button type="submit"
+                disabled={submitting}
+                className={styles.button}
+        >
+          {submitButtonLabel}
+        </button>
       </form>
     );
   }

@@ -294,17 +294,21 @@
   width: 100%;
   margin: 15px 0;
 }.root___1X8N6 {
+  position: relative;
   background: #fff;
   border: 1px solid #ddd;
   font-size: 1.8rem;
   padding: 15px;
 }
 
+.controls___2fb50 {
+}
 .editor___2yWX3 {
-  /*border-top: 1px solid #ddd;*/
   cursor: text;
+  max-height: 500px;
   font-size: 16px;
   margin-top: 10px;
+  overflow:hidden;
 }
 
 
@@ -366,7 +370,7 @@
 .caption___1Efu5 {
   border-left: 3px solid rgba(0,0,0,.8);
   padding-left: 20px;
-  margin-left: -23px;
+  /*margin-left: -23px;*/
   padding-bottom: 3px;
   margin-top: 30px;
 }
@@ -1821,11 +1825,10 @@
 }
 
 .root___132mP {
+  border-bottom: 1px solid #E0E0E0;
   padding: 6px;
 }
 
-.header___3p-Kq {
-}
 
 .dropzone___1FLAt {
   width: 100%;
@@ -1842,7 +1845,7 @@
   display: block;
   width: 100%;
   line-height: 100px;
-  color: #212121;
+  color: #B3B3B3;
   font-size: calc(1.6 * 10) + px;
   font-size: 1.6 + rem;
   font-weight: bold;
@@ -1865,8 +1868,9 @@
 
 }
 
-.header___1zo74 {
-  color: #B3B3B3;
+.label___1oX8d {
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.498039);
   font-size: calc(1.2 * 10) + px;
   font-size: 1.2 + rem;
 }
@@ -2098,6 +2102,31 @@
 
   list-style: none;
 
+}
+
+.button___3vcCD {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: inline-block;
+  height: 40px;
+  padding: 0 24px;
+  color: #009E5D;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #009E5D;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 38px;
+  &:hover {
+    color: #1c9963;
+
+  }
 }.button___3tmfC {
   border-radius: 48px;
 }

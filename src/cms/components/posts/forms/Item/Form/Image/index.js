@@ -38,6 +38,7 @@ class Image extends Component {
 
     return (
       <div className={styles.root}>
+        <label className={styles.label}>Image</label>
         <DropzoneImage
           {...image}
           handleUpdate={ (file) => image.onChange(file) }

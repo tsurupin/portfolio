@@ -13,8 +13,9 @@
 
 }
 
-.header {
-  color: label-color;
+.label {
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.498039);
   font-size: calc(font-xx-small * 10) + px;
   font-size: font-xx-small + rem;
 }

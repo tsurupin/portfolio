@@ -359,17 +359,21 @@
   width: 100%;
   margin: 15px 0;
 }.root___1X8N6 {
+  position: relative;
   background: #fff;
   border: 1px solid #ddd;
   font-size: 1.8rem;
   padding: 15px;
 }
 
+.controls___2fb50 {
+}
 .editor___2yWX3 {
-  /*border-top: 1px solid #ddd;*/
   cursor: text;
+  max-height: 500px;
   font-size: 16px;
   margin-top: 10px;
+  overflow:hidden;
 }
 
 
@@ -431,7 +435,7 @@
 .caption___1Efu5 {
   border-left: 3px solid rgba(0,0,0,.8);
   padding-left: 20px;
-  margin-left: -23px;
+  /*margin-left: -23px;*/
   padding-bottom: 3px;
   margin-top: 30px;
 }

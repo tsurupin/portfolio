@@ -36,7 +36,7 @@ class Text extends Component {
     const { handleSubmit, submitting, fields: { description } } = this.props;
     return (
       <div className={styles.root}>
-        <label className={styles.header}>Text</label>
+        <label className={styles.label}>Text</label>
         <TextEditor
           {...description}
           handleUpdate={ (value) => { description.onChange(value) }}
