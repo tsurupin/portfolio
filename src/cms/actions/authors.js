@@ -13,7 +13,7 @@ export function fetchAuthor() {
           dispatch(fetchAuthorSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
-        .catch(error => dispatch(fetchAuthorFailure(error.data)))
+        .catch(error => dispatch(createAlert(error.data, "error")))
     );
   };
 }
@@ -32,14 +32,6 @@ function fetchAuthorSuccess(author) {
   };
 }
 
-function fetchAuthorFailure(error) {
-  return {
-    type: FETCH_AUTHOR.FAILURE,
-    payload: error
-  }
-};
-
-
 export function updateAuthor(props) {
   const author = trimAuthor(props.author);
   const request = axios.patch(`${AUTHOR_PATH}`, { author });
@@ -48,15 +40,8 @@ export function updateAuthor(props) {
    // dispatch(updateAuthorRequest());
     return (
       request
-        .then(() => {
-          dispatch(updateAuthorSuccess());
-          console.log('hoge')
-          //dispatch(createAlert('succeeded to update', 'success'))
-        })
-        .catch(error => {
-          console.log(error)
-          //dispatch(createAlert(`failed to update. ${error}`, 'error'))
-        })
+        .then(() => dispatch(updateAuthorSuccess()))
+        .catch(error =>dispatch(updateAuthorFailure(error.data)))
     );
   };
 }
@@ -69,12 +54,17 @@ export function updateAuthorRequest() {
 
 function updateAuthorSuccess() {
   browserHistory.push('/cms/about');
+  return {
+    type: UPDATE_AUTHOR.SUCCESS
+  }
 }
 
-function updateAuthorFailure(error) {
+function updateAuthorFailure(response) {
   return {
     type: UPDATE_AUTHOR.FAILURE,
-    payload: error
+    payload: {
+      errorMessage: response.errorMessage
+    }
   };
 }
 

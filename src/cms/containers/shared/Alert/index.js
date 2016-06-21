@@ -1,57 +1,7 @@
-// import React, { Component, PropTypes } from 'react';
-// import { connect } from 'react-redux';
-// //import { deleteAlert } from '../../../actions/alerts';
-// import styles from './styles.scss';
-//
-// export default function(ComposedComponent) {
-//   class Alert extends Component {
-//     constructor(props) {
-//       super(props)
-//     }
-//     //
-//     // componentWillMount() {
-//     //
-//     //
-//     //   // if(this.props.hasAlert) {
-//     //   //   setTimeout(() => {
-//     //   //     console.log('hoge')
-//     //   //     this.props.deleteAlert();
-//     //   //   }, 500)
-//     //   // }
-//     // }
-//
-//
-//
-//     render() {
-//       // console.log('hoge')
-//       // if (this.props.hasAlert) {
-//       //   return (
-//       //     <div className={styles.root} >
-//       //       <div className={styles.alert}>
-//       //         {this.props.message}
-//       //       </div>
-//       //       <ComposedComponent {...this.props} />
-//       //     </div>
-//       //   )
-//       // } else {
-//         return <ComposedComponent {...this.props} />
-//       // }
-//     }
-//   }
-//
-//   function mapStateToProps(state) {
-//     return {
-//       hasAlert: state.alert.hasAlert,
-//       message: state.alert.message,
-//       kind: state.alert.kind
-//     }
-//   }
-//
-//   return connect(mapStateToProps)(Alert)
-// }
-
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { deleteAlert } from '../../../actions/alerts'
+import styles from './styles.scss';
 
 
 export default function(ComposedComponent) {
@@ -60,24 +10,48 @@ export default function(ComposedComponent) {
       super(props)
     }
 
-    static contextTypes = {
-      router: PropTypes.object
-    };
 
+    componentWillMount() {
+      this.deleteAlertIfNeeded(this.props);
+    }
 
-    
+    componentWillReceiveProps(nextProps) {
+      this.deleteAlertIfNeeded(nextProps);
+    }
+
+    deleteAlertIfNeeded(props) {
+      if(props.hasAlert) {
+        setTimeout(() => {
+          this.props.deleteAlert();
+        }, 1000)
+      }
+    }
 
     render() {
-      return <ComposedComponent {...this.props} />
+      if (this.props.hasAlert) {
+        return (
+          <div className={styles.root}>
+            <div className={styles[`${this.props.kind}`]}>
+              {this.props.message}
+            </div>
+            <ComposedComponent {...this.props} />
+          </div>
+        )
+      } else {
+        return <ComposedComponent {...this.props} />
+      }
+
     }
   }
 
   function mapStateToProps(state) {
     return {
-      authenticated: state.auths.authenticated
+      hasAlert: state.alerts.hasAlert,
+      message: state.alerts.message,
+      kind: state.alerts.kind
     }
   }
 
-  return connect(mapStateToProps)(Alert)
+  return connect(mapStateToProps, { deleteAlert })(Alert)
 }
 

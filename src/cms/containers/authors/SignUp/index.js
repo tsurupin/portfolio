@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import ErrorMessage from '../../../components/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 
@@ -54,6 +55,12 @@ class AuthorSignUp extends Component {
     }
   }
 
+  renderErrorMessage() {
+    if(this.props.errorMessage) {
+      return <ErrorMessage message={this.props.errorMessage} />
+    }
+  }
+
   render() {
     const { handleSubmit, fields: { name, password, passwordConfirmation, email } }  = this.props;
     return(
@@ -86,8 +93,7 @@ class AuthorSignUp extends Component {
           fullWIdth={true}
           errorText={passwordConfirmation.touched && passwordConfirmation.error ? passwordConfirmation.error : ''}
         />
-        <br />
-        {this.renderError()}
+        {this.renderErrorMessage()}
         <RaisedButton
           type="submit"
           label="SignUp"
@@ -126,7 +132,7 @@ export const fields = [
 function mapStateToProps(state) {
   return {
     authenticated: state.auths.authenticated,
-    errorMessage: state.auths.error
+    errorMessage: state.auths.errorMessage
   }
 }
 

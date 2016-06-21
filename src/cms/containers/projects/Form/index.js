@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchProject, fetchNewProject, saveProject, changeProject } from '../../../actions/projects';
+import { fetchProject, fetchNewProject, saveProject, resetProject } from '../../../actions/projects';
 import { createTag, deleteTag } from '../../../actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
@@ -7,6 +7,8 @@ import DropzoneImage from '../../../components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
 import TagField from '../../../components/shared/TagField/index';
+import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+
 import styles from './styles.scss';
 
 const propTypes = {
@@ -15,6 +17,7 @@ const propTypes = {
   fetchProject: PropTypes.func.isRequired,
   fetchNewProject: PropTypes.func.isRequired,
   saveProject: PropTypes.func.isRequired,
+  resetProject: PropTypes.func.isRequired,
   createTag: PropTypes.func.isRequired,
   deleteTag: PropTypes.func.isRequired
 };
@@ -24,6 +27,7 @@ const inlineStyles = {
     marginBottom: 10
   }
 };
+
 
 class ProjectForm extends Component {
   constructor(props) {
@@ -60,9 +64,15 @@ class ProjectForm extends Component {
   handleDeleteTag(sortRank) {
     this.props.deleteTag(sortRank);
   }
+
+  renderErrorMessage() {
+    if(this.props.errorMessage) {
+      return <ErrorMessage message={this.props.errorMessage} />
+    }
+  }
   
+
   render() {
-   
     const headerLabel = this.props.params.id ? 'Update Project' : 'Create New Project';
     const submitLabel = this.props.params.id ? 'Update' : 'Create';
     const { handleSubmit, submitting, fields: { title, caption, sourceUrl, image, description } } = this.props;
@@ -78,7 +88,7 @@ class ProjectForm extends Component {
           style={inlineStyles.textField}
           errorText={title.touched && title.error ? title.error : ''}
         />
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Description</label>
           <TextEditor
             {...description}
@@ -91,7 +101,7 @@ class ProjectForm extends Component {
           hintText="Enter SourceURL"
           fullWidth={true}
         />
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <TagField
             tags={this.props.tags}
             suggestions={this.props.tagSuggestions}
@@ -99,7 +109,7 @@ class ProjectForm extends Component {
             handleDeleteTag={this.handleDeleteTag}
           />
         </div>
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Image</label>
           <DropzoneImage
             {...image}
@@ -112,6 +122,7 @@ class ProjectForm extends Component {
             fullWidth={true}
           />
         </div>
+        {this.renderErrorMessage()}
         <button type="submit"
                 disabled={submitting}
                 className={styles.button}
@@ -135,16 +146,20 @@ function validate(values) {
 }
 
 const fields = [
-  'id', 'title', 'sourceUrl', 'caption', 'image', 'description'
+  "id", "title", "sourceUrl", "caption", "image", "description"
 ];
+
+
 
 function mapStateToProps(state) {
   return {
     initialValues: state.projects.project,
     tags: state.tags.tags,
-    tagSuggestions: state.tags.tagSuggestions
+    tagSuggestions: state.tags.tagSuggestions,
+    errorMessage: state.projects.errorMessage
   }
 }
+
 
 ProjectForm.propTypes = propTypes;
 
@@ -156,6 +171,7 @@ export default reduxForm({
   fetchProject,
   fetchNewProject,
   saveProject,
+  resetProject,
   createTag,
   deleteTag
 })(ProjectForm);

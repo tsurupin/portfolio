@@ -1,11 +1,11 @@
 import { CREATE_ALERT, DELETE_ALERT } from '../constants';
 
-export function createAlert(message, kind) {
+export function createAlert(response, kind) {
   return {
     type: CREATE_ALERT,
     payload: {
       hasAlert: true,
-      message,
+      message: response.errorMessage,
       kind
     }
   }
