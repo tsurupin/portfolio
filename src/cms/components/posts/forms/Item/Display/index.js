@@ -17,29 +17,12 @@ const propTypes = {
 class PostItemCell extends Component {
   constructor(props) {
     super(props);
-    this.state = { hovering: false };
 
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
   handleUpdateItem() {
     this.props.handleUpdateItem(this.props.sortRank, { ...this.props.item, editing: true })
-  }
-
-  handleMouseEnter() {
-    if (this.state.hovering) {
-      return;
-    }
-    this.setState({ hovering: true })
-  }
-
-  handleMouseLeave() {
-    if (!this.state.hovering) {
-      return;
-    }
-    this.setState({ hovering: false })
   }
 
   renderComponent() {
@@ -55,28 +38,16 @@ class PostItemCell extends Component {
     }
   }
 
-  renderTooltip() {
-    // if (!this.state.hovering) {
-    //   return;
-    // }
-    return (
-      <Tooltip
-        sortRank={this.props.sortRank}
-        totalCount={this.props.totalCount}
-        handleUpdateItem={this.handleUpdateItem}
-        handleDeleteItem={this.props.handleDeleteItem}
-        handleMoveItem={this.props.handleMoveItem}
-      />
-    )
-  }
-
   render() {
     return (
-      <div className={styles.root} 
-           onMouseEnter={this.handleMouseEnter} 
-           onMouseLeave={this.handleMouseLeave}
-      >
-        {this.renderTooltip()}
+      <div className={styles.root}>
+        <Tooltip
+          sortRank={this.props.sortRank}
+          totalCount={this.props.totalCount}
+          handleUpdateItem={this.handleUpdateItem}
+          handleDeleteItem={this.props.handleDeleteItem}
+          handleMoveItem={this.props.handleMoveItem}
+        />
         {this.renderComponent()}
       </div>
     );

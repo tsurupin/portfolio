@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import styles from './styles.scss';
+import imageLogo from './image-icon.png';
+import textLogo from './text-icon.png';
+import twitterLogo from './twitter-icon.png';
 
 const propTypes = {
-  image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
   handleAddItem: PropTypes.func.isRequired
 };
 
@@ -21,16 +22,25 @@ class EditBoxItem extends Component {
     this.props.handleAddItem(this.props.name);
   }
 
+  get image() {
+    switch(this.props.name) {
+      case "ItemTwitter":
+        return twitterLogo;
+      case "ItemText":
+        return textLogo;
+      case "ItemImage":
+        return imageLogo
+    }
+  }
+
   render() {
     return (
       <li className={styles.root}>
         <IconButton
           className={styles.button}
-          tooltip={this.props.label}
-          tooltipPosition="bottom-center"
           onClick={this.handleAddItem}
         >
-          <img src={this.props.image} className={styles.icon}/>
+          <img src={this.image} className={styles.icon}/>
         </IconButton>
       </li>
     );

@@ -1,9 +1,8 @@
 .root {
-  margin: 0 2.5%;
+  margin-right: 10px
 }
 
 .button {
-  composes: hoverAnimation from "../../../../../../../css/mixins.scss";
   border-radius: 48px;
 }
 

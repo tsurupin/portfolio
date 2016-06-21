@@ -195,7 +195,7 @@ class PostForm extends Component {
         <RaisedButton
           type="submit"
           label={submitButtonLabel}
-          secondary={true}
+          primary={true}
           style={inlineStyles.submitButton}
         />
       </form>

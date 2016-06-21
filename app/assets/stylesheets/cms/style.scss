@@ -764,7 +764,7 @@
   letter-spacing: 0;
   margin-bottom: 5px;
 }.root___2Khya {
-  margin: 0 2.5%;
+  margin-right: 10px
 }
 
 .button___24rEr {
@@ -776,18 +776,22 @@
   height: 100%;
 }.root___17ynZ {
   margin-top: 50px;
+  display: -webkit-box;
+  display: flex;
+  height: 60px;
+  vertical_align: middle;
 }
 
 .list___2jWyB {
   list-style: none;
-  display: -webkit-inline-box;
-  display: inline-flex;
+  display: -webkit-box;
+  display: flex;
+  vertical_align: middle;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-direction: row;
   padding: 0;
-  width: 70%;
-  margin: 0 15%;
+  margin: 8px 0;
 }.root___1PGHE {
   position: relative;
 }
