@@ -1,18 +1,18 @@
-import { 
-  PROJECT_PATH, 
+import {
   FETCH_PROJECTS, 
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT, 
   SAVE_PROJECT,
   TOGGLE_PROJECT
-} from '../constants';
-import { fetchTagsForm } from'./tags';
-import { createAlert } from'./alerts';
-import { createAuthorizedRequest, trimProject } from '../utilities';
-import { browserHistory } from 'react-router';
+} from "shared/constants/actions";
+import { PROJECT_PATH } from "shared/constants/apis";
+import { fetchTagsForm } from "./tags";
+import { createAlert } from "sharedActions/alerts";
+import { createAuthorizedRequest, trimProject } from "cms/utilities";
+import { browserHistory } from "react-router";
 
 export function fetchProjects() {
-  const request = createAuthorizedRequest('get', `${PROJECT_PATH}`);
+  const request = createAuthorizedRequest("get", `${PROJECT_PATH}`);
   return dispatch => {
     return (
       request
@@ -32,7 +32,7 @@ function fetchProjectsSuccess(response) {
 }
 
 export function fetchProject(id) {
-  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/${id}/edit`);
+  const request = createAuthorizedRequest("get", `${PROJECT_PATH}/${id}/edit`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchProjectSuccess(response.data)))
@@ -55,7 +55,7 @@ function fetchProjectSuccess(response) {
 }
 
 export function fetchNewProject() {
-  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/new`);
+  const request = createAuthorizedRequest("get", `${PROJECT_PATH}/new`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewProjectSuccess(response.data)))
@@ -82,9 +82,9 @@ export function saveProject(props) {
   const project = trimProject(props.project);
   let request;
   if (project.id) {
-    request = createAuthorizedRequest('patch',`${PROJECT_PATH}/${project.id}`, { project });
+    request = createAuthorizedRequest("patch",`${PROJECT_PATH}/${project.id}`, { project });
   } else {
-    request = createAuthorizedRequest('post', `${PROJECT_PATH}`, { project });
+    request = createAuthorizedRequest("post", `${PROJECT_PATH}`, { project });
   }
   return dispatch => {
     // dispatch(saveProjectRequest());
@@ -120,7 +120,7 @@ function saveProjectFailure(response) {
 }
 
 export function toggleProject(sortRank, id) {
-  const request = createAuthorizedRequest('patch', `${PROJECT_PATH}/${id}/acceptance`);
+  const request = createAuthorizedRequest("patch", `${PROJECT_PATH}/${id}/acceptance`);
   return dispatch => {
     return request
       .then(response => dispatch(toggleProjectSuccess(sortRank, response.data)))

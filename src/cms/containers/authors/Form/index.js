@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchAuthor, updateAuthor } from '../../../actions/authors';
-import { updateSocialAccount } from '../../../actions/socialAccounts';
+import { fetchAuthor, updateAuthor } from 'cmsActions/authors';
+import { updateSocialAccount } from 'cmsActions/socialAccounts';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import DropzoneImage from '../../../components/shared/DropzoneImage/index';
+import DropzoneImage from 'cmsComponents/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
-import SocialAccount from '../../../components/authors/forms/SocialAccount/index';
-import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+import SocialAccount from 'cmsComponents/authors/forms/SocialAccount/index';
+import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
 
 import styles from './styles.scss';
 
@@ -28,6 +28,27 @@ const propTypes = {
   finishLoading: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    initialValues: state.authors.author,
+    socialAccounts: state.socialAccounts,
+    errorMessage: state.authors.errorMessage
+  }
+}
+
+
+const fields = [
+  "id", "name", "image", "description", "introduction"
+];
+
+function validate(values) {
+  const errors = {};
+  if(!values.name) {
+    errors.name = "Entry name"
+  }
+
+  return errors;
+}
 
 const inlineStyles = {
   textField: {
@@ -134,28 +155,6 @@ class AuthorForm extends Component {
       </form>
 
     );
-  }
-}
-
-
-function validate(values) {
-  const errors = {};
-  if(!values.name) {
-    errors.name = "Entry name"
-  }
-
-  return errors;
-}
-
-const fields = [
-  "id", "name", "image", "description", "introduction"
-];
-
-function mapStateToProps(state) {
-  return {
-    initialValues: state.authors.author,
-    socialAccounts: state.socialAccounts,
-    errorMessage: state.authors.errorMessage
   }
 }
 

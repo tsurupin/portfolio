@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { signIn } from '../../../actions/auths';
+import { signIn } from 'cmsActions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 
@@ -14,6 +12,32 @@ const propTypes = {
   authenticated: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string
 };
+
+function mapStateToProps(state) {
+  return {
+    authenticated: state.auths.authenticated,
+    errorMessage: state.auths.errorMessage
+  }
+}
+
+const fields = [
+  'email', 'password'
+];
+
+function validate(values) {
+  const errors = {};
+
+  if(!values.password || values.password.length < 6) {
+    errors.password = 'Enter Password with more than 6 characters'
+  }
+
+  if(!values.email) {
+    errors.password = 'Enter Your Email'
+  }
+  return errors;
+}
+
+
 
 const inlineStyles = {
   textField: {
@@ -81,29 +105,6 @@ class AuthorSignIn extends Component {
   }
 };
 
-
-function validate(values) {
-  const errors = {};
-
-  if(!values.password || values.password.length < 6) {
-    errors.password = 'Enter Password with more than 6 characters'
-  }
-
-  if(!values.email) {
-    errors.password = 'Enter Your Email'
-  }
-  return errors;
-}
-export const fields = [
-  'email', 'password'
-];
-
-function mapStateToProps(state) {
-  return {
-    authenticated: state.auths.authenticated,
-    errorMessage: state.auths.errorMessage
-  }
-}
 
 AuthorSignIn.propTypes = propTypes;
 

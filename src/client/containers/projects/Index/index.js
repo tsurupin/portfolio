@@ -22,6 +22,13 @@ const propTypes = {
   fetchProjects: PropTypes.func.isRequired
 };
 
+
+function mapStateToProps(state) {
+  return { 
+    projects: state.projects.projects 
+  }
+}
+
 class ProjectIndex extends Component {
   
   constructor(props) {
@@ -33,7 +40,8 @@ class ProjectIndex extends Component {
     if (this.props.hasOwnProperty("location")) {
       params.tag = this.props.location.query.tag
     }
-    this.props.fetchProjects(params);
+    this.props.fetchProjects(params)
+      .then(() => this.props.finishLoading());
   }
 
   componentWillReceiveProps (nextProps) {
@@ -61,9 +69,5 @@ class ProjectIndex extends Component {
 }
 
 ProjectIndex.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return { projects: state.projects.projects }
-}
 
 export default connect(mapStateToProps, { fetchProjects })(ProjectIndex);

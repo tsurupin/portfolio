@@ -1,7 +1,7 @@
 import {
-FETCH_SOCIAL_ACCOUNTS,
+  FETCH_SOCIAL_ACCOUNTS,
   UPDATE_SOCIAL_ACCOUNT
-} from '../constants';
+} from 'shared/constants/actions';
 
 export default function (state = [], action) {
   switch (action.type) {

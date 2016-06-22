@@ -4,7 +4,7 @@ import {
   DELETE_ITEM, 
   CANCEL_ITEM,
   UPDATE_ITEM
-} from '../constants';
+} from "shared/constants/actions";
 
 
 export function fetchItems(items) {

@@ -1,20 +1,20 @@
 import {
-  POST_PATH, 
   FETCH_POSTS,
   FETCH_EDIT_POST,
   FETCH_NEW_POST,
   SAVE_POST,  
   TOGGLE_POST
-} from '../constants';
-import { fetchTagsForm } from'./tags';
-import { fetchItems } from'./items';
+} from "shared/constants/actions";
+import { POST_PATH } from "shared/constants/apis";
+import { fetchTagsForm } from "./tags";
+import { fetchItems } from "./items";
 
-import { createAlert } from'./alerts';
-import { createAuthorizedRequest, trimPost } from '../utilities';
-import { browserHistory } from 'react-router';
+import { createAlert } from "sharedActions/alerts";
+import { createAuthorizedRequest, trimPost } from "cms/utilities";
+import { browserHistory } from "react-router";
 
 export function fetchPosts(page = 1) {
-  const request = createAuthorizedRequest('get', `${POST_PATH}?page=${page}`);
+  const request = createAuthorizedRequest("get", `${POST_PATH}?page=${page}`);
   return dispatch => {
     return (
       request
@@ -37,7 +37,7 @@ function fetchPostsSuccess(response) {
 }
 
 export function fetchEditPost(id) {
-  const request = createAuthorizedRequest('get', `${POST_PATH}/${id}/edit`);
+  const request = createAuthorizedRequest("get", `${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchEditPostSuccess(response.data)))
@@ -69,7 +69,7 @@ function fetchEditPostSuccess(response) {
 }
 
 export function fetchNewPost() {
-  const request = createAuthorizedRequest('get', `${POST_PATH}/new`)
+  const request = createAuthorizedRequest("get", `${POST_PATH}/new`)
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewPostSuccess(response.data)))
@@ -91,10 +91,10 @@ export function savePost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
-    request = createAuthorizedRequest('patch', `${POST_PATH}/${post.id}`, { post });
+    request = createAuthorizedRequest("patch", `${POST_PATH}/${post.id}`, { post });
 
   } else {
-    request = createAuthorizedRequest('post', `${POST_PATH}`, { post });
+    request = createAuthorizedRequest("post", `${POST_PATH}`, { post });
   }
   return dispatch => {
     dispatch(savePostRequest());
@@ -113,7 +113,7 @@ export function savePostRequest() {
 }
 
 function savePostSuccess() {
-  browserHistory.push('/cms');
+  browserHistory.push("/cms");
   return {
     type: SAVE_POST.SUCCESS
   }
@@ -129,7 +129,7 @@ function savePostFailure(response) {
 }
 
 export function togglePost(sortRank, id) {
-  const request = createAuthorizedRequest('patch', `${POST_PATH}/${id}/acceptance`);
+  const request = createAuthorizedRequest("patch", `${POST_PATH}/${id}/acceptance`);
   return dispatch => {
     return (
       request

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TARGET_TYPES } from '../../../../../constants';
+import TARGET_TYPES from 'shared/constants/target_types';
 import Tooltip from './Tooltip/index';
 import Image from 'sharedComponents/posts/Image/index';
 import Twitter from 'sharedComponents/posts/Twitter/index';
@@ -27,11 +27,11 @@ class PostItemCell extends Component {
 
   renderComponent() {
     switch (this.props.item.targetType) {
-      case TARGET_TYPES.IMAGE.NAME:
+      case TARGET_TYPES.IMAGE:
         return <Image {...this.props.item} />;
-      case TARGET_TYPES.TWITTER.NAME:
+      case TARGET_TYPES.TWITTER:
         return <Twitter {...this.props.item} />;
-      case TARGET_TYPES.TEXT.NAME:
+      case TARGET_TYPES.TEXT:
         return <Text {...this.props.item} />;
       default:
         return;

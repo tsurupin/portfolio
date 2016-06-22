@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchProject, fetchNewProject, saveProject, resetProject } from '../../../actions/projects';
-import { createTag, deleteTag } from '../../../actions/tags';
+import { fetchProject, fetchNewProject, saveProject, resetProject } from 'cmsActions/projects';
+import { createTag, deleteTag } from 'cmsActions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import DropzoneImage from '../../../components/shared/DropzoneImage/index';
+import DropzoneImage from 'cmsComponents/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
-import TagField from '../../../components/shared/TagField/index';
-import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+import TagField from 'cmsComponents/shared/TagField/index';
+import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 const propTypes = {
@@ -20,6 +20,30 @@ const propTypes = {
   deleteTag: PropTypes.func.isRequired,
   finishLoading: PropTypes.func.isRequired
 };
+
+
+function mapStateToProps(state) {
+  return {
+    initialValues: state.projects.project,
+    tags: state.tags.tags,
+    tagSuggestions: state.tags.tagSuggestions,
+    errorMessage: state.projects.errorMessage
+  }
+}
+
+const fields = [
+  "id", "title", "sourceUrl", "caption", "image", "description"
+];
+
+function validate(values) {
+  const errors = {};
+  if(!values.title) {
+    errors.title = 'Entry title'
+  }
+
+  return errors;
+}
+
 
 const inlineStyles = {
   textField: {
@@ -133,31 +157,6 @@ class ProjectForm extends Component {
       </form>
       
     );
-  }
-}
-
-
-function validate(values) {
-  const errors = {};
-  if(!values.title) {
-    errors.title = 'Entry title'
-  }
-
-  return errors;
-}
-
-const fields = [
-  "id", "title", "sourceUrl", "caption", "image", "description"
-];
-
-
-
-function mapStateToProps(state) {
-  return {
-    initialValues: state.projects.project,
-    tags: state.tags.tags,
-    tagSuggestions: state.tags.tagSuggestions,
-    errorMessage: state.projects.errorMessage
   }
 }
 

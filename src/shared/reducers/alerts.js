@@ -1,6 +1,10 @@
-import { CREATE_ALERT, DELETE_ALERT } from '../constants';
+import { CREATE_ALERT, DELETE_ALERT } from 'shared/constants/actions';
 
-const INITIAL_STATE = { hasAlert: false, message: null, kind: null };
+const INITIAL_STATE = { 
+  hasAlert: false, 
+  message: '', 
+  kind: '' 
+};
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

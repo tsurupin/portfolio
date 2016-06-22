@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { signUp } from '../../../actions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import { signUp } from 'cmsActions/auths';
 import TextField from 'material-ui/TextField';
-import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 
@@ -13,6 +13,18 @@ const propTypes = {
   authenticated: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string
 };
+
+function mapStateToProps(state) {
+  return {
+    authenticated: state.auths.authenticated,
+    errorMessage: state.auths.errorMessage
+  }
+}
+
+const fields = [
+  'name', 'email', 'password', 'passwordConfirmation'
+];
+
 
 const inlineStyles = {
   textField: {
@@ -121,16 +133,6 @@ function validate(values) {
   }
 
   return errors;
-}
-export const fields = [
-  'name', 'email', 'password', 'passwordConfirmation'
-];
-
-function mapStateToProps(state) {
-  return {
-    authenticated: state.auths.authenticated,
-    errorMessage: state.auths.errorMessage
-  }
 }
 
 AuthorSignUp.propTypes = propTypes;

@@ -1,7 +1,14 @@
 import {
-  FETCH_ITEMS, CREATE_ITEM, DELETE_ITEM, UPDATE_ITEM, CANCEL_ITEM,
-  MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM
-} from '../constants';
+  FETCH_ITEMS, 
+  CREATE_ITEM, 
+  DELETE_ITEM, 
+  UPDATE_ITEM, 
+  CANCEL_ITEM,
+  MOVE_ITEM_TOP, 
+  MOVE_ITEM_UP, 
+  MOVE_ITEM_DOWN, 
+  MOVE_ITEM_BOTTOM
+} from 'shared/constants/actions';
 
 
 export default function (state = [], action) {
@@ -31,16 +38,16 @@ export default function (state = [], action) {
     case MOVE_ITEM_UP:
       if (state.length > 0) {
         const subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-        const frontItem = state.slice(action.payload.sortRank - 1, action.payload.sortRank);
-        return [...state.slice(0, action.payload.sortRank - 1), ...subject, ...frontItem, ...state.slice(action.payload.sortRank + 1)];
+        const prevItem = state.slice(action.payload.sortRank - 1, action.payload.sortRank);
+        return [...state.slice(0, action.payload.sortRank - 1), ...subject, ...prevItem, ...state.slice(action.payload.sortRank + 1)];
       }
       return state;
 
     case MOVE_ITEM_DOWN:
       if (state.length > action.payload.sortRank) {
         const subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-        const backItem = state.slice(action.payload.sortRank + 1, action.payload.sortRank + 2);
-        return [...state.slice(0, action.payload.sortRank), ...backItem, ...subject, ...state.slice(action.payload.sortRank + 2)];
+        const succItem = state.slice(action.payload.sortRank + 1, action.payload.sortRank + 2);
+        return [...state.slice(0, action.payload.sortRank), ...succItem, ...subject, ...state.slice(action.payload.sortRank + 2)];
       }
       return state;
 

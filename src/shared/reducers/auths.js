@@ -1,4 +1,4 @@
-import { AUTH, SIGN_OUT } from '../constants';
+import { AUTH, SIGN_OUT } from 'shared/constants/actions';
 
 const INITIAL_STATE = { errorMessage: '', authenticated: false };
 
@@ -12,9 +12,8 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, errorMessage: '', authenticated: false };
     
     case AUTH.FAILURE:
-    case SIGN_OUT.FAILURE:
       return { ...state, errorMessage: action.payload.errorMessage };
-
+ 
     default:
       return state;
   }

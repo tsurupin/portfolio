@@ -1,12 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, togglePost } from '../../../actions/posts';
+import { fetchPosts, togglePost } from 'cmsActions/posts';
 import { Link } from 'react-router';
-import Item from '../../../components/posts/indexes/Item/index';
-import { Table, TableHeaderColumn, TableHeader, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui/Table';
+import Item from 'cmsComponents/posts/indexes/Item/index';
+import { 
+  Table, 
+  TableHeaderColumn, 
+  TableHeader, 
+  TableBody, 
+  TableRow, 
+  TableRowColumn, 
+  TableFooter 
+} from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import Pagination from '../../../components/shared/Pagination/index';
+import Pagination from 'cmsComponents/shared/Pagination/index';
 import styles from'./styles.scss';
 
 
@@ -26,6 +34,15 @@ const propTypes = {
   togglePost: PropTypes.func.isRequired,
   finishLoading: PropTypes.func.isRequired
 };
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts.posts,
+    page: state.posts.page,
+    limit: state.posts.limit,
+    total: state.posts.total
+  }
+}
 
 const inlineStyles = {
   floatButton: {
@@ -112,14 +129,5 @@ class PostIndex extends Component {
 }
 
 PostIndex.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return { 
-    posts: state.posts.posts, 
-    page: state.posts.page, 
-    limit: state.posts.limit, 
-    total: state.posts.total 
-  }
-}
 
 export default connect(mapStateToProps, { fetchPosts, togglePost })(PostIndex);

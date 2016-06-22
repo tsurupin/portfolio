@@ -10,7 +10,7 @@
 }
 
 .listButton {
-  composes: hoverAnimation from "../../../../../../css/mixins.scss";
+  composes: hoverAnimation from "src/shared/css/mixins.scss";
   border-radius: 24px;
 }
 

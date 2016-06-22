@@ -20,13 +20,21 @@ const propTypes = {
   })).isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    about: state.about,
+    socialAccounts: state.socialAccounts
+  }
+}
+
 class AboutShow extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    this.props.fetchAbout();
+    this.props.fetchAbout()
+      .then(() => this.props.finishLoading());
   }
 
   renderText() {
@@ -40,7 +48,6 @@ class AboutShow extends Component {
   }
 
   render() {
-    console.log('about')
     if (!this.props.about) {
       return <seciont className={styles.root} />
     }
@@ -61,12 +68,5 @@ class AboutShow extends Component {
 }
 
 AboutShow.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return {
-    about: state.about,
-    socialAccounts: state.socialAccounts
-  }
-}
 
 export default connect(mapStateToProps, { fetchAbout })(AboutShow);

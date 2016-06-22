@@ -37,12 +37,16 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx', '.css', '.scss'],
     alias: {
+      cms: 'src/cms',
       cmsActions: 'src/cms/actions',
       cmsComponents: 'src/cms/components',
       cmsCss: 'src/cms/css',
+      client: 'src/client',
       clientActions: 'src/client/actions',
       clientComponents: 'src/client/components',
       sharedComponents: 'src/shared/components',
+      sharedActions: 'src/shared/actions',
+      sharedCss: 'src/shared/css',
       shared: 'src/shared'
     }
   },

@@ -22,13 +22,20 @@ const propTypes = {
   }).isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    home: state.home
+  }
+}
+
 class HomeShow extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    this.props.fetchHome();
+    this.props.fetchHome()
+      .then(() => this.props.finishLoading());
   }
 
   renderText() {
@@ -78,11 +85,5 @@ class HomeShow extends Component {
 }
 
 HomeShow.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return {
-    home: state.home
-  }
-}
 
 export default connect(mapStateToProps, { fetchHome })(HomeShow);

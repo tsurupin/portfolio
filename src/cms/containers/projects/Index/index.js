@@ -1,9 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchProjects, toggleProject } from '../../../actions/projects';
-import Item from '../../../components/projects/indexes/Item/index';
-import { Table, TableHeaderColumn, TableHeader, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui/Table';
+import { fetchProjects, toggleProject } from 'cmsActions/projects';
+import Item from 'cmsComponents/projects/indexes/Item/index';
+import { 
+  Table, 
+  TableHeaderColumn, 
+  TableHeader, 
+  TableBody, 
+  TableRow, 
+  TableRowColumn, 
+  TableFooter 
+} from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import styles from './styles.scss';
@@ -20,6 +28,12 @@ const propTypes =  {
   fetchProjects: PropTypes.func.isRequired,
   finishLoading: PropTypes.func.isRequired
 };
+
+function mapStateToProps(state) {
+  return {
+    projects: state.projects.projects
+  }
+}
 
 const inlineStyles = {
   floatButton: {
@@ -91,9 +105,5 @@ class ProjectIndex extends Component {
 }
 
 ProjectIndex.propTypes = propTypes;
-function mapStateToProps(state) {
-  return {
-    projects: state.projects.projects
-  }
-}
+
 export default connect(mapStateToProps, { fetchProjects, toggleProject })(ProjectIndex)

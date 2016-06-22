@@ -3,7 +3,7 @@ import {
   FETCH_TAGS_FORM,
   CREATE_TAG,
   DELETE_TAG
-} from '../constants';
+} from 'shared/constants/actions';
 
 const INITIAL_STATE = { tags: [], tagSuggestions: [] };
 
@@ -19,7 +19,8 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, tags: [...state.tags, action.payload.tag] };
     
     case DELETE_TAG:
-      return { ...state, tags: [...state.tags.slice(0, action.payload.sortRank), ...state.tags.slice(action.payload.sortRank + 1)] };
+      const tags = [...state.tags.slice(0, action.payload.sortRank), ...state.tags.slice(action.payload.sortRank + 1)];
+      return { ...state, tags };
     
     default:
       return state;

@@ -1,4 +1,7 @@
-import { CREATE_ALERT, DELETE_ALERT } from '../constants';
+import { 
+  CREATE_ALERT, 
+  DELETE_ALERT 
+} from 'shared/constants/actions';
 
 export function createAlert(response, kind) {
   return {

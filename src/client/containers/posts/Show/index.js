@@ -26,6 +26,14 @@ const propTypes = {
   fetchPost: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    post: state.posts.post,
+    tags: state.tags.tags,
+    items: state.items
+  }
+}
+
 const inlineStyles = {
   dateTimeLogo:{
     verticalAlign: 'middle',
@@ -42,6 +50,7 @@ class PostShow extends  Component {
   
   componentDidMount() {
     this.props.fetchPost(this.props.params.id)
+      .then(() => this.props.finishLoading());
   }
 
   componentWillReceiveProps (nextProps) {
@@ -91,13 +100,5 @@ class PostShow extends  Component {
 }
 
 PostShow.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return {
-    post: state.posts.post,
-    tags: state.tags.tags,
-    items: state.items
-  }
-}
 
 export default connect(mapStateToProps, { fetchPost })(PostShow)

@@ -824,4 +824,29 @@
   display: flex;
   margin-top: 30px;
 
+}.root___364R0 {
+  position: relative
+}
+
+.alert___dreRy {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  line-height: 56px;
+  font-size: 1.6rem;
+  color: #fff;
+  z-index: 10000;
+  text-align: center;
+}
+
+.error___3JviG {
+  background-color: #CE4844;
+}
+
+.success___3_5Vq {
+  background-color: #5CB85C;
+}.root___3dYLg {
+  min-height: 500px;
 }

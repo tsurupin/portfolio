@@ -1,19 +1,18 @@
-import {
-  POST_PATH, 
-  FETCH_POSTS, 
-  FETCH_POST
-} from '../constants';
-import { fetchTags } from'./tags';
-import { fetchItems } from'./items';
-import { axios } from '../utilities';
-import { browserHistory } from 'react-router';
+import { FETCH_POSTS_INFINITELY, FETCH_POST } from "shared/constants/actions";
+import { POST_PATH } from "shared/constants/apis";
+import { fetchTags } from "./tags";
+import { fetchItems } from "./items";
+import { axios } from "client/utilities";
+import { browserHistory } from "react-router";
+import { createAlert } from "sharedActions/alerts";
 
-export function fetchPosts(params = {}) {
-  let url = `${POST_PATH}`;
-  url = params.page ? `${url}?page=${params.page}` : `${url}?page=1`;
-
+export function fetchPosts(params = { page: 1 }) {
+  let url;
+  
   if (params.tag) {
-    url = `${url}&tag=${params.tag}`;
+    url = `${POST_PATH}&tag=${params.tag}`;
+  } else {
+    url = `${POST_PATH}?page=${params.page}`
   }
   
   const request = axios.get(url);
@@ -21,33 +20,22 @@ export function fetchPosts(params = {}) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => dispatch(fetchPostsFailure(error.data)))
+        .catch(error => dispatch(createAlert(error.data, "error")))
     );
   };
 }
 
-function fetchPostsSuccess(response) {
-  console.log(response)
-  console.log('response')
+function fetchPostsSuccess({ posts, meta }) {
   return {
-    type: FETCH_POSTS.SUCCESS,
+    type: FETCH_POSTS_INFINITELY.SUCCESS,
     payload: {
-      posts: response.posts,
-      total: response.meta.pagination.total,
-      page:  response.meta.pagination.page,
-      limit: response.meta.pagination.limit
+      posts,
+      total: meta.pagination.total,
+      page:  meta.pagination.page,
+      limit: meta.pagination.limit
     }
   };
 }
-
-function fetchPostsFailure(error) {
-  return {
-    type: FETCH_POSTS.FAILURE,
-    payload: error
-  };
-}
-
-
 
 export function fetchPost(id) {
   const request = axios.get(`${POST_PATH}/${id}`);
@@ -58,7 +46,7 @@ export function fetchPost(id) {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTags(response.payload.tags))
       })
-      .catch(error => dispatch(fetchPostFailure(error.data)))
+      .catch(error => dispatch(createAlert(error.data, "error")))
   };
 }
 
@@ -77,13 +65,6 @@ function fetchPostSuccess(response) {
       items: response.items,
       tags: response.tags
     }
-  };
-}
-
-function fetchPostFailure(error) {
-  return {
-    type: FETCH_POST.FAILURE,
-    payload: error
   };
 }
 

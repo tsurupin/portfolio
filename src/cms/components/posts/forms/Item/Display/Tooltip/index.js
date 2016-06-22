@@ -1,5 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM } from '../../../../../../constants';
+import {
+  MOVE_ITEM_TOP,
+  MOVE_ITEM_UP,
+  MOVE_ITEM_DOWN,
+  MOVE_ITEM_BOTTOM
+} from 'shared/constants/actions';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ArrowUpword from 'material-ui/svg-icons/navigation/arrow-upward';

@@ -1,18 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
-import { ACCOUNT_TYPE_ICONS } from '../../../../../constants';
+import gitHubIcon from './git-hub-icon.png';
+import facebookIcon from './facebook-icon.png';
+import linkedInIcon from './linked-in-icon.png';
+import twitterIcon from './twitter-icon.png';
 import styles from './styles.scss';
 
 const propTypes = {
   accountType: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired
-};
-
-const inlineStyles = {
-  button: {
-    width: 32,
-    height: 32
-  }
 };
 
 function Item({ url, accountType }) {
@@ -31,13 +27,13 @@ function Item({ url, accountType }) {
 function getAccountIconImage(accountType) {
   switch(accountType) {
     case "github":
-      return ACCOUNT_TYPE_ICONS.GITHUB;
+      return gitHubIcon;
     case "facebook":
-      return ACCOUNT_TYPE_ICONS.FACEBOOK;
+      return facebookIcon;
     case "linked_in":
-      return ACCOUNT_TYPE_ICONS.LINKED_IN;
+      return linkedInIcon;
     case "twitter":
-      return ACCOUNT_TYPE_ICONS.TWITTER;
+      return twitterIcon;
     default:
   }
 }

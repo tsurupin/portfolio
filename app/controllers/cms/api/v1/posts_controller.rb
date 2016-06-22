@@ -21,7 +21,6 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
 
   def edit
     post = Post.find(params[:id])
-    p post
     render json: PostFormSerializer.new(post)
   end
 
