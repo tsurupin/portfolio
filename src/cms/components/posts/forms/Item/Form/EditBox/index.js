@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TARGET_TYPES } from '../../../../../../constants';
+import TARGET_TYPES from 'shared/constants/target_types';
 import List from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
 import ContentAddCircleOutLine from 'material-ui/svg-icons/content/add-circle-outline';
@@ -68,7 +68,7 @@ class EditBox extends Component {
             return (
               <EditBoxItem
                 key={index}
-                name={targetType.NAME}
+                name={targetType}
                 handleAddItem={this.props.handleAddItem}
               />
             );

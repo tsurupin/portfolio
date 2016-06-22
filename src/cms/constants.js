@@ -56,16 +56,3 @@ export const DELETE_TAG = 'DELETE_TAG';
 
 export const CREATE_ALERT = 'CREATE_ALERT';
 export const DELETE_ALERT = 'DELETE_ALERT';
-
-export const TARGET_TYPES = {
-  TWITTER: {
-    NAME: "ItemTwitter"
-  },
-  IMAGE: {
-    NAME: "ItemImage"
-  },
- 
-  TEXT: {
-    NAME: "ItemText"
-  }
-};

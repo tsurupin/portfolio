@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { TARGET_TYPES } from 'shared/constants';
+import TARGET_TYPES from 'shared/constants/target_types';
 import Text from 'sharedComponents/posts/Text/index';
 import Twitter from 'sharedComponents/posts/Twitter/index';
 import Image from 'sharedComponents/posts/Image/index';
@@ -20,11 +20,11 @@ function Item({ item }) {
 
 function renderComponent(item) {
   switch (item.targetType) {
-    case TARGET_TYPES.IMAGE.NAME:
+    case TARGET_TYPES.IMAGE:
       return <Image {...item} />;
-    case TARGET_TYPES.TWITTER.NAME:
+    case TARGET_TYPES.TWITTER:
       return <Twitter {...item} />;
-    case TARGET_TYPES.TEXT.NAME:
+    case TARGET_TYPES.TEXT:
       return <Text {...item} />;
     default:
       return;

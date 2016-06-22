@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TARGET_TYPES } from '../../../../../constants';
+import TARGET_TYPES from 'shared/constants/target_types';
 import IconButton from 'material-ui/IconButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
@@ -49,7 +49,7 @@ class PostItemForm extends Component {
 
   renderComponent() {
     switch (this.props.item.targetType) {
-      case TARGET_TYPES.IMAGE.NAME:
+      case TARGET_TYPES.IMAGE:
         return (
           <Image
             formKey={this.props.sortRank.toString()}
@@ -63,7 +63,7 @@ class PostItemForm extends Component {
             cancelButton={this.renderCancelButton()}
           />
         );
-      case TARGET_TYPES.TWITTER.NAME:
+      case TARGET_TYPES.TWITTER:
         return (
           <Twitter
             formKey={this.props.sortRank.toString()}
@@ -75,7 +75,7 @@ class PostItemForm extends Component {
             cancelButton={this.renderCancelButton()}
           />
         );
-      case TARGET_TYPES.TEXT.NAME:
+      case TARGET_TYPES.TEXT:
         return (
           <Text
             targetType={this.props.item.targetType}
