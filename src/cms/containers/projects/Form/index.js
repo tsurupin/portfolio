@@ -40,14 +40,10 @@ class ProjectForm extends Component {
   componentWillMount() {
     if (this.props.params.id) {
       this.props.fetchProject(this.props.params.id)
-        .then(() => setTimeout(() => {
-          this.props.finishLoading()
-        }, 2000))
+        .then(() => this.props.finishLoading());
     } else {
       this.props.fetchNewProject()
-        .then(() => setTimeout(() => {
-          this.props.finishLoading()
-          }, 2000))
+        .then(() => this.props.finishLoading());
     }
   }
   

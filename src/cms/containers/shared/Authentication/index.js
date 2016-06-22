@@ -14,9 +14,6 @@ export default function(ComposedComponent) {
 
 
     componentWillMount() {
-      console.log(typeof localStorage.getItem('accessToken') === 'undefined')
-      console.log(this.props.authenticated)
-      console.log(localStorage.getItem('accessToken'));
       if (!this.props.authenticated) {
         this.context.router.push('/cms/sign-in')
       }

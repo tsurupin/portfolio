@@ -45,9 +45,7 @@ class ProjectIndex extends Component {
 
   componentDidMount() {
     this.props.fetchProjects()
-      .then(() => setTimeout(() => {
-        this.props.finishLoading()
-      }, 2000));
+      .then(() => this.props.finishLoading());
   }
   
   handleToggle(sortRank, id) {

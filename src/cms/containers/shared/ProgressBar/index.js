@@ -23,7 +23,10 @@ export default function(ComposedComponent) {
     }
 
     finishLoading() {
-      this.setState({ loading: false })
+      // ALERT: a warning raises when unmounted before setTimeOut fires.
+      setTimeout(() => {
+        this.setState({ loading: false })
+      }, 1500)
     }
 
     renderProgressBar() {
