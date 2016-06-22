@@ -16,14 +16,8 @@ const propTypes = {
 };
 
 const inlineStyles = {
-  submitButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 15
-  },
-  indicator: {
-    display: 'inline-block',
-    position: 'relative'
+  textField: {
+    marginBottom: 10
   }
 };
 
@@ -40,15 +34,15 @@ class AuthorSignIn extends Component {
   }
 
   componentWillMount() {
-    if(this.props.authenticated) {
-      this.context.router.push("/cms")
-    }
+    // if(this.props.authenticated) {
+    //   this.context.router.push("/cms")
+    // }
   }
 
-  handleSubmit(props) {
-    this.props.signIn({ author: props });
+  handleSubmit(author) {
+    this.props.signIn({ author });
   }
-  
+
   renderErrorMessage() {
     if(this.props.errorMessage) {
       return <ErrorMessage message={this.props.errorMessage} />
@@ -56,7 +50,7 @@ class AuthorSignIn extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: { email, password } }  = this.props;
+    const { handleSubmit, submitting, fields: { email, password } }  = this.props;
     return(
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
         <h2 className={styles.heading}>Sign In</h2>
@@ -64,24 +58,25 @@ class AuthorSignIn extends Component {
           {...email}
           type="email"
           hintText="Enter Your Email"
-          fullWIdth={true}
+          fullWidth={true}
           errorText={email.touched && email.error ? email.error : ''}
+          style={inlineStyles.textField}
         />
         <TextField
           {...password}
           type="password"
           hintText="Enter password"
-          fullWIdth={true}
+          fullWidth={true}
           errorText={password.touched && password.error ? password.error : ''}
+          style={inlineStyles.textField}
         />
-        <br />
         {this.renderErrorMessage()}
-        <RaisedButton
-          type="submit"
-          label="SignIn"
-          secondary={true}
-          style={inlineStyles.submitButton}
-        />
+        <button type="submit"
+                disabled={submitting}
+                className={styles.button}
+        >
+          SignIn
+        </button>
       </form>)
   }
 };

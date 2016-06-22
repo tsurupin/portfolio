@@ -1,11 +1,12 @@
-import { axios, trimAuthor } from '../utilities';
+import { createAuthorizedRequest, trimAuthor } from '../utilities';
 import { AUTHOR_PATH, UPDATE_AUTHOR, FETCH_AUTHOR } from "../constants";
 import { browserHistory } from 'react-router';
 import { fetchSocialAccounts } from './socialAccounts';
 import { createAlert } from './alerts';
 
+
 export function fetchAuthor() {
-  const request = axios.get(`${AUTHOR_PATH}/`);
+  const request = createAuthorizedRequest('get', `${AUTHOR_PATH}/`);
   return dispatch => {
     return (
       request
@@ -34,7 +35,7 @@ function fetchAuthorSuccess(author) {
 
 export function updateAuthor(props) {
   const author = trimAuthor(props.author);
-  const request = axios.patch(`${AUTHOR_PATH}`, { author });
+  const request = createAuthorizedRequest('patch', `${AUTHOR_PATH}`, { author });
   
   return dispatch => {
    // dispatch(updateAuthorRequest());

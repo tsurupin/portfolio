@@ -3,7 +3,6 @@ import { signUp } from '../../../actions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import ErrorMessage from '../../../components/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
@@ -16,14 +15,8 @@ const propTypes = {
 };
 
 const inlineStyles = {
-  submitButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 15
-  },
-  indicator: {
-    display: 'inline-block',
-    position: 'relative'
+  textField: {
+    marginBottom: 10
   }
 };
 
@@ -62,44 +55,48 @@ class AuthorSignUp extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: { name, password, passwordConfirmation, email } }  = this.props;
+    const { handleSubmit, submitting, fields: { name, password, passwordConfirmation, email } }  = this.props;
     return(
       <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
         <h2 className={styles.heading}>Sign Up</h2>
         <TextField
-        {...name}
-        hintText="Enter Your Name"
-        fullWIdth={true}
-        errorText={name.touched && name.error ? name.error : ''}
+          {...name}
+          hintText="Enter Your Name"
+          fullWidth={true}
+          errorText={name.touched && name.error ? name.error : ''}
+          style={inlineStyles.textField}
         />
         <TextField
           {...email}
           hintText="Enter Your Email"
           type="email"
-          fullWIdth={true}
+          fullWidth={true}
           errorText={email.touched && email.error ? email.error : ''}
+          style={inlineStyles.textField}
         />
         <TextField
           {...password}
           hintText="Enter password"
           type="password"
-          fullWIdth={true}
+          fullWidth={true}
           errorText={password.touched && password.error ? password.error : ''}
+          style={inlineStyles.textField}
         />
         <TextField
           {...passwordConfirmation}
           hintText="Enter password confirmation"
           type="password"
-          fullWIdth={true}
+          fullWidth={true}
           errorText={passwordConfirmation.touched && passwordConfirmation.error ? passwordConfirmation.error : ''}
+          style={inlineStyles.textField}
         />
         {this.renderErrorMessage()}
-        <RaisedButton
-          type="submit"
-          label="SignUp"
-          secondary={true}
-          style={inlineStyles.submitButton}
-        />
+        <button type="submit"
+                disabled={submitting}
+                className={styles.button}
+        >
+          SignUp
+        </button>
     </form>)
   }
 };

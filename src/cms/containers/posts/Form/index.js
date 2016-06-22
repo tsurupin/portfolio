@@ -65,14 +65,10 @@ class PostForm extends Component {
   componentDidMount() {
     if (this.props.params.id) {
       this.props.fetchEditPost(this.props.params.id)
-        .then(() => setTimeout(() => {
-          this.props.finishLoading()
-        }, 2000));
+        .then(() => this.props.finishLoading());
     } else {
       this.props.fetchNewPost()
-        .then(() => setTimeout(() => {
-          this.props.finishLoading()
-        }, 2000));
+        .then(() => this.props.finishLoading());
     }
   }
 

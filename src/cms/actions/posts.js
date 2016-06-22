@@ -8,12 +8,13 @@ import {
 } from '../constants';
 import { fetchTagsForm } from'./tags';
 import { fetchItems } from'./items';
+
 import { createAlert } from'./alerts';
-import { axios, trimPost } from '../utilities';
+import { createAuthorizedRequest, trimPost } from '../utilities';
 import { browserHistory } from 'react-router';
 
 export function fetchPosts(page = 1) {
-  const request = axios.get(`${POST_PATH}?page=${page}`);
+  const request = createAuthorizedRequest('get', `${POST_PATH}?page=${page}`);
   return dispatch => {
     return (
       request
@@ -36,7 +37,7 @@ function fetchPostsSuccess(response) {
 }
 
 export function fetchEditPost(id) {
-  const request = axios.get(`${POST_PATH}/${id}/edit`);
+  const request = createAuthorizedRequest('get', `${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchEditPostSuccess(response.data)))
@@ -68,7 +69,7 @@ function fetchEditPostSuccess(response) {
 }
 
 export function fetchNewPost() {
-  const request = axios.get(`${POST_PATH}/new`);
+  const request = createAuthorizedRequest('get', `${POST_PATH}/new`)
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewPostSuccess(response.data)))
@@ -90,9 +91,10 @@ export function savePost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
-    request = axios.patch(`${POST_PATH}/${post.id}`, { post });
+    request = createAuthorizedRequest('patch', `${POST_PATH}/${post.id}`, { post });
+
   } else {
-    request = axios.post(`${POST_PATH}`, { post });
+    request = createAuthorizedRequest('post', `${POST_PATH}`, { post });
   }
   return dispatch => {
     dispatch(savePostRequest());
@@ -118,8 +120,6 @@ function savePostSuccess() {
 }
 
 function savePostFailure(response) {
-  console.log('failure')
-  console.log(response)
   return {
     type: SAVE_POST.FAILURE,
     payload: {
@@ -129,7 +129,7 @@ function savePostFailure(response) {
 }
 
 export function togglePost(sortRank, id) {
-  const request = axios.patch(`${POST_PATH}/${id}/acceptance`);
+  const request = createAuthorizedRequest('patch', `${POST_PATH}/${id}/acceptance`);
   return dispatch => {
     return (
       request

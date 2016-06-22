@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
+import { signOut } from '../../../actions/auths';
 
 export default function(ComposedComponent) {
   class Authentication extends Component {
@@ -17,12 +17,21 @@ export default function(ComposedComponent) {
       if (!this.props.authenticated) {
         this.context.router.push('/cms/sign-in')
       }
+      
+      if (typeof localStorage.getItem('accessToken') === "undefined") {
+        this.props.signOut()
+      }
+
     }
 
     componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
         this.context.router.push('/cms/sign-in')
+      };
+      if (typeof localStorage.getItem('accessToken') === "undefined") {
+        this.props.signOut()
       }
+
     }
 
     render() {
@@ -36,6 +45,6 @@ export default function(ComposedComponent) {
     }
   }
 
-  return connect(mapStateToProps)(Authentication)
+  return connect(mapStateToProps, { signOut })(Authentication)
 }
 

@@ -46,9 +46,7 @@ class AuthorForm extends Component {
 
   componentDidMount() {
     this.props.fetchAuthor()
-      .then(() => setTimeout(() => {
-        this.props.finishLoading()
-      }, 2000))
+      .then(() => this.props.finishLoading())
   }
 
   handleSubmit(props) {

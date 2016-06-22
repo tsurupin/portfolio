@@ -1,11 +1,13 @@
 class Cms::ApplicationController < ApplicationController
-  include AbstractController::Translation
+  #include AbstractController::Translation
   before_action :authenticate_author_from_token!, except: :layout
 
   layout 'cms/layouts/application'
 
   def authenticate_author_from_token!
+    p request.headers
     auth_token = request.headers['Authorization']
+    p auth_token
     return authentication_error unless auth_token
     authenticate_with_auth_token(auth_token)
   end
@@ -26,6 +28,6 @@ class Cms::ApplicationController < ApplicationController
   end
 
   def authentication_error
-    render json: { error: t('unauthorized') }, status: 401
+    render json: { errorMessage: 'unauthorized' }, status: :unauthorized
   end
 end
