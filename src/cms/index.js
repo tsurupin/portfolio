@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import useScroll from 'react-router-scroll';
 import { createStore, applyMiddleware } from 'redux';
-import { AUTH } from './constants';
+import { AUTH } from 'shared/constants/actions';
 
 import routes from './routes';
 import reducers from './reducers';
