@@ -8,11 +8,23 @@ export const axios = client.create({
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'X-CSRF-Token': getCSRFToken(),
-    'Authorization': localStorage.getItem('accessToken') 
+    'X-CSRF-Token': getCSRFToken()
   }
 });
 
+export function createAuthorizedRequest(method, path, params) {
+  const config = { headers: { 'Authorization': localStorage.getItem('accessToken') } };
+  switch(method) {
+    case 'get':
+      return axios.get(path, config);
+    case 'post':
+      return axios.post(path, params, config);
+    case 'patch' :
+      return axios.patch(path, params, config);
+    case 'delete' :
+      return axios.delete(path, config);
+  }
+}
 
 
 export function trimPost(params) {

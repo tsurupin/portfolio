@@ -2,6 +2,7 @@ class Cms::Api::V1::AuthorsController < Cms::ApplicationController
   skip_before_action :authenticate_author_from_token!, only: :create
 
   def create
+    p 'create'
     author = Author.new(author_params)
     if author.save
       render json: { accessToken: author.access_token }

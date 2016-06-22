@@ -54,7 +54,8 @@ class PostIndex extends Component {
     this.props.fetchPosts()
       .then(() => setTimeout(() => {
         this.props.finishLoading()
-      }, 2000));
+      }, 2000))
+      
   }
   
   handleToggle(sortRank, post_id) {

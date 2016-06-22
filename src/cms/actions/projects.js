@@ -8,11 +8,11 @@ import {
 } from '../constants';
 import { fetchTagsForm } from'./tags';
 import { createAlert } from'./alerts';
-import { axios, trimProject } from '../utilities';
+import { createAuthorizedRequest, trimProject } from '../utilities';
 import { browserHistory } from 'react-router';
 
 export function fetchProjects() {
-  const request = axios.get(`${PROJECT_PATH}`);
+  const request = createAuthorizedRequest('get', `${PROJECT_PATH}`);
   return dispatch => {
     return (
       request
@@ -32,7 +32,7 @@ function fetchProjectsSuccess(response) {
 }
 
 export function fetchProject(id) {
-  const request = axios.get(`${PROJECT_PATH}/${id}/edit`);
+  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/${id}/edit`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchProjectSuccess(response.data)))
@@ -55,15 +55,12 @@ function fetchProjectSuccess(response) {
 }
 
 export function fetchNewProject() {
-  const request = axios.get(`${PROJECT_PATH}/new`);
+  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/new`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewProjectSuccess(response.data)))
       .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => {
-        console.log(error)
-        dispatch(createAlert(error.data, "error"))
-      })
+      .catch(error => dispatch(createAlert(error.data, "error")))
     }
 };
 
@@ -85,9 +82,9 @@ export function saveProject(props) {
   const project = trimProject(props.project);
   let request;
   if (project.id) {
-    request = axios.patch(`${PROJECT_PATH}/${project.id}`, { project });
+    request = createAuthorizedRequest('patch',`${PROJECT_PATH}/${project.id}`, { project });
   } else {
-    request = axios.post(`${PROJECT_PATH}`, { project });
+    request = createAuthorizedRequest('post', `${PROJECT_PATH}`, { project });
   }
   return dispatch => {
     // dispatch(saveProjectRequest());
@@ -123,7 +120,7 @@ function saveProjectFailure(response) {
 }
 
 export function toggleProject(sortRank, id) {
-  const request = axios.patch(`${PROJECT_PATH}/${id}/acceptance`);
+  const request = createAuthorizedRequest('patch', `${PROJECT_PATH}/${id}/acceptance`);
   return dispatch => {
     return request
       .then(response => dispatch(toggleProjectSuccess(sortRank, response.data)))
