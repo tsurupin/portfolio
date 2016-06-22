@@ -4,7 +4,7 @@ import {
   FETCH_NEW_PROJECT,
   SAVE_PROJECT,
   TOGGLE_PROJECT
-} from '../constants';
+} from 'shared/constants/actions';
 
 const INITIAL_STATE = { 
   projects: [],
@@ -30,13 +30,14 @@ export default function (state = INITIAL_STATE, action) {
     
     case SAVE_PROJECT.SUCCESS:
       return { ...state, project: {}, errorMessage: '' };
-    
-    case FETCH_PROJECTS.FAILURE:
-    case FETCH_PROJECT.FAILURE:
+
     case SAVE_PROJECT.FAILURE:
-    case TOGGLE_PROJECT.FAILURE:
       return { ...state, errorMessage: action.payload.errorMessage };
-    
+
+    // case FETCH_PROJECTS.FAILURE:
+    // case FETCH_PROJECT.FAILURE:
+    // case TOGGLE_PROJECT.FAILURE:
+    //  
     default:
       return state;
   }

@@ -40,7 +40,6 @@ class AboutShow extends Component {
   }
 
   render() {
-    console.log('about')
     if (!this.props.about) {
       return <seciont className={styles.root} />
     }

@@ -6,7 +6,7 @@ export default function(state = {}, action) {
       return action.payload.home;
     
     case FETCH_HOME.FAILURE:
-      return {...state, error: action.payload.error };
+      return { ...state, errorMessage: action.payload.errorMessage };
     
     default:
       return state;  

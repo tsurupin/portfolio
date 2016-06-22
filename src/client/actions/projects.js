@@ -19,8 +19,6 @@ export function fetchProjects(params = {}) {
 }
 
 function fetchProjectsSuccess(response) {
-  console.log(response.projects.length)
-  console.log('fetchPro')
   return {
     type: FETCH_PROJECTS.SUCCESS,
     payload: { projects: response.projects }

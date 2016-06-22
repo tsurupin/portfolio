@@ -13,11 +13,9 @@ export function fetchHome() {
 }
 
 function fetchHomeSuccess(home) {
-  console.log(home)
-  console.log('home')
   return {
     type: FETCH_HOME.SUCCESS,
-    payload: { home }
+    payload: home 
   }
 }
 

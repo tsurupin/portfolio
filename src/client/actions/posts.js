@@ -1,19 +1,21 @@
 import {
   POST_PATH, 
-  FETCH_POSTS, 
+  FETCH_POSTS_INFINITELY,
   FETCH_POST
-} from '../constants';
+} from 'shared/constants/actions';
 import { fetchTags } from'./tags';
 import { fetchItems } from'./items';
 import { axios } from '../utilities';
 import { browserHistory } from 'react-router';
 
-export function fetchPosts(params = {}) {
-  let url = `${POST_PATH}`;
-  url = params.page ? `${url}?page=${params.page}` : `${url}?page=1`;
+export function fetchPosts(params = { page: 1 }) {
+  let url;
+  // url = params.page ? `${url}?page=${params.page}` : `${url}?page=1`;
 
   if (params.tag) {
-    url = `${url}&tag=${params.tag}`;
+    url = `${POST_PATH}&tag=${params.tag}`;
+  } else {
+    url = `${POST_PATH}?page=${params.page}`
   }
   
   const request = axios.get(url);
@@ -26,24 +28,22 @@ export function fetchPosts(params = {}) {
   };
 }
 
-function fetchPostsSuccess(response) {
-  console.log(response)
-  console.log('response')
+function fetchPostsSuccess({ posts, meta }) {
   return {
-    type: FETCH_POSTS.SUCCESS,
+    type: FETCH_POSTS_INFINITELY.SUCCESS,
     payload: {
-      posts: response.posts,
-      total: response.meta.pagination.total,
-      page:  response.meta.pagination.page,
-      limit: response.meta.pagination.limit
+      posts,
+      total: meta.pagination.total,
+      page:  meta.pagination.page,
+      limit: meta.pagination.limit
     }
   };
 }
 
-function fetchPostsFailure(error) {
+function fetchPostsFailure({ errorMessage }) {
   return {
-    type: FETCH_POSTS.FAILURE,
-    payload: error
+    type: FETCH_POSTS_INFINITELY.FAILURE,
+    payload: errorMessage
   };
 }
 

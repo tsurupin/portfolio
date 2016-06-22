@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux';
-import postReducer from './posts';
-import projectReducer from './projects';
-import itemReducer from './items';
-import tagReducer from './tags';
-import aboutReducer from './abouts';
-import socialAccountReducer from './socialAccounts';
-import homeReducer from './homes';
+import posts from 'shared/reducers/posts';
+import projects from 'shared/reducers/projects';
+import items from 'shared/reducers/items';
+import tags from 'shared/reducers/tags';
+import about from 'shared/reducers/abouts';
+import socialAccounts from 'shared/reducers/socialAccounts';
+import home from 'shared/reducers/homes';
 
 const rootReducer = combineReducers({
-  posts: postReducer,
-  projects: projectReducer,
-  items: itemReducer,
-  tags: tagReducer,
-  about: aboutReducer,
-  socialAccounts: socialAccountReducer,
-  home: homeReducer
+  posts,
+  projects,
+  items,
+  tags,
+  about,
+  socialAccounts,
+  home
 });
 
 export default rootReducer;

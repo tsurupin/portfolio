@@ -1,11 +1,12 @@
 import { 
-  FETCH_POSTS, 
+  FETCH_POSTS,
+  FETCH_POSTS_INFINITELY,
   FETCH_POST,
   FETCH_EDIT_POST,
   FETCH_NEW_POST, 
   SAVE_POST,
   TOGGLE_POST 
-} from '../constants';
+} from 'shared/constants/actions';
 
 const INITIAL_STATE = { 
   posts: [], 
@@ -21,15 +22,8 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case SAVE_POST.REQUEST:
       return { ...state, loading: true };
-
-    case FETCH_POSTS.SUCCESS:
-      // return {
-      //   ...state,
-      //   posts: action.payload.posts,
-      //   limit: action.payload.limit,
-      //   page: action.payload.page,
-      //   total: action.payload.total
-      // };
+    
+    case FETCH_POSTS_INFINITELY.SUCCESS:
       let posts;
       if(action.payload.page === 1) {
         posts = [...action.payload.posts]
@@ -40,6 +34,15 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         posts,
+        limit: action.payload.limit,
+        page: action.payload.page,
+        total: action.payload.total
+      };
+    
+    case FETCH_POSTS.SUCCESS:
+      return {
+        ...state,
+        posts: action.payload.posts,
         limit: action.payload.limit,
         page: action.payload.page,
         total: action.payload.total

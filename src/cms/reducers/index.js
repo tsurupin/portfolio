@@ -1,26 +1,26 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
-import postReducer from './posts';
-import itemReducer from './items';
-import tagReducer from './tags';
-import authorReducer from './authors';
-import authReducer from './auths';
-import socialAccountReducer from  './socialAccounts';
-import projectReducer from  './projects';
-import aboutReducer from './abouts';
-import alertReducer from './alerts';
+import { reducer as form } from 'redux-form';
+import posts from 'shared/reducers/posts';
+import items from 'shared/reducers/items';
+import tags from 'shared/reducers/tags';
+import authors from 'shared/reducers/authors';
+import auths from 'shared/reducers/auths';
+import socialAccounts from  'shared/reducers/socialAccounts';
+import projects from  'shared/reducers/projects';
+import about from 'shared/reducers/abouts';
+import alerts from 'shared/reducers/alerts';
 
 const rootReducer = combineReducers({
-  form: formReducer,
-  posts: postReducer,
-  items: itemReducer,
-  tags: tagReducer,
-  authors: authorReducer,
-  auths: authReducer,
-  socialAccounts: socialAccountReducer,
-  projects: projectReducer,
-  about: aboutReducer,
-  alerts: alertReducer
+  form,
+  posts,
+  items,
+  tags,
+  authors,
+  auths,
+  socialAccounts,
+  projects,
+  about,
+  alerts
 });
 
 export default rootReducer;

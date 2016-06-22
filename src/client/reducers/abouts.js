@@ -1,12 +1,18 @@
 import { FETCH_ABOUT } from '../constants';
 
-export default function(state = {}, action) {
+
+const INITIAL_STATE = {
+  about: {},
+  errorMessage: ''
+};
+
+export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case FETCH_ABOUT.SUCCESS:
-      return action.payload.about;
+      return { about: action.payload.about };
     
     case FETCH_ABOUT.FAILURE:
-      return {...state, error: action.payload.error };
+      return { ...state, errorMessage: action.payload.errorMessage };
     
     default:
       return state;  

@@ -19,12 +19,7 @@ export function fetchAbout(){
 function fetchAboutSuccess(about) {
   return {
     type: FETCH_ABOUT.SUCCESS,
-    payload: { about: {
-      email: about.email,
-      name: about.name,
-      image: about.image,
-      description: about.description
-    } }
+    payload: about
   };
 }
 function fetchAboutFailure(error) {
