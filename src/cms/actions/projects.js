@@ -7,7 +7,7 @@ import {
 } from "shared/constants/actions";
 import { PROJECT_PATH } from "shared/constants/apis";
 import { fetchTagsForm } from "./tags";
-import { createAlert } from "./alerts";
+import { createAlert } from "sharedActions/alerts";
 import { createAuthorizedRequest, trimProject } from "cms/utilities";
 import { browserHistory } from "react-router";
 

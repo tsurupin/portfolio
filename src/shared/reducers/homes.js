@@ -5,9 +5,6 @@ export default function(state = {}, action) {
     case FETCH_HOME.SUCCESS:
       return action.payload;
     
-    // case FETCH_HOME.FAILURE:
-    //   return { ...state, errorMessage: action.payload.errorMessage };
-    //
     default:
       return state;  
   }

@@ -33,11 +33,7 @@ export default function (state = INITIAL_STATE, action) {
 
     case SAVE_PROJECT.FAILURE:
       return { ...state, errorMessage: action.payload.errorMessage };
-
-    // case FETCH_PROJECTS.FAILURE:
-    // case FETCH_PROJECT.FAILURE:
-    // case TOGGLE_PROJECT.FAILURE:
-    //  
+    
     default:
       return state;
   }

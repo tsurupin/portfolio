@@ -9,7 +9,7 @@ import { POST_PATH } from "shared/constants/apis";
 import { fetchTagsForm } from "./tags";
 import { fetchItems } from "./items";
 
-import { createAlert } from "./alerts";
+import { createAlert } from "sharedActions/alerts";
 import { createAuthorizedRequest, trimPost } from "cms/utilities";
 import { browserHistory } from "react-router";
 
@@ -19,10 +19,7 @@ export function fetchPosts(page = 1) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => {
-          console.log(error)
-          dispatch(createAlert(error.data, "error"))
-        })
+        .catch(error => dispatch(createAlert(error.data, "error")))
     );
   };
 }

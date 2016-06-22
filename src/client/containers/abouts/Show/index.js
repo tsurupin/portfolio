@@ -33,7 +33,8 @@ class AboutShow extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAbout();
+    this.props.fetchAbout()
+      .then(() => this.props.finishLoading());
   }
 
   renderText() {

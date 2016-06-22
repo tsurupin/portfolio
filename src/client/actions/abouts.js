@@ -2,6 +2,7 @@ import { FETCH_ABOUT } from 'shared/constants/actions';
 import { ABOUT_PATH } from 'shared/constants/apis';
 import { axios } from "client/utilities";
 import { fetchSocialAccounts } from "./socialAccounts";
+import { createAlert } from "sharedActions/alerts";
 
 export function fetchAbout(){
   const request = axios.get(ABOUT_PATH);
@@ -12,7 +13,7 @@ export function fetchAbout(){
           dispatch(fetchAboutSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
-        .catch(error => dispatch(fetchAboutFailure(error)))
+        .catch(error => dispatch(createAlert(error.data, "error")))
     )
   }
 }
@@ -22,10 +23,4 @@ function fetchAboutSuccess(about) {
     type: FETCH_ABOUT.SUCCESS,
     payload: about
   };
-}
-function fetchAboutFailure(error) {
-  return {
-    type: FETCH_ABOUT.FAILURE,
-    payload: error
-  }
 }

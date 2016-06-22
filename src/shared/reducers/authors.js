@@ -11,8 +11,6 @@ export default function (state = INITIAL_STATE, action) {
     case FETCH_AUTHOR.SUCCESS:
       return { ...state, author: action.payload.author,  errorMessage: '' };
     
-    // case UPDATE_AUTHOR.REQUEST:
-    //   return { ...state };
     case UPDATE_AUTHOR.SUCCESS:
       return { ...state, author: {}, errorMessage: '' };
     case UPDATE_AUTHOR.FAILURE:

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinearProgress from 'material-ui/LinearProgress';
+import styles from './styles.scss';
 
 const inlineStyles = {
   progressBar: {
@@ -46,7 +47,7 @@ export default function(ComposedComponent) {
     
     render() {
       return (
-      <div>
+      <div className={styles.root}>
         {this.renderProgressBar()}
         <ComposedComponent { ...this.props } finishLoading={this.finishLoading} />
       </div>

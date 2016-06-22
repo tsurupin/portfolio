@@ -4,7 +4,7 @@ import { UPDATE_AUTHOR, FETCH_AUTHOR } from "shared/constants/actions";
 import { AUTHOR_PATH } from "shared/constants/apis";
 import { browserHistory } from "react-router";
 import { fetchSocialAccounts } from "./socialAccounts";
-import { createAlert } from "./alerts";
+import { createAlert } from "sharedActions/alerts";
 
 
 export function fetchAuthor() {

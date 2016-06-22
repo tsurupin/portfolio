@@ -43,7 +43,7 @@
 }
 
 .itemList {
-  composes: resetUlDefaultStyle from '../../../css/mixins.scss';
+  composes: resetUlDefaultStyle from 'src/shared/css/mixins.scss';
   position: relative;
 
   list-style: none;

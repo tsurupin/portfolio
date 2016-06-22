@@ -4,11 +4,11 @@ import { fetchTags } from "./tags";
 import { fetchItems } from "./items";
 import { axios } from "client/utilities";
 import { browserHistory } from "react-router";
+import { createAlert } from "sharedActions/alerts";
 
 export function fetchPosts(params = { page: 1 }) {
   let url;
-  // url = params.page ? `${url}?page=${params.page}` : `${url}?page=1`;
-
+  
   if (params.tag) {
     url = `${POST_PATH}&tag=${params.tag}`;
   } else {
@@ -20,7 +20,7 @@ export function fetchPosts(params = { page: 1 }) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => dispatch(fetchPostsFailure(error.data)))
+        .catch(error => dispatch(createAlert(error.data, "error")))
     );
   };
 }
@@ -37,15 +37,6 @@ function fetchPostsSuccess({ posts, meta }) {
   };
 }
 
-function fetchPostsFailure({ errorMessage }) {
-  return {
-    type: FETCH_POSTS_INFINITELY.FAILURE,
-    payload: errorMessage
-  };
-}
-
-
-
 export function fetchPost(id) {
   const request = axios.get(`${POST_PATH}/${id}`);
   return dispatch => {
@@ -55,7 +46,7 @@ export function fetchPost(id) {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTags(response.payload.tags))
       })
-      .catch(error => dispatch(fetchPostFailure(error.data)))
+      .catch(error => dispatch(createAlert(error.data, "error")))
   };
 }
 
@@ -74,13 +65,6 @@ function fetchPostSuccess(response) {
       items: response.items,
       tags: response.tags
     }
-  };
-}
-
-function fetchPostFailure(error) {
-  return {
-    type: FETCH_POST.FAILURE,
-    payload: error
   };
 }
 

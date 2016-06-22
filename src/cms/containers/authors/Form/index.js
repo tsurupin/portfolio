@@ -50,8 +50,6 @@ function validate(values) {
   return errors;
 }
 
-
-
 const inlineStyles = {
   textField: {
     marginBottom: 10

@@ -50,6 +50,7 @@ class PostShow extends  Component {
   
   componentDidMount() {
     this.props.fetchPost(this.props.params.id)
+      .then(() => this.props.finishLoading());
   }
 
   componentWillReceiveProps (nextProps) {

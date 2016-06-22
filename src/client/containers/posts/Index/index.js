@@ -36,7 +36,8 @@ class PostIndex extends Component {
     if (this.props.hasOwnProperty("location")) {
       params.tag = this.props.location.query.tag
     }
-    this.props.fetchPosts(params);
+    this.props.fetchPosts(params)
+      .then(() => this.props.finishLoading());
   }
 
   componentWillReceiveProps (nextProps) {

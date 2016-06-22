@@ -34,7 +34,8 @@ class HomeShow extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchHome();
+    this.props.fetchHome()
+      .then(() => this.props.finishLoading());
   }
 
   renderText() {
