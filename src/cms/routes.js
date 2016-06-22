@@ -14,8 +14,8 @@ import AuthorSinUp from './containers/authors/SignUp/index';
 import AuthorSingIn from './containers/authors/SignIn/index';
 import NotFound from 'shared/containers/NotFound/index';
 import Authentication from './containers/shared/Authentication/index';
-import Alert from './containers/shared/Alert/index';
-import ProgressBar from './containers/shared/ProgressBar/index';
+import Alert from 'shared/containers/shared/Alert/index';
+import ProgressBar from 'shared/containers/shared/ProgressBar/index';
 
 export default (
   <Route path="/cms" component={App}>

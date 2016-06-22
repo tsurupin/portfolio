@@ -1,7 +1,7 @@
-@value colors: "../../../../../../css/colors.scss";
+@value colors: "src/shared/css/colors.scss";
 @value label-color, font-medium from colors;
 
-@value fonts: "../../../../../../css/fonts.scss";
+@value fonts: "src/shared/css/fonts.scss";
 @value font-xx-small, font-medium from fonts;
 
 .root {

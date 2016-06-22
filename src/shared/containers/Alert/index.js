@@ -5,15 +5,6 @@ import styles from './styles.scss';
 
 
 export default function(ComposedComponent) {
-
-  function mapStateToProps(state) {
-    return {
-      hasAlert: state.alerts.hasAlert,
-      message: state.alerts.message,
-      kind: state.alerts.kind
-    }
-  }
-  
   class Alert extends Component {
     constructor(props) {
       super(props)
@@ -50,6 +41,14 @@ export default function(ComposedComponent) {
         return <ComposedComponent {...this.props} />
       }
 
+    }
+  }
+
+  function mapStateToProps(state) {
+    return {
+      hasAlert: state.alerts.hasAlert,
+      message: state.alerts.message,
+      kind: state.alerts.kind
     }
   }
 

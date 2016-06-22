@@ -14,6 +14,15 @@ const propTypes = {
   fetchPosts: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    posts: state.posts.posts,
+    page: state.posts.page,
+    limit: state.posts.limit,
+    total: state.posts.total
+  }
+}
+
 class PostIndex extends Component {
   
   constructor(props) {
@@ -83,14 +92,5 @@ class PostIndex extends Component {
 }
 
 PostIndex.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return { 
-    posts: state.posts.posts, 
-    page: state.posts.page, 
-    limit: state.posts.limit, 
-    total: state.posts.total 
-  }
-}
 
 export default connect(mapStateToProps, { fetchPosts })(PostIndex);

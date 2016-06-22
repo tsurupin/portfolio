@@ -22,6 +22,12 @@ const propTypes = {
   }).isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    home: state.home
+  }
+}
+
 class HomeShow extends Component {
   constructor(props) {
     super(props);
@@ -78,11 +84,5 @@ class HomeShow extends Component {
 }
 
 HomeShow.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return {
-    home: state.home
-  }
-}
 
 export default connect(mapStateToProps, { fetchHome })(HomeShow);

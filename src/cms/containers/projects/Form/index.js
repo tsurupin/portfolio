@@ -21,6 +21,30 @@ const propTypes = {
   finishLoading: PropTypes.func.isRequired
 };
 
+
+function mapStateToProps(state) {
+  return {
+    initialValues: state.projects.project,
+    tags: state.tags.tags,
+    tagSuggestions: state.tags.tagSuggestions,
+    errorMessage: state.projects.errorMessage
+  }
+}
+
+const fields = [
+  "id", "title", "sourceUrl", "caption", "image", "description"
+];
+
+function validate(values) {
+  const errors = {};
+  if(!values.title) {
+    errors.title = 'Entry title'
+  }
+
+  return errors;
+}
+
+
 const inlineStyles = {
   textField: {
     marginBottom: 10
@@ -133,31 +157,6 @@ class ProjectForm extends Component {
       </form>
       
     );
-  }
-}
-
-
-function validate(values) {
-  const errors = {};
-  if(!values.title) {
-    errors.title = 'Entry title'
-  }
-
-  return errors;
-}
-
-const fields = [
-  "id", "title", "sourceUrl", "caption", "image", "description"
-];
-
-
-
-function mapStateToProps(state) {
-  return {
-    initialValues: state.projects.project,
-    tags: state.tags.tags,
-    tagSuggestions: state.tags.tagSuggestions,
-    errorMessage: state.projects.errorMessage
   }
 }
 

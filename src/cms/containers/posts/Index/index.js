@@ -35,6 +35,15 @@ const propTypes = {
   finishLoading: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    posts: state.posts.posts,
+    page: state.posts.page,
+    limit: state.posts.limit,
+    total: state.posts.total
+  }
+}
+
 const inlineStyles = {
   floatButton: {
     position: 'fixed',
@@ -120,14 +129,5 @@ class PostIndex extends Component {
 }
 
 PostIndex.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return { 
-    posts: state.posts.posts, 
-    page: state.posts.page, 
-    limit: state.posts.limit, 
-    total: state.posts.total 
-  }
-}
 
 export default connect(mapStateToProps, { fetchPosts, togglePost })(PostIndex);

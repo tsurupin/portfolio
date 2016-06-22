@@ -13,6 +13,32 @@ const propTypes = {
   errorMessage: PropTypes.string
 };
 
+function mapStateToProps(state) {
+  return {
+    authenticated: state.auths.authenticated,
+    errorMessage: state.auths.errorMessage
+  }
+}
+
+const fields = [
+  'email', 'password'
+];
+
+function validate(values) {
+  const errors = {};
+
+  if(!values.password || values.password.length < 6) {
+    errors.password = 'Enter Password with more than 6 characters'
+  }
+
+  if(!values.email) {
+    errors.password = 'Enter Your Email'
+  }
+  return errors;
+}
+
+
+
 const inlineStyles = {
   textField: {
     marginBottom: 10
@@ -79,29 +105,6 @@ class AuthorSignIn extends Component {
   }
 };
 
-
-function validate(values) {
-  const errors = {};
-
-  if(!values.password || values.password.length < 6) {
-    errors.password = 'Enter Password with more than 6 characters'
-  }
-
-  if(!values.email) {
-    errors.password = 'Enter Your Email'
-  }
-  return errors;
-}
-export const fields = [
-  'email', 'password'
-];
-
-function mapStateToProps(state) {
-  return {
-    authenticated: state.auths.authenticated,
-    errorMessage: state.auths.errorMessage
-  }
-}
 
 AuthorSignIn.propTypes = propTypes;
 

@@ -45,6 +45,7 @@ module.exports = {
       clientActions: 'src/client/actions',
       clientComponents: 'src/client/components',
       sharedComponents: 'src/shared/components',
+      sharedCss: 'src/shared/css',
       shared: 'src/shared'
     }
   },

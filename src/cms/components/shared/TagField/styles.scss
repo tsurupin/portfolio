@@ -1,11 +1,11 @@
-@value colors: '../../../css/colors.scss';
+@value colors: 'src/shared/css/colors.scss';
 @value label-color, border-color, theme-color, strong-opaque from colors;
-@value fonts: '../../../css/fonts.scss';
+@value fonts: 'src/shared/css/fonts.scss';
 @value font-xx-small from fonts;
 
 .root {
   margin: 20px 0;
-  composes: fontMedium from '../../../css/fonts.scss';
+  composes: fontMedium from 'src/shared/css/fonts.scss';
 
   position: relative;
   width: 100%;
@@ -13,7 +13,7 @@
 }
 
 .header {
-  composes: headerLabel from '../../../css/mixins.scss';
+  composes: headerLabel from 'src/shared/css/mixins.scss';
 }
 
 .content {
@@ -61,7 +61,7 @@
 }
 
 .remove {
-  composes: strongHoverOpaque from '../../../css/mixins.scss';
+  composes: strongHoverOpaque from 'src/shared/css/mixins.scss';
 
   margin-left: 10px;
   color: #3d3d3d;
@@ -69,7 +69,7 @@
 }
 
 .suggestions {
-  composes: fontSmall from '../../../css/fonts.scss';
+  composes: fontSmall from 'src/shared/css/fonts.scss';
 
   position: absolute;
   width: 96%;

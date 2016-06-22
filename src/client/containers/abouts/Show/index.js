@@ -20,6 +20,13 @@ const propTypes = {
   })).isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    about: state.about,
+    socialAccounts: state.socialAccounts
+  }
+}
+
 class AboutShow extends Component {
   constructor(props) {
     super(props);
@@ -60,12 +67,5 @@ class AboutShow extends Component {
 }
 
 AboutShow.propTypes = propTypes;
-
-function mapStateToProps(state) {
-  return {
-    about: state.about,
-    socialAccounts: state.socialAccounts
-  }
-}
 
 export default connect(mapStateToProps, { fetchAbout })(AboutShow);

@@ -28,6 +28,29 @@ const propTypes = {
   finishLoading: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    initialValues: state.authors.author,
+    socialAccounts: state.socialAccounts,
+    errorMessage: state.authors.errorMessage
+  }
+}
+
+
+const fields = [
+  "id", "name", "image", "description", "introduction"
+];
+
+function validate(values) {
+  const errors = {};
+  if(!values.name) {
+    errors.name = "Entry name"
+  }
+
+  return errors;
+}
+
+
 
 const inlineStyles = {
   textField: {
@@ -134,28 +157,6 @@ class AuthorForm extends Component {
       </form>
 
     );
-  }
-}
-
-
-function validate(values) {
-  const errors = {};
-  if(!values.name) {
-    errors.name = "Entry name"
-  }
-
-  return errors;
-}
-
-const fields = [
-  "id", "name", "image", "description", "introduction"
-];
-
-function mapStateToProps(state) {
-  return {
-    initialValues: state.authors.author,
-    socialAccounts: state.socialAccounts,
-    errorMessage: state.authors.errorMessage
   }
 }
 

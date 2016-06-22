@@ -14,6 +14,18 @@ const propTypes = {
   errorMessage: PropTypes.string
 };
 
+function mapStateToProps(state) {
+  return {
+    authenticated: state.auths.authenticated,
+    errorMessage: state.auths.errorMessage
+  }
+}
+
+const fields = [
+  'name', 'email', 'password', 'passwordConfirmation'
+];
+
+
 const inlineStyles = {
   textField: {
     marginBottom: 10
@@ -121,16 +133,6 @@ function validate(values) {
   }
 
   return errors;
-}
-export const fields = [
-  'name', 'email', 'password', 'passwordConfirmation'
-];
-
-function mapStateToProps(state) {
-  return {
-    authenticated: state.auths.authenticated,
-    errorMessage: state.auths.errorMessage
-  }
 }
 
 AuthorSignUp.propTypes = propTypes;

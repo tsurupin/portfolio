@@ -29,6 +29,12 @@ const propTypes =  {
   finishLoading: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    projects: state.projects.projects
+  }
+}
+
 const inlineStyles = {
   floatButton: {
     position: 'fixed',
@@ -99,9 +105,5 @@ class ProjectIndex extends Component {
 }
 
 ProjectIndex.propTypes = propTypes;
-function mapStateToProps(state) {
-  return {
-    projects: state.projects.projects
-  }
-}
+
 export default connect(mapStateToProps, { fetchProjects, toggleProject })(ProjectIndex)

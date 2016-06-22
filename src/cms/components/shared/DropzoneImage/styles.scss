@@ -1,18 +1,18 @@
-@value colors: '../../../css/colors.scss';
+@value colors: 'src/shared/css/colors.scss';
 @value label-color, text-color, border-color, theme-color, error-color, strong-opaque from colors;
-@value fonts: '../../../css/fonts.scss';
+@value fonts: 'src/shared/css/fonts.scss';
 @value font-xx-small, font-medium from fonts;
 
 .root {
-  composes: row from '../../../css/flexboxgrid.scss';
+  composes: row from 'src/shared/css/flexboxgrids.scss';
   border-bottom: 1px solid #E0E0E0;
   padding: 6px;
 }
 
 
 .dropzone {
-  composes: col-xs-12 from '../../../css/flexboxgrid.scss';
-  composes: marginToopXXSmall from '../../../css/margins.scss';
+  composes: col-xs-12 from 'src/shared/css/flexboxgrids.scss';
+  composes: marginToopXXSmall from 'src/shared/css/margins.scss';
   width: 100%;
   margin-top: 10px;
   max-height: 100px;
