@@ -1,9 +1,7 @@
-import {
-  PROJECT_PATH, 
-  FETCH_PROJECTS
-} from '../constants';
-import { axios } from '../utilities';
-import { browserHistory } from 'react-router';
+import { FETCH_PROJECTS } from "shared/constants/actions";
+import { PROJECT_PATH } from "shared/constants/apis";
+import { axios } from "client/utilities";
+import { browserHistory } from "react-router";
 
 export function fetchProjects(params = {}) {
   const url =  params.tag ? `${PROJECT_PATH}?tag=${params.tag}` : PROJECT_PATH;

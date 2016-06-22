@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { deleteAlert } from '../../../actions/alerts'
+import { deleteAlert } from 'cmsActions/alerts'
 import styles from './styles.scss';
 
 

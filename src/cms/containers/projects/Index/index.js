@@ -1,9 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchProjects, toggleProject } from '../../../actions/projects';
-import Item from '../../../components/projects/indexes/Item/index';
-import { Table, TableHeaderColumn, TableHeader, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui/Table';
+import { fetchProjects, toggleProject } from 'cmsActions/projects';
+import Item from 'cmsComponents/projects/indexes/Item/index';
+import { 
+  Table, 
+  TableHeaderColumn, 
+  TableHeader, 
+  TableBody, 
+  TableRow, 
+  TableRowColumn, 
+  TableFooter 
+} from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import styles from './styles.scss';

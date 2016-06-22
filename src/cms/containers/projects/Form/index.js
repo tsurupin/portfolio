@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchProject, fetchNewProject, saveProject, resetProject } from '../../../actions/projects';
-import { createTag, deleteTag } from '../../../actions/tags';
+import { fetchProject, fetchNewProject, saveProject, resetProject } from 'cmsActions/projects';
+import { createTag, deleteTag } from 'cmsActions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import DropzoneImage from '../../../components/shared/DropzoneImage/index';
+import DropzoneImage from 'cmsComponents/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import TextEditor from 'sharedComponents/textEditors/Editor/index'
-import TagField from '../../../components/shared/TagField/index';
-import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+import TagField from 'cmsComponents/shared/TagField/index';
+import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 const propTypes = {

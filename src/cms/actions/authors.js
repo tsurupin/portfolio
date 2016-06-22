@@ -1,12 +1,14 @@
-import { createAuthorizedRequest, trimAuthor } from '../utilities';
-import { AUTHOR_PATH, UPDATE_AUTHOR, FETCH_AUTHOR } from "../constants";
-import { browserHistory } from 'react-router';
-import { fetchSocialAccounts } from './socialAccounts';
-import { createAlert } from './alerts';
+import { createAuthorizedRequest, trimAuthor } from "cms/utilities";
+import { UPDATE_AUTHOR, FETCH_AUTHOR } from "shared/constants/actions";
+
+import { AUTHOR_PATH } from "shared/constants/apis";
+import { browserHistory } from "react-router";
+import { fetchSocialAccounts } from "./socialAccounts";
+import { createAlert } from "./alerts";
 
 
 export function fetchAuthor() {
-  const request = createAuthorizedRequest('get', `${AUTHOR_PATH}/`);
+  const request = createAuthorizedRequest("get", `${AUTHOR_PATH}/`);
   return dispatch => {
     return (
       request
@@ -35,7 +37,7 @@ function fetchAuthorSuccess(author) {
 
 export function updateAuthor(props) {
   const author = trimAuthor(props.author);
-  const request = createAuthorizedRequest('patch', `${AUTHOR_PATH}`, { author });
+  const request = createAuthorizedRequest("patch", `${AUTHOR_PATH}`, { author });
   
   return dispatch => {
    // dispatch(updateAuthorRequest());
@@ -54,7 +56,7 @@ export function updateAuthorRequest() {
 }
 
 function updateAuthorSuccess() {
-  browserHistory.push('/cms/about');
+  browserHistory.push("/cms/about");
   return {
     type: UPDATE_AUTHOR.SUCCESS
   }

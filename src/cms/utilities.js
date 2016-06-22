@@ -3,7 +3,6 @@ import { ROOT_URL } from './constants';
 import  { getCSRFToken, capitalize } from 'shared/utilities';
 
 export const axios = client.create({
-
   baseURL: ROOT_URL,
   headers: {
     'Accept': 'application/json',

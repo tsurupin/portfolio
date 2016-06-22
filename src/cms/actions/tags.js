@@ -3,7 +3,7 @@ import {
   FETCH_TAGS_FORM,
   CREATE_TAG, 
   DELETE_TAG
-} from '../constants';
+} from "shared/constants/actions"
 
 
 export function fetchTags(tags) {

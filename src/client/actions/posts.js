@@ -1,12 +1,9 @@
-import {
-  POST_PATH, 
-  FETCH_POSTS_INFINITELY,
-  FETCH_POST
-} from 'shared/constants/actions';
-import { fetchTags } from'./tags';
-import { fetchItems } from'./items';
-import { axios } from '../utilities';
-import { browserHistory } from 'react-router';
+import { FETCH_POSTS_INFINITELY, FETCH_POST } from "shared/constants/actions";
+import { POST_PATH } from "shared/constants/apis";
+import { fetchTags } from "./tags";
+import { fetchItems } from "./items";
+import { axios } from "client/utilities";
+import { browserHistory } from "react-router";
 
 export function fetchPosts(params = { page: 1 }) {
   let url;

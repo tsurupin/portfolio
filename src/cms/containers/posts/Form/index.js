@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
 import { fetchEditPost, fetchNewPost, savePost } from 'cmsActions/posts';
 import { createItem, updateItem, deleteItem, moveItem, cancelItem } from 'cmsActions/items';
 import { createTag, deleteTag } from 'cmsActions/tags';
-import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
-import EditBox from '../../../components/posts/forms/Item/Form/EditBox/index';
+import EditBox from 'cmsComponents/posts/forms/Item/Form/EditBox/index';
 import TextField from 'material-ui/TextField';
-import DatePicker from '../../../components/shared/CustomDatePicker/index';
-import Item from '../../../components/posts/forms/Item/index';
-import TagField from '../../../components/shared/TagField/index';
-import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+import DatePicker from 'cmsComponents/shared/CustomDatePicker/index';
+import Item from 'cmsComponents/posts/forms/Item/index';
+import TagField from 'cmsComponents/shared/TagField/index';
+import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 

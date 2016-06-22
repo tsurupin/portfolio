@@ -1,4 +1,4 @@
-import { FETCH_ITEMS } from '../constants';
+import { FETCH_ITEMS } from "shared/constants/actions";
 
 export function fetchItems(items) {
   return {

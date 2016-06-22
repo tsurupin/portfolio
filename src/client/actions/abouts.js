@@ -1,6 +1,7 @@
-import { ABOUT_PATH, FETCH_ABOUT } from '../constants';
-import { axios } from '../utilities';
-import { fetchSocialAccounts } from'./socialAccounts';
+import { FETCH_ABOUT } from 'shared/constants/actions';
+import { ABOUT_PATH } from 'shared/constants/apis';
+import { axios } from "client/utilities";
+import { fetchSocialAccounts } from "./socialAccounts";
 
 export function fetchAbout(){
   const request = axios.get(ABOUT_PATH);

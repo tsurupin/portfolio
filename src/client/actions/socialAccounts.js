@@ -1,4 +1,4 @@
-import { FETCH_SOCIAL_ACCOUNTS } from '../constants';
+import { FETCH_SOCIAL_ACCOUNTS } from "shared/constants/actions";
 
 export function fetchSocialAccounts(response) {
   return {

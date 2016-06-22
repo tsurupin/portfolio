@@ -1,9 +1,7 @@
-
-import { axios } from '../utilities';
-import {
-  AUTHOR_PATH, AUTH, SIGN_OUT,
-} from "../constants";
-import { browserHistory } from 'react-router';
+import { axios } from "cms/utilities";
+import { AUTH, SIGN_OUT, } from "shared/constants/actions";
+import { AUTHOR_PATH } from "shared/constants/apis";
+import { browserHistory } from "react-router";
 
 export function signUp(params) {
   const request = axios.post(`${AUTHOR_PATH}/sign-up`, params);
@@ -24,14 +22,14 @@ export function signIn(params) {
     return (
       request
         .then(response => dispatch(authSuccess(response.data.accessToken)))
-        .then(() => browserHistory.push('/cms'))
+        .then(() => browserHistory.push("/cms"))
         .catch(error => dispatch(authFailure(error.data)))
     );
   };
 }
 
 function authSuccess(accessToken) {
-  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem("accessToken", accessToken);
   return { type: AUTH.SUCCESS };
 }
 
@@ -50,14 +48,14 @@ export function signOut() {
     return(
       request
         .then(() => dispatch(signOutSuccess()))
-        .then(() => browserHistory.push('/cms/sign-in'))
+        .then(() => browserHistory.push("/cms/sign-in"))
         .catch(error => dispatch(signOutFailure(error.data)))
     );
   };
 }
 
 function signOutSuccess() {
-  localStorage.removeItem('accessToken');
+  localStorage.removeItem("accessToken");
   return {
     type: SIGN_OUT.SUCCESS
   };

@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { signIn } from '../../../actions/auths';
+import { signIn } from 'cmsActions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import ErrorMessage from '../../../components/shared/ErrorMessage/index';
+import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 

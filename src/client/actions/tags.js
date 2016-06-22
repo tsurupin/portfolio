@@ -1,4 +1,4 @@
-import { FETCH_TAGS } from '../constants';
+import { FETCH_TAGS } from "shared/constants/actions";
 
 export function fetchTags(tags) {
   return {

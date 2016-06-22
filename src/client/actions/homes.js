@@ -1,5 +1,6 @@
-import { FETCH_HOME, HOME_PATH } from '../constants';
-import { axios } from '../utilities';
+import { FETCH_HOME } from 'shared/constants/actions';
+import { HOME_PATH } from "shared/constants/apis";
+import { axios } from "client/utilities";
 
 export function fetchHome() {
   const request = axios.get(HOME_PATH);
