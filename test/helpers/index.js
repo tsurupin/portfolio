@@ -1,5 +1,4 @@
 import jsdom from 'jsdom';
-import _$ from 'jquery';
 global.document = jsdom.jsdom('<html><body></body></html>');
 global.window = global.document.defaultView;
 global.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {};

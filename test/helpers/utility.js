@@ -3,7 +3,7 @@ const React = require('react');
 const TestUtils = require('react-addons-test-utils');
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducers from '../../../src/cms/reducers';
+import reducers from '../../src/cms/reducers';
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import _$ from 'jquery';
