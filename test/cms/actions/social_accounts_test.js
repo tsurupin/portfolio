@@ -1,24 +1,33 @@
-import { expect } from '../utility';
+import { expect } from '../../helpers/utility';
 import {
-  createSocialAccount,
-  updateSocialAccount,
-  deleteSocialAccount,
-} from '../../../../src/cms/actions/socialAccounts';
+  fetchSocialAccounts,
+  updateSocialAccount
+} from 'cms/actions/socialAccounts';
 
 import {
-  CREATE_SOCIAL_ACCOUNT,
-  UPDATE_SOCIAL_ACCOUNT,
-  DELETE_SOCIAL_ACCOUNT
-} from '../../../../src/cms/constants';
+  FETCH_SOCIAL_ACCOUNTS,
+  UPDATE_SOCIAL_ACCOUNT
+} from 'shared/constants/actions';
 
-describe('socialAccount actions', () => {
+describe('cms socialAccount actions', () => {
 
-  describe('createSocialAccount', () => {
-    it('creates CREATE_SOCIAL_ACCOUNT', () => {
-      const action = createSocialAccount();
+  describe('fetchSocialAccount', () => {
+    it('creates FETCH_SOCIAL_ACCOUNT', () => {
+      const action = fetchSocialAccounts({
+        socialAccounts: [
+        { 
+          accountType: 'twitter', 
+          url: 'http://twitter.com' 
+        }]
+      });
       const expectedResponse = {
-        type: CREATE_SOCIAL_ACCOUNT,
-        payload: { socialAccount: {} }
+        type: FETCH_SOCIAL_ACCOUNTS,
+        payload: { socialAccounts: [
+          {
+            accountType: 'twitter',
+            url: 'http://twitter.com'
+          }
+        ]}
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -26,32 +35,16 @@ describe('socialAccount actions', () => {
 
   describe('updateSocialAccount', () => {
     it('creates UPDATE_SOCIAL_ACCOUNT and updates socialAccount', () => {
-      const action = updateSocialAccount(1, { name: 'name' });
+      const action = updateSocialAccount(1, 'url');
       const expectedResponse = {
         type: UPDATE_SOCIAL_ACCOUNT,
         payload: {
           sortRank: 1,
-          socialAccount: {
-            name: 'name'
-          }
+          url: 'url'
         }
       };
       expect(action).to.eql(expectedResponse);
     });
   });
-
-  describe('deleteSocialAccount', () => {
-    it('creates DELETE_SOCIAL_ACCOUNT and delete socialAccount', () => {
-      const action = deleteSocialAccount(1);
-      const expectedResponse = {
-        type: DELETE_SOCIAL_ACCOUNT,
-        payload: {
-          sortRank: 1
-        }
-      };
-      expect(action).to.eql(expectedResponse);
-    });
-  });
-
 
 });
