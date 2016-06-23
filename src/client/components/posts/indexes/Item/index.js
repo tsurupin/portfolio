@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from './styles.scss';
-import TagList from 'sharedComponents/TagList/index';
+import TagList from 'shared/components/TagList/index';
 
 const propTypes = {
   id: PropTypes.number.isRequired,

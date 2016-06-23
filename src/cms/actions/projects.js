@@ -7,7 +7,7 @@ import {
 } from "shared/constants/actions";
 import { PROJECT_PATH } from "shared/constants/apis";
 import { fetchTagsForm } from "./tags";
-import { createAlert } from "sharedActions/alerts";
+import { createAlert } from "shared/actions/alerts";
 import { createAuthorizedRequest, trimProject } from "cms/utilities";
 import { browserHistory } from "react-router";
 
@@ -45,7 +45,15 @@ function fetchProjectSuccess(response) {
   return {
     type: FETCH_PROJECT.SUCCESS,
     payload: {
-      project: response,
+      project: {
+        id: response.id,
+        description: response.description,
+        title: response.title,
+        sourceUrl: response.sourceUrl,
+        image: response.image,
+        caption: response.caption,
+        accepted: response.accepted
+      },
       tags: {
         tags: response.tags,
         tagSuggestions: response.tagSuggestions
@@ -87,35 +95,25 @@ export function saveProject(props) {
     request = createAuthorizedRequest("post", `${PROJECT_PATH}`, { project });
   }
   return dispatch => {
-    // dispatch(saveProjectRequest());
     return (
       request
-      .then(() => dispatch(saveProjectSuccess()))
-      .catch(error => dispatch(saveProjectFailure(error.data)))
+        .then(() => dispatch(saveProjectSuccess()))
+        .then(() => browserHistory.push("/cms/projects"))
+        .catch(error => dispatch(saveProjectFailure(error.data)))
     )
   }
 }
 
-
-function saveProjectRequest() {
-  return {
-    type: SAVE_PROJECT.REQUEST
-  }
-}
-
 function saveProjectSuccess() {
-  browserHistory.push("/cms/projects");
   return {
     type: SAVE_PROJECT.SUCCESS
   }
 }
 
-function saveProjectFailure(response) {
+function saveProjectFailure({ errorMessage }) {
   return {
     type: SAVE_PROJECT.FAILURE,
-    payload: {
-      errorMessage: response.errorMessage 
-    }
+    payload: { errorMessage }
   }
 }
 

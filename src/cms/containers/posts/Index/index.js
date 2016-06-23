@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, togglePost } from 'cmsActions/posts';
+import { fetchPosts, togglePost } from 'cms/actions/posts';
 import { Link } from 'react-router';
-import Item from 'cmsComponents/posts/indexes/Item/index';
+import Item from 'cms/components/posts/indexes/Item/index';
 import { 
   Table, 
   TableHeaderColumn, 
@@ -14,7 +14,7 @@ import {
 } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import Pagination from 'cmsComponents/shared/Pagination/index';
+import Pagination from 'cms/components/shared/Pagination/index';
 import styles from'./styles.scss';
 
 
@@ -73,6 +73,7 @@ class PostIndex extends Component {
   }
   
   handleToggle(sortRank, post_id) {
+    console.log('hohge')
     this.props.togglePost(sortRank, post_id);
   }
   

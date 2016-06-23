@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { signUp } from 'cmsActions/auths';
+import { signUp } from 'cms/actions/auths';
 import TextField from 'material-ui/TextField';
-import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
+import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 

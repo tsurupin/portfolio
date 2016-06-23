@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchHome } from 'clientActions/homes';
+import { fetchHome } from 'client/actions/homes';
 import { connect } from 'react-redux';
-import TextDisplay from 'sharedComponents/textEditors/Display/index';
-import RecentPosts from 'clientComponents/homes/shows/RecentPosts/index';
-import RecentProject from 'clientComponents/homes/shows/RecentProject/index';
+import TextDisplay from 'shared/components/textEditors/Display/index';
+import RecentPosts from 'client/components/homes/shows/RecentPosts/index';
+import RecentProject from 'client/components/homes/shows/RecentProject/index';
 import mainImage from './sample.png';
 import styles from './styles.scss';
 

@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { fetchEditPost, fetchNewPost, savePost } from 'cmsActions/posts';
-import { createItem, updateItem, deleteItem, moveItem, cancelItem } from 'cmsActions/items';
-import { createTag, deleteTag } from 'cmsActions/tags';
-import EditBox from 'cmsComponents/posts/forms/Item/Form/EditBox/index';
+import { fetchEditPost, fetchNewPost, savePost } from 'cms/actions/posts';
+import { createItem, updateItem, deleteItem, moveItem } from 'cms/actions/items';
+import { createTag, deleteTag } from 'cms/actions/tags';
+import EditBox from 'cms/components/posts/forms/Item/Form/EditBox/index';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'cmsComponents/shared/CustomDatePicker/index';
-import Item from 'cmsComponents/posts/forms/Item/index';
-import TagField from 'cmsComponents/shared/TagField/index';
-import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
+import DatePicker from 'cms/components/shared/CustomDatePicker/index';
+import Item from 'cms/components/posts/forms/Item/index';
+import TagField from 'cms/components/shared/TagField/index';
+import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 
@@ -56,7 +56,6 @@ class PostForm extends Component {
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
-    this.handleCancelItem = this.handleCancelItem.bind(this);
     this.handleMoveItem = this.handleMoveItem.bind(this);
     this.handleAddTag = this.handleAddTag.bind(this);
     this.handleDeleteTag = this.handleDeleteTag.bind(this);
@@ -96,10 +95,6 @@ class PostForm extends Component {
   handleDeleteItem(sortRank) {
     this.props.deleteItem(sortRank);
   }
-  
-  handleCancelItem(sortRank, item) {
-    this.props.cancelItem(sortRank, item);
-  }
 
   handleMoveItem(sortRank, type) {
     this.props.moveItem(sortRank, type)
@@ -127,7 +122,6 @@ class PostForm extends Component {
                 totalCount={this.props.items.length-1}
                 handleUpdateItem={this.handleUpdateItem}
                 handleDeleteItem={this.handleDeleteItem}
-                handleCancelItem={this.handleCancelItem}
                 handleMoveItem={this.handleMoveItem}
               />
             );
@@ -234,7 +228,6 @@ export default reduxForm({
   savePost,
   createItem,
   deleteItem,
-  cancelItem,
   updateItem,
   moveItem,
   createTag,

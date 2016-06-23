@@ -2,6 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/textField';
 import styles from './styles.scss';
 
+const propTypes = {
+  sortRank: PropTypes.number.isRequired,
+  url: PropTypes.string,
+  accountType: PropTypes.string.isRequired,
+  handleUpdate: PropTypes.func.isRequired
+};
+
 class SocialAccount extends Component {
   constructor(props) {
     super(props);
@@ -31,11 +38,6 @@ class SocialAccount extends Component {
   }
 }
 
-SocialAccount.propTypes = {
-  sortRank: PropTypes.number.isRequired,
-  url: PropTypes.string,
-  accountType: PropTypes.string.isRequired,
-  handleUpdate: PropTypes.func.isRequired
-};
+SocialAccount.propTypes = propTypes;
 
 export default SocialAccount;

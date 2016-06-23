@@ -1,6 +1,6 @@
 const React = require('react');
-import { renderComponent, expect, sinon } from '../../../../../utility';
-import EditBoxItem from '../../../../../../../../src/cms/components/posts/forms/Item/Form/EditBox/EditBoxItem/index';
+import { renderComponent, expect, sinon } from '../../../../../../helpers/utility';
+import EditBoxItem from 'cms/components/posts/forms/Item/Form/EditBox/EditBoxItem/index';
 
 describe('EditBoxItem', () => {
 

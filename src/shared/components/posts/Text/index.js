@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import TextDisplay from '../../textEditors/Display/index';
+import TextDisplay from 'shared/components/textEditors/Display/index';
 import styles from './styles.scss';
 
 const propTypes = {

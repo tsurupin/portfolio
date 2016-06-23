@@ -30,9 +30,11 @@ import thunk from 'redux-thunk'
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 
-const headerConfig = { reqheaders: { 'authorization': localStorage.getItem('accessToken') }};
+const headerConfig = { headers: { 'authorization': localStorage.getItem('accessToken') }};
+const postUrl = `${CMS_ROOT_URL}${POST_PATH}`;
 
 describe('cms post actions', () => {
+
 
   beforeEach(() => {
     // TODO: figure out how to test browserHistory
@@ -48,7 +50,7 @@ describe('cms post actions', () => {
 
     it('creates FETCH_POSTS_SUCCESS when fetching posts has been done', () => {
       nock(TEST_DOMAIN, headerConfig )
-        .get(`${CMS_ROOT_URL}${POST_PATH}?page=1`)
+        .get(`${postUrl}?page=1`)
         .reply(200, {
           posts: [{ title: 'hoge', description: 'description', id: 1 }],
           meta: {
@@ -59,8 +61,7 @@ describe('cms post actions', () => {
             }
           }
         });
-
-
+      
       const store = mockStore({});
       const expectedResponse = [{
         type: FETCH_POSTS.SUCCESS,
@@ -80,7 +81,7 @@ describe('cms post actions', () => {
 
     it('creates FETCH_POSTS_FAILURE when fetching posts has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${CMS_ROOT_URL}${POST_PATH}?page=1`)
+        .get(`${postUrl}?page=1`)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
@@ -104,7 +105,7 @@ describe('cms post actions', () => {
 
     it('create FETCH_EDIT_POST_SUCCESS when fetching post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${CMS_ROOT_URL}${POST_PATH}/1/edit`)
+        .get(`${postUrl}/1/edit`)
         .reply(200, {
           id: 1,
           leadSentence: 'leadSentence',
@@ -154,7 +155,7 @@ describe('cms post actions', () => {
 
     it('create FETCH_EDIT_POST_FAILURE when fetching post has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${CMS_ROOT_URL}${POST_PATH}/1/edit`)
+        .get(`${postUrl}/1/edit`)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
@@ -178,7 +179,7 @@ describe('cms post actions', () => {
 
     it('create FETCH_NEW_POST_SUCCESS when fetching new post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${CMS_ROOT_URL}${POST_PATH}/new`)
+        .get(`${postUrl}/new`)
         .reply(200, { tags: [], tagSuggestions:[] } );
 
       const store = mockStore({});
@@ -209,7 +210,7 @@ describe('cms post actions', () => {
 
     it('create FETCH_NEW_POST_FAILURE when fetching new post has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${CMS_ROOT_URL}${POST_PATH}/new`)
+        .get(`${postUrl}/new`)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
@@ -235,15 +236,19 @@ describe('cms post actions', () => {
     beforeEach(() => {
       props = {
         post: {
-          title: 'hoge', description: 'description',
-          itemsAttributes: [{ targetType: 'ItemHeading', editing: false }]
+          title: 'hoge', 
+          description: 'description',
+          itemsAttributes: [{ 
+            targetType: 'ItemHeading', 
+            editing: false 
+          }]
         }
       };
     });
 
     it('create SAVE_POST_SUCCESS when creating post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .post(`${CMS_ROOT_URL}${POST_PATH}`, { post: trimPost(props.post) })
+        .post(`${postUrl}`, { post: trimPost(props.post) })
         .reply(201);
 
       const store = mockStore({});
@@ -261,7 +266,7 @@ describe('cms post actions', () => {
     it('create SAVE_POST_SUCCESS when updating post has been done', () => {
       props.post.id = 1;
       nock(TEST_DOMAIN, headerConfig)
-        .patch(`${CMS_ROOT_URL}${POST_PATH}/1`, { post: trimPost(props.post) })
+        .patch(`${postUrl}/1`, { post: trimPost(props.post) })
         .reply(200);
 
       const store = mockStore({});
@@ -278,7 +283,7 @@ describe('cms post actions', () => {
 
     it('create SAVE_POST_FAILURE when creating post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .post(`${CMS_ROOT_URL}${POST_PATH}`, { post: trimPost(props.post) })
+        .post(`${postUrl}`, { post: trimPost(props.post) })
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
@@ -304,7 +309,7 @@ describe('cms post actions', () => {
 
     it('create TOGGLE_POST_SUCCESS when toggling post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .patch(`${CMS_ROOT_URL}${POST_PATH}/1/acceptance`)
+        .patch(`${postUrl}/1/acceptance`)
         .reply(200, { status: 1, accepted: true });
 
 
@@ -326,7 +331,7 @@ describe('cms post actions', () => {
 
     it('create TOGGLE_POST_FAILURE when toggling post has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .patch(`${CMS_ROOT_URL}${POST_PATH}/1/acceptance`)
+        .patch(`${postUrl}/1/acceptance`)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});

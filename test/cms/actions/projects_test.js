@@ -45,7 +45,7 @@ describe('cms project actions', () => {
     browserHistory.push.restore();
   });
 
-  describe('fetch_projects', () => {
+  describe('fetchProjects', () => {
 
     it('creates FETCH_PROJECTS_SUCCESS when fetching projects has been done', () => {
       const params = {
@@ -54,11 +54,9 @@ describe('cms project actions', () => {
             id: 1,
             title: 'title',
             description: 'description',
-            name: 'name',
-            imageURL: 'http://sample.com/image.jpg',
-            sourceURL: 'http://github.com',
-            sampleURL: 'http://sample.com',
-            projectTags: ['hoge1', 'hoge2'],
+            image: 'http://sample.com/image.jpg',
+            sourceUrl: 'http://github.com',
+            projectTags: [{id: 1, name: 'hoge1'}],
             accepted: true
           }
         ]

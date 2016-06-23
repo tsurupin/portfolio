@@ -1,5 +1,5 @@
-import { renderComponent, expect } from '../../../../../utility';
-import Image from '../../../../../../../../src/cms/components/posts/forms/Item/Display/Image/index';
+import { renderComponent, expect } from '../../../../../../helpers/utility';
+import Image from 'shared/components/posts/Image/index';
 
 describe('ItemImage', () => {
   let component;

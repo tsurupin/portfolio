@@ -1,6 +1,6 @@
 import { expect } from '../../helpers/utility';
 import homeReducer from 'shared/reducers/homes';
-import { FETCH_HOME, UPDATE_AUTHOR } from 'shared/constants/actions';
+import { FETCH_HOME } from 'shared/constants/actions';
 
 describe('Home Reducer', () => {
 

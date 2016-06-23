@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   errorMessage: ''
 };
 
-describe('Auth Reducer', () => {
+describe('Author Reducer', () => {
 
   const state = {
     author: {

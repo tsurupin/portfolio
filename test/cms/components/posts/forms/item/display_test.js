@@ -1,5 +1,5 @@
-import { renderComponent, expect, sinon } from '../../../../utility';
-import Display from '../../../../../../../src/cms/components/posts/forms/Item/Display/index';
+import { renderComponent, expect, sinon } from '../../../../../helpers/utility';
+import Display from 'cms/components/posts/forms/Item/Display/index';
 
 describe('Display', () => {
 

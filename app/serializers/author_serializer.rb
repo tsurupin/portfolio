@@ -1,7 +1,12 @@
 class AuthorSerializer < ActiveModel::Serializer
   self.root = false
   format_keys :lower_camel
-  attributes :id, :email, :name, :image, :description, :introduction
+  attributes :id,
+             :email,
+             :name,
+             :image,
+             :description,
+             :introduction
 
   has_many :social_accounts, root: :social_accounts
 

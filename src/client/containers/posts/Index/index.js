@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from 'clientActions/posts';
-import Item from 'clientComponents/posts/indexes/Item/index';
+import { fetchPosts } from 'client/actions/posts';
+import Item from 'client/components/posts/indexes/Item/index';
 import styles from'./styles.scss';
 import Infinite from 'react-infinite';
 
@@ -32,7 +32,7 @@ class PostIndex extends Component {
   }
 
   componentDidMount() {
-    let params = {};
+    let params = { page: 1 };
     if (this.props.hasOwnProperty("location")) {
       params.tag = this.props.location.query.tag
     }
@@ -41,9 +41,8 @@ class PostIndex extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    // TODO: figure out how to insert hyphen in the queries so that the query changes from tag to tag-id
     if (nextProps.location.query.tag !== this.props.location.query.tag) {
-      nextProps.fetchPosts({ tag: nextProps.location.query.tag })
+      nextProps.fetchPosts({ page: 1, tag: nextProps.location.query.tag })
     }
   }
   

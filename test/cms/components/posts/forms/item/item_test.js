@@ -1,5 +1,5 @@
-import { renderComponent, expect, sinon } from '../../../../utility';
-import Item from '../../../../../../../src/cms/components/posts/forms/Item/index';
+import { renderComponent, expect, sinon } from '../../../../../helpers/utility';
+import Item from 'cms/components/posts/forms/Item/index';
 
 describe('Item', () => {
   let props = {

@@ -9,7 +9,7 @@ import { POST_PATH } from "shared/constants/apis";
 import { fetchTagsForm } from "./tags";
 import { fetchItems } from "./items";
 
-import { createAlert } from "sharedActions/alerts";
+import { createAlert } from "shared/actions/alerts";
 import { createAuthorizedRequest, trimPost } from "cms/utilities";
 import { browserHistory } from "react-router";
 
@@ -101,6 +101,7 @@ export function savePost(props) {
     return (
       request
         .then(() => dispatch(savePostSuccess()))
+        .then(() => browserHistory.push("/cms"))
         .catch(error => dispatch(savePostFailure(error.data)))
     );
   };
@@ -113,18 +114,15 @@ export function savePostRequest() {
 }
 
 function savePostSuccess() {
-  browserHistory.push("/cms");
   return {
     type: SAVE_POST.SUCCESS
   }
 }
 
-function savePostFailure(response) {
+function savePostFailure({errorMessage}) {
   return {
     type: SAVE_POST.FAILURE,
-    payload: {
-      errorMessage: response.errorMessage
-    }
+    payload: { errorMessage }
   }
 }
 

@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPost } from 'clientActions/posts';
-import Tags from 'clientComponents/posts/shows/Tags/index';
-import Item from 'clientComponents/posts/shows/Item/index';
-import Pagination from 'clientComponents/posts/shows/Pagination/index';
+import { fetchPost } from 'client/actions/posts';
+import Tags from 'client/components/posts/shows/Tags/index';
+import Item from 'client/components/posts/shows/Item/index';
+import Pagination from 'client/components/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
 

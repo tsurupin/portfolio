@@ -21,7 +21,9 @@ describe('Tag Reducer', () => {
   });
 
   it('handles action of type FETCH_TAGS_FORM', () => {
-    const action = { type: FETCH_TAGS_FORM, payload: { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } };
+    const action = { 
+      type: FETCH_TAGS_FORM, 
+      payload: { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } };
     const expectedResponse = { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } ;
     expect(tagReducer([], action)).to.eql(expectedResponse);
   });

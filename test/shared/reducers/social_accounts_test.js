@@ -1,10 +1,9 @@
 import { expect } from '../../helpers/utility';
-import socialAccountReducer from '../../../../src/cms/reducers/socialAccounts';
+import socialAccountReducer from 'shared/reducers/socialAccounts';
 import {
-  CREATE_SOCIAL_ACCOUNT,
-  UPDATE_SOCIAL_ACCOUNT,
-  DELETE_SOCIAL_ACCOUNT
-} from '../../../../src/cms/constants';
+  FETCH_SOCIAL_ACCOUNTS,
+  UPDATE_SOCIAL_ACCOUNT
+} from 'shared/constants/actions';
 
 describe('SocialAccount Reducer', () => {
 
@@ -13,22 +12,15 @@ describe('SocialAccount Reducer', () => {
   });
   
 
-  it('handles action of type CREATE_SOCIAL_ACCOUNT', () => {
+  it('handles action of type FETCH_SOCIAL_ACCOUNTS', () => {
     const action = {
-      type: CREATE_SOCIAL_ACCOUNT,
-      payload: { socialAccount: { } }
+      type: FETCH_SOCIAL_ACCOUNTS,
+      payload: { socialAccounts: [{accountType: 'twitter', url: 'http://twitter.com' }] }
     };
 
-    const state = [
-      { name: 'name' }
-    ];
+    const expectedResponse = [{ accountType: 'twitter', url: 'http://twitter.com' }];
 
-    const expectedResponse = [
-      { name: 'name' },
-      { }
-    ];
-
-    expect(socialAccountReducer(state, action)).to.eql(expectedResponse);
+    expect(socialAccountReducer([], action)).to.eql(expectedResponse);
   });
 
   it('handles action of type UPDATE_SOCIAL_ACCOUNT', () => {
@@ -36,46 +28,24 @@ describe('SocialAccount Reducer', () => {
       type: UPDATE_SOCIAL_ACCOUNT,
       payload: {
         sortRank: 1,
-        socialAccount: { name: "hoge" }
+        url: "http://twitter10.com" 
       }
     };
 
     const state = [
-      { name: 'test1' },
-      { name: 'test2' },
-      { name: 'test3' }
+      { url: "http://twitter1.com" },
+      { url: "http://twitter2.com" },
+      { url: "http://twitter3.com" }
     ];
 
     const expectedResponse = [
-      { name: 'test1' },
-      { name: 'hoge' },
-      { name: 'test3' }
+      { url: "http://twitter1.com" },
+      { url: "http://twitter10.com" },
+      { url: "http://twitter3.com" }
     ];
 
     expect(socialAccountReducer(state, action)).to.eql(expectedResponse);
   });
-
-  it('handles action of type DELETE_SOCIAL_ACCOUNT', () => {
-    const action = {
-      type: DELETE_SOCIAL_ACCOUNT,
-      payload: {
-        sortRank: 1
-      }
-    };
-
-    const state = [
-      { name: 'test1' },
-      { name: 'test2' },
-      { name: 'test3' }
-    ];
-
-    const expectedResponse = [
-      { name: 'test1' },
-      { name: 'test3' }
-    ];
-
-    expect(socialAccountReducer(state, action)).to.eql(expectedResponse);
-  });
-
+  
 
 });

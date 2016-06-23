@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchProject, fetchNewProject, saveProject, resetProject } from 'cmsActions/projects';
-import { createTag, deleteTag } from 'cmsActions/tags';
+import { 
+  fetchProject, 
+  fetchNewProject, 
+  saveProject
+} from 'cms/actions/projects';
+import { createTag, deleteTag } from 'cms/actions/tags';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import DropzoneImage from 'cmsComponents/shared/DropzoneImage/index';
+import DropzoneImage from 'cms/components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
-import TextEditor from 'sharedComponents/textEditors/Editor/index'
-import TagField from 'cmsComponents/shared/TagField/index';
-import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
+import TextEditor from 'shared/components/textEditors/Editor/index'
+import TagField from 'cms/components/shared/TagField/index';
+import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 const propTypes = {
@@ -171,7 +175,6 @@ export default reduxForm({
   fetchProject,
   fetchNewProject,
   saveProject,
-  resetProject,
   createTag,
   deleteTag
 })(ProjectForm);

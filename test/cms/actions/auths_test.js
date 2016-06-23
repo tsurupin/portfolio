@@ -16,7 +16,7 @@ import browserHistory  from 'react-router/lib/browserHistory'
 import thunk from 'redux-thunk'
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
-
+const authUrl = `${CMS_ROOT_URL}${AUTHOR_PATH}`;
 describe('cms auth actions', () => {
   
   
@@ -42,7 +42,7 @@ describe('cms auth actions', () => {
 
     it("creates AUTH_SUCCESS when signUp has been done",  () => {
       nock(TEST_DOMAIN)
-        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-up`, params)
+        .post(`${authUrl}/sign-up`, params)
         .reply(201, { accessToken: 'hoge' });
 
       const store = mockStore({});
@@ -59,7 +59,7 @@ describe('cms auth actions', () => {
 
     it('created AUTH_FAILURE when signUp has failed', () => {
       nock(TEST_DOMAIN)
-        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-up`, params)
+        .post(`${authUrl}/sign-up`, params)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
@@ -87,7 +87,7 @@ describe('cms auth actions', () => {
 
     it("creates AUTH_SUCCESS when signIn has been done",  () => {
       nock(TEST_DOMAIN)
-        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-in`, params)
+        .post(`${authUrl}/sign-in`, params)
         .reply(201, { accessToken: 'hoge' });
 
       const store = mockStore({});
@@ -104,7 +104,7 @@ describe('cms auth actions', () => {
 
     it('created AUTH_FAILURE when signIn has failed', () => {
       nock(TEST_DOMAIN)
-        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-in`, params)
+        .post(`${authUrl}/sign-in`, params)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
@@ -127,7 +127,7 @@ describe('cms auth actions', () => {
 
     it("creates SIGN_OUT_SUCCESS when signOut has been done",  () => {
       nock(TEST_DOMAIN)
-        .delete(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-out`)
+        .delete(`${authUrl}/sign-out`)
         .reply(200);
 
       const store = mockStore({});
@@ -144,7 +144,7 @@ describe('cms auth actions', () => {
 
     it('created SIGN_OUT_FAILURE when signOut has failed', () => {
       nock(TEST_DOMAIN)
-        .delete(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-out`)
+        .delete(`${authUrl}/sign-out`)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});

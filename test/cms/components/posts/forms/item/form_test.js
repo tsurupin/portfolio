@@ -1,5 +1,5 @@
-import { renderComponent, expect, sinon } from '../../../../utility';
-import Form from '../../../../../../../src/cms/components/posts/forms/Item/Form/index';
+import { renderComponent, expect, sinon } from '../../../../../helpers/utility';
+import Form from 'cms/components/posts/forms/Item/Form/index';
 
 describe('Form', () => {
   const handleDeleteItem = sinon.spy();

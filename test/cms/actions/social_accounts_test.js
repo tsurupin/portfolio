@@ -11,8 +11,8 @@ import {
 
 describe('cms socialAccount actions', () => {
 
-  describe('fetchSocialAccount', () => {
-    it('creates FETCH_SOCIAL_ACCOUNT', () => {
+  describe('fetchSocialAccounts', () => {
+    it('creates FETCH_SOCIAL_ACCOUNTS', () => {
       const action = fetchSocialAccounts({
         socialAccounts: [
         { 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import TARGET_TYPES from 'shared/constants/target_types';
+import TARGET_TYPES from 'shared/constants/targetTypes';
 import IconButton from 'material-ui/IconButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
@@ -17,8 +17,7 @@ const propTypes = {
   }).isRequired,
   sortRank: PropTypes.number.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired,
-  handleCancelItem: PropTypes.func.isRequired
+  handleDeleteItem: PropTypes.func.isRequired
 };
 
 class PostItemForm extends Component {
@@ -30,6 +29,7 @@ class PostItemForm extends Component {
     this.handleCancelItem = this.handleCancelItem.bind(this);
   }
 
+  // update with some change
   handleUpdateItem(updatedProps) {
     this.props.handleUpdateItem(
       this.props.sortRank,
@@ -37,16 +37,18 @@ class PostItemForm extends Component {
     )
   }
 
+  // update without any change
+  handleCancelItem() {
+    this.props.handleUpdateItem(
+      this.props.sortRank, 
+      { ...this.props.item, editing: false }
+    )
+  }
+
   handleDeleteItem() {
     this.props.handleDeleteItem(this.props.sortRank)
   }
   
-  handleCancelItem() {
-    this.props.handleCancelItem(
-      this.props.sortRank, { ...this.props.item, editing: false }
-    )
-  }
-
   renderComponent() {
     switch (this.props.item.targetType) {
       case TARGET_TYPES.IMAGE:

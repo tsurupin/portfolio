@@ -12,7 +12,7 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
 
   def create
     post = Post::Form.new
-    if post.save_from_associations(post_params)
+    if post.save_from_associations(post_form_params)
       head :created
     else
       render_error_message(post)
@@ -26,7 +26,7 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
 
   def update
     post = Post::Form.find(params[:id])
-    if post.save_from_associations(post_params)
+    if post.save_from_associations(post_form_params)
       head :ok
     else
       render_error_message(post)
@@ -35,7 +35,7 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
 
   private
 
-  def post_params
+  def post_form_params
     params.require(:post).permit(*Post::Form::PERMITTED_ATTRIBUTES)
   end
 

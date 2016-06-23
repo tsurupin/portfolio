@@ -4,17 +4,14 @@ import {
   createItem,
   updateItem,
   deleteItem,
-  cancelItem,
   moveItem,
 } from 'cms/actions/items';
 
-import { TEST_DOMAIN, CMS_ROOT_URL } from 'shared/constants/apis'
 import {
   FETCH_ITEMS, 
   CREATE_ITEM, 
   UPDATE_ITEM, 
   DELETE_ITEM,
-  CANCEL_ITEM,
   MOVE_ITEM_TOP,
   MOVE_ITEM_BOTTOM,
   MOVE_ITEM_UP,
@@ -77,22 +74,6 @@ describe('cms item actions', () => {
         type: DELETE_ITEM,
         payload: {
           sortRank: 1
-        }
-      };
-      expect(action).to.eql(expectedResponse);
-    });
-  });
-
-  describe('cancelItem', () => {
-    it('creates CANCEL_ITEM, item and sortRank', () => {
-      const action = cancelItem(1, { targetType: TARGET_TYPES.IMAGE });
-      const expectedResponse = {
-        type: CANCEL_ITEM,
-        payload: {
-          sortRank: 1,
-          item: { 
-            targetType: TARGET_TYPES.IMAGE 
-          }
         }
       };
       expect(action).to.eql(expectedResponse);

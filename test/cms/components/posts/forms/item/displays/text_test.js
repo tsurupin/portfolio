@@ -1,5 +1,5 @@
-import { renderComponent, expect } from '../../../../../utility';
-import Text from '../../../../../../../../src/cms/components/posts/forms/Item/Display/Text/index';
+import { renderComponent, expect } from '../../../../../../helpers/utility';
+import Text from 'shared/components/posts/Text/index';
 
 describe('ItemText', () => {
 
