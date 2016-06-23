@@ -1,10 +1,16 @@
 import { expect } from '../../helpers/utility';
-import itemReducer from '../../../../src/cms/reducers/items';
+import itemReducer from 'shared/reducers/items';
 import {
-  FETCH_ITEMS, FETCH_ITEM, CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM,
-  TOGGLE_ITEM, MOVE_ITEM_TOP, MOVE_ITEM_UP, MOVE_ITEM_DOWN, MOVE_ITEM_BOTTOM,
-  FETCH_TWEET
-} from '../../../../src/cms/constants';
+  FETCH_ITEMS,
+  CREATE_ITEM,
+  DELETE_ITEM,
+  UPDATE_ITEM,
+  MOVE_ITEM_TOP,
+  MOVE_ITEM_UP,
+  MOVE_ITEM_DOWN,
+  MOVE_ITEM_BOTTOM
+} from 'shared/constants/actions';
+import TARGET_TYPES from 'shared/constants/targetTypes';
 
 describe('Item Reducer', () => {
 
@@ -13,26 +19,53 @@ describe('Item Reducer', () => {
   });
 
   it('handles action of type FETCH_ITEMS', () => {
-    const action = { type: FETCH_ITEMS, payload: { items: [{ id: 1 }] } };
-    const expectedResponse = [{ id: 1 }];
-    expect(itemReducer([], action)).to.eql(expectedResponse);
+    const items = [
+      {
+        id: 1,
+        targetId: 1,
+        targetType: TARGET_TYPES.TWITTER,
+        sortRank: 1,
+        twitterId: '12345'
+      },
+      {
+        id: 2,
+        targetId: 1,
+        targetType: TARGET_TYPES.TEXT,
+        sortRank: 2,
+        description: 'rich text'
+      },
+      {
+        id: 3,
+        targetId: 1,
+        targetType: TARGET_TYPES.IMAGE,
+        sortRank: 3,
+        image: 'http://image.png',
+        caption: 'image caption'
+      },
+    ];
+    
+    const action = { 
+      type: FETCH_ITEMS, 
+      payload: { items } 
+    };
+    expect(itemReducer([], action)).to.eql(items);
   });
 
   it('handles action of type CREATE_ITEM', () => {
     const action = {
       type: CREATE_ITEM,
       payload: {
-        item: { type: "ItemHeading" }
+        item: { type: TARGET_TYPES.IMAGE }
       }
     };
 
     const state = [
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TEXT }
     ];
 
     const expectedResponse = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.IMAGE }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -43,20 +76,20 @@ describe('Item Reducer', () => {
       type: UPDATE_ITEM,
       payload: {
         sortRank: 1,
-        item: { type: "ItemSubHeading" }
+        item: { type: TARGET_TYPES.IMAGE }
       }
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' },
-      { type: 'ItemTwitter' }
+      { type: TARGET_TYPES.TEXT},
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     const expectedResponse = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemSubHeading' },
-      { type: 'ItemTwitter' }
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.IMAGE },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -71,14 +104,14 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' },
-      { type: 'ItemTwitter' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.IMAGE }
     ];
 
     const expectedResponse = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemTwitter' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.IMAGE }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -93,15 +126,15 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' },
-      { type: 'ItemTwitter' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.IMAGE }
     ];
 
     const expectedResponse = [
-      { type: 'ItemHeading' },
-      { type: 'ItemSubHeading' },
-      { type: 'ItemTwitter' }
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.IMAGE }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -116,11 +149,11 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TWITTER }
     ];
 
     const expectedResponse = [
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TWITTER }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -135,13 +168,13 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     const expectedResponse = [
-      { type: 'ItemHeading' },
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.TWITTER }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -156,11 +189,11 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TWITTER }
     ];
 
     const expectedResponse = [
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TWITTER }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -175,13 +208,13 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     const expectedResponse = [
-      { type: 'ItemHeading' },
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.TWITTER }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -196,13 +229,13 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     const expectedResponse = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -217,13 +250,13 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     const expectedResponse = [
-      { type: 'ItemHeading' },
-      { type: 'ItemSubHeading' }
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.TWITTER }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -238,40 +271,17 @@ describe('Item Reducer', () => {
     };
 
     const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     const expectedResponse = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' }
+      { type: TARGET_TYPES.TWITTER },
+      { type: TARGET_TYPES.TEXT }
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
   });
-
-  it('handles action of type FETCH_TWEET_SUCCESS', () => {
-    const action = {
-      type: FETCH_TWEET.SUCCESS,
-      payload: {
-        sortRank: 2,
-        attributes: { description: 'hoge' }
-      }
-    };
-
-    const state = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' },
-      { type: 'ItemTwitter' }
-    ];
-
-    const expectedResponse = [
-      { type: 'ItemSubHeading' },
-      { type: 'ItemHeading' },
-      { type: 'ItemTwitter', description: 'hoge' }
-    ];
-
-    expect(itemReducer(state, action)).to.eql(expectedResponse);
-  });
+  
 
 });
