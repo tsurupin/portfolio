@@ -1,22 +1,27 @@
-import { expect, sinon } from '../utility';
+import { expect, sinon } from '../../helpers/utility';
 import {
   fetchProjects,
   fetchProject,
   fetchNewProject,
   toggleProject,
   saveProject
-} from '../../../../src/cms/actions/projects';
+} from 'cms/actions/projects';
+import { createAlert } from 'shared/actions/alerts';
 import {
-  ROOT_URL, 
-  PROJECT_PATH, 
-  TEST_DOMAIN, 
   FETCH_PROJECTS, 
   FETCH_PROJECT, 
   FETCH_NEW_PROJECT,
   SAVE_PROJECT,  
   TOGGLE_PROJECT,
-  FETCH_TAGS,
-} from '../../../../src/cms/constants';
+  FETCH_TAGS_FORM,
+  CREATE_ALERT
+} from 'shared/constants/actions';
+import { 
+  CMS_ROOT_URL,
+  PROJECT_PATH,
+  TEST_DOMAIN, 
+} from 'shared/constants/apis';
+import { trimProject } from 'cms/utilities';
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
 import browserHistory  from 'react-router/lib/browserHistory'
@@ -24,10 +29,11 @@ import thunk from 'redux-thunk'
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 
+const headerConfig = { headers: { 'authorization': localStorage.getItem('accessToken') }};
+const projectURL = `${CMS_ROOT_URL}${PROJECT_PATH}`;
 
-describe('project actions', () => {
-  const headerConfig = { reqheaders: { 'authorization': localStorage.getItem('accessToken') }};
-  const projectURL = `${ROOT_URL}${PROJECT_PATH}`;
+describe('cms project actions', () => {
+  
   
   beforeEach(() => {
     // TODO: figure out how to test browserHistory
@@ -79,11 +85,16 @@ describe('project actions', () => {
     it('creates FETCH_PROJECTS_FAILURE when fetching projects has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
         .get(`${projectURL}`)
-        .reply(400, 'error');
+        .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
       const expectedResponse = [{
-        payload: { error: 'error' }, type: FETCH_PROJECTS.FAILURE
+        payload: {
+          hasAlert: true,
+          kind: "error",
+          message: 'errorMessage'
+        },
+        type: CREATE_ALERT
       }];
 
       return store.dispatch(fetchProjects())
@@ -93,58 +104,21 @@ describe('project actions', () => {
     });
   });
 
-  describe('toggleProjects', () => {
-
-    it('create TOGGLE_PROJECT_SUCCESS when toggling project has been done', () => {
-      nock(TEST_DOMAIN, headerConfig)
-        .patch(`${ROOT_URL}${PROJECT_PATH}/1/acceptance`)
-        .reply(200);
-
-
-      const store = mockStore({});
-      const expectedResponse = [undefined];
-
-      return store.dispatch(toggleProject(1))
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
-    });
-
-    it('create TOGGLE_PROJECT_FAILURE when toggling project has been failed', () => {
-      nock(TEST_DOMAIN, headerConfig)
-        .patch(`${ROOT_URL}${PROJECT_PATH}/1/acceptance`)
-        .reply(400, 'error');
-
-      const store = mockStore({});
-      const expectedResponse = [{
-        type: TOGGLE_PROJECT.FAILURE,
-        payload: 'error'
-      }];
-
-      return store.dispatch(toggleProject(1))
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
-    });
-  });
-
-
   describe('fetchProject', () => {
 
     it('create FETCH_PROJECT_SUCCESS when fetching post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${ROOT_URL}${PROJECT_PATH}/1/edit`)
+        .get(`${projectURL}/1/edit`)
         .reply(200, {
-          project: { 
-            title: 'hoge', 
-            description: 'description', 
-            id: 1 ,
-            sourceUrl: 'url',
-            sampleUrl:'url',
-            image: 'image'
-          },
+          title: 'hoge', 
+          description: 'description', 
+          id: 1 ,
+          sourceUrl: 'url',
+          image: 'image',
+          caption: 'caption',
+          accepted: true,
           tags: [],
-          tagSuggestions:['name']
+          tagSuggestions:[]
         });
 
       const store = mockStore({});
@@ -156,22 +130,23 @@ describe('project actions', () => {
               id: 1,
               title: "hoge",
               sourceUrl: 'url',
-              sampleUrl: 'url',
-              image: 'image'
+              image: 'image',
+              caption:'caption',
+              accepted: true
             },
             tags: {
-              tagSuggestions: ['name'],
-              tags: []
+              tags: [],
+              tagSuggestions: []
             }
           },
           type: FETCH_PROJECT.SUCCESS
         },
         {
           payload: {
-            tagSuggestions: ['name'],
-            tags: []
+            tags: [],
+            tagSuggestions: []
           },
-          type: FETCH_TAGS
+          type: FETCH_TAGS_FORM
         }
       ];
 
@@ -183,13 +158,17 @@ describe('project actions', () => {
 
     it('create FETCH_PROJECT_FAILURE when fetching post has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${ROOT_URL}${PROJECT_PATH}/1/edit`)
-        .reply(400);
+        .get(`${projectURL}/1/edit`)
+        .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
       const expectedResponse = [{
-        type: FETCH_PROJECT.FAILURE,
-        payload: ''
+        payload: {
+          hasAlert: true,
+          kind: "error",
+          message: 'errorMessage'
+        },
+        type: CREATE_ALERT
       }];
 
       return store.dispatch(fetchProject(1))
@@ -203,7 +182,7 @@ describe('project actions', () => {
 
     it('create FETCH_NEW_PROJECT_SUCCESS when fetching new post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${ROOT_URL}${PROJECT_PATH}/new`)
+        .get(`${projectURL}/new`)
         .reply(200, { tags: [], tagSuggestions:[] } );
 
       const store = mockStore({});
@@ -222,7 +201,7 @@ describe('project actions', () => {
             tagSuggestions: [],
             tags: []
           },
-          type: FETCH_TAGS
+          type: FETCH_TAGS_FORM
         }
       ];
 
@@ -234,13 +213,17 @@ describe('project actions', () => {
 
     it('create FETCH_NEW_PROJECT_FAILURE when fetching new post has been failed', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .get(`${ROOT_URL}${PROJECT_PATH}/new`)
-        .reply(400, 'error');
+        .get(`${projectURL}/new`)
+        .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
       const expectedResponse = [{
-        type: FETCH_NEW_PROJECT.FAILURE,
-        payload: 'error'
+        payload: {
+          hasAlert: true,
+          kind: "error",
+          message: 'errorMessage'
+        },
+        type: CREATE_ALERT
       }];
 
       return store.dispatch(fetchNewProject())
@@ -255,7 +238,8 @@ describe('project actions', () => {
     beforeEach(() => {
       props = {
         project: {
-          title: 'hoge', description: 'description',
+          title: 'hoge', 
+          description: 'description',
           tagsAttributes: [{ id: 1, text: 'hoge' }]
         }
       };
@@ -263,12 +247,11 @@ describe('project actions', () => {
 
     it('create SAVE_PROJECT_SUCCESS when creating post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .post(`${ROOT_URL}${PROJECT_PATH}`, { project: props })
+        .post(`${projectURL}`, { project: trimProject(props.project) })
         .reply(201);
 
       const store = mockStore({});
       const expectedResponse = [
-        { type: SAVE_PROJECT.REQUEST },
         { type: SAVE_PROJECT.SUCCESS }
       ];
 
@@ -279,14 +262,13 @@ describe('project actions', () => {
     });
 
     it('create SAVE_PROJECT_SUCCESS when updating post has been done', () => {
-      props.post.id = 1;
+      props.project.id = 1;
       nock(TEST_DOMAIN, headerConfig)
-        .patch(`${ROOT_URL}${PROJECT_PATH}/1`, { project: props })
+        .patch(`${projectURL}/1`, { project: trimProject(props.project) })
         .reply(200);
 
       const store = mockStore({});
       const expectedResponse = [
-        { type: SAVE_PROJECT.REQUEST },
         { type: SAVE_PROJECT.SUCCESS }
       ];
 
@@ -298,15 +280,16 @@ describe('project actions', () => {
 
     it('create SAVE_PROJECT_FAILURE when creating post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
-        .post(`${ROOT_URL}${PROJECT_PATH}`, { project: params })
-        .reply(400, 'error');
+        .post(`${projectURL}`, { project: trimProject(props.project) })
+        .reply(400, { errorMessage: 'errorMessage'});
 
       const store = mockStore({});
       const expectedResponse = [
-        { type: SAVE_PROJECT.REQUEST },
         {
           type: SAVE_PROJECT.FAILURE,
-          payload: 'error'
+          payload: {
+            errorMessage: 'errorMessage'
+          }
         }
       ];
 
@@ -316,6 +299,51 @@ describe('project actions', () => {
         })
     });
 
+  });
+
+  describe('toggleProjects', () => {
+
+    it('create TOGGLE_PROJECT_SUCCESS when toggling project has been done', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .patch(`${projectURL}/1/acceptance`)
+        .reply(200, { accepted: true });
+
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        type: TOGGLE_PROJECT.SUCCESS,
+        payload: {
+          sortRank: 1,
+          accepted: true
+        }
+      }];
+
+      return store.dispatch(toggleProject(1, 1))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create TOGGLE_PROJECT_FAILURE when toggling project has been failed', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .patch(`${projectURL}/1/acceptance`)
+        .reply(400,  { errorMessage: 'errorMessage' });
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        payload: {
+          hasAlert: true,
+          kind: "error",
+          message: 'errorMessage'
+        },
+        type: CREATE_ALERT
+      }];
+
+      return store.dispatch(toggleProject(1, 1))
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
   });
 
 
