@@ -33,12 +33,10 @@ function authSuccess(accessToken) {
   return { type: AUTH.SUCCESS };
 }
 
-function authFailure(response) {
+function authFailure({ errorMessage }) {
   return {
     type: AUTH.FAILURE,
-    payload: {
-      errorMessage: response.errorMessage
-    }
+    payload: { errorMessage }
   };
 }
 
@@ -61,11 +59,9 @@ function signOutSuccess() {
   };
 }
 
-function signOutFailure(response) {
+function signOutFailure({errorMessage}) {
   return {
     type: SIGN_OUT.FAILURE,
-    payload: {
-      errorMessage: response.errorMessage
-    }
+    payload: { errorMessage }
   };
 }

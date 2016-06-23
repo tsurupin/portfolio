@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import NavigationBar from 'cmsComponents/NavigationBar/index';
-import { Footer } from 'sharedComponents/Footer/index';
+import NavigationBar from 'cms/components/NavigationBar/index';
+import { Footer } from 'shared/components/Footer/index';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MyRawTheme from 'shared/theme';
 import styles from './styles.scss';

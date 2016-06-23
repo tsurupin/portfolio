@@ -1,8 +1,7 @@
 import {
   FETCH_ITEMS, 
   CREATE_ITEM, 
-  DELETE_ITEM, 
-  CANCEL_ITEM,
+  DELETE_ITEM,
   UPDATE_ITEM
 } from "shared/constants/actions";
 
@@ -44,15 +43,6 @@ export function deleteItem(sortRank) {
   }
 }
 
-export function cancelItem(sortRank, item) {
-  return {
-    type: CANCEL_ITEM,
-    payload: {
-      sortRank,
-      item
-    }
-  }
-}
 
 export function moveItem(sortRank, type) {
   return {

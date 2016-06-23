@@ -39,7 +39,7 @@ config/secrets.yml
 
 # if using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components
-*.bowerrc
+*.bower
 bower.json
 
 # Ignore pow environment settings
@@ -54,6 +54,13 @@ bower.json
 .secret
 /*.pem
 
+# Ignore config files for local usage
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+# Ignore files created by webpack
+/app/assets/javascripts/client/bundle.js
+/app/assets/javascripts/cms/bundle.js
+/app/assets/stylesheets/client/style.scss
+/app/assets/stylesheets/cms/style.scss

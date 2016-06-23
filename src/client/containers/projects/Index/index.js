@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchProjects } from 'clientActions/projects';
-import Item from 'clientComponents/projects/indexes/Item/index';
+import { fetchProjects } from 'client/actions/projects';
+import Item from 'client/components/projects/indexes/Item/index';
 import styles from'./styles.scss';
 
 const propTypes = {

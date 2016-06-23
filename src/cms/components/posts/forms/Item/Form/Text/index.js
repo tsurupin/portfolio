@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import TextEditor from 'sharedComponents/textEditors/Editor/index';
+import TextEditor from 'shared/components/textEditors/Editor/index';
 import IconButton from 'material-ui/IconButton';
 import ContentSave from 'material-ui/svg-icons/content/save';
 import styles from '../shared/styles.scss';

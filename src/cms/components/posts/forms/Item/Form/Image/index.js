@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import DropzoneImage from '../../../../../shared/DropzoneImage/index';
+import DropzoneImage from 'cms/components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ContentSave from 'material-ui/svg-icons/content/save';

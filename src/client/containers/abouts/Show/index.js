@@ -1,18 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchAbout } from 'clientActions/abouts';
+import { fetchAbout } from 'client/actions/abouts';
 import { connect } from 'react-redux';
-import SocialAccounts from 'clientComponents/abouts/shows/SocialAccounts/index';
-import TextDisplay from 'sharedComponents/textEditors/Display/index';
+import SocialAccounts from 'client/components/abouts/shows/SocialAccounts/index';
+import TextDisplay from 'shared/components/textEditors/Display/index';
 import config from 'shared/config';
 import styles from './styles.scss';
 
 const propTypes = {
   about: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
     image: PropTypes.string,
-    description: PropTypes.string,
-    siteDescription: PropTypes.string
+    description: PropTypes.string
   }).isRequired,
   socialAccounts: PropTypes.arrayOf(PropTypes.shape({ 
     accountType: PropTypes.string.isRequired,

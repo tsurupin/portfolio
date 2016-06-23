@@ -4,17 +4,15 @@ import { fetchTags } from "./tags";
 import { fetchItems } from "./items";
 import { axios } from "client/utilities";
 import { browserHistory } from "react-router";
-import { createAlert } from "sharedActions/alerts";
+import { createAlert } from "shared/actions/alerts";
 
 export function fetchPosts(params = { page: 1 }) {
-  let url;
+  let url = `${POST_PATH}?page=${params.page}`;
   
   if (params.tag) {
-    url = `${POST_PATH}&tag=${params.tag}`;
-  } else {
-    url = `${POST_PATH}?page=${params.page}`
+    url += `&tag=${params.tag}`;
   }
-  
+
   const request = axios.get(url);
   return dispatch => {
     return (

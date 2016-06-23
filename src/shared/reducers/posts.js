@@ -20,8 +20,6 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case SAVE_POST.REQUEST:
-      return { ...state, loading: true };
     
     case FETCH_POSTS_INFINITELY.SUCCESS:
       let posts;
@@ -59,7 +57,11 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, postForm: {}, errorMessage: '' };
     
     case TOGGLE_POST.SUCCESS:
-      const tempPost = { ...state.posts[action.payload.sortRank], ...action.payload };
+      const tempPost = { 
+        ...state.posts[action.payload.sortRank], 
+        accepted: action.payload.accepted, 
+        status: action.payload.status 
+      };
       const tempPosts = [...state.posts.slice(0, action.payload.sortRank), tempPost, ...state.posts.slice(action.payload.sortRank + 1)];
       return { ...state, posts: tempPosts };
     

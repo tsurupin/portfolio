@@ -46,7 +46,6 @@ export const MOVE_ITEM_TOP      = 'MOVE_ITEM_TOP';
 export const MOVE_ITEM_UP       = 'MOVE_ITEM_UP';
 export const MOVE_ITEM_DOWN     = 'MOVE_ITEM_DOWN';
 export const MOVE_ITEM_BOTTOM   = 'MOVE_ITEM_BOTTOM';
-export const CANCEL_ITEM        = 'CANCEL_ITEM';
 
 export const CREATE_SOCIAL_ACCOUNT = 'CREATE_SOCIAL_ACCOUNT';
 export const UPDATE_SOCIAL_ACCOUNT = 'UPDATE_SOCIAL_ACCOUNT';

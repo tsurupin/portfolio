@@ -2,7 +2,7 @@ import { FETCH_ABOUT } from 'shared/constants/actions';
 import { ABOUT_PATH } from 'shared/constants/apis';
 import { axios } from "client/utilities";
 import { fetchSocialAccounts } from "./socialAccounts";
-import { createAlert } from "sharedActions/alerts";
+import { createAlert } from "shared/actions/alerts";
 
 export function fetchAbout(){
   const request = axios.get(ABOUT_PATH);
@@ -18,9 +18,14 @@ export function fetchAbout(){
   }
 }
 
-function fetchAboutSuccess(about) {
+function fetchAboutSuccess(response) {
   return {
     type: FETCH_ABOUT.SUCCESS,
-    payload: about
+    payload: {
+      name: response.name,
+      email: response.email,
+      image: response.image,
+      description: response.description
+    }
   };
 }

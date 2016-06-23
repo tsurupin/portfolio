@@ -11,7 +11,7 @@
 class SocialAccount < ActiveRecord::Base
   belongs_to :author, touch: true
 
-  enum account_type: [:github, :facebook, :twitter, :linked_in ]
+  enum account_type: [:git_hub, :facebook, :twitter, :linked_in ]
 
   validates :url, presence: true, uniqueness: true, format: { with: URI.regexp }
   validates :author, presence: true

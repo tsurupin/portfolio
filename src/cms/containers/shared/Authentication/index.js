@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { signOut } from 'cmsActions/auths';
+import { signOut } from 'cms/actions/auths';
 
 export default function(ComposedComponent) {
   

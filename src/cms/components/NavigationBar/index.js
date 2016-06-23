@@ -11,7 +11,7 @@ import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import config from 'shared/config';
-import { signOut } from 'cmsActions/auths';
+import { signOut } from 'cms/actions/auths';
 
 const iconColor = '#8F8F8F';
 const inlineStyles = {

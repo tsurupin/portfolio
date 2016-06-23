@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchProjects, toggleProject } from 'cmsActions/projects';
-import Item from 'cmsComponents/projects/indexes/Item/index';
+import { fetchProjects, toggleProject } from 'cms/actions/projects';
+import Item from 'cms/components/projects/indexes/Item/index';
 import { 
   Table, 
   TableHeaderColumn, 

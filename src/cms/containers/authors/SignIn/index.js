@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { signIn } from 'cmsActions/auths';
+import { signIn } from 'cms/actions/auths';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
+import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
 import styles from './styles.scss';
 
 

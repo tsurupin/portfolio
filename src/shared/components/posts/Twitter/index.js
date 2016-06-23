@@ -7,11 +7,11 @@ const propTypes = {
 };
 
 function Twitter({twitterId}){
-    return (
-        <div className={styles.root}>
-          <TweetEmbed id={twitterId}/>
-        </div>
-    );
+  return (
+      <div className={styles.root}>
+        <TweetEmbed id={twitterId}/>
+      </div>
+  );
 }
 
 

@@ -37,17 +37,19 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx', '.css', '.scss'],
     alias: {
-      cms: 'src/cms',
-      cmsActions: 'src/cms/actions',
-      cmsComponents: 'src/cms/components',
-      cmsCss: 'src/cms/css',
-      client: 'src/client',
-      clientActions: 'src/client/actions',
-      clientComponents: 'src/client/components',
-      sharedComponents: 'src/shared/components',
-      sharedActions: 'src/shared/actions',
-      sharedCss: 'src/shared/css',
-      shared: 'src/shared'
+      client:  path.resolve(__dirname, 'src', 'client'),
+      clientActions: path.resolve(__dirname, 'src', 'client', 'actions'),
+      clientComponents: path.resolve(__dirname, 'src', 'client', 'components'),
+      
+      cms: path.resolve(__dirname, 'src', 'cms'),
+      cmsActions: path.resolve(__dirname, 'src', 'cms', 'actions'),
+      cmsComponents: path.resolve(__dirname, 'src', 'cms', 'components'),
+      cmsCss:  path.resolve(__dirname, 'src', 'cms', 'css'),
+      
+      shared: path.resolve(__dirname, 'src', 'shared'),
+      sharedActions: path.resolve(__dirname, 'src', 'shared', 'actions'),
+      sharedComponents: path.resolve(__dirname, 'src', 'shared', 'component'),
+      sharedCss: path.resolve(__dirname, 'src', 'shared', 'css')
     }
   },
   

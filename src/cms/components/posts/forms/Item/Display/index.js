@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import TARGET_TYPES from 'shared/constants/target_types';
+import TARGET_TYPES from 'shared/constants/targetTypes';
 import Tooltip from './Tooltip/index';
-import Image from 'sharedComponents/posts/Image/index';
-import Twitter from 'sharedComponents/posts/Twitter/index';
-import Text from 'sharedComponents/posts/Text/index';
+import Image from 'shared/components/posts/Image/index';
+import Twitter from 'shared/components/posts/Twitter/index';
+import Text from 'shared/components/posts/Text/index';
 import styles from './styles.scss';
 
 const propTypes = {

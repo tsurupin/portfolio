@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchAuthor, updateAuthor } from 'cmsActions/authors';
-import { updateSocialAccount } from 'cmsActions/socialAccounts';
+import { fetchAuthor, updateAuthor } from 'cms/actions/authors';
+import { updateSocialAccount } from 'cms/actions/socialAccounts';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import DropzoneImage from 'cmsComponents/shared/DropzoneImage/index';
+import DropzoneImage from 'cms/components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
-import TextEditor from 'sharedComponents/textEditors/Editor/index'
-import SocialAccount from 'cmsComponents/authors/forms/SocialAccount/index';
-import ErrorMessage from 'cmsComponents/shared/ErrorMessage/index';
+import TextEditor from 'shared/components/textEditors/Editor/index'
+import SocialAccount from 'cms/components/authors/forms/SocialAccount/index';
+import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
 
 import styles from './styles.scss';
 
@@ -86,6 +86,7 @@ class AuthorForm extends Component {
   }
 
   renderSocialAccounts() {
+    // some accounts may not be saved yet, so use index as key, instead of account id.
     return(
       this.props.socialAccounts.map((account, index) => {
         return (

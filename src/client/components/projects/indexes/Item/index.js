@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import TagList from 'sharedComponents/TagList/index';
-import TextDisplay from 'sharedComponents/textEditors/Display/index';
+import TagList from 'shared/components/TagList/index';
+import TextDisplay from 'shared/components/textEditors/Display/index';
 import styles from './styles.scss';
 
 const propTypes = {

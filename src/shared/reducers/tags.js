@@ -10,10 +10,12 @@ const INITIAL_STATE = { tags: [], tagSuggestions: [] };
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_TAGS:
+      //tags -> [{id:1, name:'tag' }]
       return { tags: action.payload.tags };
 
     case FETCH_TAGS_FORM:
-      return { ...state, ...action.payload };
+      //tags -> [ {id:1, text:'tag' }]
+      return { ...state, tags: action.payload.tags, tagSuggestions: action.payload.tagSuggestions };
 
     case CREATE_TAG:
       return { ...state, tags: [...state.tags, action.payload.tag] };

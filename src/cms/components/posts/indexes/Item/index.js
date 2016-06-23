@@ -9,7 +9,7 @@ import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import ContentFlag from 'material-ui/svg-icons/content/flag';
 import NotificationPriorityHigh from 'material-ui/svg-icons/notification/priority-high';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   id: PropTypes.number.isRequired,

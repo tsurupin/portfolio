@@ -6,7 +6,7 @@
   "repository": "git@github.com:tsurupin/portfolio.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=test mocha --compilers js:babel-core/register  --require ignore-styles --require ./spec/src/cms/test_helper.js --recursive ./spec/src/",
+    "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=test NODE_PATH=./src mocha --compilers js:babel-core/register --require ignore-styles --require ./test/helpers/index.js --recursive ./test/",
     "test:watch": "npm run test -- --watch",
     "es:lint": "./node_modules/.bin/eslint ./spec/src/**",
     "scss:lint": "scss-lint ./app/assets/stylesheets/*"
@@ -31,7 +31,7 @@
     "extract-text-webpack-plugin": "github:michelebertoli/extract-text-webpack-plugin#614c3bb1ed72587218aa644df12bbf514fb77a06",
     "fbjs": "^0.8.1",
     "file-loader": "^0.8.5",
-    "ignore-styles": "^1.2.0",
+    "ignore-styles": "^4.0.0",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
