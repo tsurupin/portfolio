@@ -1,18 +1,12 @@
 import { expect } from '../../helpers/utility';
-import {
-  fetchSocialAccounts,
-  updateSocialAccount
-} from 'cms/actions/socialAccounts';
+import { fetchSocialAccounts } from 'client/actions/socialAccounts';
 
-import {
-  FETCH_SOCIAL_ACCOUNTS,
-  UPDATE_SOCIAL_ACCOUNT
-} from 'shared/constants/actions';
+import { FETCH_SOCIAL_ACCOUNTS } from 'shared/constants/actions';
 
-describe('cms socialAccount actions', () => {
+describe('client socialAccount actions', () => {
 
   describe('fetchSocialAccount', () => {
-    it('creates FETCH_SOCIAL_ACCOUNT', () => {
+    it('creates FETCH_SOCIAL_ACCOUNTS', () => {
       const action = fetchSocialAccounts({
         socialAccounts: [
         { 
@@ -32,19 +26,6 @@ describe('cms socialAccount actions', () => {
       expect(action).to.eql(expectedResponse);
     });
   });
-
-  describe('updateSocialAccount', () => {
-    it('creates UPDATE_SOCIAL_ACCOUNT and updates socialAccount', () => {
-      const action = updateSocialAccount(1, 'url');
-      const expectedResponse = {
-        type: UPDATE_SOCIAL_ACCOUNT,
-        payload: {
-          sortRank: 1,
-          url: 'url'
-        }
-      };
-      expect(action).to.eql(expectedResponse);
-    });
-  });
+  
 
 });
