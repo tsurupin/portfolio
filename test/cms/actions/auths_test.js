@@ -1,12 +1,15 @@
-import { expect, sinon } from '../utility';
+import { expect, sinon } from '../../helpers/utility';
 import {
   signUp,
   signIn,
   signOut
-} from '../../../../src/cms/actions/auths';
+} from 'cms/actions/auths';
 import {
-  ROOT_URL, AUTHOR_PATH, TEST_DOMAIN, AUTH, SIGN_OUT
-} from '../../../../src/cms/constants';
+  CMS_ROOT_URL, 
+  AUTHOR_PATH, 
+  TEST_DOMAIN
+} from 'shared/constants/apis';
+import { AUTH, SIGN_OUT } from 'shared/constants/actions';
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
 import browserHistory  from 'react-router/lib/browserHistory'
@@ -14,7 +17,7 @@ import thunk from 'redux-thunk'
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 
-describe('auth actions', () => {
+describe('cms auth actions', () => {
   
   
   beforeEach(() => {
@@ -39,7 +42,7 @@ describe('auth actions', () => {
 
     it("creates AUTH_SUCCESS when signUp has been done",  () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${AUTHOR_PATH}/sign-up`, params)
+        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-up`, params)
         .reply(201, { accessToken: 'hoge' });
 
       const store = mockStore({});
@@ -56,15 +59,15 @@ describe('auth actions', () => {
 
     it('created AUTH_FAILURE when signUp has failed', () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${AUTHOR_PATH}/sign-up`, params)
-        .reply(400, { error: 'error' });
+        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-up`, params)
+        .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
 
       const expectedResponse = [{
         type: AUTH.FAILURE,
         payload: {
-          error: 'error'
+          errorMessage: 'errorMessage'
         }
       }];
 
@@ -84,7 +87,7 @@ describe('auth actions', () => {
 
     it("creates AUTH_SUCCESS when signIn has been done",  () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${AUTHOR_PATH}/sign-in`, params)
+        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-in`, params)
         .reply(201, { accessToken: 'hoge' });
 
       const store = mockStore({});
@@ -101,15 +104,15 @@ describe('auth actions', () => {
 
     it('created AUTH_FAILURE when signIn has failed', () => {
       nock(TEST_DOMAIN)
-        .post(`${ROOT_URL}${AUTHOR_PATH}/sign-in`, params)
-        .reply(400, { error: 'error' });
+        .post(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-in`, params)
+        .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
 
       const expectedResponse = [{
         type: AUTH.FAILURE,
         payload: {
-          error: 'error'
+          errorMessage: 'errorMessage'
         }
       }];
 
@@ -124,7 +127,7 @@ describe('auth actions', () => {
 
     it("creates SIGN_OUT_SUCCESS when signOut has been done",  () => {
       nock(TEST_DOMAIN)
-        .delete(`${ROOT_URL}${AUTHOR_PATH}/sign-out`)
+        .delete(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-out`)
         .reply(200);
 
       const store = mockStore({});
@@ -141,15 +144,15 @@ describe('auth actions', () => {
 
     it('created SIGN_OUT_FAILURE when signOut has failed', () => {
       nock(TEST_DOMAIN)
-        .delete(`${ROOT_URL}${AUTHOR_PATH}/sign-out`)
-        .reply(400, { error: 'error' });
+        .delete(`${CMS_ROOT_URL}${AUTHOR_PATH}/sign-out`)
+        .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
 
       const expectedResponse = [{
         type: SIGN_OUT.FAILURE,
         payload: {
-          error: 'error'
+          errorMessage: 'errorMessage'
         }
       }];
 
