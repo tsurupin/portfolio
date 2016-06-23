@@ -1,4 +1,4 @@
-import { expect } from '../utility';
+import { expect } from '../../helpers/utility';
 import projectReducer from '../../../../src/cms/reducers/projects';
 import {
   FETCH_PROJECTS,

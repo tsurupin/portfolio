@@ -1,4 +1,4 @@
-import { expect } from '../utility';
+import { expect } from '../../helpers/utility';
 import itemReducer from '../../../../src/cms/reducers/items';
 import {
   FETCH_ITEMS, FETCH_ITEM, CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM,

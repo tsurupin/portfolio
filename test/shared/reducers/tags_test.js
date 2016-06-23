@@ -1,4 +1,4 @@
-import { expect } from '../utility';
+import { expect } from '../../helpers/utility';
 import tagReducer from '../../../../src/cms/reducers/tags';
 import {
   FETCH_TAGS, CREATE_TAG, DELETE_TAG

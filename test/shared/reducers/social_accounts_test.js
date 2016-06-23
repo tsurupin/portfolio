@@ -1,4 +1,4 @@
-import { expect } from '../utility';
+import { expect } from '../../helpers/utility';
 import socialAccountReducer from '../../../../src/cms/reducers/socialAccounts';
 import {
   CREATE_SOCIAL_ACCOUNT,
