@@ -1,26 +1,46 @@
 import { expect } from '../../helpers/utility';
-import aboutReducer from 'shared/reducers/abouts';
-import { FETCH_ABOUT } from 'shared/constants/actions';
+import alertReducer from 'shared/reducers/alerts';
+import { CREATE_ALERT, DELETE_ALERT } from 'shared/constants/actions';
 
-describe('About Reducer', () => {
+const INITIAL_STATE = {
+  hasAlert: false,
+  message: '',
+  kind: ''
+};
+
+describe('Alert Reducer', () => {
 
   it('handles action with unknown type', () => {
-    expect(aboutReducer({}, {})).to.eql({});
+    expect(alertReducer(INITIAL_STATE, {})).to.eql(INITIAL_STATE);
   });
 
-  it('handles action of type FETCH_ABOUT_SUCCESS', () => {
+  it('handles action of type CREATE_ALERT', () => {
     
-    const about = {
-      description: 'rich text',
-      image: 'http://image1.png' 
+    const alert = {
+      hasAlert: true,
+      message: 'message',
+      kind: 'error'
     };
     
     const action = {
-      type: FETCH_ABOUT.SUCCESS,
-      payload: about 
+      type: CREATE_ALERT,
+      payload: alert 
     };
 
-    expect(aboutReducer({}, action)).to.eql(about);
+    expect(alertReducer({}, action)).to.eql(alert);
+  });
+
+  it('handles action of type DELETE_ALERT', () => {
+
+    const state = {
+      hasAlert: true,
+      message: 'message',
+      kind: 'error'
+    };
+
+    const action = { type: DELETE_ALERT };
+
+    expect(alertReducer(state, action)).to.eql(INITIAL_STATE);
   });
 
   
