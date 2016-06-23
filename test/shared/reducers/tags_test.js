@@ -1,17 +1,27 @@
 import { expect } from '../../helpers/utility';
-import tagReducer from '../../../../src/cms/reducers/tags';
+import tagReducer from 'shared/reducers/tags';
 import {
-  FETCH_TAGS, CREATE_TAG, DELETE_TAG
-} from '../../../../src/cms/constants';
+  FETCH_TAGS,
+  FETCH_TAGS_FORM,
+  CREATE_TAG, 
+  DELETE_TAG
+} from 'shared/constants/actions';
 
 describe('Tag Reducer', () => {
+  const INITIAL_STATE = { tags: [], tagSuggestions: [] };
 
   it('handles action with unknown type', () => {
-    expect(tagReducer({ tags: [], tagSuggestions: [] }, {})).to.eql({ tags: [], tagSuggestions: [] });
+    expect(tagReducer(INITIAL_STATE, {})).to.eql(INITIAL_STATE);
   });
 
   it('handles action of type FETCH_TAGS', () => {
-    const action = { type: FETCH_TAGS, payload: { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } };
+    const action = { type: FETCH_TAGS, payload: { tags: [{ id: 1, name: 'hoge'}] } };
+    const expectedResponse = { tags: [{ id:1, name: 'hoge'}] } ;
+    expect(tagReducer([], action)).to.eql(expectedResponse);
+  });
+
+  it('handles action of type FETCH_TAGS_FORM', () => {
+    const action = { type: FETCH_TAGS_FORM, payload: { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } };
     const expectedResponse = { tags: [{ text: 'hoge'}], tagSuggestions: ["hoge"]  } ;
     expect(tagReducer([], action)).to.eql(expectedResponse);
   });
@@ -20,17 +30,17 @@ describe('Tag Reducer', () => {
     const action = {
       type: CREATE_TAG,
       payload: {
-        tag: { text: 'hoge' }
+        tag: { text: 'hoge2' }
       }
     };
 
     const state = {
-      tags: [{ text: 'hoge' }],
+      tags: [{ text: 'hoge1' }],
       tagSuggestions: ["hoge"]
     };
 
     const expectedResponse = {
-      tags: [{ text: 'hoge' }, { text: 'hoge' }],
+      tags: [{ text: 'hoge1' }, { text: 'hoge2' }],
       tagSuggestions: ["hoge"]
     };
 
@@ -57,7 +67,5 @@ describe('Tag Reducer', () => {
 
     expect(tagReducer(state, action)).to.eql(expectedResponse);
   });
-
-
 
 });
