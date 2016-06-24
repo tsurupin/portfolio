@@ -68,10 +68,6 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcrs'
   c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = true
-  c.filter_sensitive_data('<TWITTER_CONSUMER_KEY>') { Settings.twitter_consumer_key }
-  c.filter_sensitive_data('<TWITTER_CONSUMER_SECRET>') { Settings.twitter_consumer_secret }
-  c.filter_sensitive_data('<TWITTER_ACCESS_TOKEN>') { Settings.twitter_access_token }
-  c.filter_sensitive_data('<TWITTER_ACCESS_TOKEN_SECRET>') { Settings.twitter_access_token_secret }
   uri_without_timestamp = VCR.request_matchers.uri_without_param(:timestamp)
   c.default_cassette_options = { record: :new_episodes, match_requests_on: [:method, uri_without_timestamp], allow_playback_repeats: true }
 end

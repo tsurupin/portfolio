@@ -37,8 +37,10 @@ class Project::Form < ActiveType::Record[Project]
     ActiveRecord::Base.transaction do
       delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
+      if params['image']&.start_with?('data')
+        params['image'] = convert_data_uri_to_upload(params['image'])
+      end
 
-      params['image'] = convert_data_uri_to_upload(params['image']) if params['image']&.start_with?('data')
       update!(params)
       true
     end

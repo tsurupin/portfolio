@@ -40,7 +40,6 @@ RSpec.describe Author, type: :model do
         expect{ create(:author) }.to change{ Author.count }.by(1)
       end
     end
-
   end
 
 end

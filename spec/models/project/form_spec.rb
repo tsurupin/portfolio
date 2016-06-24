@@ -20,42 +20,63 @@ RSpec.describe Project::Form, type: :model do
     it { is_expected.to accept_nested_attributes_for(:taggings) }
 
     context 'description' do
-      let(:project) { Project::Form.find(original_project.id) }
       context 'when description is nil' do
-        let!(:original_project) { create(:project, image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"), source_url: 'http://sample.com') }
-        it { expect { project.update!(accepted: true) }.to raise_error { ArgumentError } }
+        it 'raises the error' do
+          project = create(
+            :project,
+            image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"),
+            source_url: 'http://sample.com'
+          )
+          project_form = Project::Form.find(project.id)
+          expect{ project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
+        end
       end
 
       context 'when description is not nil' do
-        let!(:original_project) { create(:project, description: 'hoge', image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"), source_url: 'http://sample.com') }
-        it { expect { project.update!(accepted: true) }.not_to raise_error { ArgumentError } }
+        it 'raises the error' do
+          project = create(
+            :project,
+            description: 'hoge',
+            image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"),
+            source_url: 'http://sample.com'
+          )
+          project_form = Project::Form.find(project.id)
+          expect{ project_form.update(accepted: true) }.to_not raise_error(ArgumentError)
+        end
       end
     end
 
     context 'image' do
-      let(:project) { Project::Form.find(original_project.id) }
       context 'when image is nil' do
-        let!(:original_project) { create(:project, description: 'hoge', source_url: 'http://sample.com') }
-        it { expect { project.update!(accepted: true) }.to raise_error { ArgumentError } }
-      end
-
-      context 'when image is not nil' do
-        let!(:original_project) { create(:project, description: 'hoge', image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"), source_url: 'http://sample.com') }
-        it { expect { project.update!(accepted: true) }.not_to raise_error { ArgumentError } }
+        it 'raises the error' do
+          project = create(
+            :project,
+            description: 'hoge',
+            source_url: 'http://sample.com'
+          )
+          project_form = Project::Form.find(project.id)
+          expect{ project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
+        end
       end
     end
 
     context 'source_url' do
-      let(:project) { Project::Form.find(original_project.id) }
       context 'when source_url is nil' do
-        let!(:original_project) { create(:project, description: 'hoge', image: File.new("#{Rails.root}/spec/fixtures/images/sample.png")) }
-        it { expect { project.update!(accepted: true) }.to raise_error { ArgumentError } }
-      end
-
-      context 'when source_url is not nil' do
-        let!(:original_project) { create(:project, description: 'hoge', image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"), source_url: 'http://sample.com') }
-        it { expect { project.update!(accepted: true) }.not_to raise_error { ArgumentError } }
+        it 'raises the error' do
+          project = create(
+            :project,
+            description: 'hoge',
+            image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"),
+          )
+          project_form = Project::Form.find(project.id)
+          expect{ project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
+        end
       end
     end
+
+  end
+
+  describe '#save_from_associations' do
+
   end
 end
