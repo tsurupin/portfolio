@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Sign up as author', js: true do
-  scenario 'signs up' do
+describe 'Admin user Signs', js: true do
+  scenario 'they see navigation bar' do
     visit '/cms/sign-up'
     fill_in 'name', with: 'samplename'
     fill_in 'email', with: 'sample@gmail.com'
@@ -13,7 +13,7 @@ describe 'Sign up as author', js: true do
   end
 
   # TODO: fix password confirmation validation
-  xscenario 'fails to sign up with wrong password confirmation' do
+  xscenario 'they fail to sign up because of wrong password confirmation' do
     visit '/cms/sign-up'
     fill_in 'name', with: 'samplename'
     fill_in 'email', with: 'sample'
@@ -23,7 +23,7 @@ describe 'Sign up as author', js: true do
     expect(page).to have_css('h2', 'SignUp')
   end
 
-  scenario 'moves to sign-in page when visiting other page' do
+  scenario 'they move to sign in page in visiting other page' do
     visit '/cms/sign-up'
     visit '/cms/about'
     expect(page).to have_css('h2', 'SignIn')

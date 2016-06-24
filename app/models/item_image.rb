@@ -16,7 +16,9 @@ class ItemImage < ActiveRecord::Base
 
   def set_attributes_and_save!(params)
     self.caption = params['caption'] if params['caption']
-    self.image = convert_data_uri_to_upload(params['image']) if params['image']&.start_with?('data')
+    if params['image']&.start_with?('data')
+      self.image = convert_data_uri_to_upload(params['image'])
+    end
     self.save!
   end
 end

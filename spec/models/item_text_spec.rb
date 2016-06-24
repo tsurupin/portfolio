@@ -13,4 +13,18 @@ RSpec.describe ItemText, type: :model do
     it { is_expected.to have_one(:item).dependent(:destroy) }
     it { is_expected.to validate_presence_of(:description) }
   end
+
+  describe '#set_attributes_and_save!' do
+    it "increments the record count" do
+      text = build(:item_text, description: nil)
+      params = { 'description' => 'description' }
+      expect{ text.set_attributes_and_save!(params)}.to change{ ItemText.count }.by(1)
+    end
+
+    it 'raises the record invalid error' do
+      text = build(:item_text, description: nil)
+      params = { }
+      expect{ text.set_attributes_and_save!(params)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
 end

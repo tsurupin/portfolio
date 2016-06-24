@@ -17,7 +17,8 @@ class Post < ActiveRecord::Base
   has_many :taggings, as: :subject, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :items, -> { order('sort_rank asc') }, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  # TODO: fill add comments
+  # has_many :comments, dependent: :destroy
 
   validates :title, presence: true, uniqueness: { message: "%{value} is already used"}
   after_update :delete_cache

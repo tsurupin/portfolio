@@ -89,6 +89,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'
+  gem 'spring-commands-rspec'
 end
 
 

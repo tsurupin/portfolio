@@ -17,11 +17,11 @@ require 'rails_helper'
 
 RSpec.describe Project, type: :model do
   describe '#validation' do
-    subject { create(:project) }
     it { is_expected.to have_many(:taggings).dependent(:destroy) }
     it { is_expected.to have_many(:tags).through(:taggings) }
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_uniqueness_of(:title) }
+    it { expect(create(:project, title: 'title')).to validate_uniqueness_of(:title).with_message('title is already used') }
   end
+
 
 end

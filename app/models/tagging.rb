@@ -19,8 +19,8 @@ class Tagging < ActiveRecord::Base
 
   delegate :name, to: :tag
 
-  def self.by_tag(tag_id)
+  scope :by_tag, lambda { |tag_id|
     where(tag_id: tag_id).order(updated_at: :desc)
-  end
+  }
 
 end

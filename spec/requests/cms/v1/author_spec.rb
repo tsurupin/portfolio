@@ -30,7 +30,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
           }
         end
         before { get cms_api_v1_authors_path, {}, auth_header }
-        it 'return correct info from api' do
+        it 'returns the correct info from api' do
           expect(response.status).to eq 200
           expect(subject).to eq result
         end
@@ -38,7 +38,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
 
       context 'when access_token is not sent in header' do
         before { get cms_api_v1_authors_path, {} }
-        it 'return error message' do
+        it 'returns an error message' do
           expect(response.status).to eq 401
         end
       end
@@ -70,7 +70,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
           }
         end
         before { get edit_cms_api_v1_authors_path, {}, auth_header }
-        it 'return correct info from api' do
+        it 'returns the correct info from api' do
           expect(response.status).to eq 200
           expect(subject).to eq result
         end
