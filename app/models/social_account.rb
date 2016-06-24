@@ -11,10 +11,12 @@
 class SocialAccount < ActiveRecord::Base
   belongs_to :author, touch: true
 
-  enum account_type: [:git_hub, :facebook, :twitter, :linked_in ]
+  enum account_type: [:git_hub, :facebook, :twitter, :linked_in]
 
-  validates :url, presence: true, uniqueness: true, format: { with: URI.regexp }
   validates :author, presence: true
+  validates :url, presence: true,
+            uniqueness: true,
+            format: { with: URI.regexp }
   validates :account_type,
             presence: true,
             inclusion: { in: SocialAccount.account_types.keys },

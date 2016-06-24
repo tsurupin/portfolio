@@ -19,25 +19,33 @@ class Author < ActiveRecord::Base
 
   has_many :social_accounts, dependent: :destroy
 
-  after_create :update_devise_token!
 
-  validates :name, presence: true, uniqueness: { message: "%{value} is already used" }
+
+  validates :name,
+            presence: true
   validates :email,
             presence: true,
-            uniqueness: { message: "%{value} is already used" },
             email_format: { message: "%{value} is not a valid email" }
-  validates :encrypted_password, presence: true, uniqueness: true
+  validates :encrypted_password,
+            presence: true
+
+  before_create :ensure_record_singularity!
+  after_create :generate_access_token!
   after_update :delete_cache
 
   mount_uploader :image, AuthorImageUploader
 
   private
-  def update_devise_token!
+  def generate_access_token!
     self.access_token = "#{self.id}:#{Devise.friendly_token}"
     save!
   end
 
   def delete_cache
     Rails.cache.delete('cached_about')
+  end
+
+  def ensure_record_singularity!
+    fail ActiveRecord::RecordInvalid.new(self) if Author.count > 0
   end
 end

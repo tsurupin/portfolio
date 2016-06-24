@@ -14,7 +14,6 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe '#validation' do
-    subject { create(:post) }
     it { is_expected.to have_many(:taggings).dependent(:destroy) }
     it { is_expected.to have_many(:tags).through(:taggings) }
     it { is_expected.to have_many(:items).order('sort_rank asc').dependent(:destroy) }

@@ -21,14 +21,6 @@ class Initialize < ActiveRecord::Migration
     add_index :posts, [:accepted, :published_at]
     add_index :posts, :updated_at
 
-    create_table :comments do |t|
-      t.belongs_to :post, index: true, null: false
-      t.text :comment, null: false
-      t.integer :reply_id
-
-      t.timestamps null: false
-    end
-
     create_table :items do |t|
       t.belongs_to    :post, index: true, null: false
       t.integer       :sort_rank, null: false

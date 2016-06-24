@@ -29,8 +29,8 @@ class Item < ActiveRecord::Base
             inclusion: { in: Item.target_types.keys }
 
   private
+
   def destroy_target
-    p 'ho'
     target.destroy
   end
 end
