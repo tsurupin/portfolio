@@ -27,6 +27,7 @@ class Author < ActiveRecord::Base
             uniqueness: { message: "%{value} is already used" },
             email_format: { message: "%{value} is not a valid email" }
   validates :encrypted_password, presence: true, uniqueness: true
+  after_update :delete_cache
 
   mount_uploader :image, AuthorImageUploader
 
@@ -34,5 +35,9 @@ class Author < ActiveRecord::Base
   def update_devise_token!
     self.access_token = "#{self.id}:#{Devise.friendly_token}"
     save!
+  end
+
+  def delete_cache
+    Rails.cache.delete('cached_about')
   end
 end

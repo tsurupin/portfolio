@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from 'client/actions/posts';
 import Item from 'client/components/posts/indexes/Item/index';
+import shallowCompare from 'react-addons-shallow-compare';
 import styles from'./styles.scss';
 import Infinite from 'react-infinite';
 
@@ -44,6 +45,10 @@ class PostIndex extends Component {
     if (nextProps.location.query.tag !== this.props.location.query.tag) {
       nextProps.fetchPosts({ page: 1, tag: nextProps.location.query.tag })
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
   
   handleLoad() {

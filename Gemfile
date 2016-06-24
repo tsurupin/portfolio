@@ -65,7 +65,7 @@ group :development do
   gem 'hirb'
   gem 'hirb-unicode'
   gem 'letter_opener'
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler'#, require: false
   gem 'bullet'
   gem 'quiet_assets'
 

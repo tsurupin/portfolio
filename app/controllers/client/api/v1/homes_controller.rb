@@ -1,6 +1,8 @@
 class Client::Api::V1::HomesController < Client::ApplicationController
   def show
-    home = Home.new
+    home = rails_cache("cached_home") do
+      Home.new
+    end
     render json: home
   end
 end

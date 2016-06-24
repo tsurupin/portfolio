@@ -21,6 +21,7 @@ class ProjectSerializer < ActiveModel::Serializer
   # end
 
   def tag_suggestions
+
     Tag.pluck(:name)
   end
 

@@ -12,6 +12,7 @@
 
 class Post < ActiveRecord::Base
   PAGINATES_PER = 20.freeze
+  paginates_per PAGINATES_PER
 
   has_many :taggings, as: :subject, dependent: :destroy
   has_many :tags, through: :taggings
@@ -19,14 +20,20 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates :title, presence: true, uniqueness: { message: "%{value} is already used"}
-
-  paginates_per PAGINATES_PER
-
+  after_update :delete_cache
 
   def status
     # NOTE: 0: not accepted, 1: will publish, 2: publishing
     return 0 unless accepted
     published_at <= Time.current ? 1 : 2
+  end
+
+  private
+
+  def delete_cache
+    Ralis.cache.delete("cached_posts/#{id}")
+    Rails.cache.delete('cached_home')
+    Rails.cache.delete_matched(/cached_posts\?page=\d?&tag=\w*/)
   end
 
 end

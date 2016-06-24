@@ -2,7 +2,8 @@ module ClientSearch
   extend ActiveSupport::Concern
   included do
     scope :client_search, lambda { |options = {}|
-      accepted
+      eager_load(:tags)
+        .accepted
         .related_by_tag(options[:tag])
         .latest
     }

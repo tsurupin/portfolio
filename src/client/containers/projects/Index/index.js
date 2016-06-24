@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchProjects } from 'client/actions/projects';
 import Item from 'client/components/projects/indexes/Item/index';
+import shallowCompare from 'react-addons-shallow-compare';
 import styles from'./styles.scss';
 
 const propTypes = {
@@ -50,6 +51,9 @@ class ProjectIndex extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     if(this.props.projects.length === 0 ) { 

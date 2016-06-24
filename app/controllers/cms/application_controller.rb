@@ -5,9 +5,7 @@ class Cms::ApplicationController < ApplicationController
   layout 'cms/layouts/application'
 
   def authenticate_author_from_token!
-    p request.headers
     auth_token = request.headers['Authorization']
-    p auth_token
     return authentication_error unless auth_token
     authenticate_with_auth_token(auth_token)
   end

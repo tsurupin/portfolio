@@ -19,5 +19,13 @@ class Project < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: { message: "%{value} is already used" }
 
+  after_update :delete_cache
   mount_uploader :image, ProjectImageUploader
+
+  private
+
+  def delete_cache
+    Rails.cache.delete('cached_home')
+    Rails.cache.delete_matched(/cached_projects\?tag=\w*/)
+  end
 end

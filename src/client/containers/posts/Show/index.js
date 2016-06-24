@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPost } from 'client/actions/posts';
 import Tags from 'client/components/posts/shows/Tags/index';
 import Item from 'client/components/posts/shows/Item/index';
+import shallowCompare from 'react-addons-shallow-compare';
 import Pagination from 'client/components/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
@@ -57,6 +58,10 @@ class PostShow extends  Component {
     if (nextProps.params.id !== this.props.params.id) {
       nextProps.fetchPost(nextProps.params.id)
      }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   get adminPath() {

@@ -15,6 +15,5 @@ class AddDeviseToAuthors < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :authors, :updated_at
   end
 end
