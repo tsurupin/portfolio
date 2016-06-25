@@ -8,6 +8,6 @@
 
 FactoryGirl.define do
   factory :item_text do
-
+    description 'rich text'
   end
 end

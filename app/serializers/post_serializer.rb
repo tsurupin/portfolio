@@ -34,11 +34,11 @@ class PostSerializer < ActiveModel::Serializer
   private
 
   def prev_post
-    @prev_post ||=  Post::Search.previous(object.published_at)
+    @prev_post ||= ActiveType.cast(object, Post::Search).previous
   end
 
   def next_post
-    @next_post ||= Post::Search.next(object.published_at)
+    @next_post ||= ActiveType.cast(object, Post::Search).next
   end
 
 end

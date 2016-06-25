@@ -33,7 +33,7 @@ RSpec.describe Project::Form, type: :model do
       end
 
       context 'when description is not nil' do
-        it 'raises the error' do
+        it 'does not raise the error' do
           project = create(
             :project,
             description: 'hoge',
@@ -41,7 +41,7 @@ RSpec.describe Project::Form, type: :model do
             source_url: 'http://sample.com'
           )
           project_form = Project::Form.find(project.id)
-          expect{ project_form.update(accepted: true) }.to_not raise_error(ArgumentError)
+          expect{ project_form.update(accepted: true) }.to_not raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end

@@ -13,17 +13,17 @@
 class Post::Search < ActiveType::Record[Post]
   include ClientSearch
 
-  def self.previous(post)
-    accepted
-      .where('id != ? and published_at < ?', post.id, post.published_at)
+  def previous
+    Post::Search.accepted
+      .where('id != ? and published_at < ?', id, published_at)
       .order('published_at desc')
       .limit(1)
       .try(:first)
   end
 
-  def self.next(post)
-    accepted
-      .where('id != ? and published_at > ?', post.id, post.published_at)
+  def next
+    Post::Search.accepted
+      .where('id != ? and published_at > ?', id, published_at)
       .order('published_at asc')
       .limit(1)
       .try(:first)
