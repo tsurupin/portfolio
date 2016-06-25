@@ -1,7 +1,7 @@
 class Cms::Api::V1::PostsController < Cms::ApplicationController
   def index
     posts = Post.page(params[:page])
-    render json: posts, each_serializer: PostsSerializer,
+    render json: posts, each_serializer: Cms::PostsSerializer,
            meta: pagination(params[:page], Post::PAGINATES_PER, posts.total_count)
   end
 

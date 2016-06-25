@@ -10,7 +10,6 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       let!(:post2) { create(:post) }
       let!(:tagging1) { create(:tagging, :subject_post, subject: post1) }
       let(:posts) { [post1, post2] }
-      let(:RecentProjects) { Post.order(updated_at: :desc) }
       context 'when access_token is sent in header' do
         let(:result) do
           {
@@ -40,9 +39,11 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       end
 
       context 'when access_token is not sent in header' do
+        let(:result) { { 'errorMessage' => 'unauthorized' }}
         before { get cms_api_v1_posts_path, {} }
         it 'returns error message' do
           expect(response.status).to eq 401
+          expect(JSON.parse(response.body)).to eq result
         end
       end
     end
