@@ -6,10 +6,10 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
     let(:auth_header) { { 'Authorization' => author.access_token } }
 
     describe 'GET /cms/api/v1/posts' do
-      subject { JSON.parse(response.body) }
       let!(:post1) { create(:post, :accepted, published_at: Time.current + 1.days) }
       let!(:post2) { create(:post) }
-      let!(:tagging1) { create(:tagging, subject_id: post1.id, subject_type: "Post") }
+      let!(:tagging1) { create(:tagging, :subject_post, subject: post1) }
+      let(:posts) { [post1, post2] }
       let(:RecentProjects) { Post.order(updated_at: :desc) }
       context 'when access_token is sent in header' do
         let(:result) do
@@ -19,8 +19,8 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
                 'id' => post.id,
                 'title' => post.title,
                 'accepted' => post.accepted,
-                'publishedAt' => post.published_at.try(:strftime, '%d-%m, %H:%M') || 'not publishing yet',
-                'status' => ['will publish', 'not accepted'][i]
+                'publishedAt' => post.published_at.try(:strftime, '%b %d, %Y') || '-',
+                'status' => [1, 0][i]
               }
             end,
             "meta" => {
@@ -33,9 +33,9 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
           }
         end
         before { get cms_api_v1_posts_path, {}, auth_header }
-        it 'returns correct info from api' do
+        it 'returns correct info' do
           expect(response.status).to eq 200
-          expect(subject).to eq result
+          expect(JSON.parse(response.body)).to eq result
         end
       end
 
@@ -48,7 +48,6 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
     end
 
     describe 'GET /cms/api/v1/posts/new' do
-      subject { JSON.parse(response.body) }
       let!(:tag1) { create(:tag) }
       let!(:tag2) { create(:tag) }
       let(:tags) { [tag1, tag2] }
@@ -58,7 +57,8 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
           'title' => nil,
           'accepted' => false,
           'items' => [],
-          'publishedAt' => 'not publishing yet',
+          'leadSentence' => nil,
+          'publishedAt' => nil,
           'tagSuggestions' => tags.map(&:name),
           'tags' => []
         }
@@ -67,7 +67,7 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       before { get new_cms_api_v1_post_path, {}, auth_header }
       it 'return tagSuggestions params' do
         expect(response.status).to eq 200
-        expect(subject).to eq result
+        expect(JSON.parse(response.body)).to eq result
       end
     end
 
@@ -75,18 +75,20 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       let!(:tag) { create(:tag) }
       before { post cms_api_v1_posts_path, params, auth_header }
       context 'the params sent lack of needed params' do
-        subject { JSON.parse(response.body) }
-        let(:params) do
+        let!(:params) do
           {
             'post' => {
-              'description' => 'description'
+              'lead_sentence' => 'rich text',
+              'items_attributes' => [
+                { 'target_type' => 'ItemText', 'description' => 'text' },
+              ]
             }
           }
         end
-        let(:result) { { "errorMessage" => "Title can't be blankValidation failed: Title can't be blank" } }
-        it 'return 400 and error message' do
+        let(:result) { { "errorMessage" => "Title can't be blank\nValidation failed: Title can't be blank" } }
+        it 'returns 400 and error message' do
           expect(response.status).to eq 400
-          expect(subject).to eq result
+          expect(JSON.parse(response.body)).to eq result
         end
       end
       context 'needed params are sent' do
@@ -94,12 +96,16 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
           {
             'post' => {
               'title' => 'title',
+              'lead_sentence' => 'rich text',
+              'items_attributes' => [
+                { 'target_type' => 'ItemText', 'description' => 'text' },
+              ],
               'taggings_attributes' => [ { 'text' => tag.name } ]
             }
           }
         end
 
-        it 'return 201' do
+        it 'returns 201' do
           expect(response.status).to eq 201
           expect(Post.last.title).to eq 'title'
           expect(Post.last.taggings.size).to eq 1
@@ -108,11 +114,10 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
     end
 
     describe 'GET /cms/api/v1/posts/:id/edit' do
-      subject { JSON.parse(response.body) }
       let!(:post) { create(:post) }
       let!(:tag1) { create(:tag) }
       let!(:tag2) { create(:tag) }
-      let!(:tagging) { create(:tagging, :subject_post, subject_id: post.id, tag: tag1)}
+      let!(:tagging) { create(:tagging, :subject_post, subject: post, tag: tag1)}
       let(:tags) { [tag1, tag2,] }
       let(:result) do
         {
@@ -120,16 +125,17 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
           'title' => post.title,
           'accepted' => post.accepted,
           'items' => [],
-          'publishedAt' => 'not publishing yet',
+          'leadSentence' => nil,
+          'publishedAt' => nil,
           'tagSuggestions' => tags.map(&:name),
           'tags' => [{ 'id' => tagging.id, 'text' => tagging.name }]
         }
       end
 
       before { get edit_cms_api_v1_post_path(post.id), {}, auth_header }
-      it 'return tag Suggestions params' do
+      it 'returns tag Suggestions params' do
         expect(response.status).to eq 200
-        expect(subject).to eq result
+        expect(JSON.parse(response.body)).to eq result
       end
     end
 
@@ -137,10 +143,10 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       let!(:post) { create(:post) }
       let!(:tag1) { create(:tag, name: 'hoge') }
       let!(:tag2) { create(:tag) }
-      let!(:item1) { create(:item, :heading, post: post)}
-      let!(:item2) { create(:item, :sub_heading, post: post)}
-      let!(:tagging1) { create(:tagging, :subject_post, subject_id: post.id, tag: tag1) }
-      let!(:tagging2) { create(:tagging, :subject_post, subject_id: post.id, tag: tag2) }
+      let!(:item1) { create(:item, :text, post: post)}
+      let!(:item2) { create(:item, :image, post: post)}
+      let!(:tagging1) { create(:tagging, :subject_post, subject: post, tag: tag1) }
+      let!(:tagging2) { create(:tagging, :subject_post, subject: post, tag: tag2) }
 
       before { patch cms_api_v1_post_path(post.id), params, auth_header }
 
@@ -149,11 +155,17 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
           {
             'post' => {
               'title' => 'title',
-              'description' => 'description',
               'published_at' => Time.current,
               'items_attributes' => [
-                { 'id' => item1.id, 'target_type' => 'ItemHeading', 'target_id' => item1.target_id, 'title' => item1.target.title },
-                { 'target_type' => 'ItemText', 'description' => 'hogehoge' }
+                {
+                  'id' => item1.id,
+                  'target_type' => 'ItemText',
+                  'description' => item1.target.description
+                },
+                {
+                  'target_type' => 'ItemTwitter',
+                  'twitter_id' => '1234'
+                }
               ],
               'taggings_attributes' => [
                 { 'id' => tagging1.id, 'text' => tagging1.name },
@@ -163,11 +175,11 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
           }
         end
 
-        it 'return 200' do
+        it 'returns 200' do
           expect(response.status).to eq 200
-          expect(Post.last.items.map(&:target_type)).to eq ['heading', 'text']
+          expect(Post.last.items.map(&:target_type)).to eq ['text', 'twitter']
           expect(Post.last.taggings.map(&:name)).to eq ['hoge','test']
-          expect(ItemSubHeading.count).to eq 0
+          expect(ItemImage.count).to eq 0
         end
       end
     end

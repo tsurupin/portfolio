@@ -1,13 +1,17 @@
 # == Schema Information
 #
-# Table name: posts
+# Table name: authors
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  accepted     :boolean          default("0"), not null
-#  published_at :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                 :integer          not null, primary key
+#  email              :string(255)      not null
+#  encrypted_password :string(255)      not null
+#  name               :string(255)      not null
+#  image              :string(255)
+#  introduction       :text(65535)
+#  description        :text(65535)
+#  access_token       :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 require 'rails_helper'

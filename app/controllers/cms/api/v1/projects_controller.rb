@@ -1,8 +1,8 @@
 class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def index
-    projects = Project::Search.latest
-    render json: projects, each_serializer: ProjectsSerializer
+    projects = Project::Search.eager_load(:tags).latest
+    render json: projects, each_serializer: Cms::ProjectsSerializer
   end
 
   def new

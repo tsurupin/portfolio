@@ -24,9 +24,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def render_error_message(model)
-    logger.error model.errors.full_messages.join('')
-    p "error happened: #{model.errors.full_messages.join('')}"
-    render json: { errorMessage: model.errors.full_messages.join('') }, status: :bad_request
+    full_messages = model.errors.full_messages.join("\n")
+    logger.error full_messages
+    p "error happened: #{full_messages}"
+    render json: { errorMessage: full_messages }, status: :bad_request
   end
 
 end

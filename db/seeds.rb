@@ -13,7 +13,12 @@ end
 
 ActiveRecord::Base.transaction do
 
-  author = FactoryGirl.create(:author, email: 'england0112@gmail.com', password: 'england0112')
+  author = FactoryGirl.create(:author,
+                              email: Settings.author.email,
+                              password: Settings.author.password,
+                              description: Settings.author.description,
+                              introduction: Settings.author.introduction
+  )
 
   FactoryGirl.create(:social_account, author: author)
 

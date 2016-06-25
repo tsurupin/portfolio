@@ -2,12 +2,13 @@
 #
 # Table name: posts
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  accepted     :boolean          default("0"), not null
-#  published_at :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  title         :string(255)      not null
+#  accepted      :boolean          default("0"), not null
+#  published_at  :datetime
+#  lead_sentence :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Post < ActiveRecord::Base
@@ -25,7 +26,7 @@ class Post < ActiveRecord::Base
   def status
     # NOTE: 0: not accepted, 1: will publish, 2: publishing
     return 0 unless accepted
-    published_at <= Time.current ? 1 : 2
+    published_at >= Time.current ? 1 : 2
   end
 
   private

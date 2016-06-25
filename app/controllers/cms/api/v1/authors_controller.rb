@@ -10,12 +10,8 @@ class Cms::Api::V1::AuthorsController < Cms::ApplicationController
     end
   end
 
-  def show
-    render_author
-  end
-
   def edit
-    render_author
+    render json: current_cms_api_v1_author
   end
 
   def update
@@ -34,7 +30,4 @@ class Cms::Api::V1::AuthorsController < Cms::ApplicationController
     params.require(:author).permit(*Author::Form::PERMITTED_ATTRIBUTES)
   end
 
-  def render_author
-    render json: current_cms_api_v1_author
-  end
 end

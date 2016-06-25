@@ -39,7 +39,6 @@ class Author::Form < ActiveType::Record[Author]
       true
     end
     rescue => e
-      errors[:base] << e.message
       p e.message, e.backtrace_locations
       logger.error "error: #{e.message}, location: #{e.backtrace_locations}"
     false

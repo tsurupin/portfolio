@@ -1,14 +1,11 @@
 # == Schema Information
 #
-# Table name: items
+# Table name: social_accounts
 #
-#  id          :integer          not null, primary key
-#  post_id     :integer          not null
-#  sort_rank   :integer          not null
-#  target_id   :integer          not null
-#  target_type :string(255)      not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id           :integer          not null, primary key
+#  author_id    :integer          not null
+#  account_type :integer          not null
+#  url          :string(255)      not null
 #
 
 require 'rails_helper'

@@ -2,12 +2,13 @@
 #
 # Table name: posts
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  accepted     :boolean          default("0"), not null
-#  published_at :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  title         :string(255)      not null
+#  accepted      :boolean          default("0"), not null
+#  published_at  :datetime
+#  lead_sentence :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 require 'rails_helper'
@@ -30,16 +31,16 @@ RSpec.describe Post, type: :model do
     end
 
     context 'when accepted is true' do
-      context 'when published_at is before now' do
+      context 'when published_at is after now' do
         it 'returns 1' do
-          post = create(:post, accepted: true, published_at: 1.days.ago)
+          post = create(:post, accepted: true, published_at: 1.days.from_now)
           expect(post.status).to eq 1
         end
       end
 
-      context 'when published_at is after now' do
-        it 'returns 1' do
-          post = create(:post, accepted: true, published_at: 1.days.from_now)
+      context 'when published_at is before now' do
+        it 'returns 2' do
+          post = create(:post, accepted: true, published_at: 1.days.ago)
           expect(post.status).to eq 2
         end
       end

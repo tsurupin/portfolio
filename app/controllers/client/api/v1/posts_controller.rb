@@ -11,8 +11,12 @@ class Client::Api::V1::PostsController < Client::ApplicationController
 
   def show
     post = #= rails_cache("cached_posts/#{params[:id]}") do
-      Post.includes(:tags, items: :target).find(params[:id])
+      Post::Search.includes(:tags, items: :target).published.find_by(id: params[:id])
     #end
-    render json: post
+    if post
+      render json: post
+    else
+      render json: { errorMessage: 'RecordNotFound' }, status: :not_found
+    end
   end
 end

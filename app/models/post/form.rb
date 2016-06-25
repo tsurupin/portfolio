@@ -2,12 +2,13 @@
 #
 # Table name: posts
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  accepted     :boolean          default("0"), not null
-#  published_at :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  title         :string(255)      not null
+#  accepted      :boolean          default("0"), not null
+#  published_at  :datetime
+#  lead_sentence :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Post::Form < ActiveType::Record[Post]
@@ -58,6 +59,7 @@ class Post::Form < ActiveType::Record[Post]
   end
 
   def delete_unnecessary_items!(params)
+    p params
     deleted_ids = items.map(&:id) - (params || []).map { |key, _| key['id'].to_i }
     Item.where(post_id: id, id: deleted_ids).find_each(&:destroy!)
   end
