@@ -11,6 +11,7 @@ const propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
       image: PropTypes.string,
+      caption: PropTypes.string,
       sourceUrl: PropTypes.string,
       tags: PropTypes.arrayOf(
         PropTypes.shape({
