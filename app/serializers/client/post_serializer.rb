@@ -1,4 +1,4 @@
-class PostSerializer < ActiveModel::Serializer
+class Client::PostSerializer < ActiveModel::Serializer
   self.root = false
   format_keys :lower_camel
   attributes :title,
@@ -12,7 +12,7 @@ class PostSerializer < ActiveModel::Serializer
   has_many :tags
 
   def published_at
-    object.published_at.strftime('%b %d, %Y')
+    object.published_at.try(:strftime, '%b %d, %Y')
   end
 
   def prev_id
@@ -34,11 +34,11 @@ class PostSerializer < ActiveModel::Serializer
   private
 
   def prev_post
-    prev_post ||=  Post::Search.previous(object.id)
+    @prev_post ||= ActiveType.cast(object, Post::Search).previous
   end
 
   def next_post
-    next_post ||= Post::Search.next(object.id)
+    @next_post ||= ActiveType.cast(object, Post::Search).next
   end
 
 end

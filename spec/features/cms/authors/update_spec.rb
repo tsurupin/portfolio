@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe 'Update about page', js: true do
+describe 'Admin user updates the author info', js: true do
 
-  context 'when all the needed info is sent' do
-    scenario 'updates the about page' do
+  context 'when they fill in all the needed info' do
+    scenario 'they see the updated author info' do
       author = create(:author)
       sign_in_and_redirect_to_with("/cms/about/edit", author: author)
       fill_in 'name', with: 'name'

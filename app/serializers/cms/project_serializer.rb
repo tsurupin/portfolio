@@ -1,18 +1,19 @@
-class PostFormSerializer < ActiveModel::Serializer
+class Cms::ProjectSerializer < ActiveModel::Serializer
   self.root = false
   format_keys :lower_camel
   attributes :id,
              :title,
              :accepted,
-             :lead_sentence,
-             :published_at,
+             :description,
+             :source_url,
+             :image,
+             :caption,
              :tag_suggestions
 
-  has_many :items
   has_many :taggings, root: :tags
 
-  def published_at
-    object.published_at.try(:strftime,'%Y/%m/%d %H:%M')
+  def image
+    object.try(:image_url)
   end
 
   def tag_suggestions

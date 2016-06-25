@@ -15,7 +15,16 @@ import styles from './styles.scss';
 
 const propTypes = {
   fields: PropTypes.object.isRequired,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      targetType: PropTypes.string,
+      description: PropTypes.string,
+      image: PropTypes.string,
+      caption: PropTypes.string,
+      twitterId: PropTypes.string
+    }).isRequired
+  ).isRequired,
   params: PropTypes.object,
   fetchEditPost: PropTypes.func.isRequired,
   fetchNewPost: PropTypes.func.isRequired,

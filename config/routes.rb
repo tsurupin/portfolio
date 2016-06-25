@@ -11,7 +11,7 @@ Rails.application.routes.draw do
           resource :acceptance, only: :update, module: :posts
         end
 
-        resources :projects, except: :destroy do
+        resources :projects, except: %w(show destroy) do
           resource :acceptance, only: :update, module: :projects
         end
 
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
                    controllers: { sessions: 'cms/api/v1/authors/sessions' },
                    path_names: { sign_in: 'sign-in', sign_out: 'sign-out' }
 
-        resource :authors, except: %w(new create), constraints: { id: /[0-9]+/ } do
+        resource :authors, except: %w(new show create), constraints: { id: /[0-9]+/ } do
           post :sign_up, path: 'sign-up', to: 'authors#create'
         end
 

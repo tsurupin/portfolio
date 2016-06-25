@@ -52,7 +52,7 @@ describe('cms author actions', () => {
       };
       
       nock(TEST_DOMAIN)
-        .get(`${authorUrl}/`)
+        .get(`${authorUrl}/edit`)
         .reply(200, responseParams);
 
       const store = mockStore({});
@@ -89,7 +89,7 @@ describe('cms author actions', () => {
 
     it('created FETCH_AUTHOR_FAILURE when fetchAuthor has failed', () => {
       nock(TEST_DOMAIN)
-        .get(`${authorUrl}/`)
+        .get(`${authorUrl}/edit`)
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});

@@ -1,4 +1,4 @@
-class TaggingSerializer < ActiveModel::Serializer
+class Cms::TaggingSerializer < ActiveModel::Serializer
   format_keys :lower_camel
   attributes :id, :text
 

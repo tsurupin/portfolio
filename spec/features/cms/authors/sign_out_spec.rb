@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Sign out', js: true do
+describe 'Admin user signs out', js: true do
 
-  scenario 'signs out' do
+  scenario 'they see the page for sign in' do
     sign_in_and_redirect_to("/cms")
     find("button[name='signOut']").click
     expect(page).to have_css('h2', 'Sign In')

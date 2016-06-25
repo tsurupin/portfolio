@@ -1,10 +1,8 @@
-class PostsSerializer < ActiveModel::Serializer
+class Cms::PostsSerializer < ActiveModel::Serializer
   format_keys :lower_camel
-  has_many :tags
   attributes :id,
              :title,
              :accepted,
-             :lead_sentence,
              :published_at,
              :status
 

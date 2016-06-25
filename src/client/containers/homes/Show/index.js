@@ -4,20 +4,22 @@ import { connect } from 'react-redux';
 import TextDisplay from 'shared/components/textEditors/Display/index';
 import RecentPosts from 'client/components/homes/shows/RecentPosts/index';
 import RecentProject from 'client/components/homes/shows/RecentProject/index';
+import shallowCompare from 'react-addons-shallow-compare';
 import mainImage from './sample.png';
 import styles from './styles.scss';
 
 const propTypes = {
   home: PropTypes.shape({
     introduction: PropTypes.string,
-    image: PropTypes.string,
     latestPosts: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
+      leadSentence: PropTypes.string
     })),
     latestProject: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired
+      title: PropTypes.string.isRequired
     })
   }).isRequired
 };
@@ -36,6 +38,10 @@ class HomeShow extends Component {
   componentDidMount() {
     this.props.fetchHome()
       .then(() => this.props.finishLoading());
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   renderText() {
@@ -62,6 +68,7 @@ class HomeShow extends Component {
 
 
   render() {
+    console.log('hohhga')
     // TODO: figure out how to specify image path after assets processing
     if (!this.props.home) {
       return <sectioon className={styles.root} />

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe 'Sign in to cms as author', js: true do
+describe 'Admin user signs in to cms', js: true do
   let!(:author) { create(:author) }
 
-  scenario 'signs in cms' do
+  scenario 'they see the navigation bar' do
     visit '/cms/sign-in'
     fill_in 'email', with: author.email
     fill_in 'password', with: author.password
@@ -11,7 +11,7 @@ describe 'Sign in to cms as author', js: true do
     expect(page).to have_css('section', 'Hello World!')
   end
 
-  scenario 'fails to sign in with wrong password' do
+  scenario 'they fail to sign in because of wrong password' do
     visit '/cms/sign-in'
     fill_in 'email', with: author.email
     fill_in 'password', with: 'hogehoge'

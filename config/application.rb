@@ -15,6 +15,13 @@ module Portfolio
       DeviseController.respond_to :html, :json
     end
 
+    # config.middleware.delete Rack::Sendfile
+    # config.middleware.delete ActionDispatch::Cookies
+    # config.middleware.delete ActionDispatch::Session::CookieStore
+    # config.middleware.delete ActionDispatch::Flash
+    # config.middleware.delete ActionDispatch::Callbacks
+    # config.middleware.delete ActionDispatch::RequestId
+    # config.middleware.delete Rack::Runtime
 
     config.time_zone = 'Pacific Time (US & Canada)'
 

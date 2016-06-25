@@ -26,9 +26,10 @@ class Item < ActiveRecord::Base
   validates :sort_rank, presence: true
   validates :target_type,
             presence: true,
-            inclusion: { in: Item.target_types.keys, message: "%{value} is not a valid type" }
+            inclusion: { in: Item.target_types.keys }
 
   private
+
   def destroy_target
     target.destroy
   end

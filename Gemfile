@@ -65,7 +65,7 @@ group :development do
   gem 'hirb'
   gem 'hirb-unicode'
   gem 'letter_opener'
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler'#, require: false
   gem 'bullet'
   gem 'quiet_assets'
 
@@ -89,6 +89,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'
+  gem 'spring-commands-rspec'
 end
 
 

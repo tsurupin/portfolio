@@ -1,13 +1,13 @@
 class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def index
-    projects = Project::Search.latest
-    render json: projects, each_serializer: ProjectsSerializer
+    projects = Project::Search.eager_load(:tags).latest
+    render json: projects, each_serializer: Cms::ProjectsSerializer
   end
 
   def new
     project = Project.new
-    render json: project
+    render json: Cms::ProjectSerializer.new(project)
   end
 
   def create
@@ -21,7 +21,7 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
 
   def edit
     project = Project.find(params[:id])
-    render json: project
+    render json: Cms::ProjectSerializer.new(project)
   end
 
   def update

@@ -7,6 +7,8 @@ class Initialize < ActiveRecord::Migration
       t.string :url, null: false, unique: true
     end
 
+    add_index :social_accounts, [:account_type, :author_id], unique: true
+
     create_table :posts do |t|
       t.string :title, null: false, unique: true
       t.boolean :accepted, null: false, default: false
@@ -16,13 +18,8 @@ class Initialize < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :comments do |t|
-      t.belongs_to :post, index: true, null: false
-      t.text :comment, null: false
-      t.integer :reply_id
-
-      t.timestamps null: false
-    end
+    add_index :posts, [:accepted, :published_at]
+    add_index :posts, :updated_at
 
     create_table :items do |t|
       t.belongs_to    :post, index: true, null: false
@@ -32,6 +29,7 @@ class Initialize < ActiveRecord::Migration
       t.timestamps    null: false
     end
 
+    add_index :items, [:target_id, :target_type], unique: true
     add_index :items, [:post_id, :sort_rank]
 
     create_table :item_images do |t|
@@ -42,24 +40,6 @@ class Initialize < ActiveRecord::Migration
     create_table :item_texts do |t|
       t.text      :description, null: false
     end
-
-    # create_table :item_headings do |t|
-    #   t.string    :title, null: false
-    # end
-    #
-    # create_table :item_sub_headings do |t|
-    #   t.string     :title, null: false
-    # end
-    #
-    # create_table :item_links do |t|
-    #   t.string     :source_title, null: false
-    #   t.text       :source_url, null: false
-    # end
-    #
-    # create_table :item_quotes do |t|
-    #   t.text       :description, null: false
-    #   t.text       :source_url, null: false
-    # end
 
     create_table :item_twitters do |t|
       t.string :twitter_id, null: false
@@ -75,7 +55,6 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :subject, polymorphic: true, null: false, index: true
       t.timestamps
     end
-
     add_index :taggings, [:tag_id, :subject_id, :subject_type], unique: true
 
     create_table :projects do |t|
@@ -88,6 +67,7 @@ class Initialize < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :projects, :updated_at
 
   end
 end

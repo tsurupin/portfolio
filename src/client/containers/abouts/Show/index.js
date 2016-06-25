@@ -3,6 +3,7 @@ import { fetchAbout } from 'client/actions/abouts';
 import { connect } from 'react-redux';
 import SocialAccounts from 'client/components/abouts/shows/SocialAccounts/index';
 import TextDisplay from 'shared/components/textEditors/Display/index';
+import shallowCompare from 'react-addons-shallow-compare';
 import config from 'shared/config';
 import styles from './styles.scss';
 
@@ -32,6 +33,11 @@ class AboutShow extends Component {
   componentDidMount() {
     this.props.fetchAbout()
       .then(() => this.props.finishLoading());
+  }
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   renderText() {

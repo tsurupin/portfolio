@@ -14,5 +14,20 @@
 #
 
 class Project::Search < ActiveType::Record[Project]
-  include ClientSearch
+  include RelatedTagSearch
+
+  def self.client_search(options = {})
+    eager_load(:tags)
+      .accepted
+      .related_by_tag(options[:tag])
+      .latest
+  end
+
+  def self.accepted
+    where(accepted: true)
+  end
+
+  def self.latest
+    order(updated_at: :desc)
+  end
 end
