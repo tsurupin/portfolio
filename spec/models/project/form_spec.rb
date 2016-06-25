@@ -135,8 +135,6 @@ RSpec.describe Project::Form, type: :model do
   end
 
   describe '#save_from_associations' do
-    subject { project.save_from_associations(params) }
-    let(:product) { create(:product) }
 
     context 'when creating a new record' do
       it 'increments project and associated records' do

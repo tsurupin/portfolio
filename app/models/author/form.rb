@@ -29,9 +29,12 @@ class Author::Form < ActiveType::Record[Author]
   accepts_nested_attributes_for :social_accounts, reject_if: ->(attributes) { attributes['url'].blank? }
 
   def save(params)
-    delete_unnecessary_accounts!(params[SOCIAL_ACCOUNTS_ATTRIBUTES])
     ActiveRecord::Base.transaction do
-      params['image'] = convert_data_uri_to_upload(params['image']) if params['image']&.start_with?('data')
+      delete_unnecessary_accounts!(params[SOCIAL_ACCOUNTS_ATTRIBUTES])
+      if params['image']&.start_with?('data')
+        params['image'] = convert_data_uri_to_upload(params['image'])
+      end
+
       update!(params)
       true
     end
