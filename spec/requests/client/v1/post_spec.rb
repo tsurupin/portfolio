@@ -1,187 +1,183 @@
 require 'rails_helper'
 
-RSpec.describe Cms::Api::V1::PostsController, type: :request do
-  describe 'CMS Post API' do
-    let(:author) { create(:author) }
-    let(:auth_header) { { 'Authorization' => author.access_token } }
+RSpec.describe Client::Api::V1::PostsController, type: :request do
+  describe 'Client Post API' do
+    describe 'GET api/v1/posts' do
+      context 'when page param is 1' do
+        context 'when tag param exists' do
+          it 'returns the corresponding posts' do
+            posts = []
+            30.times do |i|
+              Timecop.freeze(i.days.ago)
+              post = create(:post, :accepted)
+              create(:tagging, :subject_post, subject: post)
+              posts << post
+            end
+            Timecop.return
 
-    describe 'GET /cms/api/v1/posts' do
-      let!(:post1) { create(:post, :accepted, published_at: Time.current + 1.days) }
-      let!(:post2) { create(:post) }
-      let!(:tagging1) { create(:tagging, :subject_post, subject: post1) }
-      let(:posts) { [post1, post2] }
-      context 'when access_token is sent in header' do
-        let(:result) do
-          {
-            'posts' => posts.map.with_index do |post, i|
+            result = {
+              'posts' => posts[-1..-1].map do |post|
+                {
+                  'id' => post.id,
+                  'title' => post.title,
+                  'leadSentence' => post.lead_sentence,
+                  'publishedAt' => post.published_at.try(:strftime, '%b %d, %Y') || '-',
+                  'tags' => post.tags.map{|tag| { 'id' => tag.id, 'name' => tag.name }}
+                }
+              end,
+              "meta" => {
+                "pagination" => {
+                  "page" => 1,
+                  "limit" => Post::PAGINATES_PER,
+                  "total" => 1
+                }
+              }
+            }
+
+            request_params = { 'page'=> 1 , 'tag' => posts.last.tags.last.id }
+            get api_v1_posts_path, request_params
+            expect(response.status).to eq 200
+            expect(JSON.parse(response.body)).to eq result
+          end
+        end
+
+        context 'when tag param does not exist' do
+          it 'returns the corresponding posts' do
+            posts = []
+            30.times do |i|
+              Timecop.freeze(i.days.ago)
+              post = create(:post, :accepted)
+              create(:tagging, :subject_post, subject: post)
+              posts << post
+            end
+            Timecop.return
+
+            result = {
+              'posts' => posts[0..19].map do |post|
+                {
+                  'id' => post.id,
+                  'title' => post.title,
+                  'leadSentence' => post.lead_sentence,
+                  'publishedAt' => post.published_at.try(:strftime, '%b %d, %Y') || '-',
+                  'tags' => post.tags.map{|tag| { 'id' => tag.id, 'name' => tag.name }}
+                }
+              end,
+              "meta" => {
+                "pagination" => {
+                  "page" => 1,
+                  "limit" => Post::PAGINATES_PER,
+                  "total" => 30
+                }
+              }
+            }
+
+            get api_v1_posts_path, { 'page'=> 1}
+            expect(response.status).to eq 200
+            expect(JSON.parse(response.body)).to eq result
+          end
+        end
+      end
+
+      context 'when page param is 2' do
+        it 'returns the corresponding posts' do
+          posts = []
+          30.times do |i|
+            Timecop.freeze(i.days.ago)
+            post = create(:post, :accepted)
+            create(:tagging, :subject_post, subject: post)
+            posts << post
+          end
+          Timecop.return
+
+          result = {
+            'posts' => posts[20..-1].map do |post|
               {
                 'id' => post.id,
                 'title' => post.title,
-                'accepted' => post.accepted,
+                'leadSentence' => post.lead_sentence,
                 'publishedAt' => post.published_at.try(:strftime, '%b %d, %Y') || '-',
-                'status' => [1, 0][i]
+                'tags' => post.tags.map{|tag| { 'id' => tag.id, 'name' => tag.name }}
               }
             end,
             "meta" => {
               "pagination" => {
-                "page" => 0,
-                "limit" => 20,
-                "total" =>2
+                "page" => 2,
+                "limit" => Post::PAGINATES_PER,
+                "total" => 30
               }
-            },
+            }
           }
-        end
-        before { get cms_api_v1_posts_path, {}, auth_header }
-        it 'returns correct info' do
+
+          get api_v1_posts_path, { 'page'=> 2 }
           expect(response.status).to eq 200
           expect(JSON.parse(response.body)).to eq result
         end
       end
 
-      context 'when access_token is not sent in header' do
-        let(:result) { { 'errorMessage' => 'unauthorized' }}
-        before { get cms_api_v1_posts_path, {} }
-        it 'returns error message' do
-          expect(response.status).to eq 401
-          expect(JSON.parse(response.body)).to eq result
-        end
-      end
     end
 
-    describe 'GET /cms/api/v1/posts/new' do
-      let!(:tag1) { create(:tag) }
-      let!(:tag2) { create(:tag) }
-      let(:tags) { [tag1, tag2] }
-      let(:result) do
-        {
-          'id' => nil,
-          'title' => nil,
-          'accepted' => false,
-          'items' => [],
-          'leadSentence' => nil,
-          'publishedAt' => nil,
-          'tagSuggestions' => tags.map(&:name),
-          'tags' => []
-        }
-      end
 
-      before { get new_cms_api_v1_post_path, {}, auth_header }
-      it 'return tagSuggestions params' do
-        expect(response.status).to eq 200
+
+    describe 'GET /api/v1/posts/:id' do
+      it 'returns the error message because of wrong id' do
+        get api_v1_post_path(1000)
+        result = { 'errorMessage' => 'RecordNotFound'}
+        expect(response.status).to eq 404
         expect(JSON.parse(response.body)).to eq result
       end
-    end
 
-    describe 'POST /cms/api/v1/posts' do
-      let!(:tag) { create(:tag) }
-      before { post cms_api_v1_posts_path, params, auth_header }
-      context 'the params sent lack of needed params' do
-        let!(:params) do
+      it 'returns correct info' do
+        prev_post = create(:post, :accepted, published_at: 10.days.ago)
+
+        post = create(:post, :accepted, published_at: 5.days.ago)
+        item_twitter = create(:item, :twitter, post: post)
+        item_text = create(:item, :text, post: post)
+        item_image = create(:item, :image, post: post)
+
+        next_post = create(:post, :accepted, published_at: 1.days.ago)
+
+        create(:tagging, :subject_post, subject: post)
+        items_result = [
           {
-            'post' => {
-              'lead_sentence' => 'rich text',
-              'items_attributes' => [
-                { 'target_type' => 'ItemText', 'description' => 'text' },
-              ]
-            }
-          }
-        end
-        let(:result) { { "errorMessage" => "Title can't be blank\nValidation failed: Title can't be blank" } }
-        it 'returns 400 and error message' do
-          expect(response.status).to eq 400
-          expect(JSON.parse(response.body)).to eq result
-        end
-      end
-      context 'needed params are sent' do
-        let(:params) do
+            'id' => item_twitter.id,
+            'targetId' => item_image.target_id,
+            'targetType' => item_twitter[:target_type],
+            'twitterId' => item_twitter.target.twitter_id
+          },
           {
-            'post' => {
-              'title' => 'title',
-              'lead_sentence' => 'rich text',
-              'items_attributes' => [
-                { 'target_type' => 'ItemText', 'description' => 'text' },
-              ],
-              'taggings_attributes' => [ { 'text' => tag.name } ]
-            }
+            'id' => item_text.id,
+            'targetId' => item_image.target_id,
+            'targetType' => item_text[:target_type],
+            'description' => item_text.target.description
+          },
+          {
+            'id' => item_image.id,
+            'targetId' => item_image.target_id,
+            'targetType' => item_image[:target_type],
+            'image' => item_image.target.image_url,
+            'caption' => item_image.target.caption
           }
-        end
+        ]
 
-        it 'returns 201' do
-          expect(response.status).to eq 201
-          expect(Post.last.title).to eq 'title'
-          expect(Post.last.taggings.size).to eq 1
-        end
-      end
-    end
-
-    describe 'GET /cms/api/v1/posts/:id/edit' do
-      let!(:post) { create(:post) }
-      let!(:tag1) { create(:tag) }
-      let!(:tag2) { create(:tag) }
-      let!(:tagging) { create(:tagging, :subject_post, subject: post, tag: tag1)}
-      let(:tags) { [tag1, tag2,] }
-      let(:result) do
-        {
-          'id' => post.id,
+        result = {
           'title' => post.title,
-          'accepted' => post.accepted,
-          'items' => [],
-          'leadSentence' => nil,
-          'publishedAt' => nil,
-          'tagSuggestions' => tags.map(&:name),
-          'tags' => [{ 'id' => tagging.id, 'text' => tagging.name }]
+          'publishedAt' => post.published_at.strftime('%b %d, %Y'),
+          'prevId' => prev_post.id,
+          'prevTitle' => prev_post.title,
+          'nextId' => next_post.id,
+          'nextTitle' => next_post.title,
+          'items' => items_result,
+          'tags' => post.tags.map do |tag|
+            {
+              'id' => tag.id,
+              'name' => tag.name
+            }
+          end
         }
-      end
 
-      before { get edit_cms_api_v1_post_path(post.id), {}, auth_header }
-      it 'returns tag Suggestions params' do
+        get api_v1_post_path(post.id)
         expect(response.status).to eq 200
         expect(JSON.parse(response.body)).to eq result
-      end
-    end
-
-    describe 'PATCH /cms/api/v1/posts/:id' do
-      let!(:post) { create(:post) }
-      let!(:tag1) { create(:tag, name: 'hoge') }
-      let!(:tag2) { create(:tag) }
-      let!(:item1) { create(:item, :text, post: post)}
-      let!(:item2) { create(:item, :image, post: post)}
-      let!(:tagging1) { create(:tagging, :subject_post, subject: post, tag: tag1) }
-      let!(:tagging2) { create(:tagging, :subject_post, subject: post, tag: tag2) }
-
-      before { patch cms_api_v1_post_path(post.id), params, auth_header }
-
-      context 'needed params are sent' do
-        let(:params) do
-          {
-            'post' => {
-              'title' => 'title',
-              'published_at' => Time.current,
-              'items_attributes' => [
-                {
-                  'id' => item1.id,
-                  'target_type' => 'ItemText',
-                  'description' => item1.target.description
-                },
-                {
-                  'target_type' => 'ItemTwitter',
-                  'twitter_id' => '1234'
-                }
-              ],
-              'taggings_attributes' => [
-                { 'id' => tagging1.id, 'text' => tagging1.name },
-                { 'text' => 'test' }
-              ]
-            }
-          }
-        end
-
-        it 'returns 200' do
-          expect(response.status).to eq 200
-          expect(Post.last.items.map(&:target_type)).to eq ['text', 'twitter']
-          expect(Post.last.taggings.map(&:name)).to eq ['hoge','test']
-          expect(ItemImage.count).to eq 0
-        end
       end
     end
   end

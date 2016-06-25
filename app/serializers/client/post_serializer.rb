@@ -1,4 +1,4 @@
-class PostSerializer < ActiveModel::Serializer
+class Client::PostSerializer < ActiveModel::Serializer
   self.root = false
   format_keys :lower_camel
   attributes :title,

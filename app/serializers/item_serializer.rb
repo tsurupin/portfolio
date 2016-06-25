@@ -3,7 +3,6 @@ class ItemSerializer < ActiveModel::Serializer
   attributes :id,
              :target_id,
              :target_type,
-             :sort_rank,
              :description,
              :image,
              :caption,

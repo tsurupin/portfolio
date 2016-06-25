@@ -11,12 +11,13 @@
 url_list = [
   'https://github.com/tsurupin',
   'https://www.facebook.com/tomoaki.tsuruta.7',
-  'https://twitter.com/t_th112'
+  'https://twitter.com/t_th112',
+  'https://linkeding.com'
 ]
 FactoryGirl.define do
   factory :social_account do
     association :author, factory: :author
-    sequence(:url) { |i| url_list[i] }
+    url { Faker::Internet.url }
     sequence(:account_type) { |i| SocialAccount.account_types.keys[i] }
   end
 end

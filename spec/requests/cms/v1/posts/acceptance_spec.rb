@@ -18,7 +18,7 @@ RSpec.describe Cms::Api::V1::Posts::AcceptancesController, type: :request do
 
       context 'when the post was not accepted' do
         let!(:post) { create(:post, :accepted, accepted: false) }
-        let(:result) {{ 'accepted' => true, 'status' => 1 }}
+        let(:result) {{ 'accepted' => true, 'status' => 2}}
         it 'changes accepted from false to true' do
           expect(response.status).to eq 200
           expect(JSON.parse(response.body)).to eq result

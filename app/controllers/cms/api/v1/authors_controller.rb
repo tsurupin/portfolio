@@ -11,7 +11,7 @@ class Cms::Api::V1::AuthorsController < Cms::ApplicationController
   end
 
   def edit
-    render json: current_cms_api_v1_author
+    render json: Cms::AuthorSerializer.new(current_cms_api_v1_author)
   end
 
   def update

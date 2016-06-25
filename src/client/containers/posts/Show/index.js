@@ -16,14 +16,27 @@ const propTypes = {
     prevId: PropTypes.number,
     prevTitle: PropTypes.string,
     nextId: PropTypes.number,
-    nextTitle: PropTypes.string
+    nextTitle: PropTypes.string,
+    
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        targetType: PropTypes.string,
+        description: PropTypes.string,
+        image: PropTypes.string,
+        caption: PropTypes.string,
+        twitterId: PropTypes.string
+      }).isRequire
+    ).isRequired
   }).isRequired,
+  
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
+  
   fetchPost: PropTypes.func.isRequired
 };
 

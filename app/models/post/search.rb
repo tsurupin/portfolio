@@ -13,6 +13,7 @@
 
 class Post::Search < ActiveType::Record[Post]
   include RelatedTagSearch
+  paginates_per Post::PAGINATES_PER
 
   def self.client_search(options = {})
     eager_load(:tags)

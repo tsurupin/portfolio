@@ -1,4 +1,4 @@
-class ProjectSerializer < ActiveModel::Serializer
+class Cms::ProjectSerializer < ActiveModel::Serializer
   self.root = false
   format_keys :lower_camel
   attributes :id,

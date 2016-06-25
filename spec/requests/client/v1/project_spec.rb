@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Client::Api::V1::ProjectsController, type: :request do
   describe 'Client Project API' do
 
-    describe 'GET api/v1/projects' do
+    describe 'GET /api/v1/projects' do
 
       context 'when tag param is not sent' do
         it 'returns correct info' do
@@ -25,7 +25,6 @@ RSpec.describe Client::Api::V1::ProjectsController, type: :request do
                   'image' => project.try(:image_url),
                   'caption' => project.try(:caption),
                   'sourceUrl' => project.try(:source_url),
-                  'accepted' => project.accepted,
                   'tags' => project.try(:tags).map{ |tag| { 'id' => tag.id, 'name' => tag.name } }
                 }
               end
@@ -57,7 +56,6 @@ RSpec.describe Client::Api::V1::ProjectsController, type: :request do
                 'image' => project.try(:image_url),
                 'caption' => project.try(:caption),
                 'sourceUrl' => project.try(:source_url),
-                'accepted' => project.accepted,
                 'tags' => project.try(:tags).map{ |tag| { 'id' => tag.id, 'name' => tag.name } }
               }
             end

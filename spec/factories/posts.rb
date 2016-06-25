@@ -16,7 +16,7 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence }
 
     trait :accepted do
-      published_at { Faker::Time.between(2.days.ago, Date.today, :all) }
+      published_at { Time.current }
       accepted true
     end
   end

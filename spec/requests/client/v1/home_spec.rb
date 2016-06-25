@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Client::Api::V1::HomesController, type: :request do
   describe 'Client Home API' do
-    describe 'GET api/v1/about' do
+    describe 'GET /api/v1/about' do
       let!(:author) { create(:author, description: 'rich text', introduction: 'rich text') }
       let!(:post1) { create(:post, :accepted) }
       let!(:post2) { create(:post, :accepted) }
