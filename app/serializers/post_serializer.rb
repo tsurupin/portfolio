@@ -12,7 +12,7 @@ class PostSerializer < ActiveModel::Serializer
   has_many :tags
 
   def published_at
-    object.published_at.strftime('%b %d, %Y')
+    object.published_at.try(:strftime, '%b %d, %Y')
   end
 
   def prev_id
@@ -34,11 +34,11 @@ class PostSerializer < ActiveModel::Serializer
   private
 
   def prev_post
-    prev_post ||=  Post::Search.previous(object.id)
+    @prev_post ||=  Post::Search.previous(object.published_at)
   end
 
   def next_post
-    next_post ||= Post::Search.next(object.id)
+    @next_post ||= Post::Search.next(object.published_at)
   end
 
 end

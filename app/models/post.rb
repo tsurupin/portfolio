@@ -18,6 +18,7 @@ class Post < ActiveRecord::Base
   has_many :tags, through: :taggings
   has_many :items, -> { order('sort_rank asc') }, dependent: :destroy
 
+
   validates :title, presence: true, uniqueness: { message: "%{value} is already used"}
   after_update :delete_cache
 
@@ -30,8 +31,8 @@ class Post < ActiveRecord::Base
   private
 
   def delete_cache
-    Ralis.cache.delete("cached_posts/#{id}")
-    Rails.cache.delete('cached_home')
+    Rails.cache.delete('cached_home') if accepted
+    Rails.cache.delete("cached_posts/#{id}")
     Rails.cache.delete_matched(/cached_posts\?page=\d?&tag=\w*/)
   end
 

@@ -1,19 +1,26 @@
 module ClientSearch
   extend ActiveSupport::Concern
   included do
-    scope :client_search, lambda { |options = {}|
+
+    def self.client_search(options = {})
       eager_load(:tags)
         .accepted
         .related_by_tag(options[:tag])
         .latest
-    }
+    end
 
-    scope :related_by_tag, lambda { |tag_id = nil|
-      joins(:taggings).merge(Tagging.by_tag(tag_id)) if tag_id
-    }
+    def self.related_by_tag(tag_id = nil)
+      return all unless tag_id
+      joins(:taggings).merge(Tagging.by_tag(tag_id))
+    end
 
-    scope :accepted, -> { where(accepted: true) }
-    scope :latest, -> { order(updated_at: :desc) }
+    def self.accepted
+      where(accepted: true)
+    end
+
+    def self.latest
+      order(updated_at: :desc)
+    end
   end
 
 end

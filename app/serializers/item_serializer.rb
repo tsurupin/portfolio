@@ -30,6 +30,15 @@ class ItemSerializer < ActiveModel::Serializer
     target_column(:twitter_id)
   end
 
+  def filter(keys)
+    case object.target_type
+      when 'twitter' then keys - [:description, :caption, :image]
+      when 'image' then keys - [:description, :twitter_id]
+      when 'text' then keys - [:caption, :image, :twitter_id]
+      else
+    end
+  end
+
   private
 
   def target_column(column_name)

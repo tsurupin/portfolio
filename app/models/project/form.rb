@@ -41,7 +41,6 @@ class Project::Form < ActiveType::Record[Project]
         params['image'] = convert_data_uri_to_upload(params['image'])
       end
 
-      p params
       update!(params)
       true
     end

@@ -10,10 +10,9 @@ class Client::Api::V1::PostsController < Client::ApplicationController
   end
 
   def show
-    post = rails_cache("cached_posts/#{params[:id]}") do
-      Post.eager_load(:tags).find(params[:id])
-    end
-
+    post = #= rails_cache("cached_posts/#{params[:id]}") do
+      Post.includes(:tags, items: :target).find(params[:id])
+    #end
     render json: post
   end
 end
