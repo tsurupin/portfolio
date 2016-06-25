@@ -11,14 +11,15 @@ import styles from './styles.scss';
 const propTypes = {
   home: PropTypes.shape({
     introduction: PropTypes.string,
-    image: PropTypes.string,
     latestPosts: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
+      leadSentence: PropTypes.string
     })),
     latestProject: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired
+      title: PropTypes.string.isRequired
     })
   }).isRequired
 };

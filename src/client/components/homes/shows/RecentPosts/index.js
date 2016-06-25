@@ -6,7 +6,9 @@ import styles from './styles.scss';
 const propTypes = {
   posts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      leadSentence: PropTypes.string
     })
   )
 };

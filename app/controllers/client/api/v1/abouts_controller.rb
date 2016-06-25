@@ -4,6 +4,6 @@ class Client::Api::V1::AboutsController < Client::ApplicationController
       Author.eager_load(:social_accounts).first
     end
 
-    render json: AboutSerializer.new(author)
+    render json: Client::AboutSerializer.new(author)
   end
 end
