@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Toggle existing project's accepted status", js: true do
+feature "Toggle the existing project's accepted status", js: true do
 
   # background {
   #   p Project.all
@@ -13,7 +13,7 @@ feature "Toggle existing project's accepted status", js: true do
   given!(:accepted_project) { create(:project, :accepted) }
   given!(:unaccepted_project) { create(:project, :accepted, accepted: false) }
   context 'when toggling true from false' do
-    scenario 'toggles true from false' do
+    scenario 'they toggle true from false' do
       sign_in_and_redirect_to("/cms/projects")
 
       save_and_open_page

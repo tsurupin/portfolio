@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Update existing project', js: true do
+feature 'Admin user updates the existing project', js: true do
   background { sign_in_and_redirect_to("/cms/projects/#{project.id}/edit") }
   after { page.execute_script("localStorage.clear()") }
 

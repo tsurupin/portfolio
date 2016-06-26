@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-feature 'Create new project', js: true do
+feature 'Admin user creates a new project', js: true do
 
   background { sign_in_and_redirect_to('/cms/projects/new') }
 
   context 'when necessary info are blank' do
-    scenario "fails to create new project owing to lack of title" do
+    scenario "they fail to create new project because of lack of title" do
       fill_in 'title', with: ''
       fill_in 'sourceUrl', with: 'http://google.com'
       fill_in 'sampleUrl', with: 'http://google.com'
@@ -19,7 +19,7 @@ feature 'Create new project', js: true do
   end
 
   context 'when necessary info are filled' do
-    scenario "creates new project successfully" do
+    scenario "they see the new project created" do
       fill_in 'title', with: 'sample title'
       fill_in 'sourceUrl', with: 'http://google.com'
       fill_in 'sampleUrl', with: 'http://google.com'

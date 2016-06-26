@@ -8,8 +8,9 @@ describe 'Admin user updates the author info', js: true do
       sign_in_and_redirect_to_with("/cms/about/edit", author: author)
       fill_in 'name', with: 'name'
       attach_file "image", "#{Rails.root}/spec/fixtures/images/sample.png"
-      # TODO: figure out how to fill in draft js component
-      # fill_in 'description', with: 'hogehoge'
+      rich_texts = page.all('.public-DraftEditor-content')
+      rich_texts[0].set('description')
+      rich_texts[1].set('introduction')
       click_on 'Update'
       expect(page).to have_css('section', 'Hello world!')
     end
