@@ -5,7 +5,7 @@ import SocialAccounts from 'client/components/abouts/shows/SocialAccounts/index'
 import TextDisplay from 'shared/components/textEditors/Display/index';
 import shallowCompare from 'react-addons-shallow-compare';
 import config from 'shared/config';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   about: PropTypes.shape({

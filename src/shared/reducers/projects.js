@@ -21,9 +21,9 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, project: action.payload.project, errorMessage: '' };
     
     case FETCH_NEW_PROJECT.SUCCESS:
-    case SAVE_PROJECT.SUCCESS:  
+    case SAVE_PROJECT.SUCCESS:
       return { ...state, project: {}, errorMessage: '' };
-    
+
     case TOGGLE_PROJECT.SUCCESS:
       const project = { ...state.projects[action.payload.sortRank], accepted: action.payload.accepted };
       const projects = [...state.projects.slice(0, action.payload.sortRank), project, ...state.projects.slice(action.payload.sortRank + 1)];

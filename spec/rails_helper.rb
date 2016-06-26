@@ -64,10 +64,14 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcrs'
-  c.hook_into :webmock
-  c.allow_http_connections_when_no_cassette = true
+VCR.configure do |config|
   uri_without_timestamp = VCR.request_matchers.uri_without_param(:timestamp)
-  c.default_cassette_options = { record: :new_episodes, match_requests_on: [:method, uri_without_timestamp], allow_playback_repeats: true }
+  config.cassette_library_dir = 'spec/fixtures/vcrs'
+  config.hook_into :webmock
+  config.allow_http_connections_when_no_cassette = true
+  config.default_cassette_options = {
+    record: :new_episodes,
+    match_requests_on: [:method, uri_without_timestamp],
+    allow_playback_repeats: true
+  }
 end

@@ -49,6 +49,7 @@ class Text extends Component {
             disabled={submitting}
             tooltip="Save"
             tooltipPosition="bottom-center"
+            name="save-item-button"
             onClick={handleSubmit(this.handleUpdateItem)}
           >
             <ContentSave color="8F8F8F" />

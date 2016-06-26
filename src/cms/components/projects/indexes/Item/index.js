@@ -49,10 +49,10 @@ class Item extends Component {
     let statusIcon;
     if (this.props.accepted) {
       publishActionIcon =  <ActionVisibilityOff className={styles.inVisibleIcon} />;
-      statusIcon = <ContentFlag />;
+      statusIcon = <ContentFlag name="accepted" />;
     } else {
       publishActionIcon = <ActionVisibility className={styles.visibleIcon} />;
-      statusIcon = <NotificationPriorityHigh />;
+      statusIcon = <NotificationPriorityHigh name="unaccepted" />;
     }
 
     return (

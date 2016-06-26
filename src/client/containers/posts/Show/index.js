@@ -8,7 +8,6 @@ import Pagination from 'client/components/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
 import styles from './styles.scss';
 
-const cmsRegexp = /^(\/cms)*/;
 const propTypes = {
   post : PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -39,6 +38,9 @@ const propTypes = {
   
   fetchPost: PropTypes.func.isRequired
 };
+
+const cmsRegexp = /^(\/cms)*/;
+
 
 function mapStateToProps(state) {
   return {

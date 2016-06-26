@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin user Signs', js: true do
+describe 'Admin user creates an account', js: true do
   scenario 'they see navigation bar' do
     visit '/cms/sign-up'
     fill_in 'name', with: 'samplename'
@@ -8,12 +8,10 @@ describe 'Admin user Signs', js: true do
     fill_in 'password', with: 'testpassword'
     fill_in 'passwordConfirmation', with: 'testpassword'
     click_on 'SignUp'
-    expect(page).to have_css('section', 'Hello World!')
-    expect(Author.last.name).to eq ('samplename')
+    expect(page).to have_css('h1', 'Posts')
   end
 
-  # TODO: fix password confirmation validation
-  xscenario 'they fail to sign up because of wrong password confirmation' do
+  scenario 'they fail to sign up because of wrong password confirmation' do
     visit '/cms/sign-up'
     fill_in 'name', with: 'samplename'
     fill_in 'email', with: 'sample'

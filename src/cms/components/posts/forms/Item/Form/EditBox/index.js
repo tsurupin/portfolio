@@ -40,7 +40,8 @@ class EditBox extends Component {
     if (!this.state.isOpen) {
       return (
         <IconButton 
-          style={inlineStyles.button} 
+          style={inlineStyles.button}
+          name="add-item-icon"
           iconStyle={inlineStyles.toggleIcon} 
           onClick={() => this.setState({ isOpen: true })}
         >
@@ -50,7 +51,8 @@ class EditBox extends Component {
     } else {
       return (
         <IconButton 
-          style={inlineStyles.button} 
+          style={inlineStyles.button}
+          name="close-add-item-icon"
           iconStyle={inlineStyles.toggleIcon} 
           onClick={() => this.setState({ isOpen: false })}
         >

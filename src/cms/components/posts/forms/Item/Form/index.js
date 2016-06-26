@@ -98,6 +98,7 @@ class PostItemForm extends Component {
       <IconButton
         tooltip="Delete"
         tooltipPosition="bottom-center"
+        name="delete-item-button"
         onClick={this.handleDeleteItem}
       >
         <ContentDeleteSweep color="8F8F8F" />
@@ -111,6 +112,7 @@ class PostItemForm extends Component {
       <IconButton
         tooltip="Cancel"
         tooltipPosition="bottom-center"
+        name="cancel-item-button"
         onClick={this.handleCancelItem}
       >
         <ContentRemoveCircle color="8F8F8F" />

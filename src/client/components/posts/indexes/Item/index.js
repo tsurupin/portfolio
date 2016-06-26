@@ -23,7 +23,7 @@ function Item({ id, title, leadSentence, publishedAt, tags}) {
           <h3 className={styles.title}>{title}</h3>
           <p className={styles.leadSentence}>{leadSentence}</p>
         </Link>
-        <TagList tags={tags} path="posts" />
+        <TagList tags={tags} path="/posts" />
       <div className={styles.publishDate}>{publishedAt}</div>
     </div>
   )

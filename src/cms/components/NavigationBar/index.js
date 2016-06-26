@@ -80,9 +80,10 @@ class NavigationBar extends Component {
         iconElementRight={
                     <div>
                         <IconMenu
-                          iconButtonElement={<IconButton> <SocialPerson color={iconColor} /></IconButton>}
+                          iconButtonElement={<IconButton name="about-button"> <SocialPerson color={iconColor} /></IconButton>}
                           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                           targetOrigin={{horizontal: 'left', vertical: 'top'}}
+
                         >
                           <Link to="/cms/about/edit" >
                             <MenuItem primaryText="Edit" />
@@ -92,12 +93,12 @@ class NavigationBar extends Component {
                           </Link>
                         </IconMenu>
                         <Link to="/cms/posts" >
-                            <IconButton>
+                            <IconButton name="post-button">
                                 <ActionDescription color={iconColor} />
                             </IconButton>
                         </Link>
                         <IconMenu
-                          iconButtonElement={<IconButton><AvWeb color={iconColor}/></IconButton>}
+                          iconButtonElement={<IconButton name="project-button"><AvWeb color={iconColor}/></IconButton>}
                           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                           targetOrigin={{horizontal: 'left', vertical: 'top'}}
                         >
@@ -109,11 +110,11 @@ class NavigationBar extends Component {
                           </Link>
                         </IconMenu>
                         <a href={config.gitHubUrl} >
-                            <IconButton iconStyle={inlineStyles.gitHubButton}>
+                            <IconButton iconStyle={inlineStyles.gitHubButton} name="git-hub-button">
                               <FontIcon className="muidocs-icon-custom-github" style={inlineStyles.iconStyles} />
                             </IconButton>
                         </a>
-                        <IconButton name="signOut" onClick={this.handleSignOut}>
+                        <IconButton name="sign-out-button" onClick={this.handleSignOut}>
                             <ActionExitToApp color={iconColor} />
                         </IconButton>
                     </div>

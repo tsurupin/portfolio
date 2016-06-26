@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchProjects, toggleProject } from 'cms/actions/projects';
 import Item from 'cms/components/projects/indexes/Item/index';
+import NoContent from 'shared/components/NoContent/index';
 import { 
   Table, 
   TableHeaderColumn, 
@@ -53,31 +54,49 @@ class ProjectIndex extends Component {
   
   constructor(props) {
     super(props);
+    this.state = { loading: true };
     
     this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchProjects()
-      .then(() => this.props.finishLoading());
+      .then(() => {
+        this.props.finishLoading();
+        this.setState({ loading: false })
+      });
   }
   
   handleToggle(sortRank, id) {
     this.props.toggleProject(sortRank, id);
   }
-  
+ 
 
   render() {
-    if(this.props.projects.length === 0 ) {
+    if (this.state.loading) {
       return <section />
     }
+    
+    const newButton = (
+      <Link to="/cms/projects/new">
+        <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
+          <ContentAdd />
+        </FloatingActionButton>
+      </Link>
+    );
+    
+    if(this.props.projects.length === 0 ) {
+      return (
+        <section className={styles.root}>
+          {newButton}
+          <NoContent pageName="projects" />
+        </section>
+      );
+    }
+    
     return (
       <section className={styles.root}>
-        <Link to="/cms/projects/new">
-          <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
-            <ContentAdd />
-          </FloatingActionButton>
-        </Link>
+        {newButton}
         <h1 className={styles.title}>Project</h1>
         <Table fixedHeader={true} fixedFooter={true}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>

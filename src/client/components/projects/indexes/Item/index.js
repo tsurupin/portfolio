@@ -14,7 +14,8 @@ const propTypes = {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  adminPath: PropTypes.string
 };
 
 function renderLink(sourceUrl) {
@@ -37,11 +38,11 @@ function renderText(description) {
   }
 }
 
-function Item({ title, description, image, caption, sourceUrl, tags }) {
+function Item({ adminPath, title, description, image, caption, sourceUrl, tags }) {
   return (
     <div className={styles.root}>
       <h3 className={styles.title}>{title} </h3>
-      <TagList tags={tags} path="projects" />
+      <TagList tags={tags} path={`${adminPath}/projects`} />
       <div className={styles.imageContainer}>
         <img className={styles.image} src={image} alt={title} />
         <span className={styles.caption}>{caption}</span>
