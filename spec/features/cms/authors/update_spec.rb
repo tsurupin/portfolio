@@ -9,10 +9,10 @@ describe 'Admin user updates the author info', js: true do
       fill_in 'name', with: 'name'
       attach_file "image", "#{Rails.root}/spec/fixtures/images/sample.png"
       rich_texts = page.all('.public-DraftEditor-content')
-      rich_texts[0].set('description')
-      rich_texts[1].set('introduction')
+      rich_texts[0].set('new description')
+      rich_texts[1].set('new introduction')
       click_on 'Update'
-      expect(page).to have_css('section', 'Hello world!')
+      expect(page).to have_text('new description')
     end
   end
 end

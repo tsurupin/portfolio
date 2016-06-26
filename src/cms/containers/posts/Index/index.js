@@ -73,7 +73,6 @@ class PostIndex extends Component {
   }
   
   handleToggle(sortRank, post_id) {
-    console.log('hohge')
     this.props.togglePost(sortRank, post_id);
   }
   
