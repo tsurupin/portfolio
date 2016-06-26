@@ -65,7 +65,7 @@ class ProjectForm extends Component {
     this.handleDeleteTag    = this.handleDeleteTag.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.params.id) {
       this.props.fetchProject(this.props.params.id)
         .then(() => this.props.finishLoading());

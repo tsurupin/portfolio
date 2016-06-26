@@ -69,28 +69,33 @@ class ProjectIndex extends Component {
   handleToggle(sortRank, id) {
     this.props.toggleProject(sortRank, id);
   }
-  
+ 
 
   render() {
     if (this.state.loading) {
       return <section />
     }
     
+    const newButton = (
+      <Link to="/cms/projects/new">
+        <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
+          <ContentAdd />
+        </FloatingActionButton>
+      </Link>
+    );
+    
     if(this.props.projects.length === 0 ) {
       return (
         <section className={styles.root}>
-          <NoContent name="projects" />
+          {newButton}
+          <NoContent pageName="projects" />
         </section>
       );
     }
     
     return (
       <section className={styles.root}>
-        <Link to="/cms/projects/new">
-          <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
-            <ContentAdd />
-          </FloatingActionButton>
-        </Link>
+        {newButton}
         <h1 className={styles.title}>Project</h1>
         <Table fixedHeader={true} fixedFooter={true}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>

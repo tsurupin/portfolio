@@ -91,10 +91,10 @@ class PostIndex extends Component {
       return <section />
     }
 
-    if(this.props.posts.length === 0 ) {
+    if (this.props.posts.length === 0 ) {
       return (
         <section className={styles.root}>
-          <NoContent name="posts" />
+          <NoContent pageName="posts" />
         </section>
       );
     }

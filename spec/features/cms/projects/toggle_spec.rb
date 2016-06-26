@@ -2,38 +2,30 @@ require 'rails_helper'
 
 feature "Toggle the existing project's accepted status", js: true do
 
-  # background {
-  #   p Project.all
-  #   sign_in_and_redirect_to("/cms/projects")
-  # }
-  after {
-    page.execute_script("localStorage.clear()")
-  }
-
-  given!(:accepted_project) { create(:project, :accepted) }
-  given!(:unaccepted_project) { create(:project, :accepted, accepted: false) }
   context 'when toggling true from false' do
-    scenario 'they toggle true from false' do
+    scenario 'they see unaccepted icon and visible button' do
+      create(:project, :accepted)
       sign_in_and_redirect_to("/cms/projects")
-
-      save_and_open_page
-
-      #find(:xpath, '*/ul[0]/li[0]/*/button').click
-
-      #click_on('Unpublished')
-      #expect(Project.find(accepted_project).accepted).to be_falsly
+      expect(page).to have_css('h1', 'Project')
+      within(:xpath, '//tbody/tr[1]') do
+        find("button[class^='toggleButton']").click
+        expect(page).to have_selector("svg[name='unaccepted']")
+        expect(page).to have_selector("svg[class^='visibleIcon']")
+      end
     end
   end
 
-  # context 'when toggling false from true' do
-  #   given!(:project_without_description) { create(:project) }
-  #   scenario 'fails to toggle because of model validation' do
-  #
-  #   end
-  #
-  #   scenario 'toggles' do
-  #
-  #   end
-  # end
+  context 'when toggling false from true' do
+    scenario 'they see accepted icon and invisible button' do
+      create(:project, :accepted, accepted: false)
+      sign_in_and_redirect_to("/cms/projects")
+      expect(page).to have_css('h1', 'Project')
+      within(:xpath, '//tbody/tr[1]') do
+        find("button[class^='toggleButton']").click
+        expect(page).to have_selector("svg[name='accepted']")
+        expect(page).to have_selector("svg[class^='inVisibleIcon']")
+      end
+    end
+  end
 end
 

@@ -37,6 +37,7 @@ class ProjectIndex extends Component {
   constructor(props) {
     super(props);
     this.state = { loading: true };
+    console.log('hogeg')
   }
 
   componentDidMount() {
@@ -68,11 +69,11 @@ class ProjectIndex extends Component {
     if(this.props.projects.length === 0 ) {
       return (
         <section className={styles.root}>
-          <NoContent name="projects" />
+          <NoContent pageName="projects" />
         </section>
       )
     }
-    
+
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>Projects</h1>

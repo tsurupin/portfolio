@@ -5,7 +5,7 @@ class Client::Api::V1::PostsController < Client::ApplicationController
       temp_posts = Post::Search.client_search(params).page(params[:page])
       Kaminari::PaginatableArray.new(temp_posts.to_a, total_count: temp_posts.total_count)
     end
-    p posts.size
+    p posts
 
     render json: posts, each_serializer: Client::PostsSerializer,
            meta: pagination(params[:page], Post::PAGINATES_PER, posts.total_count)
