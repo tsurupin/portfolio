@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchProjects, toggleProject } from 'cms/actions/projects';
 import Item from 'cms/components/projects/indexes/Item/index';
+import NoContent from 'shared/components/NoContent/index';
 import { 
   Table, 
   TableHeaderColumn, 

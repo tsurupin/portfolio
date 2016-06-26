@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import styles from './styles.scss';
 
 const propTypes = {
+  adminPath: PropTypes.string,
   id: PropTypes.number.isRequired,
   name : PropTypes.string.isRequired
 };

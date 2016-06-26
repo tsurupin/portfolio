@@ -31,7 +31,6 @@ const propTypes = {
   savePost: PropTypes.func.isRequired,
   createItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
-  cancelItem: PropTypes.func.isRequired,
   updateItem: PropTypes.func.isRequired,
   moveItem: PropTypes.func.isRequired,
   createTag: PropTypes.func.isRequired,
@@ -204,9 +203,7 @@ function validate(values) {
   if (!values.title) {
     errors.title = 'Enter title'
   }
-  if (!values.publishedAt) {
-    errors.publishedAt = 'Enter published at'
-  }
+  
   return errors;
 }
 

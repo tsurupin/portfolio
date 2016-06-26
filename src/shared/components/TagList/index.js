@@ -29,7 +29,7 @@ function TagList({ tags, path }) {
       <LabelOutline color='#00AB6B' style={inlineStyles.tagIcon}/>
       {tags.map((tag) => {
         return (
-          <Link key={tag.id} to={`/${path}?tag=${tag.id}`} className={styles.item}>
+          <Link key={tag.id} to={`${path}?tag=${tag.id}`} className={styles.item}>
             <span className={styles.name}>{tag.name}</span>
           </Link>
         )})}

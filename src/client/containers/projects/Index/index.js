@@ -32,12 +32,14 @@ function mapStateToProps(state) {
   }
 }
 
+const cmsRegexp = /^(\/cms)*/;
+
+
 class ProjectIndex extends Component {
   
   constructor(props) {
     super(props);
     this.state = { loading: true };
-    console.log('hogeg')
   }
 
   componentDidMount() {
@@ -62,6 +64,11 @@ class ProjectIndex extends Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  get adminPath() {
+    const paths = this.props.location.pathname.match(cmsRegexp);
+    return paths[0] ? paths[0] : '';
+  }
+
   render() {
     if (this.state.loading) {
       return <section />
@@ -79,7 +86,7 @@ class ProjectIndex extends Component {
         <h1 className={styles.title}>Projects</h1>
         <div className={styles.list}>
           {this.props.projects.map((project) => {
-            return <Item key={project.id} {...project} />
+            return <Item key={project.id} adminPath={this.adminPath} {...project} />
           })}
         </div>
       </section>

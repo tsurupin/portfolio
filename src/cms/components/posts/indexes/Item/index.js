@@ -60,13 +60,13 @@ class Item extends Component {
     let statusIcon;
     switch (this.props.status) {
       case 0:
-        statusIcon = <NotificationPriorityHigh />;
+        statusIcon = <NotificationPriorityHigh name="unaccepted" />;
         break;
       case 1:
-        statusIcon = <ActionDone />;
+        statusIcon = <ActionDone name="accepted" />;
         break;
       case 2:
-        statusIcon = <ContentFlag />;
+        statusIcon = <ContentFlag name="publishing" />;
         break;
     }
 

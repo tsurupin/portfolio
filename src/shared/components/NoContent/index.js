@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import styles from './styles';
 
 const propTypes = {
-  page: PropTypes.string.isRequired
+  pageName: PropTypes.string.isRequired
 };
 
 function NoContent({ pageName }) {

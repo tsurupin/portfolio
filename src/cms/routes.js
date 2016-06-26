@@ -33,5 +33,6 @@ export default (
       <Route path="/cms/about" component={ProgressBar(AboutShow)}/>
       <Route path="/cms/about/edit" component={ProgressBar(Alert(Authentication(AuthorForm)))}/>
       <Route path="*" component={NotFound} />
+      <Route path="/not-found" component={NotFound} />
   </ Route>
 );

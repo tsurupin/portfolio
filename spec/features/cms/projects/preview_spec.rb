@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Admin user sees the projects in preview mode', js: true do
-  #background { sign_in_and_redirect_to('/cms/projects') }
 
   context 'when there is no corresponding project' do
     background { sign_in_and_redirect_to('/cms/projects') }
@@ -12,20 +11,28 @@ feature 'Admin user sees the projects in preview mode', js: true do
   end
 
   context 'when there are some corresponding projects' do
-    background do
-
+    scenario 'they see all the corresponding projects' do
       create(:project, :accepted, title: 'sample')
       create(:project, :accepted)
-    end
-    scenario 'they see all the corresponding projects' do
       sign_in_and_redirect_to('/cms/projects/preview')
-      #visit '/cms/projects/preview'
-      page.driver.browser.manage.logs.get("browser")
       expect(page).to have_css('h1', 'Projects')
-      # wait_until { page.find('h1').visible? }
       expect(page).to have_text('sample')
       expect(page).to have_selector('h3', count: 2)
+    end
 
+    scenario 'they click tag and see all the corresponding projects' do
+      project1 = create(:project, :accepted, title: 'sample')
+      project2 = create(:project, :accepted)
+      tag1 = create(:tag)
+      create(:tagging, :subject_project, subject: project1, tag: tag1)
+      create(:tagging, :subject_project, subject: project2)
+      sign_in_and_redirect_to('/cms/projects/preview')
+      expect(page).to have_css('h1', 'Projects')
+      click_on tag1.name
+      sleep 5
+      save_and_open_page
+      expect(page).to have_text('sample')
+      expect(page).to have_selector('h3', count: 1)
     end
   end
 end
