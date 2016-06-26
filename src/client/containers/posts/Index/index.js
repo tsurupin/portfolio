@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from 'client/actions/posts';
 import Item from 'client/components/posts/indexes/Item/index';
+import NoContent from 'shared/components/NoContent/index';
 import shallowCompare from 'react-addons-shallow-compare';
 import styles from'./styles.scss';
 import Infinite from 'react-infinite';
@@ -28,6 +29,7 @@ class PostIndex extends Component {
   
   constructor(props) {
     super(props);
+    this.state = { loading: true };
 
     this.handleLoad = this.handleLoad.bind(this);
   }
@@ -38,7 +40,10 @@ class PostIndex extends Component {
       params.tag = this.props.location.query.tag
     }
     this.props.fetchPosts(params)
-      .then(() => this.props.finishLoading());
+      .then(() => {
+        this.props.finishLoading();
+        this.setState({ loading: false })
+      });
   }
 
   componentWillReceiveProps (nextProps) {
@@ -84,9 +89,18 @@ class PostIndex extends Component {
   }
 
   render() {
-    if(!this.props.posts || this.props.posts.length === 0 ) {
-      return <section className={styles.root} />
+    if (this.state.loading) {
+      return <section />
     }
+
+    if(this.props.posts.length === 0 ) {
+      return (
+        <section className={styles.root}>
+          <NoContent name="posts" />
+        </section>
+      )
+    }
+   
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>Posts</h1>

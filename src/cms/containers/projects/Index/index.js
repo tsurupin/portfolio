@@ -53,13 +53,17 @@ class ProjectIndex extends Component {
   
   constructor(props) {
     super(props);
+    this.state = { loading: true };
     
     this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchProjects()
-      .then(() => this.props.finishLoading());
+      .then(() => {
+        this.props.finishLoading();
+        this.setState({ loading: false })
+      });
   }
   
   handleToggle(sortRank, id) {
@@ -68,9 +72,18 @@ class ProjectIndex extends Component {
   
 
   render() {
-    if(this.props.projects.length === 0 ) {
+    if (this.state.loading) {
       return <section />
     }
+    
+    if(this.props.projects.length === 0 ) {
+      return (
+        <section className={styles.root}>
+          <NoContent name="projects" />
+        </section>
+      );
+    }
+    
     return (
       <section className={styles.root}>
         <Link to="/cms/projects/new">

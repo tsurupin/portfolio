@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPosts, togglePost } from 'cms/actions/posts';
 import { Link } from 'react-router';
 import Item from 'cms/components/posts/indexes/Item/index';
+import NoContent from 'shared/components/NoContent/index';
 import { 
   Table, 
   TableHeaderColumn, 
@@ -62,6 +63,8 @@ class PostIndex extends Component {
   
   constructor(props) {
     super(props);
+    this.state = { loading: true };
+
     
     this.handleToggle = this.handleToggle.bind(this);
     this.handleMovePage = this.handleMovePage.bind(this);
@@ -69,7 +72,10 @@ class PostIndex extends Component {
 
   componentDidMount() {
     this.props.fetchPosts()
-      .then(() => this.props.finishLoading());
+      .then(() => {
+        this.props.finishLoading();
+        this.setState({ loading: false });
+      });
   }
   
   handleToggle(sortRank, post_id) {
@@ -81,7 +87,18 @@ class PostIndex extends Component {
   }
 
   render() {
-    if(this.props.posts.length === 0 ) { return <section /> }
+    if (this.state.loading) {
+      return <section />
+    }
+
+    if(this.props.posts.length === 0 ) {
+      return (
+        <section className={styles.root}>
+          <NoContent name="posts" />
+        </section>
+      );
+    }
+
     return (
       <section className={styles.root}>
         <Link to="/cms/posts/new">

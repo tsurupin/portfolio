@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchProjects } from 'client/actions/projects';
 import Item from 'client/components/projects/indexes/Item/index';
+import NoContent from 'shared/components/NoContent/index';
 import shallowCompare from 'react-addons-shallow-compare';
 import styles from'./styles.scss';
 
@@ -35,15 +36,19 @@ class ProjectIndex extends Component {
   
   constructor(props) {
     super(props);
+    this.state = { loading: true };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let params = {};
     if (this.props.hasOwnProperty("location")) {
       params.tag = this.props.location.query.tag
     }
     this.props.fetchProjects(params)
-      .then(() => this.props.finishLoading());
+      .then(() => {
+        this.props.finishLoading();
+        this.setState({ loading: false })
+      });
   }
 
   componentWillReceiveProps (nextProps) {
@@ -57,9 +62,17 @@ class ProjectIndex extends Component {
   }
 
   render() {
-    if(this.props.projects.length === 0 ) { 
-      return <section className={styles.root} /> 
+    if (this.state.loading) {
+      return <section />
     }
+    if(this.props.projects.length === 0 ) {
+      return (
+        <section className={styles.root}>
+          <NoContent name="projects" />
+        </section>
+      )
+    }
+    
     return (
       <section className={styles.root}>
         <h1 className={styles.title}>Projects</h1>

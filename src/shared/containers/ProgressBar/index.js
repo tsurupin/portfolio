@@ -20,16 +20,8 @@ export default function(ComposedComponent) {
     constructor(props) {
       super(props);
       this.state = { loading: true };
-      this.finishLoading = this.finishLoading.bind(this)
     }
-
-    finishLoading() {
-      // ALERT: a warning raises when unmounted before setTimeOut fires.
-      setTimeout(() => {
-        this.setState({ loading: false })
-      }, 1500)
-    }
-
+    
     renderProgressBar() {
       if (this.state.loading) {
         return (
@@ -49,7 +41,10 @@ export default function(ComposedComponent) {
       return (
       <div className={styles.root}>
         {this.renderProgressBar()}
-        <ComposedComponent { ...this.props } finishLoading={this.finishLoading} />
+        <ComposedComponent
+          { ...this.props }
+          finishLoading={() => this.setState({ loading: false }) }
+        />
       </div>
       )
     }
