@@ -25,7 +25,7 @@ RSpec.describe Author::Form, type: :model do
         it 'raises the error' do
           author = create(:author, description: nil)
           author_form = Author::Form.find(author.id)
-          expect{ author_form.update!(introduction:'rich text') }.to raise_error(ActiveRecord::RecordInvalid)
+          expect { author_form.update!(introduction: 'rich text') }.to raise_error(ActiveRecord::RecordInvalid)
         end
       end
 
@@ -33,7 +33,7 @@ RSpec.describe Author::Form, type: :model do
         it 'does not raise the error' do
           author = create(:author, description: 'rich text')
           author_form = Author::Form.find(author.id)
-          expect{ author_form.update!(introduction:'rich text') }.not_to raise_error(ActiveRecord::RecordInvalid)
+          expect { author_form.update!(introduction: 'rich text') }.not_to raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe Author::Form, type: :model do
         it 'raises the error' do
           author = create(:author, introduction: nil)
           author_form = Author::Form.find(author.id)
-          expect{ author_form.update!(description:'rich text') }.to raise_error(ActiveRecord::RecordInvalid)
+          expect { author_form.update!(description: 'rich text') }.to raise_error(ActiveRecord::RecordInvalid)
         end
       end
 
@@ -51,7 +51,7 @@ RSpec.describe Author::Form, type: :model do
         it 'does not raise the error' do
           author = create(:author, introduction: 'rich text')
           author_form = Author::Form.find(author.id)
-          expect{ author_form.update!(description:'rich text') }.not_to raise_error(ActiveRecord::RecordInvalid)
+          expect { author_form.update!(description: 'rich text') }.not_to raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end
@@ -88,13 +88,11 @@ RSpec.describe Author::Form, type: :model do
 
       params = { 'description' => 'rich text' }
       author_form = Author::Form.find(author.id)
-      expect{ author_form.save(params) }.to change{ SocialAccount.count }.by(0)
+      expect { author_form.save(params) }.to change { SocialAccount.count }.by(0)
       expect(author_form.save(params)).to be_falsey
       expect(Author::Form.find(author.id).description).to eq nil
     end
-
   end
-
 
   describe '#delete_unnecessary_accounts!' do
     context 'when deleting accounts exist' do
@@ -106,7 +104,7 @@ RSpec.describe Author::Form, type: :model do
 
         params = [{ 'id' => account1.id }]
 
-        expect{ author_form.delete_unnecessary_accounts!(params)}.to change{ SocialAccount.count }.by(-1)
+        expect { author_form.delete_unnecessary_accounts!(params) }.to change { SocialAccount.count }.by(-1)
         expect(Author.find(author.id).social_accounts.map(&:id)).to eq [account1.id]
       end
     end
@@ -120,10 +118,9 @@ RSpec.describe Author::Form, type: :model do
 
         params = [{ 'id' => account1.id }, { 'id' => account2.id }]
 
-        expect{ author_form.delete_unnecessary_accounts!(params)}.to change{ SocialAccount.count }.by(0)
+        expect { author_form.delete_unnecessary_accounts!(params) }.to change { SocialAccount.count }.by(0)
         expect(Author.find(author.id).social_accounts.map(&:id)).to eq [account1.id, account2.id]
       end
     end
   end
-
 end

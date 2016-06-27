@@ -85,7 +85,7 @@ group :test do
   gem 'poltergeist'
   gem "chromedriver-helper"
   gem "selenium-webdriver"
-  gem 'simplecov', require: false
+  gem 'simplecov'
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'

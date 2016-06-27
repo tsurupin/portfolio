@@ -12,11 +12,10 @@ class Cms::PostSerializer < ActiveModel::Serializer
   has_many :taggings, root: :tags, serializer: Cms::TaggingSerializer
 
   def published_at
-    object.published_at.try(:strftime,'%Y/%m/%d %H:%M')
+    object.published_at.try(:strftime, '%Y/%m/%d %H:%M')
   end
 
   def tag_suggestions
     Tag.pluck(:name)
   end
-
 end

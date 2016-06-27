@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-feature "User transits to the project index page", js: true do
-
+feature 'User transits to the project index page', js: true do
   scenario 'they see the corresponding projects' do
     accepted_project1 = create(:project, :accepted)
     accepted_project2 = create(:project, :accepted)
@@ -28,5 +27,4 @@ feature "User transits to the project index page", js: true do
     expect(page).not_to have_text(projects[1].title)
     expect(page).to have_selector('h3', count: 1)
   end
-
 end

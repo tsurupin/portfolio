@@ -40,5 +40,4 @@ class Client::PostSerializer < ActiveModel::Serializer
   def next_post
     @next_post ||= ActiveType.cast(object, Post::Search).next
   end
-
 end

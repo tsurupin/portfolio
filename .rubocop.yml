@@ -4,7 +4,7 @@ AllCops:
     - '**/config.ru'
   Exclude:
     - 'bin/**/*'
-    - 'spec/rails_helper.rb'
+    - 'spec/**/*'
     - 'spec/spec_helper.rb'
     - 'db/**/*'
     - 'config/**/*'
@@ -12,7 +12,7 @@ AllCops:
     - !ruby/regexp /old_and_unused\.rb$/
     - '**/Rakefile'
     - '**/config.ru'
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
 Style/PerlBackrefs:
   AutoCorrect: true
 Rails:

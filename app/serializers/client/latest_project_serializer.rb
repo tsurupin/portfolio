@@ -6,5 +6,4 @@ class Client::LatestProjectSerializer < ActiveModel::Serializer
   def image
     object.image_url
   end
-
 end

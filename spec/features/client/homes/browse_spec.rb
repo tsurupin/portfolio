@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-feature "User sees the home page", js: true do
-
+feature 'User sees the home page', js: true do
   scenario 'they see the home info' do
     create(:author)
     posts = []
@@ -57,5 +56,4 @@ feature "User sees the home page", js: true do
       expect(page).not_to have_css('a', text: 'All PROJECTS')
     end
   end
-
 end

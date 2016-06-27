@@ -15,11 +15,10 @@ class SocialAccount < ActiveRecord::Base
 
   validates :author, presence: true
   validates :url, presence: true,
-            uniqueness: true,
-            format: { with: URI.regexp }
+                  uniqueness: true,
+                  format: { with: URI.regexp }
   validates :account_type,
             presence: true,
             inclusion: { in: SocialAccount.account_types.keys },
-            uniqueness: { message: "%{value} is already used" }
-
+            uniqueness: { message: '%{value} is already used' }
 end

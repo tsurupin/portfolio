@@ -4,5 +4,4 @@ class SocialAccountSerializer < ActiveModel::Serializer
              :author_id,
              :account_type,
              :url
-
 end

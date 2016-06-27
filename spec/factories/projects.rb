@@ -18,7 +18,7 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence }
 
     trait :accepted do
-      description "{\"entityMap\":{},\"blocks\":[{\"key\":\"crvbi\",\"text\":\"test\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[]}]}"
+      description '{"entityMap":{},"blocks":[{"key":"crvbi","text":"test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}'
       image File.new("#{Rails.root}/spec/fixtures/images/sample.png")
       source_url 'http://google.com'
       accepted true

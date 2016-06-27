@@ -12,15 +12,14 @@
 #
 
 class Post < ActiveRecord::Base
-  PAGINATES_PER = 20.freeze
+  PAGINATES_PER = 20
   paginates_per PAGINATES_PER
 
   has_many :taggings, as: :subject, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :items, -> { order('sort_rank asc') }, dependent: :destroy
 
-
-  validates :title, presence: true, uniqueness: { message: "%{value} is already used"}
+  validates :title, presence: true, uniqueness: { message: '%{value} is already used' }
   after_update :delete_cache
 
   def status
@@ -36,5 +35,4 @@ class Post < ActiveRecord::Base
     Rails.cache.delete("cached_posts/#{id}")
     Rails.cache.delete_matched(/cached_posts\?page=\d?&tag=\w*/)
   end
-
 end

@@ -35,15 +35,14 @@ RSpec.describe Author, type: :model do
     context 'when author record is already existed' do
       it 'raises record invalid error' do
         create(:author)
-        expect{ create(:author) }.to raise_error(ActiveRecord::RecordInvalid)
+        expect { create(:author) }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
 
     context 'when author record is not existed yet' do
       it 'increments the record count' do
-        expect{ create(:author) }.to change{ Author.count }.by(1)
+        expect { create(:author) }.to change { Author.count }.by(1)
       end
     end
   end
-
 end

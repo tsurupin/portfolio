@@ -16,4 +16,3 @@ module SessionHelpers
     visit path
   end
 end
-

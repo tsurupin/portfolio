@@ -17,7 +17,7 @@ class Project < ActiveRecord::Base
   has_many :taggings, as: :subject, dependent: :destroy
   has_many :tags, through: :taggings
 
-  validates :title, presence: true, uniqueness: { message: "%{value} is already used" }
+  validates :title, presence: true, uniqueness: { message: '%{value} is already used' }
 
   after_update :delete_cache
   mount_uploader :image, ProjectImageUploader

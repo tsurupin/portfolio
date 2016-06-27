@@ -28,7 +28,7 @@ RSpec.describe Project::Form, type: :model do
             source_url: 'http://sample.com'
           )
           project_form = Project::Form.find(project.id)
-          expect{ project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
+          expect { project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
         end
       end
 
@@ -41,7 +41,7 @@ RSpec.describe Project::Form, type: :model do
             source_url: 'http://sample.com'
           )
           project_form = Project::Form.find(project.id)
-          expect{ project_form.update(accepted: true) }.to_not raise_error(ActiveRecord::RecordInvalid)
+          expect { project_form.update(accepted: true) }.to_not raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe Project::Form, type: :model do
             source_url: 'http://sample.com'
           )
           project_form = Project::Form.find(project.id)
-          expect{ project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
+          expect { project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end
@@ -66,14 +66,13 @@ RSpec.describe Project::Form, type: :model do
           project = create(
             :project,
             description: 'hoge',
-            image: File.new("#{Rails.root}/spec/fixtures/images/sample.png"),
+            image: File.new("#{Rails.root}/spec/fixtures/images/sample.png")
           )
           project_form = Project::Form.find(project.id)
-          expect{ project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
+          expect { project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end
-
   end
 
   describe '.delete_unnecessary_tags!' do
@@ -84,7 +83,7 @@ RSpec.describe Project::Form, type: :model do
         create(:tagging, subject: project)
         params = []
         project_form = Project::Form.find(project.id)
-        expect{ project_form.delete_unnecessary_tags!(params) }.to change { Tagging.count }.by(-2)
+        expect { project_form.delete_unnecessary_tags!(params) }.to change { Tagging.count }.by(-2)
       end
     end
 
@@ -93,9 +92,9 @@ RSpec.describe Project::Form, type: :model do
         project = create(:project)
         tagging1 = create(:tagging, subject: project)
         create(:tagging, subject: project)
-        params = [ { 'text' => tagging1.name } ]
+        params = [{ 'text' => tagging1.name }]
         project_form = Project::Form.find(project.id)
-        expect{ project_form.delete_unnecessary_tags!(params) }.to change { Tagging.count }.by(-1)
+        expect { project_form.delete_unnecessary_tags!(params) }.to change { Tagging.count }.by(-1)
         expect(project_form.taggings.map(&:id)).to eq [tagging1.id]
       end
     end
@@ -105,9 +104,9 @@ RSpec.describe Project::Form, type: :model do
         project = create(:project)
         create(:tagging, subject: project)
         create(:tagging, subject: project)
-        params = [ { 'id' => 1 } ]
+        params = [{ 'id' => 1 }]
         project_form = Project::Form.find(project.id)
-        expect{ project_form.delete_unnecessary_tags!(params) }.to change { Tagging.count }.by(-2)
+        expect { project_form.delete_unnecessary_tags!(params) }.to change { Tagging.count }.by(-2)
       end
     end
   end
@@ -116,7 +115,7 @@ RSpec.describe Project::Form, type: :model do
     context 'when params are empty' do
       it 'returns empty array' do
         project = create(:project)
-        params = [ ]
+        params = []
         project_form = Project::Form.find(project.id)
         expect(project_form.trim_tagging_attributes!(params)).to eq []
       end
@@ -127,15 +126,15 @@ RSpec.describe Project::Form, type: :model do
         project = create(:project)
         tag = create(:tag)
         create(:tagging, subject: project, tag: tag)
-        params = [ { 'text' => 'new_tag' }, { 'text' => tag.name }]
+        params = [{ 'text' => 'new_tag' }, { 'text' => tag.name }]
+        result = [{ 'tag_id' => Tag.last.id }, { 'tag_id' => tag.id }]
         project_form = Project::Form.find(project.id)
-        expect(project_form.trim_tagging_attributes!(params)).to eq [{ 'tag_id' => Tag.last.id }, { 'tag_id' => tag.id }]
+        expect(project_form.trim_tagging_attributes!(params)).to eq result
       end
     end
   end
 
   describe '#save_from_associations' do
-
     context 'when creating a new record' do
       it 'increments project and associated records' do
         existing_tag = create(:tag)
@@ -150,9 +149,9 @@ RSpec.describe Project::Form, type: :model do
           'source_url' => 'http://google.com'
         }
         project_form = Project::Form.new
-        expect { project_form.save_from_associations(params) }.to change{ Project.count }.by(1)
-                                                                 .and change{ Tag.count }.by(1)
-                                                                        .and change { Tagging.count }.by(2)
+        expect { project_form.save_from_associations(params) }.to change { Project.count }.by(1)
+          .and change { Tag.count }.by(1)
+          .and change { Tagging.count }.by(2)
       end
 
       it 'returns false because of lack of necessary data' do
@@ -166,9 +165,9 @@ RSpec.describe Project::Form, type: :model do
           'source_url' => 'http://google.com'
         }
         project_form = Project::Form.new
-        expect{ project_form.save_from_associations(params) }.to change{ Project.count }.by(0)
-                                                               .and change{ Tag.count }.by(0)
-                                                                      .and change { Tagging.count }.by(0)
+        expect { project_form.save_from_associations(params) }.to change { Project.count }.by(0)
+          .and change { Tag.count }.by(0)
+          .and change { Tagging.count }.by(0)
         expect(project_form.save_from_associations(params)).to be_falsey
       end
     end
@@ -182,7 +181,7 @@ RSpec.describe Project::Form, type: :model do
           'taggings_attributes' => [
             { 'text' => 'new tag name' }
           ],
-          'description' => 'new text',
+          'description' => 'new text'
         }
         project_form = Project::Form.find(project.id)
         expect(project_form.save_from_associations(params)).to be_truthy
@@ -193,5 +192,4 @@ RSpec.describe Project::Form, type: :model do
       end
     end
   end
-
 end

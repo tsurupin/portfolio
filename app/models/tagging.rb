@@ -22,5 +22,4 @@ class Tagging < ActiveRecord::Base
   scope :by_tag, lambda { |tag_id|
     where(tag_id: tag_id).order(updated_at: :desc)
   }
-
 end

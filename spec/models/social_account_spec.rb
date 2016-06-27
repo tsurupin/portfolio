@@ -15,10 +15,9 @@ RSpec.describe SocialAccount, type: :model do
     it { is_expected.to belong_to(:author).touch(true) }
     it { is_expected.to validate_presence_of(:author) }
     it { is_expected.to validate_presence_of(:url) }
-    it { is_expected.to allow_value("http://google.com").for(:url) }
-    it { is_expected.not_to allow_value("google.com").for(:url) }
+    it { is_expected.to allow_value('http://google.com').for(:url) }
+    it { is_expected.not_to allow_value('google.com').for(:url) }
     it { expect(create(:social_account)).to validate_uniqueness_of(:url) }
     it { is_expected.to validate_presence_of(:account_type) }
   end
-
 end

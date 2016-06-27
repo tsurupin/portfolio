@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Admin user sees the projects in preview mode', js: true do
-
   context 'when there is no corresponding project' do
     scenario 'they see no content message' do
       sign_in_and_redirect_to('/cms/projects')

@@ -28,7 +28,6 @@ class Cms::Api::V1::Authors::SessionsController < Devise::SessionsController
 
   def invalid_login_attempt
     warden.custom_failure!
-    render json: { errorMessage: ('invalid_login_attempt') }, status: :unprocessable_entity
+    render json: { errorMessage: 'invalid_login_attempt' }, status: :unprocessable_entity
   end
-
 end

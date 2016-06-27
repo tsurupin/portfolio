@@ -22,19 +22,19 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
                   'title' => post.title,
                   'leadSentence' => post.lead_sentence,
                   'publishedAt' => post.published_at.try(:strftime, '%b %d, %Y') || '-',
-                  'tags' => post.tags.map{|tag| { 'id' => tag.id, 'name' => tag.name }}
+                  'tags' => post.tags.map { |tag| { 'id' => tag.id, 'name' => tag.name } }
                 }
               end,
-              "meta" => {
-                "pagination" => {
-                  "page" => 1,
-                  "limit" => Post::PAGINATES_PER,
-                  "total" => 1
+              'meta' => {
+                'pagination' => {
+                  'page' => 1,
+                  'limit' => Post::PAGINATES_PER,
+                  'total' => 1
                 }
               }
             }
 
-            request_params = { 'page'=> 1 , 'tag' => posts.last.tags.last.id }
+            request_params = { 'page' => 1, 'tag' => posts.last.tags.last.id }
             get api_v1_posts_path, request_params
             expect(response.status).to eq 200
             expect(JSON.parse(response.body)).to eq result
@@ -59,19 +59,19 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
                   'title' => post.title,
                   'leadSentence' => post.lead_sentence,
                   'publishedAt' => post.published_at.try(:strftime, '%b %d, %Y') || '-',
-                  'tags' => post.tags.map{|tag| { 'id' => tag.id, 'name' => tag.name }}
+                  'tags' => post.tags.map { |tag| { 'id' => tag.id, 'name' => tag.name } }
                 }
               end,
-              "meta" => {
-                "pagination" => {
-                  "page" => 1,
-                  "limit" => Post::PAGINATES_PER,
-                  "total" => 30
+              'meta' => {
+                'pagination' => {
+                  'page' => 1,
+                  'limit' => Post::PAGINATES_PER,
+                  'total' => 30
                 }
               }
             }
 
-            get api_v1_posts_path, { 'page'=> 1}
+            get api_v1_posts_path, 'page' => 1
             expect(response.status).to eq 200
             expect(JSON.parse(response.body)).to eq result
           end
@@ -96,32 +96,29 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
                 'title' => post.title,
                 'leadSentence' => post.lead_sentence,
                 'publishedAt' => post.published_at.try(:strftime, '%b %d, %Y') || '-',
-                'tags' => post.tags.map{|tag| { 'id' => tag.id, 'name' => tag.name }}
+                'tags' => post.tags.map { |tag| { 'id' => tag.id, 'name' => tag.name } }
               }
             end,
-            "meta" => {
-              "pagination" => {
-                "page" => 2,
-                "limit" => Post::PAGINATES_PER,
-                "total" => 30
+            'meta' => {
+              'pagination' => {
+                'page' => 2,
+                'limit' => Post::PAGINATES_PER,
+                'total' => 30
               }
             }
           }
 
-          get api_v1_posts_path, { 'page'=> 2 }
+          get api_v1_posts_path, 'page' => 2
           expect(response.status).to eq 200
           expect(JSON.parse(response.body)).to eq result
         end
       end
-
     end
-
-
 
     describe 'GET /api/v1/posts/:id' do
       it 'returns the error message because of wrong id' do
         get api_v1_post_path(1000)
-        result = { 'errorMessage' => 'RecordNotFound'}
+        result = { 'errorMessage' => 'RecordNotFound' }
         expect(response.status).to eq 404
         expect(JSON.parse(response.body)).to eq result
       end
@@ -134,7 +131,7 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
         item_text = create(:item, :text, post: post)
         item_image = create(:item, :image, post: post)
 
-        next_post = create(:post, :accepted, published_at: 1.days.ago)
+        next_post = create(:post, :accepted, published_at: 1.day.ago)
 
         create(:tagging, :subject_post, subject: post)
         items_result = [

@@ -8,5 +8,4 @@ class Client::AboutSerializer < ActiveModel::Serializer
   def image
     object.try(:image_url)
   end
-
 end

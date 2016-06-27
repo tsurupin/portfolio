@@ -5,5 +5,4 @@ class Cms::TaggingSerializer < ActiveModel::Serializer
   def text
     object.name
   end
-
 end

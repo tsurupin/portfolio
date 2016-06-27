@@ -84,7 +84,6 @@ RSpec.describe Project::Search, type: :model do
     end
   end
 
-
   describe '.accepted' do
     it 'returns the records of which accepted is true' do
       project1 = create(:project, accepted: true)
@@ -102,5 +101,4 @@ RSpec.describe Project::Search, type: :model do
       expect(Project::Search.latest.map(&:id)).to eq [new_project.id, old_project.id]
     end
   end
-
 end
