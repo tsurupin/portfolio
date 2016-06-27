@@ -5,7 +5,6 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'spec/**/*'
-    - 'spec/spec_helper.rb'
     - 'db/**/*'
     - 'config/**/*'
     - 'script/**/*'
