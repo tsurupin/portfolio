@@ -12,7 +12,7 @@ feature 'Admin user creates a new project', js: true do
       attach_file "image", "#{Rails.root}/spec/fixtures/images/sample.png"
       find('.public-DraftEditor-content').set('new description')
       click_on 'Create'
-      sleep 1
+      #sleep 1
       expect(page).to have_content('Create New Project')
     end
   end

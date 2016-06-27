@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Toggle the existing post's accepted status", js: true do
+feature "Admin user toggles the existing post's accepted status", js: true do
 
   context 'when toggling true from false' do
     scenario 'they see unaccepted icon and visible button' do

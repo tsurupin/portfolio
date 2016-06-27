@@ -111,7 +111,7 @@ class NavigationBar extends Component {
                         </IconMenu>
                         <a href={config.gitHubUrl} >
                             <IconButton iconStyle={inlineStyles.gitHubButton} name="git-hub-button">
-                              <FontIcon className="muidocs-icon-custom-github" style={inlineStyles.iconStyles} />
+                              <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.iconStyles} />
                             </IconButton>
                         </a>
                         <IconButton name="sign-out-button" onClick={this.handleSignOut}>
@@ -124,6 +124,5 @@ class NavigationBar extends Component {
     );
   }
 }
-;
 
 export default connect(null, { signOut })(NavigationBar);

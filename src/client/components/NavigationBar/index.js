@@ -44,16 +44,11 @@ class NavigationBar extends Component {
 
   constructor(props) {
     super(props);
-    this.handleHome = this.handleHome.bind(this);
   }
 
   static contextTypes = {
     router: PropTypes.object
   };
-  
-  handleHome() {
-    this.context.router.push('/');
-  }
   
   render() {
     return (
@@ -62,29 +57,29 @@ class NavigationBar extends Component {
         title={config.authorName}
         style={inlineStyles.appBar}
         titleStyle={inlineStyles.title}
-        onTitleTouchTap={this.handleHome}
+        onTitleTouchTap={()=> this.context.router.push('/')}
         zDepth={0}
         iconStyleRight={inlineStyles.elementRight}
         iconElementRight={
                     <div>
                         <Link to="/about" >
-                            <IconButton>
+                            <IconButton name="about-button">
                                 <SocialPerson color={iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/posts" >
-                            <IconButton>
+                            <IconButton name="post-button">
                                 <ActionDescription color={iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/projects" >
-                            <IconButton>
+                            <IconButton name="project-button">
                                 <AvWeb color={iconColor} />
                             </IconButton>
                         </Link>
                         <a href={config.gitHubUrl} >
-                            <IconButton iconStyle={inlineStyles.gitHubButton}>
-                              <FontIcon className="muidocs-icon-custom-github" style={inlineStyles.iconStyles} />
+                            <IconButton iconStyle={inlineStyles.gitHubButton} name="git-hub-button" >
+                              <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.iconStyles} />
                             </IconButton>
                         </a>
                     </div>
