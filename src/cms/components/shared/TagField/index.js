@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {  WithContext as ReactTags } from 'react-tag-input';
-import styles from './styles.scss';
-
+import styles from './styles';
 
 const propTypes = {
   tags: PropTypes.arrayOf(PropTypes.shape({
@@ -10,6 +9,12 @@ const propTypes = {
   suggestions: PropTypes.array.isRequired,
   handleAddTag: PropTypes.func.isRequired,
   handleDeleteTag: PropTypes.func.isRequired
+};
+
+
+const defaultProps = {
+  tags: [],
+  suggestions: []
 };
 
 class TagField extends Component {
@@ -42,7 +47,6 @@ class TagField extends Component {
   }
 
   render() {
-
     const tags = this.state.tags;
     const suggestions = this.state.suggestions;
     return (
@@ -75,10 +79,7 @@ class TagField extends Component {
 
 TagField.propTypes = propTypes;
 
-TagField.defaultProps = {
-  tags: [],
-  suggestions: []
-};
+TagField.defaultProps = defaultProps;
 
 export default TagField
 

@@ -4,7 +4,7 @@ import { fetchProjects } from 'client/actions/projects';
 import Item from 'client/components/projects/indexes/Item/index';
 import NoContent from 'shared/components/NoContent/index';
 import shallowCompare from 'react-addons-shallow-compare';
-import styles from'./styles.scss';
+import styles from'./styles';
 
 const propTypes = {
   projects: PropTypes.arrayOf(
@@ -66,7 +66,7 @@ class ProjectIndex extends Component {
 
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
-    return paths[0] ? paths[0] : '';
+    return paths[0] ? paths[0] : "";
   }
 
   render() {

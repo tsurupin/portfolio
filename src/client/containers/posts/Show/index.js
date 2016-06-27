@@ -6,7 +6,9 @@ import Item from 'client/components/posts/shows/Item/index';
 import shallowCompare from 'react-addons-shallow-compare';
 import Pagination from 'client/components/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule'
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+
+import styles from './styles';
 
 const propTypes = {
   post : PropTypes.shape({
@@ -50,14 +52,6 @@ function mapStateToProps(state) {
   }
 }
 
-const inlineStyles = {
-  dateTimeLogo:{
-    verticalAlign: 'middle',
-    height: 18,
-    width: 18
-  }
-};
-
 class PostShow extends  Component {
 
   constructor(props) {
@@ -66,7 +60,7 @@ class PostShow extends  Component {
   
   componentDidMount() {
     this.props.fetchPost(this.props.params.id)
-      .then(() => this.props.finishLoading());
+      .then(() => this.props.finishLoading())
   }
 
   componentWillReceiveProps (nextProps) {
@@ -78,10 +72,10 @@ class PostShow extends  Component {
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
-
+  
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
-    return paths[0] ? paths[0] : '';
+    return paths[0] ? paths[0] : "";
   }
   
   renderPagination() {
@@ -99,13 +93,16 @@ class PostShow extends  Component {
   }
   
   render() {
-    if (!this.props.post) { return <section className={styles.root} /> }
+    if (!this.props.post) { 
+      return <section className={styles.root} /> 
+    }
+    
     return (
       <section className={styles.root}>
         <div className={styles.heading}>
           <h1 className={styles.title}>{this.props.post.title} </h1>
           <div className={styles.dateTime}>
-            <ActionSchedule color='#8F8F8F' style={inlineStyles.dateTimeLogo} />
+            <ActionSchedule color={inlineStyles.iconColor} style={inlineStyles.dateTimeLogo} />
             <span className={styles.time}>{this.props.post.publishedAt}</span>
           </div>
         </div>

@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
 import TextField from 'material-ui/TextField';
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 
 const propTypes = {
@@ -38,14 +39,6 @@ function validate(values) {
   return errors;
 }
 
-
-
-const inlineStyles = {
-  textField: {
-    marginBottom: 10
-  }
-};
-
 class AuthorSignIn extends Component {
 
   static contextTypes = {
@@ -59,9 +52,9 @@ class AuthorSignIn extends Component {
   }
 
   componentWillMount() {
-    // if(this.props.authenticated) {
-    //   this.context.router.push("/cms")
-    // }
+    if(this.props.authenticated) {
+      this.context.router.push("/cms")
+    }
   }
 
   handleSubmit(author) {

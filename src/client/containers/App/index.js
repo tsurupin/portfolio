@@ -3,7 +3,7 @@ import NavigationBar from 'client/components/NavigationBar/index';
 import { Footer } from 'shared/components/Footer/index';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MyRawTheme from 'shared/theme';
-import styles from './styles.scss';
+import styles from './styles';
 
 
 class App extends Component {

@@ -10,7 +10,8 @@ import DatePicker from 'cms/components/shared/CustomDatePicker/index';
 import Item from 'cms/components/posts/forms/Item/index';
 import TagField from 'cms/components/shared/TagField/index';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 
 const propTypes = {
@@ -38,22 +39,30 @@ const propTypes = {
   finishLoading: PropTypes.func.isRequired
 };
 
-const inlineStyles = {
 
-  indicator: {
-    display: 'inline-block',
-    position: 'relative'
-  },
-  textField: {
-    marginBottom: 10
-  },
-  progressBar: {
-    position: 'fixed',
-    top: 56,
-    left: 0,
-    right: 0
+function mapStateToProps(state) {
+  return {
+    initialValues: state.posts.postForm,
+    items: state.items,
+    tags: state.tags.tags,
+    tagSuggestions: state.tags.tagSuggestions,
+    errorMessage: state.posts.errorMessage
   }
-};
+}
+
+
+const fields = [
+  'id', 'title', 'publishedAt', 'leadSentence'
+];
+
+function validate(values) {
+  const errors = {};
+  if (!values.title) {
+    errors.title = 'Enter title'
+  }
+
+  return errors;
+}
 
 class PostForm extends Component {
 
@@ -198,28 +207,6 @@ class PostForm extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-  if (!values.title) {
-    errors.title = 'Enter title'
-  }
-  
-  return errors;
-}
-
-export const fields = [
-  'id', 'title', 'publishedAt', 'leadSentence'
-];
-
-function mapStateToProps(state) {
-  return {
-    initialValues: state.posts.postForm,
-    items: state.items,
-    tags: state.tags.tags,
-    tagSuggestions: state.tags.tagSuggestions,
-    errorMessage: state.posts.errorMessage
-  }
-}
 
 PostForm.propTypes = propTypes;
 

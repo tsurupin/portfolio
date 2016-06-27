@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { deleteAlert } from 'sharedActions/alerts'
-import styles from './styles.scss';
+import styles from './styles';
 
 
 export default function(ComposedComponent) {

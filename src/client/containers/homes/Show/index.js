@@ -6,7 +6,7 @@ import RecentPosts from 'client/components/homes/shows/RecentPosts/index';
 import RecentProject from 'client/components/homes/shows/RecentProject/index';
 import shallowCompare from 'react-addons-shallow-compare';
 import mainImage from './sample.png';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   home: PropTypes.shape({
@@ -25,9 +25,7 @@ const propTypes = {
 };
 
 function mapStateToProps(state) {
-  return {
-    home: state.home
-  }
+  return { home: state.home }
 }
 
 class HomeShow extends Component {
@@ -44,16 +42,6 @@ class HomeShow extends Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
-  renderText() {
-    if (this.props.home.introduction) {
-      return (
-        <div className={styles.introduction}>
-          <TextDisplay description={this.props.home.introduction}/>
-        </div>
-      )
-    }
-  }
-
   renderRecentPosts() {
     if (this.props.home.latestPosts) {
       return (<RecentPosts posts={this.props.home.latestPosts} />)
@@ -68,11 +56,10 @@ class HomeShow extends Component {
 
 
   render() {
-    console.log('hohhga')
-    // TODO: figure out how to specify image path after assets processing
-    if (!this.props.home) {
+    if (!this.props.home.introduction) {
       return <sectioon className={styles.root} />
     }
+
     return(
       <section className={styles.root}>
         <img
@@ -80,8 +67,8 @@ class HomeShow extends Component {
           src={mainImage}
           alt="main image"
         />
-        {this.renderText()}
-        <div className={styles.listContainer} >
+        <TextDisplay description={this.props.home.introduction}/>
+        <div className={styles.list} >
           {this.renderRecentPosts()}
           {this.renderRecentProject()}
         </div>

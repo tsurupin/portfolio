@@ -9,6 +9,7 @@ import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import ContentFlag from 'material-ui/svg-icons/content/flag';
 import NotificationPriorityHigh from 'material-ui/svg-icons/notification/priority-high';
+import inlineStyles from 'shared/css/MaterialUI/index';
 import styles from './styles';
 
 const propTypes = {
@@ -21,20 +22,6 @@ const propTypes = {
   handleToggle: PropTypes.func.isRequired
 };
 
-const inlineStyles = {
-  row: {
-    lineHeight: 1.6,
-    fontSize: 14
-  },
-  rowColumn:{
-    whiteSpace: 'normal',
-    overFlow: 'visible',
-    height: 70,
-    paddingLeft: 16,
-    paddingRight: 16,
-  }
-};
-
 class Item extends Component {
 
   constructor(props) {
@@ -42,8 +29,7 @@ class Item extends Component {
 
     this.handleToggle = this.handleToggle.bind(this);
   }
-
-
+  
   handleToggle() {
     this.props.handleToggle(this.props.sortRank, this.props.id);
   }
@@ -94,7 +80,7 @@ class Item extends Component {
       </TableRow>
     )
   }
-};
+}
 
 Item.propTypes = propTypes;
 

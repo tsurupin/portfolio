@@ -1,5 +1,5 @@
 .root {
-  min-height: 500px;
+
 }
 
 .image {
@@ -7,16 +7,9 @@
   display: block;
   max-width: 100%;
 }
-.introduction {
-
-}
-
-.description {
-
-}
 
 
-.listContainer {
+.list {
   display: flex;
   margin-top: 30px;
   composes: marginBottomMedium from '../../../../shared/css/margins.scss';

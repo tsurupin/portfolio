@@ -3,7 +3,8 @@ import { reduxForm } from 'redux-form';
 import TextEditor from 'shared/components/textEditors/Editor/index';
 import IconButton from 'material-ui/IconButton';
 import ContentSave from 'material-ui/svg-icons/content/save';
-import styles from '../shared/styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from '../shared/styles';
 
 
 const propTypes = {
@@ -13,6 +14,18 @@ const propTypes = {
   deleteButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
+
+function validate(values) {
+  const errors = {};
+  if (!values.description) {
+    errors.description = 'Enter description'
+  }
+
+  return errors;
+}
+
+
+const fields = ['description'];
 
 
 class Text extends Component {
@@ -52,7 +65,7 @@ class Text extends Component {
             name="save-item-button"
             onClick={handleSubmit(this.handleUpdateItem)}
           >
-            <ContentSave color="8F8F8F" />
+            <ContentSave color={inlineStyles.iconColor} />
           </IconButton>
         </div>
       </div>
@@ -63,18 +76,9 @@ class Text extends Component {
 
 Text.propTypes = propTypes;
 
-function validate(values) {
-  const errors = {};
-  if (!values.description) {
-    errors.description = 'Enter description'
-  }
-
-  return errors;
-}
-
 export default reduxForm({
   form: 'ItemTextForm',
-  fields: ['description'],
+  fields,
   validate
 })(Text);
 

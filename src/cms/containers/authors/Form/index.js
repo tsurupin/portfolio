@@ -8,8 +8,8 @@ import TextField from 'material-ui/TextField';
 import TextEditor from 'shared/components/textEditors/Editor/index'
 import SocialAccount from 'cms/components/authors/forms/SocialAccount/index';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 
 const propTypes = {
@@ -49,12 +49,6 @@ function validate(values) {
 
   return errors;
 }
-
-const inlineStyles = {
-  textField: {
-    marginBottom: 10
-  }
-};
 
 class AuthorForm extends Component {
   constructor(props) {

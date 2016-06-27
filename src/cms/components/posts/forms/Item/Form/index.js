@@ -6,6 +6,7 @@ import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
 import Image from './Image/index';
 import Twitter from './Twitter/index';
 import Text from './Text/index';
+import inlineStyles from 'shared/css/MaterialUI/index';
 
 
 const propTypes = {
@@ -101,7 +102,7 @@ class PostItemForm extends Component {
         name="delete-item-button"
         onClick={this.handleDeleteItem}
       >
-        <ContentDeleteSweep color="8F8F8F" />
+        <ContentDeleteSweep color={inlineStyles.iconColor} />
       </IconButton>
     )
   }
@@ -115,7 +116,7 @@ class PostItemForm extends Component {
         name="cancel-item-button"
         onClick={this.handleCancelItem}
       >
-        <ContentRemoveCircle color="8F8F8F" />
+        <ContentRemoveCircle color={inlineStyles.iconColor} />
       </IconButton>
     )
   }

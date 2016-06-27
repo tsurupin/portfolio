@@ -15,7 +15,8 @@ import {
 } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 
 const propTypes =  {
@@ -35,21 +36,6 @@ function mapStateToProps(state) {
     projects: state.projects.projects
   }
 }
-
-const inlineStyles = {
-  floatButton: {
-    position: 'fixed',
-    zIndex: 100,
-    bottom: '5%',
-    right: '3%'
-  },
-
-  headerColumn: {
-    color: '#B3B3B3',
-    fontWeight: 'bold'
-  }
-};
-
 class ProjectIndex extends Component {
   
   constructor(props) {

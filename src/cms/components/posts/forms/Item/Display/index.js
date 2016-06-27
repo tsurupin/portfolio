@@ -4,7 +4,7 @@ import Tooltip from './Tooltip/index';
 import Image from 'shared/components/posts/Image/index';
 import Twitter from 'shared/components/posts/Twitter/index';
 import Text from 'shared/components/posts/Text/index';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   sortRank: PropTypes.number.isRequired,

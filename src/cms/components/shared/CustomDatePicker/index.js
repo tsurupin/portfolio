@@ -16,12 +16,11 @@ export default class CustomDatePicker extends Component {
   render() {
     let props;
     if (this.props.value) {
-      // TODO: reflect time
       props = {...this.props, value: new Date(this.props.value)}
     } else {
       props = this.props
-    };
+    }
 
-    return <DatePicker {...props} onChange={this.onChange.bind(this)}/>
+    return <DatePicker {...props} onChange={this.onChange.bind(this)} />
   }
 }

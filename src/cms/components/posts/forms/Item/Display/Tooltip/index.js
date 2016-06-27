@@ -15,7 +15,7 @@ import Clear from 'material-ui/svg-icons/content/clear';
 import IconMenu from 'material-ui/IconMenu';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import IconButton from 'material-ui/IconButton';
-import styles from './styles.scss';
+import styles from './styles';
 
 
 const propTypes = {

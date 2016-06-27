@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import TagList from 'shared/components/TagList/index';
 import TextDisplay from 'shared/components/textEditors/Display/index';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
@@ -47,7 +47,9 @@ function Item({ adminPath, title, description, image, caption, sourceUrl, tags }
         <img className={styles.image} src={image} alt={title} />
         <span className={styles.caption}>{caption}</span>
       </div>
-      {renderText(description)}
+      <div className={styles.description}>
+        <TextDisplay description={description} />
+      </div>
       {renderLink(sourceUrl)}
     </div>
   )

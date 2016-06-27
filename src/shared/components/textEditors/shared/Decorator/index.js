@@ -2,9 +2,7 @@ import React from 'react';
 import { Entity, CompositeDecorator } from 'draft-js';
 import MultiDecorator from 'draft-js-multidecorators';
 import PrismDecorator from 'draft-js-prism';
-import styles from './styles.scss';
-
-
+import styles from './styles';
 
 const Link = (props) => {
   const { url } = Entity.get(props.entityKey).getData();

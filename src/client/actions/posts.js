@@ -17,17 +17,13 @@ export function fetchPosts(params = { page: 1 }) {
   return dispatch => {
     return (
       request
-        .then(response => {
-          console.log(response)
-          dispatch(fetchPostsSuccess(response.data))
-        })
+        .then(response => dispatch(fetchPostsSuccess(response.data)))
         .catch(error => dispatch(createAlert(error.data, "error")))
     );
   };
 }
 
 function fetchPostsSuccess({ posts, meta }) {
-  console.log(posts, meta)
   return {
     type: FETCH_POSTS_INFINITELY.SUCCESS,
     payload: {
@@ -48,7 +44,7 @@ export function fetchPost(id) {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTags(response.payload.tags))
       })
-      .catch(() => browserHistory.push("/not-found"))
+      .catch((error) => browserHistory.push("/not-found"))
   };
 }
 

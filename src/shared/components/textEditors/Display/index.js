@@ -7,14 +7,32 @@ import {
 
 import { getBlockStyle } from '../shared/utilities';
 import { decorator } from '../shared/Decorator/index';
-import styles from './styles.scss';
+import styles from './styles';
+
+
+const propTypes = {
+  description: PropTypes.string.isRequired
+};
 
 class TextDisplay extends Component {
   constructor(props) {
     super(props);
-    
-    const blocks = convertFromRaw(JSON.parse(props.description));
-    this.state = { editorState: EditorState.createWithContent(blocks, decorator) };
+
+    if (props.description) {
+      const blocks = convertFromRaw(JSON.parse(props.description));
+      this.state = { editorState: EditorState.createWithContent(blocks, decorator) };
+    } else {
+      this.state = {
+        editorState: EditorState.createEmpty(decorator)
+      };
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.description && nextProps.description) {
+      const blocks = convertFromRaw(JSON.parse(nextProps.description));
+      this.setState({ editorState: EditorState.createWithContent(blocks, decorator) });
+    }
   }
 
   render() {
@@ -32,9 +50,7 @@ class TextDisplay extends Component {
   }
 }
 
-TextDisplay.propTypes = {
-  description: PropTypes.string.isRequired
-};
+TextDisplay.propTypes = propTypes;
 
 export default TextDisplay
 

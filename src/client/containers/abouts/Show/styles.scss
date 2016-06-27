@@ -1,5 +1,4 @@
 .root {
-  min-height: 500px;
 }
 
 .title {
@@ -9,13 +8,6 @@
   line-height: 1.2;
   letter-spacing: 0;
 }
-
-.description {
-  font-size: 1.6rem;
-  line-height: 1.4;
-  margin-top: 4px;
-}
-
 
 .subHeading {
   composes: title;

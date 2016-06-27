@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import TextDisplay from 'shared/components/textEditors/Display/index';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   description: PropTypes.string.isRequired

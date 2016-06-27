@@ -4,7 +4,8 @@ import DropzoneImage from 'cms/components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ContentSave from 'material-ui/svg-icons/content/save';
-import styles from '../shared/styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from '../shared/styles';
 
 
 const propTypes = {
@@ -13,6 +14,17 @@ const propTypes = {
   deleteButton: PropTypes.element.isRequired,
   handleUpdateItem: PropTypes.func.isRequired
 };
+
+const fields = ['image', 'caption'];
+
+function validate(values) {
+  const errors = {};
+  if(!values.image) {
+    errors.image = 'Entry image'
+  }
+
+  return errors;
+}
 
 
 class Image extends Component {
@@ -61,7 +73,7 @@ class Image extends Component {
             name="save-item-button"
             onClick={handleSubmit(this.handleUpdateItem)}
           >
-            <ContentSave color="8F8F8F" />
+            <ContentSave color={inlineStyles.iconColor} />
           </IconButton>
         </div>
       </div>
@@ -71,18 +83,10 @@ class Image extends Component {
 
 Image.propTypes = propTypes;
 
-function validate(values) {
-  const errors = {};
-  if(!values.image) {
-    errors.image = 'Entry image'
-  }
-
-  return errors;
-}
 
 export default reduxForm({
   form: 'ItemImageForm',
-  fields: ['image', 'caption'],
+  fields,
   validate
 })(Image);
 

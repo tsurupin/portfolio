@@ -4,8 +4,9 @@ import { fetchPosts } from 'client/actions/posts';
 import Item from 'client/components/posts/indexes/Item/index';
 import NoContent from 'shared/components/NoContent/index';
 import shallowCompare from 'react-addons-shallow-compare';
-import styles from'./styles.scss';
 import Infinite from 'react-infinite';
+import styles from'./styles';
+
 
 
 const propTypes = {
@@ -17,7 +18,6 @@ const propTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log(state.posts.posts)
   return {
     posts: state.posts.posts,
     page: state.posts.page,
