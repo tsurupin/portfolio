@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Transit to the post form page", js: true do
+feature "User transits to the post index page", js: true do
 
   context 'when there are no corresponding posts' do
     scenario 'they see no content message' do
