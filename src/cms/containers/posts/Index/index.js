@@ -91,9 +91,18 @@ class PostIndex extends Component {
       return <section />
     }
 
-    if (this.props.posts.length === 0 ) {
+    const newButton = (
+      <Link to="/cms/posts/new">
+        <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
+          <ContentAdd />
+        </FloatingActionButton>
+      </Link>
+    );
+
+    if(this.props.posts.length === 0 ) {
       return (
         <section className={styles.root}>
+          {newButton}
           <NoContent pageName="posts" />
         </section>
       );
@@ -101,11 +110,7 @@ class PostIndex extends Component {
 
     return (
       <section className={styles.root}>
-        <Link to="/cms/posts/new">
-          <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
-            <ContentAdd />
-          </FloatingActionButton>
-        </Link>
+       {newButton}
         <h1 className={styles.title}>Post</h1>
         <Table fixedHeader={true} fixedFooter={true}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
