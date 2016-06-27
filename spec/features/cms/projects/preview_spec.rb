@@ -29,8 +29,8 @@ feature 'Admin user sees the projects in preview mode', js: true do
       sign_in_and_redirect_to('/cms/projects/preview')
       expect(page).to have_css('h1', 'Projects')
       click_on tag1.name
-      sleep 5
-      save_and_open_page
+      #sleep 5
+
       expect(page).to have_text('sample')
       expect(page).to have_selector('h3', count: 1)
     end

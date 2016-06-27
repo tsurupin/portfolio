@@ -8,7 +8,7 @@ describe 'Admin user signs in to cms', js: true do
     fill_in 'email', with: author.email
     fill_in 'password', with: author.password
     click_on 'SignIn'
-    expect(page).to have_css('section', 'Hello World!')
+    expect(page).to have_css('h1', 'Posts')
   end
 
   scenario 'they fail to sign in because of wrong password' do
