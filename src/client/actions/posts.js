@@ -17,13 +17,17 @@ export function fetchPosts(params = { page: 1 }) {
   return dispatch => {
     return (
       request
-        .then(response => dispatch(fetchPostsSuccess(response.data)))
+        .then(response => {
+          console.log(response)
+          dispatch(fetchPostsSuccess(response.data))
+        })
         .catch(error => dispatch(createAlert(error.data, "error")))
     );
   };
 }
 
 function fetchPostsSuccess({ posts, meta }) {
+  console.log(posts, meta)
   return {
     type: FETCH_POSTS_INFINITELY.SUCCESS,
     payload: {

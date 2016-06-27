@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: { message: '%{value} is already used' }
 
-  after_update :delete_cache
+  after_save :delete_cache
   mount_uploader :image, ProjectImageUploader
 
   private

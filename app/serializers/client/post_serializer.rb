@@ -34,10 +34,10 @@ class Client::PostSerializer < ActiveModel::Serializer
   private
 
   def prev_post
-    @prev_post ||= ActiveType.cast(object, Post::Search).previous
+    ActiveType.cast(object, Post::Search).previous
   end
 
   def next_post
-    @next_post ||= ActiveType.cast(object, Post::Search).next
+    ActiveType.cast(object, Post::Search).next
   end
 end

@@ -1,8 +1,9 @@
 class Client::Api::V1::ProjectsController < Client::ApplicationController
   def index
-    projects = rails_cache("cached_projects?tag=#{params[:tag]}") do
-      Project::Search.client_search(params).to_a
+    json = rails_cache("cached_projects?tag=#{params[:tag]}") do
+      projects = Project::Search.client_search(params)
+      { projects: ActiveModel::ArraySerializer.new(projects, each_serializer:  Client::ProjectsSerializer)}.to_json
     end
-    render json: projects, each_serializer:  Client::ProjectsSerializer
+    render json: json
   end
 end

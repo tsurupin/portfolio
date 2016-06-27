@@ -14,6 +14,7 @@ gem 'turbolinks'
 
 # For View
 gem 'kaminari'
+gem 'oj'
 
 # For Image upload
 gem 'autoprefixer-rails'          # ベンダープレフィックスを自動でつけてくれる

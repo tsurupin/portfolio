@@ -1,8 +1,8 @@
 class Client::Api::V1::HomesController < Client::ApplicationController
   def show
-    home = rails_cache('cached_home') do
-      Home.new
+    json = rails_cache('cached_home') do
+      Client::HomeSerializer.new(Home.new).to_json
     end
-    render json: Client::HomeSerializer.new(home)
+    render json: json
   end
 end

@@ -26,7 +26,7 @@ const propTypes = {
         caption: PropTypes.string,
         twitterId: PropTypes.string
       }).isRequire
-    ).isRequired
+    )
   }).isRequired,
   
   tags: PropTypes.arrayOf(

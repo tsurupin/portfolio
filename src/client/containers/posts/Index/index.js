@@ -17,6 +17,7 @@ const propTypes = {
 };
 
 function mapStateToProps(state) {
+  console.log(state.posts.posts)
   return {
     posts: state.posts.posts,
     page: state.posts.page,
