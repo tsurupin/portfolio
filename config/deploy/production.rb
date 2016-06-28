@@ -10,7 +10,7 @@ role :batch, [Settings.aws_ec2_ip]
 set :branch, 'master'
 set :rails_env, 'production'
 set :migration_role, 'db'
-set :whenever_environment, :production
+# set :whenever_environment, :production
 
 set :deploy_to, app_path
 
