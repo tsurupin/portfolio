@@ -1,0 +1,35 @@
+machine:
+  ruby:
+    version:
+      2.3.0
+  node:
+    version: 4.4.3
+
+dependencies:
+  pre:
+    - sudo pip install awscli
+test:
+  override:
+    - bundle exec rake spec
+database:
+  pre:
+    - mysql -e 'set global innodb_file_format = Barracuda'
+    - mysql -e 'set global innodb_file_per_table = 1'
+    - mysql -e 'set global innodb_large_prefix = 1'
+  override:
+    - mv config/ci_database.yml config/database.yml
+    - rake db:migrate:reset --trace:
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+deployment:
+  staging:
+    branch: staging
+    commands:
+      - sh script/deploy-staging.sh:
+          timeout: 1500
+  production:
+    branch: master
+    commands:
+      - sh script/deploy-production.sh:
+          timeout: 1500
