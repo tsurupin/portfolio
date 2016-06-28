@@ -73,7 +73,7 @@ class ProjectIndex extends Component {
     if (this.state.loading) {
       return <section />
     }
-    if(this.props.projects.length === 0 ) {
+    if(this.props.projects.length) {
       return (
         <section className={styles.root}>
           <NoContent pageName="projects" />

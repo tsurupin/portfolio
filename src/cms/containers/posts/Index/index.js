@@ -86,7 +86,7 @@ class PostIndex extends Component {
       </Link>
     );
 
-    if(this.props.posts.length === 0 ) {
+    if(this.props.posts.length) {
       return (
         <section>
           {newButton}

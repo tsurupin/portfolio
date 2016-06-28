@@ -71,7 +71,7 @@ class ProjectIndex extends Component {
       </Link>
     );
     
-    if(this.props.projects.length === 0 ) {
+    if (this.props.projects.length) {
       return (
         <section>
           {newButton}

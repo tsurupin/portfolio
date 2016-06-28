@@ -94,7 +94,7 @@ class PostIndex extends Component {
       return <section />
     }
 
-    if(this.props.posts.length === 0 ) {
+    if(this.props.posts.length) {
       return (
         <section >
           <NoContent pageName="posts" />
