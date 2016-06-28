@@ -97,7 +97,7 @@
   padding-left: 5px;
 }
 
-.urlInputContainer {
-  composes: marginBottomXSmall from 'shared/css/margins.scss';
+.urlInputBox {
   composes: text;
+  composes: marginBottomXSmall from 'shared/css/margins.scss';
 }

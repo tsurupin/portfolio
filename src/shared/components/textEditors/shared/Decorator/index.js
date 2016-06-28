@@ -29,7 +29,10 @@ function findLinkEntities(contentBlock, callback) {
 }
 
 export const decorator = new MultiDecorator([
-  new PrismDecorator(),
+  // default is javascript;
+  new PrismDecorator({
+    defaultSyntax: 'javascript'
+  }),
   new CompositeDecorator([
     {
       strategy: findLinkEntities,

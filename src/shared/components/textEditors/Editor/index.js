@@ -20,6 +20,7 @@ import Divider from 'material-ui/Divider';
 import inlineStyles from 'shared/css/MaterialUI/index';
 import styles from '../shared/styles';
 
+
 export default class TextEditor extends Component {
 
   constructor(props) {
@@ -146,7 +147,7 @@ export default class TextEditor extends Component {
   renderURLField() {
       if (this.state.inputtable) {
         return(
-          <div className={styles.urlInputContainer}>
+          <div className={styles.urlInputBox}>
             <TextField
               onChange={this.handleChangeURL}
               ref="url"
@@ -167,7 +168,7 @@ export default class TextEditor extends Component {
     const { editorState } = this.state;
 
     return (
-      <div className={styles.root} onBlur={this.handleUpdate}>
+      <div className={styles.root} onBlur={this.handleUpdate} >
         <div className={styles.controls}>
           <BlockStyleControls
             editorState={editorState}
@@ -186,7 +187,7 @@ export default class TextEditor extends Component {
           <Editor
             onChange={this.handleChange}
             blockStyleFn={getBlockStyle}
-            editorState={this.state.editorState}
+            editorState={editorState}
             spellCheck={true}
             placeholder="Enter Text"
             ref="editor"

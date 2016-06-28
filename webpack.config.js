@@ -62,7 +62,7 @@ module.exports = {
     contentBase: './'
   },
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { allChunks: true, ignoreOrder: true }),
+    new ExtractTextPlugin('../stylesheets/[name]/style.scss', { allChunks: true, ignoreOrder: true }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

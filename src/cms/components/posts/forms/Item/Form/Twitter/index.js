@@ -18,11 +18,11 @@ const propTypes = {
 };
 
 const fields = ['twitterId'];
-const twitterURLRegexp = /https?:\/\/twitter.com\/[\w]+\/status\/([\d]+)$/ig;
 
 function validate(values) {
   const errors = {};
-  if (!twitterURLRegexp.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId) ) {
+
+  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId) ) {
     errors.twitterId = 'Enter Valid Twitter URL or Twitter ID'
   }
 
@@ -38,8 +38,9 @@ class Twitter extends Component {
   }
 
   handleUpdateItem(props) {
-    const twitterId = props.twitterId.match(twitterURLRegexp) ? props.twitterId.match(twitterURLRegexp)[1] : props.twitterId;
-
+    const regexp = /https?:\/\/twitter.com\/[\w]+\/status\/([\d]+)$/i;
+    const twitterId = props.twitterId.match(regexp) ? props.twitterId.match(regexp)[1] : props.twitterId;
+    console.log(twitterId);
     this.props.handleUpdateItem({twitterId});
   }
 
