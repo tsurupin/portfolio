@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import styles from './styles.scss';
+import styles from './styles';
 import TagList from 'shared/components/TagList/index';
 
 const propTypes = {

@@ -140,27 +140,7 @@ describe('client post actions', () => {
           expect(store.getActions()).to.eql(expectedResponse)
         })
     });
-
-    it('create FETCH_POST_FAILURE when fetching post has been failed', () => {
-      nock(TEST_DOMAIN)
-        .get(`${postUrl}/1`)
-        .reply(400, { errorMessage: 'errorMessage' });
-
-      const store = mockStore({});
-      const expectedResponse = [{
-        payload: {
-          hasAlert: true,
-          kind: "error",
-          message: 'errorMessage'
-        },
-        type: CREATE_ALERT
-      }];
-
-      return store.dispatch(fetchPost(1))
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
-    });
+    
   });
   
 });

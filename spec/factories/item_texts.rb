@@ -8,6 +8,6 @@
 
 FactoryGirl.define do
   factory :item_text do
-    description "{\"entityMap\":{},\"blocks\":[{\"key\":\"crvbi\",\"text\":\"test\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[]}]}"
+    description '{"entityMap":{},"blocks":[{"key":"crvbi","text":"test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}'
   end
 end

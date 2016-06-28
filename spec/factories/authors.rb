@@ -19,5 +19,9 @@ FactoryGirl.define do
     sequence(:name) { Faker::Name.name }
     sequence(:email) { Faker::Internet.email }
     sequence(:password) { SecureRandom.hex }
+    trait :updated do
+      introduction '{"entityMap":{},"blocks":[{"key":"crvbi","text":"test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}'
+      description '{"entityMap":{},"blocks":[{"key":"crvbi","text":"test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}'
+    end
   end
 end

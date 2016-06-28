@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Display from './Display/index';
 import Form from './Form/index';
 
@@ -12,35 +12,33 @@ const propTypes = {
   handleUpdateItem: PropTypes.func.isRequired
 };
 
-class Item extends Component {
 
-  renderComponent() {
-    if (this.props.item.editing) {
-      return (
-        <Form
-          sortRank={this.props.sortRank}
-          item={this.props.item}
-          handleDeleteItem={this.props.handleDeleteItem}
-          handleUpdateItem={this.props.handleUpdateItem}
-        />
-      );
-    }
-
+function renderComponent(props) {
+  if (props.item.editing) {
     return (
-      <Display
-        sortRank={this.props.sortRank}
-        item={this.props.item}
-        totalCount={this.props.totalCount}
-        handleMoveItem={this.props.handleMoveItem}
-        handleDeleteItem={this.props.handleDeleteItem}
-        handleUpdateItem={this.props.handleUpdateItem}
+      <Form
+        sortRank={props.sortRank}
+        item={props.item}
+        handleDeleteItem={props.handleDeleteItem}
+        handleUpdateItem={props.handleUpdateItem}
       />
     );
   }
 
-  render() {
-    return <li>{this.renderComponent()}</li>;
-  }
+  return (
+    <Display
+      sortRank={props.sortRank}
+      item={props.item}
+      totalCount={props.totalCount}
+      handleMoveItem={props.handleMoveItem}
+      handleDeleteItem={props.handleDeleteItem}
+      handleUpdateItem={props.handleUpdateItem}
+    />
+  );
+}
+
+function Item(props) {
+  return <li>{renderComponent(props)}</li>;
 }
 
 

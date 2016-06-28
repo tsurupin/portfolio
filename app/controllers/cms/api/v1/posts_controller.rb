@@ -38,5 +38,4 @@ class Cms::Api::V1::PostsController < Cms::ApplicationController
   def post_form_params
     params.require(:post).permit(*Post::Form::PERMITTED_ATTRIBUTES)
   end
-
 end

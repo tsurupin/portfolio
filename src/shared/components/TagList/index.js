@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import LabelOutline from 'material-ui/svg-icons/action/label-outline';
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 const propTypes = {
   tags: PropTypes.arrayOf(
@@ -13,20 +14,10 @@ const propTypes = {
   path: PropTypes.string.isRequired
 };
 
-
-const inlineStyles ={
-  tagIcon: {
-    marginLeft: 0,
-    width: 18,
-    height: 18
-  }
-};
-
 function TagList({ tags, path }) {
-
   return (
     <div className={styles.root} >
-      <LabelOutline color='#00AB6B' style={inlineStyles.tagIcon}/>
+      <LabelOutline color={inlineStyles.tagColor} style={inlineStyles.tagIcon}/>
       {tags.map((tag) => {
         return (
           <Link key={tag.id} to={`${path}?tag=${tag.id}`} className={styles.item}>

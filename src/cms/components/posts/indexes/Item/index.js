@@ -9,6 +9,7 @@ import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import ContentFlag from 'material-ui/svg-icons/content/flag';
 import NotificationPriorityHigh from 'material-ui/svg-icons/notification/priority-high';
+import inlineStyles from 'shared/css/MaterialUI/index';
 import styles from './styles';
 
 const propTypes = {
@@ -21,20 +22,6 @@ const propTypes = {
   handleToggle: PropTypes.func.isRequired
 };
 
-const inlineStyles = {
-  row: {
-    lineHeight: 1.6,
-    fontSize: 14
-  },
-  rowColumn:{
-    whiteSpace: 'normal',
-    overFlow: 'visible',
-    height: 70,
-    paddingLeft: 16,
-    paddingRight: 16,
-  }
-};
-
 class Item extends Component {
 
   constructor(props) {
@@ -42,8 +29,7 @@ class Item extends Component {
 
     this.handleToggle = this.handleToggle.bind(this);
   }
-
-
+  
   handleToggle() {
     this.props.handleToggle(this.props.sortRank, this.props.id);
   }
@@ -51,22 +37,22 @@ class Item extends Component {
   render() {
     let publishActionIcon;
     if (this.props.accepted) {
-      publishActionIcon = <ActionVisibilityOff className={styles.inVisibleIcon} />;
+      publishActionIcon = <ActionVisibilityOff name="in-visible-button" />;
     } else {
-      publishActionIcon = <ActionVisibility className={styles.visibleIcon} />;
+      publishActionIcon = <ActionVisibility name="visible-button" />;
     }
 
     // 0: not accepted, 1: will publish, 2: publishing
     let statusIcon;
     switch (this.props.status) {
       case 0:
-        statusIcon = <NotificationPriorityHigh name="unaccepted" />;
+        statusIcon = <NotificationPriorityHigh name="unaccepted-button" />;
         break;
       case 1:
-        statusIcon = <ActionDone name="accepted" />;
+        statusIcon = <ActionDone name="accepted-button" />;
         break;
       case 2:
-        statusIcon = <ContentFlag name="publishing" />;
+        statusIcon = <ContentFlag name="publishing-button" />;
         break;
     }
 
@@ -94,7 +80,7 @@ class Item extends Component {
       </TableRow>
     )
   }
-};
+}
 
 Item.propTypes = propTypes;
 

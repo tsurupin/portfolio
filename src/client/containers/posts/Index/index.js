@@ -4,8 +4,9 @@ import { fetchPosts } from 'client/actions/posts';
 import Item from 'client/components/posts/indexes/Item/index';
 import NoContent from 'shared/components/NoContent/index';
 import shallowCompare from 'react-addons-shallow-compare';
-import styles from'./styles.scss';
 import Infinite from 'react-infinite';
+import styles from'./styles';
+
 
 
 const propTypes = {
@@ -95,15 +96,15 @@ class PostIndex extends Component {
 
     if(this.props.posts.length === 0 ) {
       return (
-        <section className={styles.root}>
+        <section >
           <NoContent pageName="posts" />
         </section>
       )
     }
    
     return (
-      <section className={styles.root}>
-        <h1 className={styles.title}>Posts</h1>
+      <section>
+        <h1 className={styles.heading}>Posts</h1>
         {this.renderItems()}
       </section>
     );

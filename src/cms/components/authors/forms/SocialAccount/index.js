@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/textField';
-import styles from './styles.scss';
 
 const propTypes = {
   sortRank: PropTypes.number.isRequired,
@@ -19,21 +18,17 @@ class SocialAccount extends Component {
   handleChange(event) {
     this.props.handleUpdate(this.props.sortRank, event.target.value);
   }
-
   
   render() {
     return (
-      <div className={styles.root}>
-        <TextField
-          value={this.props.url}
-          className={styles.inputText}
-          name="url"
-          floatingLabelText={`${this.props.accountType} URL`}
-          hintText="Enter "
-          fullWidth={true}
-          onChange={this.handleChange}
-        />
-      </div>
+      <TextField
+        value={this.props.url}
+        name="url"
+        floatingLabelText={`${this.props.accountType} URL`}
+        hintText="Enter URL"
+        fullWidth={true}
+        onChange={this.handleChange}
+      />
     )
   }
 }

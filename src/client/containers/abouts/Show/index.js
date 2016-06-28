@@ -18,6 +18,7 @@ const propTypes = {
   })).isRequired
 };
 
+
 function mapStateToProps(state) {
   return {
     about: state.about,
@@ -39,26 +40,16 @@ class AboutShow extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
-
-  renderText() {
-    if (this.props.about.description) {
-      return (
-        <div className={styles.description}>
-          <TextDisplay description={this.props.about.description}/>
-        </div>
-      )
-    }
-  }
-
+  
   render() {
     if (!this.props.about) {
-      return <seciont className={styles.root} />
+      return <seciont />
     }
 
     return(
-      <section className={styles.root}>
-        <h1 className={styles.title}>About</h1>
-        {this.renderText()}
+      <section>
+        <h1 className={styles.heading}>About</h1>
+        <TextDisplay description={this.props.about.description}/>
         <SocialAccounts socialAccounts={this.props.socialAccounts} />
         <h2 className={styles.subHeading}>{config.siteName}</h2>
         <div className={styles.siteDescription}>

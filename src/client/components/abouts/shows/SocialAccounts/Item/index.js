@@ -4,7 +4,6 @@ import gitHubIcon from './git-hub-icon.png';
 import facebookIcon from './facebook-icon.png';
 import linkedInIcon from './linked-in-icon.png';
 import twitterIcon from './twitter-icon.png';
-import styles from './styles.scss';
 
 const propTypes = {
   accountType: PropTypes.string.isRequired,
@@ -13,7 +12,7 @@ const propTypes = {
 
 function Item({ url, accountType }) {
   return(
-    <li className={styles.root}>
+    <li>
       <a href={url} >
         <IconButton >
           <img src={getAccountIconImage(accountType)} />
@@ -21,7 +20,6 @@ function Item({ url, accountType }) {
       </a>
     </li>
   )
-  
 }
 
 function getAccountIconImage(accountType) {

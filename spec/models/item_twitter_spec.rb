@@ -14,17 +14,17 @@ RSpec.describe ItemTwitter, type: :model do
     it { is_expected.to validate_presence_of(:twitter_id) }
   end
 
-  describe '#set_attributes_and_save!' do
-    it "increments the record count" do
+  describe '#trim_attributes_and_save!' do
+    it 'increments the record count' do
       twitter = build(:item_twitter, twitter_id: nil)
       params = { 'twitter_id' => '11111' }
-      expect{ twitter.set_attributes_and_save!(params)}.to change{ ItemTwitter.count }.by(1)
+      expect { twitter.trim_attributes_and_save!(params) }.to change { ItemTwitter.count }.by(1)
     end
 
     it 'raises the record invalid error' do
       twitter = build(:item_twitter, twitter_id: nil)
-      params = { }
-      expect{ twitter.set_attributes_and_save!(params)}.to raise_error(ActiveRecord::RecordInvalid)
+      params = {}
+      expect { twitter.trim_attributes_and_save!(params) }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end

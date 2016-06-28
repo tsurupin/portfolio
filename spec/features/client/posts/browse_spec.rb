@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User sees the post page", js: true do
+feature 'User sees the post page', js: true do
   context 'when there is no post url' do
     it 'they see the not found page' do
       visit('posts/1000')
@@ -23,8 +23,8 @@ feature "User sees the post page", js: true do
 
     scenario 'they see the next post title, and  move to the next post' do
       post = create(:post, :accepted, published_at: 2.days.ago)
-      next_post = create(:post, :accepted, published_at: 1.days.ago)
-      create(:post, :accepted, published_at: 1.days.from_now)
+      next_post = create(:post, :accepted, published_at: 1.day.ago)
+      create(:post, :accepted, published_at: 1.day.from_now)
 
       visit("posts/#{post.id}")
       click_link next_post.title
@@ -46,7 +46,7 @@ feature "User sees the post page", js: true do
       tag = create(:tag)
       same_tag_post = create(:post, :accepted)
       unaccepted_same_tag_post = create(:post)
-      different_tag_post =  create(:post, :accepted)
+      different_tag_post = create(:post, :accepted)
       create(:tagging, :subject_post, subject: post, tag: tag)
       create(:tagging, :subject_post, subject: same_tag_post, tag: tag)
       create(:tagging, :subject_post, subject: unaccepted_same_tag_post, tag: tag)

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User transits to the each page', js: true do
   background do
-    create(:author)
+    create(:author, :updated)
     visit('/')
   end
 

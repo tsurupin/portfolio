@@ -1,12 +1,8 @@
-@value colors: './colors.scss';
+@value weak-opaque: 0.7;
+@value moderate-opaque: 0.5;
+@value strong-opaque: 0.3;
 
-@value label-color, border-color from colors;
-
-.clearFloat::after {
-  content: "";
-  display: block;
-  clear: both;
-}
+@value quick-transition: 0.5s;
 
 .resetUlDefaultStyle {
   -webkit-padding-start: 0;
@@ -16,30 +12,22 @@
 }
 
 .hoverAnimation {
-  transition: 0.5s;
+  transition: quick-transition;
 
   &:hover {
     cursor: pointer;
     background-color: lightgray !important;
-    opacity: 0.3;
+    opacity: weak-opaque;
   }
 }
 
 .strongHoverOpaque {
-  transition: 0.5s;
+  transition: quick-transition;
 
   &:hover {
     cursor: pointer;
-    opacity: 0.7;
+    opacity: weak-opaque;
   }
 }
 
-.headerLabel {
-  composes: fontXSmall from './fonts.scss';
-  color: label-color;
-}
-
-.bottomBorder {
-  border-bottom: 1px solid border-color;
-}
 

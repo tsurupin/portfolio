@@ -37,7 +37,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
         end
       end
       context 'when access_token is not sent in header' do
-        let(:result) { { 'errorMessage' => 'unauthorized' }}
+        let(:result) { { 'errorMessage' => 'unauthorized' } }
         before { get edit_cms_api_v1_authors_path, {} }
         it 'returns an error message' do
           expect(response.status).to eq 401
@@ -59,7 +59,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
             }
           }
         end
-        let(:result) { { 'accessToken' => Author.last.access_token }}
+        let(:result) { { 'accessToken' => Author.last.access_token } }
         it 'creates author account and returns access token' do
           expect(Author.last.email).to eq 'sample@gmail.com'
           expect(JSON.parse(response.body)).to eq result
@@ -75,7 +75,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
             }
           }
         end
-        let(:result) { { 'errorMessage' => 'author create error' }}
+        let(:result) { { 'errorMessage' => 'author create error' } }
         it 'fails to create author, and return error message' do
           expect(response.status).to eq 422
           expect(Author.count).to eq 0
@@ -87,8 +87,8 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
     describe 'PATCH /cms/api/v1/authors' do
       let!(:author) { create(:author) }
       let(:auth_header) { { 'Authorization' => author.access_token } }
-      let!(:social_account1) { create(:social_account, account_type: 'facebook', author: author)}
-      let!(:social_account2) { create(:social_account, account_type: 'twitter', author: author)}
+      let!(:social_account1) { create(:social_account, account_type: 'facebook', author: author) }
+      let!(:social_account2) { create(:social_account, account_type: 'twitter', author: author) }
       before { patch cms_api_v1_authors_path, params, auth_header }
       context 'all the necessary parameter are sent' do
         let(:params) do
@@ -99,7 +99,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
               'email' => 'sample@gmail.com',
               'introduction' => 'rich text',
               'description' => 'sample password',
-              'social_accounts_attributes'  =>
+              'social_accounts_attributes' =>
                 [
                   {
                     'id' => social_account1.id,
@@ -116,7 +116,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
         end
         it 'updates the author account and returns status 200' do
           expect(response.status).to eq 200
-          expect(Author.last.social_accounts.map(&:account_type)).to eq ['facebook', 'git_hub']
+          expect(Author.last.social_accounts.map(&:account_type)).to eq %w(facebook git_hub)
         end
       end
 
@@ -129,11 +129,11 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
               'email' => 'sample@gmail.com',
               'introduction' => 'rich text',
               'description' => 'sample password',
-              'social_accounts_attributes'   => []
+              'social_accounts_attributes' => []
             }
           }
         end
-        let(:result) { { 'errorMessage' => "Name can't be blank" }}
+        let(:result) { { 'errorMessage' => "Name can't be blank" } }
         it 'fails to update author, and return error message' do
           expect(response.status).to eq 400
           expect(JSON.parse(response.body)).to eq result

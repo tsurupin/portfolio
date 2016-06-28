@@ -1,21 +1,16 @@
 .root {
-  color: #333333;
   min-height: 500px;
 }
 
 .title {
-  color: rgba(0,0,0,.8);
-  font-size: 3.2rem;
-  font-weight: bold;
-  line-height: 1.2;
-  letter-spacing: 0;
-  margin-bottom: 5px;
+  composes: marginBottomXXSmall from 'shared/css/margins.scss';
+  composes: titleText from 'shared/css/components.scss';
 }
 
 .text {
-  font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
-  font-size: 21px;
+  omposes: descriptionFont from 'shared/css/fonts.scss';
+  composes: fontDescription from 'shared/css/fonts.scss';
+
   line-height: 1.58;
   letter-spacing: -.003em;
-  color: rgba(0, 0, 0, 0.8);
 }

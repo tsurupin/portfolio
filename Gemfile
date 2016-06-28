@@ -14,6 +14,7 @@ gem 'turbolinks'
 
 # For View
 gem 'kaminari'
+gem 'oj'
 
 # For Image upload
 gem 'autoprefixer-rails'          # ベンダープレフィックスを自動でつけてくれる
@@ -85,7 +86,7 @@ group :test do
   gem 'poltergeist'
   gem "chromedriver-helper"
   gem "selenium-webdriver"
-  gem 'simplecov', require: false
+  gem 'simplecov'
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'

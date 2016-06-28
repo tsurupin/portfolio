@@ -1,5 +1,4 @@
 class Cms::Api::V1::ProjectsController < Cms::ApplicationController
-
   def index
     projects = Project::Search.eager_load(:tags).latest
     render json: projects, each_serializer: Cms::ProjectsSerializer
@@ -38,5 +37,4 @@ class Cms::Api::V1::ProjectsController < Cms::ApplicationController
   def project_params
     params.require(:project).permit(*Project::Form::PERMITTED_ATTRIBUTES)
   end
-
 end

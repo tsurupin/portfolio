@@ -8,8 +8,8 @@ import TextField from 'material-ui/TextField';
 import TextEditor from 'shared/components/textEditors/Editor/index'
 import SocialAccount from 'cms/components/authors/forms/SocialAccount/index';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 
 const propTypes = {
@@ -49,12 +49,6 @@ function validate(values) {
 
   return errors;
 }
-
-const inlineStyles = {
-  textField: {
-    marginBottom: 10
-  }
-};
 
 class AuthorForm extends Component {
   constructor(props) {
@@ -122,7 +116,7 @@ class AuthorForm extends Component {
           style={inlineStyles.textField}
           errorText={name.touched && name.error ? name.error : ''}
         />
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Description</label>
           <TextEditor
             key="description"
@@ -130,7 +124,7 @@ class AuthorForm extends Component {
             handleUpdate={ (value) => { description.onChange(value) }}
           />
         </div>
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Introduction</label>
           <TextEditor
             key="introduction"
@@ -138,7 +132,7 @@ class AuthorForm extends Component {
             handleUpdate={ (value) => { introduction.onChange(value) }}
           />
         </div>
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Image</label>
           <DropzoneImage
             {...image}

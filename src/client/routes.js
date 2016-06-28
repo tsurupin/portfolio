@@ -18,5 +18,6 @@ export default (
       <Route path="/projects" component={ProgressBar(Alert(ProjectIndex))} />
       <Route path="/about" component={ProgressBar(Alert(AboutShow))} />
       <Route path="*" component={NotFound} />
+      <Route path="/not-found" component={NotFound} />
   </ Route>
 );

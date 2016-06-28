@@ -15,7 +15,8 @@ import {
 } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 
 const propTypes =  {
@@ -35,21 +36,6 @@ function mapStateToProps(state) {
     projects: state.projects.projects
   }
 }
-
-const inlineStyles = {
-  floatButton: {
-    position: 'fixed',
-    zIndex: 100,
-    bottom: '5%',
-    right: '3%'
-  },
-
-  headerColumn: {
-    color: '#B3B3B3',
-    fontWeight: 'bold'
-  }
-};
-
 class ProjectIndex extends Component {
   
   constructor(props) {
@@ -87,7 +73,7 @@ class ProjectIndex extends Component {
     
     if(this.props.projects.length === 0 ) {
       return (
-        <section className={styles.root}>
+        <section>
           {newButton}
           <NoContent pageName="projects" />
         </section>
@@ -95,7 +81,7 @@ class ProjectIndex extends Component {
     }
     
     return (
-      <section className={styles.root}>
+      <section>
         {newButton}
         <h1 className={styles.title}>Project</h1>
         <Table fixedHeader={true} fixedFooter={true}>

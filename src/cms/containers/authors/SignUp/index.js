@@ -4,6 +4,7 @@ import { reduxForm } from 'redux-form';
 import { signUp } from 'cms/actions/auths';
 import TextField from 'material-ui/TextField';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
+import inlineStyles from 'shared/css/MaterialUI/index';
 import styles from './styles.scss';
 
 
@@ -25,12 +26,28 @@ const fields = [
   'name', 'email', 'password', 'passwordConfirmation'
 ];
 
+function validate(values) {
+  const errors = {};
 
-const inlineStyles = {
-  textField: {
-    marginBottom: 10
+  if (!values.name) {
+    errors.name = 'Enter your name'
   }
-};
+
+  if(!values.password || values.password.length < 6) {
+    errors.password = 'Enter Password with more than 6 characters'
+  }
+
+  if(values.passwordConfirmation !== values.password) {
+    errors.passwordConfirmation = 'PasswordConfirmation is different from Password'
+  }
+
+  if(!values.email) {
+    errors.email = 'Enter Your Email'
+  }
+
+  return errors;
+}
+
 
 class AuthorSignUp extends Component {
 
@@ -111,32 +128,9 @@ class AuthorSignUp extends Component {
         </button>
     </form>)
   }
-};
-
-function validate(values) {
-  const errors = {};
-
-  if (!values.name) {
-    errors.name = 'Enter your name'
-  }
-
-  if(!values.password || values.password.length < 6) {
-    errors.password = 'Enter Password with more than 6 characters'
-  }
-
-  if(values.passwordConfirmation !== values.password) {
-    errors.passwordConfirmation = 'PasswordConfirmation is different from Password'
-  }
-
-  if(!values.email) {
-    errors.email = 'Enter Your Email'
-  }
-
-  return errors;
 }
 
 AuthorSignUp.propTypes = propTypes;
-
 
 export default reduxForm({
   form: 'SignUp',

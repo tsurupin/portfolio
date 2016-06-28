@@ -29,5 +29,4 @@ class ApplicationController < ActionController::Base
     p "error happened: #{full_messages}"
     render json: { errorMessage: full_messages }, status: :bad_request
   end
-
 end

@@ -25,7 +25,7 @@ RSpec.describe Item, type: :model do
     it 'destroys the target associated with the item' do
       twitter = create(:item_twitter)
       item = create(:item, target: twitter)
-      expect{ item.destroy }.to change{ ItemTwitter.count }.by(-1)
+      expect { item.destroy }.to change { ItemTwitter.count }.by(-1)
     end
   end
 end

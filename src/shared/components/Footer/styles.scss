@@ -1,5 +1,7 @@
-@value colors: '../../css/colors.scss';
-@value theme-color, second-text-color, border-color from colors;
+@value colors: 'shared/css/colors.scss';
+@value mixins: 'shared/css/mixins.scss';
+@value lead-sentence-color, border-color from colors;
+@value weak-opaque from mixins;
 
 .root {
   border-top : 1px solid border-color;
@@ -8,15 +10,17 @@
 }
 
 .text {
-  composes: fontSmall from '../../css/fonts.scss';
+  composes: fontSmall from 'shared/css/fonts.scss';
+
   display: block;
   text-align: center;
-  opacity: 0.7;
-  color: second-text-color;
+  opacity: weak-opaque;
+  color: lead-sentence-color;
 }
 
 .githubIcon {
-  composes: marginLeftXSmall from '../../css/margins.scss';
+  composes: marginLeftXSmall from 'shared/css/margins.scss';
+
   width: 20px;
   height: 20px;
   vertical-align: middle;

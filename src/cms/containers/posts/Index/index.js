@@ -16,7 +16,8 @@ import {
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Pagination from 'cms/components/shared/Pagination/index';
-import styles from'./styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from'./styles';
 
 
 const propTypes = {
@@ -45,20 +46,6 @@ function mapStateToProps(state) {
   }
 }
 
-const inlineStyles = {
-  floatButton: {
-    position: 'fixed',
-    zIndex: 100,
-    bottom: '5%',
-    right: '3%'
-  },
- 
-  headerColumn: {
-    color: '#B3B3B3',
-    fontWeight: 'bold'
-  }
-};
-
 class PostIndex extends Component {
   
   constructor(props) {
@@ -78,8 +65,8 @@ class PostIndex extends Component {
       });
   }
   
-  handleToggle(sortRank, post_id) {
-    this.props.togglePost(sortRank, post_id);
+  handleToggle(sortRank, postId) {
+    this.props.togglePost(sortRank, postId);
   }
   
   handleMovePage(page) {
@@ -91,21 +78,26 @@ class PostIndex extends Component {
       return <section />
     }
 
-    if (this.props.posts.length === 0 ) {
+    const newButton = (
+      <Link to="/cms/posts/new">
+        <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
+          <ContentAdd />
+        </FloatingActionButton>
+      </Link>
+    );
+
+    if(this.props.posts.length === 0 ) {
       return (
-        <section className={styles.root}>
+        <section>
+          {newButton}
           <NoContent pageName="posts" />
         </section>
       );
     }
 
     return (
-      <section className={styles.root}>
-        <Link to="/cms/posts/new">
-          <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
-            <ContentAdd />
-          </FloatingActionButton>
-        </Link>
+      <section>
+       {newButton}
         <h1 className={styles.title}>Post</h1>
         <Table fixedHeader={true} fixedFooter={true}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
@@ -134,7 +126,7 @@ class PostIndex extends Component {
                   page={this.props.page}
                   total={this.props.total}
                   limit={this.props.limit}
-                  onPageClick={this.handleMovePage}
+                  handlePageClick={this.handleMovePage}
                 />
               </TableRowColumn>
             </TableRow>

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   image: PropTypes.string,

@@ -1,11 +1,11 @@
 class Home
-  POST_NUMBER = 3.freeze
+  POST_NUMBER = 3
   include ActiveModel::Serialization
   attr_reader :project, :posts
 
   def initialize
     @author   = Author.first
-    @posts    = Post::Search.latest.limit(POST_NUMBER).to_a
+    @posts    = Post::Search.latest.limit(POST_NUMBER)
     @project  = Project::Search.latest.first
   end
 
@@ -13,9 +13,6 @@ class Home
     @author.introduction
   end
 
-  private
-
-  alias_method  :latest_posts, :posts
-  alias_method  :latest_project, :project
-
+  alias latest_posts posts
+  alias latest_project project
 end

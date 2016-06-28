@@ -1,4 +1,4 @@
-import styles from './styles.scss';
+import styles from './styles';
 
 export function getBlockStyle(block) {
   switch (block.getType()) {

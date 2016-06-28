@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: posts
@@ -30,14 +31,14 @@ class Post::Form < ActiveType::Record[Post]
 
   def save_from_associations(params)
     ActiveRecord::Base.transaction do
-      delete_unnecessary_items!(params[ITEMS_ATTRIBUTES]) if self.id
-      delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
+      delete_unnecessary_items!(params[ITEMS_ATTRIBUTES]) if id
+      delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if id
 
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
       params[ITEMS_ATTRIBUTES]&.each.with_index(1) do |item, index|
         target = item['target_type'].constantize.find_or_initialize_by(id: item['target_id'])
 
-        target.set_attributes_and_save!(item)
+        target.trim_attributes_and_save!(item)
 
         item_id = item['id']
         item.clear.merge!(
@@ -54,7 +55,6 @@ class Post::Form < ActiveType::Record[Post]
 
   rescue => e
     errors[:base] << e.message
-    p e.message, e.backtrace_locations
     logger.error "error: #{e.message}, location: #{e.backtrace_locations}"
     false
   end
@@ -63,5 +63,4 @@ class Post::Form < ActiveType::Record[Post]
     deleted_ids = items.map(&:id) - (params || []).map { |key, _| key['id'].to_i }
     Item.where(post_id: id, id: deleted_ids).find_each(&:destroy!)
   end
-
 end

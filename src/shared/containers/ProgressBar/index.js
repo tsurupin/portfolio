@@ -1,19 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinearProgress from 'material-ui/LinearProgress';
-import styles from './styles.scss';
-
-const inlineStyles = {
-  progressBar: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 2,
-    zIndex: 10000
-  }
-};
-
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 export default function(ComposedComponent) {
   class ProgressBar extends Component {
@@ -29,7 +18,7 @@ export default function(ComposedComponent) {
             mode="indeterminate" 
             min={70} 
             max={75}
-            color="#48E79A"
+            color={inlineStyles.progressColor}
             style={inlineStyles.progressBar} 
           />
         );
@@ -49,7 +38,6 @@ export default function(ComposedComponent) {
       )
     }
   }
-  
 
   return ProgressBar
 }

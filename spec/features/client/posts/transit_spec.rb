@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-feature "User transits to the post index page", js: true do
-
+feature 'User transits to the post index page', js: true do
   context 'when there are no corresponding posts' do
     scenario 'they see no content message' do
       visit('/posts')
@@ -57,5 +56,4 @@ feature "User transits to the post index page", js: true do
       expect(page).to have_selector('h3', count: 1)
     end
   end
-
 end

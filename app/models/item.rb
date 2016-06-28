@@ -16,10 +16,10 @@ class Item < ActiveRecord::Base
   belongs_to :target, polymorphic: true
 
   enum target_type: {
-           twitter: 'ItemTwitter',
-           text: 'ItemText',
-           image: 'ItemImage'
-       }
+    twitter: 'ItemTwitter',
+    text: 'ItemText',
+    image: 'ItemImage'
+  }
 
   after_destroy :destroy_target
 

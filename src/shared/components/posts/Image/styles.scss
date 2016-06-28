@@ -1,6 +1,7 @@
 .root {
+  composes: marginBottomXSmall from 'shared/css/margins.scss';
+
   display: block;
-  margin-bottom: 10px;
 }
 
 .image {
@@ -10,12 +11,5 @@
 }
 
 .caption {
-  display: block;
-  margin-top: 10px;
-  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
-  font-size: 1.4rem;
-  line-height: 1.4;
-  color: #797979;
-  letter-spacing: 0;
-  text-align: center;
+  composes: caption from 'shared/css/components.scss';
 }

@@ -21,5 +21,4 @@ class Cms::AuthorSerializer < ActiveModel::Serializer
       array << object.social_accounts.new(account_type: type)
     end.sort_by { |account| account[:account_type] }
   end
-
 end

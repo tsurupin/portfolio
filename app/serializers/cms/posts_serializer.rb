@@ -7,6 +7,6 @@ class Cms::PostsSerializer < ActiveModel::Serializer
              :status
 
   def published_at
-    object.published_at.try(:strftime,'%b %d, %Y') || '-'
+    object.published_at.try(:strftime, '%b %d, %Y') || '-'
   end
 end

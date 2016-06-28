@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Client::Api::V1::AboutsController, type: :request do
   describe 'Client About API' do
-
     describe 'GET /api/v1/about' do
       let!(:author) { create(:author, description: 'rich text', introduction: 'rich text') }
       let!(:sa_github) { create(:social_account, author: author, account_type: 'git_hub') }

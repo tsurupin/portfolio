@@ -7,9 +7,9 @@ module ReactHelper
   def isomorphic(component, id, props, path)
     sc = script(component, id, props, path)
     "<div id='#{id}'></div>#{sc}".html_safe
-    resp = HTTParty.post 'http://localhost:3001', body: { }.to_json,
-                         headers: { 'Content-Type' => 'application/json' }
-    "<div id='#{id}'>#{resp.force_encoding("utf-8")}</div>#{sc}".html_safe
+    resp = HTTParty.post 'http://localhost:3001', body: {}.to_json,
+                                                  headers: { 'Content-Type' => 'application/json' }
+    "<div id='#{id}'>#{resp.force_encoding('utf-8')}</div>#{sc}".html_safe
   end
 
   private

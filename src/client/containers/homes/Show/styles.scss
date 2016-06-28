@@ -1,24 +1,11 @@
-.root {
-  min-height: 500px;
-}
-
 .image {
-  composes: marginBottomMedium from '../../../../shared/css/margins.scss';
+  composes: marginBottomMedium from 'shared/css/margins.scss';
   display: block;
   max-width: 100%;
 }
-.introduction {
-
-}
-
-.description {
-
-}
 
 
-.listContainer {
+.list {
+  composes: marginHorizontalMedium from 'shared/css/margins.scss';
   display: flex;
-  margin-top: 30px;
-  composes: marginBottomMedium from '../../../../shared/css/margins.scss';
-
 }

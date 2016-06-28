@@ -29,5 +29,4 @@ class Cms::Api::V1::AuthorsController < Cms::ApplicationController
   def author_params
     params.require(:author).permit(*Author::Form::PERMITTED_ATTRIBUTES)
   end
-
 end

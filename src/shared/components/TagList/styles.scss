@@ -1,10 +1,15 @@
+@value colors: 'shared/css/colors.scss';
+@value primary-color from colors;
+
 .root {
-  margin-top: 8px;
-  display: inline-flex;
+  composes: marginTopXXSmall from 'shared/css/margins.scss';
+
+  display: flex;
 }
 
 .item {
-  font-size: 1.4rem;
-  color: #00AB6B;
-  margin-left: 5px;
+  composes: marginLeftXXSmall from 'shared/css/margins.scss';
+  composes: fontSmall from 'shared/css/fonts.scss';
+
+  color: primary-color;
 }

@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Portfolio
   class Application < Rails::Application
+
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :en
     config.active_record.raise_in_transactional_callbacks = true
@@ -15,13 +16,12 @@ module Portfolio
       DeviseController.respond_to :html, :json
     end
 
-    # config.middleware.delete Rack::Sendfile
-    # config.middleware.delete ActionDispatch::Cookies
-    # config.middleware.delete ActionDispatch::Session::CookieStore
-    # config.middleware.delete ActionDispatch::Flash
-    # config.middleware.delete ActionDispatch::Callbacks
-    # config.middleware.delete ActionDispatch::RequestId
-    # config.middleware.delete Rack::Runtime
+    # remove unnecessary middlewares for api
+    config.middleware.delete Rack::Sendfile
+    config.middleware.delete ActionDispatch::Cookies
+    config.middleware.delete ActionDispatch::Session::CookieStore
+    config.middleware.delete ActionDispatch::Flash
+    config.middleware.delete Rack::MethodOverride
 
     config.time_zone = 'Pacific Time (US & Canada)'
 

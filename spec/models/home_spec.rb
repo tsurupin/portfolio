@@ -32,5 +32,4 @@ RSpec.describe Home, type: :model do
       expect(home.latest_project.id).to eq latest_project.id
     end
   end
-
 end

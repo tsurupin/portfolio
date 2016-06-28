@@ -1,37 +1,35 @@
-@value colors: 'src/shared/css/colors.scss';
-@value label-color, text-color, border-color, theme-color, error-color, strong-opaque from colors;
-@value fonts: 'src/shared/css/fonts.scss';
-@value font-xx-small, font-medium from fonts;
+@value colors: 'shared/css/colors.scss';
+@value mixins: 'shared/css/mixins.scss';
+@value label-color, text-color, list-border-color, primary-color, error-color from colors;
+@value strong-opaque from mixins;
 
 .root {
-  composes: row from 'src/shared/css/flexboxgrids.scss';
-  border-bottom: 1px solid #E0E0E0;
   padding: 6px;
+  border-bottom: 1px solid list-border-color;
 }
 
-
 .dropzone {
-  composes: col-xs-12 from 'src/shared/css/flexboxgrids.scss';
-  composes: marginToopXXSmall from 'src/shared/css/margins.scss';
+  composes: marginTopXSmall from 'shared/css/margins.scss';
+
   width: 100%;
-  margin-top: 10px;
   max-height: 100px;
 }
 
 .dropzoneActive {
   composes: dropzone;
-  backgroun-color: theme-color;
+  backgroun-color: primary-color;
+
   opacity: strong-opaque;
 }
 
 .placeholder {
+  composes: fontMedium from 'shared/css/fonts.scss';
+
   display: block;
   width: 100%;
   line-height: 100px;
-  color: #B3B3B3;
-  font-size: calc(font-medium * 10) + px;
-  font-size: font-medium + rem;
-  font-weight: bold;
+  color: label-color;
+  font-weight: 700;
   text-align: center;
   cursor: pointer;
 }
@@ -42,5 +40,6 @@
 
 .errorMessage {
   composes: placeholder;
+
   color: error-color;
 }

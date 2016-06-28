@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: authors
@@ -18,8 +19,8 @@ class Author::Form < ActiveType::Record[Author]
   include DataURIToImageConverter
   PERMITTED_ATTRIBUTES = [
     :name, :email, :password, :password_confirmation, :image, :description, :introduction,
-    social_accounts_attributes: [ :id, :account_type, :url ]
-  ]
+    social_accounts_attributes: [:id, :account_type, :url]
+  ].freeze
 
   validates :description, presence: true
   validates :introduction, presence: true
@@ -38,9 +39,8 @@ class Author::Form < ActiveType::Record[Author]
       update!(params)
       true
     end
-    rescue => e
-      p e.message, e.backtrace_locations
-      logger.error "error: #{e.message}, location: #{e.backtrace_locations}"
+  rescue => e
+    logger.error "error: #{e.message}, location: #{e.backtrace_locations}"
     false
   end
 
@@ -48,5 +48,4 @@ class Author::Form < ActiveType::Record[Author]
     removed_ids = social_accounts.map(&:id) - (params || []).map { |key, _| key['id'].to_i }
     SocialAccount.where(id: removed_ids).find_each(&:destroy!)
   end
-
 end

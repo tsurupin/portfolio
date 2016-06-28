@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Client::Api::V1::ProjectsController, type: :request do
   describe 'Client Project API' do
-
     describe 'GET /api/v1/projects' do
-
       context 'when tag param is not sent' do
         it 'returns correct info' do
           Timecop.freeze(10.days.ago)
@@ -17,17 +15,17 @@ RSpec.describe Client::Api::V1::ProjectsController, type: :request do
           create(:tagging, :subject_project, subject: project3)
           projects = [project3, project1]
           result = {
-              'projects' => projects.map do |project|
-                {
-                  'id' => project.id,
-                  'title' => project.title,
-                  'description' => project.description,
-                  'image' => project.try(:image_url),
-                  'caption' => project.try(:caption),
-                  'sourceUrl' => project.try(:source_url),
-                  'tags' => project.try(:tags).map{ |tag| { 'id' => tag.id, 'name' => tag.name } }
-                }
-              end
+            'projects' => projects.map do |project|
+              {
+                'id' => project.id,
+                'title' => project.title,
+                'description' => project.description,
+                'image' => project.try(:image_url),
+                'caption' => project.try(:caption),
+                'sourceUrl' => project.try(:source_url),
+                'tags' => project.try(:tags).map { |tag| { 'id' => tag.id, 'name' => tag.name } }
+              }
+            end
           }
 
           get api_v1_projects_path
@@ -46,7 +44,7 @@ RSpec.describe Client::Api::V1::ProjectsController, type: :request do
           tagging1 = create(:tagging, :subject_project, subject: project1)
           create(:tagging, :subject_project, subject: project3)
           projects = [project1]
-          request_param = { 'tag' => tagging1.tag_id}
+          request_param = { 'tag' => tagging1.tag_id }
           result = {
             'projects' => projects.map do |project|
               {
@@ -56,7 +54,7 @@ RSpec.describe Client::Api::V1::ProjectsController, type: :request do
                 'image' => project.try(:image_url),
                 'caption' => project.try(:caption),
                 'sourceUrl' => project.try(:source_url),
-                'tags' => project.try(:tags).map{ |tag| { 'id' => tag.id, 'name' => tag.name } }
+                'tags' => project.try(:tags).map { |tag| { 'id' => tag.id, 'name' => tag.name } }
               }
             end
           }

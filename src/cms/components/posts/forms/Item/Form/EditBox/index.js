@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import ContentAddCircleOutLine from 'material-ui/svg-icons/content/add-circle-outline';
 import ActionHighlightOff from 'material-ui/svg-icons/action/highlight-off';
 import EditBoxItem from './EditBoxItem/index';
+import inlineStyles from 'shared/css/MaterialUI/index';
 import styles from './styles.scss';
 
 
@@ -18,17 +19,6 @@ const TARGET_TYPE_LIST = [
   TARGET_TYPES.TWITTER
 ];
 
-const inlineStyles = {
-  button: {
-    width: 60,
-    height: 60
-  },
-  toggleIcon: {
-    height: 36,
-    width: 36
-  }
-};
-
 class EditBox extends Component {
 
   constructor(props) {
@@ -40,23 +30,23 @@ class EditBox extends Component {
     if (!this.state.isOpen) {
       return (
         <IconButton 
-          style={inlineStyles.button}
-          name="add-item-icon"
+          style={inlineStyles.largeButton}
+          name="add-item-button"
           iconStyle={inlineStyles.toggleIcon} 
           onClick={() => this.setState({ isOpen: true })}
         >
-          <ContentAddCircleOutLine color="8F8F8F" />
+          <ContentAddCircleOutLine color={inlineStyles.iconColor} />
         </IconButton>
       )
     } else {
       return (
         <IconButton 
-          style={inlineStyles.button}
-          name="close-add-item-icon"
+          style={inlineStyles.largeButton}
+          name="close-add-item-button"
           iconStyle={inlineStyles.toggleIcon} 
           onClick={() => this.setState({ isOpen: false })}
         >
-          <ActionHighlightOff color="8F8F8F" />
+          <ActionHighlightOff color={inlineStyles.iconColor} />
         </IconButton>
       )
     }

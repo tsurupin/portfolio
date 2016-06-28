@@ -3,7 +3,8 @@ import { reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ContentSave from 'material-ui/svg-icons/content/save';
-import styles from '../shared/styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from '../shared/styles';
 
 
 const propTypes = {
@@ -16,6 +17,18 @@ const propTypes = {
   submitting: PropTypes.bool.isRequired
 };
 
+const fields = ['twitterId'];
+
+function validate(values) {
+  const errors = {};
+
+  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId) ) {
+    errors.twitterId = 'Enter Valid Twitter URL or Twitter ID'
+  }
+
+  return errors;
+}
+
 
 class Twitter extends Component {
 
@@ -27,7 +40,7 @@ class Twitter extends Component {
   handleUpdateItem(props) {
     const regexp = /https?:\/\/twitter.com\/[\w]+\/status\/([\d]+)$/i;
     const twitterId = props.twitterId.match(regexp) ? props.twitterId.match(regexp)[1] : props.twitterId;
-
+    console.log(twitterId);
     this.props.handleUpdateItem({twitterId});
   }
 
@@ -37,14 +50,13 @@ class Twitter extends Component {
     return (
       <div className={styles.root}>
         <TextField
-          className={styles.inputText}
           {...twitterId}
           floatingLabelText="Twitter"
           hintText='Enter the twitter URL or ID'
           fullWidth={true}
           errorText={twitterId.touched && twitterId.error ? twitterId.error : ''}
         />
-        <div className={styles.submitBox}>
+        <div className={styles.submitBox} >
           {this.props.cancelButton}
           {this.props.deleteButton}
           <IconButton
@@ -54,7 +66,7 @@ class Twitter extends Component {
             name="save-item-button"
             onClick={handleSubmit(this.handleUpdateItem)}
           >
-            <ContentSave color="8F8F8F" />
+            <ContentSave color={inlineStyles.iconColor} />
           </IconButton>
         </div>
       </div>
@@ -64,18 +76,9 @@ class Twitter extends Component {
 
 Twitter.propTypes = propTypes;
 
-function validate(values) {
-  const errors = {};
-  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId) ) {
-    errors.twitterId = 'Enter Valid Twitter URL or Twitter ID'
-  }
-
-  return errors;
-}
-
 export default reduxForm({
   form: 'ItemFormTwitter',
-  fields: ['twitterId'],
+  fields,
   validate
 })(Twitter);
 

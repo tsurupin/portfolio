@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './styles.scss';
+import styles from './styles';
 
+const propTypes = {
+  label: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
+  style: PropTypes.string.isRequired
+};
 
 class StyleButton extends Component {
   constructor(props) {
@@ -29,10 +34,6 @@ class StyleButton extends Component {
   }
 }
 
-StyleButton.propTypes = {
-  label: PropTypes.string.isRequired,
-  active: PropTypes.bool.isRequired,
-  style: PropTypes.string.isRequired
-};
+StyleButton.propTypes = propTypes;
 
 export default StyleButton;

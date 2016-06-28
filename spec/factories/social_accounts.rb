@@ -14,6 +14,7 @@ url_list = [
   'https://twitter.com/t_th112',
   'https://linkeding.com'
 ]
+
 FactoryGirl.define do
   factory :social_account do
     association :author, factory: :author

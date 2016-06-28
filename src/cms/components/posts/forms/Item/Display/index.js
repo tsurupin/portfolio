@@ -4,7 +4,6 @@ import Tooltip from './Tooltip/index';
 import Image from 'shared/components/posts/Image/index';
 import Twitter from 'shared/components/posts/Twitter/index';
 import Text from 'shared/components/posts/Text/index';
-import styles from './styles.scss';
 
 const propTypes = {
   sortRank: PropTypes.number.isRequired,
@@ -40,7 +39,7 @@ class PostItemCell extends Component {
 
   render() {
     return (
-      <div className={styles.root}>
+      <div>
         <Tooltip
           sortRank={this.props.sortRank}
           totalCount={this.props.totalCount}

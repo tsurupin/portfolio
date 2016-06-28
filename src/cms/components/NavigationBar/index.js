@@ -12,75 +12,33 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import config from 'shared/config';
 import { signOut } from 'cms/actions/auths';
-
-const iconColor = '#8F8F8F';
-const inlineStyles = {
-  appBar: {
-    boxSizing: 'border-box',
-    backgroundColor: '#fff',
-    height: 56,
-    minHeight: 56,
-    padding: '4px 10%',
-    border: '1px solid #f3f3f3'
-  },
-  title: {
-    color: iconColor,
-    fontSize: '1.6rem',
-    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
-    lineHeight: '5.0rem',
-    cursor: 'pointer'
-  },
-  elementRight: {
-    height: 48,
-    minHeight: 48,
-    marginTop: 0
-  },
-  gitHubButton: {
-    color: iconColor,
-    margin: 0
-  },
-  iconStyle: {
-    height: 48,
-    marginTop: 0
-  }
-};
+import inlineStyles from 'shared/css/MaterialUI/index';
 
 
 class NavigationBar extends Component {
 
   constructor(props) {
     super(props);
-    this.handleHome = this.handleHome.bind(this);
-    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   static contextTypes = {
     router: PropTypes.object
   };
 
-
-  handleHome() {
-    this.context.router.push('/cms');
-  }
-
-  handleSignOut(){
-    this.props.signOut();
-  }
-
   render() {
     return (
       <AppBar
         showMenuIconButton={false}
         title={config.authorName}
-        style={inlineStyles.appBar}
-        titleStyle={inlineStyles.title}
-        onTitleTouchTap={this.handleHome}
+        style={inlineStyles.appBar.root}
+        titleStyle={inlineStyles.appBar.title}
+        onTitleTouchTap={()=> this.context.router.push('/cms')}
         zDepth={0}
-        iconStyleRight={inlineStyles.elementRight}
+        iconStyleRight={inlineStyles.appBar.elementRight}
         iconElementRight={
                     <div>
                         <IconMenu
-                          iconButtonElement={<IconButton name="about-button"> <SocialPerson color={iconColor} /></IconButton>}
+                          iconButtonElement={<IconButton name="about-button"> <SocialPerson color={inlineStyles.iconColor} /></IconButton>}
                           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                           targetOrigin={{horizontal: 'left', vertical: 'top'}}
 
@@ -94,11 +52,11 @@ class NavigationBar extends Component {
                         </IconMenu>
                         <Link to="/cms/posts" >
                             <IconButton name="post-button">
-                                <ActionDescription color={iconColor} />
+                                <ActionDescription color={inlineStyles.iconColor} />
                             </IconButton>
                         </Link>
                         <IconMenu
-                          iconButtonElement={<IconButton name="project-button"><AvWeb color={iconColor}/></IconButton>}
+                          iconButtonElement={<IconButton name="project-button"><AvWeb color={inlineStyles.iconColor}/></IconButton>}
                           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                           targetOrigin={{horizontal: 'left', vertical: 'top'}}
                         >
@@ -110,12 +68,12 @@ class NavigationBar extends Component {
                           </Link>
                         </IconMenu>
                         <a href={config.gitHubUrl} >
-                            <IconButton iconStyle={inlineStyles.gitHubButton} name="git-hub-button">
-                              <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.iconStyles} />
+                            <IconButton iconStyle={inlineStyles.appBar.gitHubButton} name="git-hub-button">
+                              <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.appBar.iconStyles} />
                             </IconButton>
                         </a>
-                        <IconButton name="sign-out-button" onClick={this.handleSignOut}>
-                            <ActionExitToApp color={iconColor} />
+                        <IconButton name="sign-out-button" onClick={() => this.props.signOut()}>
+                            <ActionExitToApp color={inlineStyles.iconColor} />
                         </IconButton>
                     </div>
                     }

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: projects
@@ -28,14 +29,14 @@ class Project::Form < ActiveType::Record[Project]
   validates :image, presence: true, if: proc { |project| project.accepted }
   validates :source_url,
             presence: true,
-            format: { with: URI.regexp, message: "%{value} does not appear to be a valid URL" },
+            format: { with: URI.regexp, message: '%{value} does not appear to be a valid URL' },
             if: proc { |project| project.accepted }
 
   accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }
 
   def save_from_associations(params)
     ActiveRecord::Base.transaction do
-      delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if self.id
+      delete_unnecessary_tags!(params[TAGGINGS_ATTRIBUTES]) if id
       trim_tagging_attributes!(params[TAGGINGS_ATTRIBUTES])
       if params['image']&.start_with?('data')
         params['image'] = convert_data_uri_to_upload(params['image'])
@@ -47,9 +48,7 @@ class Project::Form < ActiveType::Record[Project]
 
   rescue => e
     errors[:base] << e.message
-    p e.message, e.backtrace_locations
     logger.error "error: #{e.message}, location: #{e.backtrace_locations}"
     false
   end
-
 end

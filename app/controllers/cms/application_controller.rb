@@ -1,5 +1,5 @@
 class Cms::ApplicationController < ApplicationController
-  #include AbstractController::Translation
+  # include AbstractController::Translation
   before_action :authenticate_author_from_token!, except: :layout
 
   layout 'cms/layouts/application'

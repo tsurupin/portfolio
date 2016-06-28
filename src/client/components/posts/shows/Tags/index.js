@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import Item from './Item/index';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   adminPath: PropTypes.string,

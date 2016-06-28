@@ -6,7 +6,7 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
     let(:auth_header) { { 'Authorization' => author.access_token } }
 
     describe 'GET /cms/api/v1/posts' do
-      let!(:post1) { create(:post, :accepted, published_at: Time.current + 1.days) }
+      let!(:post1) { create(:post, :accepted, published_at: Time.current + 1.day) }
       let!(:post2) { create(:post) }
       let!(:tagging1) { create(:tagging, :subject_post, subject: post1) }
       let(:posts) { [post1, post2] }
@@ -22,13 +22,13 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
                 'status' => [1, 0][i]
               }
             end,
-            "meta" => {
-              "pagination" => {
-                "page" => 0,
-                "limit" => 20,
-                "total" =>2
+            'meta' => {
+              'pagination' => {
+                'page' => 0,
+                'limit' => 20,
+                'total' => 2
               }
-            },
+            }
           }
         end
         before { get cms_api_v1_posts_path, {}, auth_header }
@@ -39,7 +39,7 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       end
 
       context 'when access_token is not sent in header' do
-        let(:result) { { 'errorMessage' => 'unauthorized' }}
+        let(:result) { { 'errorMessage' => 'unauthorized' } }
         before { get cms_api_v1_posts_path, {} }
         it 'returns error message' do
           expect(response.status).to eq 401
@@ -81,12 +81,12 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
             'post' => {
               'lead_sentence' => 'rich text',
               'items_attributes' => [
-                { 'target_type' => 'ItemText', 'description' => 'text' },
+                { 'target_type' => 'ItemText', 'description' => 'text' }
               ]
             }
           }
         end
-        let(:result) { { "errorMessage" => "Title can't be blank\nValidation failed: Title can't be blank" } }
+        let(:result) { { 'errorMessage' => "Title can't be blank\nValidation failed: Title can't be blank" } }
         it 'returns 400 and error message' do
           expect(response.status).to eq 400
           expect(JSON.parse(response.body)).to eq result
@@ -99,9 +99,9 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
               'title' => 'title',
               'lead_sentence' => 'rich text',
               'items_attributes' => [
-                { 'target_type' => 'ItemText', 'description' => 'text' },
+                { 'target_type' => 'ItemText', 'description' => 'text' }
               ],
-              'taggings_attributes' => [ { 'text' => tag.name } ]
+              'taggings_attributes' => [{ 'text' => tag.name }]
             }
           }
         end
@@ -118,8 +118,8 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       let!(:post) { create(:post) }
       let!(:tag1) { create(:tag) }
       let!(:tag2) { create(:tag) }
-      let!(:tagging) { create(:tagging, :subject_post, subject: post, tag: tag1)}
-      let(:tags) { [tag1, tag2,] }
+      let!(:tagging) { create(:tagging, :subject_post, subject: post, tag: tag1) }
+      let(:tags) { [tag1, tag2] }
       let(:result) do
         {
           'id' => post.id,
@@ -144,8 +144,8 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
       let!(:post) { create(:post) }
       let!(:tag1) { create(:tag, name: 'hoge') }
       let!(:tag2) { create(:tag) }
-      let!(:item1) { create(:item, :text, post: post)}
-      let!(:item2) { create(:item, :image, post: post)}
+      let!(:item1) { create(:item, :text, post: post) }
+      let!(:item2) { create(:item, :image, post: post) }
       let!(:tagging1) { create(:tagging, :subject_post, subject: post, tag: tag1) }
       let!(:tagging2) { create(:tagging, :subject_post, subject: post, tag: tag2) }
 
@@ -178,8 +178,8 @@ RSpec.describe Cms::Api::V1::PostsController, type: :request do
 
         it 'returns 200' do
           expect(response.status).to eq 200
-          expect(Post.last.items.map(&:target_type)).to eq ['text', 'twitter']
-          expect(Post.last.taggings.map(&:name)).to eq ['hoge','test']
+          expect(Post.last.items.map(&:target_type)).to eq %w(text twitter)
+          expect(Post.last.taggings.map(&:name)).to eq %w(hoge test)
           expect(ItemImage.count).to eq 0
         end
       end

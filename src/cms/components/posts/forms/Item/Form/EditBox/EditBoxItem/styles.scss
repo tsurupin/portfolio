@@ -1,5 +1,5 @@
 .root {
-  margin-right: 10px
+  composes: marginRightXSmall from 'shared/css/margins.scss';
 }
 
 .button {

@@ -4,7 +4,7 @@ import { fetchProjects } from 'client/actions/projects';
 import Item from 'client/components/projects/indexes/Item/index';
 import NoContent from 'shared/components/NoContent/index';
 import shallowCompare from 'react-addons-shallow-compare';
-import styles from'./styles.scss';
+import styles from'./styles';
 
 const propTypes = {
   projects: PropTypes.arrayOf(
@@ -66,7 +66,7 @@ class ProjectIndex extends Component {
 
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
-    return paths[0] ? paths[0] : '';
+    return paths[0] ? paths[0] : "";
   }
 
   render() {
@@ -82,8 +82,8 @@ class ProjectIndex extends Component {
     }
 
     return (
-      <section className={styles.root}>
-        <h1 className={styles.title}>Projects</h1>
+      <section>
+        <h1 className={styles.heading}>Projects</h1>
         <div className={styles.list}>
           {this.props.projects.map((project) => {
             return <Item key={project.id} adminPath={this.adminPath} {...project} />

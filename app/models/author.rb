@@ -19,13 +19,11 @@ class Author < ActiveRecord::Base
 
   has_many :social_accounts, dependent: :destroy
 
-
-
   validates :name,
             presence: true
   validates :email,
             presence: true,
-            email_format: { message: "%{value} is not a valid email" }
+            email_format: { message: '%{value} is not a valid email' }
   validates :encrypted_password,
             presence: true
 
@@ -36,8 +34,9 @@ class Author < ActiveRecord::Base
   mount_uploader :image, AuthorImageUploader
 
   private
+
   def generate_access_token!
-    self.access_token = "#{self.id}:#{Devise.friendly_token}"
+    self.access_token = "#{id}:#{Devise.friendly_token}"
     save!
   end
 

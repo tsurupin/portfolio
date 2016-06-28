@@ -12,7 +12,8 @@ import TextField from 'material-ui/TextField';
 import TextEditor from 'shared/components/textEditors/Editor/index'
 import TagField from 'cms/components/shared/TagField/index';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-import styles from './styles.scss';
+import inlineStyles from 'shared/css/MaterialUI/index';
+import styles from './styles';
 
 const propTypes = {
   fields: PropTypes.object.isRequired,
@@ -47,14 +48,6 @@ function validate(values) {
 
   return errors;
 }
-
-
-const inlineStyles = {
-  textField: {
-    marginBottom: 10
-  }
-};
-
 
 class ProjectForm extends Component {
   constructor(props) {

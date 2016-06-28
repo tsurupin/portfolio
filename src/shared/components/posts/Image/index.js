@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styles from './styles.scss';
+import styles from './styles';
 
 const propTypes = {
   image: PropTypes.string.isRequired,

@@ -1,12 +1,4 @@
-.root {
-  color: #333333;
-}
-
 .title {
-  color: rgba(0,0,0,.8);
-  font-size: 3.2rem;
-  font-weight: bold;
-  line-height: 1.2;
-  letter-spacing: 0;
-  margin-bottom: 5px;
+  composes: marginBottomXXSmall from 'shared/css/margins.scss';
+  composes: titleText from 'shared/css/components.scss';
 }

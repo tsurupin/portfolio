@@ -5,7 +5,6 @@ class ProjectImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MimeTypes
   process :set_content_type
 
-
   if Rails.env.production?
     storage :fog
   else

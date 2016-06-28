@@ -7,38 +7,7 @@ import SocialPerson from 'material-ui/svg-icons/social/person';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import config from 'shared/config';
-
-const iconColor = '#8F8F8F';
-const inlineStyles = {
-  appBar: {
-    boxSizing: 'border-box',
-    backgroundColor: '#fff',
-    height: 56,
-    minHeight: 56,
-    padding: '4px 10%',
-    border: '1px solid #f3f3f3'
-  },
-  title: {
-    color: iconColor,
-    fontSize: '1.6rem',
-    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
-    lineHeight: '5.0rem',
-    cursor: 'pointer'
-  },
-  elementRight: {
-    height: 48,
-    minHeight: 48,
-    marginTop: 0
-  },
-  gitHubButton: {
-    color: iconColor,
-    margin: 0
-  },
-  iconStyles: {
-    height: 48,
-    marginTop: 0
-  }
-};
+import inlineStyles from 'shared/css/MaterialUI/index';
 
 class NavigationBar extends Component {
 
@@ -55,31 +24,31 @@ class NavigationBar extends Component {
       <AppBar
         showMenuIconButton={false}
         title={config.authorName}
-        style={inlineStyles.appBar}
-        titleStyle={inlineStyles.title}
+        style={inlineStyles.appBar.root}
+        titleStyle={inlineStyles.appBar.title}
         onTitleTouchTap={()=> this.context.router.push('/')}
         zDepth={0}
-        iconStyleRight={inlineStyles.elementRight}
+        iconStyleRight={inlineStyles.appBar.elementRight}
         iconElementRight={
                     <div>
                         <Link to="/about" >
                             <IconButton name="about-button">
-                                <SocialPerson color={iconColor} />
+                                <SocialPerson color={inlineStyles.iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/posts" >
                             <IconButton name="post-button">
-                                <ActionDescription color={iconColor} />
+                                <ActionDescription color={inlineStyles.iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/projects" >
                             <IconButton name="project-button">
-                                <AvWeb color={iconColor} />
+                                <AvWeb color={inlineStyles.iconColor} />
                             </IconButton>
                         </Link>
                         <a href={config.gitHubUrl} >
-                            <IconButton iconStyle={inlineStyles.gitHubButton} name="git-hub-button" >
-                              <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.iconStyles} />
+                            <IconButton iconStyle={inlineStyles.appBar.gitHubButton} name="git-hub-button" >
+                              <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.appBar.iconStyles} />
                             </IconButton>
                         </a>
                     </div>
@@ -89,6 +58,5 @@ class NavigationBar extends Component {
     );
   }
 }
-;
 
 export default NavigationBar;

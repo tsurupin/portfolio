@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import styles from './styles.scss';
 import TweetEmbed from  './TweetEmbed/index'
+import styles from './styles';
 
 const propTypes = {
   twitterId: PropTypes.string.isRequired

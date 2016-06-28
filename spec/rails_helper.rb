@@ -9,7 +9,8 @@ require 'capybara/rails'
 require 'selenium-webdriver'
 require 'factory_girl_rails'
 require 'vcr'
-
+require 'simplecov'
+SimpleCov.start
 
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)

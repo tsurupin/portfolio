@@ -1,6 +1,6 @@
 import React from 'react';
 import StyleButton from '../StyleButton/index';
-import styles from './styles.scss';
+import styles from './styles';
 
 
 const INLINE_STYLES = [

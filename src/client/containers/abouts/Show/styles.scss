@@ -1,38 +1,24 @@
-.root {
-  min-height: 500px;
-}
+@value colors: 'shared/css/colors.scss';
+@value title-color from colors;
 
-.title {
-  color: rgba(0,0,0,.8);
-  font-size: 3.2rem;
-  font-weight: bold;
+.heading {
+  composes: fontHeading from 'shared/css/fonts.scss';
+
+  color: title-color;
+  font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0;
 }
 
-.description {
-  font-size: 1.6rem;
-  line-height: 1.4;
-  margin-top: 4px;
-}
-
-
 .subHeading {
-  composes: title;
-  font-size: 2.2rem;
-  border-bottom: 1px solid #f3f3f3;
-  margin-top: 30px;
-
+  composes: marginTopLarge from 'shared/css/margins.scss';
+  composes: heading from 'shared/css/components.scss';
 }
 
 .siteDescription {
-  margin-top: 20px;
+  composes: marginTopSmall from 'shared/css/margins.scss';
 }
 
 .text {
-  font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
-  font-size: 21px;
-  line-height: 1.58;
-  letter-spacing: -.003em;
-  color: rgba(0, 0, 0, 0.8);
+  composes: descriptionText from 'shared/css/components.scss';
 }

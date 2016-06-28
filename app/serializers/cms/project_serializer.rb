@@ -19,5 +19,4 @@ class Cms::ProjectSerializer < ActiveModel::Serializer
   def tag_suggestions
     Tag.pluck(:name)
   end
-
 end

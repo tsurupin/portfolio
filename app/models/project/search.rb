@@ -16,6 +16,7 @@
 class Project::Search < ActiveType::Record[Project]
   include RelatedTagSearch
 
+
   def self.client_search(options = {})
     eager_load(:tags)
       .accepted
