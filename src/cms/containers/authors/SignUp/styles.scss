@@ -1,46 +1,15 @@
-@value colors: "src/shared/css/colors.scss";
-@value fonts: "src/shared/css/fonts.scss";
-
-@value error-color from colors;
-
 .root {
-  position: relative;
-  padding-bottom: 30px;
+  composes: marginBottomLarge from 'shared/css/margins.scss';
 }
 
 .heading {
-  color: rgba(0,0,0,.8);
-  font-size: 3.2rem;
-  font-weight: bold;
-  line-height: 1.2;
-  letter-spacing: 0;
-  margin-bottom: 5px;
+  composes: titleText from 'shared/css/components.scss';
 }
 
 .button {
-  float: right;
-  display: inline-block;
-  height: 40px;
-  padding: 0 24px;
-  color: #009E5D;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-  border: 1px solid #009E5D;
-  vertical-align: bottom;
-  white-space: nowrap;
-  border-radius: 999em;
-  letter-spacing: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 38px;
-  &:hover {
-    color: #1c9963;
+  composes: primaryButtonLarge from 'shared/css/components.scss';
 
-  }
-
-  &:after {
-    content: '';
-    clear: both;
-  }
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
 }

@@ -1,3 +1,4 @@
 .root {
-  margin: 20px 0;
+  composes: marginHorizontalSmall from 'shared/css/margins.scss';
+  composes: marginVerticalZero from 'shared/css/margins.scss';
 }

@@ -1,23 +1,10 @@
-@value colors: "src/shared/css/colors.scss";
-@value label-color, font-medium from colors;
-
-@value fonts: "src/shared/css/fonts.scss";
-@value font-xx-small, font-medium from fonts;
-
 .root {
   position: relative;
   padding-bottom: 40px;
 }
 
-.inputText {
-
-}
-
 .label {
-  line-height: 22px;
-  color: rgba(0, 0, 0, 0.498039);
-  font-size: calc(font-xx-small * 10) + px;
-  font-size: font-xx-small + rem;
+  composes: label from 'shared/css/components.scss';
 }
 
 .submitBox {
@@ -38,25 +25,11 @@
 }
 
 .dropzoneHelp {
+  composes: fontMedium from 'shared/css/fonts.scss';
   text-align: center;
-  font-size: calc(font-medium * 10) + px;
-  font-size: font-medium + rem;
 }
 
-.previewImage {
-
-}
 
 .errorMessage {
-
-}
-
-
-.submitButton {
-
-}
-
-
-.cancelButton {
-
+  composes: errorText from 'shared/css/components.scss';
 }

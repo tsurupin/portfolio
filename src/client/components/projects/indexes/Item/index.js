@@ -43,7 +43,7 @@ function Item({ adminPath, title, description, image, caption, sourceUrl, tags }
     <div className={styles.root}>
       <h3 className={styles.title}>{title} </h3>
       <TagList tags={tags} path={`${adminPath}/projects`} />
-      <div className={styles.imageContainer}>
+      <div className={styles.imageBlock}>
         <img className={styles.image} src={image} alt={title} />
         <span className={styles.caption}>{caption}</span>
       </div>

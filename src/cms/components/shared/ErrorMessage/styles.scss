@@ -1,10 +1,8 @@
 .root {
-  margin: 10px 0;
+  composes: marginHorizontalXSmall from 'shared/css/margins.scss';
+  composes: marginVerticalZero from 'shared/css/margins.scss';
 }
 
 .text {
-  font-size: 1.6rem;
-  font-style: italic;
-  line-height: 1.6;
-  color: #F44336;
+  composes: errorText from 'shared/css/components.scss';
 }

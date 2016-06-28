@@ -10,31 +10,6 @@
 }
 
 .listButton {
-  composes: hoverAnimation from "src/shared/css/mixins.scss";
+  composes: hoverAnimation from "shared/css/mixins.scss";
   border-radius: 24px;
-}
-
-
-.topButton {
-
-}
-
-.upButton {
-
-}
-
-.bottomButton {
-
-}
-
-.editButton {
-
-}
-
-.deleteButton {
-
-}
-
-.downButton {
-
 }

@@ -1,36 +1,24 @@
-.root {
-  min-height: 500px;
-}
+@value colors: "shared/css/colors.scss";
+@value list-border-color, lead-sentence-color from colors;
 
 .heading {
-  margin-bottom: 30px;
+  composes: marginBottomMedium from 'shared/css/margins.scss';
 }
 
 .title {
-  font-size: 2.8rem;
-  line-height: 1.12;
-  letter-spacing: -.02em;
-  font-weight: bold;
-}
-
-.leadSentence {
-  font-size: 24px;
-  margin-left: -1.5px;
-  line-height: 1.18;
-  letter-spacing: -.022em;
-  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
-  color: rgba(0,0,0,.44);
+  composes: titleText from 'shared/css/components.scss';
 }
 
 .dateTime {
-  padding: 10px 0;
   display: table-cell;
+  padding: 10px 0;
 }
 
 .time {
-  margin-left: 5px;
+  composes: marginLeftXXSmall from 'shared/css/margins.scss';
+  composes: fontXSmall from 'shared/css/fonts.scss';
+
   vertical-align: middle;
-  color: #8F8F8F;
-  font-size: 1.2rem;
+  color: lead-sentence-color;
 }
 

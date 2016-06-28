@@ -1,40 +1,40 @@
+@value colors: 'shared/css/colors.scss';
+@value text-color, list-border-color, lead-sentence-color, primary-color, label-color from colors;
+
 .root {
-  composes: marginBottomMedium from '../../../../../shared/css/margins.scss';
-  border-bottom: 1px solid #f3f3f3;
+  composes: marginBottomMedium from 'shared/css/margins.scss';
+  border-bottom: 1px solid list-border-color;
 }
 
 .title {
-  font-size: 3.1rem;
-  line-height: 1.12;
-  letter-spacing: -.022em;
-  font-weight: bold;
-  color: #333333;
+  composes: titleText from 'shared/css/components.scss';
 }
 
 .leadSentence {
-  font-size: 16px;
+  composes: marginTopXXSmall from 'shared/css/margins.scss';
+  composes: fontMedium from 'shared/css/fonts.scss';
+
   line-height: 1.4;
-  margin-top: 4px;
-  color: rgba(0,0,0,.6);
-  word-break: break-word;
+  color: lead-sentence-color;
+  word-wrap: break-word;
 }
 
 .tagItem {
-  display: inline-flex;
-  composes: marginTopXXSmall from '../../../../../shared/css/margins.scss';
-  font-size: 1.4rem;
-  color: #00AB6B;
+  composes: marginTopXXSmall from 'shared/css/margins.scss';
+  composes: fontSmall from 'shared/css/fonts.scss';
+
+  display: flex;
+  color: primary-color;
 }
 
 .tagName {
-  composes: marginLeftXXSmall from '../../../../../shared/css/margins.scss';
+  composes: marginLeftXXSmall from 'shared/css/margins.scss';
 }
 
 .publishDate {
-  color: rgba(0,0,0,.44);
+  composes: marginHorizontalXSmall from 'shared/css/margins.scss';
+  composes: fontSmall from 'shared/css/fonts.scss';
+  color: label-color;
   text-align: right;
-  font-size: 1.4rem;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 

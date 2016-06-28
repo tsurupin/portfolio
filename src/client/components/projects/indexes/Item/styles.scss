@@ -1,21 +1,21 @@
+@value colors: 'shared/css/colors.scss';
+@value list-border-color from colors;
 
 .root {
+  composes: marginTopMedium from 'shared/css/margins.scss';
+
   position: relative;
-  margin-top: 30px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #f3f3f3;
+  border-bottom: 1px solid list-border-color;
 }
 
 .title {
-  font-size: 28px;
-  line-height: 1.12;
-  letter-spacing: -.022em;
-  font-weight: bold;
+  composes: titleText from 'shared/css/components.scss';
 }
 
 
-.imageContainer {
-  margin-top: 20px;
+.imageBlock {
+  composes: marginTopSmall from 'shared/css/margins.scss';
 }
 
 .image {
@@ -25,45 +25,22 @@
 }
 
 .caption {
-  display: block;
-  margin-top: 5px;
-  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
-  font-size: 1.4rem;
-  line-height: 1.4;
-  color: #797979;
-  letter-spacing: 0;
-  text-align: center;
+  composes: caption from 'shared/css/components.scss';
 }
 
 .description {
+  composes: marginBottomLarge from 'shared/css/margins.scss';
+  composes: fontMedium from 'shared/css/fonts.scss';
+  composes: descriptionFont from 'shared/css/fonts.scss';
+
   padding-bottom: 5px;
   line-height: 1.6;
-  font-size: 1.6rem;
-  margin-bottom: 40px;
-  font-family: Source Serif Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .button {
+  composes: primaryButton from 'shared/css/components.scss';
+
   position: absolute;
   bottom: 1.5%;
   right: 1%;
-  display: inline-block;
-  height: 37px;
-  padding: 0 16px;
-  color: #009E5D;
-  font-size: 12px;
-  text-align: center;
-  cursor: pointer;
-  border: 1px solid #009E5D;
-  vertical-align: bottom;
-  white-space: nowrap;
-  border-radius: 999em;
-  letter-spacing: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 35px;
-  &:hover {
-    color: #1c9963;
-
-  }
 }

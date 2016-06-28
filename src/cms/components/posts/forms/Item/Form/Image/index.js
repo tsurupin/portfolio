@@ -63,7 +63,7 @@ class Image extends Component {
           hintText='Enter the caption'
           fullWidth={true}
         />
-        <div className={styles.submitBox}>
+        <div className={styles.submitBox} >
           {this.props.cancelButton}
           {this.props.deleteButton}
           <IconButton

@@ -116,7 +116,7 @@ class AuthorForm extends Component {
           style={inlineStyles.textField}
           errorText={name.touched && name.error ? name.error : ''}
         />
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Description</label>
           <TextEditor
             key="description"
@@ -124,7 +124,7 @@ class AuthorForm extends Component {
             handleUpdate={ (value) => { description.onChange(value) }}
           />
         </div>
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Introduction</label>
           <TextEditor
             key="introduction"
@@ -132,7 +132,7 @@ class AuthorForm extends Component {
             handleUpdate={ (value) => { introduction.onChange(value) }}
           />
         </div>
-        <div className={styles.item}>
+        <div className={styles.formGroup}>
           <label className={styles.label}>Image</label>
           <DropzoneImage
             {...image}

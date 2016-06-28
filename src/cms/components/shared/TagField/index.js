@@ -51,27 +51,24 @@ class TagField extends Component {
     const suggestions = this.state.suggestions;
     return (
       <div className={styles.root}>
-        <label className={styles.header}>Tag</label>
-        <div className={styles.content}>
-          <ReactTags
-            tags={tags}
-            suggestions={suggestions}
-            handleDelete={this.handleDeleteTag}
-            handleAddition={this.handleAddTag}
-            autofocus={false}
-            autocomplete={1}
-            minQueryLength={1}
-            placeholder='Tag Name'
-            classNames={{
-              tags: styles.tags,
-              tagInput: styles.tagInput,
-              selected: styles.selected,
-              tag: styles.tag,
-              remove: styles.remove,
-              suggestions: styles.suggestions
-            }}
-          />
-        </div>
+        <label className={styles.label}>Tag</label>
+        <ReactTags
+          tags={tags}
+          suggestions={suggestions}
+          handleDelete={this.handleDeleteTag}
+          handleAddition={this.handleAddTag}
+          autofocus={false}
+          autocomplete={1}
+          minQueryLength={1}
+          placeholder='Tag Name'
+          classNames={{
+            tagInput: styles.tagInput,
+            selected: styles.selected,
+            tag: styles.tag,
+            remove: styles.remove,
+            suggestions: styles.suggestions
+          }}
+        />
       </div>
     )
   }

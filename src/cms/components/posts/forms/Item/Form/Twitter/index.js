@@ -49,14 +49,13 @@ class Twitter extends Component {
     return (
       <div className={styles.root}>
         <TextField
-          className={styles.inputText}
           {...twitterId}
           floatingLabelText="Twitter"
           hintText='Enter the twitter URL or ID'
           fullWidth={true}
           errorText={twitterId.touched && twitterId.error ? twitterId.error : ''}
         />
-        <div className={styles.submitBox}>
+        <div className={styles.submitBox} >
           {this.props.cancelButton}
           {this.props.deleteButton}
           <IconButton

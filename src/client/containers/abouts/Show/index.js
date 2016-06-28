@@ -43,12 +43,12 @@ class AboutShow extends Component {
   
   render() {
     if (!this.props.about) {
-      return <seciont className={styles.root} />
+      return <seciont />
     }
 
     return(
-      <section className={styles.root}>
-        <h1 className={styles.title}>About</h1>
+      <section>
+        <h1 className={styles.heading}>About</h1>
         <TextDisplay description={this.props.about.description}/>
         <SocialAccounts socialAccounts={this.props.socialAccounts} />
         <h2 className={styles.subHeading}>{config.siteName}</h2>

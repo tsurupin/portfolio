@@ -55,37 +55,37 @@ class Tooltip extends Component {
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
           <MenuItem 
-            className={styles.topButton}
+            name="top-button"
             primaryText="Move Top"
             rightIcon={<ArrowUpword />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_TOP)}
             disabled={this.props.sortRank === 0} />
           <MenuItem
-            className={styles.upButton}
+            name="up-button"
             primaryText="Move Up"
             rightIcon={<SwapVert />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_UP)}
             disabled={this.props.sortRank === 0} />
           <MenuItem
-            className={styles.downButton}
+            name="down-button"
             primaryText="Move Down"
             rightIcon={<SwapVert />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_DOWN)}
             disabled={this.props.sortRank === (this.props.totalCount)} />
           <MenuItem
-            className={styles.bottomButton}
+            name="bottom-button"
             primaryText="Move Bottom"
             rightIcon={<ArrowDownword />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_BOTTOM)}
             disabled={this.props.sortRank === (this.props.totalCount)} />
           <Divider />
           <MenuItem
-            className={styles.editButton}
+            name="edit-button"
             primaryText="Edit"
             onClick={this.handleUpdateItem}
             rightIcon={<ModeEdit />}/>
           <MenuItem
-            className={styles.deleteButton}
+            name="delete-button"
             primaryText="Delete"
             rightIcon={<Clear />}
             onClick={this.handleDelete}/>

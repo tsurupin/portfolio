@@ -15,12 +15,12 @@ function Pagination({total, limit, page, handlePageClick}) {
   return (
     <div className={styles.root}>
       <IconButton 
-        disabled={props.page === 1} 
+        disabled={page === 1}
         onClick={handlePageClick.bind(null, page-1)}>
         <ChevronLeft/>
       </IconButton>
       <IconButton 
-        disabled={page*lprops.imit >= total}
+        disabled={page*limit >= total}
         onClick={handlePageClick.bind(null, page+1)}>
         <ChevronRight/>
       </IconButton>

@@ -82,8 +82,8 @@ class ProjectIndex extends Component {
     }
 
     return (
-      <section className={styles.root}>
-        <h1 className={styles.title}>Projects</h1>
+      <section>
+        <h1 className={styles.heading}>Projects</h1>
         <div className={styles.list}>
           {this.props.projects.map((project) => {
             return <Item key={project.id} adminPath={this.adminPath} {...project} />

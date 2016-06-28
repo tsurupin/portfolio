@@ -38,13 +38,11 @@ class TextDisplay extends Component {
   render() {
     return (
       <div className={styles.root}>
-        <div className={styles.editor}>
-          <Editor
-            blockStyleFn={getBlockStyle}
-            editorState={this.state.editorState}
-            readOnly={true}
-          />
-        </div>
+        <Editor
+          blockStyleFn={getBlockStyle}
+          editorState={this.state.editorState}
+          readOnly={true}
+        />
       </div>
     )
   }

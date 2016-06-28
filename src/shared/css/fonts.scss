@@ -6,7 +6,6 @@
 @value font-large: 1.8;
 @value font-x-large: 2;
 
-
 .fontXXSmall {
   font-size: 10px;
   font-size: 1rem;
@@ -37,11 +36,39 @@
   font-size: 2.0rem;
 }
 
-.fontXXLarge {
-  font-size: 25px;
-  font-size: 2.5rem;
+.fontDescription {
+  font-size: 21px;
+  font-size: 2.1rem;
 }
 
+.fontXXLarge {
+  font-size: 24px;
+  font-size: 2.4rem;
+}
+
+.fontTitle {
+  font-size: 28px;
+  font-size: 2.8rem;
+}
+
+.fontHeading {
+  font-size: 32px;
+  font-size: 3.2rem;
+}
+
+
+
+.contentFont {
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+}
+
+.descriptionFont {
+  font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+}
+
+.selectionFont {
+  font-family: 'Helvetica', sans-serif;
+}
 
 
 

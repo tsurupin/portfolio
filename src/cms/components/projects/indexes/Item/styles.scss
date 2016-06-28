@@ -1,20 +1,3 @@
-.button {
-  composes: hoverAnimation from "src/shared/css/mixins.scss";
-  border-radius: 48px;
-}
-
 .toggleButton {
-  composes: button;
-}
-
-.deleteButton {
-  composes: button;
-}
-
-.visibleIcon {
-
-}
-
-.inVisibleIcon {
-
+  composes: toggleIcon from "shared/css/components.scss";
 }

@@ -1,3 +1,6 @@
+@value colors: 'shared/css/colors.scss';
+@value link-color from colors;
+
 .root {
-  color: #307EA9;
+  color: link-color;
 }

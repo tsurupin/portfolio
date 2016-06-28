@@ -55,7 +55,7 @@ class Text extends Component {
           handleUpdate={ (value) => { description.onChange(value) }}
         />
         {this.renderErrorMessage()}
-        <div className={styles.submitBox}>
+        <div className={styles.submitBox} >
           {this.props.cancelButton}
           {this.props.deleteButton}
           <IconButton

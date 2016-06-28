@@ -79,7 +79,15 @@ export default {
     width: 18,
     height: 18
   },
-  tagColor:'#00AB6B',
+  largeButton: {
+    width: 60,
+    height: 60
+  },
+  toggleIcon: {
+    height: 36,
+    width: 36
+  },
+  tagColor:'#009E5D',
   urlInput: {
     fontFamily: "'Georgia', serif",
     marginRight: 10,
@@ -93,5 +101,5 @@ export default {
     height: 2,
     zIndex: 10000
   },
-  progressColor: '#48E79A'
+  progressColor: '#009E5D'
 };

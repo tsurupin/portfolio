@@ -1,23 +1,5 @@
-@value colors: "../../../../shared/css/colors.scss";
-@value fonts: "../../../../shared/css/fonts.scss";
-
-@value border-color, label-color, border-color, text-color from colors;
-@value font-large from fonts;
-
-.root {
-  color: #333333;
-  min-height: 500px;
-}
-
-
-.title {
-  font-size: 2.4rem;
-  line-height: 1.12;
-  letter-spacing: -.022em;
-  font-weight: 300;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f3f3f3;
-
+.heading {
+  composes: heading from 'shared/css/components.scss';
 }
 
 .list {

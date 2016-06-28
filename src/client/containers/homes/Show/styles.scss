@@ -1,17 +1,11 @@
-.root {
-
-}
-
 .image {
-  composes: marginBottomMedium from '../../../../shared/css/margins.scss';
+  composes: marginBottomMedium from 'shared/css/margins.scss';
   display: block;
   max-width: 100%;
 }
 
 
 .list {
+  composes: marginHorizontalMedium from 'shared/css/margins.scss';
   display: flex;
-  margin-top: 30px;
-  composes: marginBottomMedium from '../../../../shared/css/margins.scss';
-
 }

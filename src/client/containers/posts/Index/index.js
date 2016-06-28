@@ -96,15 +96,15 @@ class PostIndex extends Component {
 
     if(this.props.posts.length === 0 ) {
       return (
-        <section className={styles.root}>
+        <section >
           <NoContent pageName="posts" />
         </section>
       )
     }
    
     return (
-      <section className={styles.root}>
-        <h1 className={styles.title}>Posts</h1>
+      <section>
+        <h1 className={styles.heading}>Posts</h1>
         {this.renderItems()}
       </section>
     );

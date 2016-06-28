@@ -88,7 +88,7 @@ class PostIndex extends Component {
 
     if(this.props.posts.length === 0 ) {
       return (
-        <section className={styles.root}>
+        <section>
           {newButton}
           <NoContent pageName="posts" />
         </section>
@@ -96,7 +96,7 @@ class PostIndex extends Component {
     }
 
     return (
-      <section className={styles.root}>
+      <section>
        {newButton}
         <h1 className={styles.title}>Post</h1>
         <Table fixedHeader={true} fixedFooter={true}>

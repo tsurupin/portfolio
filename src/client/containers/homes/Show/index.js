@@ -57,11 +57,11 @@ class HomeShow extends Component {
 
   render() {
     if (!this.props.home.introduction) {
-      return <sectioon className={styles.root} />
+      return <sectioon />
     }
 
     return(
-      <section className={styles.root}>
+      <section>
         <img
           className={styles.image}
           src={mainImage}

@@ -73,7 +73,7 @@ class ProjectIndex extends Component {
     
     if(this.props.projects.length === 0 ) {
       return (
-        <section className={styles.root}>
+        <section>
           {newButton}
           <NoContent pageName="projects" />
         </section>
@@ -81,7 +81,7 @@ class ProjectIndex extends Component {
     }
     
     return (
-      <section className={styles.root}>
+      <section>
         {newButton}
         <h1 className={styles.title}>Project</h1>
         <Table fixedHeader={true} fixedFooter={true}>

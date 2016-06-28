@@ -1,23 +1,21 @@
+@value colors: 'shared/css/colors.scss';
+@value title-color, lead-sentence-color from colors;
+
 .root {
-  margin-bottom: 25px;
+  composes: marginBottomSmall from 'shared/css/margins.scss';
 }
 
 .content {
-  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
-  font-size: 1.8rem;
-  font-weight: 300;
-  letter-spacing: -.02em;
-  color: rgba(0,0,0,0.8);
+  composes: fontLarge from 'shared/css/fonts.scss';
+  composes: contentFont from 'shared/css/fonts.scss';
 
-  &:hover {
-    opacity: 0.7;
-  }
+  color: title-color;
 }
 
 
 .leadSentence {
-  margin-top: 5px;
-  color: #8F8F8F;
-  font-size: 1.4rem;
-  font-weight: normal;
+  composes: marginTopXXSmall from 'shared/css/margins.scss';
+  composes: fontSmall from 'shared/css/fonts.scss';
+
+  color: lead-sentence-color;
 }

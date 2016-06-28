@@ -1,0 +1,32 @@
+.root {
+  width: 48%;
+  margin-left: 2%;
+}
+
+.title {
+  composes: fontXXLarge from 'shared/css/fonts.scss';
+
+  border-bottom: 1px solid border-color;
+  font-weight: 700;
+  color: title-color;
+  letter-spacing: -.02em;
+}
+
+.button {
+  composes: primaryButton from 'shared/css/components.scss';
+}
+
+.list {
+  composes: marginBottomSmall from 'shared/css/margins.scss';
+
+  list-style: none;
+  padding: 0;
+}
+
+.image {
+  composes: marginTopXSmall from 'shared/css/margins.scss';
+  composes: marginBottomSmall from 'shared/css/margins.scss';
+
+  display: block;
+  width: 100%;
+}

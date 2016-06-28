@@ -128,8 +128,8 @@ class PostForm extends Component {
 
   renderItems() {
     return (
-      <section className={styles.itemContainer}>
-        <ul className={styles.itemList}>
+      <section className={styles.itemBlock}>
+        <ul className={styles.list}>
           {this.props.items.map((item, index) => {
             return (
               <Item
@@ -159,7 +159,7 @@ class PostForm extends Component {
     const { handleSubmit, submitting, fields: { title, publishedAt, leadSentence } } = this.props;
     
     return (
-      <form onSubmit={handleSubmit(this.handleSubmit)} className={styles.root}>
+      <form onSubmit={handleSubmit(this.handleSubmit)} >
         <h2 className={styles.heading}>{`${submitLabel} Post`}</h2>
         <TextField
           {...title}

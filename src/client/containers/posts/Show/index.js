@@ -94,11 +94,11 @@ class PostShow extends  Component {
   
   render() {
     if (!this.props.post) { 
-      return <section className={styles.root} /> 
+      return <section /> 
     }
     
     return (
-      <section className={styles.root}>
+      <section>
         <div className={styles.heading}>
           <h1 className={styles.title}>{this.props.post.title} </h1>
           <div className={styles.dateTime}>
