@@ -11,16 +11,17 @@ feature 'Admin user updates the existing project', js: true do
     fill_in 'Tag Name', with: 'sample'
     find("input[placeholder='Tag Name']").native.send_keys(:return)
 
-    find("button[name='add-item-icon']").click
+    find("button[name='add-item-button']").click
 
     within(:xpath, '//form/section/ul/li[1]') do
       find('button').click
     end
 
-    find("span[class^='editButton']").click
+    find("span[name='edit-button']").click
 
     within(:xpath, '//form/section/ul/li[1]') do
       find('.public-DraftEditor-content').set('updated description')
+      sleep 3
       find("button[name='save-item-button']").click
     end
 
@@ -41,7 +42,7 @@ feature 'Admin user updates the existing project', js: true do
       find('button').click
     end
 
-    find("span[class^='editButton']").click
+    find("span[name='edit-button']").click
     expect(page).to have_css("button[name='delete-item-button']")
     find("button[name='delete-item-button']").click
 
@@ -49,7 +50,7 @@ feature 'Admin user updates the existing project', js: true do
       find('button').click
     end
 
-    find("span[class^='editButton']").click
+    find("span[name='edit-button']").click
     expect(page).to have_css("button[name='cancel-item-button']")
     find("button[name='cancel-item-button']").click
 
@@ -70,14 +71,14 @@ feature 'Admin user updates the existing project', js: true do
       find('button').click
     end
 
-    find("span[class^='bottomButton']").click
+    find("span[name='bottom-button']").click
     sleep 3
 
     within(:xpath, '//form/section/ul/li[2]') do
       find('button').click
     end
 
-    find("span[class^='downButton']").click
+    find("span[name='down-button']").click
 
     sleep 3
 
@@ -98,14 +99,14 @@ feature 'Admin user updates the existing project', js: true do
       find('button').click
     end
 
-    find("span[class^='upButton']").click
+    find("span[name='up-button']").click
     sleep 3
 
     within(:xpath, '//form/section/ul/li[3]') do
       find('button').click
     end
 
-    find("span[class^='topButton']").click
+    find("span[name='top-button']").click
 
     sleep 3
 

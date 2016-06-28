@@ -122,12 +122,12 @@ RSpec.describe Project::Form, type: :model do
     end
 
     context 'when params have some data' do
-      it 'creates new tag if needed, and converts text param to itag_id' do
+      it 'creates new tag if needed, and converts text param to tag_id' do
         project = create(:project)
         tag = create(:tag)
         create(:tagging, subject: project, tag: tag)
         params = [{ 'text' => 'new_tag' }, { 'text' => tag.name }]
-        result = [{ 'tag_id' => Tag.last.id }, { 'tag_id' => tag.id }]
+        result = [{ 'tag_id' => Tag.last.id+1 }, { 'tag_id' => tag.id }]
         project_form = Project::Form.find(project.id)
         expect(project_form.trim_tagging_attributes!(params)).to eq result
       end

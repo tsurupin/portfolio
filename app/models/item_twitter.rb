@@ -10,7 +10,7 @@ class ItemTwitter < ActiveRecord::Base
   has_one :item, as: :target, dependent: :destroy
   validates :twitter_id, presence: true
 
-  def trime_attributes_and_save!(params)
+  def trim_attributes_and_save!(params)
     self.twitter_id = params['twitter_id']
     save!
   end

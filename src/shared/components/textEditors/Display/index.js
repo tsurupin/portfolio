@@ -11,7 +11,7 @@ import styles from './styles';
 
 
 const propTypes = {
-  description: PropTypes.string.isRequired
+  description: PropTypes.string
 };
 
 class TextDisplay extends Component {

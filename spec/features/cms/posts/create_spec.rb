@@ -9,7 +9,7 @@ feature 'Admin user creates a new post', js: true do
       page.execute_script("document.getElementsByName('publishedAt').val = '2016-06-14'")
       fill_in 'Tag Name', with: 'sample'
       find("input[placeholder='Tag Name']").native.send_keys(:return)
-      find("button[name='add-item-icon']").click
+      find("button[name='add-item-button']").click
 
       within(:xpath, '//form/div/ul') do
         buttons = all('button')
@@ -62,7 +62,7 @@ feature 'Admin user creates a new post', js: true do
 
     fill_in 'Tag Name', with: 'sample'
     find("input[placeholder='Tag Name']").native.send_keys(:return)
-    find("button[name='add-item-icon']").click
+    find("button[name='add-item-button']").click
 
     within(:xpath, '//form/div/ul') do
       buttons = all('button')

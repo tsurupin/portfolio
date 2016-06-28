@@ -8,8 +8,8 @@ feature "Toggle the existing project's accepted status", js: true do
       expect(page).to have_css('h1', 'Project')
       within(:xpath, '//tbody/tr[1]') do
         find("button[class^='toggleButton']").click
-        expect(page).to have_selector("svg[name='unaccepted']")
-        expect(page).to have_selector("svg[class^='visibleIcon']")
+        expect(page).to have_selector("svg[name='unaccepted-button']")
+        expect(page).to have_selector("svg[name='visible-button']")
       end
     end
   end
@@ -21,8 +21,8 @@ feature "Toggle the existing project's accepted status", js: true do
       expect(page).to have_css('h1', 'Project')
       within(:xpath, '//tbody/tr[1]') do
         find("button[class^='toggleButton']").click
-        expect(page).to have_selector("svg[name='accepted']")
-        expect(page).to have_selector("svg[class^='inVisibleIcon']")
+        expect(page).to have_selector("svg[name='accepted-button']")
+        expect(page).to have_selector("svg[name='in-visible-button']")
       end
     end
   end
