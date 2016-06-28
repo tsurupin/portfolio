@@ -16,13 +16,17 @@ module.exports = {
   module: {
     loaders: [
         {
-          test: /\.(scss|css)$/,
+          test: /^((?!\.global).)*(scss|css)$/,
           loader: ExtractTextPlugin.extract(
             'style-loader',
             'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader',
             'resolve-url',
             'sass'
           )
+        },
+        {
+          test: /\.global.(scss|css)$/,
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'resolve-url', 'sass')
         },
         { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
@@ -58,7 +62,7 @@ module.exports = {
     contentBase: './'
   },
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/style.scss', { allChunks: true, ignoreOrder: true }),
+    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { allChunks: true, ignoreOrder: true }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

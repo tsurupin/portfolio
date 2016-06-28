@@ -1,3 +1,6 @@
+import 'shared/css/vendors';
+import 'shared/css/globals';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
