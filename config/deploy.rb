@@ -10,7 +10,7 @@ set :repo_url, 'git@github.com:tsurupin/portfolio.git'
 # Default deploy_to directory is /var/www/my_app_name
 rails_env = ENV['RACK_ENV'] || 'development'
 
-app_path = '/var/app/anny'
+app_path = '/var/www/portfolio'
 set :deploy_to, app_path
 
 # set :branch, rails_env
