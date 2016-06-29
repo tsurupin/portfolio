@@ -9,11 +9,11 @@
 
 ActiveRecord::Base.transaction do
 
-  author = FactoryGirl.create(:author,
-                              email: Settings.author.email,
-                              password: Settings.author.password,
-                              description: Settings.author.description,
-                              introduction: Settings.author.introduction
+  author = FactoryGirl.create(
+    :author,
+    :updated,
+    email: Settings.author.email,
+    password: Settings.author.password
   )
 
   4.times do

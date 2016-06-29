@@ -24,7 +24,7 @@ function Item({ url, accountType }) {
 
 function getAccountIconImage(accountType) {
   switch(accountType) {
-    case "github":
+    case "git_hub":
       return gitHubIcon;
     case "facebook":
       return facebookIcon;

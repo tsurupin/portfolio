@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import NavigationBar from 'client/components/NavigationBar/index';
-import { Footer } from 'shared/components/Footer/index';
+import Footer from 'shared/components/Footer/index';
+import GitHubRibbon from 'shared/components/GithubRibbon/index'
 import Config from 'shared/config';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MyRawTheme from 'shared/theme';
@@ -23,6 +24,7 @@ class App extends Component {
           title={Config.siteName}
           titleTemplate={`%s | ${Config.siteName}`}
         />
+        <GitHubRibbon />
         <NavigationBar />
         <div className={styles.container}>
           {this.props.children}

@@ -42,6 +42,7 @@ class Author < ActiveRecord::Base
 
   def delete_cache
     Rails.cache.delete('cached_about')
+    Rails.cache.delete('cached_home')
   end
 
   def ensure_record_singularity!
