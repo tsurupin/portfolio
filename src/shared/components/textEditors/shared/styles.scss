@@ -17,7 +17,7 @@
   composes: fontMedium from 'shared/css/fonts.scss';
 
   max-height: 500px;
-  overflow:hidden;
+  overflow: scroll;
 }
 
 

@@ -21,7 +21,10 @@ export function fetchPosts(page = 1) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(() => dispatch(signOut()))
+        .catch((error) =>  {
+          dispatch(signOut())
+
+        })
     );
   };
 }

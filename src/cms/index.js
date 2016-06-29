@@ -12,7 +12,7 @@ import { AUTH } from 'shared/constants/actions';
 import routes from './routes';
 import reducers from './reducers';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 const store = createStore(reducers, applyMiddleware(thunk));
 injectTapEventPlugin();
 

@@ -421,8 +421,7 @@ td, th {
   padding: 0;
 }.public-DraftEditorPlaceholder-root,
 .public-DraftEditor-content {
-  margin: 0 -15px -15px;
-  padding: 15px;
+  padding: 3px;
 }
 
 .public-DraftEditor-content {
@@ -1226,7 +1225,7 @@ select {
 .editor___2yWX3 {
 
   max-height: 500px;
-  overflow:hidden;
+  overflow: scroll;
 }
 
 
