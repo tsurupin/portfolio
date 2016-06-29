@@ -9,6 +9,7 @@
 
 FactoryGirl.define do
   factory :item_image do
-    image File.new("#{Rails.root}/spec/fixtures/images/sample.png")
+    sequence(:image) { |n| File.new("#{Rails.root}/spec/fixtures/images/item_images/#{(n%20)+1}.jpg") }
+    sequence(:caption) { |n| (n % 5).zero? ? nil : Faker::StarWars.quote }
   end
 end

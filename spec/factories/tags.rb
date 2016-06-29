@@ -8,8 +8,14 @@
 #  updated_at :datetime
 #
 
+names = %w(
+  ES6 RoR Node.js React Angular.js Elixir Ruby HTML5 CSS3
+  iOS Swift Android UNIX MongoDB Docker Ansible MYSQL EC2
+  jQuery Others Travel Tips
+)
+
 FactoryGirl.define do
   factory :tag do
-    name { Faker::Name.title }
+    sequence(:name) { |n| names[n] }
   end
 end

@@ -5,6 +5,8 @@ class ItemImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MimeTypes
   process :set_content_type
 
+  process resize_to_limit: [740, 740]
+
   if Rails.env.production?
     storage :fog
   else

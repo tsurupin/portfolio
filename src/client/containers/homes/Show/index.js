@@ -6,7 +6,7 @@ import TextDisplay from 'shared/components/textEditors/Display/index';
 import RecentPosts from 'client/components/homes/shows/RecentPosts/index';
 import RecentProject from 'client/components/homes/shows/RecentProject/index';
 import shallowCompare from 'react-addons-shallow-compare';
-import mainImage from './sample.png';
+import mainImage from './home.jpg';
 import styles from './styles';
 
 const propTypes = {

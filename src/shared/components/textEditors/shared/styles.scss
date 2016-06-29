@@ -2,7 +2,7 @@
 @value title-color, lead-sentence-color, white-color, border-color, list-border-color from colors;
 
 .root {
-  composes: marginHorizontalXSmall from 'shared/css/margins.scss';
+  composes: marginVerticalXSmall from 'shared/css/margins.scss';
   composes: fontLarge from 'shared/css/fonts.scss';
 
   position: relative;
@@ -69,7 +69,8 @@
 
 .blockquote {
   composes: text;
-  composes: marginHorizontalMedium from 'shared/css/margins.scss';
+  composes: marginHorizontalZero from 'shared/css/margins.scss';
+  composes: marginVerticalMedium from 'shared/css/margins.scss';
 
   padding: 20px;
   background: list-border-color;

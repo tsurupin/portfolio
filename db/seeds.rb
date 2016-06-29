@@ -1,14 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# The data can then be loaded with the rake db:seed (or FactoryGirl.created alongside the db with db:setup).
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-if Rails.env.development?
-
-end
+#   cities = City.FactoryGirl.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.FactoryGirl.create(name: 'Emanuel', city: cities.first)
 
 
 ActiveRecord::Base.transaction do
@@ -20,19 +16,57 @@ ActiveRecord::Base.transaction do
                               introduction: Settings.author.introduction
   )
 
-  FactoryGirl.create(:social_account, author: author)
+  4.times do
+    FactoryGirl.create(:social_account, author: author)
+  end
+
+  tags = []
+  21.times do
+    tags << FactoryGirl.create(:tag)
+  end
 
   item_types = %i(image twitter text)
-  30.times do |i|
-    project_tag = FactoryGirl.create(:tag)
-    project = i.odd? ? FactoryGirl.create(:project) :  FactoryGirl.create(:project, :accepted)
-    FactoryGirl.create(:tagging, subject_type: 'Project', subject_id: project.id, tag: project_tag)
+  40.times do |i|
+    post =
+      if i % 10 == 0
+        FactoryGirl.create(:post)
+      else
+        FactoryGirl.create(:post, :accepted)
+      end
 
-    post_tag = FactoryGirl.create(:tag)
-    post = i.odd? ? FactoryGirl.create(:post) :  FactoryGirl.create(:post, :accepted)
-    FactoryGirl.create(:tagging, subject_type: 'Post', subject_id: post.id, tag: post_tag)
+    FactoryGirl.create(:item, :text, post: post)
+    (rand(10)+1).times do
+      type = item_types[rand(3)]
+      FactoryGirl.create(:item, type, post: post)
+    end
 
-    4.times { FactoryGirl.create(:item, item_types[rand(3)], post: post) }
+    (rand(4)+1).times do
+      begin
+        tag_index = rand(21)
+        FactoryGirl.create(:tagging, :subject_post, subject: post, tag: tags[tag_index])
+      rescue
+        retry
+      end
+
+    end
+  end
+
+  8.times do |i|
+    project =
+      if i % 5 == 0
+        FactoryGirl.create(:project)
+      else
+        FactoryGirl.create(:project, :accepted)
+      end
+
+    (rand(4)+1).times do
+      begin
+        tag_index = rand(21)
+        FactoryGirl.create(:tagging, :subject_project, subject: project, tag: tags[tag_index])
+      rescue
+        retry
+      end
+    end
   end
 
 end

@@ -8,6 +8,8 @@ import {
 import { POST_PATH } from "shared/constants/apis";
 import { fetchTagsForm } from "./tags";
 import { fetchItems } from "./items";
+import { signOut } from "./auths";
+
 
 import { createAlert } from "shared/actions/alerts";
 import { createAuthorizedRequest, trimPost } from "cms/utilities";
@@ -19,7 +21,7 @@ export function fetchPosts(page = 1) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => dispatch(createAlert(error.data, "error")))
+        .catch(() => dispatch(signOut()))
     );
   };
 }
@@ -69,7 +71,7 @@ function fetchEditPostSuccess(response) {
 }
 
 export function fetchNewPost() {
-  const request = createAuthorizedRequest("get", `${POST_PATH}/new`)
+  const request = createAuthorizedRequest("get", `${POST_PATH}/new`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewPostSuccess(response.data)))

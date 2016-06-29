@@ -1,11 +1,13 @@
 .image {
-  composes: marginBottomMedium from 'shared/css/margins.scss';
+  composes: marginBottomSmall from 'shared/css/margins.scss';
+
   display: block;
   max-width: 100%;
 }
 
 
 .list {
-  composes: marginHorizontalMedium from 'shared/css/margins.scss';
+  composes: marginVerticalMedium from 'shared/css/margins.scss';
+
   display: flex;
 }

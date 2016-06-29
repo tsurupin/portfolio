@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20160415005054) do
 
   add_index "items", ["post_id", "sort_rank"], name: "index_items_on_post_id_and_sort_rank", using: :btree
   add_index "items", ["post_id"], name: "index_items_on_post_id", using: :btree
-  add_index "items", ["target_id", "target_type"], name: "index_items_on_target_id_and_target_type", unique: true, using: :btree
   add_index "items", ["target_type", "target_id"], name: "index_items_on_target_type_and_target_id", using: :btree
 
   create_table "posts", force: :cascade do |t|

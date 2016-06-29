@@ -1,6 +1,6 @@
 .root {
-  composes: marginHorizontalXSmall from 'shared/css/margins.scss';
-  composes: marginVerticalZero from 'shared/css/margins.scss';
+  composes: marginVerticalXSmall from 'shared/css/margins.scss';
+  composes: marginHorizontalZero from 'shared/css/margins.scss';
 }
 
 .text {

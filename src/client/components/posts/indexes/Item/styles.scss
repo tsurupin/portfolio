@@ -32,7 +32,7 @@
 }
 
 .publishDate {
-  composes: marginHorizontalXSmall from 'shared/css/margins.scss';
+  composes: marginVerticalXSmall from 'shared/css/margins.scss';
   composes: fontSmall from 'shared/css/fonts.scss';
   color: label-color;
   text-align: right;

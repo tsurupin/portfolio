@@ -16,9 +16,10 @@
 
 FactoryGirl.define do
   factory :author do
-    sequence(:name) { Faker::Name.name }
-    sequence(:email) { Faker::Internet.email }
-    sequence(:password) { SecureRandom.hex }
+    name Faker::Name.name
+    email Faker::Internet.email
+    password Faker::Internet.password
+    image File.new("#{Rails.root}/spec/fixtures/images/authors/author.jpg")
     trait :updated do
       introduction '{"entityMap":{},"blocks":[{"key":"crvbi","text":"test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}'
       description '{"entityMap":{},"blocks":[{"key":"crvbi","text":"test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}'

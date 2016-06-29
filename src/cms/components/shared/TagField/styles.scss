@@ -2,8 +2,8 @@
 @value list-border-color, white-color, border-color, primary-color from colors;
 
 .root {
-  composes: marginHorizontalSmall from 'shared/css/margins.scss';
-  composes: marginVerticalZero from 'shared/css/margins.scss';
+  composes: marginVerticalSmall from 'shared/css/margins.scss';
+  composes: marginHorizontalZero from 'shared/css/margins.scss';
   composes: fontMedium from 'shared/css/fonts.scss';
 
   position: relative;

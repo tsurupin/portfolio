@@ -15,13 +15,19 @@
 
 FactoryGirl.define do
   factory :project do
-    title { Faker::Lorem.sentence }
+    title do
+      new_title = Faker::Commerce.product_name
+      new_title = Faker::Commerce.product_name while Project.exists?(title: new_title)
+      new_title
+    end
 
     trait :accepted do
       description '{"entityMap":{},"blocks":[{"key":"crvbi","text":"test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}'
-      image File.new("#{Rails.root}/spec/fixtures/images/sample.png")
-      source_url 'http://google.com'
+      sequence(:image) { |n| File.new("#{Rails.root}/spec/fixtures/images/projects/#{(n%7)+1}.jpg") }
+      sequence(:caption) { |n| (n % 5).zero? ? nil : Faker::Company.bs }
+      source_url "https://github.com/tsurupin"
       accepted true
+
     end
   end
 end

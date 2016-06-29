@@ -24,12 +24,11 @@ class Initialize < ActiveRecord::Migration
     create_table :items do |t|
       t.belongs_to    :post, index: true, null: false
       t.integer       :sort_rank, null: false
-      t.belongs_to    :target, polymorphic: true, null: false, index: true
+      t.belongs_to    :target, polymorphic: true, null: false, index: true, unique: true
 
       t.timestamps    null: false
     end
 
-    add_index :items, [:target_id, :target_type], unique: true
     add_index :items, [:post_id, :sort_rank]
 
     create_table :item_images do |t|
