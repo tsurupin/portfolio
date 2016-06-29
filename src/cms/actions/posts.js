@@ -38,6 +38,33 @@ function fetchPostsSuccess(response) {
   };
 }
 
+export function fetchNewPost() {
+  const request = createAuthorizedRequest("get", `${POST_PATH}/new`);
+  return dispatch => {
+    return request
+      .then(response => dispatch(fetchNewPostSuccess(response.data)))
+      .then(response => {
+        dispatch(fetchItems(response.payload.items));
+        dispatch(fetchTagsForm(response.payload.tags))
+      })
+      .catch(error => dispatch(createAlert(error.data, "error")))
+  };
+}
+
+function fetchNewPostSuccess(response) {
+  return {
+    type: FETCH_NEW_POST.SUCCESS,
+    payload: {
+      items: [],
+      tags: {
+        tags: [],
+        tagSuggestions: response.tagSuggestions
+      }
+    }
+  };
+}
+
+
 export function fetchEditPost(id) {
   const request = createAuthorizedRequest("get", `${POST_PATH}/${id}/edit`);
   return dispatch => {
@@ -67,24 +94,6 @@ function fetchEditPostSuccess(response) {
         tagSuggestions: response.tagSuggestions
       }
     }
-  };
-}
-
-export function fetchNewPost() {
-  const request = createAuthorizedRequest("get", `${POST_PATH}/new`);
-  return dispatch => {
-    return request
-      .then(response => dispatch(fetchNewPostSuccess(response.data)))
-      .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => dispatch(createAlert(error.data, "error")))
-  };
-}
-
-function fetchNewPostSuccess(response) {
-
-  return {
-    type: FETCH_NEW_POST.SUCCESS,
-    payload: { tags: { tags: [], tagSuggestions: response.tagSuggestions } }
   };
 }
 
