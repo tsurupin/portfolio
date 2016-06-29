@@ -9,8 +9,8 @@ export function Footer() {
     <footer className={styles.root}>
       <div className={styles.text}>
         <span>{`© 2016 ${config.authorName}`}</span>
-        <a href={config.githubUrl}>
-          <img className={styles.githubIcon} src={icon} />
+        <a href={config.gitHubUrl}>
+          <img className={styles.gitHubIcon} src={icon} />
         </a>
       </div>
     </footer>

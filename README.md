@@ -16,7 +16,6 @@ editing
 TODO
 -------
  - add real-time comment function (with Action Cable)
- - add head document (with React helmet)
  - consider server-side-rendering (with Express)
 
 
