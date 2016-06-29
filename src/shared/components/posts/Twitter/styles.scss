@@ -1,4 +1,4 @@
 .root {
-  composes: marginHorizontalSmall from 'shared/css/margins.scss';
-  composes: marginVerticalZero from 'shared/css/margins.scss';
+  composes: marginVerticalSmall from 'shared/css/margins.scss';
+  composes: marginHorizontalZero from 'shared/css/margins.scss';
 }

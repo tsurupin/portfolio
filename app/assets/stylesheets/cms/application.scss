@@ -842,60 +842,60 @@ select {
   margin: 40px;
 }
 
-/* Horizontal Margin */
-.marginHorizontalXXSmall___2HY29 {
+/* Vertical Margin */
+.marginVerticalXXSmall___10C0o {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.marginHorizontalXSmall___5CAyT {
+.marginVerticalXSmall___3GeQj {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.marginHorizontalSmall___1cR2s {
+.marginVerticalSmall___1fIhU {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.marginHorizontalMedium___1XajG {
+.marginVerticalMedium___3yyfZ {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.marginHorizontalLarge___1meei {
+.marginVerticalLarge___3uzbW {
   margin-top: 40px;
   margin-bottom: 40px;
 }
 
 
-/* Vertical Margin */
-.marginVerticalZero___12T0s {
+/* Horizontal Margin */
+.marginHorizontalZero___1Yfzh {
   margin-left: 0;
   margin-right: 0;
 }
 
-.marginVerticalXXSmall___10C0o {
+.marginHorizontalXXSmall___2HY29 {
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.marginVerticalXSmall___3GeQj {
+.marginHorizontalXSmall___5CAyT {
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.marginVerticalSmall___1fIhU {
+.marginHorizontalSmall___1cR2s {
   margin-left: 20px;
   margin-right: 20px;
 }
 
-.marginVerticalMedium___3yyfZ {
+.marginHorizontalMedium___1XajG {
   margin-left: 30px;
   margin-right: 30px;
 }
 
-.marginVerticalLarge___3uzbW {
+.marginHorizontalLarge___1meei {
   margin-left: 40px;
   margin-right: 40px;
 }
@@ -1071,7 +1071,7 @@ select {
   color: #8F8F8F;
 }
 
-.githubIcon___HGO8E {
+.gitHubIcon___2yKmw {
 
   width: 20px;
   height: 20px;
@@ -1188,9 +1188,10 @@ select {
 
   display: block;
   line-height: 1.4;
-  color: lead-sentence-color;
+  color: #8F8F8F;
   letter-spacing: 0;
   text-align: center;
+  font-style: italic;
 }
 .root___EtFA3 {
 
@@ -1388,9 +1389,9 @@ select {
 }
 
 .image___1jcFV {
+  display: block;
   max-width: 94%;
-  margin-left: 3%;
-  margin-right: 3%;
+  margin: 0 auto;
 }
 
 .caption___1YC_q {
@@ -1445,9 +1446,7 @@ select {
 
   line-height: 1.58;
   letter-spacing: -.003em;
-}@values white-color, error-color, primary-color from colors;
-
-.root___364R0 {
+}.root___364R0 {
   position: relative
 }
 
@@ -1461,15 +1460,15 @@ select {
   line-height: 56px;
   z-index: 10000;
   text-align: center;
-  color: white-color;
+  color: #fff;
 }
 
 .error___3JviG {
-  background-color: error-color;
+  background-color: #CE4844;
 }
 
 .success___3_5Vq {
-  background-color: primary-color;
+  background-color: #009E5D;
 }.root___3dYLg {
   min-height: 500px;
 }.root___3Gbsm {

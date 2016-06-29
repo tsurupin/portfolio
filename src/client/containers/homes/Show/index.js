@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { fetchHome } from 'client/actions/homes';
 import { connect } from 'react-redux';
 import TextDisplay from 'shared/components/textEditors/Display/index';
 import RecentPosts from 'client/components/homes/shows/RecentPosts/index';
 import RecentProject from 'client/components/homes/shows/RecentProject/index';
 import shallowCompare from 'react-addons-shallow-compare';
-import mainImage from './sample.png';
+import mainImage from './home.jpg';
 import styles from './styles';
 
 const propTypes = {
@@ -62,6 +63,7 @@ class HomeShow extends Component {
 
     return(
       <section>
+        <Helmet title="Home" />
         <img
           className={styles.image}
           src={mainImage}

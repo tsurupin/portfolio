@@ -3,7 +3,7 @@
   %head
     %meta{ charset: 'UTF-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
-    %title Portfolio
+    %title= "#{Settings.site_name}"
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,300,500', media: 'all', 'data-turbolinks-track' => 'reload'

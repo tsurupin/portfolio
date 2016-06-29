@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { fetchAbout } from 'client/actions/abouts';
 import { connect } from 'react-redux';
 import SocialAccounts from 'client/components/abouts/shows/SocialAccounts/index';
@@ -48,6 +49,7 @@ class AboutShow extends Component {
 
     return(
       <section>
+        <Helmet title="About" />
         <h1 className={styles.heading}>About</h1>
         <TextDisplay description={this.props.about.description}/>
         <SocialAccounts socialAccounts={this.props.socialAccounts} />

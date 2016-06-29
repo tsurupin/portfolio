@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPost } from 'client/actions/posts';
 import Tags from 'client/components/posts/shows/Tags/index';
@@ -99,6 +100,10 @@ class PostShow extends  Component {
     
     return (
       <section>
+        <Helmet
+          title={this.props.post.title}
+          meta={[{ property: 'og:title', content: `${this.props.post.title}` }]}
+        />
         <div className={styles.heading}>
           <h1 className={styles.title}>{this.props.post.title} </h1>
           <div className={styles.dateTime}>

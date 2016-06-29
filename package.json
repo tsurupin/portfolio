@@ -63,6 +63,7 @@
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.0.1",
     "react-dropzone": "^3.4.0",
+    "react-helmet": "^3.1.0",
     "react-infinite": "^0.9.2",
     "react-redux": "^4.0.0",
     "react-router": "^2.3.0",

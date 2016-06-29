@@ -23,6 +23,13 @@ test:
   <<: *default
   database: portfolio_test
 
+staging:
+  <<: *default
+  database: portfolio_staging
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABSE_PASSWORD'] %>
+
 production:
   <<: *default
   database: portfolio_production

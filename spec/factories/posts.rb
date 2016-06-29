@@ -13,11 +13,17 @@
 
 FactoryGirl.define do
   factory :post do
-    title { Faker::Lorem.sentence }
+    title do
+      new_title = Faker::Book.title
+      new_title = Faker::Book.title while Post.exists?(title: new_title)
+      new_title
+    end
+
 
     trait :accepted do
-      published_at { Time.current }
+      published_at { Faker::Date.between(1.years.ago, 30.days.from_now) }
       accepted true
+      lead_sentence { Faker::Company.catch_phrase }
     end
   end
 end

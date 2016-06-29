@@ -9,7 +9,6 @@ gem 'mysql2'
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'twitter'                     # Twitter APIのラッパーgem
 gem 'turbolinks'
 
 # For View
@@ -17,9 +16,8 @@ gem 'kaminari'
 gem 'oj'
 
 # For Image upload
-gem 'autoprefixer-rails'          # ベンダープレフィックスを自動でつけてくれる
-gem 'carrierwave'                 # 画像アップローダ
-gem 'mini_magick'                 # CarrierWaveでリサイズなどができるようになる
+gem 'carrierwave'                 # Image uploader
+gem 'mini_magick'                 # resizable image
 gem 'fog'
 
 # For Model and AR
@@ -27,8 +25,7 @@ gem 'active_type'
 gem 'factory_girl_rails'
 gem 'enum_help'
 gem 'migration_comments'
-gem 'squeel'
-gem 'draper'
+# gem 'draper'
 gem 'devise'
 gem 'validates_email_format_of'
 gem 'active_model_serializers'#, git: 'git@github.com:rails-api/active_model_serializers.git'
@@ -36,6 +33,10 @@ gem 'active_model_serializers'#, git: 'git@github.com:rails-api/active_model_ser
 
 # For Config
 gem 'config'
+
+# For deploy
+gem 'bugsnag'                  # bug tracking
+gem 'newrelic_rpm'             # performance monitoring
 
 group :development, :test do
   gem "faker"

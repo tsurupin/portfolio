@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchProjects } from 'client/actions/projects';
 import Item from 'client/components/projects/indexes/Item/index';
@@ -71,11 +72,17 @@ class ProjectIndex extends Component {
 
   render() {
     if (this.state.loading) {
-      return <section />
+      return(
+        <section>
+          <Helmet title="Projects" />
+        </section>
+      )
     }
-    if(this.props.projects.length === 0 ) {
+
+    if (!this.props.projects.length) {
       return (
-        <section className={styles.root}>
+        <section>
+          <Helmet title="Projects" />
           <NoContent pageName="projects" />
         </section>
       )
@@ -83,6 +90,7 @@ class ProjectIndex extends Component {
 
     return (
       <section>
+        <Helmet title="Projects" />
         <h1 className={styles.heading}>Projects</h1>
         <div className={styles.list}>
           {this.props.projects.map((project) => {
