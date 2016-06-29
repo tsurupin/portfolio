@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { fetchHome } from 'client/actions/homes';
 import { connect } from 'react-redux';
 import TextDisplay from 'shared/components/textEditors/Display/index';
@@ -62,6 +63,7 @@ class HomeShow extends Component {
 
     return(
       <section>
+        <Helmet title="Home" />
         <img
           className={styles.image}
           src={mainImage}

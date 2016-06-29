@@ -1,3 +1,6 @@
+@value colors: 'shared/css/colors.scss';
+@value border-color, title-color from colors;
+
 .root {
   width: 48%;
   margin-left: 2%;

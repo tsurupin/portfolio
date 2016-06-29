@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { fetchPosts } from 'client/actions/posts';
 import Item from 'client/components/posts/indexes/Item/index';
@@ -89,14 +90,20 @@ class PostIndex extends Component {
     );
   }
 
+
   render() {
     if (this.state.loading) {
-      return <section />
+      return (
+        <section>
+          <Helmet title="Posts" />
+        </section>
+      )
     }
 
-    if(this.props.posts.length) {
+    if (!this.props.posts.length) {
       return (
         <section >
+          <Helmet title="Posts" />
           <NoContent pageName="posts" />
         </section>
       )
@@ -104,6 +111,7 @@ class PostIndex extends Component {
    
     return (
       <section>
+        <Helmet title="Posts" />
         <h1 className={styles.heading}>Posts</h1>
         {this.renderItems()}
       </section>
