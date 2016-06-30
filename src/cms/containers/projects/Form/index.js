@@ -100,7 +100,7 @@ class ProjectForm extends Component {
     const { handleSubmit, submitting, fields: { title, caption, sourceUrl, image, description } } = this.props;
     
     return (
-      <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)}>
+      <form className={styles.root} onSubmit={handleSubmit(this.handleSubmit)} >
         <h2 className={styles.heading}>{headerLabel}</h2>
         <TextField
           {...title}

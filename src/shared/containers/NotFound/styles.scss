@@ -3,14 +3,10 @@
 }
 
 .title {
-  composes: marginBottomXXSmall from 'shared/css/margins.scss';
+  composes: marginBottomXSmall from 'shared/css/margins.scss';
   composes: titleText from 'shared/css/components.scss';
 }
 
 .text {
-  omposes: descriptionFont from 'shared/css/fonts.scss';
-  composes: fontDescription from 'shared/css/fonts.scss';
-
-  line-height: 1.58;
-  letter-spacing: -.003em;
+  composes: descriptionText from 'shared/css/components.scss';
 }

@@ -98,7 +98,6 @@
 }
 
 .tag {
-  composes: marginBottomXSmall from 'shared/css/margins.scss';
   composes: marginRightXXSmall from 'shared/css/margins.scss';
   composes: fontXSmall from 'shared/css/fonts.scss';
 

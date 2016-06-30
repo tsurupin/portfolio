@@ -8,7 +8,6 @@ import { createAlert } from "shared/actions/alerts";
 
 
 export function fetchAuthor() {
-  console.log('hohge')
   const request = createAuthorizedRequest("get", `${AUTHOR_PATH}/edit`);
   return dispatch => {
     return (

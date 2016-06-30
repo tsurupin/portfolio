@@ -17,7 +17,7 @@
   composes: fontMedium from 'shared/css/fonts.scss';
 
   max-height: 500px;
-  overflow:hidden;
+  overflow: scroll;
 }
 
 
@@ -39,7 +39,7 @@
   -webkit-font-smoothing: antialiased;
 
   & + .text {
-    composes: marginTopMedium from 'shared/css/margins.scss';
+    composes: marginBottomSmall from 'shared/css/margins.scss';
   }
 }
 
@@ -57,13 +57,14 @@
   word-wrap: break-word;
 
   & + .text {
-    composes: marginTopMedium from 'shared/css/margins.scss';
+    composes: marginBottomXSmall from 'shared/css/margins.scss';
   }
 
 }
 
 .text {
   composes: descriptionText from 'shared/css/components.scss';
+  composes: marginBottomSmall from 'shared/css/margins.scss';
 }
 
 

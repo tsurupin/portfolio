@@ -101,7 +101,68 @@ describe('cms post actions', () => {
     });
   });
 
-  describe('fetchPost', () => {
+  describe('fetchNewPost', () => {
+
+    it('create FETCH_NEW_POST_SUCCESS when fetching new post has been done', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .get(`${postUrl}/new`)
+        .reply(200, { tags: [], tagSuggestions:[] } );
+
+      const store = mockStore({});
+      const expectedResponse = [
+        {
+          payload: {
+            items: [],
+            tags: {
+              tagSuggestions: [],
+              tags: []
+            }
+          },
+          type: FETCH_NEW_POST.SUCCESS
+        },
+        {
+          payload: { items: [] },
+          type: FETCH_ITEMS
+        },
+        {
+          payload: {
+            tagSuggestions: [],
+            tags: []
+          },
+          type: FETCH_TAGS_FORM
+        }
+      ];
+
+      return store.dispatch(fetchNewPost())
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+
+    it('create FETCH_NEW_POST_FAILURE when fetching new post has been failed', () => {
+      nock(TEST_DOMAIN, headerConfig)
+        .get(`${postUrl}/new`)
+        .reply(400, { errorMessage: 'errorMessage' });
+
+      const store = mockStore({});
+      const expectedResponse = [{
+        payload: {
+          hasAlert: true,
+          kind: "error",
+          message: 'errorMessage'
+        },
+        type: CREATE_ALERT
+      }];
+
+
+      return store.dispatch(fetchNewPost())
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse)
+        })
+    });
+  });
+
+  describe('fetchEditPost', () => {
 
     it('create FETCH_EDIT_POST_SUCCESS when fetching post has been done', () => {
       nock(TEST_DOMAIN, headerConfig)
@@ -174,62 +235,7 @@ describe('cms post actions', () => {
         })
     });
   });
-
-  describe('fetchNewPost', () => {
-
-    it('create FETCH_NEW_POST_SUCCESS when fetching new post has been done', () => {
-      nock(TEST_DOMAIN, headerConfig)
-        .get(`${postUrl}/new`)
-        .reply(200, { tags: [], tagSuggestions:[] } );
-
-      const store = mockStore({});
-      const expectedResponse = [
-        {
-          payload: {
-            tags: {
-              tagSuggestions: [],
-              tags: []
-            }
-          },
-          type: FETCH_NEW_POST.SUCCESS
-        },
-        {
-          payload: {
-            tagSuggestions: [],
-            tags: []
-          },
-          type: FETCH_TAGS_FORM
-        }
-      ];
-
-      return store.dispatch(fetchNewPost())
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
-    });
-
-    it('create FETCH_NEW_POST_FAILURE when fetching new post has been failed', () => {
-      nock(TEST_DOMAIN, headerConfig)
-        .get(`${postUrl}/new`)
-        .reply(400, { errorMessage: 'errorMessage' });
-
-      const store = mockStore({});
-      const expectedResponse = [{
-        payload: {
-          hasAlert: true,
-          kind: "error",
-          message: 'errorMessage'
-        },
-        type: CREATE_ALERT
-      }];
-
-
-      return store.dispatch(fetchNewPost())
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
-    });
-  });
+  
 
   describe('savePost', () => {
     let props;

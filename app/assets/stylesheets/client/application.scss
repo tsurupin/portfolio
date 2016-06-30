@@ -421,8 +421,7 @@ td, th {
   padding: 0;
 }.public-DraftEditorPlaceholder-root,
 .public-DraftEditor-content {
-  margin: 0 -15px -15px;
-  padding: 15px;
+  padding: 3px;
 }
 
 .public-DraftEditor-content {
@@ -1253,7 +1252,6 @@ select {
 }.root___3v-N5 {
 }.root___leGh- {
   width: 100%;
-  margin: 15px 0;
 }.root___1X8N6 {
 
   position: relative;
@@ -1266,7 +1264,7 @@ select {
 .editor___2yWX3 {
 
   max-height: 500px;
-  overflow:hidden;
+  overflow: scroll;
 }
 
 
@@ -1445,7 +1443,7 @@ select {
 .button___-TWpQ {
 
   position: absolute;
-  bottom: 1.5%;
+  bottom: 20px;
   right: 1%;
 }
 .heading___1no_V {
@@ -1548,10 +1546,6 @@ select {
 }
 
 .text___K-LVu {
-  omposes: descriptionFont from 'shared/css/fonts.scss';
-
-  line-height: 1.58;
-  letter-spacing: -.003em;
 }.root___364R0 {
   position: relative
 }

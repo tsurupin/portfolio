@@ -44,7 +44,10 @@ export function fetchPost(id) {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTags(response.payload.tags))
       })
-      .catch((error) => browserHistory.push("/not-found"))
+      .catch((error) => {
+        console.log(error)
+        browserHistory.push("/not-found")
+      })
   };
 }
 
