@@ -9,6 +9,7 @@ role :batch, 'ec2-user@52.52.23.154'
 
 set :branch, 'staging'
 set :rails_env, 'staging'
+set :log_level, :debug
 # set :migration_role, 'db'
 # set :whenever_environment, :staging
 

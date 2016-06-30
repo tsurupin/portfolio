@@ -520,7 +520,7 @@ DEPENDENCIES
   enum_help
   factory_girl_rails
   faker
-  fog
+  fog-aws
   haml-rails
   hirb
   hirb-unicode
