@@ -30,7 +30,7 @@ gem 'migration_comments'
 gem 'devise'
 gem 'validates_email_format_of'
 gem 'active_model_serializers'#, git: 'git@github.com:rails-api/active_model_serializers.git'
-
+gem "faker"
 
 # For Config
 gem 'config'
@@ -38,10 +38,6 @@ gem 'config'
 # For deploy
 gem 'bugsnag'                  # bug tracking
 gem 'newrelic_rpm'             # performance monitoring
-
-group :development, :test do
-  gem "faker"
-end
 
 group :development do
   # For Deploy
