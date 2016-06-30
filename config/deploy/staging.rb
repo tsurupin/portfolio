@@ -27,7 +27,7 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 
-  after 'deploy:updated', 'newrelic:notice_deployment'
+  # after 'deploy:updated', 'newrelic:notice_deployment'
   after 'deploy:publishing', 'deploy:restart'
   #after :deploy, 'assets:precompile'
 
@@ -43,27 +43,29 @@ namespace :deploy do
   #   end
   # end
 
-  namespace :database do
-    desc 'Create Database'
-    task :create do
-      on roles(:db) do
-        run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake db:create"
-      end
-    end
 
-    desc 'Create Database'
-    task :drop do
-      on roles(:db) do
-        run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake db:drop"
-      end
-    end
+end
 
-    desc 'Load seed data'
-    task :seed  do
-      on roles(:all) do
-        within current_path do
-          run "RAILS_ENV=#{rails_env} bundle exec rake db:seed"
-        end
+namespace :database do
+  desc 'Create Database'
+  task :create do
+    on roles(:db) do
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake db:create"
+    end
+  end
+
+  desc 'Create Database'
+  task :drop do
+    on roles(:db) do
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake db:drop"
+    end
+  end
+
+  desc 'Load seed data'
+  task :seed  do
+    on roles(:all) do
+      within current_path do
+        run "RAILS_ENV=#{rails_env} bundle exec rake db:seed"
       end
     end
   end
