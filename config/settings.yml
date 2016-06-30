@@ -1,3 +1,4 @@
 site_name: tsurupin.com
 rails_cache_expiration_hours: 24
 bugsnag_api_key: <%= ENV['BUGSNAG_API_KEY'] %>
+new_relic_key: <%= ENV['NEW_RELIC_KEY'] %>

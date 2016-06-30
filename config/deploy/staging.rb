@@ -1,10 +1,10 @@
 rails_env = 'staging'
 current_path = '/var/www/portfolio/current'
 
-role :app, [Settings.aws_ec2_ip]
-role :web, [Settings.aws_ec2_ip]
-role :db, [Settings.aws_ec2_ip]
-role :batch, [Settings.aws_ec2_ip]
+role :app, [Settings.aws_staging_ec2_ip]
+role :web, [Settings.aws_staging_ec2_ip]
+role :db, [Settings.aws_staging_ec2_ip]
+role :batch, [Settings.aws_staging_ec2_ip]
 
 
 set :branch, 'staging'
@@ -13,7 +13,7 @@ set :migration_role, 'db'
 # set :whenever_environment, :staging
 
 
-server Settings.aws_ec2_ip, user: 'ec2-user', roles: %w(web app db batch)
+server Settings.aws_staging_ec2_ip, user: 'ec2-user', roles: %w(web app db batch)
 
 set :unicorn_rack_env, rails_env
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
