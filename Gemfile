@@ -19,6 +19,7 @@ gem 'oj'
 gem 'carrierwave'                 # Image uploader
 gem 'mini_magick'                 # resizable image
 gem 'fog'
+gem 'asset_sync'
 
 # For Model and AR
 gem 'active_type'

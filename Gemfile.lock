@@ -50,6 +50,10 @@ GEM
     archive-zip (0.7.0)
       io-like (~> 0.3.0)
     arel (6.0.3)
+    asset_sync (1.1.0)
+      activemodel
+      fog (>= 1.8.0)
+      unf
     ast (2.2.0)
     awesome_print (1.6.1)
     bcrypt (3.1.11)
@@ -461,6 +465,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     unicode-display_width (0.1.1)
     uniform_notifier (1.9.0)
     validates_email_format_of (1.6.3)
@@ -492,6 +499,7 @@ DEPENDENCIES
   active_model_serializers
   active_type
   annotate
+  asset_sync
   awesome_print
   better_errors
   binding_of_caller
