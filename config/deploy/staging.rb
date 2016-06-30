@@ -30,17 +30,17 @@ namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
   #after :deploy, 'assets:precompile'
 
-  # task :precompile do
-  #   on roles(:web) do
-  #     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
-  #   end
-  # end
-  #
-  # task :cleanup do
-  #   on roles(:web) do
-  #     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:clean"
-  #   end
-  # end
+  task :precompile do
+    on roles(:web) do
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+    end
+  end
+
+  task :cleanup do
+    on roles(:web) do
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:clean"
+    end
+  end
 
   namespace :database do
     desc 'Create Database'
