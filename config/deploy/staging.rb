@@ -9,7 +9,7 @@ role :batch, [Settings.aws_staging_ec2_ip]
 
 set :branch, 'staging'
 set :rails_env, 'staging'
-set :migration_role, 'db'
+# set :migration_role, 'db'
 # set :whenever_environment, :staging
 
 

@@ -2,17 +2,17 @@ rails_env = 'production'
 current_path = '/var/www/portfolio/current'
 
 
-role :app, [Settings.aws_ec2_ip]
-role :web, [Settings.aws_ec2_ip]
-role :db, [Settings.aws_ec2_ip]
-role :batch, [Settings.aws_ec2_ip]
+role :app, [Settings.aws_production_ec2_ip]
+role :web, [Settings.aws_production_ec2_ip]
+role :db, [Settings.aws_production_ec2_ip]
+role :batch, [Settings.aws_production_ec2_ip]
 
 set :branch, 'master'
 set :rails_env, 'production'
-set :migration_role, 'db'
+# set :migration_role, 'db'
 # set :whenever_environment, :production
 
-server Settings.aws_ec2_ip, user: 'ec2-user', roles: %w(web app db batch)
+server Settings.aws_production_ec2_ip, user: 'ec2-user', roles: %w(web app db batch)
 
 set :unicorn_rack_env, rails_env
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
