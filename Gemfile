@@ -18,7 +18,7 @@ gem 'oj'
 # For Image upload
 gem 'carrierwave'                 # Image uploader
 gem 'mini_magick'                 # resizable image
-gem 'fog-aws'
+gem 'fog', require: "fog/aws/storage"
 
 # For Model and AR
 gem 'active_type'
