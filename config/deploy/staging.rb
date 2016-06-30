@@ -1,10 +1,10 @@
 rails_env = 'staging'
 current_path = '/var/www/portfolio/current'
 
-role :app, [Settings.aws_staging_ec2_ip]
-role :web, [Settings.aws_staging_ec2_ip]
-role :db, [Settings.aws_staging_ec2_ip]
-role :batch, [Settings.aws_staging_ec2_ip]
+role :app, 'ec2-user@52.52.23.154'
+role :web, 'ec2-user@52.52.23.154'
+role :db, 'ec2-user@52.52.23.154'
+role :batch, 'ec2-user@52.52.23.154'
 
 
 set :branch, 'staging'
@@ -13,7 +13,7 @@ set :rails_env, 'staging'
 # set :whenever_environment, :staging
 
 
-server Settings.aws_staging_ec2_ip, user: 'ec2-user', roles: %w(web app db batch)
+server '52.52.23.154', user: 'ec2-user', roles: %w{web app db batch}
 
 set :unicorn_rack_env, rails_env
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
@@ -30,12 +30,16 @@ namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
   after :deploy, 'assets:precompile'
 
-  task :precompile, roles: :web do
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+  task :precompile do
+    on roles(:web) do
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+    end
   end
 
-  task :cleanup, roles: :web do
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:clean"
+  task :cleanup do
+    on roles(:web) do
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:clean"
+    end
   end
 
   namespace :database do
