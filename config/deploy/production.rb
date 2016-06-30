@@ -16,7 +16,7 @@ server Settings.aws_production_ec2_ip, user: 'ec2-user', roles: %w{web app db ba
 
 set :unicorn_rack_env, rails_env
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
-set :unicorn_pid, "#{current_path}tmp/pids/unicorn.pid"
+set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 
 

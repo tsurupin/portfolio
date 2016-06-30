@@ -25,8 +25,8 @@ module Portfolio
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
-    config.assets.precompile << 'cms/bundle.js'
-    config.assets.precompile << 'client/bundle.js'
+    config.assets.precompile << 'cms/application.js'
+    config.assets.precompile << 'client/application.js'
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
     config.generators do |g|
