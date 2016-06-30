@@ -2,6 +2,7 @@ aws_s3_bucket_name: <%= ENV["AWS_S3_BUCKET_NAME"] %>
 aws_access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
 aws_secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
 aws_region: <%= ENV["AWS_REGION"] %>
+aws_cloud_front_domain_name: <%= ENV["ADMIN_CLOUD_FRONT_DOMAIN_NAME"] %>
 author:
   email: <%= ENV["ADMIN_EMAIL"] %>
   password: <%= ENV["ADMIN_PASSWORD"] %>
