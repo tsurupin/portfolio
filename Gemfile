@@ -44,6 +44,7 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rbenv', require: false
+  gem 'capistrano-npm', require: false
   gem 'capistrano3-unicorn'
 
   gem 'annotate'

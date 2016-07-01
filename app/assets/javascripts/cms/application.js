@@ -1,1 +1,1 @@
-//= require ./bundle.js
+//=require ./bundle

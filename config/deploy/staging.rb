@@ -10,9 +10,6 @@ role :batch, 'ec2-user@52.52.23.154'
 set :branch, 'staging'
 set :rails_env, 'staging'
 set :log_level, :debug
-# set :migration_role, 'db'
-# set :whenever_environment, :staging
-
 
 server '52.52.23.154', user: 'ec2-user', roles: %w{web app db batch}
 
@@ -28,22 +25,17 @@ namespace :deploy do
   end
 
   # after 'deploy:updated', 'newrelic:notice_deployment'
-  after 'deploy:publishing', 'deploy:restart'
-  #after :deploy, 'assets:precompile'
+ after 'deploy:publishing', 'deploy:restart'
 
-  # task :precompile do
-  #   on roles(:web) do
-  #     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
-  #   end
-  # end
-  #
-  # task :cleanup do
-  #   on roles(:web) do
-  #     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:clean"
-  #   end
-  # end
-
-
+  namespace :assets do
+    task :precompile do
+      on roles(:web) do
+        execute 'rm -rf public/assets'
+        execute :bundle, 'exec rake webpack -config webpack.config.prod.js'
+        execute :bundle, "exec rake assets:precompile RAILS_ENV=#{rails_env}"
+      end
+    end
+  end
 end
 
 namespace :database do

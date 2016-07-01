@@ -11,7 +11,7 @@ capybara-*.html
 /spec/tmp
 
 /node_modules
-
+bundle.js
 npm-debug.log
 
 **.orig
@@ -57,4 +57,11 @@ bower.json
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+
+# Ignore bundle files created with webpack
+assets/stylesheets/client/application.scss
+assets/stylesheets/cms/application.scss
+assets/javascripts/client/bundle.js
+assets/javascripts/cms/bundle.js
 
