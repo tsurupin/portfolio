@@ -4,7 +4,7 @@ var autoprefixer = require('autoprefixer');
 var path = require('path');
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   context: __dirname,
   entry: {
     'cms': './src/cms/index.js',
