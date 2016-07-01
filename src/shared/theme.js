@@ -1,22 +1,22 @@
 import {
   teal100,
-  teal500, 
+  teal500,
   teal700,
-  red100, 
+  red100,
   red500,
   redA200,
   gray400,
-  gray900, 
+  gray900,
   white,
-  darkBlack
+  darkBlack,
 } from 'material-ui/styles/colors';
-import { fade }from 'material-ui/utils/colorManipulator';
+import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 import zIndex from 'material-ui/styles/zIndex';
 
 export default {
   spacing: Spacing,
-  zIndex: zIndex,
+  zIndex,
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
   palette: {
     primary1Color: teal500,
@@ -30,6 +30,6 @@ export default {
     canvasColor: white,
     borderColor: gray400,
     disabledColor: fade(darkBlack, 0.3),
-    pickerHeaderColor: teal500
-  }
+    pickerHeaderColor: teal500,
+  },
 };

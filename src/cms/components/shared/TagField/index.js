@@ -1,42 +1,42 @@
 import React, { Component, PropTypes } from 'react';
-import {  WithContext as ReactTags } from 'react-tag-input';
+import { WithContext as ReactTags } from 'react-tag-input';
 import styles from './styles';
 
 const propTypes = {
   tags: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string
+    text: PropTypes.string,
   })),
   suggestions: PropTypes.array.isRequired,
   handleAddTag: PropTypes.func.isRequired,
-  handleDeleteTag: PropTypes.func.isRequired
+  handleDeleteTag: PropTypes.func.isRequired,
 };
 
 
 const defaultProps = {
   tags: [],
-  suggestions: []
+  suggestions: [],
 };
 
 class TagField extends Component {
 
-	constructor(props) {
-		super(props);
+	                    constructor(props) {
+		                    super(props);
 
-    this.state = {
-      tags: [],
-      suggestions: []
-    };
+  this.state = {
+    tags: [],
+    suggestions: [],
+  };
 
-    this.handleDeleteTag = this.handleDeleteTag.bind(this);
-    this.handleAddTag = this.handleAddTag.bind(this);
+  this.handleDeleteTag = this.handleDeleteTag.bind(this);
+  this.handleAddTag = this.handleAddTag.bind(this);
 	}
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       tags: nextProps.tags,
-      suggestions: nextProps.suggestions
-    })
-  };
+      suggestions: nextProps.suggestions,
+    });
+  }
 
   handleDeleteTag(sortRank) {
     this.props.handleDeleteTag(sortRank);
@@ -60,17 +60,17 @@ class TagField extends Component {
           autofocus={false}
           autocomplete={1}
           minQueryLength={1}
-          placeholder='Tag Name'
+          placeholder="Tag Name"
           classNames={{
             tagInput: styles.tagInput,
             selected: styles.selected,
             tag: styles.tag,
             remove: styles.remove,
-            suggestions: styles.suggestions
+            suggestions: styles.suggestions,
           }}
         />
       </div>
-    )
+    );
   }
 }
 
@@ -78,5 +78,5 @@ TagField.propTypes = propTypes;
 
 TagField.defaultProps = defaultProps;
 
-export default TagField
+export default TagField;
 

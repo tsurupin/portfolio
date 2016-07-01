@@ -11,12 +11,12 @@ const propTypes = {
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired
+  ).isRequired,
 };
 
-function Item({ id, title, leadSentence, publishedAt, tags}) {
+function Item({ id, title, leadSentence, publishedAt, tags }) {
   return (
       <div className={styles.root}>
         <Link to={`/posts/${id}`}>
@@ -26,8 +26,8 @@ function Item({ id, title, leadSentence, publishedAt, tags}) {
         <TagList tags={tags} path="/posts" />
       <div className={styles.publishDate}>{publishedAt}</div>
     </div>
-  )
-};
+  );
+}
 
 Item.propTypes = propTypes;
 export default Item;

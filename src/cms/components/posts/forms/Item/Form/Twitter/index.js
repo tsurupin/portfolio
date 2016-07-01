@@ -14,7 +14,7 @@ const propTypes = {
   cancelButton: PropTypes.object,
   deleteButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired
+  submitting: PropTypes.bool.isRequired,
 };
 
 const fields = ['twitterId'];
@@ -22,8 +22,8 @@ const fields = ['twitterId'];
 function validate(values) {
   const errors = {};
 
-  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId) ) {
-    errors.twitterId = 'Enter Valid Twitter URL or Twitter ID'
+  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId)) {
+    errors.twitterId = 'Enter Valid Twitter URL or Twitter ID';
   }
 
   return errors;
@@ -41,7 +41,7 @@ class Twitter extends Component {
     const regexp = /https?:\/\/twitter.com\/[\w]+\/status\/([\d]+)$/i;
     const twitterId = props.twitterId.match(regexp) ? props.twitterId.match(regexp)[1] : props.twitterId;
     console.log(twitterId);
-    this.props.handleUpdateItem({twitterId});
+    this.props.handleUpdateItem({ twitterId });
   }
 
 
@@ -52,8 +52,8 @@ class Twitter extends Component {
         <TextField
           {...twitterId}
           floatingLabelText="Twitter"
-          hintText='Enter the twitter URL or ID'
-          fullWidth={true}
+          hintText="Enter the twitter URL or ID"
+          fullWidth
           errorText={twitterId.touched && twitterId.error ? twitterId.error : ''}
         />
         <div className={styles.submitBox} >
@@ -79,6 +79,6 @@ Twitter.propTypes = propTypes;
 export default reduxForm({
   form: 'ItemFormTwitter',
   fields,
-  validate
+  validate,
 })(Twitter);
 

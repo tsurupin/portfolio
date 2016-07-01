@@ -10,45 +10,45 @@ import styles from './styles.scss';
 
 
 const propTypes = {
-  handleAddItem: PropTypes.func.isRequired
+  handleAddItem: PropTypes.func.isRequired,
 };
 
 const TARGET_TYPE_LIST = [
   TARGET_TYPES.TEXT,
   TARGET_TYPES.IMAGE,
-  TARGET_TYPES.TWITTER
+  TARGET_TYPES.TWITTER,
 ];
 
 class EditBox extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { isOpen: false }
+    this.state = { isOpen: false };
   }
 
   renderToggleButton() {
     if (!this.state.isOpen) {
       return (
-        <IconButton 
+        <IconButton
           style={inlineStyles.largeButton}
           name="add-item-button"
-          iconStyle={inlineStyles.toggleIcon} 
+          iconStyle={inlineStyles.toggleIcon}
           onClick={() => this.setState({ isOpen: true })}
         >
           <ContentAddCircleOutLine color={inlineStyles.iconColor} />
         </IconButton>
-      )
+      );
     } else {
       return (
-        <IconButton 
+        <IconButton
           style={inlineStyles.largeButton}
           name="close-add-item-button"
-          iconStyle={inlineStyles.toggleIcon} 
+          iconStyle={inlineStyles.toggleIcon}
           onClick={() => this.setState({ isOpen: false })}
         >
           <ActionHighlightOff color={inlineStyles.iconColor} />
         </IconButton>
-      )
+      );
     }
   }
 

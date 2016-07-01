@@ -4,20 +4,20 @@ import { fetchPosts, togglePost } from 'cms/actions/posts';
 import { Link } from 'react-router';
 import Item from 'cms/components/posts/indexes/Item/index';
 import NoContent from 'shared/components/NoContent/index';
-import { 
-  Table, 
-  TableHeaderColumn, 
-  TableHeader, 
-  TableBody, 
-  TableRow, 
-  TableRowColumn, 
-  TableFooter 
+import {
+  Table,
+  TableHeaderColumn,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableRowColumn,
+  TableFooter,
 } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Pagination from 'cms/components/shared/Pagination/index';
 import inlineStyles from 'shared/css/MaterialUI/index';
-import styles from'./styles';
+import styles from './styles';
 
 
 const propTypes = {
@@ -26,7 +26,7 @@ const propTypes = {
       title: PropTypes.string.isRequired,
       publishedAt: PropTypes.string,
       status: PropTypes.number.isRequired,
-      accepted: PropTypes.bool.isRequired
+      accepted: PropTypes.bool.isRequired,
     }).isRequired
   ).isRequired,
   page: PropTypes.number.isRequired,
@@ -34,7 +34,7 @@ const propTypes = {
   total: PropTypes.number.isRequired,
   fetchPosts: PropTypes.func.isRequired,
   togglePost: PropTypes.func.isRequired,
-  finishLoading: PropTypes.func.isRequired
+  finishLoading: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -42,17 +42,17 @@ function mapStateToProps(state) {
     posts: state.posts.posts,
     page: state.posts.page,
     limit: state.posts.limit,
-    total: state.posts.total
-  }
+    total: state.posts.total,
+  };
 }
 
 class PostIndex extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = { loading: true };
 
-    
+
     this.handleToggle = this.handleToggle.bind(this);
     this.handleMovePage = this.handleMovePage.bind(this);
   }
@@ -64,23 +64,23 @@ class PostIndex extends Component {
         this.setState({ loading: false });
       });
   }
-  
+
   handleToggle(sortRank, postId) {
     this.props.togglePost(sortRank, postId);
   }
-  
+
   handleMovePage(page) {
     this.props.fetchPosts(page);
   }
 
   render() {
     if (this.state.loading) {
-      return <section />
+      return <section />;
     }
 
     const newButton = (
       <Link to="/cms/posts/new">
-        <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
+        <FloatingActionButton style={inlineStyles.floatButton} primary>
           <ContentAdd />
         </FloatingActionButton>
       </Link>
@@ -99,7 +99,7 @@ class PostIndex extends Component {
       <section>
        {newButton}
         <h1 className={styles.title}>Post</h1>
-        <Table fixedHeader={true} fixedFooter={true}>
+        <Table fixedHeader fixedFooter>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow selectable={false}>
               <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>ID</TableHeaderColumn>

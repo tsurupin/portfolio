@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import config from 'shared/config';
 
 const style = {
@@ -6,7 +6,7 @@ const style = {
   top: 0,
   right: 0,
   border: 0,
-  zIndex: 10000
+  zIndex: 10000,
 
 };
 
@@ -20,5 +20,5 @@ export default function GitHubRibbon() {
         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
       />
     </a>
-  )
+  );
 }

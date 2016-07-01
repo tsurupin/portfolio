@@ -1,11 +1,11 @@
-import { FETCH_PROJECTS } from "shared/constants/actions";
-import { PROJECT_PATH } from "shared/constants/apis";
-import { axios } from "client/utilities";
-import { browserHistory } from "react-router";
-import { createError } from "shared/actions/errors";
+import { FETCH_PROJECTS } from 'shared/constants/actions';
+import { PROJECT_PATH } from 'shared/constants/apis';
+import { axios } from 'client/utilities';
+import { browserHistory } from 'react-router';
+import { createError } from 'shared/actions/errors';
 
 export function fetchProjects(params = {}) {
-  const url =  params.tag ? `${PROJECT_PATH}?tag=${params.tag}` : PROJECT_PATH;
+  const url = params.tag ? `${PROJECT_PATH}?tag=${params.tag}` : PROJECT_PATH;
 
   const request = axios.get(url);
   return dispatch => {
@@ -20,6 +20,6 @@ export function fetchProjects(params = {}) {
 function fetchProjectsSuccess({ projects }) {
   return {
     type: FETCH_PROJECTS.SUCCESS,
-    payload: { projects }
+    payload: { projects },
   };
 }

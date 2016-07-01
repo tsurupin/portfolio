@@ -8,7 +8,8 @@
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=test NODE_PATH=./src mocha --compilers js:babel-core/register --require ignore-styles --require ./test/helpers/index.js --recursive ./test/",
     "test:watch": "npm run test -- --watch",
-    "es:lint": "./node_modules/.bin/eslint src/**"
+    "es:lint": "./node_modules/.bin/eslint src/**",
+    "es:lint:fix": "./node_modules/.bin/eslint --fix src/** "
   },
   "author": "tomoaki tsuruta",
   "devDependencies": {

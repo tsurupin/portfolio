@@ -5,20 +5,20 @@ const propTypes = {
   sortRank: PropTypes.number.isRequired,
   url: PropTypes.string,
   accountType: PropTypes.string.isRequired,
-  handleUpdate: PropTypes.func.isRequired
+  handleUpdate: PropTypes.func.isRequired,
 };
 
 class SocialAccount extends Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     this.props.handleUpdate(this.props.sortRank, event.target.value);
   }
-  
+
   render() {
     return (
       <TextField
@@ -26,10 +26,10 @@ class SocialAccount extends Component {
         name="url"
         floatingLabelText={`${this.props.accountType} URL`}
         hintText="Enter URL"
-        fullWidth={true}
+        fullWidth
         onChange={this.handleChange}
       />
-    )
+    );
   }
 }
 

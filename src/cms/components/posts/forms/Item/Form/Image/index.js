@@ -12,15 +12,15 @@ const propTypes = {
   fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.element,
   deleteButton: PropTypes.element.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired
+  handleUpdateItem: PropTypes.func.isRequired,
 };
 
 const fields = ['image', 'caption'];
 
 function validate(values) {
   const errors = {};
-  if(!values.image) {
-    errors.image = 'Entry image'
+  if (!values.image) {
+    errors.image = 'Entry image';
   }
 
   return errors;
@@ -31,12 +31,12 @@ class Image extends Component {
 
   constructor(props) {
     super(props);
-   
+
     this.handleUpdateItem = this.handleUpdateItem.bind(this);
   }
-  
+
   handleUpdateItem(props) {
-    this.props.handleUpdateItem({ image: props.image, caption: props.caption })
+    this.props.handleUpdateItem({ image: props.image, caption: props.caption });
   }
 
   renderErrorMessage() {
@@ -53,15 +53,15 @@ class Image extends Component {
         <label className={styles.label}>Image</label>
         <DropzoneImage
           {...image}
-          handleUpdate={ (file) => image.onChange(file) }
+          handleUpdate={(file) => image.onChange(file)}
         />
         {this.renderErrorMessage()}
         <TextField
           className={styles.inputText}
           {...caption}
           floatingLabelText="Caption"
-          hintText='Enter the caption'
-          fullWidth={true}
+          hintText="Enter the caption"
+          fullWidth
         />
         <div className={styles.submitBox} >
           {this.props.cancelButton}
@@ -87,8 +87,6 @@ Image.propTypes = propTypes;
 export default reduxForm({
   form: 'ItemImageForm',
   fields,
-  validate
+  validate,
 })(Image);
-
-
 

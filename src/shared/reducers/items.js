@@ -1,12 +1,12 @@
 import {
-  FETCH_ITEMS, 
-  CREATE_ITEM, 
-  DELETE_ITEM, 
+  FETCH_ITEMS,
+  CREATE_ITEM,
+  DELETE_ITEM,
   UPDATE_ITEM,
-  MOVE_ITEM_TOP, 
-  MOVE_ITEM_UP, 
-  MOVE_ITEM_DOWN, 
-  MOVE_ITEM_BOTTOM
+  MOVE_ITEM_TOP,
+  MOVE_ITEM_UP,
+  MOVE_ITEM_DOWN,
+  MOVE_ITEM_BOTTOM,
 } from 'shared/constants/actions';
 
 
@@ -23,14 +23,14 @@ export default function (state = [], action) {
 
     case DELETE_ITEM:
       return [...state.slice(0, action.payload.sortRank), ...state.slice(action.payload.sortRank + 1)];
-    
+
     case MOVE_ITEM_TOP:
       if (state.length > 0 && action.payload.sortRank !== 0) {
         const topItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
         return [...topItem, ...state.slice(0, action.payload.sortRank), ...state.slice(action.payload.sortRank + 1)];
       }
       return state;
-    
+
     case MOVE_ITEM_UP:
       if (state.length > 0) {
         const subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);

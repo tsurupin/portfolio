@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   about,
   socialAccounts,
   home,
-  errors
+  errors,
 });
 
 export default rootReducer;

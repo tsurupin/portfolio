@@ -4,23 +4,23 @@ import styles from './styles';
 
 const propTypes = {
   image: PropTypes.string,
-  handleUpdate: PropTypes.func.isRequired
+  handleUpdate: PropTypes.func.isRequired,
 };
 
 class DropzoneImage extends Component {
 
   constructor(props) {
     super(props);
-    
-    this.state = { errorMessage: "" };
+
+    this.state = { errorMessage: '' };
     this.handleDrop = this.handleDrop.bind(this);
   }
-  
+
   handleDrop(files) {
     const file = files[0];
 
     if (!(/.*image\/(gift|jpg|jpeg|png)$/i).test(file.type)) {
-      return this.setState({ errorMessage: "Cannot upload image file" })
+      return this.setState({ errorMessage: 'Cannot upload image file' });
     }
 
     const self = this;
@@ -28,19 +28,19 @@ class DropzoneImage extends Component {
 
     reader.onload = function (upload) {
       self.props.handleUpdate(upload.target.result);
-      self.setState({ errorMessage: "" })
+      self.setState({ errorMessage: '' });
     };
 
     reader.onerror = function () {
-      self.setState({ errorMessage: "Cannot upload image file" })
+      self.setState({ errorMessage: 'Cannot upload image file' });
     };
 
     reader.readAsDataURL(file);
   }
-  
+
   renderImageBox() {
     if (this.props.value) {
-      return <img className={styles.previewImage} src={this.props.value} width='100'/>;
+      return <img className={styles.previewImage} src={this.props.value} width="100" />;
     }
   }
 
@@ -49,10 +49,10 @@ class DropzoneImage extends Component {
       return <span className={styles.errorMessage}>{this.state.errorMessage}</span>;
     }
   }
-  
+
   renderPlaceholder() {
     if (!this.props.value) {
-      return <span className={styles.placeholder}>Drop file here or click to upload.</span>
+      return <span className={styles.placeholder}>Drop file here or click to upload.</span>;
     }
   }
 
@@ -65,7 +65,8 @@ class DropzoneImage extends Component {
           activeClassName={styles.dropzoneActive}
           accept="image/*"
           multipe={false}
-          onDrop={this.handleDrop}>
+          onDrop={this.handleDrop}
+        >
           {this.renderPlaceholder()}
           {this.renderImageBox()}
           {this.renderErrorMessage()}
@@ -75,6 +76,6 @@ class DropzoneImage extends Component {
   }
 }
 
-DropzoneImage.propTypes = propTypes; 
+DropzoneImage.propTypes = propTypes;
 
 export default DropzoneImage;

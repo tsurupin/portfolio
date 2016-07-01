@@ -31,13 +31,13 @@ function findLinkEntities(contentBlock, callback) {
 export const decorator = new MultiDecorator([
   // default is javascript;
   new PrismDecorator({
-    defaultSyntax: 'javascript'
+    defaultSyntax: 'javascript',
   }),
   new CompositeDecorator([
     {
       strategy: findLinkEntities,
-      component: Link
-    }
-  ])
+      component: Link,
+    },
+  ]),
 ]);
 

@@ -8,24 +8,26 @@ const propTypes = {
   page: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
-  handlePageClick: PropTypes.func.isRequired
+  handlePageClick: PropTypes.func.isRequired,
 };
 
-function Pagination({total, limit, page, handlePageClick}) {
+function Pagination({ total, limit, page, handlePageClick }) {
   return (
     <div className={styles.root}>
-      <IconButton 
+      <IconButton
         disabled={page === 1}
-        onClick={handlePageClick.bind(null, page-1)}>
-        <ChevronLeft/>
+        onClick={handlePageClick.bind(null, page - 1)}
+      >
+        <ChevronLeft />
       </IconButton>
-      <IconButton 
-        disabled={page*limit >= total}
-        onClick={handlePageClick.bind(null, page+1)}>
-        <ChevronRight/>
+      <IconButton
+        disabled={page * limit >= total}
+        onClick={handlePageClick.bind(null, page + 1)}
+      >
+        <ChevronRight />
       </IconButton>
       <div className={styles.text}>
-        {`${Math.min(((page-1)*limit)+1, total)} - ${Math.min((page*limit), total)} of ${total}`}
+        {`${Math.min(((page - 1) * limit) + 1, total)} - ${Math.min((page * limit), total)} of ${total}`}
       </div>
     </div>
   );

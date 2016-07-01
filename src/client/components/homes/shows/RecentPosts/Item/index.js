@@ -6,7 +6,7 @@ import styles from './styles';
 const propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  leadSentence: PropTypes.string
+  leadSentence: PropTypes.string,
 };
 
 function Item({ id, title, leadSentence }) {
@@ -17,7 +17,7 @@ function Item({ id, title, leadSentence }) {
         <p className={styles.leadSentence}>{leadSentence}</p>
       </Link>
     </li>
-  )
+  );
 }
 
 Item.propTypes = propTypes;

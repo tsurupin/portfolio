@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import styles from './styles';
 
 const propTypes = {
-  pageName: PropTypes.string.isRequired
+  pageName: PropTypes.string.isRequired,
 };
 
 function NoContent({ pageName }) {
@@ -10,7 +10,7 @@ function NoContent({ pageName }) {
     <div className={styles.root}>
       <p className={styles.text}>{`we couldn't find any ${pageName}`}</p>
     </div>
-  )
+  );
 }
 
 NoContent.propTypes = propTypes;

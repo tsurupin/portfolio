@@ -4,16 +4,16 @@ import styles from './styles';
 
 const propTypes = {
   image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 function RecentProject({ image, title }) {
-  return(
+  return (
     <div className={styles.root}>
       <h3 className={styles.title}>RECENT PROJECTS</h3>
-      <img 
+      <img
         className={styles.image}
-        src={image} 
+        src={image}
         alt={title}
       />
       <Link to="/projects" className={styles.button}>
@@ -21,7 +21,6 @@ function RecentProject({ image, title }) {
       </Link>
     </div>
   );
-
 }
 
 RecentProject.propTypes = propTypes;

@@ -17,14 +17,14 @@ const store = createStore(reducers, applyMiddleware(thunk));
 injectTapEventPlugin();
 
 const accessToken = localStorage.getItem('accessToken');
-if(accessToken) {
-  store.dispatch({ type: AUTH.SUCCESS })
+if (accessToken) {
+  store.dispatch({ type: AUTH.SUCCESS });
 }
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router 
-      history={browserHistory} 
+    <Router
+      history={browserHistory}
       routes={routes}
       render={applyRouterMiddleware(useScroll())}
     />

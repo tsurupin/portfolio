@@ -6,7 +6,7 @@ import {
   RichUtils,
   convertFromRaw,
   convertToRaw,
-  Entity
+  Entity,
 } from 'draft-js';
 
 import { getBlockStyle } from './../shared/utilities';
@@ -25,21 +25,21 @@ export default class TextEditor extends Component {
 
   constructor(props) {
     super(props);
-    
-    if(props.value) {
+
+    if (props.value) {
       const blocks = convertFromRaw(JSON.parse(props.value));
       this.state = {
         editorState: EditorState.createWithContent(blocks, decorator),
         inputtable: false,
-        urlValue: ''
+        urlValue: '',
       };
     } else {
       this.state = {
         editorState: EditorState.createEmpty(decorator),
         inputtable: false,
-        urlValue: ''
+        urlValue: '',
       };
-     }
+    }
 
     this.handleFocus = () => this.refs.editor.focus();
     this.handleToggleInlineStyle = this.handleToggleInlineStyle.bind(this);
@@ -70,7 +70,7 @@ export default class TextEditor extends Component {
     if (!selection.isCollapsed()) {
       this.setState({
         inputtable: true,
-        urlValue: ''
+        urlValue: '',
       }, () => {
         setTimeout(() => this.refs.url.focus(), 0);
       });
@@ -88,7 +88,7 @@ export default class TextEditor extends Component {
         entityKey
       ),
       inputtable: false,
-      urlValue: ''
+      urlValue: '',
     }, () => {
       setTimeout(() => this.refs.editor.focus(), 0);
     });
@@ -106,16 +106,16 @@ export default class TextEditor extends Component {
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
       this.setState({
-        editorState: RichUtils.toggleLink(editorState, selection, null)
+        editorState: RichUtils.toggleLink(editorState, selection, null),
       });
     }
   }
 
   handleUpdate() {
     const description = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-    this.props.handleUpdate(description)
+    this.props.handleUpdate(description);
   }
-  
+
   handleToggleBlockType(blockType) {
     this.handleChange(
       RichUtils.toggleBlockType(
@@ -143,15 +143,15 @@ export default class TextEditor extends Component {
     }
     return false;
   }
-  
+
   renderURLField() {
-      if (this.state.inputtable) {
-        return(
+    if (this.state.inputtable) {
+      return (
           <div className={styles.urlInputBox}>
             <TextField
               onChange={this.handleChangeURL}
               ref="url"
-              hintText='Enter Link URL'
+              hintText="Enter Link URL"
               style={inlineStyles.urlInput}
               value={this.state.urlValue}
               onKeyDown={this.handleInputKeyDown}
@@ -160,8 +160,8 @@ export default class TextEditor extends Component {
                 <ContentAddCircle />
               </IconButton>
           </div>
-        )
-      }
+        );
+    }
   }
 
   render() {
@@ -188,18 +188,14 @@ export default class TextEditor extends Component {
             onChange={this.handleChange}
             blockStyleFn={getBlockStyle}
             editorState={editorState}
-            spellCheck={true}
+            spellCheck
             placeholder="Enter Text"
             ref="editor"
             handleKeyCommand={this.handleKeyCommand}
           />
         </div>
       </div>
-    )
-
+    );
   }
 }
-
-
-
 

@@ -10,36 +10,36 @@ const propTypes = {
   prevId: PropTypes.number,
   prevTitle: PropTypes.string,
   nextId: PropTypes.number,
-  nextTitle: PropTypes.string
+  nextTitle: PropTypes.string,
 };
 
 class Pagination extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   renderPrev() {
-    if (!this.props.prevId) { return <span className={styles.prevBox} />;  }
-    return(
+    if (!this.props.prevId) { return <span className={styles.prevBox} />; }
+    return (
       <Link to={`${this.props.adminPath}/posts/${this.props.prevId}`} className={styles.prevBox}>
-        <NavigationChevronLeft color={inlineStyles.iconColor}  style={inlineStyles.prevIcon} />
+        <NavigationChevronLeft color={inlineStyles.iconColor} style={inlineStyles.prevIcon} />
         <div className={styles.prevTitle}>{this.props.prevTitle}</div>
       </Link>
-    )
+    );
   }
 
   renderNext() {
-    if (!this.props.nextId) { return <span className={styles.nextBox} /> }
-    return(
+    if (!this.props.nextId) { return <span className={styles.nextBox} />; }
+    return (
       <Link to={`${this.props.adminPath}/posts/${this.props.nextId}`} className={styles.nextBox}>
         <div className={styles.nextTitle}>{this.props.nextTitle}</div>
         <NavigationChevronRight color={inlineStyles.iconColor} style={inlineStyles.nextIcon} />
       </Link>
-    )
+    );
   }
 
   render() {
-    return(
+    return (
       <section className={styles.root}>
         {this.renderPrev()}
         {this.renderNext()}

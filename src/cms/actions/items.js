@@ -1,16 +1,16 @@
 import {
-  FETCH_ITEMS, 
-  CREATE_ITEM, 
+  FETCH_ITEMS,
+  CREATE_ITEM,
   DELETE_ITEM,
-  UPDATE_ITEM
-} from "shared/constants/actions";
+  UPDATE_ITEM,
+} from 'shared/constants/actions';
 
 
 export function fetchItems(items) {
   return {
     type: FETCH_ITEMS,
-    payload: { items }
-  }
+    payload: { items },
+  };
 }
 
 export function createItem(targetType) {
@@ -20,10 +20,10 @@ export function createItem(targetType) {
       item: {
         targetType,
         editing: true,
-        isNew: true
-      }
-    }
-  }
+        isNew: true,
+      },
+    },
+  };
 }
 
 export function updateItem(sortRank, item) {
@@ -31,24 +31,23 @@ export function updateItem(sortRank, item) {
     type: UPDATE_ITEM,
     payload: {
       sortRank,
-      item
-    }
-  }
+      item,
+    },
+  };
 }
 
 export function deleteItem(sortRank) {
   return {
     type: DELETE_ITEM,
-    payload: { sortRank }
-  }
+    payload: { sortRank },
+  };
 }
 
 
 export function moveItem(sortRank, type) {
   return {
     type,
-    payload: { sortRank }
-  }
+    payload: { sortRank },
+  };
 }
-
 
