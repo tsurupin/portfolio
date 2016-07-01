@@ -10,7 +10,6 @@ set :rbenv_ruby, '2.3.0'
 require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'
-require 'capistrano/npm'
 require 'capistrano/rails/migrations'
 require 'capistrano3/unicorn'
 

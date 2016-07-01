@@ -27,7 +27,6 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 
 ## Environment normalization:
-/.bundle
 /vendor/bundle
 
 # these should all be checked in to normalize the environment:
@@ -57,11 +56,4 @@ bower.json
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
-
-
-# Ignore bundle files created with webpack
-assets/stylesheets/client/application.scss
-assets/stylesheets/cms/application.scss
-assets/javascripts/client/bundle.js
-assets/javascripts/cms/bundle.js
 

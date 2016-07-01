@@ -26,16 +26,6 @@ namespace :deploy do
 
   # after 'deploy:updated', 'newrelic:notice_deployment'
  after 'deploy:publishing', 'deploy:restart'
-
-  namespace :assets do
-    task :precompile do
-      on roles(:web) do
-        execute 'rm -rf public/assets'
-        execute :bundle, 'exec rake webpack -config webpack.config.prod.js'
-        execute :bundle, "exec rake assets:precompile RAILS_ENV=#{rails_env}"
-      end
-    end
-  end
 end
 
 namespace :database do
