@@ -75,11 +75,13 @@ class PostIndex extends Component {
 
   renderItems() {
     return (
+
       <Infinite
         className={styles.list}
-        infiniteLoadBeginEdgeOffset={400}
+        infiniteLoadBeginEdgeOffset={500}
         onInfiniteLoad={this.handleLoad}
-        containerHeight={700}
+        containerHeight={1000}
+        preloadBatchSize={Infinite.containerHeightScaleFactor(10)}
         elementHeight={100}
         useWindowAsScrollContainer
       >
