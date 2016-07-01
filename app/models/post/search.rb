@@ -27,7 +27,7 @@ class Post::Search < ActiveType::Record[Post]
   end
 
   def self.latest
-    order(updated_at: :desc)
+    order(published_at: :desc)
   end
 
   def previous

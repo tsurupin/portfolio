@@ -58,8 +58,6 @@ module.exports = {
     }
   },
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { disable: true }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { disable: true })
   ]
 };

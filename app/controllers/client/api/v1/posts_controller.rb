@@ -15,6 +15,7 @@ class Client::Api::V1::PostsController < Client::ApplicationController
       Client::PostSerializer.new(post).to_json
     end
 
+    # NOTE: to_json returns null if object is nil
     if json != 'null'
       render json: json
     else
