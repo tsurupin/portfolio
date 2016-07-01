@@ -8,7 +8,7 @@ import auths from 'shared/reducers/auths';
 import socialAccounts from  'shared/reducers/socialAccounts';
 import projects from  'shared/reducers/projects';
 import about from 'shared/reducers/abouts';
-import alerts from 'shared/reducers/alerts';
+import errors from 'shared/reducers/errors';
 
 const rootReducer = combineReducers({
   form,
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   socialAccounts,
   projects,
   about,
-  alerts
+  errors
 });
 
 export default rootReducer;

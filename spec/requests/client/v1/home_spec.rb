@@ -8,10 +8,8 @@ RSpec.describe Client::Api::V1::HomesController, type: :request do
           author = create(:author, description: 'rich text', introduction: 'rich text')
           latest_posts = []
           4.times do |i|
-            Timecop.freeze(i.days.ago)
-            latest_posts << create(:post, :accepted)
+            latest_posts << create(:post, :accepted, published_at: i.days.ago)
           end
-          Timecop.return
 
           latest_project = create(:project, :accepted)
           result = {

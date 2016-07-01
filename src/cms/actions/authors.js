@@ -4,7 +4,7 @@ import { UPDATE_AUTHOR, FETCH_AUTHOR } from "shared/constants/actions";
 import { AUTHOR_PATH } from "shared/constants/apis";
 import { browserHistory } from "react-router";
 import { fetchSocialAccounts } from "./socialAccounts";
-import { createAlert } from "shared/actions/alerts";
+import { createError } from "shared/actions/errors";
 
 
 export function fetchAuthor() {
@@ -16,7 +16,7 @@ export function fetchAuthor() {
           dispatch(fetchAuthorSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
-        .catch(error => dispatch(createAlert(error.data, "error")))
+        .catch(error => dispatch(createError(error)))
     );
   };
 }

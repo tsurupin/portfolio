@@ -21,7 +21,8 @@ feature 'Admin user updates the existing project', js: true do
 
     within(:xpath, '//form/section/ul/li[1]') do
       find('.public-DraftEditor-content').set('updated description')
-      sleep 3
+      expect(page).to have_css("button[name='save-item-button']")
+      save_and_open_page
       find("button[name='save-item-button']").click
     end
 
@@ -67,6 +68,8 @@ feature 'Admin user updates the existing project', js: true do
     create(:tagging, :subject_post, subject: post)
     sign_in_and_redirect_to("/cms/posts/#{post.id}/edit")
 
+
+    expect(page).to have_css 'twitterwidget'
     within(:xpath, '//form/section/ul/li[1]') do
       find('button').click
     end

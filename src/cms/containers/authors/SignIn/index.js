@@ -17,25 +17,29 @@ const propTypes = {
 
 function mapStateToProps(state) {
   return {
+    initialValues: {
+      email: "",
+      password: ""
+    },
     authenticated: state.auths.authenticated,
     errorMessage: state.auths.errorMessage
   }
 }
 
 const fields = [
-  'email', 'password'
+  "email", "password"
 ];
 
 function validate(values) {
   const errors = {};
+  if(!values.email) {
+    errors.name = 'Enter Your Email'
+  }
 
-  if(!values.password || values.password.length < 6) {
+  if (!values.password || values.password.length < 6) {
     errors.password = 'Enter Password with more than 6 characters'
   }
 
-  if(!values.email) {
-    errors.password = 'Enter Your Email'
-  }
   return errors;
 }
 
@@ -52,7 +56,7 @@ class AuthorSignIn extends Component {
   }
 
   componentWillMount() {
-    if(this.props.authenticated) {
+    if (this.props.authenticated) {
       this.context.router.push("/cms")
     }
   }

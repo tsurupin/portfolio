@@ -4,7 +4,7 @@ import { fetchTags } from "./tags";
 import { fetchItems } from "./items";
 import { axios } from "client/utilities";
 import { browserHistory } from "react-router";
-import { createAlert } from "shared/actions/alerts";
+import { createError } from "shared/actions/errors";
 
 export function fetchPosts(params = { page: 1 }) {
   let url = `${POST_PATH}?page=${params.page}`;
@@ -18,7 +18,7 @@ export function fetchPosts(params = { page: 1 }) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => dispatch(createAlert(error.data, "error")))
+        .catch(error => dispatch(createError(error)))
     );
   };
 }
@@ -44,10 +44,7 @@ export function fetchPost(id) {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTags(response.payload.tags))
       })
-      .catch((error) => {
-        console.log(error)
-        browserHistory.push("/not-found")
-      })
+      .catch(() => browserHistory.push("/not-found"))
   };
 }
 

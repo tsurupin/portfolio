@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { deleteAlert } from 'sharedActions/alerts'
+import { deleteError } from 'sharedActions/errors'
 import styles from './styles';
 
 
@@ -8,9 +8,8 @@ export default function(ComposedComponent) {
 
   function mapStateToProps(state) {
     return {
-      hasAlert: state.alerts.hasAlert,
-      message: state.alerts.message,
-      kind: state.alerts.kind
+      hasAlert: state.errors.hasAlert,
+      message: state.errors.message
     }
   }
   
@@ -40,7 +39,7 @@ export default function(ComposedComponent) {
       if (this.props.hasAlert) {
         return (
           <div className={styles.root}>
-            <div className={styles[`${this.props.kind}`]}>
+            <div className={styles.error}>
               {this.props.message}
             </div>
             <ComposedComponent {...this.props} />
@@ -53,6 +52,6 @@ export default function(ComposedComponent) {
     }
   }
 
-  return connect(mapStateToProps, { deleteAlert })(Alert)
+  return connect(mapStateToProps, { deleteError })(Alert)
 }
 

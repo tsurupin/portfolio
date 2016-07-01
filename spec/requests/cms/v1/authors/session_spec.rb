@@ -18,7 +18,7 @@ RSpec.describe Cms::Api::V1::Authors::SessionsController, type: :request do
             }
           end
           it 'returns error message' do
-            expect(response.status).to eq 422
+            expect(response.status).to eq 401
             expect(subject).to eq result
           end
         end
@@ -33,7 +33,7 @@ RSpec.describe Cms::Api::V1::Authors::SessionsController, type: :request do
             }
           end
           it 'returns error message' do
-            expect(response.status).to eq 422
+            expect(response.status).to eq 401
             expect(subject).to eq result
           end
         end

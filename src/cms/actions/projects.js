@@ -7,7 +7,7 @@ import {
 } from "shared/constants/actions";
 import { PROJECT_PATH } from "shared/constants/apis";
 import { fetchTagsForm } from "./tags";
-import { createAlert } from "shared/actions/alerts";
+import { createError } from "shared/actions/errors";
 import { createAuthorizedRequest, trimProject } from "cms/utilities";
 import { browserHistory } from "react-router";
 
@@ -17,7 +17,7 @@ export function fetchProjects() {
     return (
       request
         .then(response => dispatch(fetchProjectsSuccess(response.data)))
-        .catch(error => dispatch(createAlert(error.data, "error")))
+        .catch(error => dispatch(createError(error)))
     )
   }
 }
@@ -37,7 +37,7 @@ export function fetchProject(id) {
     return request
       .then(response => dispatch(fetchProjectSuccess(response.data)))
       .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => dispatch(createAlert(error.data, "error")))
+      .catch(error => dispatch(createError(error)))
   };
 }
 
@@ -68,7 +68,7 @@ export function fetchNewProject() {
     return request
       .then(response => dispatch(fetchNewProjectSuccess(response.data)))
       .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => dispatch(createAlert(error.data, "error")))
+      .catch(error => dispatch(createError(error)))
     }
 };
 
@@ -122,7 +122,7 @@ export function toggleProject(sortRank, id) {
   return dispatch => {
     return request
       .then(response => dispatch(toggleProjectSuccess(sortRank, response.data)))
-      .catch(error => dispatch(createAlert(error.data, "error")))
+      .catch(error => dispatch(createError(error)))
   }
 }
 

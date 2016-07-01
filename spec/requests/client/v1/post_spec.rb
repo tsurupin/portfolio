@@ -8,8 +8,7 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
           it 'returns the corresponding posts' do
             posts = []
             30.times do |i|
-              Timecop.freeze(i.days.ago)
-              post = create(:post, :accepted)
+              post = create(:post, :accepted, published_at: i.days.ago)
               create(:tagging, :subject_post, subject: post)
               posts << post
             end
@@ -45,8 +44,7 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
           it 'returns the corresponding posts' do
             posts = []
             30.times do |i|
-              Timecop.freeze(i.days.ago)
-              post = create(:post, :accepted)
+              post = create(:post, :accepted, published_at: i.days.ago)
               create(:tagging, :subject_post, subject: post)
               posts << post
             end
@@ -82,8 +80,7 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
         it 'returns the corresponding posts' do
           posts = []
           30.times do |i|
-            Timecop.freeze(i.days.ago)
-            post = create(:post, :accepted)
+            post = create(:post, :accepted, published_at: i.days.ago)
             create(:tagging, :subject_post, subject: post)
             posts << post
           end

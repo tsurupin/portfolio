@@ -54,5 +54,5 @@ export const DELETE_SOCIAL_ACCOUNT = 'DELETE_SOCIAL_ACCOUNT';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
-export const CREATE_ALERT = 'CREATE_ALERT';
-export const DELETE_ALERT = 'DELETE_ALERT';
+export const CREATE_ERROR = 'CREATE_ERROR';
+export const DELETE_ERROR = 'DELETE_ERROR';

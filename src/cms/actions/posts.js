@@ -8,10 +8,9 @@ import {
 import { POST_PATH } from "shared/constants/apis";
 import { fetchTagsForm } from "./tags";
 import { fetchItems } from "./items";
-import { signOut } from "./auths";
 
 
-import { createAlert } from "shared/actions/alerts";
+import { createError } from "shared/actions/errors";
 import { createAuthorizedRequest, trimPost } from "cms/utilities";
 import { browserHistory } from "react-router";
 
@@ -21,10 +20,7 @@ export function fetchPosts(page = 1) {
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch((error) =>  {
-          dispatch(signOut())
-
-        })
+        .catch(error => dispatch(createError(error)))
     );
   };
 }
@@ -50,7 +46,7 @@ export function fetchNewPost() {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTagsForm(response.payload.tags))
       })
-      .catch(error => dispatch(createAlert(error.data, "error")))
+      .catch(error => dispatch(createError(error.status, error.data)))
   };
 }
 
@@ -77,7 +73,7 @@ export function fetchEditPost(id) {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTagsForm(response.payload.tags))
       })
-      .catch(error => dispatch(createAlert(error.data, "error")))
+      .catch(error => dispatch(createError(error)))
   };
 }
 
@@ -146,7 +142,7 @@ export function togglePost(sortRank, id) {
     return (
       request
         .then(response => dispatch(togglePostSuccess(sortRank, response.data)))
-        .catch(error => dispatch(createAlert(error.data, "error")))
+        .catch(error => dispatch(createError(error)))
     )
   }
 }
