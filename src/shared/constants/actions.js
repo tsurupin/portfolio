@@ -1,13 +1,16 @@
 // common
-function createRequestTypes(base) {
-  const requestType = {};
-  [REQUEST, SUCCESS, FAILURE].forEach(type => requestType[type] = `${base}_${type}`);
-  return requestType;
-}
 
 const REQUEST = 'REQUEST';
 const SUCCESS = 'SUCCESS';
 const FAILURE = 'FAILURE';
+
+function createRequestTypes(base) {
+  const requestType = {};
+  [REQUEST, SUCCESS, FAILURE].forEach(type => {
+    requestType[type] = `${base}_${type}`;
+  });
+  return requestType;
+}
 
 export const FETCH_POST = createRequestTypes('FETCH_POST');
 export const FETCH_AUTHOR = createRequestTypes('FETCH_AUTHOR');

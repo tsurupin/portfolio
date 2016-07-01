@@ -54,7 +54,6 @@ export default function (state = INITIAL_STATE, action) {
     
     case FETCH_NEW_POST.SUCCESS:
     case SAVE_POST.SUCCESS:
-      console.log('hoge')
       return { ...state, postForm: {}, errorMessage: '' };
     
     case TOGGLE_POST.SUCCESS:

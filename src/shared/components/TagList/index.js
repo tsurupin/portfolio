@@ -23,7 +23,8 @@ function TagList({ tags, path }) {
           <Link key={tag.id} to={`${path}?tag=${tag.id}`} className={styles.item}>
             <span className={styles.name}>{tag.name}</span>
           </Link>
-        ); })}
+        );
+      })}
     </div>
   );
 }

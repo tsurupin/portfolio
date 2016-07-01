@@ -14,6 +14,7 @@ const propTypes = {
   cancelButton: PropTypes.object,
   deleteButton: PropTypes.object.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
+  handleSubmitItem: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
 
@@ -40,7 +41,6 @@ class Twitter extends Component {
   handleUpdateItem(props) {
     const regexp = /https?:\/\/twitter.com\/[\w]+\/status\/([\d]+)$/i;
     const twitterId = props.twitterId.match(regexp) ? props.twitterId.match(regexp)[1] : props.twitterId;
-    console.log(twitterId);
     this.props.handleUpdateItem({ twitterId });
   }
 

@@ -12,11 +12,13 @@ export default function (ComposedComponent) {
     };
   }
 
-  class Alert extends Component {
-    constructor(props) {
-      super(props);
-    }
+  const propTypes = {
+    hasAlert: PropTypes.bool.isRequired,
+    message: PropTypes.string,
+    deleteError: PropTypes.func.isRequired,
+  };
 
+  class Alert extends Component {
 
     componentWillMount() {
       this.deleteAlertIfNeeded(this.props);
@@ -44,12 +46,12 @@ export default function (ComposedComponent) {
             <ComposedComponent {...this.props} />
           </div>
         );
-      } else {
-        return <ComposedComponent {...this.props} />;
       }
+      return <ComposedComponent {...this.props} />;
     }
   }
 
+  Alert.propTypes = propTypes;
   return connect(mapStateToProps, { deleteError })(Alert);
 }
 

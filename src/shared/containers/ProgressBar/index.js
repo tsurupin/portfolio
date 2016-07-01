@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import LinearProgress from 'material-ui/LinearProgress';
 import inlineStyles from 'shared/css/MaterialUI/index';
 import styles from './styles';
@@ -28,13 +27,13 @@ export default function (ComposedComponent) {
 
     render() {
       return (
-      <div className={styles.root}>
-        {this.renderProgressBar()}
-        <ComposedComponent
-          {...this.props}
-          finishLoading={() => this.setState({ loading: false })}
-        />
-      </div>
+        <div className={styles.root}>
+          {this.renderProgressBar()}
+          <ComposedComponent
+            {...this.props}
+            finishLoading={() => this.setState({ loading: false })}
+          />
+        </div>
       );
     }
   }

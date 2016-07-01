@@ -10,8 +10,6 @@ import {
   TableHeader,
   TableBody,
   TableRow,
-  TableRowColumn,
-  TableFooter,
 } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -28,6 +26,7 @@ const propTypes = {
     }).isRequired
   ).isRequired,
   fetchProjects: PropTypes.func.isRequired,
+  toggleProject: PropTypes.func.isRequired,
   finishLoading: PropTypes.func.isRequired,
 };
 

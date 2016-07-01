@@ -147,20 +147,20 @@ export default class TextEditor extends Component {
   renderURLField() {
     if (this.state.inputtable) {
       return (
-          <div className={styles.urlInputBox}>
-            <TextField
-              onChange={this.handleChangeURL}
-              ref="url"
-              hintText="Enter Link URL"
-              style={inlineStyles.urlInput}
-              value={this.state.urlValue}
-              onKeyDown={this.handleInputKeyDown}
-            />
-              <IconButton onMouseDown={this.handleConfirmLink}>
-                <ContentAddCircle />
-              </IconButton>
-          </div>
-        );
+        <div className={styles.urlInputBox}>
+          <TextField
+            onChange={this.handleChangeURL}
+            ref="url"
+            hintText="Enter Link URL"
+            style={inlineStyles.urlInput}
+            value={this.state.urlValue}
+            onKeyDown={this.handleInputKeyDown}
+          />
+            <IconButton onMouseDown={this.handleConfirmLink}>
+              <ContentAddCircle />
+            </IconButton>
+        </div>
+      );
     }
   }
 

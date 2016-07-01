@@ -19,17 +19,17 @@ const defaultProps = {
 
 class TagField extends Component {
 
-	                    constructor(props) {
-		                    super(props);
+  constructor(props) {
+    super(props);
 
-  this.state = {
-    tags: [],
-    suggestions: [],
-  };
+    this.state = {
+      tags: [],
+      suggestions: [],
+    };
 
-  this.handleDeleteTag = this.handleDeleteTag.bind(this);
-  this.handleAddTag = this.handleAddTag.bind(this);
-	}
+    this.handleDeleteTag = this.handleDeleteTag.bind(this);
+    this.handleAddTag = this.handleAddTag.bind(this);
+	                                        }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
