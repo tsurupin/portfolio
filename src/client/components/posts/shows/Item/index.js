@@ -4,13 +4,13 @@ import Text from 'shared/components/posts/Text/index';
 import Twitter from 'shared/components/posts/Twitter/index';
 import Image from 'shared/components/posts/Image/index';
 
-const propTypes = { 
+const propTypes = {
   item: PropTypes.shape({
     twitterId: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.string,
-    caption: PropTypes.string
-  })
+    caption: PropTypes.string,
+  }),
 };
 
 function Item({ item }) {

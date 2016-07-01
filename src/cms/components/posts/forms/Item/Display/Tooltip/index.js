@@ -3,7 +3,7 @@ import {
   MOVE_ITEM_TOP,
   MOVE_ITEM_UP,
   MOVE_ITEM_DOWN,
-  MOVE_ITEM_BOTTOM
+  MOVE_ITEM_BOTTOM,
 } from 'shared/constants/actions';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
@@ -23,7 +23,7 @@ const propTypes = {
   totalCount: PropTypes.number.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
   handleMoveItem: PropTypes.func.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired
+  handleDeleteItem: PropTypes.func.isRequired,
 };
 
 class Tooltip extends Component {
@@ -52,46 +52,53 @@ class Tooltip extends Component {
         <IconMenu
           className={styles.list}
           iconButtonElement={<IconButton className={styles.listButton}><ExpandMore /></IconButton>}
-          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}>
-          <MenuItem 
+          anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+          targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+        >
+          <MenuItem
             name="top-button"
             primaryText="Move Top"
             rightIcon={<ArrowUpword />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_TOP)}
-            disabled={this.props.sortRank === 0} />
+            disabled={this.props.sortRank === 0}
+          />
           <MenuItem
             name="up-button"
             primaryText="Move Up"
             rightIcon={<SwapVert />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_UP)}
-            disabled={this.props.sortRank === 0} />
+            disabled={this.props.sortRank === 0}
+          />
           <MenuItem
             name="down-button"
             primaryText="Move Down"
             rightIcon={<SwapVert />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_DOWN)}
-            disabled={this.props.sortRank === (this.props.totalCount)} />
+            disabled={this.props.sortRank === (this.props.totalCount)}
+          />
           <MenuItem
             name="bottom-button"
             primaryText="Move Bottom"
             rightIcon={<ArrowDownword />}
             onClick={this.handleMove.bind(this, MOVE_ITEM_BOTTOM)}
-            disabled={this.props.sortRank === (this.props.totalCount)} />
+            disabled={this.props.sortRank === (this.props.totalCount)}
+          />
           <Divider />
           <MenuItem
             name="edit-button"
             primaryText="Edit"
             onClick={this.handleUpdateItem}
-            rightIcon={<ModeEdit />}/>
+            rightIcon={<ModeEdit />}
+          />
           <MenuItem
             name="delete-button"
             primaryText="Delete"
             rightIcon={<Clear />}
-            onClick={this.handleDelete}/>
+            onClick={this.handleDelete}
+          />
         </IconMenu>
       </div>
-    )
+    );
   }
 }
 

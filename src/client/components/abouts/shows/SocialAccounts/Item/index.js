@@ -7,11 +7,11 @@ import twitterIcon from './twitter-icon.png';
 
 const propTypes = {
   accountType: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
 };
 
 function Item({ url, accountType }) {
-  return(
+  return (
     <li>
       <a href={url} >
         <IconButton >
@@ -19,18 +19,18 @@ function Item({ url, accountType }) {
         </IconButton>
       </a>
     </li>
-  )
+  );
 }
 
 function getAccountIconImage(accountType) {
-  switch(accountType) {
-    case "git_hub":
+  switch (accountType) {
+    case 'git_hub':
       return gitHubIcon;
-    case "facebook":
+    case 'facebook':
       return facebookIcon;
-    case "linked_in":
+    case 'linked_in':
       return linkedInIcon;
-    case "twitter":
+    case 'twitter':
       return twitterIcon;
     default:
   }

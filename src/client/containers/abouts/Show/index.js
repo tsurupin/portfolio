@@ -11,20 +11,20 @@ import styles from './styles';
 const propTypes = {
   about: PropTypes.shape({
     image: PropTypes.string,
-    description: PropTypes.string
+    description: PropTypes.string,
   }).isRequired,
-  socialAccounts: PropTypes.arrayOf(PropTypes.shape({ 
+  socialAccounts: PropTypes.arrayOf(PropTypes.shape({
     accountType: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
-  })).isRequired
+    url: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 
 function mapStateToProps(state) {
   return {
     about: state.about,
-    socialAccounts: state.socialAccounts
-  }
+    socialAccounts: state.socialAccounts,
+  };
 }
 
 class AboutShow extends Component {
@@ -41,24 +41,24 @@ class AboutShow extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
-  
+
   render() {
     if (!this.props.about) {
-      return <seciont />
+      return <seciont />;
     }
 
-    return(
+    return (
       <section>
         <Helmet title="About" />
         <h1 className={styles.heading}>About</h1>
-        <TextDisplay description={this.props.about.description}/>
+        <TextDisplay description={this.props.about.description} />
         <SocialAccounts socialAccounts={this.props.socialAccounts} />
         <h2 className={styles.subHeading}>{config.siteName}</h2>
         <div className={styles.siteDescription}>
           <p className={styles.text}>{config.siteDescription}</p>
         </div>
       </section>
-    )
+    );
   }
 
 }

@@ -1,23 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { deleteError } from 'sharedActions/errors'
+import { deleteError } from 'sharedActions/errors';
 import styles from './styles';
 
 
-export default function(ComposedComponent) {
-
+export default function (ComposedComponent) {
   function mapStateToProps(state) {
     return {
       hasAlert: state.errors.hasAlert,
-      message: state.errors.message
-    }
+      message: state.errors.message,
+    };
   }
-  
-  class Alert extends Component {
-    constructor(props) {
-      super(props)
-    }
 
+  const propTypes = {
+    hasAlert: PropTypes.bool.isRequired,
+    message: PropTypes.string,
+    deleteError: PropTypes.func.isRequired,
+  };
+
+  class Alert extends Component {
 
     componentWillMount() {
       this.deleteAlertIfNeeded(this.props);
@@ -28,10 +29,10 @@ export default function(ComposedComponent) {
     }
 
     deleteAlertIfNeeded(props) {
-      if(props.hasAlert) {
+      if (props.hasAlert) {
         setTimeout(() => {
           this.props.deleteError();
-        }, 1500)
+        }, 1500);
       }
     }
 
@@ -44,14 +45,13 @@ export default function(ComposedComponent) {
             </div>
             <ComposedComponent {...this.props} />
           </div>
-        )
-      } else {
-        return <ComposedComponent {...this.props} />
+        );
       }
-
+      return <ComposedComponent {...this.props} />;
     }
   }
 
-  return connect(mapStateToProps, { deleteError })(Alert)
+  Alert.propTypes = propTypes;
+  return connect(mapStateToProps, { deleteError })(Alert);
 }
 

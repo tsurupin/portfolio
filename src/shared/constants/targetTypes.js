@@ -1,5 +1,5 @@
 export default {
-  TWITTER: "ItemTwitter",
-  IMAGE: "ItemImage",
-  TEXT: "ItemText"
+  TWITTER: 'ItemTwitter',
+  IMAGE: 'ItemImage',
+  TEXT: 'ItemText',
 };

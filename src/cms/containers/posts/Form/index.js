@@ -155,7 +155,6 @@ class PostForm extends Component {
   }
   
   render() {
-    console.log(this.props)
     const submitLabel = this.props.params.id ? 'Update' : 'Create';
     const { handleSubmit, submitting, fields: { title, publishedAt, leadSentence } } = this.props;
     

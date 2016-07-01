@@ -2,20 +2,20 @@ import {
   FETCH_POSTS,
   FETCH_EDIT_POST,
   FETCH_NEW_POST,
-  SAVE_POST,  
-  TOGGLE_POST
-} from "shared/constants/actions";
-import { POST_PATH } from "shared/constants/apis";
-import { fetchTagsForm } from "./tags";
-import { fetchItems } from "./items";
+  SAVE_POST,
+  TOGGLE_POST,
+} from 'shared/constants/actions';
+import { POST_PATH } from 'shared/constants/apis';
+import { fetchTagsForm } from './tags';
+import { fetchItems } from './items';
 
 
-import { createError } from "shared/actions/errors";
-import { createAuthorizedRequest, trimPost } from "cms/utilities";
-import { browserHistory } from "react-router";
+import { createError } from 'shared/actions/errors';
+import { createAuthorizedRequest, trimPost } from 'cms/utilities';
+import { browserHistory } from 'react-router';
 
 export function fetchPosts(page = 1) {
-  const request = createAuthorizedRequest("get", `${POST_PATH}?page=${page}`);
+  const request = createAuthorizedRequest('get', `${POST_PATH}?page=${page}`);
   return dispatch => {
     return (
       request
@@ -31,22 +31,22 @@ function fetchPostsSuccess(response) {
     payload: {
       posts: response.posts,
       total: response.meta.pagination.total,
-      page:  response.meta.pagination.page,
-      limit: response.meta.pagination.limit
-    }
+      page: response.meta.pagination.page,
+      limit: response.meta.pagination.limit,
+    },
   };
 }
 
 export function fetchNewPost() {
-  const request = createAuthorizedRequest("get", `${POST_PATH}/new`);
+  const request = createAuthorizedRequest('get', `${POST_PATH}/new`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchNewPostSuccess(response.data)))
       .then(response => {
         dispatch(fetchItems(response.payload.items));
-        dispatch(fetchTagsForm(response.payload.tags))
+        dispatch(fetchTagsForm(response.payload.tags));
       })
-      .catch(error => dispatch(createError(error)))
+      .catch(error => dispatch(createError(error)));
   };
 }
 
@@ -57,23 +57,23 @@ function fetchNewPostSuccess(response) {
       items: [],
       tags: {
         tags: [],
-        tagSuggestions: response.tagSuggestions
-      }
-    }
+        tagSuggestions: response.tagSuggestions,
+      },
+    },
   };
 }
 
 
 export function fetchEditPost(id) {
-  const request = createAuthorizedRequest("get", `${POST_PATH}/${id}/edit`);
+  const request = createAuthorizedRequest('get', `${POST_PATH}/${id}/edit`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchEditPostSuccess(response.data)))
       .then((response) => {
         dispatch(fetchItems(response.payload.items));
-        dispatch(fetchTagsForm(response.payload.tags))
+        dispatch(fetchTagsForm(response.payload.tags));
       })
-      .catch(error => dispatch(createError(error)))
+      .catch(error => dispatch(createError(error)));
   };
 }
 
@@ -85,14 +85,14 @@ function fetchEditPostSuccess(response) {
         id: response.id,
         title: response.title,
         leadSentence: response.leadSentence,
-        publishedAt: response.publishedAt
+        publishedAt: response.publishedAt,
       },
       items: response.items,
       tags: {
         tags: response.tags,
-        tagSuggestions: response.tagSuggestions
-      }
-    }
+        tagSuggestions: response.tagSuggestions,
+      },
+    },
   };
 }
 
@@ -101,17 +101,16 @@ export function savePost(props) {
   const post = trimPost(props.post);
   let request;
   if (props.post.id) {
-    request = createAuthorizedRequest("patch", `${POST_PATH}/${post.id}`, { post });
-
+    request = createAuthorizedRequest('patch', `${POST_PATH}/${post.id}`, { post });
   } else {
-    request = createAuthorizedRequest("post", `${POST_PATH}`, { post });
+    request = createAuthorizedRequest('post', `${POST_PATH}`, { post });
   }
   return dispatch => {
     dispatch(savePostRequest());
     return (
       request
         .then(() => dispatch(savePostSuccess()))
-        .then(() => browserHistory.push("/cms"))
+        .then(() => browserHistory.push('/cms'))
         .catch(error => dispatch(savePostFailure(error.data)))
     );
   };
@@ -119,32 +118,32 @@ export function savePost(props) {
 
 export function savePostRequest() {
   return {
-    type: SAVE_POST.REQUEST
-  }
+    type: SAVE_POST.REQUEST,
+  };
 }
 
 function savePostSuccess() {
   return {
-    type: SAVE_POST.SUCCESS
-  }
+    type: SAVE_POST.SUCCESS,
+  };
 }
 
-function savePostFailure({errorMessage}) {
+function savePostFailure({ errorMessage }) {
   return {
     type: SAVE_POST.FAILURE,
-    payload: { errorMessage }
-  }
+    payload: { errorMessage },
+  };
 }
 
 export function togglePost(sortRank, id) {
-  const request = createAuthorizedRequest("patch", `${POST_PATH}/${id}/acceptance`);
+  const request = createAuthorizedRequest('patch', `${POST_PATH}/${id}/acceptance`);
   return dispatch => {
     return (
       request
         .then(response => dispatch(togglePostSuccess(sortRank, response.data)))
         .catch(error => dispatch(createError(error)))
-    )
-  }
+    );
+  };
 }
 
 function togglePostSuccess(sortRank, response) {
@@ -153,8 +152,8 @@ function togglePostSuccess(sortRank, response) {
     payload: {
       sortRank,
       status: response.status,
-      accepted: response.accepted
-    }
-  }
+      accepted: response.accepted,
+    },
+  };
 }
 

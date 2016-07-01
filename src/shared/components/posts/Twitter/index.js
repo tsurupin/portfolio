@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
-import TweetEmbed from  './TweetEmbed/index'
+import TweetEmbed from './TweetEmbed/index';
 import styles from './styles';
 
 const propTypes = {
-  twitterId: PropTypes.string.isRequired
+  twitterId: PropTypes.string.isRequired,
 };
 
-function Twitter({twitterId}){
+function Twitter({ twitterId }) {
   return (
       <div className={styles.root}>
-        <TweetEmbed id={twitterId}/>
+        <TweetEmbed id={twitterId} />
       </div>
   );
 }
@@ -17,5 +17,5 @@ function Twitter({twitterId}){
 
 Twitter.propTypes = propTypes;
 
-export default Twitter
+export default Twitter;
 

@@ -7,31 +7,30 @@ import styles from './styles';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
-  handleAddItem: PropTypes.func.isRequired
+  handleAddItem: PropTypes.func.isRequired,
 };
 
 function EditBoxItem({ name, handleAddItem }) {
-
   return (
     <li className={styles.root}>
       <IconButton
         className={styles.button}
         onClick={() => handleAddItem(name)}
       >
-        <img src={getImage(name)} alt={name} className={styles.icon}/>
+        <img src={getImage(name)} alt={name} className={styles.icon} />
       </IconButton>
     </li>
   );
 }
 
 function getImage(name) {
-  switch(name) {
-    case "ItemTwitter":
+  switch (name) {
+    case 'ItemTwitter':
       return twitterLogo;
-    case "ItemText":
+    case 'ItemText':
       return textLogo;
-    case "ItemImage":
-      return imageLogo
+    case 'ItemImage':
+      return imageLogo;
   }
 }
 

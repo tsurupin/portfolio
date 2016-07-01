@@ -9,7 +9,7 @@ const propTypes = {
   totalCount: PropTypes.number.isRequired,
   handleDeleteItem: PropTypes.func.isRequired,
   handleMoveItem: PropTypes.func.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired
+  handleUpdateItem: PropTypes.func.isRequired,
 };
 
 
