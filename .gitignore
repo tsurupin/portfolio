@@ -11,7 +11,7 @@ capybara-*.html
 /spec/tmp
 
 /node_modules
-bundle.js
+
 npm-debug.log
 
 **.orig
