@@ -63,7 +63,7 @@ class Item extends Component {
         <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>
         <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >{this.props.publishedAt}</TableRowColumn>
         <TableRowColumn colSpan="3" style={inlineStyles.rowColumn} >
-          <Link to={`/cms/posts/${this.props.id}`}>
+          <Link to={`/cms/posts/${this.props.id}/preview`}>
             <IconButton className={styles.button}>
               <AvAirplay />
             </IconButton>

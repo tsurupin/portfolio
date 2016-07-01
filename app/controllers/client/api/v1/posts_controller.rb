@@ -10,8 +10,16 @@ class Client::Api::V1::PostsController < Client::ApplicationController
   end
 
   def show
-    json = rails_cache("cached_posts/#{params[:id]}") do
-      post = Post::Search.includes(:tags, items: :target).published.find_by(id: params[:id])
+    cache_name = "cached_posts/#{params[:id]}"
+    cache_name += "?#{params[:previewing]}" if params[:previewing]
+
+    json = rails_cache(cache_name) do
+      post = Post::Search.includes(:tags, items: :target)
+      post = if params[:previewing]
+               post.find_by(id: params[:id])
+             else
+               post.published.find_by(id: params[:id])
+             end
       Client::PostSerializer.new(post).to_json
     end
 

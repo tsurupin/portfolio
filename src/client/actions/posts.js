@@ -35,8 +35,8 @@ function fetchPostsSuccess({ posts, meta }) {
   };
 }
 
-export function fetchPost(id) {
-  const request = axios.get(`${POST_PATH}/${id}`);
+export function fetchPost(path) {
+  const request = axios.get(`${POST_PATH}/${path}`);
   return dispatch => {
     return request
       .then(response => dispatch(fetchPostSuccess(response.data)))

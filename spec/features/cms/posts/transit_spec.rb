@@ -18,7 +18,7 @@ feature 'Admin user transits to the post form page', js: true do
   end
 
   scenario 'they see the preview form' do
-    post = create(:post, :accepted)
+    post = create(:post)
     sign_in_and_redirect_to('/cms/posts')
     expect(page).to have_css('h1', 'Post')
     within(:xpath, '//tbody/tr[1]') do

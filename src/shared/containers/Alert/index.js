@@ -30,7 +30,7 @@ export default function(ComposedComponent) {
     deleteAlertIfNeeded(props) {
       if(props.hasAlert) {
         setTimeout(() => {
-          this.props.deleteAlert();
+          this.props.deleteError();
         }, 1500)
       }
     }

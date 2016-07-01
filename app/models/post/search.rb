@@ -33,7 +33,7 @@ class Post::Search < ActiveType::Record[Post]
   def previous
     Post::Search.published
                 .where('id != ? and published_at < ?', id, published_at)
-                .order('published_at desc')
+                .latest
                 .limit(1)
                 .try(:first)
   end
@@ -41,7 +41,7 @@ class Post::Search < ActiveType::Record[Post]
   def next
     Post::Search.published
                 .where('id != ? and published_at > ?', id, published_at)
-                .order('published_at asc')
+                .latest
                 .limit(1)
                 .try(:first)
   end

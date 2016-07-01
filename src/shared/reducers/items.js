@@ -13,7 +13,6 @@ import {
 export default function (state = [], action) {
   switch (action.type) {
     case FETCH_ITEMS:
-      console.log(action.payload.items)
       return action.payload.items;
 
     case CREATE_ITEM:

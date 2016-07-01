@@ -14,7 +14,7 @@ import styles from './styles';
 const propTypes = {
   post : PropTypes.shape({
     title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string,
     prevId: PropTypes.number,
     prevTitle: PropTypes.string,
     nextId: PropTypes.number,
@@ -60,13 +60,14 @@ class PostShow extends  Component {
   }
   
   componentDidMount() {
-    this.props.fetchPost(this.props.params.id)
+    this.props.fetchPost(`${this.props.params.id}${this.previewQuery}`)
       .then(() => this.props.finishLoading())
   }
 
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      nextProps.fetchPost(nextProps.params.id)
+      nextProps.fetchPost(`${nextProps.params.id}${this.previewQuery}`)
      }
   }
 
@@ -77,6 +78,10 @@ class PostShow extends  Component {
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
     return paths[0] ? paths[0] : "";
+  }
+
+  get previewQuery() {
+    return this.adminPath ? "?previewing=true" : "";
   }
   
   renderPagination() {

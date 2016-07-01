@@ -23,7 +23,7 @@ export default (
       <Route path="/cms/posts" component={ProgressBar(Alert(Authentication(PostIndex)))}/>
       <Route path="/cms/posts/new" component={ProgressBar(Alert(Authentication(PostForm)))}/>
       <Route path="/cms/posts/:id/edit" component={ProgressBar(Alert(Authentication(PostForm)))}/>
-      <Route path="/cms/posts/:id" component={ProgressBar(PostShow)}/>
+      <Route path="/cms/posts/:id/preview" component={ProgressBar(PostShow)}/>
       <Route path="/cms/projects" component={ProgressBar(Alert(Authentication(ProjectIndex)))} />
       <Route path="/cms/projects/preview" component={ProgressBar(ProjectIndexPreview)}/>
       <Route path="/cms/projects/new" component={ProgressBar(Alert(Authentication(ProjectForm)))}/>
