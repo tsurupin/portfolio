@@ -6,7 +6,7 @@ import {
   savePost,
   togglePost
 } from 'cms/actions/posts';
-import { createAlert } from 'shared/actions/alerts';
+import { createError } from 'shared/actions/errors';
 import {
   FETCH_POSTS, 
   FETCH_EDIT_POST,
@@ -15,7 +15,7 @@ import {
   TOGGLE_POST, 
   FETCH_ITEMS, 
   FETCH_TAGS_FORM,
-  CREATE_ALERT
+  CREATE_ERROR
 } from 'shared/constants/actions';
 import {
   CMS_ROOT_URL,
@@ -88,10 +88,9 @@ describe('cms post actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         }, 
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchPosts())
@@ -148,10 +147,9 @@ describe('cms post actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
 
@@ -223,10 +221,9 @@ describe('cms post actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchEditPost(1))
@@ -344,10 +341,9 @@ describe('cms post actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(togglePost(1, 1))

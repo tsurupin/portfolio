@@ -46,7 +46,7 @@ export function fetchNewPost() {
         dispatch(fetchItems(response.payload.items));
         dispatch(fetchTagsForm(response.payload.tags))
       })
-      .catch(error => dispatch(createError(error.status, error.data)))
+      .catch(error => dispatch(createError(error)))
   };
 }
 
