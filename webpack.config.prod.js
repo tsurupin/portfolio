@@ -62,8 +62,8 @@ module.exports = {
     new ExtractTextPlugin('../stylesheets/[name]/application.scss', { allChunks: true, ignoreOrder: true }), ,
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
