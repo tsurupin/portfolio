@@ -6,20 +6,20 @@ import Tags from 'client/components/posts/shows/Tags/index';
 import Item from 'client/components/posts/shows/Item/index';
 import shallowCompare from 'react-addons-shallow-compare';
 import Pagination from 'client/components/posts/shows/Pagination/index';
-import ActionSchedule from 'material-ui/svg-icons/action/schedule'
+import ActionSchedule from 'material-ui/svg-icons/action/schedule';
 import inlineStyles from 'shared/css/MaterialUI/index';
 
 import styles from './styles';
 
 const propTypes = {
-  post : PropTypes.shape({
+  post: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    publishedAt: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string,
     prevId: PropTypes.number,
     prevTitle: PropTypes.string,
     nextId: PropTypes.number,
     nextTitle: PropTypes.string,
-    
+
     items: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
@@ -27,19 +27,19 @@ const propTypes = {
         description: PropTypes.string,
         image: PropTypes.string,
         caption: PropTypes.string,
-        twitterId: PropTypes.string
+        twitterId: PropTypes.string,
       }).isRequire
-    )
+    ),
   }).isRequired,
-  
+
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  
-  fetchPost: PropTypes.func.isRequired
+
+  fetchPost: PropTypes.func.isRequired,
 };
 
 const cmsRegexp = /^(\/cms)*/;
@@ -49,36 +49,41 @@ function mapStateToProps(state) {
   return {
     post: state.posts.post,
     tags: state.tags.tags,
-    items: state.items
-  }
+    items: state.items,
+  };
 }
 
-class PostShow extends  Component {
+class PostShow extends Component {
 
   constructor(props) {
     super(props);
   }
-  
+
   componentDidMount() {
-    this.props.fetchPost(this.props.params.id)
-      .then(() => this.props.finishLoading())
+    this.props.fetchPost(`${this.props.params.id}${this.previewQuery}`)
+      .then(() => this.props.finishLoading());
   }
 
-  componentWillReceiveProps (nextProps) {
+
+  componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      nextProps.fetchPost(nextProps.params.id)
-     }
+      nextProps.fetchPost(`${nextProps.params.id}${this.previewQuery}`);
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
-  
+
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
-    return paths[0] ? paths[0] : "";
+    return paths[0] ? paths[0] : '';
   }
-  
+
+  get previewQuery() {
+    return this.adminPath ? '?previewing=true' : '';
+  }
+
   renderPagination() {
     if (this.props.post.prevId || this.props.post.nextId) {
       return (
@@ -92,12 +97,12 @@ class PostShow extends  Component {
       );
     }
   }
-  
+
   render() {
-    if (!this.props.post) { 
-      return <section /> 
+    if (!this.props.post) {
+      return <section />;
     }
-    
+
     return (
       <section>
         <Helmet
@@ -112,15 +117,15 @@ class PostShow extends  Component {
           </div>
         </div>
         {this.props.items.map((item) => {
-          return <Item key={item.id} item={item} />
+          return <Item key={item.id} item={item} />;
         })}
         <Tags adminPath={this.adminPath} tags={this.props.tags} />
         {this.renderPagination()}
       </section>
-    )
+    );
   }
 }
 
 PostShow.propTypes = propTypes;
 
-export default connect(mapStateToProps, { fetchPost })(PostShow)
+export default connect(mapStateToProps, { fetchPost })(PostShow);

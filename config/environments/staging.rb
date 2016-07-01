@@ -13,7 +13,8 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-  config.action_controller.asset_host = "//s3-#{Settings.aws_region}.amazonaws.com/#{Settings.s3_bucket}"
+  # config.action_controller.asset_host = Settings.aws_cloud_front_domain_name
+  # config.static_cache_control = "public, max-age=31536000"
 
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -74,8 +75,7 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
-  config.logger = Logger.new(config.log_path, 10, 10.megabytes)
+
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

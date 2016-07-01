@@ -1,7 +1,7 @@
 import { expect, sinon } from '../../helpers/utility';
 import { fetchProjects } from 'client/actions/projects';
-import { createAlert } from 'shared/actions/alerts';
-import { FETCH_PROJECTS, CREATE_ALERT } from 'shared/constants/actions';
+import { createError } from 'shared/actions/errors';
+import { FETCH_PROJECTS, CREATE_ERROR } from 'shared/constants/actions';
 import { 
   CLIENT_ROOT_URL,
   PROJECT_PATH,
@@ -65,10 +65,9 @@ describe('client project actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchProjects())

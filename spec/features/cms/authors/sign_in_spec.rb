@@ -5,6 +5,7 @@ describe 'Admin user signs in to cms', js: true do
 
   scenario 'they see the navigation bar' do
     visit '/cms/sign-in'
+    save_and_open_page
     fill_in 'email', with: author.email
     fill_in 'password', with: author.password
     click_on 'SignIn'

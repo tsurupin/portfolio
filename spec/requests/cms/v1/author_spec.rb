@@ -87,10 +87,11 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
     describe 'PATCH /cms/api/v1/authors' do
       let!(:author) { create(:author) }
       let(:auth_header) { { 'Authorization' => author.access_token } }
-      let!(:social_account1) { create(:social_account, account_type: 'facebook', author: author) }
-      let!(:social_account2) { create(:social_account, account_type: 'twitter', author: author) }
+      let!(:social_account1) { create(:social_account, account_type: 'facebook', author: author, url: 'http://facebook.com') }
+      let!(:social_account2) { create(:social_account, account_type: 'twitter', author: author, url: 'http://twitter.com') }
       before { patch cms_api_v1_authors_path, params, auth_header }
       context 'all the necessary parameter are sent' do
+
         let(:params) do
           {
             'author' => {
@@ -116,7 +117,7 @@ RSpec.describe Cms::Api::V1::AuthorsController, type: :request do
         end
         it 'updates the author account and returns status 200' do
           expect(response.status).to eq 200
-          expect(Author.last.social_accounts.map(&:account_type)).to eq %w(facebook git_hub)
+          expect(Author.find(author.id).social_accounts.map(&:account_type)).to eq %w(facebook git_hub)
         end
       end
 

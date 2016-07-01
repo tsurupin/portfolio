@@ -1,10 +1,10 @@
 import { FETCH_ABOUT } from 'shared/constants/actions';
 import { ABOUT_PATH } from 'shared/constants/apis';
-import { axios } from "client/utilities";
-import { fetchSocialAccounts } from "./socialAccounts";
-import { createAlert } from "shared/actions/alerts";
+import { axios } from 'client/utilities';
+import { fetchSocialAccounts } from './socialAccounts';
+import { createError } from 'shared/actions/errors';
 
-export function fetchAbout(){
+export function fetchAbout() {
   const request = axios.get(ABOUT_PATH);
   return dispatch => {
     return (
@@ -13,9 +13,9 @@ export function fetchAbout(){
           dispatch(fetchAboutSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
-        .catch(error => dispatch(createAlert(error.data, "error")))
-    )
-  }
+        .catch(error => dispatch(createError(error)))
+    );
+  };
 }
 
 function fetchAboutSuccess(response) {
@@ -25,7 +25,7 @@ function fetchAboutSuccess(response) {
       name: response.name,
       email: response.email,
       image: response.image,
-      description: response.description
-    }
+      description: response.description,
+    },
   };
 }

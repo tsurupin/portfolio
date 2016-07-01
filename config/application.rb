@@ -25,8 +25,6 @@ module Portfolio
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
-    config.assets.precompile << 'cms/bundle.js'
-    config.assets.precompile << 'client/bundle.js'
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
     config.generators do |g|
@@ -43,5 +41,6 @@ module Portfolio
                        request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
   end
 end

@@ -1,14 +1,14 @@
-import { createAuthorizedRequest, trimAuthor } from "cms/utilities";
-import { UPDATE_AUTHOR, FETCH_AUTHOR } from "shared/constants/actions";
+import { createAuthorizedRequest, trimAuthor } from 'cms/utilities';
+import { UPDATE_AUTHOR, FETCH_AUTHOR } from 'shared/constants/actions';
 
-import { AUTHOR_PATH } from "shared/constants/apis";
-import { browserHistory } from "react-router";
-import { fetchSocialAccounts } from "./socialAccounts";
-import { createAlert } from "shared/actions/alerts";
+import { AUTHOR_PATH } from 'shared/constants/apis';
+import { browserHistory } from 'react-router';
+import { fetchSocialAccounts } from './socialAccounts';
+import { createError } from 'shared/actions/errors';
 
 
 export function fetchAuthor() {
-  const request = createAuthorizedRequest("get", `${AUTHOR_PATH}/edit`);
+  const request = createAuthorizedRequest('get', `${AUTHOR_PATH}/edit`);
   return dispatch => {
     return (
       request
@@ -16,7 +16,7 @@ export function fetchAuthor() {
           dispatch(fetchAuthorSuccess(response.data));
           dispatch(fetchSocialAccounts(response.data));
         })
-        .catch(error => dispatch(createAlert(error.data, "error")))
+        .catch(error => dispatch(createError(error)))
     );
   };
 }
@@ -30,20 +30,20 @@ function fetchAuthorSuccess(response) {
       name: response.name,
       image: response.image,
       description: response.description,
-      introduction: response.introduction
-    } }
+      introduction: response.introduction,
+    } },
   };
 }
 
 export function updateAuthor(props) {
   const author = trimAuthor(props.author);
-  const request = createAuthorizedRequest("patch", `${AUTHOR_PATH}`, { author });
-  
+  const request = createAuthorizedRequest('patch', `${AUTHOR_PATH}`, { author });
+
   return dispatch => {
     return (
       request
         .then(() => dispatch(updateAuthorSuccess()))
-        .then(() => browserHistory.push("/cms/about"))
+        .then(() => browserHistory.push('/cms/about'))
         .catch(error => dispatch(updateAuthorFailure(error.data)))
     );
   };
@@ -51,16 +51,14 @@ export function updateAuthor(props) {
 
 function updateAuthorSuccess() {
   return {
-    type: UPDATE_AUTHOR.SUCCESS
-  }
+    type: UPDATE_AUTHOR.SUCCESS,
+  };
 }
 
 function updateAuthorFailure({ errorMessage }) {
   return {
     type: UPDATE_AUTHOR.FAILURE,
-    payload: { errorMessage }
+    payload: { errorMessage },
   };
 }
-
-
 

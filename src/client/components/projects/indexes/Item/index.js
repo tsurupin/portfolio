@@ -12,10 +12,10 @@ const propTypes = {
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  adminPath: PropTypes.string
+  adminPath: PropTypes.string,
 };
 
 function renderLink(sourceUrl) {
@@ -34,7 +34,7 @@ function renderText(description) {
       <div className={styles.description}>
         <TextDisplay description={description} />
       </div>
-    )
+    );
   }
 }
 
@@ -52,7 +52,7 @@ function Item({ adminPath, title, description, image, caption, sourceUrl, tags }
       </div>
       {renderLink(sourceUrl)}
     </div>
-  )
+  );
 }
 
 Item.propTypes = propTypes;

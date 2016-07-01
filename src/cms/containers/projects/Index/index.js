@@ -4,14 +4,12 @@ import { Link } from 'react-router';
 import { fetchProjects, toggleProject } from 'cms/actions/projects';
 import Item from 'cms/components/projects/indexes/Item/index';
 import NoContent from 'shared/components/NoContent/index';
-import { 
-  Table, 
-  TableHeaderColumn, 
-  TableHeader, 
-  TableBody, 
-  TableRow, 
-  TableRowColumn, 
-  TableFooter 
+import {
+  Table,
+  TableHeaderColumn,
+  TableHeader,
+  TableBody,
+  TableRow,
 } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -19,29 +17,30 @@ import inlineStyles from 'shared/css/MaterialUI/index';
 import styles from './styles';
 
 
-const propTypes =  {
+const propTypes = {
   projects: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      accepted: PropTypes.bool.isRequired
+      accepted: PropTypes.bool.isRequired,
     }).isRequired
   ).isRequired,
   fetchProjects: PropTypes.func.isRequired,
-  finishLoading: PropTypes.func.isRequired
+  toggleProject: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    projects: state.projects.projects
-  }
+    projects: state.projects.projects,
+  };
 }
 class ProjectIndex extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = { loading: true };
-    
+
     this.handleToggle = this.handleToggle.bind(this);
   }
 
@@ -49,28 +48,28 @@ class ProjectIndex extends Component {
     this.props.fetchProjects()
       .then(() => {
         this.props.finishLoading();
-        this.setState({ loading: false })
+        this.setState({ loading: false });
       });
   }
-  
+
   handleToggle(sortRank, id) {
     this.props.toggleProject(sortRank, id);
   }
- 
+
 
   render() {
     if (this.state.loading) {
-      return <section />
+      return <section />;
     }
-    
+
     const newButton = (
       <Link to="/cms/projects/new">
-        <FloatingActionButton style={inlineStyles.floatButton} primary={true}>
+        <FloatingActionButton style={inlineStyles.floatButton} primary>
           <ContentAdd />
         </FloatingActionButton>
       </Link>
     );
-    
+
     if (!this.props.projects.length) {
       return (
         <section>
@@ -79,12 +78,12 @@ class ProjectIndex extends Component {
         </section>
       );
     }
-    
+
     return (
       <section>
         {newButton}
         <h1 className={styles.title}>Project</h1>
-        <Table fixedHeader={true} fixedFooter={true}>
+        <Table fixedHeader fixedFooter>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow selectable={false}>
               <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>ID</TableHeaderColumn>
@@ -111,4 +110,4 @@ class ProjectIndex extends Component {
 
 ProjectIndex.propTypes = propTypes;
 
-export default connect(mapStateToProps, { fetchProjects, toggleProject })(ProjectIndex)
+export default connect(mapStateToProps, { fetchProjects, toggleProject })(ProjectIndex);

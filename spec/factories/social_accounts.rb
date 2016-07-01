@@ -18,7 +18,7 @@ url_list = [
 FactoryGirl.define do
   factory :social_account do
     association :author, factory: :author
-    sequence(:url) { |i| url_list[i-1] }
+    sequence(:url) { |i| url_list[i-1] || Faker::Internet::url }
     sequence(:account_type) { |i| SocialAccount.account_types.keys[i-1] }
   end
 end

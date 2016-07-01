@@ -1,7 +1,7 @@
 import { FETCH_HOME } from 'shared/constants/actions';
-import { HOME_PATH } from "shared/constants/apis";
-import { axios } from "client/utilities";
-import { createAlert } from "shared/actions/alerts";
+import { HOME_PATH } from 'shared/constants/apis';
+import { axios } from 'client/utilities';
+import { createError } from 'shared/actions/errors';
 
 export function fetchHome() {
   const request = axios.get(HOME_PATH);
@@ -9,9 +9,9 @@ export function fetchHome() {
     return (
       request
         .then(response => dispatch(fetchHomeSuccess(response.data)))
-        .catch(error => dispatch(createAlert(error.data, "error")))
-    )
-  }
+        .catch(error => dispatch(createError(error)))
+    );
+  };
 }
 
 function fetchHomeSuccess(response) {
@@ -21,7 +21,7 @@ function fetchHomeSuccess(response) {
       introduction: response.introduction,
       image: response.image,
       latestPosts: response.latestPosts,
-      latestProject: response.latestProject
-    }
-  }
+      latestProject: response.latestProject,
+    },
+  };
 }

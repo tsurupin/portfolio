@@ -26,13 +26,13 @@ test:
 staging:
   <<: *default
   database: portfolio_staging
-  host: <%= ENV['DATABASE_HOST'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABSE_PASSWORD'] %>
+  host: <%= ENV['RDS_HOST'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
 
 production:
   <<: *default
   database: portfolio_production
-  host: <%= ENV['DATABASE_HOST'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABSE_PASSWORD'] %>
+  host: <%= ENV['RDS_HOST'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>

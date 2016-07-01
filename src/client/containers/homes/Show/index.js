@@ -15,18 +15,18 @@ const propTypes = {
     latestPosts: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      leadSentence: PropTypes.string
+      leadSentence: PropTypes.string,
     })),
     latestProject: PropTypes.shape({
       id: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
-    })
-  }).isRequired
+      title: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
 function mapStateToProps(state) {
-  return { home: state.home }
+  return { home: state.home };
 }
 
 class HomeShow extends Component {
@@ -45,7 +45,7 @@ class HomeShow extends Component {
 
   renderRecentPosts() {
     if (this.props.home.latestPosts) {
-      return (<RecentPosts posts={this.props.home.latestPosts} />)
+      return (<RecentPosts posts={this.props.home.latestPosts} />);
     }
   }
 
@@ -58,10 +58,10 @@ class HomeShow extends Component {
 
   render() {
     if (!this.props.home.introduction) {
-      return <sectioon />
+      return <sectioon />;
     }
 
-    return(
+    return (
       <section>
         <Helmet title="Home" />
         <img
@@ -69,13 +69,13 @@ class HomeShow extends Component {
           src={mainImage}
           alt="main image"
         />
-        <TextDisplay description={this.props.home.introduction}/>
+        <TextDisplay description={this.props.home.introduction} />
         <div className={styles.list} >
           {this.renderRecentPosts()}
           {this.renderRecentProject()}
         </div>
       </section>
-    )
+    );
   }
 
 }

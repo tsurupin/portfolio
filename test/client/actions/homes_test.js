@@ -5,7 +5,7 @@ import {
   HOME_PATH, 
   TEST_DOMAIN
 } from 'shared/constants/apis';
-import { FETCH_HOME, CREATE_ALERT } from 'shared/constants/actions';
+import { FETCH_HOME, CREATE_ERROR } from 'shared/constants/actions';
 import nock from 'nock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -64,10 +64,9 @@ describe('client home actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
       store.dispatch(fetchHome()).then(()=> {
         expect(store.getActions()).to.eql(expectedResponse);

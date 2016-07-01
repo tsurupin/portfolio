@@ -3,7 +3,7 @@ import styles from './styles';
 
 const propTypes = {
   image: PropTypes.string.isRequired,
-  caption: PropTypes.string
+  caption: PropTypes.string,
 };
 
 function Image({ image, caption }) {
@@ -17,7 +17,6 @@ function Image({ image, caption }) {
       {renderCaption(caption)}
     </figure>
   );
-
 }
 
 function renderCaption(caption) {

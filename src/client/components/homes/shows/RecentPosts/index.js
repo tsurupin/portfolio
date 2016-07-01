@@ -8,9 +8,9 @@ const propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      leadSentence: PropTypes.string
+      leadSentence: PropTypes.string,
     })
-  )
+  ),
 };
 
 function RecentProjects({ posts }) {

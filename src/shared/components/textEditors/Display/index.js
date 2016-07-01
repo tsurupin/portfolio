@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   Editor,
   EditorState,
-  convertFromRaw
+  convertFromRaw,
 } from 'draft-js';
 
 import { getBlockStyle } from '../shared/utilities';
@@ -11,7 +11,7 @@ import styles from './styles';
 
 
 const propTypes = {
-  description: PropTypes.string
+  description: PropTypes.string,
 };
 
 class TextDisplay extends Component {
@@ -23,7 +23,7 @@ class TextDisplay extends Component {
       this.state = { editorState: EditorState.createWithContent(blocks, decorator) };
     } else {
       this.state = {
-        editorState: EditorState.createEmpty(decorator)
+        editorState: EditorState.createEmpty(decorator),
       };
     }
   }
@@ -41,14 +41,14 @@ class TextDisplay extends Component {
         <Editor
           blockStyleFn={getBlockStyle}
           editorState={this.state.editorState}
-          readOnly={true}
+          readOnly
         />
       </div>
-    )
+    );
   }
 }
 
 TextDisplay.propTypes = propTypes;
 
-export default TextDisplay
+export default TextDisplay;
 

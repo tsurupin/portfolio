@@ -9,7 +9,7 @@ import {
   FETCH_AUTHOR,
   FETCH_SOCIAL_ACCOUNTS,
   UPDATE_AUTHOR,
-  CREATE_ALERT
+  CREATE_ERROR
 } from 'shared/constants/actions';
 import { trimAuthor } from 'cms/utilities';
 import nock from 'nock'
@@ -97,10 +97,9 @@ describe('cms author actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchAuthor()).then(()=> {

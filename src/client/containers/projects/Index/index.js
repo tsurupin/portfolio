@@ -5,7 +5,7 @@ import { fetchProjects } from 'client/actions/projects';
 import Item from 'client/components/projects/indexes/Item/index';
 import NoContent from 'shared/components/NoContent/index';
 import shallowCompare from 'react-addons-shallow-compare';
-import styles from'./styles';
+import styles from './styles';
 
 const propTypes = {
   projects: PropTypes.arrayOf(
@@ -18,26 +18,26 @@ const propTypes = {
       tags: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.number.isRequired,
-          name: PropTypes.string.isRequired
+          name: PropTypes.string.isRequired,
         }).isRequired
-      ).isRequired
+      ).isRequired,
     }).isRequired
   ).isRequired,
-  fetchProjects: PropTypes.func.isRequired
+  fetchProjects: PropTypes.func.isRequired,
 };
 
 
 function mapStateToProps(state) {
-  return { 
-    projects: state.projects.projects 
-  }
+  return {
+    projects: state.projects.projects,
+  };
 }
 
 const cmsRegexp = /^(\/cms)*/;
 
 
 class ProjectIndex extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = { loading: true };
@@ -45,19 +45,19 @@ class ProjectIndex extends Component {
 
   componentDidMount() {
     let params = {};
-    if (this.props.hasOwnProperty("location")) {
-      params.tag = this.props.location.query.tag
+    if (this.props.hasOwnProperty('location')) {
+      params.tag = this.props.location.query.tag;
     }
     this.props.fetchProjects(params)
       .then(() => {
         this.props.finishLoading();
-        this.setState({ loading: false })
+        this.setState({ loading: false });
       });
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.location.query.tag !== this.props.location.query.tag) {
-      nextProps.fetchProjects({ tag: nextProps.location.query.tag })
+      nextProps.fetchProjects({ tag: nextProps.location.query.tag });
     }
   }
 
@@ -67,16 +67,16 @@ class ProjectIndex extends Component {
 
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
-    return paths[0] ? paths[0] : "";
+    return paths[0] ? paths[0] : '';
   }
 
   render() {
     if (this.state.loading) {
-      return(
+      return (
         <section>
           <Helmet title="Projects" />
         </section>
-      )
+      );
     }
 
     if (!this.props.projects.length) {
@@ -85,7 +85,7 @@ class ProjectIndex extends Component {
           <Helmet title="Projects" />
           <NoContent pageName="projects" />
         </section>
-      )
+      );
     }
 
     return (
@@ -94,7 +94,7 @@ class ProjectIndex extends Component {
         <h1 className={styles.heading}>Projects</h1>
         <div className={styles.list}>
           {this.props.projects.map((project) => {
-            return <Item key={project.id} adminPath={this.adminPath} {...project} />
+            return <Item key={project.id} adminPath={this.adminPath} {...project} />;
           })}
         </div>
       </section>

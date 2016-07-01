@@ -1,6 +1,5 @@
 *.rbc
 capybara-*.html
-.rspec
 /coverage
 /log
 /tmp
@@ -11,7 +10,7 @@ capybara-*.html
 /spec/tmp
 
 /node_modules
-bundle.js
+
 npm-debug.log
 
 **.orig
@@ -25,10 +24,8 @@ pickle-email-*.html
 .sass_cache
 
 config/initializers/secret_token.rb
-config/secrets.yml
 
 ## Environment normalization:
-/.bundle
 /vendor/bundle
 
 # these should all be checked in to normalize the environment:
@@ -59,8 +56,3 @@ config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
 
-# Ignore files created by webpack
-/app/assets/javascripts/client/bundle.js
-/app/assets/javascripts/cms/bundle.js
-/app/assets/stylesheets/client/style.scss
-/app/assets/stylesheets/cms/style.scss

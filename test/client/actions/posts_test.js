@@ -1,12 +1,12 @@
 import { expect, sinon } from '../../helpers/utility';
 import { fetchPosts, fetchPost } from 'client/actions/posts';
-import { createAlert } from 'shared/actions/alerts';
+import { createError } from 'shared/actions/errors';
 import {
   FETCH_POSTS_INFINITELY,
   FETCH_POST,
   FETCH_ITEMS, 
   FETCH_TAGS,
-  CREATE_ALERT
+  CREATE_ERROR
 } from 'shared/constants/actions';
 import {
   CLIENT_ROOT_URL,
@@ -77,10 +77,9 @@ describe('client post actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         }, 
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchPosts())

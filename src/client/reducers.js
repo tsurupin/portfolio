@@ -6,7 +6,7 @@ import tags from 'shared/reducers/tags';
 import about from 'shared/reducers/abouts';
 import socialAccounts from 'shared/reducers/socialAccounts';
 import home from 'shared/reducers/homes';
-import alerts from 'shared/reducers/alerts';
+import errors from 'shared/reducers/errors';
 
 const rootReducer = combineReducers({
   posts,
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   about,
   socialAccounts,
   home,
-  alerts
+  errors,
 });
 
 export default rootReducer;

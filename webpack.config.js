@@ -4,6 +4,7 @@ var autoprefixer = require('autoprefixer');
 var path = require('path');
 
 module.exports = {
+  devtool: 'eval',
   context: __dirname,
   entry: {
     'cms': './src/cms/index.js',
@@ -30,7 +31,7 @@ module.exports = {
         },
         { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
-        { test: /\.(jpg|png)$/, loader: 'url-loader', exclude: /node_modules/ }
+        { test: /\.(jpg|png|gif)$/, loader: 'url-loader', exclude: /node_modules/ }
     ]
   },
 
@@ -56,17 +57,7 @@ module.exports = {
       sharedCss: path.resolve(__dirname, 'src', 'shared', 'css')
     }
   },
-  
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './'
-  },
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { allChunks: true, ignoreOrder: true }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-      }
-    })
+    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { disable: true })
   ]
 };

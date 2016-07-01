@@ -12,11 +12,11 @@ set :rails_env, 'production'
 # set :migration_role, 'db'
 # set :whenever_environment, :production
 
-server Settings.aws_production_ec2_ip, user: 'ec2-user', roles: %w(web app db batch)
+server Settings.aws_production_ec2_ip, user: 'ec2-user', roles: %w{web app db batch}
 
 set :unicorn_rack_env, rails_env
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
-set :unicorn_pid, "#{current_path}tmp/pids/unicorn.pid"
+set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 
 
@@ -27,15 +27,19 @@ namespace :deploy do
 
   after 'deploy:updated', 'newrelic:notice_deployment'
   after 'deploy:publishing', 'deploy:restart'
-  after :deploy, 'assets:precompile'
-
-  task :precompile, roles: :web do
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
-  end
-
-  task :cleanup, roles: :web do
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:clean"
-  end
+  # after :deploy, 'assets:precompile'
+  #
+  # task :precompile do
+  #   on roles(:web) do
+  #     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+  #   end
+  # end
+  #
+  # task :cleanup do
+  #   on roles(:web) do
+  #     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:clean"
+  #   end
+  # end
 
   namespace :database do
     desc 'Create Database'

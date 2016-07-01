@@ -19,19 +19,19 @@ import ProgressBar from 'shared/containers/ProgressBar/index';
 
 export default (
   <Route path="/cms" component={App}>
-    <IndexRoute component={ProgressBar(Alert(Authentication(PostIndex)))}/>
-      <Route path="/cms/posts" component={ProgressBar(Alert(Authentication(PostIndex)))}/>
-      <Route path="/cms/posts/new" component={ProgressBar(Alert(Authentication(PostForm)))}/>
-      <Route path="/cms/posts/:id/edit" component={ProgressBar(Alert(Authentication(PostForm)))}/>
-      <Route path="/cms/posts/:id" component={ProgressBar(PostShow)}/>
+    <IndexRoute component={ProgressBar(Alert(Authentication(PostIndex)))} />
+      <Route path="/cms/posts" component={ProgressBar(Alert(Authentication(PostIndex)))} />
+      <Route path="/cms/posts/new" component={ProgressBar(Alert(Authentication(PostForm)))} />
+      <Route path="/cms/posts/:id/edit" component={ProgressBar(Alert(Authentication(PostForm)))} />
+      <Route path="/cms/posts/:id/preview" component={ProgressBar(PostShow)} />
       <Route path="/cms/projects" component={ProgressBar(Alert(Authentication(ProjectIndex)))} />
-      <Route path="/cms/projects/preview" component={ProgressBar(ProjectIndexPreview)}/>
-      <Route path="/cms/projects/new" component={ProgressBar(Alert(Authentication(ProjectForm)))}/>
-      <Route path="/cms/projects/:id/edit" component={ProgressBar(Alert(Authentication(ProjectForm)))}/>
-      <Route path="/cms/sign-up" component={AuthorSinUp}/>
-      <Route path="/cms/sign-in" component={AuthorSingIn}/>
-      <Route path="/cms/about" component={ProgressBar(AboutShow)}/>
-      <Route path="/cms/about/edit" component={ProgressBar(Alert(Authentication(AuthorForm)))}/>
+      <Route path="/cms/projects/preview" component={ProgressBar(ProjectIndexPreview)} />
+      <Route path="/cms/projects/new" component={ProgressBar(Alert(Authentication(ProjectForm)))} />
+      <Route path="/cms/projects/:id/edit" component={ProgressBar(Alert(Authentication(ProjectForm)))} />
+      <Route path="/cms/sign-up" component={AuthorSinUp} />
+      <Route path="/cms/sign-in" component={AuthorSingIn} />
+      <Route path="/cms/about" component={ProgressBar(AboutShow)} />
+      <Route path="/cms/about/edit" component={ProgressBar(Alert(Authentication(AuthorForm)))} />
       <Route path="*" component={NotFound} />
       <Route path="/not-found" component={NotFound} />
   </ Route>

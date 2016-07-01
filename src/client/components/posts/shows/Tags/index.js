@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 import Item from './Item/index';
 import styles from './styles';
 
@@ -7,16 +7,16 @@ const propTypes = {
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
     })
-  )
+  ),
 };
 
 function Tags({ tags, adminPath }) {
   return (
     <section className={styles.root}>
       {tags.map((tag) => {
-        return(
+        return (
           <Item
             key={tag.id}
             adminPath={adminPath}
@@ -25,7 +25,7 @@ function Tags({ tags, adminPath }) {
         );
       })}
     </section>
-  )
+  );
 }
 
 Tags.propTypes = propTypes;

@@ -4,9 +4,9 @@ import styles from './styles';
 
 
 const INLINE_STYLES = [
-  {label: 'Bold', style: 'BOLD'},
-  {label: 'Italic', style: 'ITALIC'},
-  {label: 'Underline', style: 'UNDERLINE'}
+  { label: 'Bold', style: 'BOLD' },
+  { label: 'Italic', style: 'ITALIC' },
+  { label: 'Underline', style: 'UNDERLINE' },
 ];
 
 
@@ -25,12 +25,14 @@ export const InlineStyleControls = (props) => {
       )}
       <span
         className={styles.button}
-        onMouseDown={props.onPromptForLink}>
+        onMouseDown={props.onPromptForLink}
+      >
         Add Link
       </span>
       <span
         className={styles.button}
-        onMouseDown={props.onRemoveLink}>
+        onMouseDown={props.onRemoveLink}
+      >
         Remove Link
       </span>
     </div>

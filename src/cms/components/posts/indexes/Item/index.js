@@ -19,7 +19,7 @@ const propTypes = {
   status: PropTypes.number.isRequired,
   accepted: PropTypes.bool.isRequired,
   sortRank: PropTypes.number.isRequired,
-  handleToggle: PropTypes.func.isRequired
+  handleToggle: PropTypes.func.isRequired,
 };
 
 class Item extends Component {
@@ -29,11 +29,11 @@ class Item extends Component {
 
     this.handleToggle = this.handleToggle.bind(this);
   }
-  
+
   handleToggle() {
     this.props.handleToggle(this.props.sortRank, this.props.id);
   }
-  
+
   render() {
     let publishActionIcon;
     if (this.props.accepted) {
@@ -63,7 +63,7 @@ class Item extends Component {
         <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>
         <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >{this.props.publishedAt}</TableRowColumn>
         <TableRowColumn colSpan="3" style={inlineStyles.rowColumn} >
-          <Link to={`/cms/posts/${this.props.id}`}>
+          <Link to={`/cms/posts/${this.props.id}/preview`}>
             <IconButton className={styles.button}>
               <AvAirplay />
             </IconButton>
@@ -78,7 +78,7 @@ class Item extends Component {
           </IconButton>
         </TableRowColumn>
       </TableRow>
-    )
+    );
   }
 }
 

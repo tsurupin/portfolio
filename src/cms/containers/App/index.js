@@ -10,7 +10,7 @@ class App extends Component {
 
   getChildContext() {
     return {
-      muiTheme: getMuiTheme(MyRawTheme)
+      muiTheme: getMuiTheme(MyRawTheme),
     };
   }
 
@@ -28,7 +28,7 @@ class App extends Component {
 }
 
 App.childContextTypes = {
-  muiTheme: PropTypes.object.isRequired
+  muiTheme: PropTypes.object.isRequired,
 };
 
 

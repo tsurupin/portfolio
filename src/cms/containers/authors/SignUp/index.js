@@ -17,6 +17,12 @@ const propTypes = {
 
 function mapStateToProps(state) {
   return {
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirmation: ""
+    },
     authenticated: state.auths.authenticated,
     errorMessage: state.auths.errorMessage
   }

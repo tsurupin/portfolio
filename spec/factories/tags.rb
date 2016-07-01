@@ -16,6 +16,6 @@ names = %w(
 
 FactoryGirl.define do
   factory :tag do
-    sequence(:name) { |n| names[n] }
+    sequence(:name) { |n| names[n] || n }
   end
 end

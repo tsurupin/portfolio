@@ -6,7 +6,7 @@ import {
   toggleProject,
   saveProject
 } from 'cms/actions/projects';
-import { createAlert } from 'shared/actions/alerts';
+import { createError } from 'shared/actions/errors';
 import {
   FETCH_PROJECTS, 
   FETCH_PROJECT, 
@@ -14,7 +14,7 @@ import {
   SAVE_PROJECT,  
   TOGGLE_PROJECT,
   FETCH_TAGS_FORM,
-  CREATE_ALERT
+  CREATE_ERROR
 } from 'shared/constants/actions';
 import { 
   CMS_ROOT_URL,
@@ -89,10 +89,9 @@ describe('cms project actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchProjects())
@@ -163,10 +162,9 @@ describe('cms project actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchProject(1))
@@ -218,10 +216,9 @@ describe('cms project actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchNewProject())
@@ -331,10 +328,9 @@ describe('cms project actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(toggleProject(1, 1))

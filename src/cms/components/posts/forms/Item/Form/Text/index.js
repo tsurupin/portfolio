@@ -12,13 +12,13 @@ const propTypes = {
   fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.object,
   deleteButton: PropTypes.object.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired
+  handleUpdateItem: PropTypes.func.isRequired,
 };
 
 function validate(values) {
   const errors = {};
   if (!values.description) {
-    errors.description = 'Enter description'
+    errors.description = 'Enter description';
   }
 
   return errors;
@@ -38,7 +38,7 @@ class Text extends Component {
   handleUpdateItem(props) {
     this.props.handleUpdateItem({ description: props.description });
   }
-  
+
   renderErrorMessage() {
     if (this.props.fields.description.touched && this.props.fields.description.error) {
       return <span className={styles.errorMessage}>{this.props.fields.description.error}</span>;
@@ -52,7 +52,7 @@ class Text extends Component {
         <label className={styles.label}>Text</label>
         <TextEditor
           {...description}
-          handleUpdate={ (value) => { description.onChange(value) }}
+          handleUpdate={(value) => { description.onChange(value); }}
         />
         {this.renderErrorMessage()}
         <div className={styles.submitBox} >
@@ -79,6 +79,6 @@ Text.propTypes = propTypes;
 export default reduxForm({
   form: 'ItemTextForm',
   fields,
-  validate
+  validate,
 })(Text);
 

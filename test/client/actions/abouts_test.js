@@ -7,7 +7,7 @@ import {
 } from 'shared/constants/apis';
 import { 
   FETCH_ABOUT, 
-  CREATE_ALERT,
+  CREATE_ERROR,
   FETCH_SOCIAL_ACCOUNTS
 } from 'shared/constants/actions';
 import { trimAuthor } from 'cms/utilities';
@@ -84,10 +84,9 @@ describe('client about actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          kind: "error",
           message: 'errorMessage'
         },
-        type: CREATE_ALERT
+        type: CREATE_ERROR
       }];
 
       return store.dispatch(fetchAbout()).then(()=> {

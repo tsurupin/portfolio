@@ -6,7 +6,7 @@ feature 'User sees the home page', js: true do
     posts = []
     4.times do |i|
       Timecop.freeze(i.days.ago)
-      posts << create(:post, :accepted)
+      posts << create(:post, :accepted, published_at: i.days.ago)
     end
 
     old_project = create(:project, :accepted)

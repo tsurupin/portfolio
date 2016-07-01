@@ -9,7 +9,7 @@ export const BLOCK_TYPES = [
   { label: 'Code', style: 'code-block' },
   { label: 'Caption', style: 'header-four' },
   { label: 'OL', style: 'ordered-list-item' },
-  { label: 'UL', style: 'unordered-list-item' }
+  { label: 'UL', style: 'unordered-list-item' },
 ];
 
 export const BlockStyleControls = (props) => {

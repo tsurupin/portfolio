@@ -40,12 +40,13 @@ class Author < ActiveRecord::Base
     save!
   end
 
+  def ensure_record_singularity!
+    fail ActiveRecord::RecordInvalid.new(self) if Author.count > 0
+  end
+
   def delete_cache
     Rails.cache.delete('cached_about')
     Rails.cache.delete('cached_home')
   end
 
-  def ensure_record_singularity!
-    fail ActiveRecord::RecordInvalid.new(self) if Author.count > 0
-  end
 end

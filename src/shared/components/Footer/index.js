@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import config from 'shared/config';
 import icon from './gitHubIcon.png';
 import styles from './styles';
@@ -14,5 +14,5 @@ export default function Footer() {
         </a>
       </div>
     </footer>
-  )
-};
+  );
+}

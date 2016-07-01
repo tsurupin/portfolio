@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.5.0'
 
 set :application, 'portfolio'
 set :repo_url, 'git@github.com:tsurupin/portfolio.git'
@@ -13,6 +13,11 @@ rails_env = ENV['RACK_ENV'] || 'development'
 app_path = '/var/www/portfolio'
 set :deploy_to, app_path
 
+set :ssh_options, {
+  keys: %w(~/.ssh/portfolio.pem),
+  forward_agent: true,
+  auth_methods: %w(publickey)
+}
 # set :branch, rails_env
 
 # Default value for :scm is :git

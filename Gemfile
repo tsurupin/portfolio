@@ -5,7 +5,7 @@ ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 gem 'mysql2'
-
+gem 'unicorn'
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -18,8 +18,7 @@ gem 'oj'
 # For Image upload
 gem 'carrierwave'                 # Image uploader
 gem 'mini_magick'                 # resizable image
-gem 'fog'
-gem 'asset_sync'
+gem 'fog', require: "fog/aws/storage"
 
 # For Model and AR
 gem 'active_type'
@@ -30,7 +29,7 @@ gem 'migration_comments'
 gem 'devise'
 gem 'validates_email_format_of'
 gem 'active_model_serializers'#, git: 'git@github.com:rails-api/active_model_serializers.git'
-
+gem "faker"
 
 # For Config
 gem 'config'
@@ -39,16 +38,13 @@ gem 'config'
 gem 'bugsnag'                  # bug tracking
 gem 'newrelic_rpm'             # performance monitoring
 
-group :development, :test do
-  gem "faker"
-end
-
 group :development do
   # For Deploy
   gem 'capistrano'
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rbenv', require: false
+  #gem 'capistrano-npm', require: false
   gem 'capistrano3-unicorn'
 
   gem 'annotate'
