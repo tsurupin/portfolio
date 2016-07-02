@@ -64,7 +64,7 @@ class ProjectIndex extends Component {
 
     const newButton = (
       <Link to="/cms/projects/new">
-        <FloatingActionButton style={inlineStyles.floatButton} primary>
+        <FloatingActionButton style={inlineStyles.floatButton} disableTouchRipple={true} primary>
           <ContentAdd />
         </FloatingActionButton>
       </Link>

@@ -33,6 +33,7 @@ class EditBox extends Component {
           style={inlineStyles.largeButton}
           name="add-item-button"
           iconStyle={inlineStyles.toggleIcon}
+          disableTouchRipple={true}
           onClick={() => this.setState({ isOpen: true })}
         >
           <ContentAddCircleOutLine color={inlineStyles.iconColor} />
@@ -44,6 +45,7 @@ class EditBox extends Component {
           style={inlineStyles.largeButton}
           name="close-add-item-button"
           iconStyle={inlineStyles.toggleIcon}
+          disableTouchRipple={true}
           onClick={() => this.setState({ isOpen: false })}
         >
           <ActionHighlightOff color={inlineStyles.iconColor} />

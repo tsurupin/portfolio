@@ -74,7 +74,6 @@ class PostIndex extends Component {
 
   renderItems() {
     return (
-
       <Infinite
         className={styles.list}
         infiniteLoadBeginEdgeOffset={500}

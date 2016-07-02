@@ -63,6 +63,7 @@ class Text extends Component {
             tooltip="Save"
             tooltipPosition="bottom-center"
             name="save-item-button"
+            disableTouchRipple={true}
             onClick={handleSubmit(this.handleUpdateItem)}
           >
             <ContentSave color={inlineStyles.iconColor} />

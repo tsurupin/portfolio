@@ -49,11 +49,14 @@ class Item extends Component {
         <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>
         <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >
           <Link to={`/cms/projects/${this.props.id}/edit`}>
-            <IconButton className={styles.button}>
+            <IconButton className={styles.button} disableTouchRipple={true} >
               <EditorModeEdit />
             </IconButton>
           </Link>
-          <IconButton className={styles.toggleButton} onClick={this.handleToggle} >
+          <IconButton
+            onClick={this.handleToggle}
+            disableTouchRipple={true}
+          >
             {publishActionIcon}
           </IconButton>
         </TableRowColumn>
