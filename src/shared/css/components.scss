@@ -8,7 +8,6 @@
   position: relative;
   margin: 0 auto;
   padding: 3rem;
-  width: 80%;
 }
 
 .primaryButton {
@@ -43,16 +42,6 @@
   line-height: 38px;
 }
 
-.toggleIcon {
-  border-radius: 48px;
-  transition: quick-transition;
-
-  &:hover {
-    cursor: pointer;
-    background-color: lightgray !important;
-    opacity: strong-opaque;
-  }
-}
 
 .titleText {
   composes: fontTitle from 'shared/css/fonts.scss';

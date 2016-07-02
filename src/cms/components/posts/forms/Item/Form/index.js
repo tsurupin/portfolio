@@ -100,6 +100,7 @@ class PostItemForm extends Component {
         tooltip="Delete"
         tooltipPosition="bottom-center"
         name="delete-item-button"
+        disableTouchRipple={true}
         onClick={this.handleDeleteItem}
       >
         <ContentDeleteSweep color={inlineStyles.iconColor} />
@@ -114,6 +115,7 @@ class PostItemForm extends Component {
         tooltip="Cancel"
         tooltipPosition="bottom-center"
         name="cancel-item-button"
+        disableTouchRipple={true}
         onClick={this.handleCancelItem}
       >
         <ContentRemoveCircle color={inlineStyles.iconColor} />

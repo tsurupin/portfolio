@@ -16,6 +16,7 @@ function EditBoxItem({ name, handleAddItem }) {
       <IconButton
         className={styles.button}
         onClick={() => handleAddItem(name)}
+        disableTouchRipple={true}
       >
         <img src={getImage(name)} alt={name} className={styles.icon} />
       </IconButton>

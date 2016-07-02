@@ -32,22 +32,26 @@ class NavigationBar extends Component {
         iconElementRight={
                     <div>
                         <Link to="/about" >
-                            <IconButton name="about-button">
+                            <IconButton name="about-button" disableTouchRipple={true} >
                                 <SocialPerson color={inlineStyles.iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/posts" >
-                            <IconButton name="post-button">
+                            <IconButton name="post-button" disableTouchRipple={true} >
                                 <ActionDescription color={inlineStyles.iconColor} />
                             </IconButton>
                         </Link>
                         <Link to="/projects" >
-                            <IconButton name="project-button">
+                            <IconButton name="project-button" disableTouchRipple={true} >
                                 <AvWeb color={inlineStyles.iconColor} />
                             </IconButton>
                         </Link>
                         <a href={config.gitHubUrl} >
-                            <IconButton iconStyle={inlineStyles.appBar.gitHubButton} name="git-hub-button" >
+                            <IconButton
+                            iconStyle={inlineStyles.appBar.gitHubButton}
+                            name="git-hub-button"
+                            disableTouchRipple={true}
+                            >
                               <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.appBar.iconStyles} />
                             </IconButton>
                         </a>

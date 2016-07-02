@@ -16,12 +16,14 @@ function Pagination({ total, limit, page, handlePageClick }) {
     <div className={styles.root}>
       <IconButton
         disabled={page === 1}
+        disableTouchRipple={true}
         onClick={handlePageClick.bind(null, page - 1)}
       >
         <ChevronLeft />
       </IconButton>
       <IconButton
         disabled={page * limit >= total}
+        disableTouchRipple={true}
         onClick={handlePageClick.bind(null, page + 1)}
       >
         <ChevronRight />

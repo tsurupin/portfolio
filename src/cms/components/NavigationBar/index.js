@@ -37,44 +37,60 @@ class NavigationBar extends Component {
         iconStyleRight={inlineStyles.appBar.elementRight}
         iconElementRight={
                     <div>
-                        <IconMenu
-                          iconButtonElement={<IconButton name="about-button"> <SocialPerson color={inlineStyles.iconColor} /></IconButton>}
-                          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                      <IconMenu
+                        iconButtonElement={
+                          <IconButton name="about-button" disableTouchRipple={true} >
+                            <SocialPerson color={inlineStyles.iconColor} />
+                          </IconButton>
+                        }
+                        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                        targetOrigin={{horizontal: 'left', vertical: 'top'}}
 
-                        >
-                          <Link to="/cms/about/edit" >
-                            <MenuItem primaryText="Edit" />
-                          </Link>
-                          <Link to="/cms/about" >
-                            <MenuItem primaryText="Preview" />
-                          </Link>
-                        </IconMenu>
-                        <Link to="/cms/posts" >
-                            <IconButton name="post-button">
-                                <ActionDescription color={inlineStyles.iconColor} />
-                            </IconButton>
+                      >
+                        <Link to="/cms/about/edit" >
+                          <MenuItem primaryText="Edit" />
                         </Link>
-                        <IconMenu
-                          iconButtonElement={<IconButton name="project-button"><AvWeb color={inlineStyles.iconColor}/></IconButton>}
-                          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                          targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                        >
-                          <Link to="/cms/projects" >
-                            <MenuItem primaryText="Edit" />
-                          </Link>
-                          <Link to="/cms/projects/preview" >
-                            <MenuItem primaryText="Preview" />
-                          </Link>
-                        </IconMenu>
-                        <a href={config.gitHubUrl} >
-                            <IconButton iconStyle={inlineStyles.appBar.gitHubButton} name="git-hub-button">
-                              <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.appBar.iconStyles} />
-                            </IconButton>
-                        </a>
-                        <IconButton name="sign-out-button" onClick={() => this.props.signOut()}>
-                            <ActionExitToApp color={inlineStyles.iconColor} />
+                        <Link to="/cms/about" >
+                          <MenuItem primaryText="Preview" />
+                        </Link>
+                      </IconMenu>
+                      <Link to="/cms/posts" >
+                          <IconButton name="post-button" disableTouchRipple={true} >
+                              <ActionDescription color={inlineStyles.iconColor} />
+                          </IconButton>
+                      </Link>
+                      <IconMenu
+                        iconButtonElement={
+                          <IconButton name="project-button" disableTouchRipple={true} >
+                            <AvWeb color={inlineStyles.iconColor}/>
+                          </IconButton>
+                        }
+                        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                        targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                      >
+                        <Link to="/cms/projects" >
+                          <MenuItem primaryText="Edit" />
+                        </Link>
+                        <Link to="/cms/projects/preview" >
+                          <MenuItem primaryText="Preview" />
+                        </Link>
+                      </IconMenu>
+                      <a href={config.gitHubUrl} >
+                        <IconButton
+                          iconStyle={inlineStyles.appBar.gitHubButton}
+                          name="git-hub-button"
+                          disableTouchRipple={true}
+                          >
+                            <FontIcon className="muidocs-icon-custom-git-hub" style={inlineStyles.appBar.iconStyles} />
                         </IconButton>
+                      </a>
+                      <IconButton
+                        name="sign-out-button"
+                        disableTouchRipple={true}
+                        onClick={() => this.props.signOut()}
+                      >
+                        <ActionExitToApp color={inlineStyles.iconColor} />
+                      </IconButton>
                     </div>
                     }
       />

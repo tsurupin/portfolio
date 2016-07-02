@@ -64,16 +64,19 @@ class Item extends Component {
         <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >{this.props.publishedAt}</TableRowColumn>
         <TableRowColumn colSpan="3" style={inlineStyles.rowColumn} >
           <Link to={`/cms/posts/${this.props.id}/preview`}>
-            <IconButton className={styles.button}>
+            <IconButton className={styles.button} disableTouchRipple={true} >
               <AvAirplay />
             </IconButton>
           </Link>
           <Link to={`/cms/posts/${this.props.id}/edit`}>
-            <IconButton className={styles.button}>
+            <IconButton className={styles.button} disableTouchRipple={true} >
               <EditorModeEdit />
             </IconButton>
           </Link>
-          <IconButton className={styles.toggleButton} onClick={this.handleToggle}>
+          <IconButton
+            onClick={this.handleToggle}
+            disableTouchRipple={true}
+          >
             {publishActionIcon}
           </IconButton>
         </TableRowColumn>
