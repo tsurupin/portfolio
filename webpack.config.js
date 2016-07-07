@@ -4,7 +4,6 @@ var autoprefixer = require('autoprefixer');
 var path = require('path');
 
 module.exports = {
-  devtool: 'eval',
   context: __dirname,
   entry: {
     'cms': './src/cms/index.js',
@@ -58,6 +57,6 @@ module.exports = {
     }
   },
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { disable: true })
+    new ExtractTextPlugin('../stylesheets/[name]/bundle.scss', { disable: true })
   ]
 };

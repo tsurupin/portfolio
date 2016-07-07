@@ -59,7 +59,7 @@ module.exports = {
   },
   
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { allChunks: true, ignoreOrder: true }),
+    new ExtractTextPlugin('../stylesheets/[name]/bundle.scss', { allChunks: true }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
@@ -68,7 +68,7 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin({
       screw_ie8: true,
-      compressor: { warnings: false }
+      compressor: { warnings: true }
     })
   ]
 };

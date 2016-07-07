@@ -17,11 +17,11 @@ module Portfolio
     end
 
     # remove unnecessary middlewares for api
-    config.middleware.delete Rack::Sendfile
-    config.middleware.delete ActionDispatch::Cookies
-    config.middleware.delete ActionDispatch::Session::CookieStore
-    config.middleware.delete ActionDispatch::Flash
-    config.middleware.delete Rack::MethodOverride
+    # config.middleware.delete Rack::Sendfile
+    # config.middleware.delete ActionDispatch::Cookies
+    # config.middleware.delete ActionDispatch::Session::CookieStore
+    # config.middleware.delete ActionDispatch::Flash
+    # config.middleware.delete Rack::MethodOverride
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
