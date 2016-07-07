@@ -1,4 +1,5 @@
-const webpack = require('webpack');
+require('babel-polyfill');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var path = require('path');
@@ -59,7 +60,7 @@ module.exports = {
   },
   
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/bundle.scss', { allChunks: true }),
+    new ExtractTextPlugin('../stylesheets/[name]/bundle.scss', { allChunks: true, ignoreOrder: true }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       "process.env": {

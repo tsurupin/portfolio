@@ -1,4 +1,5 @@
-const webpack = require('webpack');
+require('babel-polyfill');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var path = require('path');
@@ -57,6 +58,6 @@ module.exports = {
     }
   },
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/bundle.scss', { disable: true })
+    new ExtractTextPlugin('../stylesheets/[name]/bundle.scss', { ignoreOrder: true } )
   ]
 };

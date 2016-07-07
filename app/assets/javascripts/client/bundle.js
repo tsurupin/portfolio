@@ -116,513 +116,42 @@
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(3);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./normalize.global.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./normalize.global.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "/*! normalize.css v3.0.2 | MIT License | git.io/normalize */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS text size adjust after orientation change, without disabling\n *    user zoom.\n */\n\nhtml {\n  font-family: sans-serif;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block;\n}\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\n\naudio, canvas, progress, video {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.\n */\n\n[hidden], template {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * Remove the gray background color from active links in IE 10.\n */\n\na {\n  background-color: transparent;\n  &:active, &:hover {\n    outline: 0;\n  }\n}\n\n/**\n * Improve readability when focused and also mouse hovered in all browsers.\n */\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Address styling not present in IE 8/9/10/11, Safari, and Chrome.\n */\n\nabbr[title] {\n  border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.\n */\n\nb, strong {\n  font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari and Chrome.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n  background: #ff0;\n  color: #000;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n  top: -0.5em;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9/10.\n */\n\nimg {\n  border: 0;\n}\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 0;\n}\n\n/**\n * Contain overflow in all browsers.\n */\n\npre {\n  overflow: auto;\n}\n\n/**\n * Address odd `em`-unit font size rendering in all browsers.\n */\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n\n/**\n * 1. Correct color not being inherited.\n *    Known issue: affects color of disabled elements.\n * 2. Correct font properties not being inherited.\n * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\n\nbutton, input, optgroup, select, textarea {\n  color: inherit;\n  /* 1 */\n  font: inherit;\n  /* 2 */\n  margin: 0;\n  /* 3 */\n}\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\n\nbutton {\n  overflow: visible;\n  text-transform: none;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\n\nselect {\n  text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton, html input[type=\"button\"] {\n  -webkit-appearance: button;\n  /* 2 */\n  cursor: pointer;\n  /* 3 */\n}\n\ninput {\n  &[type=\"reset\"], &[type=\"submit\"] {\n    -webkit-appearance: button;\n    /* 2 */\n    cursor: pointer;\n    /* 3 */\n  }\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled], html input[disabled] {\n  cursor: default;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\ninput {\n  &::-moz-focus-inner {\n    border: 0;\n    padding: 0;\n  }\n  line-height: normal;\n  &[type=\"checkbox\"], &[type=\"radio\"] {\n    box-sizing: border-box;\n    /* 1 */\n    padding: 0;\n    /* 2 */\n  }\n  &[type=\"number\"] {\n    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {\n      height: auto;\n    }\n  }\n  &[type=\"search\"] {\n    -webkit-appearance: textfield;\n    /* 1 */\n    -moz-box-sizing: content-box;\n    -webkit-box-sizing: content-box;\n    /* 2 */\n    box-sizing: content-box;\n    &::-webkit-search-cancel-button, &::-webkit-search-decoration {\n      -webkit-appearance: none;\n    }\n  }\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari and Chrome\n *    (include `-moz` to future-proof).\n */\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n  border: 0;\n  /* 1 */\n  padding: 0;\n  /* 2 */\n}\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * Don't inherit the `font-weight` (applied by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/* Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\ntd, th {\n  padding: 0;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 4 */
 /***/ function(module, exports) {
 
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function() {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for(var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if(item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function(modules, mediaQuery) {
-			if(typeof modules === "string")
-				modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for(var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if(typeof id === "number")
-					alreadyImportedModules[id] = true;
-			}
-			for(i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if(mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if(mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
-
+	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0,
-		styleElementsInsertedAtTop = [];
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		// By default, add <style> tags to the bottom of <head>.
-		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function insertStyleElement(options, styleElement) {
-		var head = getHeadElement();
-		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-		if (options.insertAt === "top") {
-			if(!lastStyleElementInsertedAtTop) {
-				head.insertBefore(styleElement, head.firstChild);
-			} else if(lastStyleElementInsertedAtTop.nextSibling) {
-				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-			} else {
-				head.appendChild(styleElement);
-			}
-			styleElementsInsertedAtTop.push(styleElement);
-		} else if (options.insertAt === "bottom") {
-			head.appendChild(styleElement);
-		} else {
-			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-		}
-	}
-
-	function removeStyleElement(styleElement) {
-		styleElement.parentNode.removeChild(styleElement);
-		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-		if(idx >= 0) {
-			styleElementsInsertedAtTop.splice(idx, 1);
-		}
-	}
-
-	function createStyleElement(options) {
-		var styleElement = document.createElement("style");
-		styleElement.type = "text/css";
-		insertStyleElement(options, styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement(options));
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement(options);
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
-
-
-/***/ },
+/* 3 */,
+/* 4 */,
+/* 5 */,
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(7);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./draft-js.global.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./draft-js.global.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".public-DraftEditorPlaceholder-root,\n.public-DraftEditor-content {\n  padding: 3px;\n}\n\n.public-DraftEditor-content {\n  min-height: 100px;\n}\n\n.public-DraftEditorPlaceholder-root {\n  color: #B3B3B3;\n}\n\n.public-DraftStyleDefault-pre {\n  background-color: rgba(0, 0, 0, 0.05);\n  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;\n  font-size: 16px;\n  padding: 20px;\n}\n\n.public-DraftStyleDefault-ul {\n  list-style: disc;\n  padding-left: 2.0rem\n}\n\n.public-DraftStyleDefault-ol {\n  padding-left: 2.0rem\n}\n\n\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 7 */,
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(9);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./prism.global.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./prism.global.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\n/**\n * prism.js default theme for JavaScript, CSS and HTML\n * Based on dabblet (http://dabblet.com)\n * @author Lea Verou\n */\n\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n  color: black;\n  background: none;\n  text-shadow: 0 1px white;\n  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;\n  text-align: left;\n  white-space: pre;\n  word-spacing: normal;\n  word-break: normal;\n  word-wrap: normal;\n  line-height: 1.5;\n\n  -moz-tab-size: 4;\n  -o-tab-size: 4;\n  tab-size: 4;\n\n  -webkit-hyphens: none;\n  -moz-hyphens: none;\n  -ms-hyphens: none;\n  hyphens: none;\n}\n\npre[class*=\"language-\"]::-moz-selection, pre[class*=\"language-\"] ::-moz-selection,\ncode[class*=\"language-\"]::-moz-selection, code[class*=\"language-\"] ::-moz-selection {\n  text-shadow: none;\n  background: #b3d4fc;\n}\n\npre[class*=\"language-\"]::selection, pre[class*=\"language-\"] ::selection,\ncode[class*=\"language-\"]::selection, code[class*=\"language-\"] ::selection {\n  text-shadow: none;\n  background: #b3d4fc;\n}\n\n@media print {\n  code[class*=\"language-\"],\n  pre[class*=\"language-\"] {\n    text-shadow: none;\n  }\n}\n\n/* Code blocks */\npre[class*=\"language-\"] {\n  padding: 1em;\n  margin: .5em 0;\n  overflow: auto;\n}\n\n:not(pre) > code[class*=\"language-\"],\npre[class*=\"language-\"] {\n  background: #f5f2f0;\n}\n\n/* Inline code */\n:not(pre) > code[class*=\"language-\"] {\n  padding: .1em;\n  border-radius: .3em;\n  white-space: normal;\n}\n\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n  color: slategray;\n}\n\n.token.punctuation {\n  color: #999;\n}\n\n.namespace {\n  opacity: .7;\n}\n\n.token.property,\n.token.tag,\n.token.boolean,\n.token.number,\n.token.constant,\n.token.symbol,\n.token.deleted {\n  color: #905;\n}\n\n.token.selector,\n.token.attr-name,\n.token.string,\n.token.char,\n.token.builtin,\n.token.inserted {\n  color: #690;\n}\n\n.token.operator,\n.token.entity,\n.token.url,\n.language-css .token.string,\n.style .token.string {\n  color: #a67f59;\n  background: hsla(0, 0%, 100%, .5);\n}\n\n.token.atrule,\n.token.attr-value,\n.token.keyword {\n  color: #07a;\n}\n\n.token.function {\n  color: #DD4A68;\n}\n\n.token.regex,\n.token.important,\n.token.variable {\n  color: #e90;\n}\n\n.token.important,\n.token.bold {\n  font-weight: bold;\n}\n.token.italic {\n  font-style: italic;\n}\n\n.token.entity {\n  cursor: help;\n}", ""]);
-
-	// exports
-
-
-/***/ },
+/* 9 */,
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(11);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./mui-icons.global.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./mui-icons.global.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "@font-face {\n  font-family: 'material-ui-icons';\n  src: url(data:application/x-font-ttf;charset=utf-8;base64,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) format('truetype'),\n  url(data:application/font-woff;charset=utf-8;base64,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) format('woff');\n  font-weight: normal;\n  font-style: normal;\n}\n\n[class^=\"muidocs-icon-\"], [class*=\" muidocs-icon-\"] {\n  box-sizing: border-box;\n  font-family: 'material-ui-icons';\n  speak: none;\n  font-style: normal;\n  font-weight: normal;\n  font-variant: normal;\n  text-transform: none;\n  line-height: 1;\n\n  /* Better Font Rendering =========== */\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n\n.muidocs-icon-custom-git-hub:before {\n  content: \"\\E625\";\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 11 */,
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(13);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../node_modules/postcss-loader/index.js!./globals.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../node_modules/postcss-loader/index.js!./globals.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "html {\n  font-size: 62.5%;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open Sans\",\"Helvetica Neue\",sans-serif;\n  min-height: 1000px;\n  box-sizing: border-box;\n}\n\n\nh1 {\n  font-weight: normal;\n  margin: 0;\n  padding: 0;\n}\n\nh2 {\n  font-weight: normal;\n  margin: 0;\n  padding: 0;\n}\n\nh3 {\n  font-weight: normal;\n  margin: 0;\n  padding: 0;\n}\n\n\na {\n  text-decoration: none;\n}\n\np {\n  margin: 0;\n}\n\n\ninput[type=\"password\"] {\n  outline: none;\n}\n\ninput[type=\"password\"] {\n  outline: none;\n}\n\n\ninput[type=\"submit\"]\ninput[type=\"button\"] {\n  border-radius: 0;\n  -webkit-box-sizing: content-box;\n  -webkit-appearance: button;\n  -moz-appearance: button;\n       appearance: button;\n  border: none;\n  box-sizing: border-box;\n  &::-webkit-search-decoration {\n    display: none;\n  }\n  &::focus {\n    outline-offset: -2px;\n  }\n}\n\ninput[type=\"button\"] {\n  border-radius: 0;\n  -webkit-box-sizing: content-box;\n  -webkit-appearance: button;\n  -moz-appearance: button;\n       appearance: button;\n  border: none;\n  box-sizing: border-box;\n  &::-webkit-search-decoration {\n    display: none;\n  }\n  &::focus {\n    outline-offset: -2px;\n  }\n}\n\n\ninput {\n  margin: 0;\n  padding: 0;\n  background: none;\n  border: none;\n  border-radius: 0;\n  outline: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n}\n\n\nbutton {\n  margin: 0;\n  padding: 0;\n  background: none;\n  border: none;\n  border-radius: 0;\n  outline: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n}\n\n\ntextarea {\n  margin: 0;\n  padding: 0;\n  background: none;\n  border: none;\n  border-radius: 0;\n  outline: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n}\n\n\nselect {\n  margin: 0;\n  padding: 0;\n  background: none;\n  border: none;\n  border-radius: 0;\n  outline: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n}\n\n\n\n\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 13 */,
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -34549,201 +34078,17 @@
 
 /***/ },
 /* 335 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(336);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","mixins":"'shared/css/mixins.scss'","lead-sentence-color":"#8F8F8F","border-color":"#ddd","weak-opaque":"0.7","root":"root___3ccXo","text":"text___2nWuz fontSmall___1QZX5","gitHubIcon":"gitHubIcon___2yKmw marginLeftXSmall___2VSO-"};
 
 /***/ },
-/* 336 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(338), undefined);
-	exports.i(__webpack_require__(339), undefined);
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".root___3ccXo {\n  border-top : 1px solid " + __webpack_require__(337).locals["border-color"] + ";\n  height: 60px;\n  line-height: 60px;\n}\n\n.text___2nWuz {\n\n  display: block;\n  text-align: center;\n  opacity: " + __webpack_require__(338).locals["weak-opaque"] + ";\n  color: " + __webpack_require__(337).locals["lead-sentence-color"] + ";\n}\n\n.gitHubIcon___2yKmw {\n\n  width: 20px;\n  height: 20px;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"mixins": "'shared/css/mixins.scss'",
-		"lead-sentence-color": "" + __webpack_require__(337).locals["lead-sentence-color"] + "",
-		"border-color": "" + __webpack_require__(337).locals["border-color"] + "",
-		"weak-opaque": "" + __webpack_require__(338).locals["weak-opaque"] + "",
-		"root": "root___3ccXo",
-		"text": "text___2nWuz " + __webpack_require__(339).locals["fontSmall"] + "",
-		"gitHubIcon": "gitHubIcon___2yKmw " + __webpack_require__(340).locals["marginLeftXSmall"] + ""
-	};
-
-/***/ },
-/* 337 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "", ""]);
-
-	// exports
-	exports.locals = {
-		"lead-sentence-color": "#8F8F8F",
-		"title-color": "rgba(0,0,0,0.8)",
-		"primary-color": "#009E5D",
-		"hover-primary-color": "#1c9963",
-		"border-color": "#ddd",
-		"list-border-color": "#f3f3f3",
-		"text-color": "#333333",
-		"error-color": "#CE4844",
-		"white-color": "#fff",
-		"label-color": "rgba(0, 0, 0, 0.498039)",
-		"link-color": "#307EA9"
-	};
-
-/***/ },
-/* 338 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".resetUlDefaultStyle___13f9G {\n  -webkit-padding-start: 0;\n  -webkit-margin-before: 0;\n  -webkit-margin-after: 0;\n  list-style: none;\n}\n\n.hoverAnimation___2iXLG {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n\n  &:hover {\n    cursor: pointer;\n    background-color: lightgray !important;\n    opacity: 0.7;\n  }\n}\n\n.strongHoverOpaque___2OMjc {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n\n  &:hover {\n    cursor: pointer;\n    opacity: 0.7;\n  }\n}\n\n\n", ""]);
-
-	// exports
-	exports.locals = {
-		"weak-opaque": "0.7",
-		"moderate-opaque": "0.5",
-		"strong-opaque": "0.3",
-		"quick-transition": "0.5s",
-		"resetUlDefaultStyle": "resetUlDefaultStyle___13f9G",
-		"hoverAnimation": "hoverAnimation___2iXLG",
-		"strongHoverOpaque": "strongHoverOpaque___2OMjc"
-	};
-
-/***/ },
-/* 339 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".fontXXSmall___3oQsF {\n  font-size: 10px;\n  font-size: 1rem;\n}\n\n.fontXSmall___uAWua {\n  font-size: 12px;\n  font-size: 1.2rem;\n}\n\n.fontSmall___1QZX5 {\n  font-size: 14px;\n  font-size: 1.4rem;\n}\n\n.fontMedium___1LaXa {\n  font-size: 16px;\n  font-size: 1.6rem;\n}\n\n.fontLarge___1wJgr {\n  font-size: 18px;\n  font-size: 1.8rem;\n}\n\n.fontXLarge___2ogmI {\n  font-size: 20px;\n  font-size: 2.0rem;\n}\n\n.fontDescription___3ffr3 {\n  font-size: 21px;\n  font-size: 2.1rem;\n}\n\n.fontXXLarge___1F_2n {\n  font-size: 24px;\n  font-size: 2.4rem;\n}\n\n.fontTitle___1IXyA {\n  font-size: 28px;\n  font-size: 2.8rem;\n}\n\n.fontHeading___2A-Qw {\n  font-size: 32px;\n  font-size: 3.2rem;\n}\n\n\n.contentFont___1Rcrp {\n  font-family: medium-content-sans-serif-font,\"Lucida Grande\",\"Lucida Sans Unicode\",\"Lucida Sans\",Geneva,Arial,sans-serif;\n}\n\n.descriptionFont___3y2nI {\n  font-family: medium-content-serif-font,Georgia,Cambria,\"Times New Roman\",Times,serif;\n}\n\n.selectionFont___2hudH {\n  font-family: 'Helvetica', sans-serif;\n}\n\n\n\n\n\n\n\n", ""]);
-
-	// exports
-	exports.locals = {
-		"fontXXSmall": "fontXXSmall___3oQsF",
-		"fontXSmall": "fontXSmall___uAWua",
-		"fontSmall": "fontSmall___1QZX5",
-		"fontMedium": "fontMedium___1LaXa",
-		"fontLarge": "fontLarge___1wJgr",
-		"fontXLarge": "fontXLarge___2ogmI",
-		"fontDescription": "fontDescription___3ffr3",
-		"fontXXLarge": "fontXXLarge___1F_2n",
-		"fontTitle": "fontTitle___1IXyA",
-		"fontHeading": "fontHeading___2A-Qw",
-		"contentFont": "contentFont___1Rcrp",
-		"descriptionFont": "descriptionFont___3y2nI",
-		"selectionFont": "selectionFont___2hudH"
-	};
-
-/***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "/* All Margin */\n.marginXXSmall___3Lauj {\n  margin: 5px;\n}\n\n.marginXSmall___31gZV {\n  margin: 10px;\n}\n\n.marginSmall___3QJUi {\n  margin: 20px;\n}\n\n.marginMedium___3AASV {\n  margin: 30px;\n}\n\n.marginLarge___3CN6k {\n  margin: 40px;\n}\n\n/* Vertical Margin */\n.marginVerticalXXSmall___10C0o {\n  margin-top: 5px;\n  margin-bottom: 5px;\n}\n\n.marginVerticalXSmall___3GeQj {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n\n.marginVerticalSmall___1fIhU {\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.marginVerticalMedium___3yyfZ {\n  margin-top: 30px;\n  margin-bottom: 30px;\n}\n\n.marginVerticalLarge___3uzbW {\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\n\n/* Horizontal Margin */\n.marginHorizontalZero___1Yfzh {\n  margin-left: 0;\n  margin-right: 0;\n}\n\n.marginHorizontalXXSmall___2HY29 {\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\n.marginHorizontalXSmall___5CAyT {\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n.marginHorizontalSmall___1cR2s {\n  margin-left: 20px;\n  margin-right: 20px;\n}\n\n.marginHorizontalMedium___1XajG {\n  margin-left: 30px;\n  margin-right: 30px;\n}\n\n.marginHorizontalLarge___1meei {\n  margin-left: 40px;\n  margin-right: 40px;\n}\n\n\n/* Top Margin */\n.marginTopZero___2hO_F {\n  margin-top: 0;\n}\n\n.marginTopXXSmall___PFzVZ {\n  margin-top: 5px;\n}\n\n.marginTopXSmall___29-04 {\n  margin-top: 10px;\n}\n\n.marginTopSmall___3Tyl1 {\n  margin-top: 20px;\n}\n\n.marginTopMedium___1RRCc {\n  margin-top: 30px;\n}\n\n.marginTopLarge___1QLtI {\n  margin-top: 40px;\n}\n\n.marginTopXLarge___3Y9_Z {\n  margin-top: 50px;\n}\n\n.marginTopXXLarge___2XfUK {\n  margin-top: 100px;\n}\n\n\n/* Bottom Margin */\n.marginBottomZero___2xI8L {\n  margin-bottom: 0;\n}\n\n.marginBottomXXSmall___3nz0N {\n  margin-bottom: 5px;\n}\n\n.marginBottomXSmall___1TD1i {\n  margin-bottom: 10px;\n}\n\n.marginBottomSmall___3TbFj {\n  margin-bottom: 20px;\n}\n\n.marginBottomMedium___3GB5b {\n  margin-bottom: 30px;\n}\n\n.marginBottomLarge___fbfHC {\n  margin-bottom: 40px;\n}\n\n.marginBottomXLarge___e-TAd {\n  margin-bottom: 50px;\n}\n\n.marginBottomXXLarge___14WbV {\n  margin-bottom: 100px;\n}\n\n\n/* Left Margin */\n.marginLeftXXSmall___2AcAK {\n  margin-left: 5px;\n}\n\n.marginLeftXSmall___2VSO- {\n  margin-left: 10px;\n}\n\n.marginLeftSmall___2WF_a {\n  margin-left: 20px;\n}\n\n.marginLeftMedium___3vLFT {\n  margin-left: 30px;\n}\n\n.marginLeftLarge___1YIjG {\n  margin-left: 40px;\n}\n\n.marginLeftXLarge___2kMat {\n  margin-left: 50px;\n}\n\n.marginLeftXXLarge___XET9S {\n  margin-left: 100px;\n}\n\n\n/* Right Margin */\n.marginRightXXSmall___yJG1t {\n  margin-right: 5px;\n}\n\n.marginRightXSmall___15EIf {\n  margin-right: 10px;\n}\n\n.marginRightSmall___31RxV {\n  margin-right: 20px;\n}\n\n.marginRightMedium___ON7gu {\n  margin-right: 30px;\n}\n\n.marginRightLarge___2ohp9 {\n  margin-right: 40px;\n}\n\n.marginRightXLarge___2zbTN {\n  margin-right: 50px;\n}\n\n.marginRightXXLarge___3KGDg {\n  margin-right: 100px;\n}\n\n", ""]);
-
-	// exports
-	exports.locals = {
-		"xx-small": "5px",
-		"x-small": "10px",
-		"small": "20px",
-		"medium": "30px",
-		"large": "40px",
-		"x-large": "50px",
-		"xx-large": "100px",
-		"marginXXSmall": "marginXXSmall___3Lauj",
-		"marginXSmall": "marginXSmall___31gZV",
-		"marginSmall": "marginSmall___3QJUi",
-		"marginMedium": "marginMedium___3AASV",
-		"marginLarge": "marginLarge___3CN6k",
-		"marginVerticalXXSmall": "marginVerticalXXSmall___10C0o",
-		"marginVerticalXSmall": "marginVerticalXSmall___3GeQj",
-		"marginVerticalSmall": "marginVerticalSmall___1fIhU",
-		"marginVerticalMedium": "marginVerticalMedium___3yyfZ",
-		"marginVerticalLarge": "marginVerticalLarge___3uzbW",
-		"marginHorizontalZero": "marginHorizontalZero___1Yfzh",
-		"marginHorizontalXXSmall": "marginHorizontalXXSmall___2HY29",
-		"marginHorizontalXSmall": "marginHorizontalXSmall___5CAyT",
-		"marginHorizontalSmall": "marginHorizontalSmall___1cR2s",
-		"marginHorizontalMedium": "marginHorizontalMedium___1XajG",
-		"marginHorizontalLarge": "marginHorizontalLarge___1meei",
-		"marginTopZero": "marginTopZero___2hO_F",
-		"marginTopXXSmall": "marginTopXXSmall___PFzVZ",
-		"marginTopXSmall": "marginTopXSmall___29-04",
-		"marginTopSmall": "marginTopSmall___3Tyl1",
-		"marginTopMedium": "marginTopMedium___1RRCc",
-		"marginTopLarge": "marginTopLarge___1QLtI",
-		"marginTopXLarge": "marginTopXLarge___3Y9_Z",
-		"marginTopXXLarge": "marginTopXXLarge___2XfUK",
-		"marginBottomZero": "marginBottomZero___2xI8L",
-		"marginBottomXXSmall": "marginBottomXXSmall___3nz0N",
-		"marginBottomXSmall": "marginBottomXSmall___1TD1i",
-		"marginBottomSmall": "marginBottomSmall___3TbFj",
-		"marginBottomMedium": "marginBottomMedium___3GB5b",
-		"marginBottomLarge": "marginBottomLarge___fbfHC",
-		"marginBottomXLarge": "marginBottomXLarge___e-TAd",
-		"marginBottomXXLarge": "marginBottomXXLarge___14WbV",
-		"marginLeftXXSmall": "marginLeftXXSmall___2AcAK",
-		"marginLeftXSmall": "marginLeftXSmall___2VSO-",
-		"marginLeftSmall": "marginLeftSmall___2WF_a",
-		"marginLeftMedium": "marginLeftMedium___3vLFT",
-		"marginLeftLarge": "marginLeftLarge___1YIjG",
-		"marginLeftXLarge": "marginLeftXLarge___2kMat",
-		"marginLeftXXLarge": "marginLeftXXLarge___XET9S",
-		"marginRightXXSmall": "marginRightXXSmall___yJG1t",
-		"marginRightXSmall": "marginRightXSmall___15EIf",
-		"marginRightSmall": "marginRightSmall___31RxV",
-		"marginRightMedium": "marginRightMedium___ON7gu",
-		"marginRightLarge": "marginRightLarge___2ohp9",
-		"marginRightXLarge": "marginRightXLarge___2zbTN",
-		"marginRightXXLarge": "marginRightXXLarge___3KGDg"
-	};
-
-/***/ },
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */,
 /* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -41764,89 +41109,14 @@
 
 /***/ },
 /* 501 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(502);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___1O8dI","container":"container___3WkVb container___1sv2D"};
 
 /***/ },
-/* 502 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".root___1O8dI {\n  position: relative;\n}\n\n.container___3WkVb {\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___1O8dI",
-		"container": "container___3WkVb " + __webpack_require__(503).locals["container"] + ""
-	};
-
-/***/ },
-/* 503 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(338), undefined);
-	exports.i(__webpack_require__(339), undefined);
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".container___1sv2D {\n  max-width: 740px;\n  position: relative;\n  margin: 0 auto;\n  padding: 3rem;\n}\n\n.primaryButton___wCJf5 {\n\n  display: inline-block;\n  height: 37px;\n  padding: 0 16px;\n  color: " + __webpack_require__(337).locals["primary-color"] + ";\n  text-align: center;\n  cursor: pointer;\n  border: 1px solid " + __webpack_require__(337).locals["primary-color"] + ";\n  vertical-align: bottom;\n  white-space: nowrap;\n  border-radius: 999em;\n  letter-spacing: 0;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  line-height: 35px;\n  &:hover {\n    color: " + __webpack_require__(337).locals["hover-primary-color"] + ";\n\n  }\n}\n\n.primaryButtonLarge___RTo0s {\n\n  height: 40px;\n  padding: 0 24px;\n  line-height: 38px;\n}\n\n\n.titleText___21iMF {\n  line-height: 1.12;\n  color: " + __webpack_require__(337).locals["text-color"] + ";\n  letter-spacing: -.022em;\n  font-weight: 700;\n}\n\n.errorText___q7aTq {\n  font-style: italic;\n  line-height: 1.6;\n  color: " + __webpack_require__(337).locals["error-color"] + ";\n}\n\n.descriptionText___PcLUq {\n\n  color: " + __webpack_require__(337).locals["title-color"] + ";\n  font-weight: 400;\n  line-height: 1.58;\n  letter-spacing: -.003em;\n}\n\n\n.heading___15P_0 {\n  line-height: 1.12;\n  letter-spacing: -.022em;\n  font-weight: 300;\n  padding-bottom: 20px;\n  border-bottom: 1px solid " + __webpack_require__(337).locals["list-border-color"] + ";\n}\n\n.label___3ozPy {\n\n  line-height: 22px;\n  color: " + __webpack_require__(337).locals["label-color"] + ";\n  cursor: text;\n}\n\n.tag___2IjCe {\n\n  display: inline-block;\n  padding: 5px 10px;\n  border-radius: 3px;\n  line-height: 22px;\n  letter-spacing: 0;\n  color: rgba(0,0,0,.6);\n  background: rgba(0,0,0,.05);\n\n  &:hover {\n    background: rgba(0,0,0,.1);\n  }\n}\n\n\n.formGroup___SeG7M {\n}\n\n.caption___3Fb2V {\n\n  display: block;\n  line-height: 1.4;\n  color: " + __webpack_require__(337).locals["lead-sentence-color"] + ";\n  letter-spacing: 0;\n  text-align: center;\n  font-style: italic;\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"mixins": "'shared/css/mixins.scss'",
-		"primary-color": "" + __webpack_require__(337).locals["primary-color"] + "",
-		"title-color": "" + __webpack_require__(337).locals["title-color"] + "",
-		"lead-sentence-color": "" + __webpack_require__(337).locals["lead-sentence-color"] + "",
-		"hover-primary-color": "" + __webpack_require__(337).locals["hover-primary-color"] + "",
-		"text-color": "" + __webpack_require__(337).locals["text-color"] + "",
-		"list-border-color": "" + __webpack_require__(337).locals["list-border-color"] + "",
-		"error-color": "" + __webpack_require__(337).locals["error-color"] + "",
-		"label-color": "" + __webpack_require__(337).locals["label-color"] + "",
-		"strong-opaque": "" + __webpack_require__(338).locals["strong-opaque"] + "",
-		"quick-transition": "" + __webpack_require__(338).locals["quick-transition"] + "",
-		"container": "container___1sv2D",
-		"primaryButton": "primaryButton___wCJf5 " + __webpack_require__(339).locals["fontXSmall"] + "",
-		"primaryButtonLarge": "primaryButtonLarge___RTo0s primaryButton___wCJf5 " + __webpack_require__(339).locals["fontXSmall"] + " " + __webpack_require__(339).locals["fontMedium"] + "",
-		"titleText": "titleText___21iMF " + __webpack_require__(339).locals["fontTitle"] + "",
-		"errorText": "errorText___q7aTq " + __webpack_require__(339).locals["fontMedium"] + "",
-		"descriptionText": "descriptionText___PcLUq " + __webpack_require__(339).locals["descriptionFont"] + " " + __webpack_require__(339).locals["fontDescription"] + "",
-		"heading": "heading___15P_0 " + __webpack_require__(339).locals["fontXXLarge"] + "",
-		"label": "label___3ozPy " + __webpack_require__(339).locals["fontXXSmall"] + "",
-		"tag": "tag___2IjCe " + __webpack_require__(340).locals["marginRightXXSmall"] + " " + __webpack_require__(339).locals["fontXSmall"] + "",
-		"formGroup": "formGroup___SeG7M " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"caption": "caption___3Fb2V " + __webpack_require__(340).locals["marginTopXXSmall"] + " " + __webpack_require__(339).locals["fontSmall"] + " " + __webpack_require__(339).locals["contentFont"] + ""
-	};
-
-/***/ },
+/* 502 */,
+/* 503 */,
 /* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43633,61 +42903,13 @@
 
 /***/ },
 /* 533 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(534);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","text-color":"#333333","list-border-color":"#f3f3f3","lead-sentence-color":"#8F8F8F","primary-color":"#009E5D","label-color":"rgba(0, 0, 0, 0.498039)","root":"root___3qms7 marginBottomMedium___3GB5b","title":"title___1To53 titleText___21iMF fontTitle___1IXyA","leadSentence":"leadSentence___1dLio marginTopXXSmall___PFzVZ fontMedium___1LaXa","tagItem":"tagItem___pAwLO marginTopXXSmall___PFzVZ fontSmall___1QZX5","tagName":"tagName___3-D-f marginLeftXXSmall___2AcAK","publishDate":"publishDate___3QdX0 marginVerticalXSmall___3GeQj fontSmall___1QZX5"};
 
 /***/ },
-/* 534 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(503), undefined);
-	exports.i(__webpack_require__(339), undefined);
-
-	// module
-	exports.push([module.id, ".root___3qms7 {\n  border-bottom: 1px solid " + __webpack_require__(337).locals["list-border-color"] + ";\n}\n\n.title___1To53 {\n}\n\n.leadSentence___1dLio {\n\n  line-height: 1.4;\n  color: " + __webpack_require__(337).locals["lead-sentence-color"] + ";\n  word-wrap: break-word;\n}\n\n.tagItem___pAwLO {\n\n  display: -webkit-box;\n\n  display: flex;\n  color: " + __webpack_require__(337).locals["primary-color"] + ";\n}\n\n.tagName___3-D-f {\n}\n\n.publishDate___3QdX0 {\n  color: " + __webpack_require__(337).locals["label-color"] + ";\n  text-align: right;\n}\n\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"text-color": "" + __webpack_require__(337).locals["text-color"] + "",
-		"list-border-color": "" + __webpack_require__(337).locals["list-border-color"] + "",
-		"lead-sentence-color": "" + __webpack_require__(337).locals["lead-sentence-color"] + "",
-		"primary-color": "" + __webpack_require__(337).locals["primary-color"] + "",
-		"label-color": "" + __webpack_require__(337).locals["label-color"] + "",
-		"root": "root___3qms7 " + __webpack_require__(340).locals["marginBottomMedium"] + "",
-		"title": "title___1To53 " + __webpack_require__(503).locals["titleText"] + "",
-		"leadSentence": "leadSentence___1dLio " + __webpack_require__(340).locals["marginTopXXSmall"] + " " + __webpack_require__(339).locals["fontMedium"] + "",
-		"tagItem": "tagItem___pAwLO " + __webpack_require__(340).locals["marginTopXXSmall"] + " " + __webpack_require__(339).locals["fontSmall"] + "",
-		"tagName": "tagName___3-D-f " + __webpack_require__(340).locals["marginLeftXXSmall"] + "",
-		"publishDate": "publishDate___3QdX0 " + __webpack_require__(340).locals["marginVerticalXSmall"] + " " + __webpack_require__(339).locals["fontSmall"] + ""
-	};
-
-/***/ },
+/* 534 */,
 /* 535 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43790,52 +43012,13 @@
 
 /***/ },
 /* 537 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(538);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","primary-color":"#009E5D","root":"root___EtFA3 marginTopXXSmall___PFzVZ","item":"item___38fK6 marginLeftXXSmall___2AcAK fontSmall___1QZX5"};
 
 /***/ },
-/* 538 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(339), undefined);
-
-	// module
-	exports.push([module.id, ".root___EtFA3 {\n\n  display: -webkit-box;\n\n  display: flex;\n}\n\n.item___38fK6 {\n\n  color: " + __webpack_require__(337).locals["primary-color"] + ";\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"primary-color": "" + __webpack_require__(337).locals["primary-color"] + "",
-		"root": "root___EtFA3 " + __webpack_require__(340).locals["marginTopXXSmall"] + "",
-		"item": "item___38fK6 " + __webpack_require__(340).locals["marginLeftXXSmall"] + " " + __webpack_require__(339).locals["fontSmall"] + ""
-	};
-
-/***/ },
+/* 538 */,
 /* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43878,48 +43061,13 @@
 
 /***/ },
 /* 540 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(541);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___1Nvfa","text":"text___2hX2e descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3"};
 
 /***/ },
-/* 541 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".root___1Nvfa {\n  compoese: marginXSmall from 'shared/css/margins.scss';\n}\n\n.text___2hX2e {\n\n  text-align: center;\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___1Nvfa",
-		"text": "text___2hX2e " + __webpack_require__(503).locals["descriptionText"] + ""
-	};
-
-/***/ },
+/* 541 */,
 /* 542 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -45095,49 +44243,13 @@
 
 /***/ },
 /* 557 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(558);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"heading":"heading___25EGQ heading___15P_0 fontXXLarge___1F_2n","list":"list___293ye marginTopMedium___1RRCc"};
 
 /***/ },
-/* 558 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(503), undefined);
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".heading___25EGQ {\n}\n\n.list___293ye {\n\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"heading": "heading___25EGQ " + __webpack_require__(503).locals["heading"] + "",
-		"list": "list___293ye " + __webpack_require__(340).locals["marginTopMedium"] + ""
-	};
-
-/***/ },
+/* 558 */,
 /* 559 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -45437,89 +44549,21 @@
 
 /***/ },
 /* 562 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(563);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___3v-N5 tag___2IjCe marginRightXXSmall___yJG1t fontXSmall___uAWua"};
 
 /***/ },
-/* 563 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".root___3v-N5 {\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___3v-N5 " + __webpack_require__(503).locals["tag"] + ""
-	};
-
-/***/ },
+/* 563 */,
 /* 564 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(565);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___leGh- marginVerticalSmall___1fIhU"};
 
 /***/ },
-/* 565 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".root___leGh- {\n  width: 100%;\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___leGh- " + __webpack_require__(340).locals["marginVerticalSmall"] + ""
-	};
-
-/***/ },
+/* 565 */,
 /* 566 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -63098,66 +62142,13 @@
 
 /***/ },
 /* 697 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(698);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","title-color":"rgba(0,0,0,0.8)","lead-sentence-color":"#8F8F8F","white-color":"#fff","border-color":"#ddd","list-border-color":"#f3f3f3","root":"root___1X8N6 marginVerticalXSmall___3GeQj fontLarge___1wJgr","editor":"editor___2yWX3 marginTopXSmall___29-04 fontMedium___1LaXa","hidePlaceholder":"hidePlaceholder___NLXqf","h2":"h2___2VzhK contentFont___1Rcrp marginBottomSmall___3TbFj","text":"text___3ZAwN descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3 marginBottomSmall___3TbFj","h3":"h3___Q3WAE contentFont___1Rcrp fontTitle___1IXyA marginBottomXSmall___1TD1i","blockquote":"blockquote___3-V9K text___3ZAwN descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3 marginBottomSmall___3TbFj marginHorizontalZero___1Yfzh marginVerticalMedium___3yyfZ","caption":"caption___1Efu5 marginTopMedium___1RRCc text___3ZAwN descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3 marginBottomSmall___3TbFj","unorderedListItem":"unorderedListItem___puaIq text___3ZAwN descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3 marginBottomSmall___3TbFj","orderedListItem":"orderedListItem___oZHeo text___3ZAwN descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3 marginBottomSmall___3TbFj","urlInputBox":"urlInputBox___3btkl text___3ZAwN descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3 marginBottomSmall___3TbFj marginBottomXSmall___1TD1i"};
 
 /***/ },
-/* 698 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(339), undefined);
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".root___1X8N6 {\n\n  position: relative;\n  padding: 15px;\n  border: 1px solid " + __webpack_require__(337).locals["border-color"] + ";\n  background: " + __webpack_require__(337).locals["white-color"] + ";\n  cursor: text;\n}\n\n.editor___2yWX3 {\n\n  max-height: 500px;\n  overflow: scroll;\n}\n\n\n.hidePlaceholder___NLXqf {\n  display: none;\n}\n\n.h2___2VzhK {\n\n  margin-left: -2.25px;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 36px;\n\n  line-height: 1.15;\n  letter-spacing: -.02em;\n  color: " + __webpack_require__(337).locals["title-color"] + ";\n  -webkit-font-smoothing: antialiased;\n\n  & + .text___3ZAwN {\n  }\n}\n\n.h3___Q3WAE {\n\n  margin-left: -1.75px;\n  color: " + __webpack_require__(337).locals["lead-sentence-color"] + ";\n  font-weight: 300;\n  font-style: normal;\n\n  line-height: 1.22;\n  letter-spacing: -.022em;\n  word-wrap: break-word;\n\n  & + .text___3ZAwN {\n  }\n\n}\n\n.text___3ZAwN {\n}\n\n\n.blockquote___3-V9K {\n\n  padding: 20px;\n  background: " + __webpack_require__(337).locals["list-border-color"] + ";\n}\n\n\n.caption___1Efu5 {\n\n  padding-left: 20px;\n  padding-bottom: 3px;\n  border-left: 3px solid " + __webpack_require__(337).locals["title-color"] + ";\n}\n\n.unorderedListItem___puaIq {\n\n  padding-left: 5px;\n}\n\n.orderedListItem___oZHeo {\n\n  padding-left: 5px;\n}\n\n.urlInputBox___3btkl {\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"title-color": "" + __webpack_require__(337).locals["title-color"] + "",
-		"lead-sentence-color": "" + __webpack_require__(337).locals["lead-sentence-color"] + "",
-		"white-color": "" + __webpack_require__(337).locals["white-color"] + "",
-		"border-color": "" + __webpack_require__(337).locals["border-color"] + "",
-		"list-border-color": "" + __webpack_require__(337).locals["list-border-color"] + "",
-		"root": "root___1X8N6 " + __webpack_require__(340).locals["marginVerticalXSmall"] + " " + __webpack_require__(339).locals["fontLarge"] + "",
-		"editor": "editor___2yWX3 " + __webpack_require__(340).locals["marginTopXSmall"] + " " + __webpack_require__(339).locals["fontMedium"] + "",
-		"hidePlaceholder": "hidePlaceholder___NLXqf",
-		"h2": "h2___2VzhK " + __webpack_require__(339).locals["contentFont"] + " " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"text": "text___3ZAwN " + __webpack_require__(503).locals["descriptionText"] + " " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"h3": "h3___Q3WAE " + __webpack_require__(339).locals["contentFont"] + " " + __webpack_require__(339).locals["fontTitle"] + " " + __webpack_require__(340).locals["marginBottomXSmall"] + "",
-		"blockquote": "blockquote___3-V9K text___3ZAwN " + __webpack_require__(503).locals["descriptionText"] + " " + __webpack_require__(340).locals["marginBottomSmall"] + " " + __webpack_require__(340).locals["marginHorizontalZero"] + " " + __webpack_require__(340).locals["marginVerticalMedium"] + "",
-		"caption": "caption___1Efu5 " + __webpack_require__(340).locals["marginTopMedium"] + " text___3ZAwN " + __webpack_require__(503).locals["descriptionText"] + " " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"unorderedListItem": "unorderedListItem___puaIq text___3ZAwN " + __webpack_require__(503).locals["descriptionText"] + " " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"orderedListItem": "orderedListItem___oZHeo text___3ZAwN " + __webpack_require__(503).locals["descriptionText"] + " " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"urlInputBox": "urlInputBox___3btkl text___3ZAwN " + __webpack_require__(503).locals["descriptionText"] + " " + __webpack_require__(340).locals["marginBottomSmall"] + " " + __webpack_require__(340).locals["marginBottomXSmall"] + ""
-	};
-
-/***/ },
+/* 698 */,
 /* 699 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -64359,91 +63350,21 @@
 
 /***/ },
 /* 705 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(706);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","link-color":"#307EA9","root":"root___3nnHW"};
 
 /***/ },
-/* 706 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-
-	// module
-	exports.push([module.id, ".root___3nnHW {\n  color: " + __webpack_require__(337).locals["link-color"] + ";\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"link-color": "" + __webpack_require__(337).locals["link-color"] + "",
-		"root": "root___3nnHW"
-	};
-
-/***/ },
+/* 706 */,
 /* 707 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(708);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___rBVZH marginVerticalXSmall___3GeQj"};
 
 /***/ },
-/* 708 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".root___rBVZH {\n\n  cursor: text;\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___rBVZH " + __webpack_require__(340).locals["marginVerticalXSmall"] + ""
-	};
-
-/***/ },
+/* 708 */,
 /* 709 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -64565,47 +63486,13 @@
 
 /***/ },
 /* 711 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(712);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___1YMO4 marginTopSmall___3Tyl1 marginBottomMedium___3GB5b marginHorizontalZero___1Yfzh"};
 
 /***/ },
-/* 712 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".root___1YMO4 {\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___1YMO4 " + __webpack_require__(340).locals["marginTopSmall"] + " " + __webpack_require__(340).locals["marginBottomMedium"] + " " + __webpack_require__(340).locals["marginHorizontalZero"] + ""
-	};
-
-/***/ },
+/* 712 */,
 /* 713 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -64661,50 +63548,13 @@
 
 /***/ },
 /* 714 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(715);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___31eXC marginBottomMedium___3GB5b","image":"image___uZf7p","caption":"caption___FK0sD caption___3Fb2V marginTopXXSmall___PFzVZ fontSmall___1QZX5 contentFont___1Rcrp"};
 
 /***/ },
-/* 715 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".root___31eXC {\n\n  display: block;\n}\n\n.image___uZf7p {\n  display: block;\n  margin: 0 auto;\n  max-width: 100%;\n}\n\n.caption___FK0sD {\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___31eXC " + __webpack_require__(340).locals["marginBottomMedium"] + "",
-		"image": "image___uZf7p",
-		"caption": "caption___FK0sD " + __webpack_require__(503).locals["caption"] + ""
-	};
-
-/***/ },
+/* 715 */,
 /* 716 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -64891,59 +63741,13 @@
 
 /***/ },
 /* 719 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(720);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","text-color":"#333333","lead-sentence-color":"#8F8F8F","primary-color":"#009E5D","border-color":"#ddd","root":"root___3c9lv marginTopXSmall___29-04 fontLarge___1wJgr contentFont___1Rcrp","box":"box___2-7ym","prevBox":"prevBox___2BvcV box___2-7ym","prevTitle":"prevTitle___2OkGl","nextTitle":"nextTitle___qyab9","nextBox":"nextBox___1wy4f box___2-7ym"};
 
 /***/ },
-/* 720 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(339), undefined);
-
-	// module
-	exports.push([module.id, ".root___3c9lv {\n\n  position: relative;\n  display: -webkit-box;\n  display: flex;\n  width: 100%;\n  min-height: 80px;\n  padding: 10px 0;\n  border-top: 1px solid " + __webpack_require__(337).locals["border-color"] + ";\n  line-height: 1.6;\n  overflow: hidden;\n}\n\n.box___2-7ym {\n  display: -webkit-box;\n  display: flex;\n  width: 50%;\n  color: " + __webpack_require__(337).locals["lead-sentence-color"] + ";\n}\n\n.prevBox___2BvcV {\n  text-align: left;\n}\n\n.prevTitle___2OkGl {\n  width: 85%;\n  margin: auto 0;\n  vertical-align: middle;\n}\n\n.nextTitle___qyab9 {\n  width: 85%;\n  margin: auto 0;\n  vertical-align: middle;\n}\n\n.nextBox___1wy4f {\n  text-align: right;\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"text-color": "" + __webpack_require__(337).locals["text-color"] + "",
-		"lead-sentence-color": "" + __webpack_require__(337).locals["lead-sentence-color"] + "",
-		"primary-color": "" + __webpack_require__(337).locals["primary-color"] + "",
-		"border-color": "" + __webpack_require__(337).locals["border-color"] + "",
-		"root": "root___3c9lv " + __webpack_require__(340).locals["marginTopXSmall"] + " " + __webpack_require__(339).locals["fontLarge"] + " " + __webpack_require__(339).locals["contentFont"] + "",
-		"box": "box___2-7ym",
-		"prevBox": "prevBox___2BvcV box___2-7ym",
-		"prevTitle": "prevTitle___2OkGl",
-		"nextTitle": "nextTitle___qyab9",
-		"nextBox": "nextBox___1wy4f box___2-7ym"
-	};
-
-/***/ },
+/* 720 */,
 /* 721 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -64982,56 +63786,13 @@
 
 /***/ },
 /* 722 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(723);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"\"shared/css/colors.scss\"","list-border-color":"#f3f3f3","lead-sentence-color":"#8F8F8F","heading":"heading___2_JSA marginBottomMedium___3GB5b","title":"title___I900e titleText___21iMF fontTitle___1IXyA","dateTime":"dateTime___394UP","time":"time___2uUlr marginLeftXXSmall___2AcAK fontXSmall___uAWua"};
 
 /***/ },
-/* 723 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(503), undefined);
-	exports.i(__webpack_require__(339), undefined);
-
-	// module
-	exports.push([module.id, ".heading___2_JSA {\n}\n\n.title___I900e {\n}\n\n.dateTime___394UP {\n  display: table-cell;\n  padding: 10px 0;\n}\n\n.time___2uUlr {\n\n  vertical-align: middle;\n  color: " + __webpack_require__(337).locals["lead-sentence-color"] + ";\n}\n\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "\"shared/css/colors.scss\"",
-		"list-border-color": "" + __webpack_require__(337).locals["list-border-color"] + "",
-		"lead-sentence-color": "" + __webpack_require__(337).locals["lead-sentence-color"] + "",
-		"heading": "heading___2_JSA " + __webpack_require__(340).locals["marginBottomMedium"] + "",
-		"title": "title___I900e " + __webpack_require__(503).locals["titleText"] + "",
-		"dateTime": "dateTime___394UP",
-		"time": "time___2uUlr " + __webpack_require__(340).locals["marginLeftXXSmall"] + " " + __webpack_require__(339).locals["fontXSmall"] + ""
-	};
-
-/***/ },
+/* 723 */,
 /* 724 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -65348,101 +64109,21 @@
 
 /***/ },
 /* 727 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(728);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","list-border-color":"#f3f3f3","root":"root___2eBaj marginTopMedium___1RRCc","title":"title___eBTFn titleText___21iMF fontTitle___1IXyA","imageBlock":"imageBlock___2DFE_ marginTopSmall___3Tyl1","image":"image___1jcFV","caption":"caption___1YC_q caption___3Fb2V marginTopXXSmall___PFzVZ fontSmall___1QZX5 contentFont___1Rcrp","description":"description___3Byzv marginBottomLarge___fbfHC fontMedium___1LaXa descriptionFont___3y2nI","button":"button___-TWpQ primaryButton___wCJf5 fontXSmall___uAWua"};
 
 /***/ },
-/* 728 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(503), undefined);
-	exports.i(__webpack_require__(339), undefined);
-
-	// module
-	exports.push([module.id, ".root___2eBaj {\n\n  position: relative;\n  padding-bottom: 15px;\n  border-bottom: 1px solid " + __webpack_require__(337).locals["list-border-color"] + ";\n}\n\n.title___eBTFn {\n}\n\n\n.imageBlock___2DFE_ {\n}\n\n.image___1jcFV {\n  display: block;\n  max-width: 94%;\n  margin: 0 auto;\n}\n\n.caption___1YC_q {\n}\n\n.description___3Byzv {\n\n  padding-bottom: 5px;\n  line-height: 1.6;\n}\n\n.button___-TWpQ {\n\n  position: absolute;\n  bottom: 20px;\n  right: 1%;\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"list-border-color": "" + __webpack_require__(337).locals["list-border-color"] + "",
-		"root": "root___2eBaj " + __webpack_require__(340).locals["marginTopMedium"] + "",
-		"title": "title___eBTFn " + __webpack_require__(503).locals["titleText"] + "",
-		"imageBlock": "imageBlock___2DFE_ " + __webpack_require__(340).locals["marginTopSmall"] + "",
-		"image": "image___1jcFV",
-		"caption": "caption___1YC_q " + __webpack_require__(503).locals["caption"] + "",
-		"description": "description___3Byzv " + __webpack_require__(340).locals["marginBottomLarge"] + " " + __webpack_require__(339).locals["fontMedium"] + " " + __webpack_require__(339).locals["descriptionFont"] + "",
-		"button": "button___-TWpQ " + __webpack_require__(503).locals["primaryButton"] + ""
-	};
-
-/***/ },
+/* 728 */,
 /* 729 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(730);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"heading":"heading___1no_V heading___15P_0 fontXXLarge___1F_2n","list":"list___2Xmlt"};
 
 /***/ },
-/* 730 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".heading___1no_V {\n}\n\n.list___2Xmlt {\n  padding-bottom: 15px;\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"heading": "heading___1no_V " + __webpack_require__(503).locals["heading"] + "",
-		"list": "list___2Xmlt"
-	};
-
-/***/ },
+/* 730 */,
 /* 731 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -65797,97 +64478,21 @@
 
 /***/ },
 /* 740 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(741);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___29wsE"};
 
 /***/ },
-/* 741 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".root___29wsE {\n  display: -webkit-box;\n  display: flex;\n  padding: 0;\n  list-style: none;\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___29wsE"
-	};
-
-/***/ },
+/* 741 */,
 /* 742 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(743);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","title-color":"rgba(0,0,0,0.8)","heading":"heading___1Az4J fontHeading___2A-Qw","subHeading":"subHeading___2KmKX marginTopLarge___1QLtI heading___15P_0 fontXXLarge___1F_2n","siteDescription":"siteDescription___2GbEF marginTopSmall___3Tyl1","text":"text___1IFeQ descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3"};
 
 /***/ },
-/* 743 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(339), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".heading___1Az4J {\n\n  color: " + __webpack_require__(337).locals["title-color"] + ";\n  font-weight: 700;\n  line-height: 1.2;\n  letter-spacing: 0;\n}\n\n.subHeading___2KmKX {\n}\n\n.siteDescription___2GbEF {\n}\n\n.text___1IFeQ {\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"title-color": "" + __webpack_require__(337).locals["title-color"] + "",
-		"heading": "heading___1Az4J " + __webpack_require__(339).locals["fontHeading"] + "",
-		"subHeading": "subHeading___2KmKX " + __webpack_require__(340).locals["marginTopLarge"] + " " + __webpack_require__(503).locals["heading"] + "",
-		"siteDescription": "siteDescription___2GbEF " + __webpack_require__(340).locals["marginTopSmall"] + "",
-		"text": "text___1IFeQ " + __webpack_require__(503).locals["descriptionText"] + ""
-	};
-
-/***/ },
+/* 743 */,
 /* 744 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -66200,105 +64805,21 @@
 
 /***/ },
 /* 748 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(749);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","title-color":"rgba(0,0,0,0.8)","lead-sentence-color":"#8F8F8F","root":"root___3VJGc marginBottomSmall___3TbFj","content":"content___REPyQ fontLarge___1wJgr contentFont___1Rcrp","leadSentence":"leadSentence___3lBXM marginTopXXSmall___PFzVZ fontSmall___1QZX5"};
 
 /***/ },
-/* 749 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(339), undefined);
-
-	// module
-	exports.push([module.id, ".root___3VJGc {\n}\n\n.content___REPyQ {\n\n  color: " + __webpack_require__(337).locals["title-color"] + ";\n}\n\n\n.leadSentence___3lBXM {\n\n  color: " + __webpack_require__(337).locals["lead-sentence-color"] + ";\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"title-color": "" + __webpack_require__(337).locals["title-color"] + "",
-		"lead-sentence-color": "" + __webpack_require__(337).locals["lead-sentence-color"] + "",
-		"root": "root___3VJGc " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"content": "content___REPyQ " + __webpack_require__(339).locals["fontLarge"] + " " + __webpack_require__(339).locals["contentFont"] + "",
-		"leadSentence": "leadSentence___3lBXM " + __webpack_require__(340).locals["marginTopXXSmall"] + " " + __webpack_require__(339).locals["fontSmall"] + ""
-	};
-
-/***/ },
+/* 749 */,
 /* 750 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(751);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","border-color":"#ddd","title-color":"rgba(0,0,0,0.8)","root":"root___2Flug","title":"title___1dBFZ fontXXLarge___1F_2n","button":"button___2pFmV primaryButton___wCJf5 fontXSmall___uAWua","list":"list___aN-hs marginVerticalSmall___1fIhU"};
 
 /***/ },
-/* 751 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(339), undefined);
-	exports.i(__webpack_require__(503), undefined);
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".root___2Flug {\n  width: 47%;\n  margin-right: 3%;\n}\n\n.title___1dBFZ {\n\n  border-bottom: 1px solid " + __webpack_require__(337).locals["border-color"] + ";\n  font-weight: 700;\n  color: " + __webpack_require__(337).locals["title-color"] + ";\n  letter-spacing: -.02em;\n}\n\n.button___2pFmV {\n}\n\n.list___aN-hs {\n\n  list-style: none;\n  padding: 0;\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"border-color": "" + __webpack_require__(337).locals["border-color"] + "",
-		"title-color": "" + __webpack_require__(337).locals["title-color"] + "",
-		"root": "root___2Flug",
-		"title": "title___1dBFZ " + __webpack_require__(339).locals["fontXXLarge"] + "",
-		"button": "button___2pFmV " + __webpack_require__(503).locals["primaryButton"] + "",
-		"list": "list___aN-hs " + __webpack_require__(340).locals["marginVerticalSmall"] + ""
-	};
-
-/***/ },
+/* 751 */,
 /* 752 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -66356,56 +64877,13 @@
 
 /***/ },
 /* 753 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(754);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","border-color":"#ddd","title-color":"rgba(0,0,0,0.8)","root":"root___1RQTP","title":"title___xGM6j fontXXLarge___1F_2n","button":"button___1h3Vi primaryButton___wCJf5 fontXSmall___uAWua","image":"image___grvF2 marginVerticalSmall___1fIhU"};
 
 /***/ },
-/* 754 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(339), undefined);
-	exports.i(__webpack_require__(503), undefined);
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".root___1RQTP {\n  width: 47%;\n  margin-left: 3%;\n}\n\n.title___xGM6j {\n\n  border-bottom: 1px solid " + __webpack_require__(337).locals["border-color"] + ";\n  font-weight: 700;\n  color: " + __webpack_require__(337).locals["title-color"] + ";\n  letter-spacing: -.02em;\n}\n\n.button___1h3Vi {\n}\n\n.image___grvF2 {\n\n  display: block;\n  width: 100%;\n}\n", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"border-color": "" + __webpack_require__(337).locals["border-color"] + "",
-		"title-color": "" + __webpack_require__(337).locals["title-color"] + "",
-		"root": "root___1RQTP",
-		"title": "title___xGM6j " + __webpack_require__(339).locals["fontXXLarge"] + "",
-		"button": "button___1h3Vi " + __webpack_require__(503).locals["primaryButton"] + "",
-		"image": "image___grvF2 " + __webpack_require__(340).locals["marginVerticalSmall"] + ""
-	};
-
-/***/ },
+/* 754 */,
 /* 755 */
 /***/ function(module, exports) {
 
@@ -66413,48 +64891,13 @@
 
 /***/ },
 /* 756 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(757);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"image":"image___1nCEw marginBottomSmall___3TbFj","list":"list___1d7hy marginVerticalMedium___3yyfZ"};
 
 /***/ },
-/* 757 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(340), undefined);
-
-	// module
-	exports.push([module.id, ".image___1nCEw {\n\n  display: block;\n  max-width: 100%;\n}\n\n\n.list___1d7hy {\n\n  display: -webkit-box;\n\n  display: flex;\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"image": "image___1nCEw " + __webpack_require__(340).locals["marginBottomSmall"] + "",
-		"list": "list___1d7hy " + __webpack_require__(340).locals["marginVerticalMedium"] + ""
-	};
-
-/***/ },
+/* 757 */,
 /* 758 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -66495,50 +64938,13 @@
 
 /***/ },
 /* 759 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(760);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___3qXBh","title":"title____YEZb marginBottomXSmall___1TD1i titleText___21iMF fontTitle___1IXyA","text":"text___K-LVu descriptionText___PcLUq descriptionFont___3y2nI fontDescription___3ffr3"};
 
 /***/ },
-/* 760 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(340), undefined);
-	exports.i(__webpack_require__(503), undefined);
-
-	// module
-	exports.push([module.id, ".root___3qXBh {\n  min-height: 500px;\n}\n\n.title____YEZb {\n}\n\n.text___K-LVu {\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___3qXBh",
-		"title": "title____YEZb " + __webpack_require__(340).locals["marginBottomXSmall"] + " " + __webpack_require__(503).locals["titleText"] + "",
-		"text": "text___K-LVu " + __webpack_require__(503).locals["descriptionText"] + ""
-	};
-
-/***/ },
+/* 760 */,
 /* 761 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -66642,55 +65048,13 @@
 
 /***/ },
 /* 762 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(763);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"colors":"'shared/css/colors.scss'","white-color":"#fff","error-color":"#CE4844","primary-color":"#009E5D","root":"root___364R0","alert":"alert___dreRy fontMedium___1LaXa","error":"error___3JviG alert___dreRy fontMedium___1LaXa","success":"success___3_5Vq alert___dreRy fontMedium___1LaXa"};
 
 /***/ },
-/* 763 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-	exports.i(__webpack_require__(337), undefined);
-	exports.i(__webpack_require__(339), undefined);
-
-	// module
-	exports.push([module.id, ".root___364R0 {\n  position: relative\n}\n\n.alert___dreRy {\n\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 56px;\n  line-height: 56px;\n  z-index: 10000;\n  text-align: center;\n  color: " + __webpack_require__(337).locals["white-color"] + ";\n}\n\n.error___3JviG {\n  background-color: " + __webpack_require__(337).locals["error-color"] + ";\n}\n\n.success___3_5Vq {\n  background-color: " + __webpack_require__(337).locals["primary-color"] + ";\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"colors": "'shared/css/colors.scss'",
-		"white-color": "" + __webpack_require__(337).locals["white-color"] + "",
-		"error-color": "" + __webpack_require__(337).locals["error-color"] + "",
-		"primary-color": "" + __webpack_require__(337).locals["primary-color"] + "",
-		"root": "root___364R0",
-		"alert": "alert___dreRy " + __webpack_require__(339).locals["fontMedium"] + "",
-		"error": "error___3JviG alert___dreRy " + __webpack_require__(339).locals["fontMedium"] + "",
-		"success": "success___3_5Vq alert___dreRy " + __webpack_require__(339).locals["fontMedium"] + ""
-	};
-
-/***/ },
+/* 763 */,
 /* 764 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -67017,47 +65381,13 @@
 
 /***/ },
 /* 767 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(768);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!./../../../../node_modules/postcss-loader/index.js!./styles.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	// removed by extract-text-webpack-plugin
+	module.exports = {"root":"root___3dYLg"};
 
 /***/ },
-/* 768 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".root___3dYLg {\n  min-height: 500px;\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"root": "root___3dYLg"
-	};
-
-/***/ },
+/* 768 */,
 /* 769 */
 /***/ function(module, exports, __webpack_require__) {
 
