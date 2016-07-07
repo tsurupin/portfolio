@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer');
 var path = require('path');
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   context: __dirname,
   entry: {
     'cms': './src/cms/index.js',
@@ -30,8 +30,8 @@ module.exports = {
           test: /\.global.(scss|css)$/,
           loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'resolve-url', 'sass')
         },
-        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
-        { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
+        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
         { test: /\.(jpg|png)$/, loader: 'url-loader', exclude: /node_modules/ }
     ]
   },
@@ -67,9 +67,10 @@ module.exports = {
         NODE_ENV: JSON.stringify("production")
       }
     }),
+    new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       screw_ie8: true,
-      compressor: { warnings: true }
+      compressor: { warnings: false }
     })
   ]
 };

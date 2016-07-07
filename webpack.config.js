@@ -5,6 +5,7 @@ var autoprefixer = require('autoprefixer');
 var path = require('path');
 
 module.exports = {
+  devtool: 'eval',
   context: __dirname,
   entry: {
     'cms': './src/cms/index.js',
@@ -29,8 +30,8 @@ module.exports = {
           test: /\.global.(scss|css)$/,
           loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'resolve-url', 'sass')
         },
-        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
-        { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
+        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
         { test: /\.(jpg|png|gif)$/, loader: 'url-loader', exclude: /node_modules/ }
     ]
   },
