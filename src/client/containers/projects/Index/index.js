@@ -65,6 +65,7 @@ class ProjectIndex extends Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  // add adminPath to tell admin's preview from ordinal user's view
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
     return paths[0] ? paths[0] : '';

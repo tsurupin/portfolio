@@ -16,12 +16,28 @@
 
 .imageBlock {
   composes: marginTopSmall from 'shared/css/margins.scss';
-}
 
+}
 .image {
+  min-height: 436px;
+  opacity: 0;
   display: block;
   max-width: 94%;
+  height: auto;
   margin: 0 auto;
+}
+
+.imageLoading {
+  composes: image;
+
+  opacity: 0;
+}
+
+.imageLoaded {
+  composes: image;
+
+  opacity: 1;
+  transition: opacity 0.6s ease;
 }
 
 .caption {

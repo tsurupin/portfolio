@@ -18,41 +18,52 @@ const propTypes = {
   adminPath: PropTypes.string,
 };
 
-function renderLink(sourceUrl) {
-  if (sourceUrl) {
+
+class Item extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { loaded: false }
+  }
+
+  renderLink(sourceUrl) {
+    if (sourceUrl) {
+      return (
+        <Link to={sourceUrl} className={styles.button}>
+          Fork on GitHub
+        </Link>
+      );
+    }
+  }
+
+  render() {
+    let imageClassName;
+    if (this.state.loaded) {
+      imageClassName= styles.imageLoaded;
+    } else {
+      imageClassName = styles.imageLoading
+    }
     return (
-      <Link to={sourceUrl} className={styles.button}>
-        Fork on GitHub
-      </Link>
+      <div className={styles.root}>
+        <h3 className={styles.title}>{this.props.title} </h3>
+        <TagList tags={this.props.tags} path={`${this.props.adminPath}/projects`}/>
+        <div className={styles.imageBlock}>
+          <img
+            className={imageClassName}
+            onLoad={() => this.setState({ loaded: true })}
+            src={this.props.image}
+            alt={this.props.title}
+          />
+          <span className={styles.caption}>{this.props.caption}</span>
+        </div>
+        <div className={styles.description}>
+          <TextDisplay description={this.props.description}/>
+        </div>
+        {this.renderLink(this.props.sourceUrl)}
+      </div>
     );
   }
-}
 
-function renderText(description) {
-  if (description) {
-    return (
-      <div className={styles.description}>
-        <TextDisplay description={description} />
-      </div>
-    );
-  }
-}
-
-function Item({ adminPath, title, description, image, caption, sourceUrl, tags }) {
-  return (
-    <div className={styles.root}>
-      <h3 className={styles.title}>{title} </h3>
-      <TagList tags={tags} path={`${adminPath}/projects`} />
-      <div className={styles.imageBlock}>
-        <img className={styles.image} src={image} alt={title} />
-        <span className={styles.caption}>{caption}</span>
-      </div>
-      <div className={styles.description}>
-        <TextDisplay description={description} />
-      </div>
-      {renderLink(sourceUrl)}
-    </div>
-  );
 }
 
 Item.propTypes = propTypes;

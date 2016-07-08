@@ -99,7 +99,7 @@ class PostShow extends Component {
   }
 
   render() {
-    if (!this.props.post) {
+    if (!this.props.post || !this.props.post.title) {
       return <section />;
     }
 

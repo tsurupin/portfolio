@@ -47,6 +47,10 @@ class AboutShow extends Component {
       return <seciont />;
     }
 
+    if (this.props.about.description == null) {
+      return <seciont />;
+    };
+
     return (
       <section>
         <Helmet title="About" />
