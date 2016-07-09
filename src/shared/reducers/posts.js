@@ -5,7 +5,8 @@ import {
   FETCH_EDIT_POST,
   FETCH_NEW_POST, 
   SAVE_POST,
-  TOGGLE_POST 
+  TOGGLE_POST ,
+  RESET_POST,
 } from 'shared/constants/actions';
 
 const INITIAL_STATE = { 
@@ -45,6 +46,9 @@ export default function (state = INITIAL_STATE, action) {
         page: action.payload.page,
         total: action.payload.total
       };
+    
+    case RESET_POST:
+      return { ...state, post: {}, errorMessage: '' };
 
     case FETCH_POST.SUCCESS:
       return {...state, post: action.payload.post, errorMessage: '' };

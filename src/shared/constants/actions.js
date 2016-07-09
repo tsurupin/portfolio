@@ -42,6 +42,7 @@ export const TOGGLE_PROJECT = createRequestTypes('TOGGLE_PROJECT');
 export const SIGN_OUT = createRequestTypes('SIGN_OUT');
 export const AUTH = createRequestTypes('AUTH');
 
+export const RESET_POST = 'RESET_POST';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
@@ -50,9 +51,8 @@ export const MOVE_ITEM_UP = 'MOVE_ITEM_UP';
 export const MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
 export const MOVE_ITEM_BOTTOM = 'MOVE_ITEM_BOTTOM';
 
-export const CREATE_SOCIAL_ACCOUNT = 'CREATE_SOCIAL_ACCOUNT';
 export const UPDATE_SOCIAL_ACCOUNT = 'UPDATE_SOCIAL_ACCOUNT';
-export const DELETE_SOCIAL_ACCOUNT = 'DELETE_SOCIAL_ACCOUNT';
+
 
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';

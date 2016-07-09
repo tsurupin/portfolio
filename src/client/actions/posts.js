@@ -1,4 +1,4 @@
-import { FETCH_POSTS_INFINITELY, FETCH_POST } from 'shared/constants/actions';
+import { FETCH_POSTS_INFINITELY, FETCH_POST, RESET_POST } from 'shared/constants/actions';
 import { POST_PATH } from 'shared/constants/apis';
 import { fetchTags } from './tags';
 import { fetchItems } from './items';
@@ -64,5 +64,11 @@ function fetchPostSuccess(response) {
       tags: response.tags,
     },
   };
+}
+
+export function resetPost() {
+  return {
+    type: RESET_POST
+  }
 }
 

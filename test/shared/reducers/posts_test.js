@@ -7,7 +7,8 @@ import {
   FETCH_EDIT_POST,
   FETCH_NEW_POST,
   SAVE_POST,
-  TOGGLE_POST
+  TOGGLE_POST,
+  RESET_POST,
 } from 'shared/constants/actions';
 
 
@@ -270,5 +271,15 @@ describe('Post Reducer', () => {
     const expectedResponse = { errorMessage: 'errorMessage' };
     expect(postReducer([], action)).to.eql(expectedResponse);
   });
+
+  it('handles action of type RESET_POST', () => {
+    const action = {
+      type: RESET_POST
+    };
+    const state = { post: { title:'sample' }, errorMessage: 'errorMessage' };
+
+    const expectedResponse = { post: {}, errorMessage: '' };
+    expect(postReducer(state, action)).to.eql(expectedResponse);
+  })
 
 });

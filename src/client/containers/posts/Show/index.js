@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPost } from 'client/actions/posts';
+import { fetchPost, resetPost } from 'client/actions/posts';
 import Tags from 'client/components/posts/shows/Tags/index';
 import Item from 'client/components/posts/shows/Item/index';
 import shallowCompare from 'react-addons-shallow-compare';
@@ -46,6 +46,7 @@ const cmsRegexp = /^(\/cms)*/;
 
 
 function mapStateToProps(state) {
+  console.log(state.posts)
   return {
     post: state.posts.post,
     tags: state.tags.tags,
@@ -57,6 +58,10 @@ class PostShow extends Component {
 
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    this.props.resetPost();
   }
 
   componentDidMount() {
@@ -128,4 +133,4 @@ class PostShow extends Component {
 
 PostShow.propTypes = propTypes;
 
-export default connect(mapStateToProps, { fetchPost })(PostShow);
+export default connect(mapStateToProps, { fetchPost, resetPost })(PostShow);
