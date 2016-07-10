@@ -1,0 +1,40 @@
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule DraftEditorModes
+ * 
+ */
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+/**
+ * `edit` is the most common mode for text entry. This includes most typing,
+ * deletion, cut/copy/paste, and other behaviors.
+ */
+
+/**
+ * `composite` mode handles IME text entry.
+ */
+
+/**
+ * `drag` mode handles editor behavior while a drag event is occurring.
+ */
+
+/**
+ * `cut` mode allows us to effectively ignore all edit behaviors while the`
+ * browser performs a native `cut` operation on the DOM.
+ */
+
+/**
+ * `render` mode is the normal "null" mode, during which no edit behavior is
+ * expected or observed.
+ */

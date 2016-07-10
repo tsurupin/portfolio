@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - iojs
+  - iojs-v1.5.1
+before_script: "npm install -g codeclimate-test-reporter"
+script: "npm run test:cov"
+after_script: "cat coverage/lcov.info | codeclimate"
+addons:
+  code_climate:
+    repo_token: 5918a6fb9b25b4c60b68b6c25b3aa2ed99a1d754f22d502b35f0b22ec6768270

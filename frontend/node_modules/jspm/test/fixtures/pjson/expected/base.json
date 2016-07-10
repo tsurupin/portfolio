@@ -1,0 +1,13 @@
+{
+  "directories": {
+    "baseURL": "."
+  },
+  "configFiles": {
+    "jspm": "config.js"
+  },
+  "registry": "jspm",
+  "configFile": "config.js",
+  "dependencies": {
+    "jquery": "*"
+  }
+}

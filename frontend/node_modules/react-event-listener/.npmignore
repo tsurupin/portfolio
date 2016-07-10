@@ -1,0 +1,9 @@
+__tests__
+src
+node_modules
+.flowconfig
+.travis.yml
+.codeclimate.yml
+.babelrc
+.eslintrc
+.editorconfig

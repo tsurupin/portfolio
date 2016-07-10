@@ -1,0 +1,11 @@
+{
+  "folders":
+  [
+    {
+      "path": ".",
+      "follow_symlinks": true,
+      "folder_exclude_patterns": [],
+      "word_wrap": true
+    }
+  ]
+}

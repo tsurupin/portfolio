@@ -10,6 +10,7 @@ capybara-*.html
 /spec/tmp
 
 /node_modules
+/frontend/node_modules
 
 npm-debug.log
 
@@ -50,6 +51,7 @@ bower.json
 .idea
 .secret
 /*.pem
+/*.map
 
 # Ignore config files for local usage
 config/settings.local.yml
