@@ -51,10 +51,12 @@ bower.json
 .idea
 .secret
 /*.pem
-/*.map
 
 # Ignore config files for local usage
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+app/assets/javascripts/client/bundle.js.map
+app/assets/javascripts/cms/bundle.js.map
+
 
