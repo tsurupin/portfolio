@@ -17,7 +17,8 @@ import zIndex from 'material-ui/styles/zIndex';
 export default {
   spacing: Spacing,
   zIndex,
-  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
+  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,' +
+  '"Open Sans","Helvetica Neue",sans-serif',
   palette: {
     primary1Color: teal500,
     primary2Color: teal700,

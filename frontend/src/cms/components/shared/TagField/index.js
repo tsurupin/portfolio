@@ -29,7 +29,7 @@ class TagField extends Component {
 
     this.handleDeleteTag = this.handleDeleteTag.bind(this);
     this.handleAddTag = this.handleAddTag.bind(this);
-	                                                            }
+	                                                                                                                                            }
 
   componentWillReceiveProps(nextProps) {
     this.setState({

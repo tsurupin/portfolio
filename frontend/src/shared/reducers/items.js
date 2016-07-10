@@ -19,15 +19,26 @@ export default function (state = [], action) {
       return [...state, action.payload.item];
 
     case UPDATE_ITEM:
-      return [...state.slice(0, action.payload.sortRank), action.payload.item, ...state.slice(action.payload.sortRank + 1)];
+      return [
+        ...state.slice(0, action.payload.sortRank),
+        action.payload.item,
+        ...state.slice(action.payload.sortRank + 1),
+      ];
 
     case DELETE_ITEM:
-      return [...state.slice(0, action.payload.sortRank), ...state.slice(action.payload.sortRank + 1)];
+      return [
+        ...state.slice(0, action.payload.sortRank),
+        ...state.slice(action.payload.sortRank + 1),
+      ];
 
     case MOVE_ITEM_TOP:
       if (state.length > 0 && action.payload.sortRank !== 0) {
         const topItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-        return [...topItem, ...state.slice(0, action.payload.sortRank), ...state.slice(action.payload.sortRank + 1)];
+        return [
+          ...topItem,
+          ...state.slice(0, action.payload.sortRank),
+          ...state.slice(action.payload.sortRank + 1),
+        ];
       }
       return state;
 
@@ -35,7 +46,12 @@ export default function (state = [], action) {
       if (state.length > 0) {
         const subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
         const prevItem = state.slice(action.payload.sortRank - 1, action.payload.sortRank);
-        return [...state.slice(0, action.payload.sortRank - 1), ...subject, ...prevItem, ...state.slice(action.payload.sortRank + 1)];
+        return [
+          ...state.slice(0, action.payload.sortRank - 1),
+          ...subject,
+          ...prevItem,
+          ...state.slice(action.payload.sortRank + 1),
+        ];
       }
       return state;
 
@@ -43,14 +59,23 @@ export default function (state = [], action) {
       if (state.length > action.payload.sortRank) {
         const subject = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
         const succItem = state.slice(action.payload.sortRank + 1, action.payload.sortRank + 2);
-        return [...state.slice(0, action.payload.sortRank), ...succItem, ...subject, ...state.slice(action.payload.sortRank + 2)];
+        return [
+          ...state.slice(0, action.payload.sortRank),
+          ...succItem,
+          ...subject,
+          ...state.slice(action.payload.sortRank + 2),
+        ];
       }
       return state;
 
     case MOVE_ITEM_BOTTOM:
       if (state.length > 0 && state.length - 1 !== action.payload.sortRank) {
         const bottomItem = state.slice(action.payload.sortRank, action.payload.sortRank + 1);
-        return [...state.slice(0, action.payload.sortRank), ...state.slice(action.payload.sortRank + 1), ...bottomItem];
+        return [
+          ...state.slice(0, action.payload.sortRank),
+          ...state.slice(action.payload.sortRank + 1),
+          ...bottomItem,
+        ];
       }
       return state;
 

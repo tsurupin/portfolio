@@ -17,7 +17,8 @@ export default {
     title: {
       color: '#8F8F8F',
       fontSize: '1.6rem',
-      fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
+      fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell, ' +
+      '"Open Sans","Helvetica Neue",sans-serif',
       lineHeight: '5.0rem',
       cursor: 'pointer',
     },
