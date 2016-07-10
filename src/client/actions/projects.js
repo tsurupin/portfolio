@@ -5,16 +5,25 @@ import { browserHistory } from 'react-router';
 import { createError } from 'shared/actions/errors';
 
 export function fetchProjects(params = {}) {
-  const url = params.tag ? `${PROJECT_PATH}?tag=${params.tag}` : PROJECT_PATH;
-
+  const url = params.tagId ? `${PROJECT_PATH}?tag-id=${params.tagId}` : PROJECT_PATH;
   const request = axios.get(url);
   return dispatch => {
+    dispatch(fetchProjectRequest());
     return (
       request
         .then(response => dispatch(fetchProjectsSuccess(response.data)))
-        .catch(error => dispatch(createError(error)))
+        .catch(error => {
+          dispatch(fetchProjectsFailure())
+          dispatch(createError(error))
+        })
     );
   };
+}
+
+function fetchProjectRequest() {
+  return {
+    type: FETCH_PROJECTS.REQUEST
+  }
 }
 
 function fetchProjectsSuccess({ projects }) {
@@ -22,4 +31,10 @@ function fetchProjectsSuccess({ projects }) {
     type: FETCH_PROJECTS.SUCCESS,
     payload: { projects },
   };
+}
+
+function fetchProjectsFailure() {
+  return {
+    type: FETCH_PROJECTS.FAILURE,
+  }
 }

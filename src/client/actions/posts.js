@@ -9,20 +9,29 @@ import { createError } from 'shared/actions/errors';
 export function fetchPosts(params = { page: 1 }) {
   let url = `${POST_PATH}?page=${params.page}`;
 
-  if (params.tag) {
-    url += `&tag=${params.tag}`;
+  if (params.tagId) {
+    url += `&tag-id=${params.tagId}`;
   }
 
   const request = axios.get(url);
   return dispatch => {
+    dispatch(fetchPostsRequest());
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => dispatch(createError(error)))
+        .catch(error => {
+          dispatch(fetchPostsFailure())
+          dispatch(createError(error))
+        })
     );
   };
 }
 
+function fetchPostsRequest() {
+  return {
+    type: FETCH_POSTS_INFINITELY.REQUEST
+  }
+}
 function fetchPostsSuccess({ posts, meta }) {
   return {
     type: FETCH_POSTS_INFINITELY.SUCCESS,
@@ -33,6 +42,12 @@ function fetchPostsSuccess({ posts, meta }) {
       limit: meta.pagination.limit,
     },
   };
+}
+
+function fetchPostsFailure() {
+  return {
+    type: FETCH_POSTS_INFINITELY.FAILURE
+  }
 }
 
 export function fetchPost(path) {

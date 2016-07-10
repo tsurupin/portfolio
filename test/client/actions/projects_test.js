@@ -44,10 +44,15 @@ describe('client project actions', () => {
         .reply(200, params);
       
       const store = mockStore({});
-      const expectedResponse = [{
-        type: FETCH_PROJECTS.SUCCESS,
-        payload: params
-      }];
+      const expectedResponse = [
+        {
+          type: FETCH_PROJECTS.REQUEST,
+        },
+        {
+          type: FETCH_PROJECTS.SUCCESS,
+          payload: params
+        }
+      ];
 
       return store.dispatch(fetchProjects())
         .then(() => {
@@ -62,13 +67,21 @@ describe('client project actions', () => {
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
-      const expectedResponse = [{
-        payload: {
-          hasAlert: true,
-          message: 'errorMessage'
+      const expectedResponse = [
+        {
+          type: FETCH_PROJECTS.REQUEST,
         },
-        type: CREATE_ERROR
-      }];
+        {
+          type: FETCH_PROJECTS.FAILURE,
+        },
+        {
+          payload: {
+            hasAlert: true,
+            message: 'errorMessage'
+          },
+          type: CREATE_ERROR
+        }
+      ];
 
       return store.dispatch(fetchProjects())
         .then(() => {

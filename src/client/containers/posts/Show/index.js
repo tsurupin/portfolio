@@ -13,7 +13,7 @@ import styles from './styles';
 
 const propTypes = {
   post: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     publishedAt: PropTypes.string,
     prevId: PropTypes.number,
     prevTitle: PropTypes.string,
@@ -46,7 +46,6 @@ const cmsRegexp = /^(\/cms)*/;
 
 
 function mapStateToProps(state) {
-  console.log(state.posts)
   return {
     post: state.posts.post,
     tags: state.tags.tags,
@@ -72,6 +71,7 @@ class PostShow extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
+      this.props.resetPost();
       nextProps.fetchPost(`${nextProps.params.id}${this.previewQuery}`);
     }
   }

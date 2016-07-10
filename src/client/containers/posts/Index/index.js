@@ -20,6 +20,7 @@ const propTypes = {
 function mapStateToProps(state) {
   return {
     posts: state.posts.posts,
+    loading: state.posts.loading,
     page: state.posts.page,
     limit: state.posts.limit,
     total: state.posts.total,
@@ -30,7 +31,6 @@ class PostIndex extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { loading: true };
 
     this.handleLoad = this.handleLoad.bind(this);
   }
@@ -38,18 +38,17 @@ class PostIndex extends Component {
   componentDidMount() {
     let params = { page: 1 };
     if (this.props.hasOwnProperty('location')) {
-      params.tag = this.props.location.query.tag;
+      params.tagId = this.props.location.query['tag-id'];
     }
     this.props.fetchPosts(params)
       .then(() => {
         this.props.finishLoading();
-        this.setState({ loading: false });
       });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location.query.tag !== this.props.location.query.tag) {
-      nextProps.fetchPosts({ page: 1, tag: nextProps.location.query.tag });
+    if (nextProps.location.query['tag-id'] !== this.props.location.query['tag-id']) {
+      nextProps.fetchPosts({ page: 1, tagId: nextProps.location.query['tag-id'] });
     }
   }
 
@@ -62,7 +61,7 @@ class PostIndex extends Component {
       let params = { page: this.props.page + 1 };
 
       if (this.props.params.hasOwnProperty('location')) {
-        params.tag = this.props.params.location.query.tag;
+        params.tagId = this.props.params.location.query['tag-id'];
       }
       this.props.fetchPosts(params);
     }
@@ -92,7 +91,7 @@ class PostIndex extends Component {
 
 
   render() {
-    if (this.state.loading) {
+    if (this.props.loading) {
       return (
         <section>
           <Helmet title="Posts" />

@@ -35,6 +35,7 @@ describe('Project Reducer', () => {
       }]} 
     };
     const expectedResponse = {
+      loading: false,
       projects: [{
         id: 1,
         title: 'title1',

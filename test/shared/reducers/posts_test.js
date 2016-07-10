@@ -14,6 +14,7 @@ import {
 
 const INITIAL_STATE = {
   posts: [],
+  loading: false,
   limit: 20,
   page: 1,
   total: 0,
@@ -109,6 +110,7 @@ describe('Post Reducer', () => {
 
       const expectedResponse = {
         posts: fetchedPosts,
+        loading: false,
         page: 1,
         limit: 20,
         total: 30
@@ -131,6 +133,7 @@ describe('Post Reducer', () => {
 
       const expectedResponse = {
         posts: [...oldPosts, ...fetchedPosts],
+        loading: false,
         page: 2,
         limit: 20,
         total: 30

@@ -49,19 +49,24 @@ describe('client post actions', () => {
         });
       
       const store = mockStore({});
-      const expectedResponse = [{
-        type: FETCH_POSTS_INFINITELY.SUCCESS,
-        payload: {
-          posts: [{ 
-            title: 'hoge', 
-            description: 'description', 
-            id: 1 
-          }],
-          page: 1,
-          limit: 20,
-          total: 30
+      const expectedResponse = [
+        {
+          type: FETCH_POSTS_INFINITELY.REQUEST,
+        },
+        {
+          type: FETCH_POSTS_INFINITELY.SUCCESS,
+          payload: {
+            posts: [{ 
+              title: 'hoge', 
+              description: 'description', 
+              id: 1 
+            }],
+            page: 1,
+            limit: 20,
+            total: 30
+          } 
         }
-      }];
+      ];
 
       return store.dispatch(fetchPosts())
         .then(() => {
@@ -75,13 +80,21 @@ describe('client post actions', () => {
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
-      const expectedResponse = [{
-        payload: {
-          hasAlert: true,
-          message: 'errorMessage'
-        }, 
-        type: CREATE_ERROR
-      }];
+      const expectedResponse = [
+        {
+          type: FETCH_POSTS_INFINITELY.REQUEST,
+        },
+        {
+          type: FETCH_POSTS_INFINITELY.FAILURE,
+        },
+        {
+          payload: {
+            hasAlert: true,
+            message: 'errorMessage'
+          }, 
+          type: CREATE_ERROR 
+        }
+      ];
 
       return store.dispatch(fetchPosts())
         .then(() => {

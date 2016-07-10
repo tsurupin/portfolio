@@ -1,6 +1,8 @@
 class Client::Api::V1::PostsController < Client::ApplicationController
+  before_action :transform_params, only: :index
+
   def index
-    posts = rails_cache("cached_posts?page=#{params[:page]}&tag=#{params[:tag]}") do
+    posts = rails_cache("cached_posts?page=#{params[:page]}&tag_id=#{params[:tag_id]}") do
       temp_posts = Post::Search.client_search(params).page(params[:page])
       Kaminari::PaginatableArray.new(temp_posts.to_a, total_count: temp_posts.total_count)
     end

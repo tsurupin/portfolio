@@ -44,7 +44,7 @@ RSpec.describe Client::Api::V1::ProjectsController, type: :request do
           tagging1 = create(:tagging, :subject_project, subject: project1)
           create(:tagging, :subject_project, subject: project3)
           projects = [project1]
-          request_param = { 'tag' => tagging1.tag_id }
+          request_param = { 'tag-id' => tagging1.tag_id }
           result = {
             'projects' => projects.map do |project|
               {
