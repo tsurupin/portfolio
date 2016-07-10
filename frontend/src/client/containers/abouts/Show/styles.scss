@@ -1,0 +1,24 @@
+@value colors: 'shared/styles/colors.scss';
+@value title-color from colors;
+
+.heading {
+  composes: fontHeading from 'shared/styles/fonts.scss';
+
+  color: title-color;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.subHeading {
+  composes: marginTopLarge from 'shared/styles/margins.scss';
+  composes: heading from 'shared/styles/components.scss';
+}
+
+.siteDescription {
+  composes: marginTopSmall from 'shared/styles/margins.scss';
+}
+
+.text {
+  composes: descriptionText from 'shared/styles/components.scss';
+}

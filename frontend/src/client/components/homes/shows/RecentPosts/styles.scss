@@ -1,0 +1,27 @@
+@value colors: 'shared/styles/colors.scss';
+@value border-color, title-color from colors;
+
+.root {
+  width: 47%;
+  margin-right: 3%;
+}
+
+.title {
+  composes: fontXXLarge from 'shared/styles/fonts.scss';
+
+  border-bottom: 1px solid border-color;
+  font-weight: 700;
+  color: title-color;
+  letter-spacing: -.02em;
+}
+
+.button {
+  composes: primaryButton from 'shared/styles/components.scss';
+}
+
+.list {
+  composes: marginVerticalSmall from 'shared/styles/margins.scss';
+
+  list-style: none;
+  padding: 0;
+}

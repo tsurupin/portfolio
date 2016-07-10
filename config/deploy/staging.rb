@@ -7,7 +7,7 @@ role :db, 'ec2-user@52.52.23.154'
 role :batch, 'ec2-user@52.52.23.154'
 
 
-set :branch, 'feature/modify-mobile-bugs'
+set :branch, 'feature/organize-frontend-files'
 set :rails_env, 'staging'
 set :log_level, :debug
 

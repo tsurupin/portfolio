@@ -1,0 +1,30 @@
+@value colors: 'shared/styles/colors.scss';
+@value white-color, error-color, primary-color from colors;
+
+.root {
+  position: relative
+}
+
+.alert {
+  composes :fontMedium from 'shared/styles/fonts.scss';
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  line-height: 56px;
+  z-index: 10000;
+  text-align: center;
+  color: white-color;
+}
+
+.error {
+  composes: alert;
+  background-color: error-color;
+}
+
+.success {
+  composes: alert;
+  background-color: primary-color;
+}

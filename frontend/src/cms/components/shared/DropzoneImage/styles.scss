@@ -1,0 +1,45 @@
+@value colors: 'shared/styles/colors.scss';
+@value mixins: 'shared/styles/mixins.scss';
+@value label-color, text-color, list-border-color, primary-color, error-color from colors;
+@value strong-opaque from mixins;
+
+.root {
+  padding: 6px;
+  border-bottom: 1px solid list-border-color;
+}
+
+.dropzone {
+  composes: marginTopXSmall from 'shared/styles/margins.scss';
+
+  width: 100%;
+  max-height: 100px;
+}
+
+.dropzoneActive {
+  composes: dropzone;
+  backgroun-color: primary-color;
+
+  opacity: strong-opaque;
+}
+
+.placeholder {
+  composes: fontMedium from 'shared/styles/fonts.scss';
+
+  display: block;
+  width: 100%;
+  line-height: 100px;
+  color: label-color;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.previewImage {
+  max-height: 100px;
+}
+
+.errorMessage {
+  composes: placeholder;
+
+  color: error-color;
+}

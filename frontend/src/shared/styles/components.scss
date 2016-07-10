@@ -1,0 +1,122 @@
+@value colors: 'shared/styles/colors.scss';
+@value mixins: 'shared/styles/mixins.scss';
+@value primary-color, title-color, lead-sentence-color, hover-primary-color, text-color, list-border-color, error-color, label-color from colors;
+@value strong-opaque, quick-transition from mixins;
+
+.container {
+  max-width: 740px;
+  position: relative;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+.primaryButton {
+  composes: fontXSmall from 'shared/styles/fonts.scss';
+
+  display: inline-block;
+  height: 37px;
+  padding: 0 16px;
+  color: primary-color;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid primary-color;
+  vertical-align: bottom;
+  white-space: nowrap;
+  border-radius: 999em;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 35px;
+  &:hover {
+    color: hover-primary-color;
+
+  }
+}
+
+.primaryButtonLarge {
+  composes: primaryButton;
+  composes: fontMedium from 'shared/styles/fonts.scss';
+
+  height: 40px;
+  padding: 0 24px;
+  line-height: 38px;
+}
+
+
+.titleText {
+  composes: fontTitle from 'shared/styles/fonts.scss';
+  line-height: 1.12;
+  color: text-color;
+  letter-spacing: -.022em;
+  font-weight: 700;
+}
+
+.errorText {
+  composes: fontMedium from 'shared/styles/fonts.scss';
+  font-style: italic;
+  line-height: 1.6;
+  color: error-color;
+}
+
+.descriptionText {
+  composes: descriptionFont from 'shared/styles/fonts.scss';
+  composes: fontDescription from 'shared/styles/fonts.scss';
+
+  color: title-color;
+  font-weight: 400;
+  line-height: 1.58;
+  letter-spacing: -.003em;
+}
+
+
+.heading {
+  composes: fontXXLarge from 'shared/styles/fonts.scss';
+  line-height: 1.12;
+  letter-spacing: -.022em;
+  font-weight: 300;
+  padding-bottom: 20px;
+  border-bottom: 1px solid list-border-color;
+}
+
+.label {
+  composes: fontXXSmall from 'shared/styles/fonts.scss';
+
+  line-height: 22px;
+  color: label-color;
+  cursor: text;
+}
+
+.tag {
+  composes: marginRightXXSmall from 'shared/styles/margins.scss';
+  composes: fontXSmall from 'shared/styles/fonts.scss';
+
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.05);
+
+  &:hover {
+    background: rgba(0,0,0,.1);
+  }
+}
+
+
+.formGroup {
+  composes: marginBottomSmall from 'shared/styles/margins.scss';
+}
+
+.caption {
+  composes: marginTopXXSmall from 'shared/styles/margins.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
+  composes: contentFont from 'shared/styles/fonts.scss';
+
+  display: block;
+  line-height: 1.4;
+  color: lead-sentence-color;
+  letter-spacing: 0;
+  text-align: center;
+  font-style: italic;
+}

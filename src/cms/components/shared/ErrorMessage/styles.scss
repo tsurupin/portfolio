@@ -1,8 +1,0 @@
-.root {
-  composes: marginVerticalXSmall from 'shared/css/margins.scss';
-  composes: marginHorizontalZero from 'shared/css/margins.scss';
-}
-
-.text {
-  composes: errorText from 'shared/css/components.scss';
-}

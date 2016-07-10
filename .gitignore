@@ -10,6 +10,7 @@ capybara-*.html
 /spec/tmp
 
 /node_modules
+/frontend/node_modules
 
 npm-debug.log
 
@@ -55,4 +56,7 @@ bower.json
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+app/assets/javascripts/client/bundle.js.map
+app/assets/javascripts/cms/bundle.js.map
+
 

@@ -1,0 +1,7 @@
+.heading {
+  composes: heading from 'shared/styles/components.scss';
+}
+
+.list {
+  padding-bottom: 15px;
+}
