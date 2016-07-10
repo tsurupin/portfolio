@@ -7,7 +7,7 @@ feature "Admin user toggles the existing post's accepted status", js: true do
       sign_in_and_redirect_to('/cms/posts')
       expect(page).to have_css('h1', 'Post')
       within(:xpath, '//tbody/tr[1]') do
-        find("button[class^='toggleButton']").click
+        find("button[name='toggle-button]").click
         expect(page).to have_selector("svg[name='unaccepted-button']")
         expect(page).to have_selector("svg[name='visible-button']")
       end
@@ -20,7 +20,7 @@ feature "Admin user toggles the existing post's accepted status", js: true do
       sign_in_and_redirect_to('/cms/posts')
       expect(page).to have_css('h1', 'Post')
       within(:xpath, '//tbody/tr[1]') do
-        find("button[class^='toggleButton']").click
+        find("button[name='toggle-button']").click
         expect(page).to have_selector("svg[name='accepted-button']")
         expect(page).to have_selector("svg[name='in-visible-button']")
       end
@@ -31,7 +31,7 @@ feature "Admin user toggles the existing post's accepted status", js: true do
       sign_in_and_redirect_to('/cms/posts')
       expect(page).to have_css('h1', 'Post')
       within(:xpath, '//tbody/tr[1]') do
-        find("button[class^='toggleButton']").click
+        find("button[name='toggle-button]").click
         expect(page).to have_selector("svg[name='publishing-button']")
         expect(page).to have_selector("svg[name='in-visible-button']")
       end

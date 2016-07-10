@@ -1,0 +1,9 @@
+.root {
+  compoese: marginXSmall from 'shared/styles/margins.scss';
+}
+
+.text {
+  composes: descriptionText from 'shared/styles/components.scss';
+
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  height: 60px;
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+.list {
+  composes: marginVerticalXSmall from 'shared/styles/margins.scss';
+
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  list-style: none;
+  vertical-align: middle;
+}

@@ -1,0 +1,5 @@
+.root {
+  composes: marginVerticalXSmall from 'shared/styles/margins.scss';
+
+  cursor: text;
+}

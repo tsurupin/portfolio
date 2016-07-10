@@ -1,0 +1,13 @@
+.image {
+  composes: marginBottomSmall from 'shared/styles/margins.scss';
+
+  display: block;
+  max-width: 100%;
+}
+
+
+.list {
+  composes: marginVerticalMedium from 'shared/styles/margins.scss';
+
+  display: flex;
+}

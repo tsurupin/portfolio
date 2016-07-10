@@ -1,0 +1,40 @@
+@value colors: 'shared/styles/colors.scss';
+@value text-color, list-border-color, lead-sentence-color, primary-color, label-color from colors;
+
+.root {
+  composes: marginBottomMedium from 'shared/styles/margins.scss';
+  border-bottom: 1px solid list-border-color;
+}
+
+.title {
+  composes: titleText from 'shared/styles/components.scss';
+}
+
+.leadSentence {
+  composes: marginTopXXSmall from 'shared/styles/margins.scss';
+  composes: fontMedium from 'shared/styles/fonts.scss';
+
+  line-height: 1.4;
+  color: lead-sentence-color;
+  word-wrap: break-word;
+}
+
+.tagItem {
+  composes: marginTopXXSmall from 'shared/styles/margins.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
+
+  display: flex;
+  color: primary-color;
+}
+
+.tagName {
+  composes: marginLeftXXSmall from 'shared/styles/margins.scss';
+}
+
+.publishDate {
+  composes: marginVerticalXSmall from 'shared/styles/margins.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
+  color: label-color;
+  text-align: right;
+}
+

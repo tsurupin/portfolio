@@ -20,7 +20,7 @@ class Project::Search < ActiveType::Record[Project]
   def self.client_search(options = {})
     eager_load(:tags)
       .accepted
-      .related_by_tag(options[:tag])
+      .related_by_tag(options[:tag_id])
       .latest
   end
 

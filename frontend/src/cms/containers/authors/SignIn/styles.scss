@@ -1,0 +1,14 @@
+.root {
+  composes: marginBottomLarge from 'shared/styles/margins.scss';
+}
+
+.heading {
+  composes: titleText from 'shared/styles/components.scss';
+}
+
+.button {
+  composes: primaryButtonLarge from 'shared/styles/components.scss';
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+}

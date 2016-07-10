@@ -1,0 +1,12 @@
+.root {
+  min-height: 500px;
+}
+
+.title {
+  composes: marginBottomXSmall from 'shared/styles/margins.scss';
+  composes: titleText from 'shared/styles/components.scss';
+}
+
+.text {
+  composes: descriptionText from 'shared/styles/components.scss';
+}

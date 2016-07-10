@@ -1,7 +1,0 @@
-.root {
-  composes: marginBottomXXSmall from 'shared/css/margins.scss';
-  composes: fontSmall from 'shared/css/fonts.scss';
-  composes: selectionFont from 'shared/css/fonts.scss';
-
-  user-select: none;
-}

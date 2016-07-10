@@ -1,0 +1,105 @@
+@value colors: 'shared/styles//colors.scss';
+@value title-color, lead-sentence-color, white-color, border-color, list-border-color from colors;
+
+.root {
+  composes: marginVerticalXSmall from 'shared/styles//margins.scss';
+  composes: fontLarge from 'shared/styles//fonts.scss';
+
+  position: relative;
+  padding: 15px;
+  border: 1px solid border-color;
+  background: white-color;
+  cursor: text;
+}
+
+.editor {
+  composes: marginTopXSmall from 'shared/styles//margins.scss';
+  composes: fontMedium from 'shared/styles//fonts.scss';
+
+  max-height: 500px;
+  overflow: scroll;
+}
+
+
+.hidePlaceholder {
+  display: none;
+}
+
+.h2 {
+  composes: contentFont from 'shared/styles//fonts.scss';
+
+  margin-left: -2.25px;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 36px;
+
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: title-color;
+  -webkit-font-smoothing: antialiased;
+
+  & + .text {
+    composes: marginBottomSmall from 'shared/styles//margins.scss';
+  }
+}
+
+.h3 {
+  composes: contentFont from 'shared/styles//fonts.scss';
+  composes: fontTitle from 'shared/styles//fonts.scss';
+
+  margin-left: -1.75px;
+  color: lead-sentence-color;
+  font-weight: 300;
+  font-style: normal;
+
+  line-height: 1.22;
+  letter-spacing: -.022em;
+  word-wrap: break-word;
+
+  & + .text {
+    composes: marginBottomXSmall from 'shared/styles//margins.scss';
+  }
+
+}
+
+.text {
+  composes: descriptionText from 'shared/styles//components.scss';
+  composes: marginBottomSmall from 'shared/styles//margins.scss';
+}
+
+
+.blockquote {
+  composes: text;
+  composes: marginHorizontalZero from 'shared/styles//margins.scss';
+  composes: marginVerticalMedium from 'shared/styles//margins.scss';
+
+  padding: 20px;
+  background: list-border-color;
+}
+
+
+.caption {
+  composes: marginTopMedium from 'shared/styles//margins.scss';
+  composes: text;
+
+  padding-left: 20px;
+  padding-bottom: 3px;
+  border-left: 3px solid title-color;
+}
+
+.unorderedListItem {
+  composes: text;
+
+  padding-left: 5px;
+}
+
+.orderedListItem {
+  composes: text;
+
+  padding-left: 5px;
+}
+
+.urlInputBox {
+  composes: text;
+  composes: marginBottomXSmall from 'shared/styles//margins.scss';
+}

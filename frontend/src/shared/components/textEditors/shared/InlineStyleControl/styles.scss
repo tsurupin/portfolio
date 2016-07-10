@@ -1,0 +1,20 @@
+@value colors: 'shared/styles/colors.scss';
+@value lead-sentence-color from colors;
+
+.root {
+  composes: marginBottomXXSmall from 'shared/styles/margins.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
+  composes: selectionFont from 'shared/styles/fonts.scss';
+
+  user-select: none;
+}
+
+.button {
+  composes: marginRightXSmall from 'shared/styles/margins.scss';
+
+  display: inline-block;
+  padding: 2px 0;
+  color: lead-sentence-color;
+  cursor: pointer;
+}
+

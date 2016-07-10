@@ -1,0 +1,24 @@
+@value colors: "shared/styles/colors.scss";
+@value list-border-color, lead-sentence-color from colors;
+
+.heading {
+  composes: marginBottomMedium from 'shared/styles/margins.scss';
+}
+
+.title {
+  composes: titleText from 'shared/styles/components.scss';
+}
+
+.dateTime {
+  display: table-cell;
+  padding: 10px 0;
+}
+
+.time {
+  composes: marginLeftXXSmall from 'shared/styles/margins.scss';
+  composes: fontXSmall from 'shared/styles/fonts.scss';
+
+  vertical-align: middle;
+  color: lead-sentence-color;
+}
+

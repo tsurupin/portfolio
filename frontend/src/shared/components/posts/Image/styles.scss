@@ -1,0 +1,15 @@
+.root {
+  composes: marginBottomMedium from 'shared/styles/margins.scss';
+
+  display: block;
+}
+
+.image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.caption {
+  composes: caption from 'shared/styles/components.scss';
+}

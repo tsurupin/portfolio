@@ -1,0 +1,12 @@
+.root {
+  composes: marginRightXSmall from 'shared/styles/margins.scss';
+}
+
+.button {
+  border-radius: 48px;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+}

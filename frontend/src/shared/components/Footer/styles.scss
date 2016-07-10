@@ -1,0 +1,29 @@
+@value colors: 'shared/styles/colors.scss';
+@value mixins: 'shared/styles/mixins.scss';
+@value lead-sentence-color, border-color from colors;
+@value weak-opaque from mixins;
+
+.root {
+  border-top : 1px solid border-color;
+  height: 60px;
+  line-height: 60px;
+}
+
+.text {
+  composes: fontSmall from 'shared/styles/fonts.scss';
+
+  display: block;
+  text-align: center;
+  opacity: weak-opaque;
+  color: lead-sentence-color;
+}
+
+.gitHubIcon {
+  composes: marginLeftXSmall from 'shared/styles/margins.scss';
+
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+

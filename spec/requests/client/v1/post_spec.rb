@@ -33,7 +33,7 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
               }
             }
 
-            request_params = { 'page' => 1, 'tag' => posts.last.tags.last.id }
+            request_params = { 'page' => 1, 'tag-id' => posts.last.tags.last.id }
             get api_v1_posts_path, request_params
             expect(response.status).to eq 200
             expect(JSON.parse(response.body)).to eq result

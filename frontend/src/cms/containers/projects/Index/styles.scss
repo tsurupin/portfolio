@@ -1,0 +1,4 @@
+.title {
+  composes: marginBottomXXSmall from 'shared/styles/margins.scss';
+  composes: titleText from 'shared/styles/components.scss';
+}

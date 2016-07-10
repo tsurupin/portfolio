@@ -1,0 +1,81 @@
+@value colors: 'src/shared/styles/colors.scss';
+@value list-border-color, white-color, border-color, primary-color from colors;
+
+.root {
+  composes: marginVerticalSmall from 'shared/styles/margins.scss';
+  composes: marginHorizontalZero from 'shared/styles/margins.scss';
+  composes: fontMedium from 'shared/styles/fonts.scss';
+
+  position: relative;
+}
+
+.label {
+  composes: label from 'shared/styles/components.scss';
+}
+
+.tagInput {
+  composes: marginTopXSmall from 'shared/styles/margins.scss';
+
+  border-bottom: 1px solid list-border-color;
+  padding: 6px;
+
+  input {
+    composes: fontMedium from 'shared/styles/fonts.scss';
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+}
+
+.selected {
+  composes: marginTopXSmall from 'shared/styles/margins.scss';
+  composes: marginBottomXXSmall from 'shared/styles/margins.scss';
+  composes: marginVerticalZero from 'shared/styles/margins.scss';
+}
+
+.tag {
+  composes: tag from 'shared/styles/components.scss';
+  composes: marginRightXSmall from 'shared/styles/margins.scss';
+}
+
+.remove {
+  composes: marginLeftXSmall from 'shared/styles/margins.scss';
+  composes: strongHoverOpaque from 'shared/styles/mixins.scss';
+
+  color: text-color;
+  font-weight: 700;
+}
+
+.suggestions {
+  composes: fontSmall from 'shared/styles/fonts.scss';
+
+  position: absolute;
+  width: 96%;
+  border: 1px solid border-color;
+  background: white-color;
+  z-index: 10;
+
+  ul {
+    -webkit-padding-start: 0;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 5px 20px;
+
+    &:hover {
+      background-color: primary-color;
+      color: white-color;
+      font-weight: 700;
+    }
+  }
+
+  mark {
+    color: inherit;
+    background-color: inherit;
+  }
+
+}
+

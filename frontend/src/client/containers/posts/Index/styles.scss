@@ -1,0 +1,8 @@
+.heading {
+  composes: heading from 'shared/styles/components.scss';
+}
+
+.list {
+  composes: marginTopMedium from 'shared/styles/margins.scss';
+
+}

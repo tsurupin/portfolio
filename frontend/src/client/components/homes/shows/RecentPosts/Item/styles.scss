@@ -1,0 +1,21 @@
+@value colors: 'shared/styles/colors.scss';
+@value title-color, lead-sentence-color from colors;
+
+.root {
+  composes: marginBottomSmall from 'shared/styles/margins.scss';
+}
+
+.content {
+  composes: fontLarge from 'shared/styles/fonts.scss';
+  composes: contentFont from 'shared/styles/fonts.scss';
+
+  color: title-color;
+}
+
+
+.leadSentence {
+  composes: marginTopXXSmall from 'shared/styles/margins.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
+
+  color: lead-sentence-color;
+}

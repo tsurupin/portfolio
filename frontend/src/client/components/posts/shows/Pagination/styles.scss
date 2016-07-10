@@ -1,0 +1,45 @@
+@value colors: 'shared/styles/colors.scss';
+@value text-color, lead-sentence-color, primary-color, border-color from colors;
+
+.root {
+  composes: marginTopXSmall from 'shared/styles/margins.scss';
+  composes: fontLarge from 'shared/styles/fonts.scss';
+  composes: contentFont from 'shared/styles/fonts.scss';
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 80px;
+  padding: 10px 0;
+  border-top: 1px solid border-color;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.box {
+  display: flex;
+  width: 50%;
+  color: lead-sentence-color;
+}
+
+.prevBox {
+  composes: box;
+  text-align: left;
+}
+
+.prevTitle {
+  width: 85%;
+  margin: auto 0;
+  vertical-align: middle;
+}
+
+.nextTitle {
+  width: 85%;
+  margin: auto 0;
+  vertical-align: middle;
+}
+
+.nextBox {
+  composes: box;
+  text-align: right;
+}

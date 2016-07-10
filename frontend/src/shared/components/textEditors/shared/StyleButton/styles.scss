@@ -1,0 +1,17 @@
+@value colors: 'shared/styles/colors.scss';
+@value primary-color, lead-sentence-color from colors;
+
+.button {
+  composes: marginRightXSmall from 'shared/styles/margins.scss';
+
+  display: inline-block;
+  padding: 2px 0;
+  color: lead-sentence-color;
+  cursor: pointer;
+}
+
+.activeButton {
+  composes: button;
+
+  color: primary-color;
+}

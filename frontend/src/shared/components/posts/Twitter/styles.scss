@@ -1,0 +1,5 @@
+.root {
+  composes: marginTopSmall from 'shared/styles/margins.scss';
+  composes: marginBottomMedium from 'shared/styles/margins.scss';
+  composes: marginHorizontalZero from 'shared/styles/margins.scss';
+}
