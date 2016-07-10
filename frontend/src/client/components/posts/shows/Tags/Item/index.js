@@ -10,7 +10,7 @@ const propTypes = {
 
 function Item({ adminPath, id, name }) {
   return (
-    <Link to={`${adminPath}/posts?tag=${id}`} className={styles.root}>
+    <Link to={`${adminPath}/posts?tag-id=${id}`} className={styles.root}>
       {name}
     </Link>
   );

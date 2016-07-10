@@ -18,13 +18,25 @@
   composes: marginTopSmall from 'shared/css/margins.scss';
 
 }
-.image {
+
+.imageMinHeight {
   min-height: 436px;
-  opacity: 0;
+}
+
+@media(max-width: 414px) {
+  .imageMinHeight {
+    min-height: 0;
+  }
+}
+
+.image {
+  composes: imageMinHeight;
+
   display: block;
   max-width: 94%;
   height: auto;
   margin: 0 auto;
+  opacity: 0;
 }
 
 .imageLoading {
