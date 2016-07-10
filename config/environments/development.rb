@@ -25,6 +25,7 @@ Rails.application.configure do
   end
 
 
+
   #config.logger = Logger.new(STDOUT)
 
 

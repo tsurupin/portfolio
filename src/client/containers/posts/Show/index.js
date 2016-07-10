@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { fetchPost } from 'client/actions/posts';
+import { fetchPost, resetPost } from 'client/actions/posts';
 import Tags from 'client/components/posts/shows/Tags/index';
 import Item from 'client/components/posts/shows/Item/index';
 import shallowCompare from 'react-addons-shallow-compare';
@@ -13,7 +13,7 @@ import styles from './styles';
 
 const propTypes = {
   post: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     publishedAt: PropTypes.string,
     prevId: PropTypes.number,
     prevTitle: PropTypes.string,
@@ -59,6 +59,10 @@ class PostShow extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.resetPost();
+  }
+
   componentDidMount() {
     this.props.fetchPost(`${this.props.params.id}${this.previewQuery}`)
       .then(() => this.props.finishLoading());
@@ -67,6 +71,7 @@ class PostShow extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
+      this.props.resetPost();
       nextProps.fetchPost(`${nextProps.params.id}${this.previewQuery}`);
     }
   }
@@ -99,7 +104,7 @@ class PostShow extends Component {
   }
 
   render() {
-    if (!this.props.post) {
+    if (!this.props.post || !this.props.post.title) {
       return <section />;
     }
 
@@ -128,4 +133,4 @@ class PostShow extends Component {
 
 PostShow.propTypes = propTypes;
 
-export default connect(mapStateToProps, { fetchPost })(PostShow);
+export default connect(mapStateToProps, { fetchPost, resetPost })(PostShow);

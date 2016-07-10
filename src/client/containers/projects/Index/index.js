@@ -30,6 +30,7 @@ const propTypes = {
 function mapStateToProps(state) {
   return {
     projects: state.projects.projects,
+    loading: state.projects.loading,
   };
 }
 
@@ -46,18 +47,17 @@ class ProjectIndex extends Component {
   componentDidMount() {
     let params = {};
     if (this.props.hasOwnProperty('location')) {
-      params.tag = this.props.location.query.tag;
+      params.tagId = this.props.location.query['tag-id'];
     }
     this.props.fetchProjects(params)
       .then(() => {
         this.props.finishLoading();
-        this.setState({ loading: false });
       });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location.query.tag !== this.props.location.query.tag) {
-      nextProps.fetchProjects({ tag: nextProps.location.query.tag });
+    if (nextProps.location.query['tag-id'] !== this.props.location.query['tag-id']) {
+      nextProps.fetchProjects({ tagId: nextProps.location.query['tag-id'] })
     }
   }
 
@@ -65,13 +65,14 @@ class ProjectIndex extends Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  // add adminPath to tell admin's preview from ordinal user's view
   get adminPath() {
     const paths = this.props.location.pathname.match(cmsRegexp);
     return paths[0] ? paths[0] : '';
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.props.loading) {
       return (
         <section>
           <Helmet title="Projects" />

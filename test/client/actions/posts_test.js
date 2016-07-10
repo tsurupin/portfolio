@@ -1,12 +1,13 @@
 import { expect, sinon } from '../../helpers/utility';
-import { fetchPosts, fetchPost } from 'client/actions/posts';
+import { fetchPosts, fetchPost, resetPost } from 'client/actions/posts';
 import { createError } from 'shared/actions/errors';
 import {
   FETCH_POSTS_INFINITELY,
   FETCH_POST,
   FETCH_ITEMS, 
   FETCH_TAGS,
-  CREATE_ERROR
+  CREATE_ERROR,
+  RESET_POST
 } from 'shared/constants/actions';
 import {
   CLIENT_ROOT_URL,
@@ -48,19 +49,24 @@ describe('client post actions', () => {
         });
       
       const store = mockStore({});
-      const expectedResponse = [{
-        type: FETCH_POSTS_INFINITELY.SUCCESS,
-        payload: {
-          posts: [{ 
-            title: 'hoge', 
-            description: 'description', 
-            id: 1 
-          }],
-          page: 1,
-          limit: 20,
-          total: 30
+      const expectedResponse = [
+        {
+          type: FETCH_POSTS_INFINITELY.REQUEST,
+        },
+        {
+          type: FETCH_POSTS_INFINITELY.SUCCESS,
+          payload: {
+            posts: [{ 
+              title: 'hoge', 
+              description: 'description', 
+              id: 1 
+            }],
+            page: 1,
+            limit: 20,
+            total: 30
+          } 
         }
-      }];
+      ];
 
       return store.dispatch(fetchPosts())
         .then(() => {
@@ -74,13 +80,21 @@ describe('client post actions', () => {
         .reply(400, { errorMessage: 'errorMessage' });
 
       const store = mockStore({});
-      const expectedResponse = [{
-        payload: {
-          hasAlert: true,
-          message: 'errorMessage'
-        }, 
-        type: CREATE_ERROR
-      }];
+      const expectedResponse = [
+        {
+          type: FETCH_POSTS_INFINITELY.REQUEST,
+        },
+        {
+          type: FETCH_POSTS_INFINITELY.FAILURE,
+        },
+        {
+          payload: {
+            hasAlert: true,
+            message: 'errorMessage'
+          }, 
+          type: CREATE_ERROR 
+        }
+      ];
 
       return store.dispatch(fetchPosts())
         .then(() => {
@@ -142,4 +156,13 @@ describe('client post actions', () => {
     
   });
   
+  describe('resetPost', () => {
+    it('creates RESET_POST', () => {
+      const action = resetPost();
+      const expectedResponse = {
+        type: RESET_POST
+      };
+      expect(action).to.eql(expectedResponse)
+    })
+  })
 });

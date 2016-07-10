@@ -8,14 +8,18 @@ import {
 
 const INITIAL_STATE = { 
   projects: [],
+  loading: false,
   project: {},
   errorMessage: ''
 };
 
 export default function (state = INITIAL_STATE, action) {
   switch(action.type) {
+    case FETCH_PROJECTS.REQUEST:
+      return { ...state, loading: true };
+
     case FETCH_PROJECTS.SUCCESS:
-      return { ...state, projects: action.payload.projects };
+      return { ...state, projects: action.payload.projects, loading: false };
     
     case FETCH_PROJECT.SUCCESS:
       return { ...state, project: action.payload.project, errorMessage: '' };
@@ -28,7 +32,10 @@ export default function (state = INITIAL_STATE, action) {
       const project = { ...state.projects[action.payload.sortRank], accepted: action.payload.accepted };
       const projects = [...state.projects.slice(0, action.payload.sortRank), project, ...state.projects.slice(action.payload.sortRank + 1)];
       return { ...state, projects };
-    
+
+    case FETCH_PROJECTS.FAILURE:
+      return { ...state, loading: false };
+
     case SAVE_PROJECT.FAILURE:
       return { ...state, errorMessage: action.payload.errorMessage };
     

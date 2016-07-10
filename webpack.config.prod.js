@@ -1,10 +1,11 @@
-const webpack = require('webpack');
+require('babel-polyfill');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var path = require('path');
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   context: __dirname,
   entry: {
     'cms': './src/cms/index.js',
@@ -29,8 +30,8 @@ module.exports = {
           test: /\.global.(scss|css)$/,
           loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'resolve-url', 'sass')
         },
-        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
-        { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
+        { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
         { test: /\.(jpg|png)$/, loader: 'url-loader', exclude: /node_modules/ }
     ]
   },
@@ -59,13 +60,14 @@ module.exports = {
   },
   
   plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]/application.scss', { allChunks: true, ignoreOrder: true }),
+    new ExtractTextPlugin('../stylesheets/[name]/bundle.scss', { allChunks: true, ignoreOrder: true }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
     }),
+    new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       screw_ie8: true,
       compressor: { warnings: false }

@@ -5,11 +5,13 @@ import {
   FETCH_EDIT_POST,
   FETCH_NEW_POST, 
   SAVE_POST,
-  TOGGLE_POST 
+  TOGGLE_POST ,
+  RESET_POST,
 } from 'shared/constants/actions';
 
 const INITIAL_STATE = { 
-  posts: [], 
+  posts: [],
+  loading: false,
   limit: 20, 
   page: 1, 
   total: 0,
@@ -20,9 +22,12 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    
+    case FETCH_POSTS_INFINITELY.REQUEST:
+      return { ...state, loading: true };
+
     case FETCH_POSTS_INFINITELY.SUCCESS:
       let posts;
+      // initiate posts in the first loading, after the second loading, add posts to the previously loaded posts
       if(action.payload.page === 1) {
         posts = [...action.payload.posts]
       } else {
@@ -32,6 +37,7 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         posts,
+        loading: false,
         limit: action.payload.limit,
         page: action.payload.page,
         total: action.payload.total
@@ -45,6 +51,9 @@ export default function (state = INITIAL_STATE, action) {
         page: action.payload.page,
         total: action.payload.total
       };
+    
+    case RESET_POST:
+      return { ...state, post: {}, errorMessage: '' };
 
     case FETCH_POST.SUCCESS:
       return {...state, post: action.payload.post, errorMessage: '' };
@@ -64,7 +73,10 @@ export default function (state = INITIAL_STATE, action) {
       };
       const tempPosts = [...state.posts.slice(0, action.payload.sortRank), tempPost, ...state.posts.slice(action.payload.sortRank + 1)];
       return { ...state, posts: tempPosts };
-    
+
+    case FETCH_POSTS_INFINITELY.FAILURE:
+      return { ...state, loading: false };
+
     case SAVE_POST.FAILURE:
       return { ...state, errorMessage: action.payload.errorMessage };
     

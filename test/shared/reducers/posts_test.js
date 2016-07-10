@@ -7,12 +7,14 @@ import {
   FETCH_EDIT_POST,
   FETCH_NEW_POST,
   SAVE_POST,
-  TOGGLE_POST
+  TOGGLE_POST,
+  RESET_POST,
 } from 'shared/constants/actions';
 
 
 const INITIAL_STATE = {
   posts: [],
+  loading: false,
   limit: 20,
   page: 1,
   total: 0,
@@ -108,6 +110,7 @@ describe('Post Reducer', () => {
 
       const expectedResponse = {
         posts: fetchedPosts,
+        loading: false,
         page: 1,
         limit: 20,
         total: 30
@@ -130,6 +133,7 @@ describe('Post Reducer', () => {
 
       const expectedResponse = {
         posts: [...oldPosts, ...fetchedPosts],
+        loading: false,
         page: 2,
         limit: 20,
         total: 30
@@ -270,5 +274,15 @@ describe('Post Reducer', () => {
     const expectedResponse = { errorMessage: 'errorMessage' };
     expect(postReducer([], action)).to.eql(expectedResponse);
   });
+
+  it('handles action of type RESET_POST', () => {
+    const action = {
+      type: RESET_POST
+    };
+    const state = { post: { title:'sample' }, errorMessage: 'errorMessage' };
+
+    const expectedResponse = { post: {}, errorMessage: '' };
+    expect(postReducer(state, action)).to.eql(expectedResponse);
+  })
 
 });
