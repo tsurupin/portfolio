@@ -1,5 +1,5 @@
-import 'shared/css/vendors';
-import 'shared/css/globals';
+import 'shared/styles/vendors';
+import 'shared/styles/globals';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

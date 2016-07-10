@@ -1,8 +1,8 @@
-@value colors: 'shared/css/colors.scss';
+@value colors: 'shared/styles/colors.scss';
 @value title-color from colors;
 
 .heading {
-  composes: fontHeading from 'shared/css/fonts.scss';
+  composes: fontHeading from 'shared/styles/fonts.scss';
 
   color: title-color;
   font-weight: 700;
@@ -11,14 +11,14 @@
 }
 
 .subHeading {
-  composes: marginTopLarge from 'shared/css/margins.scss';
-  composes: heading from 'shared/css/components.scss';
+  composes: marginTopLarge from 'shared/styles/margins.scss';
+  composes: heading from 'shared/styles/components.scss';
 }
 
 .siteDescription {
-  composes: marginTopSmall from 'shared/css/margins.scss';
+  composes: marginTopSmall from 'shared/styles/margins.scss';
 }
 
 .text {
-  composes: descriptionText from 'shared/css/components.scss';
+  composes: descriptionText from 'shared/styles/components.scss';
 }

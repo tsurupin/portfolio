@@ -1,5 +1,5 @@
-@value colors: 'shared/css/colors.scss';
-@value mixins: 'shared/css/mixins.scss';
+@value colors: 'shared/styles/colors.scss';
+@value mixins: 'shared/styles/mixins.scss';
 @value primary-color, title-color, lead-sentence-color, hover-primary-color, text-color, list-border-color, error-color, label-color from colors;
 @value strong-opaque, quick-transition from mixins;
 
@@ -11,7 +11,7 @@
 }
 
 .primaryButton {
-  composes: fontXSmall from 'shared/css/fonts.scss';
+  composes: fontXSmall from 'shared/styles/fonts.scss';
 
   display: inline-block;
   height: 37px;
@@ -35,7 +35,7 @@
 
 .primaryButtonLarge {
   composes: primaryButton;
-  composes: fontMedium from 'shared/css/fonts.scss';
+  composes: fontMedium from 'shared/styles/fonts.scss';
 
   height: 40px;
   padding: 0 24px;
@@ -44,7 +44,7 @@
 
 
 .titleText {
-  composes: fontTitle from 'shared/css/fonts.scss';
+  composes: fontTitle from 'shared/styles/fonts.scss';
   line-height: 1.12;
   color: text-color;
   letter-spacing: -.022em;
@@ -52,15 +52,15 @@
 }
 
 .errorText {
-  composes: fontMedium from 'shared/css/fonts.scss';
+  composes: fontMedium from 'shared/styles/fonts.scss';
   font-style: italic;
   line-height: 1.6;
   color: error-color;
 }
 
 .descriptionText {
-  composes: descriptionFont from 'shared/css/fonts.scss';
-  composes: fontDescription from 'shared/css/fonts.scss';
+  composes: descriptionFont from 'shared/styles/fonts.scss';
+  composes: fontDescription from 'shared/styles/fonts.scss';
 
   color: title-color;
   font-weight: 400;
@@ -70,7 +70,7 @@
 
 
 .heading {
-  composes: fontXXLarge from 'shared/css/fonts.scss';
+  composes: fontXXLarge from 'shared/styles/fonts.scss';
   line-height: 1.12;
   letter-spacing: -.022em;
   font-weight: 300;
@@ -79,7 +79,7 @@
 }
 
 .label {
-  composes: fontXXSmall from 'shared/css/fonts.scss';
+  composes: fontXXSmall from 'shared/styles/fonts.scss';
 
   line-height: 22px;
   color: label-color;
@@ -87,8 +87,8 @@
 }
 
 .tag {
-  composes: marginRightXXSmall from 'shared/css/margins.scss';
-  composes: fontXSmall from 'shared/css/fonts.scss';
+  composes: marginRightXXSmall from 'shared/styles/margins.scss';
+  composes: fontXSmall from 'shared/styles/fonts.scss';
 
   display: inline-block;
   padding: 5px 10px;
@@ -105,13 +105,13 @@
 
 
 .formGroup {
-  composes: marginBottomSmall from 'shared/css/margins.scss';
+  composes: marginBottomSmall from 'shared/styles/margins.scss';
 }
 
 .caption {
-  composes: marginTopXXSmall from 'shared/css/margins.scss';
-  composes: fontSmall from 'shared/css/fonts.scss';
-  composes: contentFont from 'shared/css/fonts.scss';
+  composes: marginTopXXSmall from 'shared/styles/margins.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
+  composes: contentFont from 'shared/styles/fonts.scss';
 
   display: block;
   line-height: 1.4;

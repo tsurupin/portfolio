@@ -16,7 +16,7 @@ import {
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Pagination from 'cms/components/shared/Pagination/index';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles';
 
 

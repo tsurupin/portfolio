@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import LabelOutline from 'material-ui/svg-icons/action/label-outline';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles';
 
 const propTypes = {

@@ -1,4 +1,4 @@
-@value colors: 'shared/css/colors.scss';
+@value colors: 'shared/styles/colors.scss';
 @value white-color, error-color, primary-color from colors;
 
 .root {
@@ -6,7 +6,7 @@
 }
 
 .alert {
-  composes :fontMedium from 'shared/css/fonts.scss';
+  composes :fontMedium from 'shared/styles/fonts.scss';
 
   position: fixed;
   top: 0;

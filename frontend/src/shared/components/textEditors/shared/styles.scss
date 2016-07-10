@@ -1,9 +1,9 @@
-@value colors: 'shared/css/colors.scss';
+@value colors: 'shared/styles//colors.scss';
 @value title-color, lead-sentence-color, white-color, border-color, list-border-color from colors;
 
 .root {
-  composes: marginVerticalXSmall from 'shared/css/margins.scss';
-  composes: fontLarge from 'shared/css/fonts.scss';
+  composes: marginVerticalXSmall from 'shared/styles//margins.scss';
+  composes: fontLarge from 'shared/styles//fonts.scss';
 
   position: relative;
   padding: 15px;
@@ -13,8 +13,8 @@
 }
 
 .editor {
-  composes: marginTopXSmall from 'shared/css/margins.scss';
-  composes: fontMedium from 'shared/css/fonts.scss';
+  composes: marginTopXSmall from 'shared/styles//margins.scss';
+  composes: fontMedium from 'shared/styles//fonts.scss';
 
   max-height: 500px;
   overflow: scroll;
@@ -26,7 +26,7 @@
 }
 
 .h2 {
-  composes: contentFont from 'shared/css/fonts.scss';
+  composes: contentFont from 'shared/styles//fonts.scss';
 
   margin-left: -2.25px;
   font-weight: 700;
@@ -39,13 +39,13 @@
   -webkit-font-smoothing: antialiased;
 
   & + .text {
-    composes: marginBottomSmall from 'shared/css/margins.scss';
+    composes: marginBottomSmall from 'shared/styles//margins.scss';
   }
 }
 
 .h3 {
-  composes: contentFont from 'shared/css/fonts.scss';
-  composes: fontTitle from 'shared/css/fonts.scss';
+  composes: contentFont from 'shared/styles//fonts.scss';
+  composes: fontTitle from 'shared/styles//fonts.scss';
 
   margin-left: -1.75px;
   color: lead-sentence-color;
@@ -57,21 +57,21 @@
   word-wrap: break-word;
 
   & + .text {
-    composes: marginBottomXSmall from 'shared/css/margins.scss';
+    composes: marginBottomXSmall from 'shared/styles//margins.scss';
   }
 
 }
 
 .text {
-  composes: descriptionText from 'shared/css/components.scss';
-  composes: marginBottomSmall from 'shared/css/margins.scss';
+  composes: descriptionText from 'shared/styles//components.scss';
+  composes: marginBottomSmall from 'shared/styles//margins.scss';
 }
 
 
 .blockquote {
   composes: text;
-  composes: marginHorizontalZero from 'shared/css/margins.scss';
-  composes: marginVerticalMedium from 'shared/css/margins.scss';
+  composes: marginHorizontalZero from 'shared/styles//margins.scss';
+  composes: marginVerticalMedium from 'shared/styles//margins.scss';
 
   padding: 20px;
   background: list-border-color;
@@ -79,7 +79,7 @@
 
 
 .caption {
-  composes: marginTopMedium from 'shared/css/margins.scss';
+  composes: marginTopMedium from 'shared/styles//margins.scss';
   composes: text;
 
   padding-left: 20px;
@@ -101,5 +101,5 @@
 
 .urlInputBox {
   composes: text;
-  composes: marginBottomXSmall from 'shared/css/margins.scss';
+  composes: marginBottomXSmall from 'shared/styles//margins.scss';
 }

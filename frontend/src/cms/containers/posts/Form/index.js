@@ -10,7 +10,7 @@ import DatePicker from 'cms/components/shared/CustomDatePicker/index';
 import Item from 'cms/components/posts/forms/Item/index';
 import TagField from 'cms/components/shared/TagField/index';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles';
 
 

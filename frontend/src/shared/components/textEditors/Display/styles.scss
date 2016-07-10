@@ -1,5 +1,5 @@
 .root {
-  composes: marginVerticalXSmall from 'shared/css/margins.scss';
+  composes: marginVerticalXSmall from 'shared/styles/margins.scss';
 
   cursor: text;
 }

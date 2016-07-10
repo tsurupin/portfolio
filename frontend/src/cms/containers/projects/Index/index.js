@@ -13,7 +13,7 @@ import {
 } from 'material-ui/Table';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles';
 
 

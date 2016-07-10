@@ -1,8 +1,8 @@
 .heading {
-  composes: heading from 'shared/css/components.scss';
+  composes: heading from 'shared/styles/components.scss';
 }
 
 .list {
-  composes: marginTopMedium from 'shared/css/margins.scss';
+  composes: marginTopMedium from 'shared/styles/margins.scss';
 
 }

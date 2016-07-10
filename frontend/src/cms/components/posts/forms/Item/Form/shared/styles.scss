@@ -4,7 +4,7 @@
 }
 
 .label {
-  composes: label from 'shared/css/components.scss';
+  composes: label from 'shared/styles/components.scss';
 }
 
 .submitBox {
@@ -25,11 +25,11 @@
 }
 
 .dropzoneHelp {
-  composes: fontMedium from 'shared/css/fonts.scss';
+  composes: fontMedium from 'shared/styles/fonts.scss';
   text-align: center;
 }
 
 
 .errorMessage {
-  composes: errorText from 'shared/css/components.scss';
+  composes: errorText from 'shared/styles/components.scss';
 }

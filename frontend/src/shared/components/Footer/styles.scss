@@ -1,5 +1,5 @@
-@value colors: 'shared/css/colors.scss';
-@value mixins: 'shared/css/mixins.scss';
+@value colors: 'shared/styles/colors.scss';
+@value mixins: 'shared/styles/mixins.scss';
 @value lead-sentence-color, border-color from colors;
 @value weak-opaque from mixins;
 
@@ -10,7 +10,7 @@
 }
 
 .text {
-  composes: fontSmall from 'shared/css/fonts.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
 
   display: block;
   text-align: center;
@@ -19,7 +19,7 @@
 }
 
 .gitHubIcon {
-  composes: marginLeftXSmall from 'shared/css/margins.scss';
+  composes: marginLeftXSmall from 'shared/styles/margins.scss';
 
   width: 20px;
   height: 20px;

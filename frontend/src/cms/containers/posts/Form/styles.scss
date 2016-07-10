@@ -1,13 +1,13 @@
 .heading {
-  composes: titleText from 'shared/css/components.scss';
+  composes: titleText from 'shared/styles/components.scss';
 }
 
 .dateField {
-  composes: marginTopSmall from 'shared/css/margins.scss';
+  composes: marginTopSmall from 'shared/styles/margins.scss';
 }
 
 .label {
-  composes: label from 'shared/css/components.scss';
+  composes: label from 'shared/styles/components.scss';
 }
 
 .itemBlock {
@@ -16,13 +16,13 @@
 }
 
 .list {
-  composes: resetUlDefaultStyle from 'shared/css/mixins.scss';
+  composes: resetUlDefaultStyle from 'shared/styles/mixins.scss';
   position: relative;
   list-style: none;
 }
 
 .button {
-  composes: primaryButtonLarge from 'shared/css/components.scss';
+  composes: primaryButtonLarge from 'shared/styles/components.scss';
 
   position: absolute;
   bottom: 20px;

@@ -1,5 +1,5 @@
-@value colors: 'shared/css/colors.scss';
-@value mixins: 'shared/css/mixins.scss';
+@value colors: 'shared/styles/colors.scss';
+@value mixins: 'shared/styles/mixins.scss';
 @value label-color, text-color, list-border-color, primary-color, error-color from colors;
 @value strong-opaque from mixins;
 
@@ -9,7 +9,7 @@
 }
 
 .dropzone {
-  composes: marginTopXSmall from 'shared/css/margins.scss';
+  composes: marginTopXSmall from 'shared/styles/margins.scss';
 
   width: 100%;
   max-height: 100px;
@@ -23,7 +23,7 @@
 }
 
 .placeholder {
-  composes: fontMedium from 'shared/css/fonts.scss';
+  composes: fontMedium from 'shared/styles/fonts.scss';
 
   display: block;
   width: 100%;

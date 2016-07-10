@@ -4,7 +4,7 @@ import DropzoneImage from 'cms/components/shared/DropzoneImage/index';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ContentSave from 'material-ui/svg-icons/content/save';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from '../shared/styles';
 
 

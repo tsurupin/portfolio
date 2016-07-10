@@ -17,7 +17,7 @@ import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from '../shared/styles';
 
 

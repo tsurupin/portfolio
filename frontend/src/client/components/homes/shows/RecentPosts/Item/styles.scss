@@ -1,21 +1,21 @@
-@value colors: 'shared/css/colors.scss';
+@value colors: 'shared/styles/colors.scss';
 @value title-color, lead-sentence-color from colors;
 
 .root {
-  composes: marginBottomSmall from 'shared/css/margins.scss';
+  composes: marginBottomSmall from 'shared/styles/margins.scss';
 }
 
 .content {
-  composes: fontLarge from 'shared/css/fonts.scss';
-  composes: contentFont from 'shared/css/fonts.scss';
+  composes: fontLarge from 'shared/styles/fonts.scss';
+  composes: contentFont from 'shared/styles/fonts.scss';
 
   color: title-color;
 }
 
 
 .leadSentence {
-  composes: marginTopXXSmall from 'shared/css/margins.scss';
-  composes: fontSmall from 'shared/css/fonts.scss';
+  composes: marginTopXXSmall from 'shared/styles/margins.scss';
+  composes: fontSmall from 'shared/styles/fonts.scss';
 
   color: lead-sentence-color;
 }

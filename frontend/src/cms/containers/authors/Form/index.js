@@ -8,7 +8,7 @@ import TextField from 'material-ui/TextField';
 import TextEditor from 'shared/components/textEditors/Editor/index'
 import SocialAccount from 'cms/components/authors/forms/SocialAccount/index';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles';
 
 

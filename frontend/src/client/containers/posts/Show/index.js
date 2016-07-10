@@ -7,7 +7,7 @@ import Item from 'client/components/posts/shows/Item/index';
 import shallowCompare from 'react-addons-shallow-compare';
 import Pagination from 'client/components/posts/shows/Pagination/index';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 
 import styles from './styles';
 

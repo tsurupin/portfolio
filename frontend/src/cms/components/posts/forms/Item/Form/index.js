@@ -6,7 +6,7 @@ import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
 import Image from './Image/index';
 import Twitter from './Twitter/index';
 import Text from './Text/index';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 
 
 const propTypes = {

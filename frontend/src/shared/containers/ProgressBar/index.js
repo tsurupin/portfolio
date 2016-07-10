@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LinearProgress from 'material-ui/LinearProgress';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles';
 
 export default function (ComposedComponent) {

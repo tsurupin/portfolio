@@ -6,7 +6,7 @@
 }
 
 .list {
-  composes: marginVerticalXSmall from 'shared/css/margins.scss';
+  composes: marginVerticalXSmall from 'shared/styles/margins.scss';
 
   display: flex;
   flex-direction: row;

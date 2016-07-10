@@ -12,7 +12,7 @@ import TextField from 'material-ui/TextField';
 import TextEditor from 'shared/components/textEditors/Editor/index'
 import TagField from 'cms/components/shared/TagField/index';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles';
 
 const propTypes = {

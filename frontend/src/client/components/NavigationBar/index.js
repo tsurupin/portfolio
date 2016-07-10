@@ -7,7 +7,7 @@ import SocialPerson from 'material-ui/svg-icons/social/person';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import config from 'shared/config';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 
 class NavigationBar extends Component {
 

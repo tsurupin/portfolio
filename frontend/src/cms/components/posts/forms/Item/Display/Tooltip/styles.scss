@@ -11,6 +11,6 @@
 }
 
 .listButton {
-  composes: hoverAnimation from "shared/css/mixins.scss";
+  composes: hoverAnimation from "shared/styles/mixins.scss";
   border-radius: 24px;
 }

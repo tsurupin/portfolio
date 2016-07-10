@@ -1,8 +1,8 @@
-@value colors: 'shared/css/colors.scss';
+@value colors: 'shared/styles/colors.scss';
 @value list-border-color from colors;
 
 .root {
-  composes: marginTopMedium from 'shared/css/margins.scss';
+  composes: marginTopMedium from 'shared/styles/margins.scss';
 
   position: relative;
   padding-bottom: 15px;
@@ -10,12 +10,12 @@
 }
 
 .title {
-  composes: titleText from 'shared/css/components.scss';
+  composes: titleText from 'shared/styles/components.scss';
 }
 
 
 .imageBlock {
-  composes: marginTopSmall from 'shared/css/margins.scss';
+  composes: marginTopSmall from 'shared/styles/margins.scss';
 
 }
 
@@ -53,20 +53,20 @@
 }
 
 .caption {
-  composes: caption from 'shared/css/components.scss';
+  composes: caption from 'shared/styles/components.scss';
 }
 
 .description {
-  composes: marginBottomLarge from 'shared/css/margins.scss';
-  composes: fontMedium from 'shared/css/fonts.scss';
-  composes: descriptionFont from 'shared/css/fonts.scss';
+  composes: marginBottomLarge from 'shared/styles/margins.scss';
+  composes: fontMedium from 'shared/styles/fonts.scss';
+  composes: descriptionFont from 'shared/styles/fonts.scss';
 
   padding-bottom: 5px;
   line-height: 1.6;
 }
 
 .button {
-  composes: primaryButton from 'shared/css/components.scss';
+  composes: primaryButton from 'shared/styles/components.scss';
 
   position: absolute;
   bottom: 20px;

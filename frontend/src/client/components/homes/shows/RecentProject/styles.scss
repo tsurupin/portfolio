@@ -1,4 +1,4 @@
-@value colors: 'shared/css/colors.scss';
+@value colors: 'shared/styles/colors.scss';
 @value border-color, title-color from colors;
 
 .root {
@@ -7,7 +7,7 @@
 }
 
 .title {
-  composes: fontXXLarge from 'shared/css/fonts.scss';
+  composes: fontXXLarge from 'shared/styles/fonts.scss';
 
   border-bottom: 1px solid border-color;
   font-weight: 700;
@@ -16,11 +16,11 @@
 }
 
 .button {
-  composes: primaryButton from 'shared/css/components.scss';
+  composes: primaryButton from 'shared/styles/components.scss';
 }
 
 .image {
-  composes: marginVerticalSmall from 'shared/css/margins.scss';
+  composes: marginVerticalSmall from 'shared/styles/margins.scss';
 
   display: block;
   width: 100%;

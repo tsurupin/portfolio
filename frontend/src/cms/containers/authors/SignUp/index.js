@@ -4,7 +4,7 @@ import { reduxForm } from 'redux-form';
 import { signUp } from 'cms/actions/auths';
 import TextField from 'material-ui/TextField';
 import ErrorMessage from 'cms/components/shared/ErrorMessage/index';
-import inlineStyles from 'shared/css/MaterialUI/index';
+import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from './styles.scss';
 
 
