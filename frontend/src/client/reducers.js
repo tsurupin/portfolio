@@ -6,17 +6,17 @@ import tags from 'shared/reducers/tags';
 import about from 'shared/reducers/abouts';
 import socialAccounts from 'shared/reducers/socialAccounts';
 import home from 'shared/reducers/homes';
-import errors from 'shared/reducers/errors';
+import error from 'shared/reducers/errors';
 
 const rootReducer = combineReducers({
   posts,
   projects,
   items,
   tags,
-  about,
   socialAccounts,
+  about,
   home,
-  errors,
+  error,
 });
 
 export default rootReducer;

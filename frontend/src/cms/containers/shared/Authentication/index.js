@@ -6,7 +6,7 @@ export default function(ComposedComponent) {
   
   function mapStateToProps(state) {
     return {
-      authenticated: state.auths.authenticated
+      authenticated: state.auth.authenticated
     }
   }
   
