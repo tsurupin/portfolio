@@ -37,22 +37,22 @@ class Item extends Component {
   render() {
     let publishActionIcon;
     if (this.props.accepted) {
-      publishActionIcon = <ActionVisibilityOff name="in-visible-button" />;
+      publishActionIcon = <ActionVisibilityOff name="in-visible-icon" />;
     } else {
-      publishActionIcon = <ActionVisibility name="visible-button" />;
+      publishActionIcon = <ActionVisibility name="visible-icon" />;
     }
 
     // 0: not accepted, 1: will publish, 2: publishing
     let statusIcon;
     switch (this.props.status) {
       case 0:
-        statusIcon = <NotificationPriorityHigh name="unaccepted-button" />;
+        statusIcon = <NotificationPriorityHigh name="unaccepted-icon" />;
         break;
       case 1:
-        statusIcon = <ActionDone name="accepted-button" />;
+        statusIcon = <ActionDone name="accepted-icon" />;
         break;
       case 2:
-        statusIcon = <ContentFlag name="publishing-button" />;
+        statusIcon = <ContentFlag name="publishing-icon" />;
         break;
       default:
         break;
@@ -84,6 +84,7 @@ class Item extends Component {
             </IconButton>
           </Link>
           <IconButton
+            name="toggle-button"
             onClick={this.handleToggle}
             disableTouchRipple
           >

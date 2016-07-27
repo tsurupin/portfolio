@@ -35,11 +35,11 @@ class Item extends Component {
     let publishActionIcon;
     let statusIcon;
     if (this.props.accepted) {
-      publishActionIcon = <ActionVisibilityOff name="in-visible-button" />;
-      statusIcon = <ContentFlag name="accepted-button" />;
+      publishActionIcon = <ActionVisibilityOff name="in-visible-icon" />;
+      statusIcon = <ContentFlag name="accepted-icon" />;
     } else {
-      publishActionIcon = <ActionVisibility name="visible-button" />;
-      statusIcon = <NotificationPriorityHigh name="unaccepted-button" />;
+      publishActionIcon = <ActionVisibility name="visible-icon" />;
+      statusIcon = <NotificationPriorityHigh name="unaccepted-icon" />;
     }
 
     return (
@@ -60,6 +60,7 @@ class Item extends Component {
             </IconButton>
           </Link>
           <IconButton
+            name="toggle-button"
             onClick={this.handleToggle}
             disableTouchRipple
           >
