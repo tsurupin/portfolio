@@ -44,9 +44,15 @@ class Item extends Component {
 
     return (
       <TableRow style={inlineStyles.row} >
-        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{this.props.id}</TableRowColumn>
-        <TableRowColumn colSpan="6" style={inlineStyles.rowColumn} >{this.props.title}</TableRowColumn>
-        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >
+          {this.props.id}
+        </TableRowColumn>
+        <TableRowColumn colSpan="6" style={inlineStyles.rowColumn} >
+          {this.props.title}
+        </TableRowColumn>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >
+          {statusIcon}
+        </TableRowColumn>
         <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >
           <Link to={`/cms/projects/${this.props.id}/edit`}>
             <IconButton className={styles.button} disableTouchRipple >

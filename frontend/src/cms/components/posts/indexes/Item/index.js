@@ -54,14 +54,24 @@ class Item extends Component {
       case 2:
         statusIcon = <ContentFlag name="publishing-button" />;
         break;
+      default:
+        break;
     }
 
     return (
       <TableRow style={inlineStyles.row}>
-        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{this.props.id}</TableRowColumn>
-        <TableRowColumn colSpan="4" style={inlineStyles.rowColumn} >{this.props.title}</TableRowColumn>
-        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>
-        <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >{this.props.publishedAt}</TableRowColumn>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >
+          {this.props.id}
+        </TableRowColumn>
+        <TableRowColumn colSpan="4" style={inlineStyles.rowColumn} >
+          {this.props.title}
+        </TableRowColumn>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >
+          {statusIcon}
+        </TableRowColumn>
+        <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >
+          {this.props.publishedAt}
+        </TableRowColumn>
         <TableRowColumn colSpan="3" style={inlineStyles.rowColumn} >
           <Link to={`/cms/posts/${this.props.id}/preview`}>
             <IconButton className={styles.button} disableTouchRipple >

@@ -10,11 +10,15 @@ import styles from './styles';
 
 
 const propTypes = {
+  params: PropTypes.object,
+  location: PropTypes.object,
   posts: PropTypes.array.isRequired,
   page: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
   fetchPosts: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -36,7 +40,7 @@ class PostIndex extends Component {
   }
 
   componentDidMount() {
-    let params = { page: 1 };
+    const params = { page: 1 };
     if (this.props.hasOwnProperty('location')) {
       params.tagId = this.props.location.query['tag-id'];
     }
@@ -58,7 +62,7 @@ class PostIndex extends Component {
 
   handleLoad() {
     if (this.canLoad) {
-      let params = { page: this.props.page + 1 };
+      const params = { page: this.props.page + 1 };
 
       if (this.props.params.hasOwnProperty('location')) {
         params.tagId = this.props.params.location.query['tag-id'];

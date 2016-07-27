@@ -39,19 +39,19 @@ class EditBox extends Component {
           <ContentAddCircleOutLine color={inlineStyles.iconColor} />
         </IconButton>
       );
-    } else {
-      return (
-        <IconButton
-          style={inlineStyles.largeButton}
-          name="close-add-item-button"
-          iconStyle={inlineStyles.toggleIcon}
-          disableTouchRipple
-          onClick={() => this.setState({ isOpen: false })}
-        >
-          <ActionHighlightOff color={inlineStyles.iconColor} />
-        </IconButton>
-      );
     }
+
+    return (
+      <IconButton
+        style={inlineStyles.largeButton}
+        name="close-add-item-button"
+        iconStyle={inlineStyles.toggleIcon}
+        disableTouchRipple
+        onClick={() => this.setState({ isOpen: false })}
+      >
+        <ActionHighlightOff color={inlineStyles.iconColor} />
+      </IconButton>
+    );
   }
 
   renderEditMenu() {

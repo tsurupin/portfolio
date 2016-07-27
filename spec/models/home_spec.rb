@@ -18,7 +18,7 @@ RSpec.describe Home, type: :model do
       author = create(:author)
       posts = []
       Home::POST_NUMBER.times do |i|
-        posts << create(:post, :accepted, updated_at: i.days.ago)
+        posts << create(:post, :accepted, published_at: i.days.ago)
       end
 
       Timecop.freeze(10.days.ago)

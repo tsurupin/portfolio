@@ -6,26 +6,6 @@ import { axios } from 'client/utilities';
 import { browserHistory } from 'react-router';
 import { createError } from 'shared/actions/errors';
 
-export function fetchPosts(params = { page: 1 }) {
-  let url = `${POST_PATH}?page=${params.page}`;
-
-  if (params.tagId) {
-    url += `&tag-id=${params.tagId}`;
-  }
-
-  const request = axios.get(url);
-  return dispatch => {
-    dispatch(fetchPostsRequest());
-    return (
-      request
-        .then(response => dispatch(fetchPostsSuccess(response.data)))
-        .catch(error => {
-          dispatch(fetchPostsFailure());
-          dispatch(createError(error));
-        })
-    );
-  };
-}
 
 function fetchPostsRequest() {
   return {
@@ -50,16 +30,24 @@ function fetchPostsFailure() {
   };
 }
 
-export function fetchPost(path) {
-  const request = axios.get(`${POST_PATH}/${path}`);
+export function fetchPosts(params = { page: 1 }) {
+  let url = `${POST_PATH}?page=${params.page}`;
+
+  if (params.tagId) {
+    url += `&tag-id=${params.tagId}`;
+  }
+
+  const request = axios.get(url);
   return dispatch => {
-    return request
-      .then(response => dispatch(fetchPostSuccess(response.data)))
-      .then((response) => {
-        dispatch(fetchItems(response.payload.items));
-        dispatch(fetchTags(response.payload.tags));
-      })
-      .catch(() => browserHistory.push('/not-found'));
+    dispatch(fetchPostsRequest());
+    return (
+      request
+        .then(response => dispatch(fetchPostsSuccess(response.data)))
+        .catch(error => {
+          dispatch(fetchPostsFailure());
+          dispatch(createError(error));
+        })
+    );
   };
 }
 
@@ -78,6 +66,19 @@ function fetchPostSuccess(response) {
       items: response.items,
       tags: response.tags,
     },
+  };
+}
+
+export function fetchPost(path) {
+  const request = axios.get(`${POST_PATH}/${path}`);
+  return dispatch => {
+    return request
+      .then(response => dispatch(fetchPostSuccess(response.data)))
+      .then((response) => {
+        dispatch(fetchItems(response.payload.items));
+        dispatch(fetchTags(response.payload.tags));
+      })
+      .catch(() => browserHistory.push('/not-found'));
   };
 }
 

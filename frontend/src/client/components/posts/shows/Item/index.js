@@ -13,12 +13,6 @@ const propTypes = {
   }),
 };
 
-function Item({ item }) {
-  return (
-    <div>{renderComponent(item)}</div>
-  );
-}
-
 function renderComponent(item) {
   switch (item.targetType) {
     case TARGET_TYPES.IMAGE:
@@ -31,6 +25,11 @@ function renderComponent(item) {
       return;
   }
 }
+
+function Item({ item }) {
+  return <div>{renderComponent(item)}</div>;
+}
+
 
 Item.propTypes = propTypes;
 

@@ -12,7 +12,9 @@ const propTypes = {
   fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.object,
   deleteButton: PropTypes.object.isRequired,
+  submitting: PropTypes.bool.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 function validate(values) {

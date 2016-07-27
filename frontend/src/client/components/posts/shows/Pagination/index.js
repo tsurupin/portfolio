@@ -11,12 +11,10 @@ const propTypes = {
   prevTitle: PropTypes.string,
   nextId: PropTypes.number,
   nextTitle: PropTypes.string,
+  adminPath: PropTypes.string,
 };
 
 class Pagination extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   renderPrev() {
     if (!this.props.prevId) { return <span className={styles.prevBox} />; }

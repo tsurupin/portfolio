@@ -6,6 +6,19 @@ import { browserHistory } from 'react-router';
 import { fetchSocialAccounts } from './socialAccounts';
 import { createError } from 'shared/actions/errors';
 
+function fetchAuthorSuccess(response) {
+  return {
+    type: FETCH_AUTHOR.SUCCESS,
+    payload: { author: {
+      id: response.id,
+      email: response.email,
+      name: response.name,
+      image: response.image,
+      description: response.description,
+      introduction: response.introduction,
+    } },
+  };
+}
 
 export function fetchAuthor() {
   const request = createAuthorizedRequest('get', `${AUTHOR_PATH}/edit`);
@@ -21,17 +34,17 @@ export function fetchAuthor() {
   };
 }
 
-function fetchAuthorSuccess(response) {
+
+function updateAuthorSuccess() {
   return {
-    type: FETCH_AUTHOR.SUCCESS,
-    payload: { author: {
-      id: response.id,
-      email: response.email,
-      name: response.name,
-      image: response.image,
-      description: response.description,
-      introduction: response.introduction,
-    } },
+    type: UPDATE_AUTHOR.SUCCESS,
+  };
+}
+
+function updateAuthorFailure({ errorMessage }) {
+  return {
+    type: UPDATE_AUTHOR.FAILURE,
+    payload: { errorMessage },
   };
 }
 
@@ -46,19 +59,6 @@ export function updateAuthor(props) {
         .then(() => browserHistory.push('/cms/about'))
         .catch(error => dispatch(updateAuthorFailure(error.data)))
     );
-  };
-}
-
-function updateAuthorSuccess() {
-  return {
-    type: UPDATE_AUTHOR.SUCCESS,
-  };
-}
-
-function updateAuthorFailure({ errorMessage }) {
-  return {
-    type: UPDATE_AUTHOR.FAILURE,
-    payload: { errorMessage },
   };
 }
 

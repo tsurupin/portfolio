@@ -21,7 +21,7 @@ const propTypes = {
   handleDeleteItem: PropTypes.func.isRequired
 };
 
-class PostItemForm extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
 
@@ -129,6 +129,6 @@ class PostItemForm extends Component {
 
 }
 
-PostItemForm.propTypes = propTypes;
+Form.propTypes = propTypes;
 
-export default PostItemForm;
+export default Form;

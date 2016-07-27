@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import imageLogo from './image-icon.png';
 import textLogo from './text-icon.png';
@@ -9,6 +9,19 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   handleAddItem: PropTypes.func.isRequired,
 };
+
+function getImage(name) {
+  switch (name) {
+    case 'ItemTwitter':
+      return twitterLogo;
+    case 'ItemText':
+      return textLogo;
+    case 'ItemImage':
+      return imageLogo;
+    default:
+      return;
+  }
+}
 
 function EditBoxItem({ name, handleAddItem }) {
   return (
@@ -22,17 +35,6 @@ function EditBoxItem({ name, handleAddItem }) {
       </IconButton>
     </li>
   );
-}
-
-function getImage(name) {
-  switch (name) {
-    case 'ItemTwitter':
-      return twitterLogo;
-    case 'ItemText':
-      return textLogo;
-    case 'ItemImage':
-      return imageLogo;
-  }
 }
 
 EditBoxItem.propTypes = propTypes;

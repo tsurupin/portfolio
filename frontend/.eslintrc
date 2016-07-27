@@ -3,5 +3,7 @@
   "settings" : {
     "import/resolver": "webpack"
   },
-  "rules": {}
+  "rules": {
+    "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }]
+  }
 }
