@@ -9,7 +9,6 @@ const INLINE_STYLES = [
   { label: 'Underline', style: 'UNDERLINE' },
 ];
 
-
 export const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
   return (

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import {
   Editor,
   EditorState,
-  ContentState,
   RichUtils,
   convertFromRaw,
   convertToRaw,
@@ -21,7 +20,12 @@ import inlineStyles from 'shared/styles/MaterialUI/index';
 import styles from '../shared/styles';
 
 
-export default class TextEditor extends Component {
+const propTypes = {
+  value: PropTypes.string,
+  handleUpdate: PropTypes.func.isRequired,
+};
+
+class TextEditor extends Component {
 
   constructor(props) {
     super(props);
@@ -156,9 +160,9 @@ export default class TextEditor extends Component {
             value={this.state.urlValue}
             onKeyDown={this.handleInputKeyDown}
           />
-            <IconButton onMouseDown={this.handleConfirmLink}>
-              <ContentAddCircle />
-            </IconButton>
+          <IconButton onMouseDown={this.handleConfirmLink}>
+            <ContentAddCircle />
+          </IconButton>
         </div>
       );
     }
@@ -199,3 +203,6 @@ export default class TextEditor extends Component {
   }
 }
 
+TextEditor.propTypes = propTypes;
+
+export default TextEditor;

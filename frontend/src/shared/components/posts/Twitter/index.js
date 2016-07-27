@@ -8,9 +8,9 @@ const propTypes = {
 
 function Twitter({ twitterId }) {
   return (
-      <div className={styles.root}>
-        <TweetEmbed id={twitterId} />
-      </div>
+    <div className={styles.root}>
+      <TweetEmbed id={twitterId} />
+    </div>
   );
 }
 

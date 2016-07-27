@@ -4,6 +4,6 @@
     "import/resolver": "webpack"
   },
   "rules": {
-    "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }]
+
   }
 }
