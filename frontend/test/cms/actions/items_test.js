@@ -8,17 +8,14 @@ import {
 } from 'cms/actions/items';
 
 import {
-  FETCH_ITEMS, 
-  CREATE_ITEM, 
-  UPDATE_ITEM, 
+  FETCH_ITEMS,
+  CREATE_ITEM,
+  UPDATE_ITEM,
   DELETE_ITEM,
   MOVE_ITEM_TOP,
-  MOVE_ITEM_BOTTOM,
-  MOVE_ITEM_UP,
-  MOVE_ITEM_DOWN,
 } from 'shared/constants/actions';
 
-import TARGET_TYPES from 'shared/constants/targetTypes'
+import TARGET_TYPES from 'shared/constants/targetTypes';
 
 describe('cms item actions', () => {
   describe('fetchItems', () => {
@@ -27,8 +24,8 @@ describe('cms item actions', () => {
       const expectedResponse = {
         type: FETCH_ITEMS,
         payload: {
-          items: [{ targetType: TARGET_TYPES.IMAGE }]
-        }
+          items: [{ targetType: TARGET_TYPES.IMAGE }],
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -43,9 +40,9 @@ describe('cms item actions', () => {
           item: {
             targetType: TARGET_TYPES.IMAGE,
             editing: true,
-            isNew: true
-          }
-        }
+            isNew: true,
+          },
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -59,9 +56,9 @@ describe('cms item actions', () => {
         payload: {
           sortRank: 1,
           item: {
-            targetType: TARGET_TYPES.IMAGE
-          }
-        }
+            targetType: TARGET_TYPES.IMAGE,
+          },
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -73,8 +70,8 @@ describe('cms item actions', () => {
       const expectedResponse = {
         type: DELETE_ITEM,
         payload: {
-          sortRank: 1
-        }
+          sortRank: 1,
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -86,12 +83,10 @@ describe('cms item actions', () => {
       const expectedResponse = {
         type: MOVE_ITEM_TOP,
         payload: {
-          sortRank: 1
-        }
+          sortRank: 1,
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
   });
-  
-
 });

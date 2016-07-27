@@ -1,53 +1,50 @@
-import { expect, sinon } from '../../helpers/utility';
+import { expect } from '../../helpers/utility';
 import { fetchPosts, fetchPost, resetPost } from 'client/actions/posts';
-import { createError } from 'shared/actions/errors';
 import {
   FETCH_POSTS_INFINITELY,
   FETCH_POST,
-  FETCH_ITEMS, 
+  FETCH_ITEMS,
   FETCH_TAGS,
   CREATE_ERROR,
-  RESET_POST
+  RESET_POST,
 } from 'shared/constants/actions';
 import {
   CLIENT_ROOT_URL,
   POST_PATH,
-  TEST_DOMAIN
+  TEST_DOMAIN,
 } from 'shared/constants/apis';
 
-import nock from 'nock'
-import configureMockStore from 'redux-mock-store'
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
 
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 const postUrl = `${CLIENT_ROOT_URL}${POST_PATH}`;
 describe('client post actions', () => {
-  
   afterEach(() => {
     nock.cleanAll();
   });
 
   describe('fetchPosts', () => {
-
     it('creates FETCH_POSTS__INFINITELY_SUCCESS when fetching posts has been done', () => {
       nock(TEST_DOMAIN)
         .get(`${postUrl}?page=1`)
         .reply(200, {
-          posts: [{ 
-            title: 'hoge', 
-            description: 'description', 
-            id: 1 
+          posts: [{
+            title: 'hoge',
+            description: 'description',
+            id: 1,
           }],
           meta: {
             pagination: {
               page: 1,
               limit: 20,
-              total: 30
-            }
-          }
+              total: 30,
+            },
+          },
         });
-      
+
       const store = mockStore({});
       const expectedResponse = [
         {
@@ -56,22 +53,22 @@ describe('client post actions', () => {
         {
           type: FETCH_POSTS_INFINITELY.SUCCESS,
           payload: {
-            posts: [{ 
-              title: 'hoge', 
-              description: 'description', 
-              id: 1 
+            posts: [{
+              title: 'hoge',
+              description: 'description',
+              id: 1,
             }],
             page: 1,
             limit: 20,
-            total: 30
-          } 
-        }
+            total: 30,
+          },
+        },
       ];
 
       return store.dispatch(fetchPosts())
         .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
+          expect(store.getActions()).to.eql(expectedResponse);
+        });
     });
 
     it('creates FETCH_POSTS_FAILURE when fetching posts has been failed', () => {
@@ -90,21 +87,20 @@ describe('client post actions', () => {
         {
           payload: {
             hasAlert: true,
-            message: 'errorMessage'
-          }, 
-          type: CREATE_ERROR 
-        }
+            message: 'errorMessage',
+          },
+          type: CREATE_ERROR,
+        },
       ];
 
       return store.dispatch(fetchPosts())
         .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
+          expect(store.getActions()).to.eql(expectedResponse);
+        });
     });
   });
 
   describe('fetchPost', () => {
-
     it('create FETCH_POST_SUCCESS when fetching post has been done', () => {
       nock(TEST_DOMAIN)
         .get(`${postUrl}/1`)
@@ -116,7 +112,7 @@ describe('client post actions', () => {
           nextId: null,
           nextTitle: null,
           items: [{}],
-          tags: [{}]
+          tags: [{}],
         });
 
       const store = mockStore({});
@@ -129,40 +125,39 @@ describe('client post actions', () => {
               prevId: 1,
               prevTitle: 'prevHoge',
               nextId: null,
-              nextTitle: null
+              nextTitle: null,
             },
             items: [{}],
-            tags: [{}]
+            tags: [{}],
           },
-          type: FETCH_POST.SUCCESS
-        }, 
+          type: FETCH_POST.SUCCESS,
+        },
         {
           payload: { items: [{}] },
-          type: FETCH_ITEMS
+          type: FETCH_ITEMS,
         },
         {
           payload: {
-            tags: [{}]
+            tags: [{}],
           },
-          type: FETCH_TAGS 
-        }
+          type: FETCH_TAGS,
+        },
       ];
 
       return store.dispatch(fetchPost(1))
         .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
+          expect(store.getActions()).to.eql(expectedResponse);
+        });
     });
-    
   });
-  
+
   describe('resetPost', () => {
     it('creates RESET_POST', () => {
       const action = resetPost();
       const expectedResponse = {
-        type: RESET_POST
+        type: RESET_POST,
       };
-      expect(action).to.eql(expectedResponse)
-    })
-  })
+      expect(action).to.eql(expectedResponse);
+    });
+  });
 });

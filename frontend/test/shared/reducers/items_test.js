@@ -8,12 +8,11 @@ import {
   MOVE_ITEM_TOP,
   MOVE_ITEM_UP,
   MOVE_ITEM_DOWN,
-  MOVE_ITEM_BOTTOM
+  MOVE_ITEM_BOTTOM,
 } from 'shared/constants/actions';
 import TARGET_TYPES from 'shared/constants/targetTypes';
 
 describe('Item Reducer', () => {
-
   it('handles action with unknown type', () => {
     expect(itemReducer([], {})).to.eql([]);
   });
@@ -25,14 +24,14 @@ describe('Item Reducer', () => {
         targetId: 1,
         targetType: TARGET_TYPES.TWITTER,
         sortRank: 1,
-        twitterId: '12345'
+        twitterId: '12345',
       },
       {
         id: 2,
         targetId: 1,
         targetType: TARGET_TYPES.TEXT,
         sortRank: 2,
-        description: 'rich text'
+        description: 'rich text',
       },
       {
         id: 3,
@@ -40,13 +39,13 @@ describe('Item Reducer', () => {
         targetType: TARGET_TYPES.IMAGE,
         sortRank: 3,
         image: 'http://image.png',
-        caption: 'image caption'
+        caption: 'image caption',
       },
     ];
-    
-    const action = { 
-      type: FETCH_ITEMS, 
-      payload: { items } 
+
+    const action = {
+      type: FETCH_ITEMS,
+      payload: { items },
     };
     expect(itemReducer([], action)).to.eql(items);
   });
@@ -55,17 +54,17 @@ describe('Item Reducer', () => {
     const action = {
       type: CREATE_ITEM,
       payload: {
-        item: { type: TARGET_TYPES.IMAGE }
-      }
+        item: { type: TARGET_TYPES.IMAGE },
+      },
     };
 
     const state = [
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TEXT },
-      { type: TARGET_TYPES.IMAGE }
+      { type: TARGET_TYPES.IMAGE },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -76,20 +75,20 @@ describe('Item Reducer', () => {
       type: UPDATE_ITEM,
       payload: {
         sortRank: 1,
-        item: { type: TARGET_TYPES.IMAGE }
-      }
+        item: { type: TARGET_TYPES.IMAGE },
+      },
     };
 
     const state = [
-      { type: TARGET_TYPES.TEXT},
       { type: TARGET_TYPES.TEXT },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
+      { type: TARGET_TYPES.TEXT },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TEXT },
       { type: TARGET_TYPES.IMAGE },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -99,19 +98,19 @@ describe('Item Reducer', () => {
     const action = {
       type: DELETE_ITEM,
       payload: {
-        sortRank: 1
-      }
+        sortRank: 1,
+      },
     };
 
     const state = [
       { type: TARGET_TYPES.TWITTER },
       { type: TARGET_TYPES.TEXT },
-      { type: TARGET_TYPES.IMAGE }
+      { type: TARGET_TYPES.IMAGE },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.IMAGE }
+      { type: TARGET_TYPES.IMAGE },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -121,20 +120,20 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_TOP,
       payload: {
-        sortRank: 1
-      }
+        sortRank: 1,
+      },
     };
 
     const state = [
       { type: TARGET_TYPES.TWITTER },
       { type: TARGET_TYPES.TEXT },
-      { type: TARGET_TYPES.IMAGE }
+      { type: TARGET_TYPES.IMAGE },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TEXT },
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.IMAGE }
+      { type: TARGET_TYPES.IMAGE },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -144,16 +143,16 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_TOP,
       payload: {
-        sortRank: 0
-      }
+        sortRank: 0,
+      },
     };
 
     const state = [
-      { type: TARGET_TYPES.TWITTER }
+      { type: TARGET_TYPES.TWITTER },
     ];
 
     const expectedResponse = [
-      { type: TARGET_TYPES.TWITTER }
+      { type: TARGET_TYPES.TWITTER },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -163,18 +162,18 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_UP,
       payload: {
-        sortRank: 1
-      }
+        sortRank: 1,
+      },
     };
 
     const state = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TEXT },
-      { type: TARGET_TYPES.TWITTER }
+      { type: TARGET_TYPES.TWITTER },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -184,16 +183,16 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_UP,
       payload: {
-        sortRank: 0
-      }
+        sortRank: 0,
+      },
     };
 
     const state = [
-      { type: TARGET_TYPES.TWITTER }
+      { type: TARGET_TYPES.TWITTER },
     ];
 
     const expectedResponse = [
-      { type: TARGET_TYPES.TWITTER }
+      { type: TARGET_TYPES.TWITTER },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -203,18 +202,18 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_DOWN,
       payload: {
-        sortRank: 0
-      }
+        sortRank: 0,
+      },
     };
 
     const state = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TEXT },
-      { type: TARGET_TYPES.TWITTER }
+      { type: TARGET_TYPES.TWITTER },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -224,18 +223,18 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_DOWN,
       payload: {
-        sortRank: 1
-      }
+        sortRank: 1,
+      },
     };
 
     const state = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -245,18 +244,18 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_BOTTOM,
       payload: {
-        sortRank: 0
-      }
+        sortRank: 0,
+      },
     };
 
     const state = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TEXT },
-      { type: TARGET_TYPES.TWITTER }
+      { type: TARGET_TYPES.TWITTER },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
@@ -266,22 +265,20 @@ describe('Item Reducer', () => {
     const action = {
       type: MOVE_ITEM_BOTTOM,
       payload: {
-        sortRank: 1
-      }
+        sortRank: 1,
+      },
     };
 
     const state = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     const expectedResponse = [
       { type: TARGET_TYPES.TWITTER },
-      { type: TARGET_TYPES.TEXT }
+      { type: TARGET_TYPES.TEXT },
     ];
 
     expect(itemReducer(state, action)).to.eql(expectedResponse);
   });
-  
-
 });

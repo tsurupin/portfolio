@@ -19,7 +19,7 @@ rerun.txt
 pickle-email-*.html
 
 
-# Ignore uploadfiles
+# Ignore upload files
 /public/uploads
 /public/assets
 .sass_cache
@@ -51,6 +51,7 @@ bower.json
 .idea
 .secret
 /*.pem
+codeclimate-config.patch
 
 # Ignore config files for local usage
 config/settings.local.yml

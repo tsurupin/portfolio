@@ -2,7 +2,7 @@ import { expect } from '../../helpers/utility';
 import { fetchItems } from 'cms/actions/items';
 import { FETCH_ITEMS } from 'shared/constants/actions';
 
-import TARGET_TYPES from 'shared/constants/targetTypes'
+import TARGET_TYPES from 'shared/constants/targetTypes';
 
 describe('client item actions', () => {
   describe('fetchItems', () => {
@@ -11,11 +11,10 @@ describe('client item actions', () => {
       const expectedResponse = {
         type: FETCH_ITEMS,
         payload: {
-          items: [{ targetType: TARGET_TYPES.IMAGE }]
-        }
+          items: [{ targetType: TARGET_TYPES.IMAGE }],
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
   });
-
 });

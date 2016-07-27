@@ -3,7 +3,6 @@ import authReducer from 'shared/reducers/auths';
 import { AUTH, SIGN_OUT } from 'shared/constants/actions';
 
 describe('Auth Reducer', () => {
-
   const INITIAL_STATE = { errorMessage: '', authenticated: false };
 
   it('handles action with unknown type', () => {
@@ -15,7 +14,7 @@ describe('Auth Reducer', () => {
     const expectedResponse = { errorMessage: '', authenticated: true };
     expect(authReducer([], action)).to.eql(expectedResponse);
   });
-  
+
   it('handles action of type SING_OUT_SUCCESS', () => {
     const action = { type: SIGN_OUT.SUCCESS };
     const expectedResponse = { errorMessage: '', authenticated: false };
@@ -27,6 +26,4 @@ describe('Auth Reducer', () => {
     const expectedResponse = { errorMessage: 'errorMessage', authenticated: true };
     expect(authReducer({ authenticated: true }, action)).to.eql(expectedResponse);
   });
-  
-
 });

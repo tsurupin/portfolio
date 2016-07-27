@@ -3,29 +3,27 @@ import { fetchAuthor, updateAuthor } from 'cms/actions/authors';
 import {
   CMS_ROOT_URL,
   AUTHOR_PATH,
-  TEST_DOMAIN
+  TEST_DOMAIN,
 } from 'shared/constants/apis';
-import { 
+import {
   FETCH_AUTHOR,
   FETCH_SOCIAL_ACCOUNTS,
   UPDATE_AUTHOR,
-  CREATE_ERROR
+  CREATE_ERROR,
 } from 'shared/constants/actions';
 import { trimAuthor } from 'cms/utilities';
-import nock from 'nock'
-import configureMockStore from 'redux-mock-store'
-import browserHistory  from 'react-router/lib/browserHistory'
-import thunk from 'redux-thunk'
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
+import browserHistory from 'react-router/lib/browserHistory';
+import thunk from 'redux-thunk';
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 
 const authorUrl = `${CMS_ROOT_URL}${AUTHOR_PATH}`;
 describe('cms author actions', () => {
-
-
   beforeEach(() => {
     // TODO: figure out how to test browserHistory
-    sinon.stub(browserHistory,'push');
+    sinon.stub(browserHistory, 'push');
   });
 
   afterEach(() => {
@@ -34,8 +32,7 @@ describe('cms author actions', () => {
   });
 
   describe('fetchAuthor', () => {
-
-    it("creates FETCH_AUTHOR_SUCCESS when fetchAuthor has been done",  () => {
+    it('creates FETCH_AUTHOR_SUCCESS when fetchAuthor has been done', () => {
       const responseParams = {
         id: 1,
         email: 'sample@gmail.com',
@@ -44,13 +41,13 @@ describe('cms author actions', () => {
         description: 'description',
         introduction: 'introduction',
         socialAccounts: [
-          { 
-            accountType: 'twitter', 
-            url: 'http://twitter.com' 
-          }
-        ]
+          {
+            accountType: 'twitter',
+            url: 'http://twitter.com',
+          },
+        ],
       };
-      
+
       nock(TEST_DOMAIN)
         .get(`${authorUrl}/edit`)
         .reply(200, responseParams);
@@ -65,8 +62,8 @@ describe('cms author actions', () => {
             name: 'hoge',
             image: 'image',
             description: 'description',
-            introduction: 'introduction'
-          }} 
+            introduction: 'introduction',
+          } },
         },
         {
           type: FETCH_SOCIAL_ACCOUNTS,
@@ -74,17 +71,16 @@ describe('cms author actions', () => {
             socialAccounts: [
               {
                 accountType: 'twitter',
-                url: 'http://twitter.com'
-              }
-            ]
-          }
-        }
+                url: 'http://twitter.com',
+              },
+            ],
+          },
+        },
       ];
 
-      return store.dispatch(fetchAuthor()).then(()=> {
+      return store.dispatch(fetchAuthor()).then(() => {
         expect(store.getActions()).to.eql(expectedResponse);
-      })
-
+      });
     });
 
     it('created FETCH_AUTHOR_FAILURE when fetchAuthor has failed', () => {
@@ -97,20 +93,18 @@ describe('cms author actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          message: 'errorMessage'
+          message: 'errorMessage',
         },
-        type: CREATE_ERROR
+        type: CREATE_ERROR,
       }];
 
-      return store.dispatch(fetchAuthor()).then(()=> {
+      return store.dispatch(fetchAuthor()).then(() => {
         expect(store.getActions()).to.eql(expectedResponse);
-      })
-
-    })
+      });
+    });
   });
 
   describe('updateAuthor', () => {
-   
     let props;
     beforeEach(() => {
       props = {
@@ -123,14 +117,14 @@ describe('cms author actions', () => {
           socialAccountsAttributes: [{
             authorId: 1,
             accountType: 'twitter',
-            url: 'http://twitter.com'
-          }]
-        }
+            url: 'http://twitter.com',
+          }],
+        },
       };
     });
 
 
-    it("creates UPDATE_AUTHOR_SUCCESS when updateAuthor has been done",  () => {
+    it('creates UPDATE_AUTHOR_SUCCESS when updateAuthor has been done', () => {
       nock(TEST_DOMAIN)
         .patch(`${authorUrl}`, { author: trimAuthor(props.author) })
         .reply(200);
@@ -138,34 +132,31 @@ describe('cms author actions', () => {
       const store = mockStore({});
 
       const expectedResponse = [{
-        type: UPDATE_AUTHOR.SUCCESS
+        type: UPDATE_AUTHOR.SUCCESS,
       }];
 
-      return store.dispatch(updateAuthor(props)).then(()=> {
+      return store.dispatch(updateAuthor(props)).then(() => {
         expect(store.getActions()).to.eql(expectedResponse);
-      })
-
+      });
     });
 
     it('created UPDATE_AUTHOR_FAILURE when updateAuthor has failed', () => {
       nock(TEST_DOMAIN)
         .patch(`${authorUrl}`, { author: trimAuthor(props.author) })
         .reply(400, { errorMessage: 'errorMessage' });
-    
+
       const store = mockStore({});
-    
+
       const expectedResponse = [{
         type: UPDATE_AUTHOR.FAILURE,
         payload: {
-          errorMessage: 'errorMessage'
-        }
+          errorMessage: 'errorMessage',
+        },
       }];
-    
-      return store.dispatch(updateAuthor(props)).then(()=> {
-        expect(store.getActions()).to.eql(expectedResponse);
-      })
-    
-    })
-  });
 
+      return store.dispatch(updateAuthor(props)).then(() => {
+        expect(store.getActions()).to.eql(expectedResponse);
+      });
+    });
+  });
 });

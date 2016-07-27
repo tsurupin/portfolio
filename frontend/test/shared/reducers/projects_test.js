@@ -5,24 +5,23 @@ import {
   FETCH_PROJECT,
   FETCH_NEW_PROJECT,
   SAVE_PROJECT,
-  TOGGLE_PROJECT
+  TOGGLE_PROJECT,
 } from 'shared/constants/actions';
 
 const INITIAL_STATE = {
   projects: [],
   project: {},
-  errorMessage: ''
+  errorMessage: '',
 };
 
 describe('Project Reducer', () => {
-
   it('handles action with unknown type', () => {
     expect(projectReducer(INITIAL_STATE, {})).to.eql(INITIAL_STATE);
   });
 
   it('handles action of type FETCH_PROJECTS_SUCCESS', () => {
-    const action = { 
-      type: FETCH_PROJECTS.SUCCESS, 
+    const action = {
+      type: FETCH_PROJECTS.SUCCESS,
       payload: { projects: [{
         id: 1,
         title: 'title1',
@@ -31,8 +30,8 @@ describe('Project Reducer', () => {
         sourceUrl: 'http://google.com',
         description: 'description',
         caption: 'caption',
-        tags: [{ id: 1, name: 'name' }]
-      }]} 
+        tags: [{ id: 1, name: 'name' }],
+      }] },
     };
     const expectedResponse = {
       loading: false,
@@ -44,8 +43,8 @@ describe('Project Reducer', () => {
         sourceUrl: 'http://google.com',
         description: 'description',
         caption: 'caption',
-        tags: [{ id: 1, name: 'name' }]
-      }]
+        tags: [{ id: 1, name: 'name' }],
+      }],
     };
     expect(projectReducer({}, action)).to.eql(expectedResponse);
   });
@@ -62,8 +61,8 @@ describe('Project Reducer', () => {
         description: 'description',
         caption: 'caption',
         tags: [{ id: 1, name: 'name' }],
-        tagSuggestions: ['name1', 'name2']
-      }}
+        tagSuggestions: ['name1', 'name2'],
+      } },
     };
     const expectedResponse = {
       project: {
@@ -75,16 +74,16 @@ describe('Project Reducer', () => {
         description: 'description',
         caption: 'caption',
         tags: [{ id: 1, name: 'name' }],
-        tagSuggestions: ['name1', 'name2']
+        tagSuggestions: ['name1', 'name2'],
       },
-      errorMessage: ''
+      errorMessage: '',
     };
     expect(projectReducer({}, action)).to.eql(expectedResponse);
   });
 
   it('handles action of type FETCH_NEW_PROJECT_SUCCESS', () => {
     const action = {
-      type: FETCH_NEW_PROJECT.SUCCESS
+      type: FETCH_NEW_PROJECT.SUCCESS,
     };
     const state = {
       project: {
@@ -96,28 +95,27 @@ describe('Project Reducer', () => {
         description: 'description',
         caption: 'caption',
         tags: [{ id: 1, name: 'name' }],
-        tagSuggestions: ['name1', 'name2']
+        tagSuggestions: ['name1', 'name2'],
       },
-      errorMessage: 'errorMessage'
-    }
+      errorMessage: 'errorMessage',
+    };
     const expectedResponse = {
       project: {},
-      errorMessage: ''
+      errorMessage: '',
     };
     expect(projectReducer(state, action)).to.eql(expectedResponse);
   });
 
-  
-  
+
   it('handles action of type TOGGLE_PROJECT_SUCCESS', () => {
-    const action = { 
+    const action = {
       type: TOGGLE_PROJECT.SUCCESS,
       payload: {
         sortRank: 1,
-        accepted: true
-      }
+        accepted: true,
+      },
     };
-    
+
     const state = {
       projects: [
         {
@@ -128,7 +126,7 @@ describe('Project Reducer', () => {
           sourceUrl: 'http://google.com',
           description: 'description',
           caption: 'caption',
-          tags: [{ id: 1, name: 'name' }]
+          tags: [{ id: 1, name: 'name' }],
         },
         {
           id: 2,
@@ -138,9 +136,9 @@ describe('Project Reducer', () => {
           sourceUrl: 'http://google.com',
           description: 'description',
           caption: 'caption',
-          tags: [{ id: 2, name: 'name' }]
-        }
-      ]
+          tags: [{ id: 2, name: 'name' }],
+        },
+      ],
     };
     const expectedResponse = {
       projects: [
@@ -152,7 +150,7 @@ describe('Project Reducer', () => {
           sourceUrl: 'http://google.com',
           description: 'description',
           caption: 'caption',
-          tags: [{ id: 1, name: 'name' }]
+          tags: [{ id: 1, name: 'name' }],
         },
         {
           id: 2,
@@ -162,20 +160,19 @@ describe('Project Reducer', () => {
           sourceUrl: 'http://google.com',
           description: 'description',
           caption: 'caption',
-          tags: [{ id: 2, name: 'name' }]
-        }
-      ]
+          tags: [{ id: 2, name: 'name' }],
+        },
+      ],
     };
     expect(projectReducer(state, action)).to.eql(expectedResponse);
   });
 
 
   it('handles action of type SAVE_PROJECT_FAILURE', () => {
-    const action = { 
-      type: SAVE_PROJECT.FAILURE, 
-      payload: { errorMessage: 'errorMessage' }};
+    const action = {
+      type: SAVE_PROJECT.FAILURE,
+      payload: { errorMessage: 'errorMessage' } };
     const expectedResponse = { errorMessage: 'errorMessage' };
     expect(projectReducer({}, action)).to.eql(expectedResponse);
   });
-
 });

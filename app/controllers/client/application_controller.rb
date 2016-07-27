@@ -8,7 +8,6 @@ class Client::ApplicationController < ApplicationController
   end
 
   def transform_params
-    params.deep_transform_keys! { |key| key.gsub('-', '_') }
+    params.deep_transform_keys! { |key| key.tr('-', '_') }
   end
-
 end

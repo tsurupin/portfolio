@@ -1,33 +1,32 @@
 import { expect } from '../../helpers/utility';
 import {
   fetchSocialAccounts,
-  updateSocialAccount
+  updateSocialAccount,
 } from 'cms/actions/socialAccounts';
 
 import {
   FETCH_SOCIAL_ACCOUNTS,
-  UPDATE_SOCIAL_ACCOUNT
+  UPDATE_SOCIAL_ACCOUNT,
 } from 'shared/constants/actions';
 
 describe('cms socialAccount actions', () => {
-
   describe('fetchSocialAccounts', () => {
     it('creates FETCH_SOCIAL_ACCOUNTS', () => {
       const action = fetchSocialAccounts({
         socialAccounts: [
-        { 
-          accountType: 'twitter', 
-          url: 'http://twitter.com' 
-        }]
+          {
+            accountType: 'twitter',
+            url: 'http://twitter.com',
+          }],
       });
       const expectedResponse = {
         type: FETCH_SOCIAL_ACCOUNTS,
         payload: { socialAccounts: [
           {
             accountType: 'twitter',
-            url: 'http://twitter.com'
-          }
-        ]}
+            url: 'http://twitter.com',
+          },
+        ] },
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -40,11 +39,10 @@ describe('cms socialAccount actions', () => {
         type: UPDATE_SOCIAL_ACCOUNT,
         payload: {
           sortRank: 1,
-          url: 'url'
-        }
+          url: 'url',
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
   });
-
 });
