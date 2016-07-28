@@ -2,7 +2,6 @@
 [![Code Climate](https://codeclimate.com/github/tsurupin/portfolio/badges/gpa.svg)](https://codeclimate.com/github/tsurupin/portfolio)
 
 # [Portfolio](http://staging.tsurupin.com)
- --------
 
 
 
