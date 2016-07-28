@@ -5,8 +5,8 @@ import PrismDecorator from 'draft-js-prism';
 import styles from './styles';
 
 const propTypes = {
-  children: PropTypes.object,
-  entityKey: PropTypes.object,
+  children: PropTypes.array,
+  entityKey: PropTypes.string,
 };
 
 const Link = (props) => {

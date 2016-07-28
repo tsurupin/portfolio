@@ -29,7 +29,7 @@ const propTypes = {
       image: PropTypes.string,
       caption: PropTypes.string,
       twitterId: PropTypes.string,
-    }).isRequire
+    }).isRequired
   ),
 
   tags: PropTypes.arrayOf(
@@ -40,7 +40,7 @@ const propTypes = {
   ).isRequired,
 
   params: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
   }),
 
   location: PropTypes.object,
