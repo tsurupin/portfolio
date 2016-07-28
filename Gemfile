@@ -49,6 +49,7 @@ group :development do
 
   gem 'annotate'
   gem 'rails-db-resetup'
+  gem 'foreman'
 
   # For Lint
   gem 'rubocop', require: false
