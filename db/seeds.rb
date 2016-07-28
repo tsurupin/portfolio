@@ -12,8 +12,8 @@ ActiveRecord::Base.transaction do
   author = FactoryGirl.create(
     :author,
     :updated,
-    email: Settings.author.email,
-    password: Settings.author.password
+    email: Settings.author.email || 'sample@gmail.com',
+    password: Settings.author.password || 'sample_password'
   )
 
   4.times do
