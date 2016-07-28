@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 import styles from './styles';
 
 const propTypes = {
-  image: PropTypes.string,
+  value: PropTypes.string,
   handleUpdate: PropTypes.func.isRequired,
 };
 
@@ -26,12 +26,12 @@ class DropzoneImage extends Component {
     const self = this;
     const reader = new FileReader();
 
-    reader.onload = function (upload) {
+    reader.onload = (upload) => {
       self.props.handleUpdate(upload.target.result);
       self.setState({ errorMessage: '' });
     };
 
-    reader.onerror = function () {
+    reader.onerror = () => {
       self.setState({ errorMessage: 'Cannot upload image file' });
     };
 
@@ -40,7 +40,14 @@ class DropzoneImage extends Component {
 
   renderImageBox() {
     if (this.props.value) {
-      return <img className={styles.previewImage} src={this.props.value} width="100" />;
+      return (
+        <img
+          className={styles.previewImage}
+          src={this.props.value}
+          width="100"
+          alt=""
+        />
+      );
     }
   }
 

@@ -6,6 +6,12 @@ const propTypes = {
   caption: PropTypes.string,
 };
 
+function renderCaption(caption) {
+  if (caption) {
+    return <figcaption className={styles.caption}>{caption}</figcaption>;
+  }
+}
+
 function Image({ image, caption }) {
   return (
     <figure className={styles.root}>
@@ -19,11 +25,6 @@ function Image({ image, caption }) {
   );
 }
 
-function renderCaption(caption) {
-  if (caption) {
-    return <figcaption className={styles.caption}>{caption}</figcaption>;
-  }
-}
-
 Image.propTypes = propTypes;
+
 export default Image;

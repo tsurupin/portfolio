@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Display from './Display/index';
+import Preview from './Preview/index';
 import Form from './Form/index';
 
 
@@ -26,7 +26,7 @@ function renderComponent(props) {
   }
 
   return (
-    <Display
+    <Preview
       sortRank={props.sortRank}
       item={props.item}
       totalCount={props.totalCount}

@@ -11,6 +11,12 @@ const propTypes = {
   handlePageClick: PropTypes.func.isRequired,
 };
 
+function pageLabel(page, limit, total) {
+  const from = Math.min(((page - 1) * limit) + 1, total);
+  const to = Math.min((page * limit), total);
+  return `${from} - ${to} of ${total}`;
+}
+
 function Pagination({ total, limit, page, handlePageClick }) {
   return (
     <div className={styles.root}>
@@ -29,7 +35,7 @@ function Pagination({ total, limit, page, handlePageClick }) {
         <ChevronRight />
       </IconButton>
       <div className={styles.text}>
-        {`${Math.min(((page - 1) * limit) + 1, total)} - ${Math.min((page * limit), total)} of ${total}`}
+        {pageLabel(page, limit, total)}
       </div>
     </div>
   );

@@ -37,31 +37,41 @@ class Item extends Component {
   render() {
     let publishActionIcon;
     if (this.props.accepted) {
-      publishActionIcon = <ActionVisibilityOff name="in-visible-button" />;
+      publishActionIcon = <ActionVisibilityOff name="in-visible-icon" />;
     } else {
-      publishActionIcon = <ActionVisibility name="visible-button" />;
+      publishActionIcon = <ActionVisibility name="visible-icon" />;
     }
 
     // 0: not accepted, 1: will publish, 2: publishing
     let statusIcon;
     switch (this.props.status) {
       case 0:
-        statusIcon = <NotificationPriorityHigh name="unaccepted-button" />;
+        statusIcon = <NotificationPriorityHigh name="unaccepted-icon" />;
         break;
       case 1:
-        statusIcon = <ActionDone name="accepted-button" />;
+        statusIcon = <ActionDone name="accepted-icon" />;
         break;
       case 2:
-        statusIcon = <ContentFlag name="publishing-button" />;
+        statusIcon = <ContentFlag name="publishing-icon" />;
+        break;
+      default:
         break;
     }
 
     return (
       <TableRow style={inlineStyles.row}>
-        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{this.props.id}</TableRowColumn>
-        <TableRowColumn colSpan="4" style={inlineStyles.rowColumn} >{this.props.title}</TableRowColumn>
-        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >{statusIcon}</TableRowColumn>
-        <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >{this.props.publishedAt}</TableRowColumn>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >
+          {this.props.id}
+        </TableRowColumn>
+        <TableRowColumn colSpan="4" style={inlineStyles.rowColumn} >
+          {this.props.title}
+        </TableRowColumn>
+        <TableRowColumn colSpan="1" style={inlineStyles.rowColumn} >
+          {statusIcon}
+        </TableRowColumn>
+        <TableRowColumn colSpan="2" style={inlineStyles.rowColumn} >
+          {this.props.publishedAt}
+        </TableRowColumn>
         <TableRowColumn colSpan="3" style={inlineStyles.rowColumn} >
           <Link to={`/cms/posts/${this.props.id}/preview`}>
             <IconButton className={styles.button} disableTouchRipple >
@@ -74,6 +84,7 @@ class Item extends Component {
             </IconButton>
           </Link>
           <IconButton
+            name="toggle-button"
             onClick={this.handleToggle}
             disableTouchRipple
           >

@@ -3,5 +3,10 @@
   "settings" : {
     "import/resolver": "webpack"
   },
-  "rules": {}
+  "rules": {
+
+  },
+  "env" : {
+    "mocha": true
+  }
 }

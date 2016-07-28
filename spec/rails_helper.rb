@@ -10,7 +10,12 @@ require 'selenium-webdriver'
 require 'factory_girl_rails'
 require 'vcr'
 require 'simplecov'
+require "codeclimate-test-reporter"
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [SimpleCov::Formatter::HTMLFormatter, CodeClimate::TestReporter::Formatter]
+)
 SimpleCov.start
+
 
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
@@ -32,9 +37,6 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
-  config.after(:each, js: true) do
-    page.execute_script("localStorage.clear()")
-  end
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -55,6 +57,11 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.after(:each, js: true) do
+    page.execute_script("localStorage.clear()")
+  end
+
 
 end
 

@@ -4,11 +4,10 @@ import { FETCH_AUTHOR, UPDATE_AUTHOR } from 'shared/constants/actions';
 
 const INITIAL_STATE = {
   author: {},
-  errorMessage: ''
+  errorMessage: '',
 };
 
 describe('Author Reducer', () => {
-
   const state = {
     author: {
       id: 1,
@@ -16,9 +15,9 @@ describe('Author Reducer', () => {
       name: 'hoge1',
       image: 'http://image1.png',
       description: 'rich text1',
-      introduction: 'rich text1'
+      introduction: 'rich text1',
     },
-    errorMessage: 'errorMessage'
+    errorMessage: 'errorMessage',
   };
 
   it('handles action with unknown type', () => {
@@ -26,19 +25,18 @@ describe('Author Reducer', () => {
   });
 
   it('handles action of type FETCH_AUTHOR_SUCCESS', () => {
-    
     const author = {
       id: 2,
       email: 'sample2@gmail.com',
       name: 'hoge2',
       image: 'http://image2.png',
       description: 'rich text2',
-      introduction: 'rich text2'
+      introduction: 'rich text2',
     };
-    
+
     const action = {
       type: FETCH_AUTHOR.SUCCESS,
-      payload: { author }
+      payload: { author },
     };
     const expectedResponse = { author, errorMessage: '' };
     expect(authorReducer(state, action)).to.eql(expectedResponse);
@@ -51,12 +49,11 @@ describe('Author Reducer', () => {
   });
 
   it('handles action of type UPDATE_AUTHOR_FAILURE', () => {
-    const action = { 
-      type: UPDATE_AUTHOR.FAILURE, 
-      payload: { errorMessage: 'errorMessage' } 
+    const action = {
+      type: UPDATE_AUTHOR.FAILURE,
+      payload: { errorMessage: 'errorMessage' },
     };
-    const expectedResponse = { author: state.author, errorMessage: 'errorMessage',  };
+    const expectedResponse = { author: state.author, errorMessage: 'errorMessage' };
     expect(authorReducer(state, action)).to.eql(expectedResponse);
   });
-  
 });

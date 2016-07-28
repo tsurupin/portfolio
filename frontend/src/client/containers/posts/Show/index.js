@@ -19,18 +19,18 @@ const propTypes = {
     prevTitle: PropTypes.string,
     nextId: PropTypes.number,
     nextTitle: PropTypes.string,
-
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        targetType: PropTypes.string,
-        description: PropTypes.string,
-        image: PropTypes.string,
-        caption: PropTypes.string,
-        twitterId: PropTypes.string,
-      }).isRequire
-    ),
   }).isRequired,
+
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      targetType: PropTypes.string,
+      description: PropTypes.string,
+      image: PropTypes.string,
+      caption: PropTypes.string,
+      twitterId: PropTypes.string,
+    }).isRequired
+  ),
 
   tags: PropTypes.arrayOf(
     PropTypes.shape({
@@ -39,7 +39,15 @@ const propTypes = {
     }).isRequired
   ).isRequired,
 
+  params: PropTypes.shape({
+    id: PropTypes.string,
+  }),
+
+  location: PropTypes.object,
+
   fetchPost: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired,
+  resetPost: PropTypes.func.isRequired,
 };
 
 const cmsRegexp = /^(\/cms)*/;
@@ -54,10 +62,6 @@ function mapStateToProps(state) {
 }
 
 class PostShow extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   componentWillMount() {
     this.props.resetPost();

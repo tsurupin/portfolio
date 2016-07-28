@@ -1,45 +1,42 @@
-import { expect, sinon } from '../../helpers/utility';
+import { expect } from '../../helpers/utility';
 import { fetchAbout } from 'client/actions/abouts';
 import {
   CLIENT_ROOT_URL,
   ABOUT_PATH,
-  TEST_DOMAIN
+  TEST_DOMAIN,
 } from 'shared/constants/apis';
-import { 
-  FETCH_ABOUT, 
+import {
+  FETCH_ABOUT,
   CREATE_ERROR,
-  FETCH_SOCIAL_ACCOUNTS
+  FETCH_SOCIAL_ACCOUNTS,
 } from 'shared/constants/actions';
-import { trimAuthor } from 'cms/utilities';
-import nock from 'nock'
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 
 const aboutUrl = `${CLIENT_ROOT_URL}${ABOUT_PATH}`;
 describe('client about actions', () => {
-
   afterEach(() => {
     nock.cleanAll();
   });
 
   describe('fetchAbout', () => {
-
-    it("creates FETCH_ABOUT_SUCCESS when fetchAbout has been done",  () => {
+    it('creates FETCH_ABOUT_SUCCESS when fetchAbout has been done', () => {
       const responseParams = {
         email: 'sample@gmail.com',
         name: 'hoge',
         image: 'image',
         description: 'description',
         socialAccounts: [
-          { 
-            accountType: 'twitter', 
-            url: 'http://twitter.com' 
-          }
-        ]
+          {
+            accountType: 'twitter',
+            url: 'http://twitter.com',
+          },
+        ],
       };
-      
+
       nock(TEST_DOMAIN)
         .get(`${aboutUrl}`)
         .reply(200, responseParams);
@@ -48,12 +45,12 @@ describe('client about actions', () => {
       const expectedResponse = [
         {
           type: FETCH_ABOUT.SUCCESS,
-          payload: { 
+          payload: {
             email: 'sample@gmail.com',
             name: 'hoge',
             image: 'image',
-            description: 'description'
-          }
+            description: 'description',
+          },
         },
         {
           type: FETCH_SOCIAL_ACCOUNTS,
@@ -61,17 +58,16 @@ describe('client about actions', () => {
             socialAccounts: [
               {
                 accountType: 'twitter',
-                url: 'http://twitter.com'
-              }
-            ]
-          }
-        }
+                url: 'http://twitter.com',
+              },
+            ],
+          },
+        },
       ];
 
-      return store.dispatch(fetchAbout()).then(()=> {
+      return store.dispatch(fetchAbout()).then(() => {
         expect(store.getActions()).to.eql(expectedResponse);
-      })
-
+      });
     });
 
     it('created FETCH_ABOUT_FAILURE when fetchAbout has failed', () => {
@@ -84,16 +80,14 @@ describe('client about actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          message: 'errorMessage'
+          message: 'errorMessage',
         },
-        type: CREATE_ERROR
+        type: CREATE_ERROR,
       }];
 
-      return store.dispatch(fetchAbout()).then(()=> {
+      return store.dispatch(fetchAbout()).then(() => {
         expect(store.getActions()).to.eql(expectedResponse);
-      })
-
-    })
+      });
+    });
   });
-
 });

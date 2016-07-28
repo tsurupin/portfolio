@@ -10,11 +10,10 @@ describe('client tag actions', () => {
       const expectedResponse = {
         type: FETCH_TAGS,
         payload: {
-          tags: [{ id: 1, name: 'hoge' }]
-        }
+          tags: [{ id: 1, name: 'hoge' }],
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
   });
-  
 });

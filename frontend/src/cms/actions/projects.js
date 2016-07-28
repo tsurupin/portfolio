@@ -11,6 +11,16 @@ import { createError } from 'shared/actions/errors';
 import { createAuthorizedRequest, trimProject } from 'cms/utilities';
 import { browserHistory } from 'react-router';
 
+
+function fetchProjectsSuccess(response) {
+  return {
+    type: FETCH_PROJECTS.SUCCESS,
+    payload: {
+      projects: response.projects,
+    },
+  };
+}
+
 export function fetchProjects() {
   const request = createAuthorizedRequest('get', `${PROJECT_PATH}`);
   return dispatch => {
@@ -22,24 +32,6 @@ export function fetchProjects() {
   };
 }
 
-function fetchProjectsSuccess(response) {
-  return {
-    type: FETCH_PROJECTS.SUCCESS,
-    payload: {
-      projects: response.projects,
-    },
-  };
-}
-
-export function fetchProject(id) {
-  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/${id}/edit`);
-  return dispatch => {
-    return request
-      .then(response => dispatch(fetchProjectSuccess(response.data)))
-      .then(response => dispatch(fetchTagsForm(response.payload.tags)))
-      .catch(error => dispatch(createError(error)));
-  };
-}
 
 function fetchProjectSuccess(response) {
   return {
@@ -62,11 +54,11 @@ function fetchProjectSuccess(response) {
   };
 }
 
-export function fetchNewProject() {
-  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/new`);
+export function fetchProject(id) {
+  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/${id}/edit`);
   return dispatch => {
     return request
-      .then(response => dispatch(fetchNewProjectSuccess(response.data)))
+      .then(response => dispatch(fetchProjectSuccess(response.data)))
       .then(response => dispatch(fetchTagsForm(response.payload.tags)))
       .catch(error => dispatch(createError(error)));
   };
@@ -85,6 +77,29 @@ function fetchNewProjectSuccess(response) {
   };
 }
 
+export function fetchNewProject() {
+  const request = createAuthorizedRequest('get', `${PROJECT_PATH}/new`);
+  return dispatch => {
+    return request
+      .then(response => dispatch(fetchNewProjectSuccess(response.data)))
+      .then(response => dispatch(fetchTagsForm(response.payload.tags)))
+      .catch(error => dispatch(createError(error)));
+  };
+}
+
+
+function saveProjectSuccess() {
+  return {
+    type: SAVE_PROJECT.SUCCESS,
+  };
+}
+
+function saveProjectFailure({ errorMessage }) {
+  return {
+    type: SAVE_PROJECT.FAILURE,
+    payload: { errorMessage },
+  };
+}
 
 export function saveProject(props) {
   const project = trimProject(props.project);
@@ -104,16 +119,14 @@ export function saveProject(props) {
   };
 }
 
-function saveProjectSuccess() {
-  return {
-    type: SAVE_PROJECT.SUCCESS,
-  };
-}
 
-function saveProjectFailure({ errorMessage }) {
+function toggleProjectSuccess(sortRank, response) {
   return {
-    type: SAVE_PROJECT.FAILURE,
-    payload: { errorMessage },
+    type: TOGGLE_PROJECT.SUCCESS,
+    payload: {
+      sortRank,
+      accepted: response.accepted,
+    },
   };
 }
 
@@ -123,16 +136,6 @@ export function toggleProject(sortRank, id) {
     return request
       .then(response => dispatch(toggleProjectSuccess(sortRank, response.data)))
       .catch(error => dispatch(createError(error)));
-  };
-}
-
-function toggleProjectSuccess(sortRank, response) {
-  return {
-    type: TOGGLE_PROJECT.SUCCESS,
-    payload: {
-      sortRank,
-      accepted: response.accepted,
-    },
   };
 }
 

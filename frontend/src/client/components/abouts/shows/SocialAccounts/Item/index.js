@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import gitHubIcon from './git-hub-icon.png';
 import facebookIcon from './facebook-icon.png';
@@ -9,18 +9,6 @@ const propTypes = {
   accountType: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
-
-function Item({ url, accountType }) {
-  return (
-    <li>
-      <a href={url} >
-        <IconButton >
-          <img src={getAccountIconImage(accountType)} />
-        </IconButton>
-      </a>
-    </li>
-  );
-}
 
 function getAccountIconImage(accountType) {
   switch (accountType) {
@@ -36,5 +24,18 @@ function getAccountIconImage(accountType) {
   }
 }
 
+function Item({ url, accountType }) {
+  return (
+    <li>
+      <a href={url} >
+        <IconButton >
+          <img src={getAccountIconImage(accountType)} role="presentation" />
+        </IconButton>
+      </a>
+    </li>
+  );
+}
+
 Item.propTypes = propTypes;
+
 export default Item;

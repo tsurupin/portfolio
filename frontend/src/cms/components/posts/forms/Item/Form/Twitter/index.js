@@ -8,28 +8,30 @@ import styles from '../shared/styles';
 
 
 const propTypes = {
+  fields: PropTypes.object.isRequired,
   targetType: PropTypes.string.isRequired,
   sortRank: PropTypes.number.isRequired,
   twitterId: PropTypes.string,
   cancelButton: PropTypes.object,
   deleteButton: PropTypes.object.isRequired,
-  handleUpdateItem: PropTypes.func.isRequired,
-  handleSubmitItem: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  handleUpdateItem: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 const fields = ['twitterId'];
 
 function validate(values) {
   const errors = {};
+  const urlRegexp = /https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig;
+  const idRegexp = /[\d]+$/ig;
 
-  if (!/https?:\/\/twitter.com\/[\w]+\/status\/[\d]+$/ig.test(values.twitterId) && !/[\d]+$/ig.test(values.twitterId)) {
+  if (!urlRegexp.test(values.twitterId) && !idRegexp.test(values.twitterId)) {
     errors.twitterId = 'Enter Valid Twitter URL or Twitter ID';
   }
 
   return errors;
 }
-
 
 class Twitter extends Component {
 
@@ -40,10 +42,9 @@ class Twitter extends Component {
 
   handleUpdateItem(props) {
     const regexp = /https?:\/\/twitter.com\/[\w]+\/status\/([\d]+)$/i;
-    const twitterId = props.twitterId.match(regexp) ? props.twitterId.match(regexp)[1] : props.twitterId;
+    const twitterId = regexp.test(props.twitterId) ? props.twitterId.match(regexp)[1] : props.twitterId;
     this.props.handleUpdateItem({ twitterId });
   }
-
 
   render() {
     const { handleSubmit, submitting, fields: { twitterId } } = this.props;

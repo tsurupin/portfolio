@@ -13,7 +13,7 @@ const propTypes = {
   handleUpdateItem: PropTypes.func.isRequired
 };
 
-class PostItemCell extends Component {
+class Preview extends Component {
   constructor(props) {
     super(props);
 
@@ -53,6 +53,6 @@ class PostItemCell extends Component {
   }
 }
 
-PostItemCell.propTypes = propTypes;
+Preview.propTypes = propTypes;
 
-export default PostItemCell
+export default Preview

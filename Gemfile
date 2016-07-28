@@ -90,6 +90,7 @@ group :test do
   gem 'webmock'
   gem 'vcr'
   gem 'spring-commands-rspec'
+  gem "codeclimate-test-reporter", require: false
 end
 
 

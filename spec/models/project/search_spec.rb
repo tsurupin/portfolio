@@ -28,7 +28,7 @@ RSpec.describe Project::Search, type: :model do
         create(:project, accepted: true)
         create(:project, accepted: false)
 
-        params = { tag: tag.id }
+        params = { tag_id: tag.id }
 
         expect(Project::Search.client_search(params).map(&:id)).to eq [project1.id]
       end

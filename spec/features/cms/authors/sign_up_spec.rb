@@ -23,7 +23,7 @@ describe 'Admin user creates an account', js: true do
 
   scenario 'they move to sign in page in visiting other page' do
     visit '/cms/sign-up'
-    visit '/cms/about'
-    expect(page).to have_css('h2', 'SignIn')
+    visit '/cms/posts'
+    expect(page).to have_css('h2', 'Sign In')
   end
 end

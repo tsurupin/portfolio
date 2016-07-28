@@ -23,7 +23,10 @@ const propTypes = {
       ).isRequired,
     }).isRequired
   ).isRequired,
+  location: PropTypes.object,
+  loading: PropTypes.bool.isRequired,
   fetchProjects: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired,
 };
 
 
@@ -45,7 +48,7 @@ class ProjectIndex extends Component {
   }
 
   componentDidMount() {
-    let params = {};
+    const params = {};
     if (this.props.hasOwnProperty('location')) {
       params.tagId = this.props.location.query['tag-id'];
     }

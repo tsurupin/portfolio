@@ -10,7 +10,11 @@ export default function Footer() {
       <div className={styles.text}>
         <span>{`© 2016 ${config.authorName}`}</span>
         <a href={config.gitHubUrl}>
-          <img className={styles.gitHubIcon} src={icon} />
+          <img
+            className={styles.gitHubIcon}
+            src={icon}
+            role="presentation"
+          />
         </a>
       </div>
     </footer>
