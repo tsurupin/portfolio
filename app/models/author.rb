@@ -48,5 +48,4 @@ class Author < ActiveRecord::Base
     Rails.cache.delete('cached_about')
     Rails.cache.delete('cached_home')
   end
-
 end

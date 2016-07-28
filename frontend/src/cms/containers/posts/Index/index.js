@@ -102,11 +102,21 @@ class PostIndex extends Component {
         <Table fixedHeader fixedFooter>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow selectable={false}>
-              <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>ID</TableHeaderColumn>
-              <TableHeaderColumn colSpan="4" style={inlineStyles.headerColumn}>Title</TableHeaderColumn>
-              <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>Status</TableHeaderColumn>
-              <TableHeaderColumn colSpan="2" style={inlineStyles.headerColumn}>Date</TableHeaderColumn>
-              <TableHeaderColumn colSpan="3" style={inlineStyles.headerColumn}>Action</TableHeaderColumn>
+              <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>
+                ID
+              </TableHeaderColumn>
+              <TableHeaderColumn colSpan="4" style={inlineStyles.headerColumn}>
+                Title
+              </TableHeaderColumn>
+              <TableHeaderColumn colSpan="1" style={inlineStyles.headerColumn}>
+                Status
+              </TableHeaderColumn>
+              <TableHeaderColumn colSpan="2" style={inlineStyles.headerColumn}>
+                Date
+              </TableHeaderColumn>
+              <TableHeaderColumn colSpan="3" style={inlineStyles.headerColumn}>
+                Action
+              </TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>

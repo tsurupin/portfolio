@@ -17,6 +17,9 @@ const propTypes = {
     accountType: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   })).isRequired,
+
+  fetchAbout: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired,
 };
 
 
@@ -28,9 +31,6 @@ function mapStateToProps(state) {
 }
 
 class AboutShow extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchAbout()

@@ -1,24 +1,7 @@
 import { FETCH_PROJECTS } from 'shared/constants/actions';
 import { PROJECT_PATH } from 'shared/constants/apis';
 import { axios } from 'client/utilities';
-import { browserHistory } from 'react-router';
 import { createError } from 'shared/actions/errors';
-
-export function fetchProjects(params = {}) {
-  const url = params.tagId ? `${PROJECT_PATH}?tag-id=${params.tagId}` : PROJECT_PATH;
-  const request = axios.get(url);
-  return dispatch => {
-    dispatch(fetchProjectRequest());
-    return (
-      request
-        .then(response => dispatch(fetchProjectsSuccess(response.data)))
-        .catch(error => {
-          dispatch(fetchProjectsFailure());
-          dispatch(createError(error));
-        })
-    );
-  };
-}
 
 function fetchProjectRequest() {
   return {
@@ -38,3 +21,20 @@ function fetchProjectsFailure() {
     type: FETCH_PROJECTS.FAILURE,
   };
 }
+
+export function fetchProjects(params = {}) {
+  const url = params.tagId ? `${PROJECT_PATH}?tag-id=${params.tagId}` : PROJECT_PATH;
+  const request = axios.get(url);
+  return dispatch => {
+    dispatch(fetchProjectRequest());
+    return (
+      request
+        .then(response => dispatch(fetchProjectsSuccess(response.data)))
+        .catch(error => {
+          dispatch(fetchProjectsFailure());
+          dispatch(createError(error));
+        })
+    );
+  };
+}
+

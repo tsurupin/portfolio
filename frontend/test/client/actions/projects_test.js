@@ -1,27 +1,24 @@
-import { expect, sinon } from '../../helpers/utility';
+import { expect } from '../../helpers/utility';
 import { fetchProjects } from 'client/actions/projects';
-import { createError } from 'shared/actions/errors';
 import { FETCH_PROJECTS, CREATE_ERROR } from 'shared/constants/actions';
-import { 
+import {
   CLIENT_ROOT_URL,
   PROJECT_PATH,
-  TEST_DOMAIN, 
+  TEST_DOMAIN,
 } from 'shared/constants/apis';
-import nock from 'nock'
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 const projectUrl = `${CLIENT_ROOT_URL}${PROJECT_PATH}`;
 
 describe('client project actions', () => {
-
   afterEach(() => {
     nock.cleanAll();
   });
 
   describe('fetch_projects', () => {
-
     it('creates FETCH_PROJECTS_SUCCESS when fetching projects has been done', () => {
       const params = {
         projects: [
@@ -32,17 +29,17 @@ describe('client project actions', () => {
             image: 'http://sample.com/image.jpg',
             sourceUrl: 'http://github.com',
             caption: 'caption',
-            tags: [ { id: 1, name: 'hoge1' }],
-            accepted: true
-          }
-        ]
+            tags: [{ id: 1, name: 'hoge1' }],
+            accepted: true,
+          },
+        ],
       };
-      
-      
+
+
       nock(TEST_DOMAIN)
         .get(`${projectUrl}`)
         .reply(200, params);
-      
+
       const store = mockStore({});
       const expectedResponse = [
         {
@@ -50,15 +47,14 @@ describe('client project actions', () => {
         },
         {
           type: FETCH_PROJECTS.SUCCESS,
-          payload: params
-        }
+          payload: params,
+        },
       ];
 
       return store.dispatch(fetchProjects())
         .then(() => {
-          console.log(store.getActions());
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
+          expect(store.getActions()).to.eql(expectedResponse);
+        });
     });
 
     it('creates FETCH_PROJECTS_FAILURE when fetching projects has been failed', () => {
@@ -77,17 +73,16 @@ describe('client project actions', () => {
         {
           payload: {
             hasAlert: true,
-            message: 'errorMessage'
+            message: 'errorMessage',
           },
-          type: CREATE_ERROR
-        }
+          type: CREATE_ERROR,
+        },
       ];
 
       return store.dispatch(fetchProjects())
         .then(() => {
-          expect(store.getActions()).to.eql(expectedResponse)
-        })
+          expect(store.getActions()).to.eql(expectedResponse);
+        });
     });
   });
-
 });

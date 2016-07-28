@@ -9,7 +9,7 @@ describe('shared errors actions', () => {
       const error = { status: 401, data: { errorMessage: 'errorMessage' } };
       const action = createError(error);
       const expectedResponse = {
-        type: SIGN_OUT.SUCCESS
+        type: SIGN_OUT.SUCCESS,
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -21,8 +21,8 @@ describe('shared errors actions', () => {
         type: CREATE_ERROR,
         payload: {
           hasAlert: true,
-          message: 'errorMessage'
-        }
+          message: 'errorMessage',
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -33,8 +33,8 @@ describe('shared errors actions', () => {
         type: CREATE_ERROR,
         payload: {
           hasAlert: true,
-          message: 'errorMessage'
-        }
+          message: 'errorMessage',
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
@@ -46,11 +46,10 @@ describe('shared errors actions', () => {
       const expectedResponse = {
         type: DELETE_ERROR,
         payload: {
-          hasAlert: false
-        }
+          hasAlert: false,
+        },
       };
       expect(action).to.eql(expectedResponse);
     });
   });
-
 });

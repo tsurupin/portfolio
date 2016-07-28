@@ -24,7 +24,7 @@ feature 'User transits to the project index page', js: true do
     expect(page).to have_css('h1', 'Projects')
     click_link tags[0].name
     expect(page).to have_text(projects[0].title)
-    expect(page).not_to have_text(projects[1].title)
     expect(page).to have_selector('h3', count: 1)
+    expect(page).not_to have_text(projects[1].title)
   end
 end

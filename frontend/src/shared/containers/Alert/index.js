@@ -7,8 +7,8 @@ import styles from './styles';
 export default function (ComposedComponent) {
   function mapStateToProps(state) {
     return {
-      hasAlert: state.errors.hasAlert,
-      message: state.errors.message,
+      hasAlert: state.error.hasAlert,
+      message: state.error.message,
     };
   }
 

@@ -15,7 +15,6 @@ import styles from './styles';
 
 
 const propTypes = {
-  fields: PropTypes.object.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

@@ -14,6 +14,19 @@ import { createError } from 'shared/actions/errors';
 import { createAuthorizedRequest, trimPost } from 'cms/utilities';
 import { browserHistory } from 'react-router';
 
+
+function fetchPostsSuccess(response) {
+  return {
+    type: FETCH_POSTS.SUCCESS,
+    payload: {
+      posts: response.posts,
+      total: response.meta.pagination.total,
+      page: response.meta.pagination.page,
+      limit: response.meta.pagination.limit,
+    },
+  };
+}
+
 export function fetchPosts(page = 1) {
   const request = createAuthorizedRequest('get', `${POST_PATH}?page=${page}`);
   return dispatch => {
@@ -25,14 +38,16 @@ export function fetchPosts(page = 1) {
   };
 }
 
-function fetchPostsSuccess(response) {
+
+function fetchNewPostSuccess(response) {
   return {
-    type: FETCH_POSTS.SUCCESS,
+    type: FETCH_NEW_POST.SUCCESS,
     payload: {
-      posts: response.posts,
-      total: response.meta.pagination.total,
-      page: response.meta.pagination.page,
-      limit: response.meta.pagination.limit,
+      items: [],
+      tags: {
+        tags: [],
+        tagSuggestions: response.tagSuggestions,
+      },
     },
   };
 }
@@ -50,32 +65,6 @@ export function fetchNewPost() {
   };
 }
 
-function fetchNewPostSuccess(response) {
-  return {
-    type: FETCH_NEW_POST.SUCCESS,
-    payload: {
-      items: [],
-      tags: {
-        tags: [],
-        tagSuggestions: response.tagSuggestions,
-      },
-    },
-  };
-}
-
-
-export function fetchEditPost(id) {
-  const request = createAuthorizedRequest('get', `${POST_PATH}/${id}/edit`);
-  return dispatch => {
-    return request
-      .then(response => dispatch(fetchEditPostSuccess(response.data)))
-      .then((response) => {
-        dispatch(fetchItems(response.payload.items));
-        dispatch(fetchTagsForm(response.payload.tags));
-      })
-      .catch(error => dispatch(createError(error)));
-  };
-}
 
 function fetchEditPostSuccess(response) {
   return {
@@ -96,25 +85,19 @@ function fetchEditPostSuccess(response) {
   };
 }
 
-
-export function savePost(props) {
-  const post = trimPost(props.post);
-  let request;
-  if (props.post.id) {
-    request = createAuthorizedRequest('patch', `${POST_PATH}/${post.id}`, { post });
-  } else {
-    request = createAuthorizedRequest('post', `${POST_PATH}`, { post });
-  }
+export function fetchEditPost(id) {
+  const request = createAuthorizedRequest('get', `${POST_PATH}/${id}/edit`);
   return dispatch => {
-    dispatch(savePostRequest());
-    return (
-      request
-        .then(() => dispatch(savePostSuccess()))
-        .then(() => browserHistory.push('/cms'))
-        .catch(error => dispatch(savePostFailure(error.data)))
-    );
+    return request
+      .then(response => dispatch(fetchEditPostSuccess(response.data)))
+      .then((response) => {
+        dispatch(fetchItems(response.payload.items));
+        dispatch(fetchTagsForm(response.payload.tags));
+      })
+      .catch(error => dispatch(createError(error)));
   };
 }
+
 
 export function savePostRequest() {
   return {
@@ -135,16 +118,25 @@ function savePostFailure({ errorMessage }) {
   };
 }
 
-export function togglePost(sortRank, id) {
-  const request = createAuthorizedRequest('patch', `${POST_PATH}/${id}/acceptance`);
+export function savePost(props) {
+  const post = trimPost(props.post);
+  let request;
+  if (props.post.id) {
+    request = createAuthorizedRequest('patch', `${POST_PATH}/${post.id}`, { post });
+  } else {
+    request = createAuthorizedRequest('post', `${POST_PATH}`, { post });
+  }
   return dispatch => {
+    dispatch(savePostRequest());
     return (
       request
-        .then(response => dispatch(togglePostSuccess(sortRank, response.data)))
-        .catch(error => dispatch(createError(error)))
+        .then(() => dispatch(savePostSuccess()))
+        .then(() => browserHistory.push('/cms'))
+        .catch(error => dispatch(savePostFailure(error.data)))
     );
   };
 }
+
 
 function togglePostSuccess(sortRank, response) {
   return {
@@ -157,3 +149,13 @@ function togglePostSuccess(sortRank, response) {
   };
 }
 
+export function togglePost(sortRank, id) {
+  const request = createAuthorizedRequest('patch', `${POST_PATH}/${id}/acceptance`);
+  return dispatch => {
+    return (
+      request
+        .then(response => dispatch(togglePostSuccess(sortRank, response.data)))
+        .catch(error => dispatch(createError(error)))
+    );
+  };
+}

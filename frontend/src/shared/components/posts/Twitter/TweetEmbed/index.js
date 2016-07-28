@@ -8,16 +8,20 @@ const propTypes = {
 
 class TweetEmbed extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const renderTweet = () => {
-      window.twttr.widgets.createTweetEmbed(this.props.id, this.div, { align: 'center', cards: 'hidden', conversation: 'none' });
+      window.twttr.widgets.createTweetEmbed(
+        this.props.id,
+        this.div,
+        { align: 'center', cards: 'hidden', conversation: 'none' }
+      );
     };
 
-    window.twttr ? renderTweet() : this.appendScript(widgetJS, renderTweet);
+    if (window.twttr) {
+      renderTweet();
+    } else {
+      this.appendScript(widgetJS, renderTweet);
+    }
   }
 
   appendScript(src, callback) {

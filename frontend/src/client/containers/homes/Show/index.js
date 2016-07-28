@@ -23,6 +23,9 @@ const propTypes = {
       title: PropTypes.string.isRequired,
     }),
   }).isRequired,
+
+  fetchHome: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -30,9 +33,6 @@ function mapStateToProps(state) {
 }
 
 class HomeShow extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchHome()
@@ -67,7 +67,7 @@ class HomeShow extends Component {
         <img
           className={styles.image}
           src={mainImage}
-          alt="main image"
+          alt=""
         />
         <TextDisplay description={this.props.home.introduction} />
         <div className={styles.list} >

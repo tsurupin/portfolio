@@ -1,42 +1,40 @@
-import { expect, sinon } from '../../helpers/utility';
+import { expect } from '../../helpers/utility';
 import { fetchHome } from 'client/actions/homes';
 import {
-  CLIENT_ROOT_URL, 
-  HOME_PATH, 
-  TEST_DOMAIN
+  CLIENT_ROOT_URL,
+  HOME_PATH,
+  TEST_DOMAIN,
 } from 'shared/constants/apis';
 import { FETCH_HOME, CREATE_ERROR } from 'shared/constants/actions';
-import nock from 'nock'
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 
 const homeUrl = `${CLIENT_ROOT_URL}${HOME_PATH}`;
 
 describe('client home actions', () => {
-  
   afterEach(() => {
     nock.cleanAll();
   });
-  
+
   describe('fetchHome', () => {
-    
-    it("creates FETCH_HOME_SUCCESS when fetchHome has been done",  () => {
+    it('creates FETCH_HOME_SUCCESS when fetchHome has been done', () => {
       const responseParams = {
         introduction: 'introduction',
         image: 'image url',
         latestPosts: [{
           id: 1,
           title: 'hoge',
-          leadSentence: 'lead sentence'
+          leadSentence: 'lead sentence',
         }],
         latestProject: {
           id: 1,
-          image: 'image url'
-        }
+          image: 'image url',
+        },
       };
-      
+
       nock(TEST_DOMAIN)
         .get(`${homeUrl}`)
         .reply(200, responseParams);
@@ -45,13 +43,12 @@ describe('client home actions', () => {
 
       const expectedResponse = [{
         type: FETCH_HOME.SUCCESS,
-        payload: responseParams
+        payload: responseParams,
       }];
 
-      return store.dispatch(fetchHome()).then(()=> {
+      return store.dispatch(fetchHome()).then(() => {
         expect(store.getActions()).to.eql(expectedResponse);
-      })
-
+      });
     });
 
     it('created FETCH_HOME_FAILURE when fetchHome has failed', () => {
@@ -64,15 +61,13 @@ describe('client home actions', () => {
       const expectedResponse = [{
         payload: {
           hasAlert: true,
-          message: 'errorMessage'
+          message: 'errorMessage',
         },
-        type: CREATE_ERROR
+        type: CREATE_ERROR,
       }];
-      store.dispatch(fetchHome()).then(()=> {
+      store.dispatch(fetchHome()).then(() => {
         expect(store.getActions()).to.eql(expectedResponse);
-      })
-
-    })
+      });
+    });
   });
-  
 });

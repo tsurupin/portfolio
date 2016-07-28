@@ -23,8 +23,8 @@ function mapStateToProps(state) {
       password: "",
       passwordConfirmation: ""
     },
-    authenticated: state.auths.authenticated,
-    errorMessage: state.auths.errorMessage
+    authenticated: state.auth.authenticated,
+    errorMessage: state.auth.errorMessage
   }
 }
 

@@ -21,8 +21,8 @@ function mapStateToProps(state) {
       email: "",
       password: ""
     },
-    authenticated: state.auths.authenticated,
-    errorMessage: state.auths.errorMessage
+    authenticated: state.auth.authenticated,
+    errorMessage: state.auth.errorMessage
   }
 }
 

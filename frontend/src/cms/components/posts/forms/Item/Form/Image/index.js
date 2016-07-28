@@ -12,7 +12,9 @@ const propTypes = {
   fields: PropTypes.object.isRequired,
   cancelButton: PropTypes.element,
   deleteButton: PropTypes.element.isRequired,
+  submitting: PropTypes.bool.isRequired,
   handleUpdateItem: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 const fields = ['image', 'caption'];

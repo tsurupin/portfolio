@@ -13,11 +13,11 @@ import ProgressBar from 'shared/containers/ProgressBar/index';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={ProgressBar(Alert(HomeShow))} />
-      <Route path="/posts" component={ProgressBar(Alert(PostIndex))} />
-      <Route path="/posts/:id" component={ProgressBar(Alert(PostShow))} />
-      <Route path="/projects" component={ProgressBar(Alert(ProjectIndex))} />
-      <Route path="/about" component={ProgressBar(Alert(AboutShow))} />
-      <Route path="*" component={NotFound} />
-      <Route path="/not-found" component={NotFound} />
+    <Route path="/posts" component={ProgressBar(Alert(PostIndex))} />
+    <Route path="/posts/:id" component={ProgressBar(Alert(PostShow))} />
+    <Route path="/projects" component={ProgressBar(Alert(ProjectIndex))} />
+    <Route path="/about" component={ProgressBar(Alert(AboutShow))} />
+    <Route path="*" component={NotFound} />
+    <Route path="/not-found" component={NotFound} />
   </ Route>
 );

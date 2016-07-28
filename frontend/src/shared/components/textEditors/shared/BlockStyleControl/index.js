@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleButton from '../StyleButton/index';
 import styles from './styles';
 
