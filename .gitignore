@@ -51,7 +51,6 @@ bower.json
 .idea
 .secret
 /*.pem
-codeclimate-config.patch
 
 # Ignore config files for local usage
 config/settings.local.yml
