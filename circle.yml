@@ -12,8 +12,7 @@ dependencies:
     - gem uninstall bundler
     - gem install bundler --pre
   override:
-    - bundle install:
-      timeout: 1500
+    - bundle install
   post:
     - bundle exec rake assets:precompile
 test:
