@@ -18,7 +18,7 @@ dependencies:
     - bundle exec rake assets:precompile
 test:
   override:
-    - bundle exec rake spec
+    - bundle exec rspec
 database:
   pre:
     - mysql -e 'set global innodb_file_format = Barracuda'
@@ -26,7 +26,7 @@ database:
     - mysql -e 'set global innodb_large_prefix = 1'
   override:
     - mv config/ci_database.yml config/database.yml
-    - rake db:setup --trace:
+    - rake db:migrate:reset --trace:
         environment:
           RAILS_ENV: test
           RACK_ENV: test
