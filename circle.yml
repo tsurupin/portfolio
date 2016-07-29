@@ -9,6 +9,11 @@ dependencies:
   pre:
     - sudo pip install awscli
     - npm install
+    - gem uninstall bundler
+    - gem install bundler --pre
+  override:
+    - bundle install:
+      timeout: 1500
 test:
   override:
     - bundle exec rake spec
@@ -19,6 +24,10 @@ database:
     - mysql -e 'set global innodb_large_prefix = 1'
   override:
     - mv config/ci_database.yml config/database.yml
+    - rake db:migrate:reset --trace:
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
 deployment:
   staging:
     branch: staging
