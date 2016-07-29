@@ -11,7 +11,9 @@ dependencies:
     - npm install
     - gem install bundler --pre
   override:
-    - bundle install
+    - bundle install:
+        environment:
+          RAILS_ENV: test
   post:
     - bundle exec rake assets:precompile
 test:
@@ -24,7 +26,7 @@ database:
     - mysql -e 'set global innodb_large_prefix = 1'
   override:
     - mv config/ci_database.yml config/database.yml
-    - rake db:migrate:reset --trace:
+    - rake db:setup --trace:
         environment:
           RAILS_ENV: test
           RACK_ENV: test
