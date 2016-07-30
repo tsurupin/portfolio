@@ -34,10 +34,10 @@ deployment:
   staging:
     branch: staging
     commands:
-      - sh script/deploy-staging.sh:
+      - sh scripts/deploy-staging.sh:
           timeout: 1500
   production:
     branch: master
     commands:
-      - sh script/deploy-production.sh:
+      - sh scripts/deploy-production.sh:
           timeout: 1500
