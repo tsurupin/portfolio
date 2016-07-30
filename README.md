@@ -10,6 +10,7 @@
 
 Demo
 -------
+[![CircleCI](https://circleci.com/gh/tsurupin/portfolio.svg?style=svg)](https://circleci.com/gh/tsurupin/portfolio)
 ![](https://cloud.githubusercontent.com/assets/1782169/17211740/27c54d5a-5506-11e6-8bb3-fc89a71c718b.gif)
 ### client
 Live version: [http://staging.tsurupin.com](http://staging.tsurupin.com)
