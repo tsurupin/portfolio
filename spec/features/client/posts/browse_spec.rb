@@ -11,12 +11,12 @@ feature 'User sees the post page', js: true do
   context 'when there is the corresponding page' do
     scenario 'they see the items associated with the post' do
       post = create(:post, :accepted)
-      image = create(:item, :image, post: post)
+      create(:item, :image, post: post)
       create(:item, :text, post: post)
       create(:item, :twitter, post: post)
       visit("posts/#{post.id}")
 
-      expect(page).to have_css "img[src='#{image.target.image_url}']"
+      expect(page).to have_selector("img")
       expect(page).to have_css '.public-DraftEditor-content'
       expect(page).to have_css 'twitterwidget'
     end
