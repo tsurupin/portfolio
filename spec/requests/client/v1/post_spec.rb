@@ -134,13 +134,13 @@ RSpec.describe Client::Api::V1::PostsController, type: :request do
         items_result = [
           {
             'id' => item_twitter.id,
-            'targetId' => item_image.target_id,
+            'targetId' => item_twitter.target_id,
             'targetType' => item_twitter[:target_type],
             'twitterId' => item_twitter.target.twitter_id
           },
           {
             'id' => item_text.id,
-            'targetId' => item_image.target_id,
+            'targetId' => item_text.target_id,
             'targetType' => item_text[:target_type],
             'description' => item_text.target.description
           },
