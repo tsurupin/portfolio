@@ -3,14 +3,22 @@ machine:
     version:
       2.3.0
   node:
-    version: 4.4.3
+    version: 6.2.2
 
 dependencies:
   pre:
     - sudo pip install awscli
+    - npm install
+    - gem install bundler --pre
+  override:
+    - bundle install:
+        environment:
+          RAILS_ENV: test
+  post:
+    - bundle exec rake assets:precompile
 test:
   override:
-    - bundle exec rake spec
+    - bundle exec rspec
 database:
   pre:
     - mysql -e 'set global innodb_file_format = Barracuda'
