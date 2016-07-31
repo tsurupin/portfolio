@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/tsurupin/portfolio.svg?style=svg)](https://circleci.com/gh/tsurupin/portfolio)
 [![Test Coverage](https://codeclimate.com/github/tsurupin/portfolio/badges/coverage.svg)](https://codeclimate.com/github/tsurupin/portfolio/coverage)
 [![Code Climate](https://codeclimate.com/github/tsurupin/portfolio/badges/gpa.svg)](https://codeclimate.com/github/tsurupin/portfolio)
 
