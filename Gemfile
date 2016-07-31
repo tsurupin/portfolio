@@ -86,12 +86,11 @@ group :test do
   gem 'poltergeist'
   gem "chromedriver-helper"
   gem "selenium-webdriver"
-  gem 'simplecov'
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'
   gem 'spring-commands-rspec'
-  gem "codeclimate-test-reporter", require: false
+  gem "codeclimate-test-reporter", require: nil
 end
 
 

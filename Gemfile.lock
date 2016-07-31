@@ -553,7 +553,6 @@ DEPENDENCIES
   scss_lint
   selenium-webdriver
   shoulda-matchers
-  simplecov
   spring
   spring-commands-rspec
   timecop
