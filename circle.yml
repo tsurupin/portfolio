@@ -30,6 +30,9 @@ database:
         environment:
           RAILS_ENV: test
           RACK_ENV: test
+general:
+  artifacts:
+    - coverage
 deployment:
   staging:
     branch: staging
