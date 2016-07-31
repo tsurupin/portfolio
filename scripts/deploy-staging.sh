@@ -4,7 +4,7 @@ set -ex
 
 export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
 export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-export AWS_DEFAULT_REGION="ap-us-west-1"
+export AWS_DEFAULT_REGION="us-west-1"
 MY_SECURITY_GROUP=${AWS_SECURITY_GROUP_ID}
 
 MY_IP=`curl -s ifconfig.me`
