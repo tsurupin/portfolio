@@ -1,4 +1,3 @@
-// common
 export const CLIENT_ROOT_URL = '/api/v1';
 export const CMS_ROOT_URL = '/cms/api/v1';
 export const POST_PATH = '/posts';
