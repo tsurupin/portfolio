@@ -9,8 +9,8 @@
     "test:watch": "npm run test -- --watch",
     "webpack:production": "webpack --config webpack.config.prod.js",
     "webpack:development": "webpack --w --config webpack.config.js",
-    "es:lint": "./node_modules/.bin/eslint src/**",
-    "es:lint:fix": "./node_modules/.bin/eslint --fix src/** "
+    "eslint": "./node_modules/.bin/eslint src/**",
+    "eslint:fix": "./node_modules/.bin/eslint --fix src/** "
   },
   "author": "tomoaki tsuruta",
   "devDependencies": {

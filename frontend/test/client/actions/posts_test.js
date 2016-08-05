@@ -28,7 +28,8 @@ describe('client post actions', () => {
   });
 
   describe('fetchPosts', () => {
-    it('creates FETCH_POSTS__INFINITELY_SUCCESS before fetching posts and creates FETCH_POSTS__INFINITELY_SUCCESS when fetching posts has been done', () => {
+    it('creates FETCH_POSTS__INFINITELY_SUCCESS before fetching posts and ' +
+      'creates FETCH_POSTS__INFINITELY_SUCCESS when fetching posts has been done', () => {
       nock(TEST_DOMAIN)
         .get(`${postUrl}?page=1`)
         .reply(200, {
@@ -107,7 +108,7 @@ describe('client post actions', () => {
         },
       ];
 
-      return store.dispatch(fetchPosts({page: 2}))
+      return store.dispatch(fetchPosts({ page: 2 }))
         .then(() => {
           expect(store.getActions()).to.eql(expectedResponse);
         });
