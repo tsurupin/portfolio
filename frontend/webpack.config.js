@@ -15,6 +15,7 @@ module.exports = {
     path: '../app/assets/javascripts',
     filename: '[name]/bundle.js'
   },
+  
   module: {
     loaders: [
         {
