@@ -39,7 +39,9 @@ export function fetchPosts(params = { page: 1 }) {
 
   const request = axios.get(url);
   return dispatch => {
-    dispatch(fetchPostsRequest());
+    if (params.page === 1) {
+      dispatch(fetchPostsRequest());
+    }
     return (
       request
         .then(response => dispatch(fetchPostsSuccess(response.data)))
