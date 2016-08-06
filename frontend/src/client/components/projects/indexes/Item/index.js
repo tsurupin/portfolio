@@ -30,9 +30,9 @@ class Item extends Component {
   renderLink(sourceUrl) {
     if (sourceUrl) {
       return (
-        <Link to={sourceUrl} className={styles.button}>
+        <a href={sourceUrl} className={styles.button}>
           Fork on GitHub
-        </Link>
+        </a>
       );
     }
   }
