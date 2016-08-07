@@ -9,6 +9,7 @@
 
 ActiveRecord::Base.transaction do
 
+
   author = FactoryGirl.create(
     :author,
     :updated,
@@ -16,55 +17,57 @@ ActiveRecord::Base.transaction do
     password: Settings.author.try(:password) || 'sample_password'
   )
 
-  4.times do
-    FactoryGirl.create(:social_account, author: author)
-  end
-
-  tags = []
-  21.times do
-    tags << FactoryGirl.create(:tag)
-  end
-
-  item_types = %i(image twitter text)
-  40.times do |i|
-    post =
-      if i % 10 == 0
-        FactoryGirl.create(:post)
-      else
-        FactoryGirl.create(:post, :accepted)
-      end
-
-    FactoryGirl.create(:item, :text, post: post)
-    (rand(10)+1).times do
-      type = item_types[rand(3)]
-      FactoryGirl.create(:item, type, post: post)
+  unless Rails.env.production?
+    4.times do
+      FactoryGirl.create(:social_account, author: author)
     end
 
-    (rand(4)+1).times do
-      begin
-        tag_index = rand(21)
-        FactoryGirl.create(:tagging, :subject_post, subject: post, tag: tags[tag_index])
-      rescue
-        retry
-      end
-
+    tags = []
+    21.times do
+      tags << FactoryGirl.create(:tag)
     end
-  end
 
-  8.times do |i|
-    project =
-      if i % 5 == 0
-        FactoryGirl.create(:project)
-      else
-        FactoryGirl.create(:project, :accepted)
+    item_types = %i(image twitter text)
+    40.times do |i|
+      post =
+        if i % 10 == 0
+          FactoryGirl.create(:post)
+        else
+          FactoryGirl.create(:post, :accepted)
+        end
+
+      FactoryGirl.create(:item, :text, post: post)
+      (rand(10)+1).times do
+        type = item_types[rand(3)]
+        FactoryGirl.create(:item, type, post: post)
       end
 
-    (rand(4)+1).times do
-      begin
-        tag_index = rand(21)
-        FactoryGirl.create(:tagging, :subject_project, subject: project, tag: tags[tag_index])
-      rescue
-        retry
+      (rand(4)+1).times do
+        begin
+          tag_index = rand(21)
+          FactoryGirl.create(:tagging, :subject_post, subject: post, tag: tags[tag_index])
+        rescue
+          retry
+        end
+
+      end
+    end
+
+    8.times do |i|
+      project =
+        if i % 5 == 0
+          FactoryGirl.create(:project)
+        else
+          FactoryGirl.create(:project, :accepted)
+        end
+
+      (rand(4)+1).times do
+        begin
+          tag_index = rand(21)
+          FactoryGirl.create(:tagging, :subject_project, subject: project, tag: tags[tag_index])
+        rescue
+          retry
+        end
       end
     end
   end

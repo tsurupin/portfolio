@@ -24,8 +24,8 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 
-  # after 'deploy:updated', 'newrelic:notice_deployment'
- after 'deploy:publishing', 'deploy:restart'
+  after 'deploy:updated', 'newrelic:notice_deployment'
+  after 'deploy:publishing', 'deploy:restart'
 end
 
 namespace :database do
