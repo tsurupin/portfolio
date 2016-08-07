@@ -3,14 +3,27 @@ machine:
     version:
       2.3.0
   node:
-    version: 4.4.3
+    version: 6.2.2
 
 dependencies:
   pre:
     - sudo pip install awscli
+    - npm install
+    - gem install bundler --pre
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+    - sudo apt-get update
+    - sudo apt-get --only-upgrade install google-chrome-stable
+    - google-chrome --version
+  override:
+    - bundle install:
+        environment:
+          RAILS_ENV: test
+  post:
+    - bundle exec rake assets:precompile
 test:
   override:
-    - bundle exec rake spec
+    - bundle exec rspec
 database:
   pre:
     - mysql -e 'set global innodb_file_format = Barracuda'
@@ -22,14 +35,17 @@ database:
         environment:
           RAILS_ENV: test
           RACK_ENV: test
+general:
+  artifacts:
+    - coverage
 deployment:
   staging:
     branch: staging
     commands:
-      - sh script/deploy-staging.sh:
+      - sh scripts/deploy-staging.sh:
           timeout: 1500
   production:
-    branch: master
+    branch: production
     commands:
-      - sh script/deploy-production.sh:
+      - sh scripts/deploy-production.sh:
           timeout: 1500

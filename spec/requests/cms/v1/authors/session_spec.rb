@@ -7,7 +7,7 @@ RSpec.describe Cms::Api::V1::Authors::SessionsController, type: :request do
       subject { JSON.parse(response.body) }
       before { post cms_api_v1_author_session_path, params }
       context 'when params are invalid' do
-        let(:result) { { 'errorMessage' => 'invalid_login_attempt' } }
+        let(:result) { { 'errorMessage' => 'Invalid email or password.' } }
         context 'when email is wrong' do
           let(:params) do
             {

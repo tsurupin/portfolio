@@ -4,6 +4,7 @@ aws_secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
 aws_region: <%= ENV["AWS_REGION"] %>
 aws_cloud_front_domain_name: <%= ENV["AWS_CLOUD_FRONT_DOMAIN_NAME"] %>
 bugsnag_api_key: <%= ENV['BUGSNAG_API_KEY'] %>
+newrelic_key: <%= ENV['NEWRELIC_KEY'] %>
 author:
   email: <%= ENV["ADMIN_EMAIL"] %>
   password: <%= ENV["ADMIN_PASSWORD"] %>

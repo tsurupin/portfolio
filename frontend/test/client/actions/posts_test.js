@@ -21,13 +21,15 @@ import thunk from 'redux-thunk';
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 const postUrl = `${CLIENT_ROOT_URL}${POST_PATH}`;
+
 describe('client post actions', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
   describe('fetchPosts', () => {
-    it('creates FETCH_POSTS__INFINITELY_SUCCESS when fetching posts has been done', () => {
+    it('creates FETCH_POSTS__INFINITELY_SUCCESS before fetching posts and ' +
+      'creates FETCH_POSTS__INFINITELY_SUCCESS when fetching posts has been done', () => {
       nock(TEST_DOMAIN)
         .get(`${postUrl}?page=1`)
         .reply(200, {
@@ -66,6 +68,47 @@ describe('client post actions', () => {
       ];
 
       return store.dispatch(fetchPosts())
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedResponse);
+        });
+    });
+
+    it('creates FETCH_POSTS__INFINITELY_SUCCESS when fetching posts has been done', () => {
+      nock(TEST_DOMAIN)
+        .get(`${postUrl}?page=2`)
+        .reply(200, {
+          posts: [{
+            title: 'hoge',
+            description: 'description',
+            id: 1,
+          }],
+          meta: {
+            pagination: {
+              page: 2,
+              limit: 20,
+              total: 30,
+            },
+          },
+        });
+
+      const store = mockStore({});
+      const expectedResponse = [
+        {
+          type: FETCH_POSTS_INFINITELY.SUCCESS,
+          payload: {
+            posts: [{
+              title: 'hoge',
+              description: 'description',
+              id: 1,
+            }],
+            page: 2,
+            limit: 20,
+            total: 30,
+          },
+        },
+      ];
+
+      return store.dispatch(fetchPosts({ page: 2 }))
         .then(() => {
           expect(store.getActions()).to.eql(expectedResponse);
         });

@@ -27,7 +27,7 @@ RSpec.describe Author, type: :model do
   describe '#generate_devise_token!' do
     it 'inserts access_token' do
       author = create(:author, access_token: nil)
-      expect(author.access_token).to match(/1:\w*/)
+      expect(author.access_token).to match(/\d*:\w*/)
     end
   end
 

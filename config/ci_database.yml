@@ -4,7 +4,7 @@ test:
   adapter: mysql2
   encoding: utf8mb4
   collation: utf8mb4_general_ci
-  database: circle_ruby_test
+  database: portfolio_test
   pool: 5
   socket: /var/run/mysqld/mysqld.sock
   charset: utf8mb4
