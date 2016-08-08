@@ -27,10 +27,6 @@ class Project::Form < ActiveType::Record[Project]
 
   validates :description, presence: true, if: proc { |project| project.accepted }
   validates :image, presence: true, if: proc { |project| project.accepted }
-  validates :source_url,
-            presence: true,
-            format: { with: URI.regexp, message: '%{value} does not appear to be a valid URL' },
-            if: proc { |project| project.accepted }
 
   accepts_nested_attributes_for :taggings, reject_if: ->(attributes) { attributes['tag_id'].blank? }
 
