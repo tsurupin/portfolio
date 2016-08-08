@@ -26,6 +26,6 @@ class Project < ActiveRecord::Base
 
   def delete_cache
     Rails.cache.delete('cached_home')
-    Rails.cache.delete_matched(/cached_projects\?tag=\w*/)
+    Rails.cache.delete_matched(/cached_projects\?tag_id=\w*/)
   end
 end
