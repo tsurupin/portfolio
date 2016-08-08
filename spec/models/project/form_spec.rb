@@ -60,19 +60,6 @@ RSpec.describe Project::Form, type: :model do
       end
     end
 
-    context 'source_url' do
-      context 'when source_url is nil' do
-        it 'raises the error' do
-          project = create(
-            :project,
-            description: 'hoge',
-            image: File.new("#{Rails.root}/spec/fixtures/images/sample.png")
-          )
-          project_form = Project::Form.find(project.id)
-          expect { project_form.update!(accepted: true) }.to raise_error(ActiveRecord::RecordInvalid)
-        end
-      end
-    end
   end
 
   describe '.delete_unnecessary_tags!' do
