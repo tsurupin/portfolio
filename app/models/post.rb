@@ -34,6 +34,6 @@ class Post < ActiveRecord::Base
     Rails.cache.delete('cached_home') if accepted
     Rails.cache.delete("cached_posts/#{id}")
     Rails.cache.delete("cached_posts/#{id}?previewing=true")
-    Rails.cache.delete_matched(/cached_posts\?page=\d?&tag=\w*/)
+    Rails.cache.delete_matched(/cached_posts\?page=\d?&tag_id=\w*/)
   end
 end
