@@ -38,6 +38,11 @@ database:
 general:
   artifacts:
     - coverage
+  branches:
+    only:
+      - master
+      - staging
+      - production
 deployment:
   staging:
     branch: staging
