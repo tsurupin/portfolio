@@ -85,8 +85,8 @@ Development
 Todo
 -------
  1. Upgrade Rails version to Rails 5.
- 2. Add comment function.
- 3. Consider server-side-rendering.
+ 2. Improve SEO.
+ 3. Add comment function.
 
 
 License
