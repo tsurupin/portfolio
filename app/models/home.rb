@@ -5,8 +5,8 @@ class Home
 
   def initialize
     @author   = Author.first
-    @posts    = Post::Search.latest.limit(POST_NUMBER)
-    @project  = Project::Search.latest.first
+    @posts    = Post::Search.client_search.limit(POST_NUMBER)
+    @project  = Project::Search.client_search.first
   end
 
   def introduction
