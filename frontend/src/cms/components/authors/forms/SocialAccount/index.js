@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/textField';
+import TextField from 'material-ui/TextField';
 
 const propTypes = {
   sortRank: PropTypes.number.isRequired,
